@@ -2,12 +2,10 @@
 
 Updated 8 November 2026.
 
-Pixel Cat Card `1.0.0-rc.1` is being prepared for public release. This clean source candidate starts a new Git history. Publication and Marketplace installation acceptance are pending; no stable-release or Marketplace acceptance claim is made.
+Pixel Cat Card `1.0.0-rc.1` is public at `Future-Surfer/Pixel-Cat-Card`. The clean repository has no original private Git history. Main requires pull requests and passing build/test CI; force pushes and branch deletion are blocked.
 
-The single-file package is `dist/pixel-cat-card.js`. It retains the existing companion configuration, legacy card registrations and unchanged runtime artwork. Use [installation and rollback instructions](guides/PIXEL_CAT_INSTALL.md); do not load it alongside the six roaming modules.
+The single-file package is `dist/pixel-cat-card.js`. It has been manually deployed to HA 2026.11 with exact HTTP readback, one registered bundle, unchanged dashboard configuration, functional modern/legacy cards, Pause/Resume and view return. Other clients must reload. HACS/Marketplace install/update/removal/rollback acceptance and a published prerelease remain pending; catalog inclusion is separate.
 
-Runtime and package tests cover the source behaviour, deterministic packaging and compatibility guards. Actual-device performance, Marketplace install/upgrade/removal and scoped rollback remain release acceptance checks. Lab-only procedural cat trees are outside the default companion.
+Release presentation work shortens the consumer README, adds a staged GIF and repeatable media queue, and removes generated runtime files from the tracked root. Source artwork and runtime behaviour are unchanged. Use [technical details](TECHNICAL_DETAILS.md) for layout and tooling, [development](../DEVELOPMENT.md) for operating procedures and [roadmap](../ROADMAP.md) for priorities.
 
-The repository includes curated Studio snapshots and exact-version provenance. Live Studio stores, deployment identities, personal dashboards, historical attachments and uncleared reference images are excluded. Never infer a new artwork receipt from an older version.
-
-[Documentation router](README.md) · [Development](../DEVELOPMENT.md) · [Roadmap](../ROADMAP.md) · [Features](FEATURES.md).
+Live stores, personal dashboards/backups, deployment identities, historical attachments and uncleared reference images remain outside this repository. Never infer an artwork receipt for a different saved version.

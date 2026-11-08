@@ -1,0 +1,10 @@
+import fs from 'node:fs';import path from 'node:path';import {spawnSync} from 'node:child_process';
+import {readmeAssets} from './readme-assets.mjs';
+import {commands,duration,frameMs,size} from '../prototype/readme-routine.mjs';
+const assets=readmeAssets(),frames=[];
+for(let time=0;time<duration;time+=frameMs)frames.push(commands(assets,time).ops);
+const output=path.resolve('docs/images/pixel-cat-routine.gif');
+const result=spawnSync(process.env.PYTHON||'python',['scripts/encode-readme-gif.py',output],{input:JSON.stringify({...size,frameMs,frames}),encoding:'utf8',maxBuffer:1024*1024});
+if(result.error)throw result.error;if(result.status!==0)throw Error(result.stderr||'GIF encoder failed');
+console.log(result.stdout.trim());
+fs.writeFileSync('docs/images/pixel-cat-routine.json',JSON.stringify({source:'Existing runtime artwork; deterministic media-only choreography',durationMs:duration,frameMs,width:size.width,height:size.height},null,2)+'\n');

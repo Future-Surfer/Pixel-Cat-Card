@@ -12,7 +12,9 @@
     "studio:review": "node scripts/review-studio-changes.mjs",
     "release:build": "node scripts/build-release.mjs",
     "verify:build": "node scripts/verify-build.mjs",
-    "build:card": "node scripts/build-card.mjs"
+    "build:card": "node scripts/build-card.mjs",
+    "demo": "node scripts/serve-release-demo.mjs",
+    "media:gif": "node scripts/render-readme-demo.mjs"
   },
   "engines": {
     "node": ">=22.20.0"

@@ -37,8 +37,8 @@ Node.js 22.20+, no npm dependencies.
 | `scripts/apply-latest-studio-art.mjs`, `latest-studio-assets.mjs` | Selected exact artwork versions and overlays |
 | `frame-studio/dist/frame-canvas.js` | Shared sequence/climb canvas strokes and onion layers; adapters own metadata, undo/provenance and persistence. Extend this core rather than adding editor-specific painting loops. |
 | `frame-studio/` | Editor, catalogue sources, curated snapshots and receipt evidence |
-| Root `pixel-cat-*.js` | Generated deployable modules; edit source and rebuild |
-| `pixel-pet-card.js`, `stick-pet-card.js` | Separate earlier cards; preserve compatibility |
+| Root `pixel-cat-*.js` (ignored) | Generated intermediates for tests/labs; install `dist/pixel-cat-card.js` |
+| `src/legacy/` | Earlier card sources; build prepares ignored root copies for compatibility tooling |
 
 Runtime loading order: art → extras → affordances → behaviours → controller → climbing. The optional editor and self-contained world-authority/layout/depth/debug hooks ship in the spacious art module; editor registration is guarded for DOM-free consumers; effects/home-life helpers ship in extras and other affordances load afterward. Hooks defer DOM/cross-module work until called. Packing must preserve decoded grids and provenance exactly.
 
