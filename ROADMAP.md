@@ -160,11 +160,11 @@ Semantic POIs need deliberate exact-version integration into a grip/mouth/contac
 
 ## Release and maintenance
 
-**Next delivery checkpoint:** prepare Pixel Cat Card for a public release before broadening runtime features. The [release preparation plan](docs/design/PIXEL_CAT_RELEASE.md) defines the proposed identity, ordered work, migration boundaries and acceptance gates; this section owns its priority. No repository rename, default-branch switch, manifest migration or public release has happened in the planning pass.
+**Next delivery checkpoint:** publish an opt-in Pixel Cat Card prerelease, then verify isolated Marketplace installation, update, removal/reinstall and scoped rollback before a stable release. The [release plan](docs/design/PIXEL_CAT_RELEASE.md) owns the remaining acceptance sequence. Broader runtime features stay behind this release work.
 
-- **SHIP-01, SHIP-02:** normal-file packaging, lossless headroom and deterministic builds/CI delivered. Next: a single installable `pixel-cat-card.js`, corrected Marketplace manifest, release assets/checksums, clean-install/update/rollback tests, refreshed README/media and plugin validation. Preserve legacy compatibility and the existing inline path.
-- **SHIP-03:** reconcile the tested development branch into the intended stable `main` through a reviewed PR; preserve history and private data. Add consumer/support and release workflows; rehearse scoped fresh backup/deploy/readback/rollback from a clean checkout.
-- **SHIP-04:** proposed product **Pixel Cat Card**, existing repository renamed to **Pixel-Cat-Card**, public `custom:pixel-cat-home` retained. Prepare legacy installer/resource migration and documentation before applying the rename; preserve old links, user stores and rollback targets. Follow the release plan's gates.
+- **SHIP-01, SHIP-02:** single-file packaging, manifest/checksums, deterministic builds, 120 test suites, public plugin validation and concise README/GIF are delivered. Version `v1.0.0-rc.1` has verified draft assets. Remaining: published opt-in prerelease and isolated Marketplace install/update/removal/reinstall/rollback acceptance.
+- **SHIP-03:** independent clean public repository, protected main, CI/support/release workflows and reviewed presentation PR are delivered. Manual HA single-bundle migration has exact backups/readback, unchanged unrelated resources and browser checks. Preserve the private original history and scoped rollback evidence.
+- **SHIP-04:** **Pixel Cat Card** lives at `Future-Surfer/Pixel-Cat-Card`; the original `Stick-Pet-Card` stays private and unrenamed. Public `custom:pixel-cat-home` and existing options remain. Legacy sources are internal compatibility inputs; no separate legacy resources are needed beside the bundle.
 - **SHIP-05:** choose simple launcher vs standalone Studio; common lab menu, loopback defaults, separate stores and optional read-only MCP remain. Card Lab stays mock-only.
 
 ## Decisions and dependencies
