@@ -10,3 +10,7 @@ These deliberately checked-in images illustrate the project without publishing p
 - `frame-studio.png`: retained v8 Studio screenshot copied from `frame-studio/ui-v8-editor-proof.png`. Shows sequence browsing, painting, gaze markers and playback; later catalogue/metadata refinements can differ.
 
 To refresh the first two images, build the roaming modules, serve the repository on loopback and use the named fixtures. Capture the real browser page; do not substitute generated interface artwork. Keep source/reference frame provenance unchanged. Dashboard and earlier editor captures are JPEG; the refreshed guided editor and Studio captures are PNG.
+
+## Scripted routine GIF
+
+`pixel-cat-routine.gif` is a deterministic media render from the existing runtime artwork, not a recording of autonomous HA decisions. The orange cat and slate-grey igloo keep the reviewed palette. The queue and renderer live in `prototype/readme-routine.mjs`; regenerate with `npm run media:gif` (Python + Pillow). Original pixel grids, provenance and integration receipts are unchanged. `pixel-cat-routine.json` records dimensions and timing.

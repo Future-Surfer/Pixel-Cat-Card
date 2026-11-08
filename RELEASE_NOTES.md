@@ -11,10 +11,10 @@ Release candidate for the independent roaming Pixel Cat companion. This is not t
 
 ## Included
 
-Independent cats, quiet rest, optional social/toy play, carrying, igloo/open beds, posts, life stages, configurable settling and the existing editor/diagnostics. Artwork and provenance are unchanged by packaging. The new README media uses an orange cat with a separately configured slate-grey igloo and a blue-grey kitten.
+Independent cats, quiet rest, optional social/toy play, carrying, igloo/open beds, posts, life stages, configurable settling and the existing editor/diagnostics. Artwork and provenance are unchanged by packaging. The concise README includes a staged orange-cat routine GIF; technical details and authoring tools have their own guide. Intermediate runtime files are no longer tracked at the repository root.
 
 ## Validation and limits
 
 The release workflow rebuilds twice, runs all suites and checks generated-file drift. Browser and Marketplace installation evidence must be recorded before promoting the candidate. Physical-device performance and catalog acceptance are not implied by a successful package build. Procedural cat trees remain lab-only.
 
-Public distribution is held while the private repository's historical attachments and reference-asset rights are reviewed. No private stores or attachments belong in the downloadable assets.
+The clean repository is public and Marketplace plugin validation passes. The original repository/history, private stores, attachments and uncleared reference images remain private. Manual HA migration to the single bundle is verified; Marketplace installation/update/removal/rollback acceptance remains a prerelease gate.

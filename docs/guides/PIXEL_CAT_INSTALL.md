@@ -1,6 +1,6 @@
 # Pixel Cat Card installation and migration
 
-Candidate `1.0.0-rc.1` targets HA 2026.11+. Public Marketplace availability is pending: the repository is private while public-source/history review is completed. Do not describe a skipped private Marketplace validation run as an accepted installation.
+Candidate `1.0.0-rc.1` targets HA 2026.11+. The repository is public; the first Marketplace prerelease and installation acceptance are still in preparation.
 
 ## Package
 
@@ -24,4 +24,4 @@ The candidate still registers `custom:stick-pet-card`, `custom:pixel-pet-card` a
 
 ## Marketplace release gates
 
-Before claiming Marketplace support: make the vetted repository public with the owner's explicit approval, pass plugin validation without ignored checks, publish an opt-in candidate and test fresh installation, upgrade, versioned caching, uninstall/reinstall and rollback on an isolated instance. Preserve previous assets/releases. Catalog inclusion is a later submission to `hacs/default`; custom-repository availability does not mean catalog acceptance.
+Before claiming Marketplace support: pass public plugin validation without ignored checks, publish an opt-in candidate and test fresh installation, upgrade, versioned caching, uninstall/reinstall and rollback on an isolated instance. Preserve previous assets/releases. Catalog inclusion is a later submission to `hacs/default`; custom-repository availability does not mean catalog acceptance.
