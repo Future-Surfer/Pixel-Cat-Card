@@ -1,0 +1,1760 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "id": "draft-prop-blue-ball-new",
+      "name": "Blue ball · new",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "blue-ball"
+      ],
+      "familyId": "blue-ball",
+      "stateKey": "new",
+      "stateKind": "condition",
+      "width": 7,
+      "height": 6,
+      "pixels": [
+        [
+          null,
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null,
+          null
+        ],
+        [
+          null,
+          "#19222b",
+          "#a4dbff",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          null
+        ],
+        [
+          "#19222b",
+          "#a4dbff",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b"
+        ],
+        [
+          null,
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          null
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null,
+          null
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-blue-ball-scuffed",
+      "name": "Blue ball · scuffed",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "blue-ball"
+      ],
+      "familyId": "blue-ball",
+      "stateKey": "scuffed",
+      "stateKind": "condition",
+      "width": 7,
+      "height": 6,
+      "pixels": [
+        [
+          null,
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null,
+          null
+        ],
+        [
+          null,
+          "#19222b",
+          "#a4dbff",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          null
+        ],
+        [
+          "#19222b",
+          "#a4dbff",
+          "#438dd9",
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          "#a4dbff",
+          "#438dd9",
+          "#19222b"
+        ],
+        [
+          null,
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          null
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null,
+          null
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-toy-mouse-intact",
+      "name": "Toy mouse · intact",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "toy-mouse"
+      ],
+      "familyId": "toy-mouse",
+      "stateKey": "intact",
+      "stateKind": "condition",
+      "width": 11,
+      "height": 5,
+      "pixels": [
+        [
+          null,
+          null,
+          null,
+          "#eab7a7",
+          "#eab7a7",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "#19222b",
+          "#eab7a7",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#19222b",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "#19222b",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#19222b",
+          "#865c46",
+          "#865c46",
+          "#19222b",
+          "#e4b65d",
+          "#e4b65d",
+          "#e4b65d"
+        ],
+        [
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-toy-mouse-frayed",
+      "name": "Toy mouse · frayed",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "toy-mouse"
+      ],
+      "familyId": "toy-mouse",
+      "stateKey": "frayed",
+      "stateKind": "condition",
+      "width": 12,
+      "height": 6,
+      "pixels": [
+        [
+          null,
+          null,
+          null,
+          "#eab7a7",
+          "#eab7a7",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "#19222b",
+          "#eab7a7",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "#19222b",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#19222b",
+          "#865c46",
+          "#865c46",
+          "#19222b",
+          null,
+          "#e4b65d",
+          null,
+          "#e4b65d"
+        ],
+        [
+          null,
+          "#19222b",
+          "#19222b",
+          "#865c46",
+          "#19222b",
+          null,
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "#865c46",
+          null,
+          "#865c46",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-toy-fish-intact",
+      "name": "Toy fish · intact",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "toy-fish"
+      ],
+      "familyId": "toy-fish",
+      "stateKey": "intact",
+      "stateKind": "condition",
+      "width": 12,
+      "height": 5,
+      "pixels": [
+        [
+          null,
+          null,
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          "#19222b"
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          null,
+          "#19222b",
+          "#19222b"
+        ],
+        [
+          null,
+          "#19222b",
+          "#438dd9",
+          "#a4dbff",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          "#19222b"
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          null,
+          "#19222b",
+          "#19222b"
+        ],
+        [
+          null,
+          null,
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          "#19222b"
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-toy-fish-torn",
+      "name": "Toy fish · torn",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "toy-fish"
+      ],
+      "familyId": "toy-fish",
+      "stateKey": "torn",
+      "stateKind": "condition",
+      "width": 12,
+      "height": 5,
+      "pixels": [
+        [
+          null,
+          null,
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          "#19222b"
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          null,
+          "#19222b",
+          "#19222b"
+        ],
+        [
+          null,
+          "#19222b",
+          "#438dd9",
+          "#a4dbff",
+          "#438dd9",
+          null,
+          "#19222b",
+          "#438dd9",
+          null,
+          "#438dd9",
+          "#19222b",
+          "#19222b"
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          "#438dd9",
+          null,
+          "#e4b65d",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          null,
+          "#19222b",
+          "#19222b"
+        ],
+        [
+          null,
+          null,
+          null,
+          "#19222b",
+          null,
+          "#e4b65d",
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          "#19222b"
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-yarn-wound",
+      "name": "Yarn ball · wound",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "yarn"
+      ],
+      "familyId": "yarn",
+      "stateKey": "wound",
+      "stateKind": "condition",
+      "width": 11,
+      "height": 6,
+      "pixels": [
+        [
+          null,
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "#19222b",
+          "#db6a68",
+          "#db6a68",
+          "#db6a68",
+          "#db6a68",
+          "#19222b",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "#19222b",
+          "#db6a68",
+          "#db6a68",
+          "#19222b",
+          "#db6a68",
+          "#db6a68",
+          "#19222b",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "#19222b",
+          "#db6a68",
+          "#db6a68",
+          "#19222b",
+          "#db6a68",
+          "#db6a68",
+          "#19222b",
+          "#e4b65d",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "#19222b",
+          "#db6a68",
+          "#db6a68",
+          "#db6a68",
+          "#19222b",
+          null,
+          null,
+          "#e4b65d",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          "#e4b65d",
+          "#e4b65d"
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-yarn-unwound",
+      "name": "Yarn ball · unraveled",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "yarn"
+      ],
+      "familyId": "yarn",
+      "stateKey": "unwound",
+      "stateKind": "condition",
+      "width": 11,
+      "height": 6,
+      "pixels": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "#19222b",
+          "#db6a68",
+          "#db6a68",
+          "#db6a68",
+          "#db6a68",
+          "#19222b",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "#19222b",
+          "#db6a68",
+          "#db6a68",
+          "#19222b",
+          "#db6a68",
+          "#19222b",
+          "#e4b65d",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          "#db6a68",
+          "#db6a68",
+          "#19222b",
+          null,
+          null,
+          "#e4b65d",
+          null,
+          null
+        ],
+        [
+          "#e4b65d",
+          "#e4b65d",
+          null,
+          "#19222b",
+          "#19222b",
+          null,
+          "#e4b65d",
+          "#e4b65d",
+          null,
+          "#e4b65d",
+          "#e4b65d"
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-feather-rest",
+      "name": "Loose feather · resting",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "feather"
+      ],
+      "familyId": "feather",
+      "stateKey": "rest",
+      "stateKind": "pose",
+      "width": 9,
+      "height": 7,
+      "pixels": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "#438dd9",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "#72a65a",
+          "#72a65a",
+          "#438dd9",
+          "#19222b",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "#72a65a",
+          "#72a65a",
+          "#438dd9",
+          "#19222b",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-feather-lifted",
+      "name": "Loose feather · lifted",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "feather"
+      ],
+      "familyId": "feather",
+      "stateKey": "lifted",
+      "stateKind": "pose",
+      "width": 9,
+      "height": 7,
+      "pixels": [
+        [
+          null,
+          null,
+          "#438dd9",
+          "#438dd9",
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "#72a65a",
+          "#438dd9",
+          "#438dd9",
+          "#19222b",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "#72a65a",
+          "#438dd9",
+          "#19222b",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "#72a65a",
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-water-glass-full",
+      "name": "Water glass · full",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "water-glass"
+      ],
+      "familyId": "water-glass",
+      "stateKey": "full",
+      "stateKind": "fill",
+      "width": 6,
+      "height": 8,
+      "pixels": [
+        [
+          "#19222b",
+          "#d5e9ed",
+          "#d5e9ed",
+          "#d5e9ed",
+          "#d5e9ed",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b"
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-water-glass-half",
+      "name": "Water glass · half",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "water-glass"
+      ],
+      "familyId": "water-glass",
+      "stateKey": "half",
+      "stateKind": "fill",
+      "width": 6,
+      "height": 8,
+      "pixels": [
+        [
+          "#19222b",
+          "#d5e9ed",
+          "#d5e9ed",
+          "#d5e9ed",
+          "#d5e9ed",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#438dd9",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b"
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-water-glass-empty",
+      "name": "Water glass · empty",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "water-glass"
+      ],
+      "familyId": "water-glass",
+      "stateKey": "empty",
+      "stateKind": "fill",
+      "width": 6,
+      "height": 8,
+      "pixels": [
+        [
+          "#19222b",
+          "#d5e9ed",
+          "#d5e9ed",
+          "#d5e9ed",
+          "#d5e9ed",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          null,
+          null,
+          null,
+          null,
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b"
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-scratch-pad-new",
+      "name": "Scratch pad · new",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "scratch-pad"
+      ],
+      "familyId": "scratch-pad",
+      "stateKey": "new",
+      "stateKind": "condition",
+      "width": 12,
+      "height": 5,
+      "pixels": [
+        [
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null
+        ],
+        [
+          "#19222b",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#865c46",
+          "#e4b65d",
+          "#865c46",
+          "#e4b65d",
+          "#865c46",
+          "#e4b65d",
+          "#865c46",
+          "#e4b65d",
+          "#865c46",
+          "#865c46",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#19222b"
+        ],
+        [
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-scratch-pad-used",
+      "name": "Scratch pad · scratched",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "scratch-pad"
+      ],
+      "familyId": "scratch-pad",
+      "stateKey": "used",
+      "stateKind": "condition",
+      "width": 12,
+      "height": 5,
+      "pixels": [
+        [
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null
+        ],
+        [
+          "#19222b",
+          "#865c46",
+          "#865c46",
+          "#d5e9ed",
+          "#865c46",
+          "#865c46",
+          "#d5e9ed",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#865c46",
+          "#e4b65d",
+          "#d5e9ed",
+          "#865c46",
+          "#e4b65d",
+          "#d5e9ed",
+          "#865c46",
+          "#e4b65d",
+          "#865c46",
+          "#865c46",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#865c46",
+          "#865c46",
+          "#d5e9ed",
+          "#865c46",
+          "#865c46",
+          "#d5e9ed",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#865c46",
+          "#19222b"
+        ],
+        [
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-crinkle-ball-round",
+      "name": "Crinkle ball · round",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "crinkle-ball"
+      ],
+      "familyId": "crinkle-ball",
+      "stateKey": "round",
+      "stateKind": "condition",
+      "width": 7,
+      "height": 5,
+      "pixels": [
+        [
+          null,
+          null,
+          "#19222b",
+          "#e4b65d",
+          "#19222b",
+          null,
+          null
+        ],
+        [
+          null,
+          "#19222b",
+          "#e4b65d",
+          "#db6a68",
+          "#e4b65d",
+          "#19222b",
+          null
+        ],
+        [
+          "#19222b",
+          "#e4b65d",
+          "#a4dbff",
+          "#db6a68",
+          "#e4b65d",
+          "#db6a68",
+          "#19222b"
+        ],
+        [
+          null,
+          "#19222b",
+          "#db6a68",
+          "#e4b65d",
+          "#e4b65d",
+          "#19222b",
+          null
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          "#e4b65d",
+          "#19222b",
+          null,
+          null
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-crinkle-ball-squashed",
+      "name": "Crinkle ball · squashed",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "crinkle-ball"
+      ],
+      "familyId": "crinkle-ball",
+      "stateKey": "squashed",
+      "stateKind": "condition",
+      "width": 7,
+      "height": 5,
+      "pixels": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          "#e4b65d",
+          "#19222b",
+          null,
+          null
+        ],
+        [
+          null,
+          "#19222b",
+          "#e4b65d",
+          "#db6a68",
+          "#e4b65d",
+          "#19222b",
+          null
+        ],
+        [
+          "#19222b",
+          "#e4b65d",
+          "#a4dbff",
+          "#db6a68",
+          "#e4b65d",
+          "#db6a68",
+          "#19222b"
+        ],
+        [
+          null,
+          "#19222b",
+          "#db6a68",
+          "#e4b65d",
+          "#e4b65d",
+          "#19222b",
+          "#19222b"
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-treat-whole",
+      "name": "Tiny treat · whole",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "treat"
+      ],
+      "familyId": "treat",
+      "stateKey": "whole",
+      "stateKind": "condition",
+      "width": 5,
+      "height": 4,
+      "pixels": [
+        [
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null
+        ],
+        [
+          "#19222b",
+          "#e4b65d",
+          "#e4b65d",
+          "#e4b65d",
+          "#19222b"
+        ],
+        [
+          "#19222b",
+          "#e4b65d",
+          "#a4dbff",
+          "#e4b65d",
+          "#19222b"
+        ],
+        [
+          null,
+          "#19222b",
+          "#19222b",
+          "#19222b",
+          null
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-prop-treat-crumbs",
+      "name": "Tiny treat · crumbs",
+      "description": "AI-authored small-prop proposal. Refine against the reference cat before integration. Related states share a family; state changes are not yet runtime behaviours.",
+      "tags": [
+        "ai-draft",
+        "small-prop",
+        "treat"
+      ],
+      "familyId": "treat",
+      "stateKey": "crumbs",
+      "stateKind": "condition",
+      "width": 5,
+      "height": 4,
+      "pixels": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "#19222b",
+          "#e4b65d",
+          null
+        ],
+        [
+          null,
+          "#e4b65d",
+          "#19222b",
+          null,
+          null
+        ],
+        [
+          "#19222b",
+          null,
+          null,
+          "#e4b65d",
+          "#19222b"
+        ]
+      ],
+      "origin": "ai",
+      "review": "candidate",
+      "revision": 1,
+      "source": {
+        "proposal": "small-props-2026-10-15"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "candidate",
+          "at": "2026-10-15T12:00:00.000Z"
+        }
+      ]
+    }
+  ]
+}

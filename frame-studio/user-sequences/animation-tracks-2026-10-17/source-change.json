@@ -1,0 +1,1995 @@
+{
+  "id": "57a919ebb53459a652dcc1a2d447def49791da4b537f6db82eb4101265d5834f",
+  "kind": "sequence",
+  "entityId": "proposal-scratching-post-tracks",
+  "name": "Scratch post · independent arms and tail",
+  "versionHash": "e0766dd95302d68c2dc374c70544d8720b4acdf9672bfb23a40441fbbd419e85",
+  "at": "2026-10-17T22:06:38.069Z",
+  "summary": {
+    "frames": 13,
+    "previousFrames": null,
+    "editedFrames": 13
+  },
+  "snapshot": {
+    "schemaVersion": 1,
+    "projectId": "proposal-scratching-post-tracks",
+    "name": "Scratch post · independent arms and tail",
+    "width": 24,
+    "height": 24,
+    "category": "interaction",
+    "description": "Exact reviewed post-scratch pixels: arms/body drive contact; tail uses independent source-frame timing. Original project and flat frames retained.",
+    "tags": [
+      "ai-draft",
+      "scratch-post"
+    ],
+    "wip": false,
+    "frames": [
+      {
+        "id": "track-frame-0",
+        "name": "Stand beside post",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "..##....................",
+          "..#.....................",
+          "..#.....................",
+          "..#.....................",
+          "..##.............#.#....",
+          "...##............###....",
+          "...##...........#####...",
+          "....##.######..#######..",
+          "....##################..",
+          "....#################...",
+          "....###############.....",
+          "...###############......",
+          "...###############......",
+          "...######...#####.......",
+          "..######.....####.......",
+          "..##.##.....###.#.......",
+          "..#..##.....##..#.......",
+          "..#R..#R....R...#R......"
+        ],
+        "durationMs": 400,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "human",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "borrow-reference",
+            "at": "2026-10-16T18:16:35.576Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:18:34.829Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:18:37.029Z"
+          }
+        ],
+        "role": "enter",
+        "gaze": {
+          "x": 19,
+          "y": 13,
+          "angle": -2,
+          "fov": 106,
+          "canSee": true
+        },
+        "parentId": "6125cb8d-a833-4300-af5b-7d158f00e594"
+      },
+      {
+        "id": "track-frame-1",
+        "name": "Raise shoulders",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          ".#..............#.#.....",
+          ".##.............###.....",
+          "..#.........########....",
+          "..##.......##########...",
+          "...##...#############...",
+          "...##..#############....",
+          "....##############......",
+          "....############........",
+          "....############........",
+          "....#########.##........",
+          "...#########...##.......",
+          "...#########...###F.....",
+          "...########.....##F.....",
+          "..####.###..............",
+          "..###..###..............",
+          "..#....##...............",
+          "..#R....#R.............."
+        ],
+        "durationMs": 200,
+        "anchor": {
+          "x": 9,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:10:57.150Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:11:03.440Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:48.432Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:50.686Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:06.238Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 5,
+              "y": 20,
+              "width": 5,
+              "height": 4
+            },
+            "dx": 2,
+            "dy": 0,
+            "at": "2026-10-17T10:14:06.238Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:08.310Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:10.118Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:11.192Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:11.671Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:12.110Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:12.959Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:13.190Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:38.055Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:38.718Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:39.239Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:18:34.829Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:18:40.317Z"
+          }
+        ],
+        "role": "enter",
+        "gaze": {
+          "x": 18,
+          "y": 10,
+          "angle": -2,
+          "fov": 49,
+          "canSee": true
+        },
+        "parentId": "b47ff609-8107-4c96-8821-41829bff6282"
+      },
+      {
+        "id": "track-frame-2",
+        "name": "Reach onto rope",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "............#######.....",
+          "............#######.....",
+          "............######......",
+          "..###......#####........",
+          ".##.##.....#####........",
+          ".#...##...######........",
+          ".....##.########........",
+          "......#########.#.......",
+          "......#########.##F.....",
+          "......########..........",
+          "......#######...........",
+          ".....#######............",
+          ".....#######............",
+          ".....#####..............",
+          "....#####...............",
+          "....##.##...............",
+          "....#..##...............",
+          "....#R..#R.............."
+        ],
+        "durationMs": 160,
+        "anchor": {
+          "x": 9,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:11:14.342Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 1,
+              "y": 5,
+              "width": 7,
+              "height": 19
+            },
+            "dx": 2,
+            "dy": 0,
+            "at": "2026-10-17T10:11:14.342Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:11.295Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:11.934Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:12.824Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:13.062Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:16.520Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:17.615Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:18.606Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:24.614Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:25.054Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:42.726Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:43.662Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:18:02.183Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:18:34.829Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:18:42.933Z"
+          }
+        ],
+        "role": "enter",
+        "gaze": {
+          "x": 16,
+          "y": 5,
+          "angle": -2,
+          "fov": 49,
+          "canSee": true
+        },
+        "parentId": "4b504d7e-85c0-40ec-9a1b-ad4b04fe4ceb"
+      },
+      {
+        "id": "track-frame-3",
+        "name": "Alternating scratch 1",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "............#######.....",
+          "............#######.....",
+          "............######......",
+          "...........#####........",
+          "...###.....#####........",
+          "...#.##...######........",
+          "...#.##...######........",
+          "......##.########.......",
+          "......#########.##F.....",
+          "......########..........",
+          "......########..........",
+          ".....########...........",
+          ".....########...........",
+          ".....#######............",
+          "....######..............",
+          "....##.###..............",
+          "....#..##...............",
+          "....#R..#R.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 9,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:11:23.494Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 0,
+              "y": 5,
+              "width": 8,
+              "height": 19
+            },
+            "dx": 2,
+            "dy": 0,
+            "at": "2026-10-17T10:11:23.494Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:28.918Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:29.406Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:29.758Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:30.198Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:38.870Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:29.727Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:24.478Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:47.495Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:48.102Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:48.982Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:18:10.997Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:18:34.829Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:18:45.901Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y8, far y14. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        },
+        "gaze": {
+          "x": 16,
+          "y": 5,
+          "angle": -2,
+          "fov": 49,
+          "canSee": true
+        },
+        "parentId": "c4089458-3ff7-4f8a-ad3e-771bf0bbd11e"
+      },
+      {
+        "id": "track-frame-4",
+        "name": "Alternating scratch 2",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "............#######.....",
+          "............#######.....",
+          "............######......",
+          "..###......#####........",
+          ".##.##.....#######F.....",
+          ".....##...######........",
+          ".....##..#######........",
+          "......##.########.......",
+          "......#########.##F.....",
+          "......########..........",
+          "......########..........",
+          ".....########...........",
+          ".....########...........",
+          ".....#######............",
+          "....#######.............",
+          "....##.###..............",
+          "....#..##...............",
+          "....#R..#R.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 9,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:11:28.502Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 0,
+              "y": 4,
+              "width": 9,
+              "height": 20
+            },
+            "dx": 2,
+            "dy": 0,
+            "at": "2026-10-17T10:11:28.502Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:34.038Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:35.334Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:35.870Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:40.414Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:34.094Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:34.806Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:34.407Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:35.191Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:36.279Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:37.238Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:51.649Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:53.070Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:53.710Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:55.150Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:56.126Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:18:34.829Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:18:48.311Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T17:30:58.061Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y10, far y14. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        },
+        "gaze": {
+          "x": 16,
+          "y": 5,
+          "angle": -2,
+          "fov": 49,
+          "canSee": true
+        },
+        "parentId": "3f7b9ca2-9f80-4aee-8570-ae1a3a97e762"
+      },
+      {
+        "id": "track-frame-5",
+        "name": "Alternating scratch 3",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "............#######.....",
+          "..#.........#######.....",
+          "..###.......######......",
+          "....#......#####........",
+          "....##.....#####........",
+          ".....##...######........",
+          ".....##..#########F.....",
+          "......##.########.......",
+          "......#########.##F.....",
+          "......########..........",
+          "......########..........",
+          ".....########...........",
+          ".....########...........",
+          ".....#######............",
+          "....#######.............",
+          "....##.###..............",
+          "....#..##...............",
+          "....#R..#R.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 9,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:11:32.454Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 0,
+              "y": 3,
+              "width": 8,
+              "height": 21
+            },
+            "dx": 2,
+            "dy": 0,
+            "at": "2026-10-17T10:11:32.454Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:48.894Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:49.334Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:30.254Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:31.478Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:40.255Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:26.582Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:58.678Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:59.182Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:59.878Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:00.279Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:01.576Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:01.918Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:18:34.829Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:18:51.918Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y12, far y14. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        },
+        "gaze": {
+          "x": 16,
+          "y": 5,
+          "angle": -2,
+          "fov": 49,
+          "canSee": true
+        },
+        "parentId": "95aa5ed4-c0b5-4c78-8cb0-98e5d5d9cf58"
+      },
+      {
+        "id": "track-frame-6",
+        "name": "Alternating scratch 4",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "....##......#######.....",
+          "....#.......#######.....",
+          "....#.......######......",
+          "....#......#####........",
+          "....##.....#####........",
+          ".....##...######........",
+          ".....##..#########F.....",
+          "......##.########.......",
+          "......############F.....",
+          "......########..........",
+          "......########..........",
+          ".....########...........",
+          ".....########...........",
+          ".....#######............",
+          "....#######.............",
+          "....##.###..............",
+          "....#..##...............",
+          "....#R..#R.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 9,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:11:35.814Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 0,
+              "y": 4,
+              "width": 8,
+              "height": 20
+            },
+            "dx": 2,
+            "dy": 0,
+            "at": "2026-10-17T10:11:35.814Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:50.975Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:51.161Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:51.990Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:52.550Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:28.134Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:42.231Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:43.086Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:07.710Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:50.910Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:56.686Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:18:34.829Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:18:54.405Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:18:55.318Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y14, far y12. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        },
+        "gaze": {
+          "x": 16,
+          "y": 5,
+          "angle": 22,
+          "fov": 49,
+          "canSee": true
+        },
+        "parentId": "2e30b31e-48e6-407e-86e9-8b71208cac5b"
+      },
+      {
+        "id": "track-frame-7",
+        "name": "Alternating scratch 5",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "............#######.....",
+          "............#######.....",
+          ".....#......######......",
+          "....#.#....#####........",
+          "....##.....#######F.....",
+          ".....##...######........",
+          ".....##..#######........",
+          "......##.########.......",
+          "......############F.....",
+          "......########..........",
+          "......########..........",
+          ".....########...........",
+          ".....########...........",
+          ".....#######............",
+          "....#######.............",
+          "....##.###..............",
+          "....#..##...............",
+          "....#R..#R.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 9,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:11:39.078Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 1,
+              "y": 5,
+              "width": 7,
+              "height": 19
+            },
+            "dx": 2,
+            "dy": 0,
+            "at": "2026-10-17T10:11:39.078Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:54.654Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:55.102Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:55.534Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:56.534Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:57.430Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:44.470Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:46.079Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:08.886Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:09.873Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:11.066Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:11.669Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:12.299Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:18:34.829Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:18:57.589Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:18:58.382Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y14, far y10. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        },
+        "gaze": {
+          "x": 16,
+          "y": 5,
+          "angle": 27,
+          "fov": 49,
+          "canSee": true
+        },
+        "parentId": "1c8603be-69cb-4d48-920b-a63ccd5e0ac5"
+      },
+      {
+        "id": "track-frame-8",
+        "name": "Alternating scratch 6",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "............#######.....",
+          "............#######.....",
+          ".....##.....######......",
+          "....#.##...#####........",
+          "....#..#...#####........",
+          "....#.....######........",
+          "....###..#######........",
+          "......##.########.......",
+          "......############F.....",
+          "......########..........",
+          "......########..........",
+          ".....########...........",
+          ".....#######............",
+          ".....######.............",
+          "....######..............",
+          "....##.###..............",
+          "....#..##...............",
+          "....#R..#R.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 9,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:11:42.244Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 0,
+              "y": 5,
+              "width": 8,
+              "height": 19
+            },
+            "dx": 2,
+            "dy": 0,
+            "at": "2026-10-17T10:11:42.244Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:59.854Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:00.646Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:01.262Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:49.070Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:49.742Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:15.417Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:15.807Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:16.414Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:18.462Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:18:15.910Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:18:34.829Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:19:00.918Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:19:01.551Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y14, far y8. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        },
+        "gaze": {
+          "x": 16,
+          "y": 5,
+          "angle": 24,
+          "fov": 49,
+          "canSee": true
+        },
+        "parentId": "e5698138-3f7e-4d07-a098-9bc0694f68e4"
+      },
+      {
+        "id": "track-frame-9",
+        "name": "Alternating scratch 7",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "............#######.....",
+          "......#.....#######.....",
+          ".....##.....######......",
+          "....##.....#####........",
+          "....#......#######F.....",
+          "....##....######........",
+          "....###..#########F.....",
+          "......##.######.........",
+          "......#########.........",
+          "......########..........",
+          "......########..........",
+          ".....########...........",
+          ".....#######............",
+          ".....######.............",
+          "....######..............",
+          "....##.###..............",
+          "....#..##...............",
+          "....#R..#R.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 9,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:11:45.654Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 0,
+              "y": 5,
+              "width": 8,
+              "height": 19
+            },
+            "dx": 2,
+            "dy": 0,
+            "at": "2026-10-17T10:11:45.654Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:03.590Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:04.038Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:25.806Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:52.279Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:21.766Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:22.647Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:23.302Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:24.774Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:25.648Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:26.782Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:27.382Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:28.109Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:17:01.574Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:17:01.822Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:18:34.829Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:19:03.877Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:19:04.877Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:19:13.968Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y12, far y10. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        },
+        "gaze": {
+          "x": 16,
+          "y": 5,
+          "angle": 27,
+          "fov": 49,
+          "canSee": true
+        },
+        "parentId": "2f4176c5-b8e3-404f-9bc4-7d2131e084f0"
+      },
+      {
+        "id": "track-frame-10",
+        "name": "Alternating scratch 8",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "....##......#######.....",
+          "....#.......#######.....",
+          "....#.......######......",
+          "....#......#####........",
+          "....##.....#######F.....",
+          ".....##...######........",
+          ".....##..#########F.....",
+          "......##.######.........",
+          "......#########.........",
+          "......########..........",
+          "......########..........",
+          ".....########...........",
+          ".....#######............",
+          ".....######.............",
+          "....######..............",
+          "....##.###..............",
+          "....#..##...............",
+          "....#R..#R.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 9,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:11:53.126Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 0,
+              "y": 6,
+              "width": 8,
+              "height": 18
+            },
+            "dx": 2,
+            "dy": 0,
+            "at": "2026-10-17T10:11:53.126Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:08.192Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:08.670Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:23.368Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:14:57.815Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:00.398Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:15:00.806Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:17:03.654Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:18:34.829Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:19:23.421Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:19:24.141Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y10, far y12. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        },
+        "gaze": {
+          "x": 16,
+          "y": 5,
+          "angle": 10,
+          "fov": 49,
+          "canSee": true
+        },
+        "parentId": "8d36e5eb-26fb-4f72-910d-3c625d40522d"
+      },
+      {
+        "id": "track-frame-11",
+        "name": "Release and lower",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...##...........#.#.....",
+          "...#............###.....",
+          "...#........########....",
+          "...##......##########...",
+          "....##.....##########...",
+          "....##....##########....",
+          ".....##..#########......",
+          ".....###########........",
+          ".....###########........",
+          ".....###########........",
+          "....##########.##.......",
+          "....########...###F.....",
+          "....#######.....##F.....",
+          "...#######..............",
+          "...##.###...............",
+          "...#..##................",
+          "...#R..#R..............."
+        ],
+        "durationMs": 220,
+        "anchor": {
+          "x": 8,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:12:00.262Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 0,
+              "y": 6,
+              "width": 8,
+              "height": 18
+            },
+            "dx": 1,
+            "dy": 0,
+            "at": "2026-10-17T10:12:00.262Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:11.896Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:14.425Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:15.846Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:13:17.790Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:34.958Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:35.319Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:36.502Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:37.878Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:38.792Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:39.494Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:16:40.086Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:18:34.829Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:19:26.270Z"
+          }
+        ],
+        "role": "exit",
+        "gaze": {
+          "x": 18,
+          "y": 10,
+          "angle": -2,
+          "fov": 49,
+          "canSee": true
+        },
+        "parentId": "b2e935c1-9174-4f02-9576-a1f6334c78a9"
+      },
+      {
+        "id": "track-frame-12",
+        "name": "Stand after scratching",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "..##....................",
+          "..#.....................",
+          "..#.....................",
+          "..#.....................",
+          "..##.............#.#....",
+          "...##............###....",
+          "...##...........#####...",
+          "....##.######..#######..",
+          "....##################..",
+          "....#################...",
+          "....###############.....",
+          "...###############......",
+          "...###############......",
+          "...######...#####.......",
+          "..######.....####.......",
+          "..##.##.....###.#.......",
+          "..#..##.....##..#.......",
+          "..#R..#R....R...#R......"
+        ],
+        "durationMs": 400,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "human",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "borrow-reference",
+            "at": "2026-10-16T18:16:35.576Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:18:34.829Z"
+          }
+        ],
+        "role": "exit",
+        "gaze": {
+          "x": 19,
+          "y": 13,
+          "angle": -2,
+          "fov": 49,
+          "canSee": true
+        },
+        "parentId": "ae677201-a4c0-4f10-9e85-e9a8f6efb09a"
+      }
+    ],
+    "preferredNeighbours": {
+      "before": [
+        "sequence-stand"
+      ],
+      "after": [
+        "sequence-stand",
+        "sequence-clean"
+      ]
+    },
+    "propReference": {
+      "assetId": "proposal-scratching-post-rope",
+      "x": 14,
+      "y": 1,
+      "visible": true,
+      "flip": false,
+      "foreground": false,
+      "opacity": 1
+    },
+    "workQueue": {
+      "version": 1,
+      "repository": "Stick-Pet-Card",
+      "tasks": []
+    },
+    "variantOf": {
+      "projectId": "proposal-scratching-post-action",
+      "name": "Scratch post · alternating strokes · Refined"
+    },
+    "trackSource": {
+      "projectId": "proposal-scratching-post-action",
+      "versionHash": "dbeac4f74a79b39373b5faff5eb81f6cd435a366be0949c432da17f71d28aa5f",
+      "operation": "masked-track-assembly",
+      "actor": "ai"
+    },
+    "animationTracks": {
+      "version": 1,
+      "driver": "arms",
+      "tracks": [
+        {
+          "id": "arms",
+          "name": "Arms / body · contact driver",
+          "events": [
+            {
+              "frameId": "track-frame-5",
+              "name": "upper-paw-down",
+              "x": 18,
+              "y": 12
+            },
+            {
+              "frameId": "track-frame-8",
+              "name": "lower-paw-down",
+              "x": 18,
+              "y": 14
+            }
+          ]
+        },
+        {
+          "id": "tail",
+          "name": "Tail",
+          "mask": [
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            218,
+            219,
+            220,
+            221,
+            222,
+            223,
+            224,
+            242,
+            243,
+            244,
+            245,
+            246,
+            247,
+            248,
+            266,
+            267,
+            268,
+            269,
+            270,
+            271,
+            272,
+            290,
+            291,
+            292,
+            293,
+            294,
+            295,
+            296,
+            314,
+            315,
+            316,
+            317,
+            318,
+            319,
+            320
+          ],
+          "frameIds": [
+            "track-frame-3",
+            "track-frame-4",
+            "track-frame-5",
+            "track-frame-6",
+            "track-frame-7",
+            "track-frame-8",
+            "track-frame-9",
+            "track-frame-10"
+          ],
+          "holds": [
+            210,
+            300,
+            230,
+            190,
+            270,
+            330,
+            220,
+            260
+          ],
+          "rateMin": 0.8,
+          "rateMax": 1.2,
+          "source": {
+            "actor": "ai",
+            "kind": "mechanical-region-extraction",
+            "versionHash": "dbeac4f74a79b39373b5faff5eb81f6cd435a366be0949c432da17f71d28aa5f"
+          }
+        }
+      ]
+    }
+  },
+  "previous": null,
+  "receipt": {
+    "status": "pending",
+    "notes": "",
+    "reference": ""
+  }
+}

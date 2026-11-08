@@ -1,0 +1,543 @@
+{
+  "id": "proposal-scratching-post-rope",
+  "name": "Scratching post · rope · AI draft",
+  "description": "Upright rope post with a bevelled wooden base, sized against the 24×24 cat. AI proposal awaiting human refinement/approval.",
+  "behaviourNotes": "Ground = bottom of the 23-pixel asset. Place at cat-grid (14,1) for the linked scratching draft. Left rope face is asset x=4 (scene x=18), approximately y=3..19. Cat keeps rear feet planted and alternates downward strokes. Future scratch affordance: stationary/non-carryable; optional worn/frayed states later. No runtime behaviour is installed.",
+  "tags": [
+    "ai-draft",
+    "scratching",
+    "post"
+  ],
+  "familyId": "scratching-post",
+  "stateKey": "new",
+  "stateKind": "condition",
+  "width": 12,
+  "height": 23,
+  "pixels": [
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      "#c88a4b",
+      "#c88a4b",
+      "#c88a4b",
+      "#c88a4b",
+      "#c88a4b",
+      "#c88a4b",
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      "#a86635",
+      "#a86635",
+      "#a86635",
+      "#a86635",
+      "#a86635",
+      "#a86635",
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#c4ad7b",
+      "#ad9564",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#ad9564",
+      "#c4ad7b",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#c4ad7b",
+      "#c4ad7b",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#c4ad7b",
+      "#ad9564",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#ad9564",
+      "#c4ad7b",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#c4ad7b",
+      "#c4ad7b",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#c4ad7b",
+      "#ad9564",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#ad9564",
+      "#c4ad7b",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#c4ad7b",
+      "#c4ad7b",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#c4ad7b",
+      "#ad9564",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#ad9564",
+      "#c4ad7b",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#c4ad7b",
+      "#c4ad7b",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#c4ad7b",
+      "#ad9564",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#ad9564",
+      "#c4ad7b",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#c4ad7b",
+      "#c4ad7b",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#c4ad7b",
+      "#ad9564",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      "#887449",
+      "#ad9564",
+      "#c4ad7b",
+      "#e5d6aa",
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      "#a86635",
+      "#a86635",
+      "#a86635",
+      "#a86635",
+      "#a86635",
+      "#a86635",
+      "#a86635",
+      "#a86635",
+      null,
+      null
+    ],
+    [
+      null,
+      "#c88a4b",
+      "#c88a4b",
+      "#c88a4b",
+      "#c88a4b",
+      "#c88a4b",
+      "#c88a4b",
+      "#c88a4b",
+      "#c88a4b",
+      "#c88a4b",
+      "#c88a4b",
+      null
+    ],
+    [
+      null,
+      "#6e4328",
+      "#6e4328",
+      "#6e4328",
+      "#6e4328",
+      "#6e4328",
+      "#6e4328",
+      "#6e4328",
+      "#6e4328",
+      "#6e4328",
+      "#6e4328",
+      null
+    ]
+  ],
+  "origin": "ai",
+  "review": "candidate",
+  "revision": 1,
+  "source": {
+    "proposal": "scratching-post-draft-2026-10-16"
+  },
+  "operations": [
+    {
+      "actor": "ai",
+      "kind": "candidate",
+      "at": "2026-10-16T18:16:35.576Z"
+    }
+  ],
+  "mouthCarryable": false,
+  "colourVariants": {
+    "version": 1,
+    "origin": "ai",
+    "review": "candidate",
+    "sourceRevision": 1,
+    "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+    "themes": [
+      {
+        "id": "quiet",
+        "name": "Quiet neutrals",
+        "variants": [
+          {
+            "name": "Option 1",
+            "colours": {
+              "#6e4328": "#4b453d",
+              "#887449": "#696055",
+              "#a86635": "#6f655a",
+              "#ad9564": "#897d6f",
+              "#c4ad7b": "#a09282",
+              "#c88a4b": "#8a7e70",
+              "#e5d6aa": "#c8b7a2"
+            }
+          },
+          {
+            "name": "Option 2",
+            "colours": {
+              "#6e4328": "#484b49",
+              "#887449": "#646866",
+              "#a86635": "#6a6e6c",
+              "#ad9564": "#838885",
+              "#c4ad7b": "#999f9c",
+              "#c88a4b": "#848986",
+              "#e5d6aa": "#c0c7c3"
+            }
+          }
+        ]
+      },
+      {
+        "id": "colourful",
+        "name": "Colourful",
+        "variants": [
+          {
+            "name": "Option 1",
+            "colours": {
+              "#6e4328": "#14274b",
+              "#887449": "#1b3669",
+              "#a86635": "#1d396f",
+              "#ad9564": "#244789",
+              "#c4ad7b": "#2a53a0",
+              "#c88a4b": "#244789",
+              "#e5d6aa": "#3467c8"
+            }
+          },
+          {
+            "name": "Option 2",
+            "colours": {
+              "#6e4328": "#124b44",
+              "#887449": "#19695e",
+              "#a86635": "#1a6f64",
+              "#ad9564": "#20897b",
+              "#c4ad7b": "#26a090",
+              "#c88a4b": "#218a7c",
+              "#e5d6aa": "#2fc8b4"
+            }
+          }
+        ]
+      },
+      {
+        "id": "pastel",
+        "name": "Soft pastels",
+        "variants": [
+          {
+            "name": "Option 1",
+            "colours": {
+              "#6e4328": "#40384b",
+              "#887449": "#5a4e69",
+              "#a86635": "#5f526f",
+              "#ad9564": "#756689",
+              "#c4ad7b": "#8977a0",
+              "#c88a4b": "#76668a",
+              "#e5d6aa": "#ab95c8"
+            }
+          },
+          {
+            "name": "Option 2",
+            "colours": {
+              "#6e4328": "#384b44",
+              "#887449": "#4e695f",
+              "#a86635": "#526f65",
+              "#ad9564": "#66897d",
+              "#c4ad7b": "#77a092",
+              "#c88a4b": "#668a7e",
+              "#e5d6aa": "#94c8b6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "monochrome",
+        "name": "Greyscale",
+        "variants": [
+          {
+            "name": "Option 1",
+            "colours": {
+              "#6e4328": "#4b4b4b",
+              "#887449": "#696969",
+              "#a86635": "#6f6f6f",
+              "#ad9564": "#898989",
+              "#c4ad7b": "#a0a0a0",
+              "#c88a4b": "#8a8a8a",
+              "#e5d6aa": "#c8c8c8"
+            }
+          },
+          {
+            "name": "Option 2",
+            "colours": {
+              "#6e4328": "#343434",
+              "#887449": "#505050",
+              "#a86635": "#565656",
+              "#ad9564": "#717171",
+              "#c4ad7b": "#8b8b8b",
+              "#c88a4b": "#727272",
+              "#e5d6aa": "#b9b9b9"
+            }
+          }
+        ]
+      },
+      {
+        "id": "pink",
+        "name": "All pink",
+        "variants": [
+          {
+            "name": "Option 1",
+            "colours": {
+              "#6e4328": "#4b323d",
+              "#887449": "#694655",
+              "#a86635": "#6f4959",
+              "#ad9564": "#885b6e",
+              "#c4ad7b": "#a06a81",
+              "#c88a4b": "#895b6f",
+              "#e5d6aa": "#c885a1"
+            }
+          },
+          {
+            "name": "Option 2",
+            "colours": {
+              "#6e4328": "#4b2939",
+              "#887449": "#69394f",
+              "#a86635": "#6f3d54",
+              "#ad9564": "#894b67",
+              "#c4ad7b": "#a05879",
+              "#c88a4b": "#8a4b68",
+              "#e5d6aa": "#c86d97"
+            }
+          }
+        ]
+      },
+      {
+        "id": "natural",
+        "name": "Natural materials",
+        "variants": [
+          {
+            "name": "Option 1",
+            "colours": {
+              "#6e4328": "#444b30",
+              "#887449": "#5f6843",
+              "#a86635": "#656e47",
+              "#ad9564": "#7c8857",
+              "#c4ad7b": "#91a066",
+              "#c88a4b": "#7d8958",
+              "#e5d6aa": "#b6c780"
+            }
+          },
+          {
+            "name": "Option 2",
+            "colours": {
+              "#6e4328": "#4b3e2c",
+              "#887449": "#69573e",
+              "#a86635": "#6f5c41",
+              "#ad9564": "#897151",
+              "#c4ad7b": "#a0855e",
+              "#c88a4b": "#8a7251",
+              "#e5d6aa": "#c8a676"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';import os from 'node:os';import path from 'node:path';
+import {newPropWorkspace,validatePropWorkspace,paintProp,captureProp,addPropPlacement,confirmProp} from '../frame-studio/dist/props-model.js';
+import {LocalBucket} from '../frame-studio/scripts/local-bucket.mjs';import {handleStudioApi} from '../frame-studio/worker/api.js';
+const library=JSON.parse(fs.readFileSync(new URL('../frame-studio/dist/library.json',import.meta.url))),w=newPropWorkspace(library.props);
+validatePropWorkspace(w);const original=structuredClone(w.assets.find(a=>a.id==='original-ball'));
+paintProp(w,null,[{x:4,y:5},{x:5,y:5},{x:4,y:6}],'#0000ff','human');
+const i=captureProp(w,{x:4,y:5,width:2,height:2},{name:'Blue ball',tags:['toy'],description:'Test scale',behaviourNotes:'Roll along the shelf, then pause when stalked.'},'human');
+assert.deepEqual(i.pixels,[['#0000ff','#0000ff'],['#0000ff',null]]);assert.equal(w.scratch[5][4],null);assert.equal(i.origin,'human');
+const a=w.assets.find(a=>a.id===i.assetId);assert.equal(a.behaviourNotes,'Roll along the shelf, then pause when stalked.');const saved=structuredClone(a);i.x=20;i.y=20;i.visible=false;assert.deepEqual(a,saved,'Placement changes must leave catalogue artwork untouched');i.visible=true;
+paintProp(w,i.id,[{x:20,y:20}],'#00ff00','ai');assert.equal(i.origin,'mixed');assert.deepEqual(a,saved,'Painting a placement must await Done before changing the catalogue');
+confirmProp(w,i.id,{name:'Blue and green ball',tags:['toy']},'human');assert.equal(w.assets.find(a=>a.id===i.assetId).origin,'mixed');
+assert.equal(w.assets.find(a=>a.id===i.assetId).revision,2);assert.equal(w.assets.find(a=>a.id===i.assetId).behaviourNotes,saved.behaviourNotes,'Edits that omit behaviour notes retain them');const beforeBadNotes=JSON.stringify(w);assert.throws(()=>confirmProp(w,i.id,{name:'Bad notes',behaviourNotes:'x'.repeat(6001)}));assert.equal(JSON.stringify(w),beforeBadNotes);const second=addPropPlacement(w,i.assetId);assert.notEqual(second.id,i.id);assert.notEqual(second.pixels,i.pixels);
+const ref=addPropPlacement(w,original.id);paintProp(w,ref.id,[{x:ref.x,y:ref.y}],'#0000ff','human');confirmProp(w,ref.id,{name:'Original ball variant'},'human');assert.notEqual(ref.assetId,original.id);assert.deepEqual(w.assets.find(a=>a.id===original.id),original);
+validatePropWorkspace(w);const invalid=structuredClone(w);invalid.instances[0].x=96;assert.throws(()=>validatePropWorkspace(invalid));
+const temp=fs.mkdtempSync(path.join(os.tmpdir(),'cat-props-')),env={BUCKET:new LocalBucket(temp)},url='https://studio.test/api/props-workspace';
+const put=(headers,body=w)=>handleStudioApi(new Request(url,{method:'PUT',headers:{'Content-Type':'application/json',...headers},body:JSON.stringify(body)}),env);
+try{assert.equal((await put({})).status,428);const result=await put({'If-None-Match':'*'});assert.equal(result.status,200);assert.equal((await put({'If-None-Match':'*'})).status,409);assert.equal((await put({'If-Match':result.headers.get('etag')},invalid)).status,400);assert.equal((await put({'If-Match':result.headers.get('etag'),Origin:'https://evil.test'})).status,403);
+const get=await handleStudioApi(new Request(url),{BUCKET:new LocalBucket(temp)});assert.deepEqual((await get.json()).workspace,w);
+const rpc=await handleStudioApi(new Request('https://studio.test/mcp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/call',params:{name:'get_saved_cat_props',arguments:{}}})}),env);const record=JSON.parse((await rpc.json()).result.content[0].text);assert.deepEqual(record.workspace.assets,w.assets);assert.equal(record.workspace.reference.width,undefined,'Cat reference is metadata, not captured prop pixels');
+}finally{fs.rmSync(temp,{recursive:true});}
+console.log('PASS: capture, palette, separate placements, edit confirmation, immutable originals, provenance, durable conditional saves and read-only props MCP.');

@@ -1,0 +1,1207 @@
+{
+  "prop": {
+    "id": "proposal-scratching-post-rope",
+    "name": "Scratching post · rope · AI draft",
+    "description": "Upright rope post with a bevelled wooden base, sized against the 24×24 cat. AI proposal awaiting human refinement/approval.",
+    "behaviourNotes": "Ground = bottom of the 23-pixel asset. Place at cat-grid (14,1) for the linked scratching draft. Left rope face is asset x=4 (scene x=18), approximately y=3..19. Cat keeps rear feet planted and alternates downward strokes. Future scratch affordance: stationary/non-carryable; optional worn/frayed states later. No runtime behaviour is installed.",
+    "tags": [
+      "ai-draft",
+      "scratching",
+      "post"
+    ],
+    "familyId": "scratching-post",
+    "stateKey": "new",
+    "stateKind": "condition",
+    "width": 12,
+    "height": 23,
+    "pixels": [
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "#c88a4b",
+        "#c88a4b",
+        "#c88a4b",
+        "#c88a4b",
+        "#c88a4b",
+        "#c88a4b",
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "#a86635",
+        "#a86635",
+        "#a86635",
+        "#a86635",
+        "#a86635",
+        "#a86635",
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#c4ad7b",
+        "#ad9564",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#ad9564",
+        "#c4ad7b",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#c4ad7b",
+        "#c4ad7b",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#c4ad7b",
+        "#ad9564",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#ad9564",
+        "#c4ad7b",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#c4ad7b",
+        "#c4ad7b",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#c4ad7b",
+        "#ad9564",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#ad9564",
+        "#c4ad7b",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#c4ad7b",
+        "#c4ad7b",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#c4ad7b",
+        "#ad9564",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#ad9564",
+        "#c4ad7b",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#c4ad7b",
+        "#c4ad7b",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#c4ad7b",
+        "#ad9564",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#ad9564",
+        "#c4ad7b",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#c4ad7b",
+        "#c4ad7b",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#c4ad7b",
+        "#ad9564",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "#887449",
+        "#ad9564",
+        "#c4ad7b",
+        "#e5d6aa",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "#a86635",
+        "#a86635",
+        "#a86635",
+        "#a86635",
+        "#a86635",
+        "#a86635",
+        "#a86635",
+        "#a86635",
+        null,
+        null
+      ],
+      [
+        null,
+        "#c88a4b",
+        "#c88a4b",
+        "#c88a4b",
+        "#c88a4b",
+        "#c88a4b",
+        "#c88a4b",
+        "#c88a4b",
+        "#c88a4b",
+        "#c88a4b",
+        "#c88a4b",
+        null
+      ],
+      [
+        null,
+        "#6e4328",
+        "#6e4328",
+        "#6e4328",
+        "#6e4328",
+        "#6e4328",
+        "#6e4328",
+        "#6e4328",
+        "#6e4328",
+        "#6e4328",
+        "#6e4328",
+        null
+      ]
+    ],
+    "origin": "ai",
+    "review": "candidate",
+    "revision": 1,
+    "source": {
+      "proposal": "scratching-post-draft-2026-10-16"
+    },
+    "operations": [
+      {
+        "actor": "ai",
+        "kind": "candidate",
+        "at": "2026-10-16T18:16:35.576Z"
+      }
+    ]
+  },
+  "project": {
+    "schemaVersion": 1,
+    "projectId": "proposal-scratching-post-action",
+    "name": "Scratch post · alternating strokes · AI draft",
+    "width": 24,
+    "height": 24,
+    "category": "interaction",
+    "description": "Draft for human review: stretch up, alternate downward forepaw strokes on the left rope face, then lower again. Rear bearing (7,23) is fixed. Human standing references bookend AI-composed/mixed stretched frames. Toggle contact markers to inspect the paw points. Show prop is preconfigured at (14,1). Review shoulders, neck, paw contact and rhythm; no runtime integration is approved.",
+    "tags": [
+      "ai-draft",
+      "scratch-post"
+    ],
+    "wip": true,
+    "frames": [
+      {
+        "id": "6125cb8d-a833-4300-af5b-7d158f00e594",
+        "name": "Stand beside post",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "..##....................",
+          "..#.....................",
+          "..#.....................",
+          "..#.....................",
+          "..##.............#.#....",
+          "...##............###....",
+          "...##...........#####...",
+          "....##.######..#######..",
+          "....##################..",
+          "....#################...",
+          "....###############.....",
+          "...###############......",
+          "...###############......",
+          "...######...#####.......",
+          "..######.....####.......",
+          "..##.##.....###.#.......",
+          "..#..##.....##..#.......",
+          "..#R..#R....R...#R......"
+        ],
+        "durationMs": 400,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "human",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "borrow-reference",
+            "at": "2026-10-16T18:16:35.576Z"
+          }
+        ],
+        "role": "enter"
+      },
+      {
+        "id": "b47ff609-8107-4c96-8821-41829bff6282",
+        "name": "Raise shoulders",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "..##....................",
+          "..#.............#.#.....",
+          "..#.............###.....",
+          "..#.........########....",
+          "..##.......##########...",
+          "...##......##########...",
+          "...##.....##########....",
+          "....##...#########......",
+          "....##...#######........",
+          "....##...#######........",
+          "....##...#######........",
+          "...###########.##.......",
+          "...###########.###F.....",
+          "...##########...##F.....",
+          "..##########............",
+          "..##.#######............",
+          "..#..##.##..............",
+          "..#R..#R##.............."
+        ],
+        "durationMs": 200,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          }
+        ],
+        "role": "enter"
+      },
+      {
+        "id": "4b504d7e-85c0-40ec-9a1b-ad4b04fe4ceb",
+        "name": "Reach onto rope",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "..##........#######.....",
+          "..#.........#######.....",
+          "..#.........######F.....",
+          "..#........#####........",
+          "..##.......#####........",
+          "...##.....######........",
+          "...##....#######........",
+          "....##...#####..#.......",
+          "....##..#######.##F.....",
+          "....##...#####..........",
+          "....##...#####..........",
+          "...##########...........",
+          "...#########............",
+          "...##########...........",
+          "..##########............",
+          "..##.#######............",
+          "..#..##.##..............",
+          "..#R..#R##.............."
+        ],
+        "durationMs": 160,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          }
+        ],
+        "role": "enter"
+      },
+      {
+        "id": "c4089458-3ff7-4f8a-ad3e-771bf0bbd11e",
+        "name": "Alternating scratch 1",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "..##........#######.....",
+          "..#.........#######.....",
+          "..#.........######F.....",
+          "..#........#####........",
+          "..##.......#####........",
+          "...##.....######........",
+          "...##....#######........",
+          "....##...#####..#.......",
+          "....##..#######.##F.....",
+          "....##...#####..........",
+          "....##...#####..........",
+          "...##########...........",
+          "...#########............",
+          "...##########...........",
+          "..##########............",
+          "..##.#######............",
+          "..#..##.##..............",
+          "..#R..#R##.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y8, far y14. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        }
+      },
+      {
+        "id": "3f7b9ca2-9f80-4aee-8570-ae1a3a97e762",
+        "name": "Alternating scratch 2",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "..##........#######.....",
+          "..#.........#######.....",
+          "..#.........######......",
+          "..#........#####........",
+          "..##.......#######F.....",
+          "...##.....######........",
+          "...##....#######........",
+          "....##...#####..#.......",
+          "....##..#######.##F.....",
+          "....##...#####..........",
+          "....##...#####..........",
+          "...##########...........",
+          "...#########............",
+          "...##########...........",
+          "..##########............",
+          "..##.#######............",
+          "..#..##.##..............",
+          "..#R..#R##.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y10, far y14. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        }
+      },
+      {
+        "id": "95aa5ed4-c0b5-4c78-8cb0-98e5d5d9cf58",
+        "name": "Alternating scratch 3",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "..##........#######.....",
+          "..#.........#######.....",
+          "..#.........######......",
+          "..#........#####........",
+          "..##.......#####........",
+          "...##.....######........",
+          "...##....#########F.....",
+          "....##...#####..#.......",
+          "....##..#######.##F.....",
+          "....##...#####..........",
+          "....##...#####..........",
+          "...##########...........",
+          "...#########............",
+          "...##########...........",
+          "..##########............",
+          "..##.#######............",
+          "..#..##.##..............",
+          "..#R..#R##.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y12, far y14. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        }
+      },
+      {
+        "id": "2e30b31e-48e6-407e-86e9-8b71208cac5b",
+        "name": "Alternating scratch 4",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "..##........#######.....",
+          "..#.........#######.....",
+          "..#.........######......",
+          "..#........#####........",
+          "..##.......#####........",
+          "...##.....######........",
+          "...##....#########F.....",
+          "....##...#####.##.......",
+          "....##..##########F.....",
+          "....##...#####..........",
+          "....##...#####..........",
+          "...##########...........",
+          "...#########............",
+          "...##########...........",
+          "..##########............",
+          "..##.#######............",
+          "..#..##.##..............",
+          "..#R..#R##.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y14, far y12. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        }
+      },
+      {
+        "id": "1c8603be-69cb-4d48-920b-a63ccd5e0ac5",
+        "name": "Alternating scratch 5",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "..##........#######.....",
+          "..#.........#######.....",
+          "..#.........######......",
+          "..#........#####........",
+          "..##.......#######F.....",
+          "...##.....######........",
+          "...##....#######........",
+          "....##...#####.##.......",
+          "....##..##########F.....",
+          "....##...#####..........",
+          "....##...#####..........",
+          "...##########...........",
+          "...#########............",
+          "...##########...........",
+          "..##########............",
+          "..##.#######............",
+          "..#..##.##..............",
+          "..#R..#R##.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y14, far y10. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        }
+      },
+      {
+        "id": "e5698138-3f7e-4d07-a098-9bc0694f68e4",
+        "name": "Alternating scratch 6",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "..##........#######.....",
+          "..#.........#######.....",
+          "..#.........######F.....",
+          "..#........#####........",
+          "..##.......#####........",
+          "...##.....######........",
+          "...##....#######........",
+          "....##...#####.##.......",
+          "....##..##########F.....",
+          "....##...#####..........",
+          "....##...#####..........",
+          "...##########...........",
+          "...#########............",
+          "...##########...........",
+          "..##########............",
+          "..##.#######............",
+          "..#..##.##..............",
+          "..#R..#R##.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y14, far y8. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        }
+      },
+      {
+        "id": "2f4176c5-b8e3-404f-9bc4-7d2131e084f0",
+        "name": "Alternating scratch 7",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "..##........#######.....",
+          "..#.........#######.....",
+          "..#.........######......",
+          "..#........#####........",
+          "..##.......#######F.....",
+          "...##.....######........",
+          "...##....#########F.....",
+          "....##...#####..........",
+          "....##..#######.........",
+          "....##...#####..........",
+          "....##...#####..........",
+          "...##########...........",
+          "...#########............",
+          "...##########...........",
+          "..##########............",
+          "..##.#######............",
+          "..#..##.##..............",
+          "..#R..#R##.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y12, far y10. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        }
+      },
+      {
+        "id": "8d36e5eb-26fb-4f72-910d-3c625d40522d",
+        "name": "Alternating scratch 8",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "..............#.#.......",
+          "..............###.......",
+          ".............#####......",
+          "..##........#######.....",
+          "..#.........#######.....",
+          "..#.........######......",
+          "..#........#####........",
+          "..##.......#######F.....",
+          "...##.....######........",
+          "...##....######.##F.....",
+          "....##...#####..........",
+          "....##..#######.........",
+          "....##...#####..........",
+          "....##...#####..........",
+          "...##########...........",
+          "...#########............",
+          "...##########...........",
+          "..##########............",
+          "..##.#######............",
+          "..#..##.##..............",
+          "..#R..#R##.............."
+        ],
+        "durationMs": 110,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "description": "Draft front-paw contact at scene x18, near y10, far y12. Refine against the rope; front markers move, rear anchor stays planted.",
+          "tags": [
+            "scratch-contact"
+          ]
+        }
+      },
+      {
+        "id": "b2e935c1-9174-4f02-9576-a1f6334c78a9",
+        "name": "Release and lower",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "..##....................",
+          "..#.............#.#.....",
+          "..#.............###.....",
+          "..#.........########....",
+          "..##.......##########...",
+          "...##......##########...",
+          "...##.....##########....",
+          "....##...#########......",
+          "....##...#######........",
+          "....##...#######........",
+          "....##...#######........",
+          "...###########.##.......",
+          "...###########.###F.....",
+          "...##########...##F.....",
+          "..##########............",
+          "..##.#######............",
+          "..#..##.##..............",
+          "..#R..#R##.............."
+        ],
+        "durationMs": 220,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "compose-candidate",
+            "at": "2026-10-16T18:16:35.576Z"
+          }
+        ],
+        "role": "exit"
+      },
+      {
+        "id": "ae677201-a4c0-4f10-9e85-e9a8f6efb09a",
+        "name": "Stand after scratching",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "..##....................",
+          "..#.....................",
+          "..#.....................",
+          "..#.....................",
+          "..##.............#.#....",
+          "...##............###....",
+          "...##...........#####...",
+          "....##.######..#######..",
+          "....##################..",
+          "....#################...",
+          "....###############.....",
+          "...###############......",
+          "...###############......",
+          "...######...#####.......",
+          "..######.....####.......",
+          "..##.##.....###.#.......",
+          "..#..##.....##..#.......",
+          "..#R..#R....R...#R......"
+        ],
+        "durationMs": 400,
+        "anchor": {
+          "x": 7,
+          "y": 23
+        },
+        "origin": "human",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "sequenceId": "sequence-stand",
+          "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+          "proposal": "scratching-post-draft-2026-10-16"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "borrow-reference",
+            "at": "2026-10-16T18:16:35.576Z"
+          }
+        ],
+        "role": "exit"
+      }
+    ],
+    "preferredNeighbours": {
+      "before": [
+        "sequence-stand"
+      ],
+      "after": [
+        "sequence-stand",
+        "sequence-clean"
+      ]
+    },
+    "propReference": {
+      "assetId": "proposal-scratching-post-rope",
+      "x": 14,
+      "y": 1,
+      "visible": true,
+      "flip": false,
+      "foreground": false,
+      "opacity": 1
+    },
+    "workQueue": {
+      "version": 1,
+      "repository": "Stick-Pet-Card",
+      "selectedId": "vertical-up",
+      "tasks": [
+        {
+          "id": "vertical-up",
+          "title": "Straight-up jump",
+          "category": "jump",
+          "priority": "high",
+          "tags": [
+            "vertical",
+            "up",
+            "airborne"
+          ],
+          "instructions": "Create a distinct straight-up airborne pose. Keep the body compact and legs beneath him; avoid the diagonal forward-reaching silhouette. Preserve the intended facing on a vertical jump. Start with one missing airborne frame, using existing takeoff and landing frames as onion references.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "vertical-down",
+          "title": "Straight-down drop",
+          "category": "jump",
+          "priority": "high",
+          "tags": [
+            "vertical",
+            "down",
+            "airborne"
+          ],
+          "instructions": "Create a distinct straight-down airborne pose with the feet prepared beneath the body. Preserve facing rather than implying a sideways leap or backwards motion. Start with one missing airborne frame; compare against existing descent preparation and landing crouch.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "look-down",
+          "title": "Look down from a perch",
+          "category": "idle",
+          "priority": "high",
+          "tags": [
+            "look-down",
+            "card-edge"
+          ],
+          "instructions": "Lower the head to inspect a card or landing below. Keep the planted paw cells fixed and allow the body/tail to overhang. Use the sitting/perch frames as references.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "horizontal-refine",
+          "title": "Refine horizontal leap",
+          "category": "jump",
+          "priority": "normal",
+          "tags": [
+            "horizontal",
+            "airborne"
+          ],
+          "instructions": "Refine the approved AI horizontal flight pose. Keep a level back, forward head, trailing tail and gathered legs. Human pixel edits to the AI source make a mixed-origin frame; retain its lineage. No planted contact anchor while airborne.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "walk-head",
+          "title": "Refine independent walk heads",
+          "category": "walk",
+          "priority": "normal",
+          "tags": [
+            "walk",
+            "head-bob"
+          ],
+          "instructions": "Review the high/low head combinations. Improve the head/neck seam if needed while leaving leg frames and every planted paw marker unchanged. Compare original and half-time head bobbing at the same walking speed.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "sitting-glance",
+          "title": "Sitting head glance",
+          "category": "idle",
+          "priority": "later",
+          "tags": [
+            "sit",
+            "look"
+          ],
+          "instructions": "Explore a small head turn toward a nearby object without flipping the whole body. Audit the existing turn/idle catalogue before drawing new pixels; keep bearing paws in their source cells.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        }
+      ]
+    }
+  }
+}

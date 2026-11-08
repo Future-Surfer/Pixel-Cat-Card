@@ -1,0 +1,3 @@
+import {validateTreeWorkspace} from '../prototype/tree-model.mjs';
+import {workspaceApi} from './workspace-storage.mjs';
+export const handleTreeWorkspaceApi=workspaceApi({kind:'tree',route:'tree-workspaces',main:'tree-main',history:'tree-history',title:'Cat-tree workshop · ',validate:validateTreeWorkspace,messages:{unknown:'Unknown tree workspace.',empty:'No durable tree workspace yet.',large:'Workspace exceeds 500 KB.',load:'Load the current version before saving.',conflict:'Newer saved workspace exists. Your local draft has been retained.',failed:'Save conflict; local work and history are retained.'}});

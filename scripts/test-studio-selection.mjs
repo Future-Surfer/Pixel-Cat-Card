@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {newFrame} from '../frame-studio/dist/model.js';
+import {selectionBox,shiftedRows,moveSelection} from '../frame-studio/dist/selection.js';
+import {reconcileCatalogue} from '../frame-studio/dist/sequences.js';
+const rows=Array(24).fill('.'.repeat(24));rows[4]='....##..................';rows[5]='....R...................';
+const p={schemaVersion:1,width:24,height:24,projectId:'selection-test',name:'test',frames:[newFrame('a',rows,'human'),newFrame('b',rows,'ai')]};p.frames[0].anchor={x:4,y:5};
+const b=selectionBox({x:5,y:5},{x:4,y:4});assert.deepEqual(b,{x:4,y:4,width:2,height:2});const original=structuredClone(p);
+moveSelection(p,p.frames.map(f=>f.id),b,2,-1);assert.equal(p.frames[0].rows[3][6],'#');assert.equal(p.frames[0].rows[4][6],'R');assert.equal(p.frames[0].rows[5][4],'.');assert.deepEqual(p.frames[0].anchor,{x:6,y:4});assert.equal(p.frames[0].origin,'human');assert.equal(p.frames[1].origin,'mixed');
+const invalid=structuredClone(original);invalid.frames[1].locked=true;assert.throws(()=>moveSelection(invalid,invalid.frames.map(f=>f.id),b,1,0));assert.deepEqual(invalid.frames,original.frames.map((f,i)=>({...f,locked:!!i})),'A locked frame must roll back the entire operation');
+assert.throws(()=>shiftedRows(rows,b,-5,0));const overlap=shiftedRows(rows,b,1,0);assert.equal(overlap[4].slice(5,7),'##','Overlapping moves must read the original region');assert.equal(overlap[5][5],'R');
+const deleted={...original,deletedAt:'2026-10-15T10:00:00.000Z',catalogueRevision:1};const book={[deleted.projectId]:{project:deleted,index:0}};reconcileCatalogue(book,{catalogueRevision:99,groups:[{id:'selection-test',projectId:deleted.projectId,name:'old reference',frames:original.frames}]});assert.equal(book[deleted.projectId].project.deletedAt,deleted.deletedAt,'A rebuild must never resurrect deleted sequences');
+console.log('PASS: rectangular overlap, all-frame atomic movement, contact translation, provenance, clipping/locked-frame rejection and durable sequence deletion.');

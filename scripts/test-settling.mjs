@@ -1,0 +1,21 @@
+import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';import {runtimeFiles} from './build-release.mjs';
+const b={window:{},document:{hidden:false},HTMLElement:class{},customElements:{get:()=>true},performance};vm.runInNewContext(runtimeFiles.map(f=>fs.readFileSync(f,'utf8')).join('\n')+'\nglobalThis.art=CAT_ART;',b);const S=b.window.pixelCatSettlingV1;
+function actor(pose='loaf',random=.5){return{active:true,config:{},support:{id:'home'},idle:{pose,start:1000,bridgeMs:400,poseUntil:9000,support:'home'},ensureMood:()=>({random:()=>random}),setAttribute(){},removeAttribute(){}};}
+for(const pose of ['loaf','sleep'])for(const random of [0,.5,.999]){const a=actor(pose,random);for(let n=0;n<299;n++)S.step(a,1000);S.begin(a,a.idle,b.art);assert.equal(a.idle.poseUntil,9000);S.step(a,1000);S.begin(a,a.idle,b.art);assert.equal(a.idle.poseUntil,1400+300000+300000*random);assert.equal(S.holding(a,2000),true);assert.equal(S.holding(a,a.idle.poseUntil),false);}
+for(const flag of ['paused','layoutPaused','suspended','stranded','userHeld']){const a=actor();a[flag]=true;S.step(a,1000);assert.equal(a.settling,undefined);}
+{const a=actor();S.step(a,5000);assert.equal(a.settling.activeMs,0);b.document.hidden=true;S.step(a,1000);assert.equal(a.settling.activeMs,0);b.document.hidden=false;}
+for(const busy of ['command','goal','play','playRequested','previewPose','toyHunt','recallPending','motion','mouthAction']){const a=actor();S.step(a,1000);a.settling.activeMs=300000;a[busy]={};S.begin(a,a.idle,b.art);assert.equal(a.settling.idle,null);}
+{const a=actor('clean');S.step(a,1000);a.settling.activeMs=300000;S.begin(a,a.idle,b.art);assert.equal(a.idle.poseUntil,9000);}
+{const a=actor();S.step(a,1000);a.settling.activeMs=300000;S.begin(a,a.idle,b.art);const old=a.idle;a.idle=null;assert.equal(S.holding(a,3000),false,'Startle clears the resting pose immediately');a.idle=old;S.begin(a,a.idle,b.art);a.support.id='replacement';assert.equal(S.holding(a,3000),false,'Support removal bypasses ordinary rest');}
+console.log('PASS: five active minutes, 5–10 minute rest holds, all ages shared, explicit actions/startle/timer/support interruption and hidden/suspended clocks.');
+
+for(const kind of ['bed','company']){const a=actor();S.step(a,1000);a.settling.activeMs=300000;let ended=false;a.social={episode:{kind,stage:'rest'},finish(){ended=true;this.episode=null;a.deadline=0;}};S.begin(a,a.idle,b.art);assert.ok(ended,'Completed quiet visit releases its reservation');assert.equal(S.holding(a,2000),true);assert.equal(S.holding(a,a.idle.poseUntil),false);assert.equal(a.social.episode,null);}
+
+for(const mode of ['default','extended','active','custom','unknown'])for(const random of [0,.5,.999]){
+ const a=actor('sleep',random);a.config={settling_mode:mode,settle_after_minutes:2,settled_rest_min_minutes:3,settled_rest_max_minutes:7};S.step(a,1000);a.settling.activeMs=mode==='custom'?119999:299999;S.begin(a,a.idle,b.art);assert.equal(a.idle.poseUntil,9000,'Threshold must be reached');S.step(a,1);S.begin(a,a.idle,b.art);
+ const [min,max]=mode==='extended'?[15,30]:mode==='custom'?[3,7]:[5,10];assert.ok(Math.abs(a.idle.poseUntil-(mode==='active'?9000:1400+(min+(max-min)*random)*60000))<.001);if(mode==='active')assert.equal(S.holding(a,2000),false);
+}
+{const a=actor();a.config={settling_mode:'custom',settle_after_minutes:0,settled_rest_min_minutes:2,settled_rest_max_minutes:2};S.step(a,0);S.begin(a,a.idle,b.art);assert.equal(a.idle.poseUntil,121400,'Immediate eligibility and fixed custom duration');S.wake(a,2000);assert.equal(a.settling.activeMs,0);assert.equal(a.idle.poseUntil,2000);assert.equal(S.holding(a,2000),false);}
+for(const invalid of [-1,NaN,Infinity,'12',null,0.5,1441]){const p=S.settings({settling_mode:'custom',settle_after_minutes:invalid,settled_rest_min_minutes:invalid,settled_rest_max_minutes:invalid});assert.equal(p.afterMs,300000);assert.equal(p.minMs,300000);assert.equal(p.maxMs,600000);}
+{const p=S.settings({settling_mode:'custom',settled_rest_min_minutes:30,settled_rest_max_minutes:10});assert.equal(p.minMs,600000);assert.equal(p.maxMs,1800000,'Inverted YAML ranges are normalised safely');}
+console.log('PASS: all settling presets, custom thresholds/ranges, zero threshold, wake reset and invalid YAML fallback.');

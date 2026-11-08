@@ -1,0 +1,504 @@
+{
+  "schemaVersion": 1,
+  "width": 24,
+  "height": 24,
+  "projectId": "proposal-behaviour-cheek-rub",
+  "name": "Interact · cheek rub at an edge · draft",
+  "category": "interaction",
+  "idlePosture": "standing",
+  "wip": true,
+  "oneShot": false,
+  "description": "Lean the cheek into a vertical prop/card edge, rub slightly upward and withdraw. Suggested external contact is x=22, y≈15; the edge itself is intentionally absent. AI pixel proposal based on saved human artwork; review before runtime use. Research and authoring plan: CAT_BEHAVIOURS.md.",
+  "variantOf": {
+    "projectId": "sequence-stand",
+    "name": "Standing"
+  },
+  "preferredNeighbours": {
+    "before": [
+      "sequence-stand"
+    ],
+    "after": [
+      "sequence-stand",
+      "proposal-behaviour-sniff"
+    ]
+  },
+  "behaviour": {
+    "batch": "2026-10-15-everyday",
+    "status": "draft",
+    "runtimeEnabled": false,
+    "research": [
+      "https://doi.org/10.3390/pets1030021"
+    ],
+    "intent": "cheek-rub",
+    "entryPosture": "standing",
+    "exitPosture": "standing",
+    "optional": true,
+    "contactReview": "proposed-bearing-only",
+    "requires": "vertical-contact-target",
+    "targetContact": {
+      "x": 22,
+      "y": 15
+    },
+    "repeatRange": [
+      1,
+      2
+    ],
+    "mayAbort": true
+  },
+  "frames": [
+    {
+      "id": "proposal-behaviour-cheek-rub-f01",
+      "name": "Approach edge",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "..##....................",
+        "..#.....................",
+        "..#.....................",
+        "..#.....................",
+        "..##.............#.#....",
+        "...##............###....",
+        "...##...........#####...",
+        "....##.######..#######..",
+        "....##################..",
+        "....#################...",
+        "....###############.....",
+        "...###############......",
+        "...###############......",
+        "...######...#####.......",
+        "..######.....####.......",
+        "..##.##.....###.#.......",
+        "..#..##.....##..#.......",
+        "..#R..#R....R...#R......"
+      ],
+      "durationMs": 350,
+      "anchor": {
+        "x": 3,
+        "y": 23
+      },
+      "origin": "human",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-stand",
+        "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+        "savedAt": "2026-10-14T19:32:15.671Z",
+        "contentHash": "6d69950c83642ff8d3dd44c71a40dc8f223e0cabea6bfb3fd68a5237ccd2285b"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "reference-copy",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-stand",
+          "sourceFrameId": "88f7122a-831f-44a1-830c-0237434a226d"
+        }
+      ],
+      "role": "enter",
+      "parentId": "88f7122a-831f-44a1-830c-0237434a226d",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "cheek-rub",
+          "draft",
+          "enter"
+        ],
+        "description": "Approach edge"
+      }
+    },
+    {
+      "id": "proposal-behaviour-cheek-rub-f02",
+      "name": "Lean toward edge",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "..##....................",
+        "..#.....................",
+        "..#.....................",
+        "..#.....................",
+        "..##..............#.#...",
+        "...##.............###...",
+        "...##............#####..",
+        "....##.######..#.######.",
+        "....############.######.",
+        "....############.######.",
+        "....############.###..#.",
+        "...###############......",
+        "...###############......",
+        "...######...#####.......",
+        "..######.....####.......",
+        "..##.##.....###.#.......",
+        "..#..##.....##..#.......",
+        "..#R..#R....R...#R......"
+      ],
+      "durationMs": 220,
+      "anchor": {
+        "x": 3,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-stand",
+        "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+        "savedAt": "2026-10-14T19:32:15.671Z",
+        "contentHash": "6d69950c83642ff8d3dd44c71a40dc8f223e0cabea6bfb3fd68a5237ccd2285b"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-stand",
+          "sourceFrameId": "88f7122a-831f-44a1-830c-0237434a226d"
+        }
+      ],
+      "role": "enter",
+      "parentId": "88f7122a-831f-44a1-830c-0237434a226d",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "cheek-rub",
+          "draft",
+          "enter"
+        ],
+        "description": "Lean toward edge"
+      }
+    },
+    {
+      "id": "proposal-behaviour-cheek-rub-f03",
+      "name": "Cheek presses",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "..##....................",
+        "..#.....................",
+        "..#.....................",
+        "..#.....................",
+        "..##....................",
+        "...##.............#.#...",
+        "...##.............###...",
+        "....##.######..#.#####..",
+        "....############.######.",
+        "....############.######.",
+        "....############.######.",
+        "...#################..#.",
+        "...###############......",
+        "...######...#####.......",
+        "..######.....####.......",
+        "..##.##.....###.#.......",
+        "..#..##.....##..#.......",
+        "..#R..#R....R...#R......"
+      ],
+      "durationMs": 350,
+      "anchor": {
+        "x": 3,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-stand",
+        "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+        "savedAt": "2026-10-14T19:32:15.671Z",
+        "contentHash": "6d69950c83642ff8d3dd44c71a40dc8f223e0cabea6bfb3fd68a5237ccd2285b"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-stand",
+          "sourceFrameId": "88f7122a-831f-44a1-830c-0237434a226d"
+        }
+      ],
+      "role": "cycle",
+      "parentId": "88f7122a-831f-44a1-830c-0237434a226d",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "cheek-rub",
+          "draft",
+          "cycle"
+        ],
+        "description": "Cheek presses"
+      }
+    },
+    {
+      "id": "proposal-behaviour-cheek-rub-f04",
+      "name": "Rub upward",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "..##....................",
+        "..#.....................",
+        "..#.....................",
+        "..#...............#.#...",
+        "..##..............###...",
+        "...##............#####..",
+        "...##............######.",
+        "....##.######..#.######.",
+        "....############.######.",
+        "....############.###..#.",
+        "....##############......",
+        "...###############......",
+        "...###############......",
+        "...######...#####.......",
+        "..######.....####.......",
+        "..##.##.....###.#.......",
+        "..#..##.....##..#.......",
+        "..#R..#R....R...#R......"
+      ],
+      "durationMs": 260,
+      "anchor": {
+        "x": 3,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-stand",
+        "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+        "savedAt": "2026-10-14T19:32:15.671Z",
+        "contentHash": "6d69950c83642ff8d3dd44c71a40dc8f223e0cabea6bfb3fd68a5237ccd2285b"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-stand",
+          "sourceFrameId": "88f7122a-831f-44a1-830c-0237434a226d"
+        }
+      ],
+      "role": "cycle",
+      "parentId": "88f7122a-831f-44a1-830c-0237434a226d",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "cheek-rub",
+          "draft",
+          "cycle"
+        ],
+        "description": "Rub upward"
+      }
+    },
+    {
+      "id": "proposal-behaviour-cheek-rub-f05",
+      "name": "Ease downward",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "..##....................",
+        "..#.....................",
+        "..#.....................",
+        "..#.....................",
+        "..##..............#.#...",
+        "...##.............###...",
+        "...##............#####..",
+        "....##.######..#.######.",
+        "....############.######.",
+        "....############.######.",
+        "....############.###..#.",
+        "...###############......",
+        "...###############......",
+        "...######...#####.......",
+        "..######.....####.......",
+        "..##.##.....###.#.......",
+        "..#..##.....##..#.......",
+        "..#R..#R....R...#R......"
+      ],
+      "durationMs": 350,
+      "anchor": {
+        "x": 3,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-stand",
+        "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+        "savedAt": "2026-10-14T19:32:15.671Z",
+        "contentHash": "6d69950c83642ff8d3dd44c71a40dc8f223e0cabea6bfb3fd68a5237ccd2285b"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-stand",
+          "sourceFrameId": "88f7122a-831f-44a1-830c-0237434a226d"
+        }
+      ],
+      "role": "cycle",
+      "parentId": "88f7122a-831f-44a1-830c-0237434a226d",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "cheek-rub",
+          "draft",
+          "cycle"
+        ],
+        "description": "Ease downward"
+      }
+    },
+    {
+      "id": "proposal-behaviour-cheek-rub-f06",
+      "name": "Pull away",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "..##....................",
+        "..#.....................",
+        "..#.....................",
+        "..#.....................",
+        "..##.............#.#....",
+        "...##............###....",
+        "...##...........#####...",
+        "....##.######..#######..",
+        "....##################..",
+        "....#################...",
+        "....###############.....",
+        "...###############......",
+        "...###############......",
+        "...######...#####.......",
+        "..######.....####.......",
+        "..##.##.....###.#.......",
+        "..#..##.....##..#.......",
+        "..#R..#R....R...#R......"
+      ],
+      "durationMs": 220,
+      "anchor": {
+        "x": 3,
+        "y": 23
+      },
+      "origin": "human",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-stand",
+        "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+        "savedAt": "2026-10-14T19:32:15.671Z",
+        "contentHash": "6d69950c83642ff8d3dd44c71a40dc8f223e0cabea6bfb3fd68a5237ccd2285b"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "reference-copy",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-stand",
+          "sourceFrameId": "88f7122a-831f-44a1-830c-0237434a226d"
+        }
+      ],
+      "role": "exit",
+      "parentId": "88f7122a-831f-44a1-830c-0237434a226d",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "cheek-rub",
+          "draft",
+          "exit"
+        ],
+        "description": "Pull away"
+      }
+    },
+    {
+      "id": "proposal-behaviour-cheek-rub-f07",
+      "name": "Resume",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "..##....................",
+        "..#.....................",
+        "..#.....................",
+        "..#.....................",
+        "..##.............#.#....",
+        "...##............###....",
+        "...##...........#####...",
+        "....##.######..#######..",
+        "....##################..",
+        "....#################...",
+        "....###############.....",
+        "...###############......",
+        "...###############......",
+        "...######...#####.......",
+        "..######.....####.......",
+        "..##.##.....###.#.......",
+        "..#..##.....##..#.......",
+        "..#R..#R....R...#R......"
+      ],
+      "durationMs": 350,
+      "anchor": {
+        "x": 3,
+        "y": 23
+      },
+      "origin": "human",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-stand",
+        "frameId": "88f7122a-831f-44a1-830c-0237434a226d",
+        "savedAt": "2026-10-14T19:32:15.671Z",
+        "contentHash": "6d69950c83642ff8d3dd44c71a40dc8f223e0cabea6bfb3fd68a5237ccd2285b"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "reference-copy",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-stand",
+          "sourceFrameId": "88f7122a-831f-44a1-830c-0237434a226d"
+        }
+      ],
+      "role": "exit",
+      "parentId": "88f7122a-831f-44a1-830c-0237434a226d",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "cheek-rub",
+          "draft",
+          "exit"
+        ],
+        "description": "Resume"
+      }
+    }
+  ],
+  "workQueue": {
+    "version": 1,
+    "repository": "Stick-Pet-Card",
+    "selectedId": "",
+    "tasks": []
+  }
+}

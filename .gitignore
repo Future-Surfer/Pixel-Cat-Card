@@ -1,0 +1,31 @@
+.site-publish/
+.studio-data/
+frame-studio/dist/server/
+frame-studio/dist/.openai/
+frame-studio/worker-template/
+
+# Agent-local state and Python caches
+.agents/
+.codex/
+__pycache__/
+*.pyc
+
+# Local verification captures and live HA rollback/config snapshots
+prototype/*-proof.png
+frame-studio/*-proof.png
+prototype/resource-backup-*.js
+prototype/resource-before-*.js
+prototype/*-before-view.json
+prototype/ha-*.json
+prototype/*-change-record.json
+frame-studio/catalogue-before-audit.json
+frame-studio/user-sequences/**/audit-*.png
+frame-studio/user-sequences/**/all-sequences.png
+frame-studio/user-sequences/**/props-before-browser-recovery.json
+
+# Reproducible local release artifacts
+.release/
+
+# Owner-private session inputs and personal notes; never release these folders.
+.codex-remote-attachments/
+Notes and resources captured between Codex Sessions/

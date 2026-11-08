@@ -1,0 +1,23 @@
+name: Bug report
+description: Report a problem with the installed Pixel Cat Card.
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Card and Home Assistant versions
+      placeholder: Pixel Cat Card 1.0.0-rc.1 / HA 2026.11
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: What happened and how to reproduce it
+      description: Include expected behaviour, browser/device and installation method.
+    validations:
+      required: true
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Minimal configuration and browser errors
+      description: Remove personal entity data, credentials and unrelated dashboard configuration.
+      render: yaml

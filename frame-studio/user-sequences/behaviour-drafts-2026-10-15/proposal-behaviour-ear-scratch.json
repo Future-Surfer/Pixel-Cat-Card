@@ -1,0 +1,499 @@
+{
+  "schemaVersion": 1,
+  "width": 24,
+  "height": 24,
+  "projectId": "proposal-behaviour-ear-scratch",
+  "name": "Groom · hind-paw ear scratch · draft",
+  "category": "idle",
+  "idlePosture": "sitting",
+  "wip": true,
+  "oneShot": false,
+  "description": "Raise a hind foot behind the ear, perform a short scratch burst, then put it down. The raised foot marker must never be used as a ground anchor. AI pixel proposal based on saved human artwork; review before runtime use. Research and authoring plan: CAT_BEHAVIOURS.md.",
+  "variantOf": {
+    "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+    "name": "Sitting · ground · Tail matrix"
+  },
+  "preferredNeighbours": {
+    "before": [
+      "46edfa22-baf5-45b3-a8a6-26fc004059de"
+    ],
+    "after": [
+      "46edfa22-baf5-45b3-a8a6-26fc004059de"
+    ]
+  },
+  "behaviour": {
+    "batch": "2026-10-15-everyday",
+    "status": "draft",
+    "runtimeEnabled": false,
+    "research": [
+      "https://doi.org/10.3390/pets1030021"
+    ],
+    "intent": "ear-scratch",
+    "entryPosture": "sitting",
+    "exitPosture": "sitting",
+    "optional": true,
+    "contactReview": "proposed-bearing-only",
+    "repeatRange": [
+      2,
+      3
+    ],
+    "mayAbort": true,
+    "frequencyHint": "occasional-self-care"
+  },
+  "frames": [
+    {
+      "id": "proposal-behaviour-ear-scratch-f01",
+      "name": "Sit",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...........#..#.........",
+        "...........####.........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........#####.........",
+        "..........#####.........",
+        ".........######.........",
+        "........#######.........",
+        "........#######.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########...#.....",
+        ".......#########.##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 450,
+      "anchor": {
+        "x": 13,
+        "y": 23
+      },
+      "origin": "human",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "reference-copy",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "enter",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "ear-scratch",
+          "draft",
+          "enter"
+        ],
+        "description": "Sit"
+      }
+    },
+    {
+      "id": "proposal-behaviour-ear-scratch-f02",
+      "name": "Raise hind foot",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "..........#..#..........",
+        "..........####..........",
+        ".........######.........",
+        ".........######.........",
+        ".........######.........",
+        ".........######.........",
+        ".........#####..........",
+        "........#R####..........",
+        ".......########.........",
+        ".......########.........",
+        "......#########.........",
+        ".....##...#####.........",
+        "......##..#####.........",
+        ".......##.#####.........",
+        ".......##.#####.........",
+        "........#######...#.....",
+        "..........######.##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 180,
+      "anchor": {
+        "x": 13,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "enter",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "ear-scratch",
+          "draft",
+          "enter"
+        ],
+        "description": "Raise hind foot"
+      }
+    },
+    {
+      "id": "proposal-behaviour-ear-scratch-f03",
+      "name": "Scratch behind ear",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "..........#..#..........",
+        "..........####..........",
+        ".........######.........",
+        ".........#R####.........",
+        ".........######.........",
+        "........#######.........",
+        "........######..........",
+        ".......#######..........",
+        ".......########.........",
+        "......#########.........",
+        "......#########.........",
+        ".....##...#####.........",
+        "......##..#####.........",
+        ".......##.#####.........",
+        ".......##.#####.........",
+        "........#######...#.....",
+        "..........######.##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 100,
+      "anchor": {
+        "x": 13,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "cycle",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "ear-scratch",
+          "draft",
+          "cycle"
+        ],
+        "description": "Scratch behind ear"
+      }
+    },
+    {
+      "id": "proposal-behaviour-ear-scratch-f04",
+      "name": "Retract slightly",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "..........#..#..........",
+        "..........####..........",
+        ".........######.........",
+        ".........######.........",
+        ".........######.........",
+        "........#R#####.........",
+        "........######..........",
+        ".......#######..........",
+        ".......########.........",
+        "......#########.........",
+        "......#########.........",
+        ".....##...#####.........",
+        "......##..#####.........",
+        ".......##.#####.........",
+        ".......##.#####.........",
+        "........#######...#.....",
+        "..........######.##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 100,
+      "anchor": {
+        "x": 13,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "cycle",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "ear-scratch",
+          "draft",
+          "cycle"
+        ],
+        "description": "Retract slightly"
+      }
+    },
+    {
+      "id": "proposal-behaviour-ear-scratch-f05",
+      "name": "Second scratch beat",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "..........#..#..........",
+        "..........####..........",
+        ".........######.........",
+        ".........######.........",
+        ".........#R####.........",
+        "........#######.........",
+        "........######..........",
+        ".......#######..........",
+        ".......########.........",
+        "......#########.........",
+        "......#########.........",
+        ".....##...#####.........",
+        "......##..#####.........",
+        ".......##.#####.........",
+        ".......##.#####.........",
+        "........#######...#.....",
+        "..........######.##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 100,
+      "anchor": {
+        "x": 13,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "cycle",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "ear-scratch",
+          "draft",
+          "cycle"
+        ],
+        "description": "Second scratch beat"
+      }
+    },
+    {
+      "id": "proposal-behaviour-ear-scratch-f06",
+      "name": "Lower hind foot",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "..........#..#..........",
+        "..........####..........",
+        ".........######.........",
+        ".........######.........",
+        ".........######.........",
+        ".........######.........",
+        ".........#####..........",
+        ".........#####..........",
+        ".........######.........",
+        "........#R#####.........",
+        "......#########.........",
+        ".....##...#####.........",
+        "......##..#####.........",
+        ".......##.#####.........",
+        ".......##.#####.........",
+        "........#######...#.....",
+        "..........######.##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 180,
+      "anchor": {
+        "x": 13,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "exit",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "ear-scratch",
+          "draft",
+          "exit"
+        ],
+        "description": "Lower hind foot"
+      }
+    },
+    {
+      "id": "proposal-behaviour-ear-scratch-f07",
+      "name": "Resettle",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...........#..#.........",
+        "...........####.........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........#####.........",
+        "..........#####.........",
+        ".........######.........",
+        "........#######.........",
+        "........#######.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########...#.....",
+        ".......#########.##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 450,
+      "anchor": {
+        "x": 13,
+        "y": 23
+      },
+      "origin": "human",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "reference-copy",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "exit",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "ear-scratch",
+          "draft",
+          "exit"
+        ],
+        "description": "Resettle"
+      }
+    }
+  ],
+  "workQueue": {
+    "version": 1,
+    "repository": "Stick-Pet-Card",
+    "selectedId": "",
+    "tasks": []
+  }
+}

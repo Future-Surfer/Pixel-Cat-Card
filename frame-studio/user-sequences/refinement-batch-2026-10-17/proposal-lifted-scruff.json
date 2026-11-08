@@ -1,0 +1,1629 @@
+{
+  "id": "476e60112c8962b25a603a37a375901e731e8e58d06288c2999d820ba6d5bc6b",
+  "kind": "sequence",
+  "entityId": "proposal-lifted-scruff",
+  "name": "Lifted · hanging by scruff · Refined",
+  "versionHash": "e683a883daac35c6cf2afa3c506292f4d913f86a3203a9963e921d26070dd85c",
+  "at": "2026-10-17T14:44:08.687Z",
+  "summary": {
+    "frames": 1,
+    "previousFrames": 1,
+    "editedFrames": 1
+  },
+  "snapshot": {
+    "schemaVersion": 1,
+    "width": 24,
+    "height": 24,
+    "projectId": "proposal-lifted-scruff",
+    "name": "Lifted · hanging by scruff · Refined",
+    "category": "interaction",
+    "description": "Temporary user-requested drag pose. Scruff attachment at (14,7), facing right. Refine hanging proportions and paws; no bearing/contact anchor while lifted. \nPOI indicates mouse cursor location during hanging",
+    "frames": [
+      {
+        "id": "lifted-scruff-draft-1",
+        "name": "Dangling · temporary draft",
+        "rows": [
+          "...............#...#....",
+          "...............##.##....",
+          "..............######....",
+          "...........##.######....",
+          "...........#########....",
+          "...........#########....",
+          "...........#########....",
+          "...........#######......",
+          "..........#######.......",
+          ".........########.......",
+          "........#########.......",
+          ".......F#.########......",
+          ".........#######.F......",
+          "........########........",
+          "........#######.........",
+          ".......#######..........",
+          ".......#######..........",
+          ".......#.######.........",
+          "......##.######.........",
+          "......#..######.........",
+          "......#...##.##.........",
+          "......#...##..#.........",
+          "......##...#B.#B........",
+          ".......#................"
+        ],
+        "durationMs": 150,
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "anchor": null,
+        "source": {
+          "file": "prototype/lifted-scruff-draft.json",
+          "kind": "ai-draft"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "pixels",
+            "at": "2026-10-17T00:00:00.000Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:42.918Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:43.414Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:44.647Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:47.910Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:50.789Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:53.015Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:53.815Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:55.053Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:55.829Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:57.509Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:58.141Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:59.077Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:59.477Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:00.013Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:00.669Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:03.557Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:04.093Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:17.989Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 6,
+              "y": 20,
+              "width": 12,
+              "height": 3
+            },
+            "dx": 0,
+            "dy": -2,
+            "at": "2026-10-17T10:21:17.989Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:23.317Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 7,
+              "y": 18,
+              "width": 10,
+              "height": 4
+            },
+            "dx": 2,
+            "dy": 1,
+            "at": "2026-10-17T10:21:23.317Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:25.845Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:27.069Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:28.118Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:28.941Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:29.925Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:30.496Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:31.325Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:32.862Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:34.359Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:36.029Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:36.637Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:38.038Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:38.631Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:41.479Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:42.221Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:42.959Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:43.338Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:44.893Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:45.253Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:45.647Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:46.053Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:47.016Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:48.173Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:53.629Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:22:05.077Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:22:05.661Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:22:08.912Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:22:09.437Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:22:12.130Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:22:14.016Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:22:16.269Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:22:18.893Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:22:24.957Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:20.053Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:20.598Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:21.112Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:24.670Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:25.029Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:25.391Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:26.655Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:27.861Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:31.765Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:32.717Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:37.725Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:53.093Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 1,
+              "y": 15,
+              "width": 20,
+              "height": 8
+            },
+            "dx": 0,
+            "dy": 1,
+            "at": "2026-10-17T10:44:53.093Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:56.429Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:58.862Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:19.565Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 13,
+              "y": 1,
+              "width": 6,
+              "height": 7
+            },
+            "dx": 1,
+            "dy": -1,
+            "at": "2026-10-17T10:45:19.565Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:21.461Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:22.958Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:25.934Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:26.333Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:29.183Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:32.053Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:32.704Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:33.477Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:33.813Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:34.341Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:34.613Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:34.877Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:37.447Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:40.549Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:42.990Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:43.397Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:46.365Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:46.861Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:51.117Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:51.621Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:53.301Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:04.165Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:07.494Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:08.085Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:08.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:11.925Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:12.221Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:18.149Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:21.581Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:21.870Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:22.141Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:25.477Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:25.781Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:26.294Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:26.541Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:27.453Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:32.797Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:34.231Z"
+          },
+          {
+            "actor": "human",
+            "kind": "flip-x",
+            "at": "2026-10-17T10:46:58.294Z"
+          },
+          {
+            "actor": "human",
+            "kind": "flip-x",
+            "at": "2026-10-17T10:47:01.448Z"
+          },
+          {
+            "actor": "human",
+            "kind": "flip-x",
+            "at": "2026-10-17T10:47:03.053Z"
+          },
+          {
+            "actor": "human",
+            "kind": "flip-x",
+            "at": "2026-10-17T10:47:03.949Z"
+          },
+          {
+            "actor": "human",
+            "kind": "poi-sequence-seed",
+            "at": "2026-10-17T14:29:15.766Z"
+          },
+          {
+            "actor": "human",
+            "kind": "poi",
+            "at": "2026-10-17T14:29:23.780Z"
+          },
+          {
+            "actor": "human",
+            "kind": "poi",
+            "at": "2026-10-17T14:29:24.988Z"
+          },
+          {
+            "actor": "human",
+            "kind": "poi",
+            "at": "2026-10-17T14:29:26.468Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:43:57.837Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:43:58.702Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:44:06.661Z"
+          }
+        ],
+        "role": "cycle",
+        "gaze": {
+          "x": 17,
+          "y": 3,
+          "angle": 63,
+          "fov": 202,
+          "canSee": true
+        },
+        "poi": {
+          "x": 11,
+          "y": 3
+        }
+      }
+    ],
+    "liftAnchor": {
+      "x": 14,
+      "y": 7
+    },
+    "catalogueRevision": 4,
+    "oneShot": false,
+    "preferredFrame": 0,
+    "wip": false,
+    "workQueue": {
+      "version": 1,
+      "repository": "Stick-Pet-Card",
+      "selectedId": "vertical-up",
+      "tasks": [
+        {
+          "id": "vertical-up",
+          "title": "Straight-up jump",
+          "category": "jump",
+          "priority": "high",
+          "tags": [
+            "vertical",
+            "up",
+            "airborne"
+          ],
+          "instructions": "Create a distinct straight-up airborne pose. Keep the body compact and legs beneath him; avoid the diagonal forward-reaching silhouette. Preserve the intended facing on a vertical jump. Start with one missing airborne frame, using existing takeoff and landing frames as onion references.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "vertical-down",
+          "title": "Straight-down drop",
+          "category": "jump",
+          "priority": "high",
+          "tags": [
+            "vertical",
+            "down",
+            "airborne"
+          ],
+          "instructions": "Create a distinct straight-down airborne pose with the feet prepared beneath the body. Preserve facing rather than implying a sideways leap or backwards motion. Start with one missing airborne frame; compare against existing descent preparation and landing crouch.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "look-down",
+          "title": "Look down from a perch",
+          "category": "idle",
+          "priority": "high",
+          "tags": [
+            "look-down",
+            "card-edge"
+          ],
+          "instructions": "Lower the head to inspect a card or landing below. Keep the planted paw cells fixed and allow the body/tail to overhang. Use the sitting/perch frames as references.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "horizontal-refine",
+          "title": "Refine horizontal leap",
+          "category": "jump",
+          "priority": "normal",
+          "tags": [
+            "horizontal",
+            "airborne"
+          ],
+          "instructions": "Refine the approved AI horizontal flight pose. Keep a level back, forward head, trailing tail and gathered legs. Human pixel edits to the AI source make a mixed-origin frame; retain its lineage. No planted contact anchor while airborne.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "walk-head",
+          "title": "Refine independent walk heads",
+          "category": "walk",
+          "priority": "normal",
+          "tags": [
+            "walk",
+            "head-bob"
+          ],
+          "instructions": "Review the high/low head combinations. Improve the head/neck seam if needed while leaving leg frames and every planted paw marker unchanged. Compare original and half-time head bobbing at the same walking speed.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "sitting-glance",
+          "title": "Sitting head glance",
+          "category": "idle",
+          "priority": "later",
+          "tags": [
+            "sit",
+            "look"
+          ],
+          "instructions": "Explore a small head turn toward a nearby object without flipping the whole body. Audit the existing turn/idle catalogue before drawing new pixels; keep bearing paws in their source cells.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        }
+      ]
+    }
+  },
+  "previous": {
+    "schemaVersion": 1,
+    "width": 24,
+    "height": 24,
+    "projectId": "proposal-lifted-scruff",
+    "name": "Lifted · hanging by scruff · Refined",
+    "category": "interaction",
+    "description": "Temporary user-requested drag pose. Scruff attachment at (14,7), facing right. Refine hanging proportions and paws; no bearing/contact anchor while lifted. \nPOI indicates mouse cursor location during hanging",
+    "frames": [
+      {
+        "id": "lifted-scruff-draft-1",
+        "name": "Dangling · temporary draft",
+        "rows": [
+          "...............#...#....",
+          "...............##.##....",
+          "..............######....",
+          "...........##.######....",
+          "...........#########....",
+          "...........#########....",
+          "...........#########....",
+          "...........#######......",
+          "..........#######.......",
+          ".........########.......",
+          "........#########.......",
+          ".......F#.########......",
+          ".........#######.F......",
+          "........########........",
+          "........#######.........",
+          ".......#######..........",
+          ".......#######..........",
+          ".......#.######.........",
+          "......##.######.........",
+          "......#..######.........",
+          "......#...##.##.........",
+          "......#...##..#.........",
+          "......##...#B.#B........",
+          ".......##..............."
+        ],
+        "durationMs": 150,
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "anchor": null,
+        "source": {
+          "file": "prototype/lifted-scruff-draft.json",
+          "kind": "ai-draft"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "pixels",
+            "at": "2026-10-17T00:00:00.000Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:42.918Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:43.414Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:44.647Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:47.910Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:50.789Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:53.015Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:53.815Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:55.053Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:55.829Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:57.509Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:58.141Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:59.077Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:20:59.477Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:00.013Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:00.669Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:03.557Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:04.093Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:17.989Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 6,
+              "y": 20,
+              "width": 12,
+              "height": 3
+            },
+            "dx": 0,
+            "dy": -2,
+            "at": "2026-10-17T10:21:17.989Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:23.317Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 7,
+              "y": 18,
+              "width": 10,
+              "height": 4
+            },
+            "dx": 2,
+            "dy": 1,
+            "at": "2026-10-17T10:21:23.317Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:25.845Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:27.069Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:28.118Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:28.941Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:29.925Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:30.496Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:31.325Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:32.862Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:34.359Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:36.029Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:36.637Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:38.038Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:38.631Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:41.479Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:42.221Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:42.959Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:43.338Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:44.893Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:45.253Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:45.647Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:46.053Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:47.016Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:48.173Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:21:53.629Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:22:05.077Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:22:05.661Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:22:08.912Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:22:09.437Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-17T10:22:12.130Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:22:14.016Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:22:16.269Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-17T10:22:18.893Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:22:24.957Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:20.053Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:20.598Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:21.112Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:24.670Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:25.029Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:25.391Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:26.655Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:27.861Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:31.765Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:32.717Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:37.725Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:53.093Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 1,
+              "y": 15,
+              "width": 20,
+              "height": 8
+            },
+            "dx": 0,
+            "dy": 1,
+            "at": "2026-10-17T10:44:53.093Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:56.429Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:44:58.862Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:19.565Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 13,
+              "y": 1,
+              "width": 6,
+              "height": 7
+            },
+            "dx": 1,
+            "dy": -1,
+            "at": "2026-10-17T10:45:19.565Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:21.461Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:22.958Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:25.934Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:26.333Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:29.183Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:32.053Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:32.704Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:33.477Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:33.813Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:34.341Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:34.613Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:34.877Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:37.447Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:40.549Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:42.990Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:43.397Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:46.365Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:46.861Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:51.117Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:51.621Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:45:53.301Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:04.165Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:07.494Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:08.085Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:08.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:11.925Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:12.221Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:18.149Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:21.581Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:21.870Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:22.141Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:25.477Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:25.781Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:26.294Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:26.541Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:27.453Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:32.797Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T10:46:34.231Z"
+          },
+          {
+            "actor": "human",
+            "kind": "flip-x",
+            "at": "2026-10-17T10:46:58.294Z"
+          },
+          {
+            "actor": "human",
+            "kind": "flip-x",
+            "at": "2026-10-17T10:47:01.448Z"
+          },
+          {
+            "actor": "human",
+            "kind": "flip-x",
+            "at": "2026-10-17T10:47:03.053Z"
+          },
+          {
+            "actor": "human",
+            "kind": "flip-x",
+            "at": "2026-10-17T10:47:03.949Z"
+          },
+          {
+            "actor": "human",
+            "kind": "poi-sequence-seed",
+            "at": "2026-10-17T14:29:15.766Z"
+          },
+          {
+            "actor": "human",
+            "kind": "poi",
+            "at": "2026-10-17T14:29:23.780Z"
+          },
+          {
+            "actor": "human",
+            "kind": "poi",
+            "at": "2026-10-17T14:29:24.988Z"
+          },
+          {
+            "actor": "human",
+            "kind": "poi",
+            "at": "2026-10-17T14:29:26.468Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:43:57.837Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:43:58.702Z"
+          }
+        ],
+        "role": "cycle",
+        "gaze": {
+          "x": 17,
+          "y": 3,
+          "angle": 63,
+          "fov": 202,
+          "canSee": true
+        },
+        "poi": {
+          "x": 11,
+          "y": 3
+        }
+      }
+    ],
+    "liftAnchor": {
+      "x": 14,
+      "y": 7
+    },
+    "catalogueRevision": 4,
+    "oneShot": false,
+    "preferredFrame": 0,
+    "wip": false,
+    "workQueue": {
+      "version": 1,
+      "repository": "Stick-Pet-Card",
+      "selectedId": "vertical-up",
+      "tasks": [
+        {
+          "id": "vertical-up",
+          "title": "Straight-up jump",
+          "category": "jump",
+          "priority": "high",
+          "tags": [
+            "vertical",
+            "up",
+            "airborne"
+          ],
+          "instructions": "Create a distinct straight-up airborne pose. Keep the body compact and legs beneath him; avoid the diagonal forward-reaching silhouette. Preserve the intended facing on a vertical jump. Start with one missing airborne frame, using existing takeoff and landing frames as onion references.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "vertical-down",
+          "title": "Straight-down drop",
+          "category": "jump",
+          "priority": "high",
+          "tags": [
+            "vertical",
+            "down",
+            "airborne"
+          ],
+          "instructions": "Create a distinct straight-down airborne pose with the feet prepared beneath the body. Preserve facing rather than implying a sideways leap or backwards motion. Start with one missing airborne frame; compare against existing descent preparation and landing crouch.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "look-down",
+          "title": "Look down from a perch",
+          "category": "idle",
+          "priority": "high",
+          "tags": [
+            "look-down",
+            "card-edge"
+          ],
+          "instructions": "Lower the head to inspect a card or landing below. Keep the planted paw cells fixed and allow the body/tail to overhang. Use the sitting/perch frames as references.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "horizontal-refine",
+          "title": "Refine horizontal leap",
+          "category": "jump",
+          "priority": "normal",
+          "tags": [
+            "horizontal",
+            "airborne"
+          ],
+          "instructions": "Refine the approved AI horizontal flight pose. Keep a level back, forward head, trailing tail and gathered legs. Human pixel edits to the AI source make a mixed-origin frame; retain its lineage. No planted contact anchor while airborne.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "walk-head",
+          "title": "Refine independent walk heads",
+          "category": "walk",
+          "priority": "normal",
+          "tags": [
+            "walk",
+            "head-bob"
+          ],
+          "instructions": "Review the high/low head combinations. Improve the head/neck seam if needed while leaving leg frames and every planted paw marker unchanged. Compare original and half-time head bobbing at the same walking speed.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "sitting-glance",
+          "title": "Sitting head glance",
+          "category": "idle",
+          "priority": "later",
+          "tags": [
+            "sit",
+            "look"
+          ],
+          "instructions": "Explore a small head turn toward a nearby object without flipping the whole body. Audit the existing turn/idle catalogue before drawing new pixels; keep bearing paws in their source cells.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        }
+      ]
+    }
+  },
+  "receipt": {
+    "status": "pending",
+    "notes": "",
+    "reference": ""
+  }
+}

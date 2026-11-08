@@ -1,0 +1,412 @@
+{
+  "id": "ce97f53e11b77ba28ae108acb163452b72bcfa3672f4f51ed093079be66767f6",
+  "kind": "sequence",
+  "entityId": "sequence-eat",
+  "name": "Eating",
+  "versionHash": "e52680e0a844c1a88b4ce041d95607f042b5c4ceab133564de7293fbfc0bf061",
+  "at": "2026-10-15T13:34:20.820Z",
+  "summary": {
+    "frames": 4,
+    "previousFrames": null,
+    "editedFrames": 4
+  },
+  "snapshot": {
+    "schemaVersion": 1,
+    "width": 24,
+    "height": 24,
+    "name": "Eating",
+    "frames": [
+      {
+        "id": "820936ab-27b8-43b5-86f2-aed9820b7796",
+        "name": "Eating 1.1",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          ".......######...........",
+          ".....#############......",
+          "....##################..",
+          "..###.###############...",
+          "..#...################..",
+          "..##..##########.####...",
+          "...#..######.###........",
+          "......######R..##R......"
+        ],
+        "durationMs": 250,
+        "anchor": null,
+        "origin": "human",
+        "review": "accepted",
+        "locked": false,
+        "source": {
+          "file": "pixel-pet-card.js",
+          "symbol": "EAT_IDLE_FRAMES",
+          "index": [
+            0,
+            0
+          ]
+        },
+        "operations": [
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-15T13:34:15.193Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-vision",
+            "at": "2026-10-15T13:34:17.089Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "eat"
+          ],
+          "description": "Existing eating body/head matrix from the full card. Paw markers remain source-exact."
+        },
+        "gaze": {
+          "x": 19,
+          "y": 20,
+          "angle": -1,
+          "fov": 149,
+          "canSee": false
+        }
+      },
+      {
+        "id": "c2e21c34-1b1d-44e7-9c23-3ebbbbb09446",
+        "name": "Eating 1.2",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          ".......######......#....",
+          ".....##########.###.....",
+          "....################....",
+          "..###.###############...",
+          "..#...##############....",
+          "..##..##########.###....",
+          "...#..######.###........",
+          "......######R..##R......"
+        ],
+        "durationMs": 250,
+        "anchor": null,
+        "origin": "human",
+        "review": "accepted",
+        "locked": false,
+        "source": {
+          "file": "pixel-pet-card.js",
+          "symbol": "EAT_IDLE_FRAMES",
+          "index": [
+            0,
+            1
+          ]
+        },
+        "operations": [
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-15T13:34:15.193Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:34:18.790Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "eat"
+          ],
+          "description": "Existing eating body/head matrix from the full card. Paw markers remain source-exact."
+        },
+        "gaze": {
+          "x": 19,
+          "y": 20,
+          "angle": -1,
+          "fov": 149,
+          "canSee": false
+        }
+      },
+      {
+        "id": "4266ab81-c010-4a19-84fd-8d73330b1e15",
+        "name": "Eating 2.1",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          ".......######...........",
+          ".....#############......",
+          "....##################..",
+          "..###.###############...",
+          ".##...################..",
+          ".#....##########.####...",
+          ".##...######.###........",
+          "......######R..##R......"
+        ],
+        "durationMs": 250,
+        "anchor": null,
+        "origin": "human",
+        "review": "accepted",
+        "locked": false,
+        "source": {
+          "file": "pixel-pet-card.js",
+          "symbol": "EAT_IDLE_FRAMES",
+          "index": [
+            1,
+            0
+          ]
+        },
+        "operations": [
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-15T13:34:15.193Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:34:18.790Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "eat"
+          ],
+          "description": "Existing eating body/head matrix from the full card. Paw markers remain source-exact."
+        },
+        "gaze": {
+          "x": 19,
+          "y": 20,
+          "angle": -1,
+          "fov": 149,
+          "canSee": false
+        }
+      },
+      {
+        "id": "1a7fe5d9-6955-4381-92b2-1c84482c0d53",
+        "name": "Eating 2.2",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          ".......######......#....",
+          ".....##########.###.....",
+          "....################....",
+          "..###.###############...",
+          ".##...##############....",
+          ".#....##########.###....",
+          ".##...######.###........",
+          "......######R..##R......"
+        ],
+        "durationMs": 250,
+        "anchor": null,
+        "origin": "human",
+        "review": "accepted",
+        "locked": false,
+        "source": {
+          "file": "pixel-pet-card.js",
+          "symbol": "EAT_IDLE_FRAMES",
+          "index": [
+            1,
+            1
+          ]
+        },
+        "operations": [
+          {
+            "actor": "human",
+            "kind": "gaze-sequence-seed",
+            "at": "2026-10-15T13:34:15.193Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:34:18.790Z"
+          }
+        ],
+        "role": "cycle",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "eat"
+          ],
+          "description": "Existing eating body/head matrix from the full card. Paw markers remain source-exact."
+        },
+        "gaze": {
+          "x": 19,
+          "y": 20,
+          "angle": -1,
+          "fov": 149,
+          "canSee": false
+        }
+      }
+    ],
+    "projectId": "sequence-eat",
+    "description": "Existing eating body/head matrix from the full card. Paw markers remain source-exact.",
+    "category": "interaction",
+    "catalogueRevision": 4,
+    "oneShot": false,
+    "preferredFrame": 0,
+    "workQueue": {
+      "version": 1,
+      "repository": "Stick-Pet-Card",
+      "selectedId": "vertical-up",
+      "tasks": [
+        {
+          "id": "vertical-up",
+          "title": "Straight-up jump",
+          "category": "jump",
+          "priority": "high",
+          "tags": [
+            "vertical",
+            "up",
+            "airborne"
+          ],
+          "instructions": "Create a distinct straight-up airborne pose. Keep the body compact and legs beneath him; avoid the diagonal forward-reaching silhouette. Preserve the intended facing on a vertical jump. Start with one missing airborne frame, using existing takeoff and landing frames as onion references.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "vertical-down",
+          "title": "Straight-down drop",
+          "category": "jump",
+          "priority": "high",
+          "tags": [
+            "vertical",
+            "down",
+            "airborne"
+          ],
+          "instructions": "Create a distinct straight-down airborne pose with the feet prepared beneath the body. Preserve facing rather than implying a sideways leap or backwards motion. Start with one missing airborne frame; compare against existing descent preparation and landing crouch.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "look-down",
+          "title": "Look down from a perch",
+          "category": "idle",
+          "priority": "high",
+          "tags": [
+            "look-down",
+            "card-edge"
+          ],
+          "instructions": "Lower the head to inspect a card or landing below. Keep the planted paw cells fixed and allow the body/tail to overhang. Use the sitting/perch frames as references.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "horizontal-refine",
+          "title": "Refine horizontal leap",
+          "category": "jump",
+          "priority": "normal",
+          "tags": [
+            "horizontal",
+            "airborne"
+          ],
+          "instructions": "Refine the approved AI horizontal flight pose. Keep a level back, forward head, trailing tail and gathered legs. Human pixel edits to the AI source make a mixed-origin frame; retain its lineage. No planted contact anchor while airborne.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "walk-head",
+          "title": "Refine independent walk heads",
+          "category": "walk",
+          "priority": "normal",
+          "tags": [
+            "walk",
+            "head-bob"
+          ],
+          "instructions": "Review the high/low head combinations. Improve the head/neck seam if needed while leaving leg frames and every planted paw marker unchanged. Compare original and half-time head bobbing at the same walking speed.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "sitting-glance",
+          "title": "Sitting head glance",
+          "category": "idle",
+          "priority": "later",
+          "tags": [
+            "sit",
+            "look"
+          ],
+          "instructions": "Explore a small head turn toward a nearby object without flipping the whole body. Audit the existing turn/idle catalogue before drawing new pixels; keep bearing paws in their source cells.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        }
+      ]
+    }
+  },
+  "previous": null,
+  "receipt": {
+    "status": "pending",
+    "notes": "",
+    "reference": ""
+  }
+}

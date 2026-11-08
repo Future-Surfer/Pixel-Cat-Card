@@ -1,0 +1,23 @@
+import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import vm from 'node:vm';import {fileURLToPath} from 'node:url';
+export const runtimeFiles=['pixel-cat-roaming-art.js','pixel-cat-roaming-extras.js','pixel-cat-affordances.js','pixel-cat-behaviours.js','pixel-cat-roaming.js','pixel-cat-climbing.js'];
+const hash=body=>crypto.createHash('sha256').update(body).digest('hex'),normal=body=>body.replace(/\r\n/g,'\n');
+export function verifyRelease(directory){
+ const manifest=JSON.parse(fs.readFileSync(path.join(directory,'manifest.json'),'utf8'));if(manifest.schema!==1||![runtimeFiles,runtimeFiles.slice(0,5)].some(order=>JSON.stringify(manifest.order)===JSON.stringify(order)))throw Error('Unsupported release manifest');
+ const allowed=new Set([...manifest.order,'pixel-cat.js','sources.json','preview.html']);if(Object.keys(manifest.files).length!==allowed.size)throw Error('Incomplete release');
+ for(const [file,record]of Object.entries(manifest.files)){if(!allowed.has(file))throw Error('Unexpected release path');const body=fs.readFileSync(path.join(directory,file));if(hash(body)!==record.sha256||body.length!==record.bytes)throw Error('Release integrity mismatch: '+file);}
+ return manifest;
+}
+export function buildRelease({sourceDir=process.cwd(),outRoot=path.resolve('.release'),version}={}){
+ const files=Object.fromEntries(runtimeFiles.map(file=>[file,normal(fs.readFileSync(path.join(sourceDir,file),'utf8'))]));
+ for(const [file,body]of Object.entries(files))if(Buffer.byteLength(body)>128000)throw Error('Inline compatibility guard: '+file);
+ const box={window:{},HTMLElement:class{},customElements:{get:()=>true}};for(const file of runtimeFiles)vm.runInNewContext(files[file],box,{timeout:10000});
+ const sources={schema:1,climbingSourceVersion:box.window.pixelCatClimbAssetsV1?.sourceVersion,assets:box.window.pixelCatRoamingArtV2.assetManifest,decodedArtworkSha256:hash(JSON.stringify(box.window.pixelCatRoamingArtV2)),decodedExtrasSha256:hash(JSON.stringify(box.window.pixelCatRoamingExtrasV1))};
+ files['sources.json']=JSON.stringify(sources,null,2)+'\n';files['pixel-cat.js']=runtimeFiles.map(file=>"import './"+file+"';").join('\n')+'\n';
+ const contentHash=hash(Object.entries(files).map(([name,body])=>name+'\0'+body).join('\0'));version??='snapshot-'+contentHash.slice(0,16);if(!/^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/.test(version))throw Error('Invalid version directory');
+ files['preview.html']='<!doctype html><meta charset="utf-8"><title>Pixel Cat release preview</title><style>body{font:16px system-ui;background:#edf0f4;margin:30px}main{max-width:1000px;margin:auto}#homes{display:grid;grid-template-columns:1fr 1fr;gap:24px}article{margin-top:60px;background:white;border:1px solid #aab8c4;height:100px;padding:20px}</style><main data-cat-world><h1>Pixel Cat release preview</h1><p id="release">'+version+'</p><p>Versioned normal-file module loading. Reload after upgrading or rolling back.</p><div id="homes"></div><article data-cat-surface>Ordinary card support</article><output id="status">Loading modules</output></main><script type="module">import "./pixel-cat.js";for(let i=0;i<2;i++){const a=document.createElement("pixel-cat-home");a.setConfig({...a.constructor.getStubConfig(),cat_id:"release-preview-"+i,name:"Release cat "+(i+1),arrival:undefined,bed_style:i?"simple":"igloo",debug_labels:true});document.querySelector("#homes").append(a);}document.querySelector("#status").textContent="All six modules loaded; two independent residents mounted.";</script>\n';
+ const manifest={schema:1,version,contentHash,order:runtimeFiles,files:Object.fromEntries(Object.entries(files).map(([file,body])=>[file,{bytes:Buffer.byteLength(body),sha256:hash(body)}]))},directory=path.resolve(outRoot,version);
+ if(!directory.startsWith(path.resolve(outRoot)+path.sep))throw Error('Release must stay inside output root');
+ if(fs.existsSync(directory)){const prior=verifyRelease(directory);if(JSON.stringify(prior)!==JSON.stringify(manifest))throw Error('Immutable version already contains different content');return{directory,manifest};}
+ fs.mkdirSync(directory,{recursive:true});for(const [file,body]of Object.entries(files))fs.writeFileSync(path.join(directory,file),body);fs.writeFileSync(path.join(directory,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');verifyRelease(directory);return{directory,manifest};
+}
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){const result=process.argv[2]==='--verify'?{directory:path.resolve(process.argv[3]),manifest:verifyRelease(path.resolve(process.argv[3]))}:buildRelease();console.log(JSON.stringify({directory:result.directory,version:result.manifest.version,contentHash:result.manifest.contentHash},null,2));}

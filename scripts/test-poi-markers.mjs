@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {newFrame,validateProject,transform} from '../frame-studio/dist/model.js';
+import {placePoi,applyPoiToAll} from '../frame-studio/dist/gaze.js';
+import {copyFrame,pasteFrame} from '../frame-studio/dist/frame-clipboard.js';
+import {moveSelection} from '../frame-studio/dist/selection.js';
+const p={schemaVersion:1,width:24,height:24,projectId:'poi-test',name:'POI',frames:[newFrame(),newFrame(),newFrame()]};p.frames[2].locked=true;
+const pixels=JSON.stringify(p.frames.map(f=>f.rows));assert.equal(placePoi(p,p.frames[0],{x:14,y:7}),2);assert.ok(!p.frames[2].poi);assert.notEqual(p.frames[0].poi,p.frames[1].poi);
+placePoi(p,p.frames[0],{x:13,y:6});assert.equal(p.frames[1].poi.x,14);assert.equal(applyPoiToAll(p,p.frames[0]),1);assert.equal(JSON.stringify(p.frames.map(f=>f.rows)),pixels,'Markers never modify art/provenance');
+transform(p,p.frames[0].id,'flip-x');assert.deepEqual(p.frames[0].poi,{x:10,y:6});moveSelection(p,[p.frames[0].id],{x:9,y:5,width:3,height:3},2,1);assert.deepEqual(p.frames[0].poi,{x:12,y:7});
+const copy=pasteFrame(p,copyFrame(p,p.frames[0]),p.frames[0].id);assert.deepEqual(copy.poi,{x:12,y:7});validateProject(JSON.parse(JSON.stringify(p)));
+assert.throws(()=>placePoi(p,p.frames.find(f=>f.locked),{x:0,y:0}));assert.throws(()=>placePoi(p,p.frames[0],{x:-1,y:7}));p.frames[0].poi={x:24,y:0};assert.throws(()=>validateProject(p));
+console.log('PASS: POI seeding/apply-all, per-frame adjustment, locks, transforms, selection, clipboard and round-trip validation without pixel edits.');

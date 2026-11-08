@@ -1,0 +1,6640 @@
+[
+  {
+    "assetId": "original-cardboard_box",
+    "name": "cardboard box",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#aa6627": "#696055",
+                "#c68141": "#84796b",
+                "#f2a65e": "#a89a89"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#aa6627": "#646866",
+                "#c68141": "#7e8481",
+                "#f2a65e": "#a2a8a4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#aa6627": "#1b3669",
+                "#c68141": "#224484",
+                "#f2a65e": "#2c57a8"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#aa6627": "#19695e",
+                "#c68141": "#1f8477",
+                "#f2a65e": "#28a897"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#aa6627": "#5a4e69",
+                "#c68141": "#716284",
+                "#f2a65e": "#907da8"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#aa6627": "#4e695f",
+                "#c68141": "#628478",
+                "#f2a65e": "#7da899"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#aa6627": "#696969",
+                "#c68141": "#848484",
+                "#f2a65e": "#a8a8a8"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#aa6627": "#505050",
+                "#c68141": "#6c6c6c",
+                "#f2a65e": "#949494"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#aa6627": "#694655",
+                "#c68141": "#84576a",
+                "#f2a65e": "#a87088"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#aa6627": "#69394f",
+                "#c68141": "#844863",
+                "#f2a65e": "#a85c7f"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#aa6627": "#5f6843",
+                "#c68141": "#788454",
+                "#f2a65e": "#99a86c"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#aa6627": "#69573e",
+                "#c68141": "#846d4e",
+                "#f2a65e": "#a88c63"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-food_bowl",
+    "name": "food bowl",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#c95e4b": "#8a7f70",
+                "#f5ad68": "#afa08e"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#c95e4b": "#858a87",
+                "#f5ad68": "#a8afab"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#c95e4b": "#24488a",
+                "#f5ad68": "#2e5baf"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#c95e4b": "#218a7c",
+                "#f5ad68": "#29af9d"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#c95e4b": "#76678a",
+                "#f5ad68": "#9582af"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#c95e4b": "#678a7e",
+                "#f5ad68": "#82af9f"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#c95e4b": "#8a8a8a",
+                "#f5ad68": "#afafaf"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#c95e4b": "#737373",
+                "#f5ad68": "#9c9c9c"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#c95e4b": "#8a5c70",
+                "#f5ad68": "#af748d"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#c95e4b": "#8a4c68",
+                "#f5ad68": "#af6084"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#c95e4b": "#7e8a58",
+                "#f5ad68": "#9faf70"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#c95e4b": "#8a7351",
+                "#f5ad68": "#af9167"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-robot_vacuum_side",
+    "name": "robot vacuum side",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#252a2f",
+                "#43434f": "#3a4349",
+                "#606070": "#525f68",
+                "#c2c2d1": "#9fb8ca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2a26",
+                "#43434f": "#49423b",
+                "#606070": "#685d54",
+                "#c2c2d1": "#cab5a4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1611",
+                "#43434f": "#49221a",
+                "#606070": "#683025",
+                "#c2c2d1": "#ca5d49"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e250f",
+                "#43434f": "#493a17",
+                "#606070": "#685221",
+                "#c2c2d1": "#c99f40"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2320",
+                "#43434f": "#493732",
+                "#606070": "#684e47",
+                "#c2c2d1": "#ca9789"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2327",
+                "#43434f": "#49363d",
+                "#606070": "#684d57",
+                "#c2c2d1": "#ca96a8"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e2e2e",
+                "#43434f": "#494949",
+                "#606070": "#686868",
+                "#c2c2d1": "#cacaca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#1c1c1c",
+                "#43434f": "#323232",
+                "#606070": "#4f4f4f",
+                "#c2c2d1": "#bcbcbc"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e1322",
+                "#43434f": "#491e35",
+                "#606070": "#682b4b",
+                "#c2c2d1": "#ca5491"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1e2a",
+                "#43434f": "#492f42",
+                "#606070": "#68435e",
+                "#c2c2d1": "#c981b6"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1d14",
+                "#43434f": "#492e20",
+                "#606070": "#68412d",
+                "#c2c2d1": "#ca7e58"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2118",
+                "#43434f": "#493426",
+                "#606070": "#684b36",
+                "#c2c2d1": "#ca9068"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-robot_vacuum_turn_1",
+    "name": "robot vacuum turn 1",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#252a2f",
+                "#43434f": "#3a4349",
+                "#606070": "#525f68",
+                "#c2c2d1": "#9fb8ca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2a26",
+                "#43434f": "#49423b",
+                "#606070": "#685d54",
+                "#c2c2d1": "#cab5a4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1611",
+                "#43434f": "#49221a",
+                "#606070": "#683025",
+                "#c2c2d1": "#ca5d49"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e250f",
+                "#43434f": "#493a17",
+                "#606070": "#685221",
+                "#c2c2d1": "#c99f40"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2320",
+                "#43434f": "#493732",
+                "#606070": "#684e47",
+                "#c2c2d1": "#ca9789"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2327",
+                "#43434f": "#49363d",
+                "#606070": "#684d57",
+                "#c2c2d1": "#ca96a8"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e2e2e",
+                "#43434f": "#494949",
+                "#606070": "#686868",
+                "#c2c2d1": "#cacaca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#1c1c1c",
+                "#43434f": "#323232",
+                "#606070": "#4f4f4f",
+                "#c2c2d1": "#bcbcbc"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e1322",
+                "#43434f": "#491e35",
+                "#606070": "#682b4b",
+                "#c2c2d1": "#ca5491"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1e2a",
+                "#43434f": "#492f42",
+                "#606070": "#68435e",
+                "#c2c2d1": "#c981b6"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1d14",
+                "#43434f": "#492e20",
+                "#606070": "#68412d",
+                "#c2c2d1": "#ca7e58"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2118",
+                "#43434f": "#493426",
+                "#606070": "#684b36",
+                "#c2c2d1": "#ca9068"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-robot_vacuum_turn_2",
+    "name": "robot vacuum turn 2",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#252a2f",
+                "#43434f": "#3a4349",
+                "#606070": "#525f68",
+                "#c2c2d1": "#9fb8ca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2a26",
+                "#43434f": "#49423b",
+                "#606070": "#685d54",
+                "#c2c2d1": "#cab5a4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1611",
+                "#43434f": "#49221a",
+                "#606070": "#683025",
+                "#c2c2d1": "#ca5d49"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e250f",
+                "#43434f": "#493a17",
+                "#606070": "#685221",
+                "#c2c2d1": "#c99f40"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2320",
+                "#43434f": "#493732",
+                "#606070": "#684e47",
+                "#c2c2d1": "#ca9789"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2327",
+                "#43434f": "#49363d",
+                "#606070": "#684d57",
+                "#c2c2d1": "#ca96a8"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e2e2e",
+                "#43434f": "#494949",
+                "#606070": "#686868",
+                "#c2c2d1": "#cacaca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#1c1c1c",
+                "#43434f": "#323232",
+                "#606070": "#4f4f4f",
+                "#c2c2d1": "#bcbcbc"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e1322",
+                "#43434f": "#491e35",
+                "#606070": "#682b4b",
+                "#c2c2d1": "#ca5491"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1e2a",
+                "#43434f": "#492f42",
+                "#606070": "#68435e",
+                "#c2c2d1": "#c981b6"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1d14",
+                "#43434f": "#492e20",
+                "#606070": "#68412d",
+                "#c2c2d1": "#ca7e58"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2118",
+                "#43434f": "#493426",
+                "#606070": "#684b36",
+                "#c2c2d1": "#ca9068"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-robot_vacuum_turn_3",
+    "name": "robot vacuum turn 3",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#252a2f",
+                "#43434f": "#3a4349",
+                "#606070": "#525f68",
+                "#c2c2d1": "#9fb8ca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2a26",
+                "#43434f": "#49423b",
+                "#606070": "#685d54",
+                "#c2c2d1": "#cab5a4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1611",
+                "#43434f": "#49221a",
+                "#606070": "#683025",
+                "#c2c2d1": "#ca5d49"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e250f",
+                "#43434f": "#493a17",
+                "#606070": "#685221",
+                "#c2c2d1": "#c99f40"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2320",
+                "#43434f": "#493732",
+                "#606070": "#684e47",
+                "#c2c2d1": "#ca9789"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2327",
+                "#43434f": "#49363d",
+                "#606070": "#684d57",
+                "#c2c2d1": "#ca96a8"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e2e2e",
+                "#43434f": "#494949",
+                "#606070": "#686868",
+                "#c2c2d1": "#cacaca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#1c1c1c",
+                "#43434f": "#323232",
+                "#606070": "#4f4f4f",
+                "#c2c2d1": "#bcbcbc"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e1322",
+                "#43434f": "#491e35",
+                "#606070": "#682b4b",
+                "#c2c2d1": "#ca5491"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1e2a",
+                "#43434f": "#492f42",
+                "#606070": "#68435e",
+                "#c2c2d1": "#c981b6"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1d14",
+                "#43434f": "#492e20",
+                "#606070": "#68412d",
+                "#c2c2d1": "#ca7e58"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2118",
+                "#43434f": "#493426",
+                "#606070": "#684b36",
+                "#c2c2d1": "#ca9068"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-robot_vacuum_turn_4",
+    "name": "robot vacuum turn 4",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#252a2f",
+                "#43434f": "#3a4349",
+                "#606070": "#525f68",
+                "#c2c2d1": "#9fb8ca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2a26",
+                "#43434f": "#49423b",
+                "#606070": "#685d54",
+                "#c2c2d1": "#cab5a4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1611",
+                "#43434f": "#49221a",
+                "#606070": "#683025",
+                "#c2c2d1": "#ca5d49"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e250f",
+                "#43434f": "#493a17",
+                "#606070": "#685221",
+                "#c2c2d1": "#c99f40"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2320",
+                "#43434f": "#493732",
+                "#606070": "#684e47",
+                "#c2c2d1": "#ca9789"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2327",
+                "#43434f": "#49363d",
+                "#606070": "#684d57",
+                "#c2c2d1": "#ca96a8"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e2e2e",
+                "#43434f": "#494949",
+                "#606070": "#686868",
+                "#c2c2d1": "#cacaca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#1c1c1c",
+                "#43434f": "#323232",
+                "#606070": "#4f4f4f",
+                "#c2c2d1": "#bcbcbc"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e1322",
+                "#43434f": "#491e35",
+                "#606070": "#682b4b",
+                "#c2c2d1": "#ca5491"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1e2a",
+                "#43434f": "#492f42",
+                "#606070": "#68435e",
+                "#c2c2d1": "#c981b6"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1d14",
+                "#43434f": "#492e20",
+                "#606070": "#68412d",
+                "#c2c2d1": "#ca7e58"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2118",
+                "#43434f": "#493426",
+                "#606070": "#684b36",
+                "#c2c2d1": "#ca9068"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-robot_vacuum_turn_5",
+    "name": "robot vacuum turn 5",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#252a2f",
+                "#43434f": "#3a4349",
+                "#606070": "#525f68",
+                "#c2c2d1": "#9fb8ca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2a26",
+                "#43434f": "#49423b",
+                "#606070": "#685d54",
+                "#c2c2d1": "#cab5a4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1611",
+                "#43434f": "#49221a",
+                "#606070": "#683025",
+                "#c2c2d1": "#ca5d49"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e250f",
+                "#43434f": "#493a17",
+                "#606070": "#685221",
+                "#c2c2d1": "#c99f40"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2320",
+                "#43434f": "#493732",
+                "#606070": "#684e47",
+                "#c2c2d1": "#ca9789"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2327",
+                "#43434f": "#49363d",
+                "#606070": "#684d57",
+                "#c2c2d1": "#ca96a8"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e2e2e",
+                "#43434f": "#494949",
+                "#606070": "#686868",
+                "#c2c2d1": "#cacaca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#1c1c1c",
+                "#43434f": "#323232",
+                "#606070": "#4f4f4f",
+                "#c2c2d1": "#bcbcbc"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2e1322",
+                "#43434f": "#491e35",
+                "#606070": "#682b4b",
+                "#c2c2d1": "#ca5491"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1e2a",
+                "#43434f": "#492f42",
+                "#606070": "#68435e",
+                "#c2c2d1": "#c981b6"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f1d14",
+                "#43434f": "#492e20",
+                "#606070": "#68412d",
+                "#c2c2d1": "#ca7e58"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#15151f": "#15151f",
+                "#272736": "#2f2118",
+                "#43434f": "#493426",
+                "#606070": "#684b36",
+                "#c2c2d1": "#ca9068"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-robot_vacuum_turn_6",
+    "name": "robot vacuum turn 6",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#252a2f",
+                "#43434f": "#3a4349",
+                "#606070": "#525f68",
+                "#c2c2d1": "#9fb8ca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2f2a26",
+                "#43434f": "#49423b",
+                "#606070": "#685d54",
+                "#c2c2d1": "#cab5a4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2f1611",
+                "#43434f": "#49221a",
+                "#606070": "#683025",
+                "#c2c2d1": "#ca5d49"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2e250f",
+                "#43434f": "#493a17",
+                "#606070": "#685221",
+                "#c2c2d1": "#c99f40"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2f2320",
+                "#43434f": "#493732",
+                "#606070": "#684e47",
+                "#c2c2d1": "#ca9789"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2f2327",
+                "#43434f": "#49363d",
+                "#606070": "#684d57",
+                "#c2c2d1": "#ca96a8"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2e2e2e",
+                "#43434f": "#494949",
+                "#606070": "#686868",
+                "#c2c2d1": "#cacaca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#1c1c1c",
+                "#43434f": "#323232",
+                "#606070": "#4f4f4f",
+                "#c2c2d1": "#bcbcbc"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2e1322",
+                "#43434f": "#491e35",
+                "#606070": "#682b4b",
+                "#c2c2d1": "#ca5491"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2f1e2a",
+                "#43434f": "#492f42",
+                "#606070": "#68435e",
+                "#c2c2d1": "#c981b6"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2f1d14",
+                "#43434f": "#492e20",
+                "#606070": "#68412d",
+                "#c2c2d1": "#ca7e58"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2f2118",
+                "#43434f": "#493426",
+                "#606070": "#684b36",
+                "#c2c2d1": "#ca9068"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-robot_vacuum_turn_7",
+    "name": "robot vacuum turn 7",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#252a2f",
+                "#43434f": "#3a4349",
+                "#606070": "#525f68"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2f2a26",
+                "#43434f": "#49423b",
+                "#606070": "#685d54"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2f1611",
+                "#43434f": "#49221a",
+                "#606070": "#683025"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2e250f",
+                "#43434f": "#493a17",
+                "#606070": "#685221"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2f2320",
+                "#43434f": "#493732",
+                "#606070": "#684e47"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2f2327",
+                "#43434f": "#49363d",
+                "#606070": "#684d57"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2e2e2e",
+                "#43434f": "#494949",
+                "#606070": "#686868"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#1c1c1c",
+                "#43434f": "#323232",
+                "#606070": "#4f4f4f"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2e1322",
+                "#43434f": "#491e35",
+                "#606070": "#682b4b"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2f1e2a",
+                "#43434f": "#492f42",
+                "#606070": "#68435e"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2f1d14",
+                "#43434f": "#492e20",
+                "#606070": "#68412d"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2f2118",
+                "#43434f": "#493426",
+                "#606070": "#684b36"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-robot_vacuum_turn_8",
+    "name": "robot vacuum turn 8",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#252a2f",
+                "#43434f": "#3a4349",
+                "#606070": "#525f68",
+                "#c2c2d1": "#9fb8ca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2f2a26",
+                "#43434f": "#49423b",
+                "#606070": "#685d54",
+                "#c2c2d1": "#cab5a4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2f1611",
+                "#43434f": "#49221a",
+                "#606070": "#683025",
+                "#c2c2d1": "#ca5d49"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2e250f",
+                "#43434f": "#493a17",
+                "#606070": "#685221",
+                "#c2c2d1": "#c99f40"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2f2320",
+                "#43434f": "#493732",
+                "#606070": "#684e47",
+                "#c2c2d1": "#ca9789"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2f2327",
+                "#43434f": "#49363d",
+                "#606070": "#684d57",
+                "#c2c2d1": "#ca96a8"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2e2e2e",
+                "#43434f": "#494949",
+                "#606070": "#686868",
+                "#c2c2d1": "#cacaca"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#1c1c1c",
+                "#43434f": "#323232",
+                "#606070": "#4f4f4f",
+                "#c2c2d1": "#bcbcbc"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2e1322",
+                "#43434f": "#491e35",
+                "#606070": "#682b4b",
+                "#c2c2d1": "#ca5491"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2f1e2a",
+                "#43434f": "#492f42",
+                "#606070": "#68435e",
+                "#c2c2d1": "#c981b6"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#272736": "#2f1d14",
+                "#43434f": "#492e20",
+                "#606070": "#68412d",
+                "#c2c2d1": "#ca7e58"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#272736": "#2f2118",
+                "#43434f": "#493426",
+                "#606070": "#684b36",
+                "#c2c2d1": "#ca9068"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-sofa_half",
+    "name": "sofa half",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#245f41": "#413c35",
+                "#282737": "#252b2f",
+                "#388960": "#61594f",
+                "#3ca272": "#6f665a",
+                "#43434f": "#3a4349",
+                "#53b586": "#84796b"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#245f41": "#3f4240",
+                "#282737": "#2f2a26",
+                "#388960": "#5d605e",
+                "#3ca272": "#6b6f6d",
+                "#43434f": "#49423b",
+                "#53b586": "#7f8481"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#245f41": "#112241",
+                "#282737": "#2f1611",
+                "#388960": "#193261",
+                "#3ca272": "#1d3a6f",
+                "#43434f": "#49221a",
+                "#53b586": "#234484"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#245f41": "#10423b",
+                "#282737": "#2f250f",
+                "#388960": "#176057",
+                "#3ca272": "#1a6f64",
+                "#43434f": "#493a17",
+                "#53b586": "#1f8477"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#245f41": "#383141",
+                "#282737": "#2f2320",
+                "#388960": "#534861",
+                "#3ca272": "#5f536f",
+                "#43434f": "#493732",
+                "#53b586": "#716284"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#245f41": "#31423c",
+                "#282737": "#2f2327",
+                "#388960": "#486158",
+                "#3ca272": "#536f65",
+                "#43434f": "#49363d",
+                "#53b586": "#628478"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#245f41": "#424242",
+                "#282737": "#2f2f2f",
+                "#388960": "#616161",
+                "#3ca272": "#6f6f6f",
+                "#43434f": "#494949",
+                "#53b586": "#848484"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#245f41": "#2c2c2c",
+                "#282737": "#1c1c1c",
+                "#388960": "#484848",
+                "#3ca272": "#565656",
+                "#43434f": "#323232",
+                "#53b586": "#6c6c6c"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#245f41": "#422c35",
+                "#282737": "#2f1422",
+                "#388960": "#61404e",
+                "#3ca272": "#6f4a5a",
+                "#43434f": "#491e35",
+                "#53b586": "#84586b"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#245f41": "#422432",
+                "#282737": "#2f1e2a",
+                "#388960": "#613549",
+                "#3ca272": "#6f3d54",
+                "#43434f": "#492f42",
+                "#53b586": "#844864"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#245f41": "#3c412a",
+                "#282737": "#2f1d14",
+                "#388960": "#58603e",
+                "#3ca272": "#656f47",
+                "#43434f": "#492e20",
+                "#53b586": "#788455"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#245f41": "#423627",
+                "#282737": "#2f2218",
+                "#388960": "#615039",
+                "#3ca272": "#6f5c41",
+                "#43434f": "#493426",
+                "#53b586": "#846e4e"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-toy_mouse",
+    "name": "toy mouse",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#43434f": "#3a4349",
+                "#616070": "#525f68",
+                "#7f7e8e": "#6a7a86"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#43434f": "#49423b",
+                "#616070": "#685d54",
+                "#7f7e8e": "#86786d"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#43434f": "#49221a",
+                "#616070": "#683025",
+                "#7f7e8e": "#863e30"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#43434f": "#493a17",
+                "#616070": "#685221",
+                "#7f7e8e": "#866a2a"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#43434f": "#493732",
+                "#616070": "#684e47",
+                "#7f7e8e": "#86655b"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#43434f": "#49363d",
+                "#616070": "#684d57",
+                "#7f7e8e": "#866470"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#43434f": "#494949",
+                "#616070": "#686868",
+                "#7f7e8e": "#868686"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#43434f": "#323232",
+                "#616070": "#4f4f4f",
+                "#7f7e8e": "#6e6e6e"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#43434f": "#491e35",
+                "#616070": "#682b4b",
+                "#7f7e8e": "#863861"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#43434f": "#492f42",
+                "#616070": "#68435e",
+                "#7f7e8e": "#865679"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#43434f": "#492e20",
+                "#616070": "#68412d",
+                "#7f7e8e": "#86543a"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#43434f": "#493426",
+                "#616070": "#684b36",
+                "#7f7e8e": "#866045"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-ball",
+    "name": "ball",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#793f3b": "#5a5349",
+                "#964252": "#55626c",
+                "#b96155": "#877c6e",
+                "#f3a65e": "#a99b89"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#793f3b": "#575a58",
+                "#964252": "#6c6158",
+                "#b96155": "#828784",
+                "#f3a65e": "#a2a8a5"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#793f3b": "#182f5a",
+                "#964252": "#6c3227",
+                "#b96155": "#234687",
+                "#f3a65e": "#2c57a9"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#793f3b": "#155a51",
+                "#964252": "#6c5522",
+                "#b96155": "#20877a",
+                "#f3a65e": "#28a998"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#793f3b": "#4d435a",
+                "#964252": "#6c5149",
+                "#b96155": "#746587",
+                "#f3a65e": "#907ea9"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#793f3b": "#435a52",
+                "#964252": "#6c505a",
+                "#b96155": "#64877b",
+                "#f3a65e": "#7da99a"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#793f3b": "#5a5a5a",
+                "#964252": "#6c6c6c",
+                "#b96155": "#878787",
+                "#f3a65e": "#a9a9a9"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#793f3b": "#424242",
+                "#964252": "#535353",
+                "#b96155": "#707070",
+                "#f3a65e": "#959595"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#793f3b": "#5a3c49",
+                "#964252": "#6c2d4e",
+                "#b96155": "#875a6d",
+                "#f3a65e": "#a87088"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#793f3b": "#5a3144",
+                "#964252": "#6c4562",
+                "#b96155": "#874a66",
+                "#f3a65e": "#a95c7f"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#793f3b": "#525a3a",
+                "#964252": "#6c442f",
+                "#b96155": "#7b8757",
+                "#f3a65e": "#99a96c"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#793f3b": "#5a4b35",
+                "#964252": "#6c4d38",
+                "#b96155": "#877050",
+                "#f3a65e": "#a98c63"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-mug",
+    "name": "mug",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#7f7e8e": "#6a7a86",
+                "#c3c2d2": "#a0b8ca",
+                "#d0d0da": "#a8c2d5"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#7f7e8e": "#86786d",
+                "#c3c2d2": "#cab5a4",
+                "#d0d0da": "#d5bfad"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#7f7e8e": "#863e30",
+                "#c3c2d2": "#ca5e49",
+                "#d0d0da": "#d5634d"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#7f7e8e": "#866a2a",
+                "#c3c2d2": "#ca9f40",
+                "#d0d0da": "#d5a843"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#7f7e8e": "#86655b",
+                "#c3c2d2": "#ca9889",
+                "#d0d0da": "#d5a091"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#7f7e8e": "#866470",
+                "#c3c2d2": "#ca96a8",
+                "#d0d0da": "#d59fb2"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#7f7e8e": "#868686",
+                "#c3c2d2": "#cacaca",
+                "#d0d0da": "#d5d5d5"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#7f7e8e": "#6e6e6e",
+                "#c3c2d2": "#bcbcbc",
+                "#d0d0da": "#cacaca"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#7f7e8e": "#863861",
+                "#c3c2d2": "#ca5492",
+                "#d0d0da": "#d5599a"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#7f7e8e": "#865679",
+                "#c3c2d2": "#ca82b6",
+                "#d0d0da": "#d589c0"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#7f7e8e": "#86543a",
+                "#c3c2d2": "#ca7e58",
+                "#d0d0da": "#d5855d"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#7f7e8e": "#866045",
+                "#c3c2d2": "#ca9168",
+                "#d0d0da": "#d5996e"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-water_glass",
+    "name": "water glass",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#4da6ff": "#8397a6",
+                "#b3ffff": "#acc6d9"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#4da6ff": "#a69587",
+                "#b3ffff": "#d9c3b0"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#4da6ff": "#a64d3c",
+                "#b3ffff": "#d9654e"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#4da6ff": "#a68334",
+                "#b3ffff": "#d9ab45"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#4da6ff": "#a67d71",
+                "#b3ffff": "#d9a393"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#4da6ff": "#a67c8a",
+                "#b3ffff": "#d9a2b5"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#4da6ff": "#a6a6a6",
+                "#b3ffff": "#d9d9d9"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#4da6ff": "#929292",
+                "#b3ffff": "#cfcfcf"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#4da6ff": "#a64578",
+                "#b3ffff": "#d95b9d"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#4da6ff": "#a66b96",
+                "#b3ffff": "#d98bc4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#4da6ff": "#a66848",
+                "#b3ffff": "#d9885e"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#4da6ff": "#a67756",
+                "#b3ffff": "#d99c70"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-plant",
+    "name": "plant",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#3ca272": "#6f665a",
+                "#793f3b": "#5a5349",
+                "#8fde5e": "#9e9181",
+                "#964252": "#55626c",
+                "#b96155": "#877c6e"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#3ca272": "#6b6f6d",
+                "#793f3b": "#575a58",
+                "#8fde5e": "#989e9b",
+                "#964252": "#6c6158",
+                "#b96155": "#828784"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#3ca272": "#1d3a6f",
+                "#793f3b": "#182f5a",
+                "#8fde5e": "#29529e",
+                "#964252": "#6c3227",
+                "#b96155": "#234687"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#3ca272": "#1a6f64",
+                "#793f3b": "#155a51",
+                "#8fde5e": "#259e8e",
+                "#964252": "#6c5522",
+                "#b96155": "#20877a"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#3ca272": "#5f536f",
+                "#793f3b": "#4d435a",
+                "#8fde5e": "#87769e",
+                "#964252": "#6c5149",
+                "#b96155": "#746587"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#3ca272": "#536f65",
+                "#793f3b": "#435a52",
+                "#8fde5e": "#759e90",
+                "#964252": "#6c505a",
+                "#b96155": "#64877b"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#3ca272": "#6f6f6f",
+                "#793f3b": "#5a5a5a",
+                "#8fde5e": "#9e9e9e",
+                "#964252": "#6c6c6c",
+                "#b96155": "#878787"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#3ca272": "#565656",
+                "#793f3b": "#424242",
+                "#8fde5e": "#898989",
+                "#964252": "#535353",
+                "#b96155": "#707070"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#3ca272": "#6f4a5a",
+                "#793f3b": "#5a3c49",
+                "#8fde5e": "#9e6980",
+                "#964252": "#6c2d4e",
+                "#b96155": "#875a6d"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#3ca272": "#6f3d54",
+                "#793f3b": "#5a3144",
+                "#8fde5e": "#9e5778",
+                "#964252": "#6c4562",
+                "#b96155": "#874a66"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#3ca272": "#656f47",
+                "#793f3b": "#525a3a",
+                "#8fde5e": "#909e65",
+                "#964252": "#6c442f",
+                "#b96155": "#7b8757"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#3ca272": "#6f5c41",
+                "#793f3b": "#5a4b35",
+                "#8fde5e": "#9e835d",
+                "#964252": "#6c4d38",
+                "#b96155": "#877050"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-floor_lamp",
+    "name": "floor lamp",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#616070": "#525f68",
+                "#7f7e8e": "#6a7a86",
+                "#c17f42": "#827769",
+                "#f3a65e": "#a99b89",
+                "#ffb571": "#b8a996"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#616070": "#685d54",
+                "#7f7e8e": "#86786d",
+                "#c17f42": "#7c817f",
+                "#f3a65e": "#a2a8a5",
+                "#ffb571": "#b1b8b4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#616070": "#683025",
+                "#7f7e8e": "#863e30",
+                "#c17f42": "#224381",
+                "#f3a65e": "#2c57a9",
+                "#ffb571": "#305fb8"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#616070": "#685221",
+                "#7f7e8e": "#866a2a",
+                "#c17f42": "#1f8275",
+                "#f3a65e": "#28a998",
+                "#ffb571": "#2cb8a6"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#616070": "#684e47",
+                "#7f7e8e": "#86655b",
+                "#c17f42": "#6f6182",
+                "#f3a65e": "#907ea9",
+                "#ffb571": "#9e89b8"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#616070": "#684d57",
+                "#7f7e8e": "#866470",
+                "#c17f42": "#608276",
+                "#f3a65e": "#7da99a",
+                "#ffb571": "#89b8a8"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#616070": "#686868",
+                "#7f7e8e": "#868686",
+                "#c17f42": "#828282",
+                "#f3a65e": "#a9a9a9",
+                "#ffb571": "#b8b8b8"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#616070": "#4f4f4f",
+                "#7f7e8e": "#6e6e6e",
+                "#c17f42": "#6a6a6a",
+                "#f3a65e": "#959595",
+                "#ffb571": "#a7a7a7"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#616070": "#682b4b",
+                "#7f7e8e": "#863861",
+                "#c17f42": "#815669",
+                "#f3a65e": "#a87088",
+                "#ffb571": "#b87a95"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#616070": "#68435e",
+                "#7f7e8e": "#865679",
+                "#c17f42": "#824762",
+                "#f3a65e": "#a95c7f",
+                "#ffb571": "#b8658b"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#616070": "#68412d",
+                "#7f7e8e": "#86543a",
+                "#c17f42": "#768253",
+                "#f3a65e": "#99a96c",
+                "#ffb571": "#a7b876"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#616070": "#684b36",
+                "#7f7e8e": "#866045",
+                "#c17f42": "#826c4c",
+                "#f3a65e": "#a98c63",
+                "#ffb571": "#b8996d"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "original-clock",
+    "name": "clock",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#43434f": "#3a4349",
+                "#616070": "#525f68",
+                "#7f7e8e": "#6a7a86",
+                "#c3c2d2": "#a0b8ca",
+                "#e6e6e6": "#b6d2e6"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#43434f": "#49423b",
+                "#616070": "#685d54",
+                "#7f7e8e": "#86786d",
+                "#c3c2d2": "#cab5a4",
+                "#e6e6e6": "#e6cebb"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#43434f": "#49221a",
+                "#616070": "#683025",
+                "#7f7e8e": "#863e30",
+                "#c3c2d2": "#ca5e49",
+                "#e6e6e6": "#e66b53"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#43434f": "#493a17",
+                "#616070": "#685221",
+                "#7f7e8e": "#866a2a",
+                "#c3c2d2": "#ca9f40",
+                "#e6e6e6": "#e6b649"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#43434f": "#493732",
+                "#616070": "#684e47",
+                "#7f7e8e": "#86655b",
+                "#c3c2d2": "#ca9889",
+                "#e6e6e6": "#e6ad9c"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#43434f": "#49363d",
+                "#616070": "#684d57",
+                "#7f7e8e": "#866470",
+                "#c3c2d2": "#ca96a8",
+                "#e6e6e6": "#e6abc0"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#43434f": "#494949",
+                "#616070": "#686868",
+                "#7f7e8e": "#868686",
+                "#c3c2d2": "#cacaca",
+                "#e6e6e6": "#e6e6e6"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#43434f": "#323232",
+                "#616070": "#4f4f4f",
+                "#7f7e8e": "#6e6e6e",
+                "#c3c2d2": "#bcbcbc",
+                "#e6e6e6": "#dfdfdf"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#43434f": "#491e35",
+                "#616070": "#682b4b",
+                "#7f7e8e": "#863861",
+                "#c3c2d2": "#ca5492",
+                "#e6e6e6": "#e660a6"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#43434f": "#492f42",
+                "#616070": "#68435e",
+                "#7f7e8e": "#865679",
+                "#c3c2d2": "#ca82b6",
+                "#e6e6e6": "#e694d0"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#43434f": "#492e20",
+                "#616070": "#68412d",
+                "#7f7e8e": "#86543a",
+                "#c3c2d2": "#ca7e58",
+                "#e6e6e6": "#e69064"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#43434f": "#493426",
+                "#616070": "#684b36",
+                "#7f7e8e": "#866045",
+                "#c3c2d2": "#ca9168",
+                "#e6e6e6": "#e6a577"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "a5331539-3746-4913-8999-b943781d45a9",
+    "name": "water glass",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#4da6ff": "#8397a6",
+                "#b3ffff": "#acc6d9"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#4da6ff": "#a69587",
+                "#b3ffff": "#d9c3b0"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#4da6ff": "#a64d3c",
+                "#b3ffff": "#d9654e"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#4da6ff": "#a68334",
+                "#b3ffff": "#d9ab45"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#4da6ff": "#a67d71",
+                "#b3ffff": "#d9a393"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#4da6ff": "#a67c8a",
+                "#b3ffff": "#d9a2b5"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#4da6ff": "#a6a6a6",
+                "#b3ffff": "#d9d9d9"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#4da6ff": "#929292",
+                "#b3ffff": "#cfcfcf"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#4da6ff": "#a64578",
+                "#b3ffff": "#d95b9d"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#4da6ff": "#a66b96",
+                "#b3ffff": "#d98bc4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#4da6ff": "#a66848",
+                "#b3ffff": "#d9885e"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#4da6ff": "#a67756",
+                "#b3ffff": "#d99c70"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "dd2bda18-62a3-4f52-972e-e6abe3b7df83",
+    "name": "Igloo Bed",
+    "sourceRevision": 3,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 3,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#744316": "#453f38",
+                "#aa6627": "#696055"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#744316": "#424543",
+                "#aa6627": "#646866"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#744316": "#122445",
+                "#aa6627": "#1b3669"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#744316": "#10453e",
+                "#aa6627": "#19695e"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#744316": "#3b3345",
+                "#aa6627": "#5a4e69"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#744316": "#33453f",
+                "#aa6627": "#4e695f"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#744316": "#454545",
+                "#aa6627": "#696969"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#744316": "#2f2f2f",
+                "#aa6627": "#505050"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#744316": "#452e38",
+                "#aa6627": "#694655"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#744316": "#452634",
+                "#aa6627": "#69394f"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#744316": "#3f452c",
+                "#aa6627": "#5f6843"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#744316": "#453929",
+                "#aa6627": "#69573e"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-blue-ball-new",
+    "name": "Blue ball · new",
+    "sourceRevision": 2,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 2,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#70818e",
+                "#a4dbff": "#a6bfd2"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e7f73",
+                "#a4dbff": "#d2bcaa"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e4233",
+                "#a4dbff": "#d2614c"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e702d",
+                "#a4dbff": "#d1a542"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6b60",
+                "#a4dbff": "#d29d8e"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6a76",
+                "#a4dbff": "#d29caf"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e8e8e",
+                "#a4dbff": "#d1d1d1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#777777",
+                "#a4dbff": "#c6c6c6"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e3b67",
+                "#a4dbff": "#d15797"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e5b80",
+                "#a4dbff": "#d287bd"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e593e",
+                "#a4dbff": "#d1835b"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6649",
+                "#a4dbff": "#d2966c"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-blue-ball-scuffed",
+    "name": "Blue ball · scuffed",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#70818e",
+                "#a4dbff": "#a6bfd2"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e7f73",
+                "#a4dbff": "#d2bcaa"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e4233",
+                "#a4dbff": "#d2614c"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e702d",
+                "#a4dbff": "#d1a542"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6b60",
+                "#a4dbff": "#d29d8e"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6a76",
+                "#a4dbff": "#d29caf"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e8e8e",
+                "#a4dbff": "#d1d1d1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#777777",
+                "#a4dbff": "#c6c6c6"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e3b67",
+                "#a4dbff": "#d15797"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e5b80",
+                "#a4dbff": "#d287bd"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e593e",
+                "#a4dbff": "#d1835b"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6649",
+                "#a4dbff": "#d2966c"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-toy-mouse-intact",
+    "name": "Toy mouse · intact",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#665e53",
+                "#e4b65d": "#a19383",
+                "#eab7a7": "#c9b8a3"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#626664",
+                "#e4b65d": "#9aa09d",
+                "#eab7a7": "#c1c9c4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#1b3566",
+                "#e4b65d": "#2a53a1",
+                "#eab7a7": "#3468c8"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#18665c",
+                "#e4b65d": "#26a191",
+                "#eab7a7": "#2fc9b5"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#574c66",
+                "#e4b65d": "#8978a1",
+                "#eab7a7": "#ac95c9"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#4c665d",
+                "#e4b65d": "#77a193",
+                "#eab7a7": "#95c9b7"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#666666",
+                "#e4b65d": "#a1a1a1",
+                "#eab7a7": "#c9c9c9"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#4d4d4d",
+                "#e4b65d": "#8c8c8c",
+                "#eab7a7": "#bbbbbb"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#664453",
+                "#e4b65d": "#a06b82",
+                "#eab7a7": "#c885a2"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#66384d",
+                "#e4b65d": "#a15879",
+                "#eab7a7": "#c96e98"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#5d6641",
+                "#e4b65d": "#92a067",
+                "#eab7a7": "#b7c881"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#66553c",
+                "#e4b65d": "#a1855f",
+                "#eab7a7": "#c9a776"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-toy-mouse-frayed",
+    "name": "Toy mouse · frayed",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#665e53",
+                "#e4b65d": "#a19383",
+                "#eab7a7": "#c9b8a3"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#626664",
+                "#e4b65d": "#9aa09d",
+                "#eab7a7": "#c1c9c4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#1b3566",
+                "#e4b65d": "#2a53a1",
+                "#eab7a7": "#3468c8"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#18665c",
+                "#e4b65d": "#26a191",
+                "#eab7a7": "#2fc9b5"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#574c66",
+                "#e4b65d": "#8978a1",
+                "#eab7a7": "#ac95c9"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#4c665d",
+                "#e4b65d": "#77a193",
+                "#eab7a7": "#95c9b7"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#666666",
+                "#e4b65d": "#a1a1a1",
+                "#eab7a7": "#c9c9c9"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#4d4d4d",
+                "#e4b65d": "#8c8c8c",
+                "#eab7a7": "#bbbbbb"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#664453",
+                "#e4b65d": "#a06b82",
+                "#eab7a7": "#c885a2"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#66384d",
+                "#e4b65d": "#a15879",
+                "#eab7a7": "#c96e98"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#5d6641",
+                "#e4b65d": "#92a067",
+                "#eab7a7": "#b7c881"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#66553c",
+                "#e4b65d": "#a1855f",
+                "#eab7a7": "#c9a776"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-toy-fish-intact",
+    "name": "Toy fish · intact",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#70818e",
+                "#a4dbff": "#a6bfd2"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e7f73",
+                "#a4dbff": "#d2bcaa"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e4233",
+                "#a4dbff": "#d2614c"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e702d",
+                "#a4dbff": "#d1a542"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6b60",
+                "#a4dbff": "#d29d8e"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6a76",
+                "#a4dbff": "#d29caf"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e8e8e",
+                "#a4dbff": "#d1d1d1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#777777",
+                "#a4dbff": "#c6c6c6"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e3b67",
+                "#a4dbff": "#d15797"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e5b80",
+                "#a4dbff": "#d287bd"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e593e",
+                "#a4dbff": "#d1835b"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6649",
+                "#a4dbff": "#d2966c"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-toy-fish-torn",
+    "name": "Toy fish · torn",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#70818e",
+                "#a4dbff": "#a6bfd2",
+                "#e4b65d": "#a19383"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e7f73",
+                "#a4dbff": "#d2bcaa",
+                "#e4b65d": "#9aa09d"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e4233",
+                "#a4dbff": "#d2614c",
+                "#e4b65d": "#2a53a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e702d",
+                "#a4dbff": "#d1a542",
+                "#e4b65d": "#26a191"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6b60",
+                "#a4dbff": "#d29d8e",
+                "#e4b65d": "#8978a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6a76",
+                "#a4dbff": "#d29caf",
+                "#e4b65d": "#77a193"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e8e8e",
+                "#a4dbff": "#d1d1d1",
+                "#e4b65d": "#a1a1a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#777777",
+                "#a4dbff": "#c6c6c6",
+                "#e4b65d": "#8c8c8c"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e3b67",
+                "#a4dbff": "#d15797",
+                "#e4b65d": "#a06b82"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e5b80",
+                "#a4dbff": "#d287bd",
+                "#e4b65d": "#a15879"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e593e",
+                "#a4dbff": "#d1835b",
+                "#e4b65d": "#92a067"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6649",
+                "#a4dbff": "#d2966c",
+                "#e4b65d": "#a1855f"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-yarn-wound",
+    "name": "Yarn ball · wound",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#a29483",
+                "#e4b65d": "#a19383"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#9ba19e",
+                "#e4b65d": "#9aa09d"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#2a54a2",
+                "#e4b65d": "#2a53a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#26a292",
+                "#e4b65d": "#26a191"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#8a78a2",
+                "#e4b65d": "#8978a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#78a293",
+                "#e4b65d": "#77a193"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#a2a2a2",
+                "#e4b65d": "#a1a1a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#8d8d8d",
+                "#e4b65d": "#8c8c8c"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#a16b83",
+                "#e4b65d": "#a06b82"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#a2597a",
+                "#e4b65d": "#a15879"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#93a168",
+                "#e4b65d": "#92a067"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#a2865f",
+                "#e4b65d": "#a1855f"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-yarn-unwound",
+    "name": "Yarn ball · unraveled",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#a29483",
+                "#e4b65d": "#a19383"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#9ba19e",
+                "#e4b65d": "#9aa09d"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#2a54a2",
+                "#e4b65d": "#2a53a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#26a292",
+                "#e4b65d": "#26a191"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#8a78a2",
+                "#e4b65d": "#8978a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#78a293",
+                "#e4b65d": "#77a193"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#a2a2a2",
+                "#e4b65d": "#a1a1a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#8d8d8d",
+                "#e4b65d": "#8c8c8c"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#a16b83",
+                "#e4b65d": "#a06b82"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#a2597a",
+                "#e4b65d": "#a15879"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#93a168",
+                "#e4b65d": "#92a067"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#db6a68": "#a2865f",
+                "#e4b65d": "#a1855f"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-feather-rest",
+    "name": "Loose feather · resting",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#70818e",
+                "#72a65a": "#807668"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e7f73",
+                "#72a65a": "#7b807d"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e4233",
+                "#72a65a": "#214280"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e702d",
+                "#72a65a": "#1e8073"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6b60",
+                "#72a65a": "#6e5f80"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6a76",
+                "#72a65a": "#5f8075"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e8e8e",
+                "#72a65a": "#808080"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#777777",
+                "#72a65a": "#686868"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e3b67",
+                "#72a65a": "#805568"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e5b80",
+                "#72a65a": "#804661"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e593e",
+                "#72a65a": "#758052"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6649",
+                "#72a65a": "#806a4b"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-feather-lifted",
+    "name": "Loose feather · lifted",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#70818e",
+                "#72a65a": "#807668"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e7f73",
+                "#72a65a": "#7b807d"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e4233",
+                "#72a65a": "#214280"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e702d",
+                "#72a65a": "#1e8073"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6b60",
+                "#72a65a": "#6e5f80"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6a76",
+                "#72a65a": "#5f8075"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e8e8e",
+                "#72a65a": "#808080"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#777777",
+                "#72a65a": "#686868"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e3b67",
+                "#72a65a": "#805568"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e5b80",
+                "#72a65a": "#804661"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e593e",
+                "#72a65a": "#758052"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6649",
+                "#72a65a": "#806a4b"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-water-glass-full",
+    "name": "Water glass · full",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#70818e",
+                "#d5e9ed": "#b2cde1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e7f73",
+                "#d5e9ed": "#e1cab7"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e4233",
+                "#d5e9ed": "#e16851"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e702d",
+                "#d5e9ed": "#e1b247"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6b60",
+                "#d5e9ed": "#e1a999"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6a76",
+                "#d5e9ed": "#e1a7bc"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e8e8e",
+                "#d5e9ed": "#e1e1e1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#777777",
+                "#d5e9ed": "#d9d9d9"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e3b67",
+                "#d5e9ed": "#e15ea2"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e5b80",
+                "#d5e9ed": "#e190cb"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e593e",
+                "#d5e9ed": "#e18d62"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6649",
+                "#d5e9ed": "#e1a174"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-water-glass-half",
+    "name": "Water glass · half",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#70818e",
+                "#d5e9ed": "#b2cde1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e7f73",
+                "#d5e9ed": "#e1cab7"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e4233",
+                "#d5e9ed": "#e16851"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e702d",
+                "#d5e9ed": "#e1b247"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6b60",
+                "#d5e9ed": "#e1a999"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6a76",
+                "#d5e9ed": "#e1a7bc"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e8e8e",
+                "#d5e9ed": "#e1e1e1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#777777",
+                "#d5e9ed": "#d9d9d9"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e3b67",
+                "#d5e9ed": "#e15ea2"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e5b80",
+                "#d5e9ed": "#e190cb"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e593e",
+                "#d5e9ed": "#e18d62"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6649",
+                "#d5e9ed": "#e1a174"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-water-glass-empty",
+    "name": "Water glass · empty",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#d5e9ed": "#b2cde1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#d5e9ed": "#e1cab7"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#d5e9ed": "#e16851"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#d5e9ed": "#e1b247"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#d5e9ed": "#e1a999"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#d5e9ed": "#e1a7bc"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#d5e9ed": "#e1e1e1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#d5e9ed": "#d9d9d9"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#d5e9ed": "#e15ea2"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#d5e9ed": "#e190cb"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#d5e9ed": "#e18d62"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#d5e9ed": "#e1a174"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-scratch-pad-new",
+    "name": "Scratch pad · new",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#665e53",
+                "#e4b65d": "#a19383"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#626664",
+                "#e4b65d": "#9aa09d"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#1b3566",
+                "#e4b65d": "#2a53a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#18665c",
+                "#e4b65d": "#26a191"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#574c66",
+                "#e4b65d": "#8978a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#4c665d",
+                "#e4b65d": "#77a193"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#666666",
+                "#e4b65d": "#a1a1a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#4d4d4d",
+                "#e4b65d": "#8c8c8c"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#664453",
+                "#e4b65d": "#a06b82"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#66384d",
+                "#e4b65d": "#a15879"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#5d6641",
+                "#e4b65d": "#92a067"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#66553c",
+                "#e4b65d": "#a1855f"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-scratch-pad-used",
+    "name": "Scratch pad · scratched",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#665e53",
+                "#d5e9ed": "#b2cde1",
+                "#e4b65d": "#a19383"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#626664",
+                "#d5e9ed": "#e1cab7",
+                "#e4b65d": "#9aa09d"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#1b3566",
+                "#d5e9ed": "#e16851",
+                "#e4b65d": "#2a53a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#18665c",
+                "#d5e9ed": "#e1b247",
+                "#e4b65d": "#26a191"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#574c66",
+                "#d5e9ed": "#e1a999",
+                "#e4b65d": "#8978a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#4c665d",
+                "#d5e9ed": "#e1a7bc",
+                "#e4b65d": "#77a193"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#666666",
+                "#d5e9ed": "#e1e1e1",
+                "#e4b65d": "#a1a1a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#4d4d4d",
+                "#d5e9ed": "#d9d9d9",
+                "#e4b65d": "#8c8c8c"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#664453",
+                "#d5e9ed": "#e15ea2",
+                "#e4b65d": "#a06b82"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#66384d",
+                "#d5e9ed": "#e190cb",
+                "#e4b65d": "#a15879"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#5d6641",
+                "#d5e9ed": "#e18d62",
+                "#e4b65d": "#92a067"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#865c46": "#66553c",
+                "#d5e9ed": "#e1a174",
+                "#e4b65d": "#a1855f"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-crinkle-ball-round",
+    "name": "Crinkle ball · round",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#a6bfd2",
+                "#db6a68": "#a29483",
+                "#e4b65d": "#a19383"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d2bcaa",
+                "#db6a68": "#9ba19e",
+                "#e4b65d": "#9aa09d"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d2614c",
+                "#db6a68": "#2a54a2",
+                "#e4b65d": "#2a53a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d1a542",
+                "#db6a68": "#26a292",
+                "#e4b65d": "#26a191"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d29d8e",
+                "#db6a68": "#8a78a2",
+                "#e4b65d": "#8978a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d29caf",
+                "#db6a68": "#78a293",
+                "#e4b65d": "#77a193"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d1d1d1",
+                "#db6a68": "#a2a2a2",
+                "#e4b65d": "#a1a1a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#c6c6c6",
+                "#db6a68": "#8d8d8d",
+                "#e4b65d": "#8c8c8c"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d15797",
+                "#db6a68": "#a16b83",
+                "#e4b65d": "#a06b82"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d287bd",
+                "#db6a68": "#a2597a",
+                "#e4b65d": "#a15879"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d1835b",
+                "#db6a68": "#93a168",
+                "#e4b65d": "#92a067"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d2966c",
+                "#db6a68": "#a2865f",
+                "#e4b65d": "#a1855f"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-crinkle-ball-squashed",
+    "name": "Crinkle ball · squashed",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#a6bfd2",
+                "#db6a68": "#a29483",
+                "#e4b65d": "#a19383"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d2bcaa",
+                "#db6a68": "#9ba19e",
+                "#e4b65d": "#9aa09d"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d2614c",
+                "#db6a68": "#2a54a2",
+                "#e4b65d": "#2a53a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d1a542",
+                "#db6a68": "#26a292",
+                "#e4b65d": "#26a191"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d29d8e",
+                "#db6a68": "#8a78a2",
+                "#e4b65d": "#8978a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d29caf",
+                "#db6a68": "#78a293",
+                "#e4b65d": "#77a193"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d1d1d1",
+                "#db6a68": "#a2a2a2",
+                "#e4b65d": "#a1a1a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#c6c6c6",
+                "#db6a68": "#8d8d8d",
+                "#e4b65d": "#8c8c8c"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d15797",
+                "#db6a68": "#a16b83",
+                "#e4b65d": "#a06b82"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d287bd",
+                "#db6a68": "#a2597a",
+                "#e4b65d": "#a15879"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d1835b",
+                "#db6a68": "#93a168",
+                "#e4b65d": "#92a067"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d2966c",
+                "#db6a68": "#a2865f",
+                "#e4b65d": "#a1855f"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-treat-whole",
+    "name": "Tiny treat · whole",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#a6bfd2",
+                "#e4b65d": "#a19383"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d2bcaa",
+                "#e4b65d": "#9aa09d"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d2614c",
+                "#e4b65d": "#2a53a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d1a542",
+                "#e4b65d": "#26a191"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d29d8e",
+                "#e4b65d": "#8978a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d29caf",
+                "#e4b65d": "#77a193"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d1d1d1",
+                "#e4b65d": "#a1a1a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#c6c6c6",
+                "#e4b65d": "#8c8c8c"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d15797",
+                "#e4b65d": "#a06b82"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d287bd",
+                "#e4b65d": "#a15879"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d1835b",
+                "#e4b65d": "#92a067"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#a4dbff": "#d2966c",
+                "#e4b65d": "#a1855f"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "draft-prop-treat-crumbs",
+    "name": "Tiny treat · crumbs",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#e4b65d": "#a19383"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#e4b65d": "#9aa09d"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#e4b65d": "#2a53a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#e4b65d": "#26a191"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#e4b65d": "#8978a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#e4b65d": "#77a193"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#e4b65d": "#a1a1a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#e4b65d": "#8c8c8c"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#e4b65d": "#a06b82"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#e4b65d": "#a15879"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#e4b65d": "#92a067"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#e4b65d": "#a1855f"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "34560550-d092-47b9-adca-9cff481ad579",
+    "name": "Blue ball · broken",
+    "sourceRevision": 2,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 2,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#70818e",
+                "#a4dbff": "#a6bfd2"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e7f73",
+                "#a4dbff": "#d2bcaa"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e4233",
+                "#a4dbff": "#d2614c"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e702d",
+                "#a4dbff": "#d1a542"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6b60",
+                "#a4dbff": "#d29d8e"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6a76",
+                "#a4dbff": "#d29caf"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e8e8e",
+                "#a4dbff": "#d1d1d1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#777777",
+                "#a4dbff": "#c6c6c6"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e3b67",
+                "#a4dbff": "#d15797"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e5b80",
+                "#a4dbff": "#d287bd"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e593e",
+                "#a4dbff": "#d1835b"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#19222b": "#19222b",
+                "#438dd9": "#8e6649",
+                "#a4dbff": "#d2966c"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "24954751-801d-4dad-a083-e30b715a63f6",
+    "name": "Simple Bed",
+    "sourceRevision": 4,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 4,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#762837": "#3e484f",
+                "#804b19": "#4d463e",
+                "#964252": "#55626c",
+                "#aa6627": "#696055"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#762837": "#4f4740",
+                "#804b19": "#4a4d4b",
+                "#964252": "#6c6158",
+                "#aa6627": "#646866"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#762837": "#4f251c",
+                "#804b19": "#14284c",
+                "#964252": "#6c3227",
+                "#aa6627": "#1b3669"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#762837": "#4f3e19",
+                "#804b19": "#124d45",
+                "#964252": "#6c5522",
+                "#aa6627": "#19695e"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#762837": "#4f3b36",
+                "#804b19": "#42394d",
+                "#964252": "#6c5149",
+                "#aa6627": "#5a4e69"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#762837": "#4f3b42",
+                "#804b19": "#394d46",
+                "#964252": "#6c505a",
+                "#aa6627": "#4e695f"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#762837": "#4f4f4f",
+                "#804b19": "#4d4d4d",
+                "#964252": "#6c6c6c",
+                "#aa6627": "#696969"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#762837": "#383838",
+                "#804b19": "#353535",
+                "#964252": "#535353",
+                "#aa6627": "#505050"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#762837": "#4f2139",
+                "#804b19": "#4d333e",
+                "#964252": "#6c2d4e",
+                "#aa6627": "#694655"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#762837": "#4f3347",
+                "#804b19": "#4d2a3a",
+                "#964252": "#6c4562",
+                "#aa6627": "#69394f"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#762837": "#4f3122",
+                "#804b19": "#464c31",
+                "#964252": "#6c442f",
+                "#aa6627": "#5f6843"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#762837": "#4f3929",
+                "#804b19": "#4d402d",
+                "#964252": "#6c4d38",
+                "#aa6627": "#69573e"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "assetId": "proposal-scratching-post-rope",
+    "name": "Scratching post · rope · AI draft",
+    "sourceRevision": 1,
+    "colourVariants": {
+      "version": 1,
+      "origin": "ai",
+      "review": "candidate",
+      "sourceRevision": 1,
+      "notes": "Draft palette interpretation; original pixels and catalogue identity are unchanged. Review material/functional colours before runtime use.",
+      "themes": [
+        {
+          "id": "quiet",
+          "name": "Quiet neutrals",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#6e4328": "#4b453d",
+                "#887449": "#696055",
+                "#a86635": "#6f655a",
+                "#ad9564": "#897d6f",
+                "#c4ad7b": "#a09282",
+                "#c88a4b": "#8a7e70",
+                "#e5d6aa": "#c8b7a2"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#6e4328": "#484b49",
+                "#887449": "#646866",
+                "#a86635": "#6a6e6c",
+                "#ad9564": "#838885",
+                "#c4ad7b": "#999f9c",
+                "#c88a4b": "#848986",
+                "#e5d6aa": "#c0c7c3"
+              }
+            }
+          ]
+        },
+        {
+          "id": "colourful",
+          "name": "Colourful",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#6e4328": "#14274b",
+                "#887449": "#1b3669",
+                "#a86635": "#1d396f",
+                "#ad9564": "#244789",
+                "#c4ad7b": "#2a53a0",
+                "#c88a4b": "#244789",
+                "#e5d6aa": "#3467c8"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#6e4328": "#124b44",
+                "#887449": "#19695e",
+                "#a86635": "#1a6f64",
+                "#ad9564": "#20897b",
+                "#c4ad7b": "#26a090",
+                "#c88a4b": "#218a7c",
+                "#e5d6aa": "#2fc8b4"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pastel",
+          "name": "Soft pastels",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#6e4328": "#40384b",
+                "#887449": "#5a4e69",
+                "#a86635": "#5f526f",
+                "#ad9564": "#756689",
+                "#c4ad7b": "#8977a0",
+                "#c88a4b": "#76668a",
+                "#e5d6aa": "#ab95c8"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#6e4328": "#384b44",
+                "#887449": "#4e695f",
+                "#a86635": "#526f65",
+                "#ad9564": "#66897d",
+                "#c4ad7b": "#77a092",
+                "#c88a4b": "#668a7e",
+                "#e5d6aa": "#94c8b6"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monochrome",
+          "name": "Greyscale",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#6e4328": "#4b4b4b",
+                "#887449": "#696969",
+                "#a86635": "#6f6f6f",
+                "#ad9564": "#898989",
+                "#c4ad7b": "#a0a0a0",
+                "#c88a4b": "#8a8a8a",
+                "#e5d6aa": "#c8c8c8"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#6e4328": "#343434",
+                "#887449": "#505050",
+                "#a86635": "#565656",
+                "#ad9564": "#717171",
+                "#c4ad7b": "#8b8b8b",
+                "#c88a4b": "#727272",
+                "#e5d6aa": "#b9b9b9"
+              }
+            }
+          ]
+        },
+        {
+          "id": "pink",
+          "name": "All pink",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#6e4328": "#4b323d",
+                "#887449": "#694655",
+                "#a86635": "#6f4959",
+                "#ad9564": "#885b6e",
+                "#c4ad7b": "#a06a81",
+                "#c88a4b": "#895b6f",
+                "#e5d6aa": "#c885a1"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#6e4328": "#4b2939",
+                "#887449": "#69394f",
+                "#a86635": "#6f3d54",
+                "#ad9564": "#894b67",
+                "#c4ad7b": "#a05879",
+                "#c88a4b": "#8a4b68",
+                "#e5d6aa": "#c86d97"
+              }
+            }
+          ]
+        },
+        {
+          "id": "natural",
+          "name": "Natural materials",
+          "variants": [
+            {
+              "name": "Option 1",
+              "colours": {
+                "#6e4328": "#444b30",
+                "#887449": "#5f6843",
+                "#a86635": "#656e47",
+                "#ad9564": "#7c8857",
+                "#c4ad7b": "#91a066",
+                "#c88a4b": "#7d8958",
+                "#e5d6aa": "#b6c780"
+              }
+            },
+            {
+              "name": "Option 2",
+              "colours": {
+                "#6e4328": "#4b3e2c",
+                "#887449": "#69573e",
+                "#a86635": "#6f5c41",
+                "#ad9564": "#897151",
+                "#c4ad7b": "#a0855e",
+                "#c88a4b": "#8a7251",
+                "#e5d6aa": "#c8a676"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

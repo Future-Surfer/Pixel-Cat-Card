@@ -1,0 +1,8 @@
+# Consumer artifact includes unchanged legacy template literals. Preserve their
+# significant whitespace; review source changes and reproducible build checks.
+dist/pixel-cat-card.js linguist-generated=true whitespace=-blank-at-eol
+dist/pixel-cat-card.manifest.json linguist-generated=true
+pixel-cat-roaming*.js linguist-generated=true
+pixel-cat-affordances.js linguist-generated=true
+pixel-cat-behaviours.js linguist-generated=true
+pixel-cat-climbing.js linguist-generated=true

@@ -1,0 +1,66 @@
+{
+  "projectId": "proposal-startle-hop",
+  "savedAt": "2026-10-15T16:47:36.370Z",
+  "status": "draft-review",
+  "artwork": "exact borrowed pixels; original frame origins retained",
+  "assemblyActor": "ai",
+  "runtimeIntegrated": false,
+  "sources": [
+    {
+      "frameId": "proposal-startle-hop-f01",
+      "projectId": "sequence-stand",
+      "sourceFrameId": "7c279a08-5d52-402c-8afb-818d51791bfb",
+      "sourceFrameIndex": 1,
+      "sourceHash": "f85aedee8cc05ba7da5da98a777c2524af0485a6202659526c7c9cc37db892ad",
+      "previewOffsetY": 0
+    },
+    {
+      "frameId": "proposal-startle-hop-f02",
+      "projectId": "sequence-descend",
+      "sourceFrameId": "89b59c61-4ed4-41a3-b529-d8efe4563c14",
+      "sourceFrameIndex": 3,
+      "sourceHash": "d51ebe5aa44961a68e6e39a6ae53cac06eeb635ac4bcdcef78f4c6267cd11cbf",
+      "previewOffsetY": 0
+    },
+    {
+      "frameId": "proposal-startle-hop-f03",
+      "projectId": "sequence-freefall-candidate",
+      "sourceFrameId": "573d11cd-772b-4d93-b872-9835b8744ffb",
+      "sourceFrameIndex": 0,
+      "sourceHash": "05f5bed08d146c179e65fd93410de24d0607adedcec60d930c9f029263edccee",
+      "previewOffsetY": -4
+    },
+    {
+      "frameId": "proposal-startle-hop-f04",
+      "projectId": "sequence-freefall-candidate",
+      "sourceFrameId": "e209be99-2dd3-40fa-8a13-09e50a506cf4",
+      "sourceFrameIndex": 2,
+      "sourceHash": "05f5bed08d146c179e65fd93410de24d0607adedcec60d930c9f029263edccee",
+      "previewOffsetY": -8
+    },
+    {
+      "frameId": "proposal-startle-hop-f05",
+      "projectId": "sequence-freefall-candidate",
+      "sourceFrameId": "49c327f6-db44-439d-8a28-f6c6c3ec6fa7",
+      "sourceFrameIndex": 3,
+      "sourceHash": "05f5bed08d146c179e65fd93410de24d0607adedcec60d930c9f029263edccee",
+      "previewOffsetY": -4
+    },
+    {
+      "frameId": "proposal-startle-hop-f06",
+      "projectId": "sequence-descend",
+      "sourceFrameId": "89b59c61-4ed4-41a3-b529-d8efe4563c14",
+      "sourceFrameIndex": 3,
+      "sourceHash": "d51ebe5aa44961a68e6e39a6ae53cac06eeb635ac4bcdcef78f4c6267cd11cbf",
+      "previewOffsetY": 0
+    },
+    {
+      "frameId": "proposal-startle-hop-f07",
+      "projectId": "sequence-stand",
+      "sourceFrameId": "7c279a08-5d52-402c-8afb-818d51791bfb",
+      "sourceFrameIndex": 1,
+      "sourceHash": "f85aedee8cc05ba7da5da98a777c2524af0485a6202659526c7c9cc37db892ad",
+      "previewOffsetY": 0
+    }
+  ]
+}

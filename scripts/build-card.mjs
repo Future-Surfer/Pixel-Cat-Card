@@ -1,0 +1,19 @@
+import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import vm from 'node:vm';import {fileURLToPath} from 'node:url';
+import {runtimeFiles} from './build-release.mjs';import {writeGenerated} from './write-generated.mjs';
+const cardHash=body=>crypto.createHash('sha256').update(body).digest('hex');
+export function buildCard({sourceDir=process.cwd(),outDir=path.join(sourceDir,'dist'),version=JSON.parse(fs.readFileSync(path.join(sourceDir,'package.json'),'utf8')).version}={}){
+ if(!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(version||''))throw Error('A semantic package version is required.');
+ const legacy=['stick-pet-card.js','pixel-pet-card.js'],sources=[...legacy,...runtimeFiles].map(file=>({file,body:fs.readFileSync(path.join(sourceDir,file),'utf8').replace(/\r\n/g,'\n')}));
+ const license=fs.readFileSync(path.join(sourceDir,'LICENSE'),'utf8').replace(/\r\n/g,'\n');
+ const sourceHash=cardHash(license+'\0'+sources.map(({file,body})=>file+'\0'+body).join('\0'));
+ // Each original ES module keeps an independent strict lexical scope. The
+ // generated modules have no imports/exports; no eval or runtime downloads.
+ for(const {file,body}of sources)if(/^\s*(?:import |export )/m.test(body))throw Error('Unexpected module import/export in '+file);
+ const prelude=`/*\n${license.replaceAll('*/','* /')}*/\n// Pixel Cat Card ${version} | MIT | https://github.com/Future-Surfer/Pixel-Cat-Card\n// Transitional legacy elements are retained; their source and artwork are unchanged.\n(()=>{'use strict';\nif(window.pixelCatCardRelease){if(window.pixelCatCardRelease.version!==${JSON.stringify(version)})console.warn('Pixel Cat Card: multiple versions loaded; remove duplicate resources and reload.');return;}\nif(customElements.get('pixel-cat-home')){console.warn('Pixel Cat Card: a separate roaming runtime is already loaded; migrate its resources before loading this bundle.');return;}\n`;
+ const code=prelude+sources.map(({file,body})=>`\n// Module: ${file}\n(()=>{'use strict';\n${body}\n})();\n`).join('')+`\nwindow.pixelCatCardRelease=Object.freeze({version:${JSON.stringify(version)},sourceHash:${JSON.stringify(sourceHash)}});\nconst card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}\nconsole.info('Pixel Cat Card',${JSON.stringify(version)});\n})();\n`;
+ const registry=new Map(),box={window:{},HTMLElement:class{},customElements:{get:name=>registry.get(name),define:(name,value)=>{if(registry.has(name))throw Error('Duplicate custom element '+name);registry.set(name,value);},whenDefined:()=>Promise.resolve()},console:{info(){},warn(){}}};vm.runInNewContext(code,box,{timeout:10000});
+ for(const name of ['pixel-cat-home','pixel-cat-home-editor','pixel-cat-monitor','pixel-pet-card','stick-pet-card'])if(!registry.has(name))throw Error('Missing installable element '+name);
+ const manifest={schema:1,name:'Pixel Cat Card',version,sourceHash,artifact:{file:'pixel-cat-card.js',bytes:Buffer.byteLength(code),sha256:cardHash(code)},modules:sources.map(({file,body})=>({file,sha256:cardHash(body)})),decodedArtworkSha256:cardHash(JSON.stringify(box.window.pixelCatRoamingArtV2)),decodedExtrasSha256:cardHash(JSON.stringify(box.window.pixelCatRoamingExtrasV1))};
+ fs.mkdirSync(outDir,{recursive:true});writeGenerated(path.join(outDir,'pixel-cat-card.js'),code);writeGenerated(path.join(outDir,'pixel-cat-card.manifest.json'),JSON.stringify(manifest,null,2)+'\n');writeGenerated(path.join(outDir,'SHA256SUMS'),manifest.artifact.sha256+'  pixel-cat-card.js\n');return manifest;
+}
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){const manifest=buildCard();console.log(JSON.stringify({version:manifest.version,...manifest.artifact}));}

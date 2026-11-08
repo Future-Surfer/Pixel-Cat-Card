@@ -1,0 +1,40 @@
+[
+  {
+    "id": "be2c2b01d43be193765dc57e3bbff4592996f3b673b64ecbf408b551bd3fa763",
+    "kind": "sequence",
+    "entityId": "0d6931c8-a2ff-404e-ad47-aef258c0d898",
+    "name": "Gallop · compact sprint · improved",
+    "versionHash": "618e4a27cd058c4da6211622c08090fe7800c6b22ccae8fff761f4b8d509f238",
+    "at": "2026-10-16T16:50:48.840Z",
+    "summary": {
+      "frames": 8,
+      "previousFrames": 8,
+      "editedFrames": 1
+    },
+    "receipt": {
+      "status": "pending",
+      "notes": "",
+      "reference": ""
+    },
+    "contentHash": "618e4a27cd058c4da6211622c08090fe7800c6b22ccae8fff761f4b8d509f238"
+  },
+  {
+    "id": "0db3eed9a5c682766b6b53185b8775d6eb1c2c546481c79caf4195927ee82adc",
+    "kind": "sequence",
+    "entityId": "sequence-descend",
+    "name": "Jump down",
+    "versionHash": "d51ebe5aa44961a68e6e39a6ae53cac06eeb635ac4bcdcef78f4c6267cd11cbf",
+    "at": "2026-10-15T13:31:50.729Z",
+    "summary": {
+      "frames": 4,
+      "previousFrames": 4,
+      "editedFrames": 0
+    },
+    "receipt": {
+      "status": "pending",
+      "notes": "",
+      "reference": ""
+    },
+    "contentHash": "d51ebe5aa44961a68e6e39a6ae53cac06eeb635ac4bcdcef78f4c6267cd11cbf"
+  }
+]

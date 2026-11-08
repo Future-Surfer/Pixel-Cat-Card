@@ -1,0 +1,270 @@
+{
+  "records": [
+    {
+      "projectId": "0d9340b1-6255-4d69-93b6-28d5077987e6",
+      "name": "Sitting · elevated · tail matrix",
+      "savedAt": "2026-10-14T21:01:25.843Z",
+      "snapshot": "0d9340b1-6255-4d69-93b6-28d5077987e6.json",
+      "changeId": "88b36d452acf7fe4624b1331e087b2e362c3ed6b77ce8e9e6becbba054bac11a",
+      "contentHash": "9cbf8613e8f839ae63af9f21d9cef8e864d18c38283f2273512583ca9310ae1b"
+    },
+    {
+      "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+      "name": "Sitting · ground · Tail matrix",
+      "savedAt": "2026-10-14T20:26:18.141Z",
+      "snapshot": "46edfa22-baf5-45b3-a8a6-26fc004059de.json",
+      "changeId": "45c9f91e73722d63d7b5b53f269b5919a852e0521647d8b53a230be60b5c21e5",
+      "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+    },
+    {
+      "projectId": "4b73f410-1bfc-4ea3-ba1d-7d6c737a6a63",
+      "name": "Sitting · ground · Head matrix",
+      "savedAt": "2026-10-14T20:31:23.699Z",
+      "snapshot": "4b73f410-1bfc-4ea3-ba1d-7d6c737a6a63.json",
+      "changeId": "bf9febec947595fa29ccd54519f871f28a6cb7eb694592efa4fd9e461c7d9a2b",
+      "contentHash": "6a4bf65f8ba6d6403ca5a6431bc8106a33a7d20068b90c1d6b992a5c14fa306e"
+    },
+    {
+      "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+      "name": "Walking · faster - synced feet",
+      "savedAt": "2026-10-14T21:17:26.783Z",
+      "snapshot": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc.json",
+      "changeId": "99697a98d1629ac53edba46c48d141e53e775fb5a92315300c20bacc23f2452b",
+      "contentHash": "d883e06f4160116536222b15daa2ee7befe0e61699acc62a06955c0a9e0a2006"
+    },
+    {
+      "projectId": "8cf69cf1-de43-48a8-bc9e-c212c3cf8b33",
+      "name": "Walking · faster - DELETE THIS VERSION",
+      "savedAt": "2026-10-15T08:10:46.804Z",
+      "snapshot": "adopted-8cf69cf1-de43-48a8-bc9e-c212c3cf8b33.json",
+      "changeId": "a2f378a67c729a7fbc15d7a14c70665c4730f96c9c806cc4d0367575dea7f9a0",
+      "contentHash": "662d5dd3b3c97a0ba57355a046fb20e6b79997128247f51cc0bd486cc22f2777",
+      "disposition": "deleted"
+    },
+    {
+      "projectId": "a92e1bba-462f-4d89-92e7-d1e7d9142eda",
+      "name": "Walking · sneaky head-up",
+      "savedAt": "2026-10-14T20:55:12.807Z",
+      "snapshot": "a92e1bba-462f-4d89-92e7-d1e7d9142eda.json",
+      "changeId": "3a4fbeb2f175ea401d4e0d9e2003dc5242170121784b8ac2d913f44e57737e06",
+      "contentHash": "205a2c2713b070a8d1bfcfaf8d3d2e83645da401fd7eaeb68b7bab660a6058d5"
+    },
+    {
+      "projectId": "c45528cf-168a-4dc1-ab61-96ac62816e59",
+      "name": "Walking · sneaky head-mid",
+      "savedAt": "2026-10-14T20:55:21.013Z",
+      "snapshot": "c45528cf-168a-4dc1-ab61-96ac62816e59.json",
+      "changeId": "cf0558972236ecac07354a676c53f26f873ef127ce078e35ab485ce19e5b1abd",
+      "contentHash": "9da16eafd88c1f084e59633344cc460134e27b9fba6a65ce823fe48eebb18015"
+    },
+    {
+      "projectId": "dd149c2d-9d62-4f57-bf12-d1cb9924d469",
+      "name": "Walking · sneaky head-low",
+      "savedAt": "2026-10-14T20:55:27.137Z",
+      "snapshot": "dd149c2d-9d62-4f57-bf12-d1cb9924d469.json",
+      "changeId": "db2a48f803d5840a08aabb4bfb0fc98200a31c9ca4675777917da8fb5205db2c",
+      "contentHash": "c199d120a5a42c369ae351d586504f2cb847494b2201a90f8d9685dc597d316b"
+    },
+    {
+      "projectId": "pose-look-down",
+      "name": "Sitting - Looking down",
+      "savedAt": "2026-10-14T21:02:32.778Z",
+      "snapshot": "pose-look-down.json",
+      "changeId": "9233f7488d7b0939be7018684e88aebd13edc5074c00e6b7fa55bc018ff9f1fc",
+      "contentHash": "e7e46b4b241fe625c40dd7eb9ae8fa880ffef41f4ba64784c594d2b18f93e341"
+    },
+    {
+      "projectId": "pose-sitting-glance",
+      "name": "Sitting head glance",
+      "savedAt": "2026-10-15T07:33:46.485Z",
+      "snapshot": "pose-sitting-glance.json",
+      "changeId": "50a6ee5bbe0f11d00f611e52f9028f8b0b5a4f7774c58b241eea657893f2580f",
+      "contentHash": "af7f6bce3629ab647b278d00ad17192deb4acc5c86513fbf84ff0099b8d73b58"
+    },
+    {
+      "projectId": "pose-vertical-down",
+      "name": "Straight-down drop",
+      "savedAt": "2026-10-14T20:17:27.674Z",
+      "snapshot": "pose-vertical-down.json",
+      "changeId": "3220e5b13d222c2b03610c33804b2cd1742c31d18f5277d3f8a7e6040ee14804",
+      "contentHash": "6e8da6583831020b21e23b18460c2c5648cb27b3f6806c545e3978de7d4c898c"
+    },
+    {
+      "projectId": "pose-vertical-up",
+      "name": "Straight-up jump · draft",
+      "savedAt": "2026-10-14T19:28:15.345Z",
+      "snapshot": "pose-vertical-up.json",
+      "changeId": "71a66a2d1489926ed2d463db7188dc2610ed404da148b5f05c6a0e8c25d571f1",
+      "contentHash": "56b10108aec7a188adbe222e7f7d10823bc30627c2501085c50f8e01f681005c"
+    },
+    {
+      "projectId": "proposal-behaviour-cheek-rub",
+      "name": "Interact · cheek rub at an edge",
+      "savedAt": "2026-10-15T08:10:46.817Z",
+      "snapshot": "adopted-proposal-behaviour-cheek-rub.json",
+      "changeId": "52c8c30fe9d61e05587f24d581198bc75299d53a2dc6857e33481d9e9294cff1",
+      "contentHash": "1e8a037843111856b3b5a92d10d278bc25e1e7059f5f41a338ae005c42d8a517",
+      "disposition": "ready"
+    },
+    {
+      "projectId": "proposal-behaviour-curl-sleep",
+      "name": "Rest · curl into sleep with slow breath",
+      "savedAt": "2026-10-15T08:10:46.827Z",
+      "snapshot": "adopted-proposal-behaviour-curl-sleep.json",
+      "changeId": "8829ab4a27aaaf21fe8c4fb403c30793f60afa5e1080bc0b31a99d6f9fa8eb9d",
+      "contentHash": "ffce1a2f8badcd630ea5a2d7423df99284d723069b43302b46ae10bcfcdca833",
+      "disposition": "ready"
+    },
+    {
+      "projectId": "proposal-behaviour-ear-scratch",
+      "name": "Groom · hind-paw ear scratch",
+      "savedAt": "2026-10-15T08:10:46.838Z",
+      "snapshot": "adopted-proposal-behaviour-ear-scratch.json",
+      "changeId": "060cd70e09a9d21f075d525bf35a1632e1a72b4fa5a6781dbeb10ca4f561240f",
+      "contentHash": "55e8237fc8897ae76af4d37dff5b133b0c9a427af956bf317775719c2b4662c4",
+      "disposition": "ready"
+    },
+    {
+      "projectId": "proposal-behaviour-face-wash",
+      "name": "Groom · paw wash and face wipe · DELETE",
+      "savedAt": "2026-10-15T08:10:46.849Z",
+      "snapshot": "adopted-proposal-behaviour-face-wash.json",
+      "changeId": "a27ab0136345bb3e6617795d8500f617366e30d9197a474b9c39d8d28e6b3c60",
+      "contentHash": "f4bf64cb228d34215f9dc88c335790574dcfdf631f5590f88c13dda0d5627e91",
+      "disposition": "deleted"
+    },
+    {
+      "projectId": "proposal-behaviour-knead",
+      "name": "Comfort · alternating knead · draft",
+      "savedAt": "2026-10-14T23:36:10.326Z",
+      "snapshot": "proposal-behaviour-knead.json",
+      "changeId": "495ed8a39c24ab7b85b9287290dfaecccd04fad1e7a1cadf3ec5f1286b56ced0",
+      "contentHash": "68e90ec521aeaff6f8700c0c8668ba8ca8baba4be43e04e13f064332655a45fd"
+    },
+    {
+      "projectId": "proposal-behaviour-paw-bat",
+      "name": "Play · inspect and bat",
+      "savedAt": "2026-10-15T08:10:46.859Z",
+      "snapshot": "adopted-proposal-behaviour-paw-bat.json",
+      "changeId": "29942f62f519a7bdc8e41e513a6fd9e872df28d65e74bf4bf0c0e892a4f3650e",
+      "contentHash": "523da184c79005ce498fe8c8fc1c8c41c74663bf0d89614e42544ae61f627cc3",
+      "disposition": "ready"
+    },
+    {
+      "projectId": "proposal-behaviour-sniff",
+      "name": "Investigate · ground sniff",
+      "savedAt": "2026-10-15T08:10:46.868Z",
+      "snapshot": "adopted-proposal-behaviour-sniff.json",
+      "changeId": "52e26922541d75fc71865dcc1ca0af198d43071fb47a5145682585ac1f1d9e51",
+      "contentHash": "0a00ae62ef8f03aeb97844fe70a0e17ac2d2de696382efcad62f0c6ace3f3e6d",
+      "disposition": "ready"
+    },
+    {
+      "projectId": "proposal-behaviour-yawn",
+      "name": "Rest · seated yawn/meow",
+      "savedAt": "2026-10-15T08:10:46.877Z",
+      "snapshot": "adopted-proposal-behaviour-yawn.json",
+      "changeId": "e25fc095b88e248f281038269eb9219b45947423d41ed74f1de8391a08bb306a",
+      "contentHash": "1c9424611dc6935f43c7764f85379e7a80729bfbd9d397dab88d54ba72b44984",
+      "disposition": "ready"
+    },
+    {
+      "projectId": "proposal-fast-walk-front-offset",
+      "name": "Walking · faster · front-leg phase",
+      "savedAt": "2026-10-15T08:20:19.546Z",
+      "snapshot": "adopted-proposal-fast-walk-front-offset.json",
+      "changeId": "b2fc5fa77b5ce4a487b41bb9cca0e2a0a262cd9cf6803e64e1304f805c5075cf",
+      "contentHash": "c832a593057d65a1b4af2a6df4caecd3a3af421a4eb8047b28dc359296f855b9",
+      "disposition": "ready"
+    },
+    {
+      "projectId": "proposal-gallop-24",
+      "name": "Gallop · compact sprint draft",
+      "savedAt": "2026-10-15T08:20:19.567Z",
+      "snapshot": "adopted-proposal-gallop-24.json",
+      "changeId": "63e2bc548aee376d2a28ad1b3486bc5ebf459fc4ae8b69e432cc2ae5babd807b",
+      "contentHash": "7b7bdd1cee93e026e9737f1829dddc0e93fba7d7b6c4eed5cb7889163b562bd0",
+      "disposition": "ready"
+    },
+    {
+      "projectId": "sequence-across",
+      "name": "Jump across",
+      "savedAt": "2026-10-14T20:59:56.797Z",
+      "snapshot": "sequence-across.json",
+      "changeId": "83583c1879f54bf895fd8063b95864cc6c11ebed2896b09713a32f4ea649a743",
+      "contentHash": "8da37a800d45751ea8fee214efac509ab17015412ece9697fa79c2be555bd660"
+    },
+    {
+      "projectId": "sequence-clean",
+      "name": "Grooming",
+      "savedAt": "2026-10-14T20:04:47.185Z",
+      "snapshot": "sequence-clean.json",
+      "changeId": "3e488d7d1b89b470a00ad63490d9990305f33293722704ea511bc923c94c960d",
+      "contentHash": "64e809569d86c21c3f796a0cf3d3bf4e91e198cf50adbba92c4457205ec12bfa"
+    },
+    {
+      "projectId": "sequence-freefall-candidate",
+      "name": "Free falling",
+      "savedAt": "2026-10-14T20:16:40.457Z",
+      "snapshot": "sequence-freefall-candidate.json",
+      "changeId": "7fdb16c0b30499254d24cd53229c9bac0a8a5bd6257c8c7d4018a19762dade28",
+      "contentHash": "8dbaaac1631ce88b4f71a9d34aa0d280f48dbd6322c4daeaeb44c8c21e364d09"
+    },
+    {
+      "projectId": "sequence-loaf",
+      "name": "Loafing",
+      "savedAt": "2026-10-14T20:07:36.718Z",
+      "snapshot": "sequence-loaf.json",
+      "changeId": "cc15eb339a6ea2c41a409aad142723843ecc94b62346e2bc31160ad574d91d9b",
+      "contentHash": "fea71b2bcb3cec09239d39d5fc62c8612917edb6e37e883fa817d5bb9afcab64"
+    },
+    {
+      "projectId": "sequence-look-up",
+      "name": "Standing - Looking up",
+      "savedAt": "2026-10-14T20:08:44.036Z",
+      "snapshot": "sequence-look-up.json",
+      "changeId": "463376555b65de43695900d844854a663f0f8d0d31972a8e78377b06a1c90842",
+      "contentHash": "52601fa1bfdcc4c7323e367a8fa32e44031598b4b1c7fe0e4954c6b7adf470d1"
+    },
+    {
+      "projectId": "sequence-robot-ride",
+      "name": "Riding the robot",
+      "savedAt": "2026-10-14T19:45:06.518Z",
+      "snapshot": "sequence-robot-ride.json",
+      "changeId": "cef542595b5681bc356ab2baddc1009f74cc1cebd84e418aa29ef758b39c4862",
+      "contentHash": "b459d14c648d31b5d0b5060aa9bab6807f462786c39cae42c179a50e4c40d3bc"
+    },
+    {
+      "projectId": "sequence-stand",
+      "name": "Standing",
+      "savedAt": "2026-10-14T19:32:15.671Z",
+      "snapshot": "sequence-stand.json",
+      "changeId": "205a1631f86d42b78991666cea7546ed32a6c0e56ae2bfdb4ef413687337d9d1",
+      "contentHash": "6d69950c83642ff8d3dd44c71a40dc8f223e0cabea6bfb3fd68a5237ccd2285b"
+    },
+    {
+      "projectId": "sequence-stretch",
+      "name": "Stretching · exit loaf",
+      "savedAt": "2026-10-14T20:05:39.432Z",
+      "snapshot": "sequence-stretch.json",
+      "changeId": "4b198211bb9316a95a884184636047bb3fd1e9433663bd29af62496f9094d893",
+      "contentHash": "89917992e8281ed4f62b2a2618ec9ad1996e58c10ee72fdb2419c0e3efd0a4ab"
+    },
+    {
+      "projectId": "sequence-walk-high",
+      "name": "Walking · head high",
+      "savedAt": "2026-10-14T19:17:29.607Z",
+      "snapshot": "sequence-walk-high.json",
+      "changeId": "ce068055b4280866f86359c85c86ad72ac7a534258544c32a285af41534d4556",
+      "contentHash": "608f1a3884cde97d1a1ef8e1ec548368eb1807ec384228e650abf9b1a67c07e0"
+    },
+    {
+      "projectId": "sequence-walk-low",
+      "name": "Walking · head low",
+      "savedAt": "2026-10-14T19:17:55.629Z",
+      "snapshot": "sequence-walk-low.json",
+      "changeId": "1050910132623f458521b93048214d2dc7ff05551c63c5ab3b91390332eebd05",
+      "contentHash": "ff230458351fb11cc434cfa0ba658e62643dc49a7f919776e113779cc4f3f020"
+    }
+  ]
+}

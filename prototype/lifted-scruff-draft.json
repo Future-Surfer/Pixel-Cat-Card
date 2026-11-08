@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "width": 24,
+  "height": 24,
+  "projectId": "proposal-lifted-scruff",
+  "name": "Lifted \u00b7 hanging by scruff \u00b7 temporary AI draft",
+  "category": "interaction",
+  "description": "Temporary user-requested drag pose. Scruff attachment at (14,7), facing right. Refine hanging proportions and paws; no bearing/contact anchor while lifted. Runtime prototype only; not claimed human-approved artwork.",
+  "frames": [
+    {
+      "id": "lifted-scruff-draft-1",
+      "name": "Dangling \u00b7 temporary draft",
+      "rows": [
+        "........................",
+        "..............#...#.....",
+        "..............##.##.....",
+        ".............#######....",
+        ".............########...",
+        "..............#######...",
+        ".............######.....",
+        "............######......",
+        "...........#######......",
+        "...........######.......",
+        "..........#######.......",
+        "..........#######.......",
+        "......#...#######.......",
+        "......#...#######.......",
+        "......##..#######.......",
+        ".......##########.......",
+        "........#########.......",
+        ".........##.##.##.......",
+        ".........##.##.##.......",
+        ".........#..#..##.......",
+        ".........#..#..#........",
+        ".........#..#..#........",
+        ".........##.##.##.......",
+        "........................"
+      ],
+      "durationMs": 150,
+      "origin": "ai",
+      "review": "candidate",
+      "locked": false,
+      "anchor": null,
+      "source": {
+        "file": "prototype/lifted-scruff-draft.json",
+        "kind": "ai-draft"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "pixels",
+          "at": "2026-10-17T00:00:00.000Z"
+        }
+      ],
+      "role": "cycle"
+    }
+  ],
+  "liftAnchor": {
+    "x": 14,
+    "y": 7
+  }
+}

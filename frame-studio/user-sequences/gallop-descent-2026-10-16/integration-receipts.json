@@ -1,0 +1,28 @@
+{
+  "buildHashes": {
+    "pixel-cat-roaming.js": "3177f6752829550f184bce0c48309a8cc26e229d21afa84a511ee4df936368a6",
+    "pixel-cat-roaming-extras.js": "060d12812d59bcc0ee637a9cc1f7e88666aa70fbb99e0f8509fd85ea5251687d",
+    "pixel-cat-roaming-art.js": "cb1ae09432c7d951b3dfde980f20314d3248806b2b7387c168f4ee3d6b81ded1",
+    "pixel-cat-behaviours.js": "8e76b19caefe32b6c5d92ed9d441a21b42d6712617285b68c56d99a18355a62c"
+  },
+  "receipts": [
+    {
+      "id": "be2c2b01d43be193765dc57e3bbff4592996f3b673b64ecbf408b551bd3fa763",
+      "entityId": "0d6931c8-a2ff-404e-ad47-aef258c0d898",
+      "versionHash": "618e4a27cd058c4da6211622c08090fe7800c6b22ccae8fff761f4b8d509f238",
+      "status": "completed",
+      "notes": "Integrated exact saved gallop duplicate into 25 FPS runtime/preview; rare long purposeful/chase bouts, fixed stance clock and original mixed provenance. Previous gallop retained.",
+      "reference": "HA exact readback; controller 3177f6752829550f184bce0c48309a8cc26e229d21afa84a511ee4df936368a6; extras 060d12812d59bcc0ee637a9cc1f7e88666aa70fbb99e0f8509fd85ea5251687d",
+      "at": "2026-10-16T17:23:59.857Z"
+    },
+    {
+      "id": "0db3eed9a5c682766b6b53185b8775d6eb1c2c546481c79caf4195927ee82adc",
+      "entityId": "sequence-descend",
+      "versionHash": "d51ebe5aa44961a68e6e39a6ae53cac06eeb635ac4bcdcef78f4c6267cd11cbf",
+      "status": "completed",
+      "notes": "Verified all four saved jump-down grids already match runtime. Integrated optional 250-600 ms second-enter-frame hold for predominantly downward drops; ledge placement and ballistic flight preserved at both facings/scales 1-3.",
+      "reference": "HA exact readback; controller 3177f6752829550f184bce0c48309a8cc26e229d21afa84a511ee4df936368a6; extras 060d12812d59bcc0ee637a9cc1f7e88666aa70fbb99e0f8509fd85ea5251687d",
+      "at": "2026-10-16T17:23:59.862Z"
+    }
+  ]
+}

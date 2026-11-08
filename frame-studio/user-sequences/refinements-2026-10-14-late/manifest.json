@@ -1,0 +1,1713 @@
+{
+  "capturedAt": "2026-10-14T22:17:33.548Z",
+  "source": "local workspace .studio-data; hosted connector contains only old workshop",
+  "records": [
+    {
+      "projectId": "0d9340b1-6255-4d69-93b6-28d5077987e6",
+      "name": "Sitting · elevated · tail matrix",
+      "savedAt": "2026-10-14T21:01:25.843Z",
+      "snapshot": "0d9340b1-6255-4d69-93b6-28d5077987e6.json",
+      "archived": false,
+      "variantOf": {
+        "projectId": "sequence-sit-elevated",
+        "name": "Sitting · elevated"
+      },
+      "frames": 9,
+      "previousFrames": 0,
+      "pixelsChanged": true,
+      "contentHash": "9cbf8613e8f839ae63af9f21d9cef8e864d18c38283f2273512583ca9310ae1b",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 129,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 125,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 125,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 126,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 123,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 6,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 123,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 7,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 120,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 8,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 121,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 9,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 122,
+          "changed": true,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "178eb102-f04d-466d-83ec-aeee8e2b926d",
+      "name": "QA autosave clipboard · renamed",
+      "savedAt": "2026-10-14T19:47:32.509Z",
+      "snapshot": "178eb102-f04d-466d-83ec-aeee8e2b926d.json",
+      "archived": true,
+      "frames": 2,
+      "previousFrames": 0,
+      "pixelsChanged": true,
+      "contentHash": "69808ee32d440d4cd5b9017748929857982cb20b9f4f92db37a7289538a51b6c",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 0,
+          "changed": true,
+          "blank": true
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 145,
+          "changed": true,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+      "name": "Sitting · ground · Tail matrix",
+      "savedAt": "2026-10-14T20:26:18.141Z",
+      "snapshot": "46edfa22-baf5-45b3-a8a6-26fc004059de.json",
+      "archived": false,
+      "variantOf": {
+        "projectId": "sequence-sit",
+        "name": "Sitting · ground"
+      },
+      "frames": 11,
+      "previousFrames": 11,
+      "pixelsChanged": false,
+      "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 124,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 123,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 123,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 123,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 122,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 6,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 122,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 7,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 122,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 8,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 121,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 9,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 121,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 10,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 121,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 11,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 121,
+          "changed": false,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "4b73f410-1bfc-4ea3-ba1d-7d6c737a6a63",
+      "name": "Sitting · ground · Head matrix",
+      "savedAt": "2026-10-14T20:31:23.699Z",
+      "snapshot": "4b73f410-1bfc-4ea3-ba1d-7d6c737a6a63.json",
+      "archived": false,
+      "variantOf": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "name": "Sitting · ground · Tail matrix"
+      },
+      "frames": 7,
+      "previousFrames": 0,
+      "pixelsChanged": true,
+      "contentHash": "6a4bf65f8ba6d6403ca5a6431bc8106a33a7d20068b90c1d6b992a5c14fa306e",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 123,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 126,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 123,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 126,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 132,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 6,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 132,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 7,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 127,
+          "changed": true,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+      "name": "Walking · faster - synced feet",
+      "savedAt": "2026-10-14T21:17:26.783Z",
+      "snapshot": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc.json",
+      "archived": false,
+      "variantOf": {
+        "projectId": "sequence-walk",
+        "name": "Walking"
+      },
+      "frames": 8,
+      "previousFrames": 0,
+      "pixelsChanged": true,
+      "contentHash": "d883e06f4160116536222b15daa2ee7befe0e61699acc62a06955c0a9e0a2006",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 142,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 141,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 133,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 130,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 125,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 6,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 128,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 7,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 143,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 8,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 144,
+          "changed": true,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "8cf69cf1-de43-48a8-bc9e-c212c3cf8b33",
+      "name": "Walking · faster - desynced feet",
+      "savedAt": "2026-10-14T21:20:09.484Z",
+      "snapshot": "8cf69cf1-de43-48a8-bc9e-c212c3cf8b33.json",
+      "archived": false,
+      "variantOf": {
+        "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+        "name": "Walking · faster - synced feet"
+      },
+      "frames": 8,
+      "previousFrames": 0,
+      "pixelsChanged": true,
+      "contentHash": "5f3c067779cb2ecaf0f950f4e664bba8a62b7ed53c3a95d10e60e2c88be207ad",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 142,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 141,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 133,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 130,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 125,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 6,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 128,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 7,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 143,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 8,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 144,
+          "changed": true,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "9d3fad6c-765c-4baf-a14f-2bca13c5a0bf",
+      "name": "Across jump · horizontal flight",
+      "savedAt": "2026-10-14T14:19:54.440Z",
+      "snapshot": "9d3fad6c-765c-4baf-a14f-2bca13c5a0bf.json",
+      "archived": false,
+      "frames": 6,
+      "previousFrames": 0,
+      "pixelsChanged": true,
+      "contentHash": "b1d34ed93ccf21fed123905fbd365ba5bbb5107ea386c6e032de3d97b190fbd5",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 158,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 157,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "ai",
+          "hold": 150,
+          "volume": 115,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 0,
+          "changed": true,
+          "blank": true
+        },
+        {
+          "frame": 5,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 157,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 6,
+          "phase": "cycle",
+          "origin": "ai",
+          "hold": 150,
+          "volume": 1,
+          "changed": true,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "a92e1bba-462f-4d89-92e7-d1e7d9142eda",
+      "name": "Walking · sneaky head-up",
+      "savedAt": "2026-10-14T20:55:12.807Z",
+      "snapshot": "a92e1bba-462f-4d89-92e7-d1e7d9142eda.json",
+      "archived": false,
+      "variantOf": {
+        "projectId": "sequence-walk",
+        "name": "Walking"
+      },
+      "frames": 8,
+      "previousFrames": 0,
+      "pixelsChanged": true,
+      "contentHash": "205a2c2713b070a8d1bfcfaf8d3d2e83645da401fd7eaeb68b7bab660a6058d5",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 132,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 128,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 124,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 116,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 120,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 6,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 119,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 7,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 117,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 8,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 122,
+          "changed": true,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "b065236f-bce6-40d3-bf48-27c58822f40c",
+      "name": "Drawing check · temporary",
+      "savedAt": "2026-10-14T17:27:09.619Z",
+      "snapshot": "b065236f-bce6-40d3-bf48-27c58822f40c.json",
+      "archived": false,
+      "frames": 1,
+      "previousFrames": 0,
+      "pixelsChanged": true,
+      "contentHash": "3e785c008d36f0b2a31ba3caf4f4aa2c84c0e201cfa45e233ffc8598d66008a3",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 0,
+          "changed": true,
+          "blank": true
+        }
+      ]
+    },
+    {
+      "projectId": "c45528cf-168a-4dc1-ab61-96ac62816e59",
+      "name": "Walking · sneaky head-mid",
+      "savedAt": "2026-10-14T20:55:21.013Z",
+      "snapshot": "c45528cf-168a-4dc1-ab61-96ac62816e59.json",
+      "archived": false,
+      "variantOf": {
+        "projectId": "a92e1bba-462f-4d89-92e7-d1e7d9142eda",
+        "name": "Walking · sneaky v1"
+      },
+      "frames": 8,
+      "previousFrames": 0,
+      "pixelsChanged": true,
+      "contentHash": "9da16eafd88c1f084e59633344cc460134e27b9fba6a65ce823fe48eebb18015",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 133,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 129,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 126,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 118,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 122,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 6,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 121,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 7,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 120,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 8,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 124,
+          "changed": true,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "dd149c2d-9d62-4f57-bf12-d1cb9924d469",
+      "name": "Walking · sneaky head-low",
+      "savedAt": "2026-10-14T20:55:27.137Z",
+      "snapshot": "dd149c2d-9d62-4f57-bf12-d1cb9924d469.json",
+      "archived": false,
+      "variantOf": {
+        "projectId": "c45528cf-168a-4dc1-ab61-96ac62816e59",
+        "name": "Walking · sneaky v2"
+      },
+      "frames": 8,
+      "previousFrames": 0,
+      "pixelsChanged": true,
+      "contentHash": "c199d120a5a42c369ae351d586504f2cb847494b2201a90f8d9685dc597d316b",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 137,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 133,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 130,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 122,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 126,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 6,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 125,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 7,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 124,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 8,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 128,
+          "changed": true,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "pose-look-down",
+      "name": "Sitting - Looking down",
+      "savedAt": "2026-10-14T21:02:32.778Z",
+      "snapshot": "pose-look-down.json",
+      "archived": false,
+      "frames": 11,
+      "previousFrames": 4,
+      "pixelsChanged": true,
+      "contentHash": "e7e46b4b241fe625c40dd7eb9ae8fa880ffef41f4ba64784c594d2b18f93e341",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "enter",
+          "origin": "human",
+          "hold": 250,
+          "volume": 129,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "enter",
+          "origin": "human",
+          "hold": 250,
+          "volume": 129,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "enter",
+          "origin": "human",
+          "hold": 250,
+          "volume": 125,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 121,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 120,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 6,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 120,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 7,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 120,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 8,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 120,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 9,
+          "phase": "exit",
+          "origin": "human",
+          "hold": 250,
+          "volume": 125,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 10,
+          "phase": "exit",
+          "origin": "human",
+          "hold": 250,
+          "volume": 129,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 11,
+          "phase": "exit",
+          "origin": "human",
+          "hold": 250,
+          "volume": 129,
+          "changed": true,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "pose-sitting-glance",
+      "name": "Sitting head glance · draft",
+      "savedAt": "2026-10-14T19:07:40.559Z",
+      "snapshot": "pose-sitting-glance.json",
+      "archived": false,
+      "frames": 2,
+      "previousFrames": 2,
+      "pixelsChanged": false,
+      "contentHash": "2bd7fa180148d2b21386428b39669494696a49e4e07245e647becf6a962f1c50",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "enter",
+          "origin": "human",
+          "hold": 250,
+          "volume": 124,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "mixed",
+          "hold": 150,
+          "volume": 131,
+          "changed": false,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "pose-vertical-down",
+      "name": "Straight-down drop",
+      "savedAt": "2026-10-14T20:17:27.674Z",
+      "snapshot": "pose-vertical-down.json",
+      "archived": false,
+      "frames": 5,
+      "previousFrames": 4,
+      "pixelsChanged": true,
+      "contentHash": "6e8da6583831020b21e23b18460c2c5648cb27b3f6806c545e3978de7d4c898c",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "enter",
+          "origin": "human",
+          "hold": 250,
+          "volume": 165,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 118,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 138,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 133,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "exit",
+          "origin": "human",
+          "hold": 250,
+          "volume": 157,
+          "changed": false,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "pose-vertical-up",
+      "name": "Straight-up jump · draft",
+      "savedAt": "2026-10-14T19:28:15.345Z",
+      "snapshot": "pose-vertical-up.json",
+      "archived": false,
+      "frames": 5,
+      "previousFrames": 5,
+      "pixelsChanged": false,
+      "contentHash": "56b10108aec7a188adbe222e7f7d10823bc30627c2501085c50f8e01f681005c",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "enter",
+          "origin": "human",
+          "hold": 250,
+          "volume": 157,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "mixed",
+          "hold": 150,
+          "volume": 117,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "mixed",
+          "hold": 150,
+          "volume": 127,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "mixed",
+          "hold": 150,
+          "volume": 121,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "exit",
+          "origin": "human",
+          "hold": 250,
+          "volume": 157,
+          "changed": false,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "sequence-across",
+      "name": "Jump across",
+      "savedAt": "2026-10-14T20:59:56.797Z",
+      "snapshot": "sequence-across.json",
+      "archived": false,
+      "frames": 6,
+      "previousFrames": 4,
+      "pixelsChanged": true,
+      "contentHash": "8da37a800d45751ea8fee214efac509ab17015412ece9697fa79c2be555bd660",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "enter",
+          "origin": "human",
+          "hold": 150,
+          "volume": 158,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "enter",
+          "origin": "human",
+          "hold": 150,
+          "volume": 157,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 138,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "mixed",
+          "hold": 150,
+          "volume": 128,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 133,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 6,
+          "phase": "exit",
+          "origin": "human",
+          "hold": 150,
+          "volume": 157,
+          "changed": false,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "sequence-clean",
+      "name": "Grooming",
+      "savedAt": "2026-10-14T20:04:47.185Z",
+      "snapshot": "sequence-clean.json",
+      "archived": false,
+      "frames": 3,
+      "previousFrames": 3,
+      "pixelsChanged": false,
+      "contentHash": "64e809569d86c21c3f796a0cf3d3bf4e91e198cf50adbba92c4457205ec12bfa",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 102,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 96,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 96,
+          "changed": false,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "sequence-freefall-candidate",
+      "name": "Free falling",
+      "savedAt": "2026-10-14T20:16:40.457Z",
+      "snapshot": "sequence-freefall-candidate.json",
+      "archived": false,
+      "frames": 4,
+      "previousFrames": 1,
+      "pixelsChanged": true,
+      "contentHash": "8dbaaac1631ce88b4f71a9d34aa0d280f48dbd6322c4daeaeb44c8c21e364d09",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 133,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 132,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 133,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 131,
+          "changed": true,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "sequence-loaf",
+      "name": "Loafing",
+      "savedAt": "2026-10-14T20:07:36.718Z",
+      "snapshot": "sequence-loaf.json",
+      "archived": false,
+      "frames": 4,
+      "previousFrames": 3,
+      "pixelsChanged": true,
+      "contentHash": "fea71b2bcb3cec09239d39d5fc62c8612917edb6e37e883fa817d5bb9afcab64",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "enter",
+          "origin": "human",
+          "hold": 250,
+          "volume": 79,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 76,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 80,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "exit",
+          "origin": "human",
+          "hold": 250,
+          "volume": 79,
+          "changed": true,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "sequence-look-up",
+      "name": "Standing - Looking up",
+      "savedAt": "2026-10-14T20:08:44.036Z",
+      "snapshot": "sequence-look-up.json",
+      "archived": false,
+      "frames": 10,
+      "previousFrames": 10,
+      "pixelsChanged": false,
+      "contentHash": "52601fa1bfdcc4c7323e367a8fa32e44031598b4b1c7fe0e4954c6b7adf470d1",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 145,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 143,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 141,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 141,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 141,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 6,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 141,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 7,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 141,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 8,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 142,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 9,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 141,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 10,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 143,
+          "changed": false,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "sequence-robot-ride",
+      "name": "Riding the robot",
+      "savedAt": "2026-10-14T19:45:06.518Z",
+      "snapshot": "sequence-robot-ride.json",
+      "archived": false,
+      "frames": 8,
+      "previousFrames": 8,
+      "pixelsChanged": true,
+      "contentHash": "b459d14c648d31b5d0b5060aa9bab6807f462786c39cae42c179a50e4c40d3bc",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 151,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 132,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 109,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 128,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 150,
+          "changed": true,
+          "blank": false
+        },
+        {
+          "frame": 6,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 137,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 7,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 109,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 8,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 132,
+          "changed": false,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "sequence-stand",
+      "name": "Standing",
+      "savedAt": "2026-10-14T19:32:15.671Z",
+      "snapshot": "sequence-stand.json",
+      "archived": false,
+      "frames": 5,
+      "previousFrames": 5,
+      "pixelsChanged": false,
+      "contentHash": "6d69950c83642ff8d3dd44c71a40dc8f223e0cabea6bfb3fd68a5237ccd2285b",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "enter",
+          "origin": "human",
+          "hold": 150,
+          "volume": 158,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 144,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 142,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 142,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 5,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 141,
+          "changed": false,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "sequence-stretch",
+      "name": "Stretching · exit loaf",
+      "savedAt": "2026-10-14T20:05:39.432Z",
+      "snapshot": "sequence-stretch.json",
+      "archived": false,
+      "frames": 3,
+      "previousFrames": 3,
+      "pixelsChanged": false,
+      "contentHash": "89917992e8281ed4f62b2a2618ec9ad1996e58c10ee72fdb2419c0e3efd0a4ab",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 500,
+          "volume": 112,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 108,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 250,
+          "volume": 97,
+          "changed": false,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "sequence-walk-high",
+      "name": "Walking · head high",
+      "savedAt": "2026-10-14T19:17:29.607Z",
+      "snapshot": "sequence-walk-high.json",
+      "archived": false,
+      "frames": 4,
+      "previousFrames": 4,
+      "pixelsChanged": false,
+      "contentHash": "608f1a3884cde97d1a1ef8e1ec548368eb1807ec384228e650abf9b1a67c07e0",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 150,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "mixed",
+          "hold": 150,
+          "volume": 141,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "mixed",
+          "hold": 150,
+          "volume": 132,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 140,
+          "changed": false,
+          "blank": false
+        }
+      ]
+    },
+    {
+      "projectId": "sequence-walk-low",
+      "name": "Walking · head low",
+      "savedAt": "2026-10-14T19:17:55.629Z",
+      "snapshot": "sequence-walk-low.json",
+      "archived": false,
+      "frames": 4,
+      "previousFrames": 4,
+      "pixelsChanged": false,
+      "contentHash": "ff230458351fb11cc434cfa0ba658e62643dc49a7f919776e113779cc4f3f020",
+      "frameAudit": [
+        {
+          "frame": 1,
+          "phase": "cycle",
+          "origin": "mixed",
+          "hold": 150,
+          "volume": 149,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 2,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 139,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 3,
+          "phase": "cycle",
+          "origin": "human",
+          "hold": 150,
+          "volume": 130,
+          "changed": false,
+          "blank": false
+        },
+        {
+          "frame": 4,
+          "phase": "cycle",
+          "origin": "mixed",
+          "hold": 150,
+          "volume": 138,
+          "changed": false,
+          "blank": false
+        }
+      ]
+    }
+  ]
+}

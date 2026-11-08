@@ -1,0 +1,2177 @@
+{
+  "id": "800d5c8d386169b7d88c45c43594813638caddb95a473eda236f0ca8a434e818",
+  "kind": "sequence",
+  "entityId": "c7352bbe-fd27-4ba2-aafc-1c7b23a7010f",
+  "name": "Play · inspect and bat · variant",
+  "versionHash": "72e7d115013d8d938a8056eca6e41600788d4608d4513552921ecf945c48c745",
+  "at": "2026-10-17T14:46:25.228Z",
+  "summary": {
+    "frames": 8,
+    "previousFrames": 8,
+    "editedFrames": 1
+  },
+  "snapshot": {
+    "schemaVersion": 1,
+    "width": 24,
+    "height": 24,
+    "projectId": "c7352bbe-fd27-4ba2-aafc-1c7b23a7010f",
+    "name": "Play · inspect and bat · variant",
+    "category": "interaction",
+    "description": "Lift a front paw, reach toward an external toy or detail, tap down and recoil. Keep toy motion separate so the same cat clip can investigate, miss, or nudge different props. AI pixel proposal based on saved human artwork; review before runtime use. Research and authoring plan: CAT_BEHAVIOURS.md.",
+    "preferredNeighbours": {
+      "before": [
+        "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "proposal-behaviour-sniff"
+      ],
+      "after": [
+        "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "proposal-behaviour-sniff"
+      ]
+    },
+    "idlePosture": "sitting",
+    "oneShot": false,
+    "variantOf": {
+      "projectId": "proposal-behaviour-paw-bat",
+      "name": "Play · inspect and bat"
+    },
+    "frames": [
+      {
+        "id": "bc1e7aee-ca00-4de3-acc4-c07cbacc74a0",
+        "name": "Watch object",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........#######.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########...#.....",
+          ".......#########.##.....",
+          ".......###R##R#####....."
+        ],
+        "durationMs": 500,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "human",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "reference-copy",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze",
+            "at": "2026-10-15T09:28:56.239Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze",
+            "at": "2026-10-15T09:29:17.191Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze",
+            "at": "2026-10-15T09:29:22.421Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze",
+            "at": "2026-10-15T09:29:22.518Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-15T13:35:48.998Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-15T13:35:51.039Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-15T13:35:52.005Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          }
+        ],
+        "role": "enter",
+        "parentId": "proposal-behaviour-paw-bat-f01",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "enter"
+          ],
+          "description": "Watch object"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      },
+      {
+        "id": "f3a3000b-d490-40cb-bb96-0e5b93b0eb25",
+        "name": "Lift front paw",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........#######.........",
+          ".......#######.#R.......",
+          ".......#########........",
+          ".......########.........",
+          ".......########.........",
+          ".......#######....#.....",
+          ".......########..##.....",
+          ".......###R########....."
+        ],
+        "durationMs": 220,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "behaviour-pixel-proposal",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:15.322Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:15.615Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:16.015Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:16.255Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:16.871Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:18.247Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:19.135Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:50.639Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:51.207Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:51.488Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:52.514Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:53.335Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:35:52.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          }
+        ],
+        "role": "enter",
+        "parentId": "proposal-behaviour-paw-bat-f02",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "enter"
+          ],
+          "description": "Lift front paw"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      },
+      {
+        "id": "12ca9606-f0f7-47c1-80ee-9b43e23d5542",
+        "name": "Reach slowly",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........######..........",
+          ".......########.........",
+          ".......###########R.....",
+          ".......#########........",
+          ".......########.........",
+          ".......#######..........",
+          ".......#######...##.....",
+          ".......###R########....."
+        ],
+        "durationMs": 280,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "behaviour-pixel-proposal",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:22.199Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:23.151Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:23.430Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:24.336Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:56.167Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:56.336Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:57.351Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:35:52.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:09.037Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 15,
+              "y": 17,
+              "width": 6,
+              "height": 4
+            },
+            "dx": -1,
+            "dy": 1,
+            "at": "2026-10-17T14:45:09.037Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:11.166Z"
+          }
+        ],
+        "role": "cycle",
+        "parentId": "proposal-behaviour-paw-bat-f03",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "cycle"
+          ],
+          "description": "Reach slowly"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      },
+      {
+        "id": "d07dfc9a-8945-4302-af31-9369919ef7fd",
+        "name": "Tap outward",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........######..........",
+          ".......########.........",
+          ".......#########........",
+          ".......##########R......",
+          ".......#########........",
+          ".......########.........",
+          ".......#######...##.....",
+          ".......###R########....."
+        ],
+        "durationMs": 100,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "behaviour-pixel-proposal",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:28.743Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:30.135Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:30.911Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:32.895Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:33.911Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:34.882Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:59.791Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:35:52.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:16.573Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:16.996Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:17.853Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:38.085Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:41.719Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:46:13.269Z"
+          }
+        ],
+        "role": "cycle",
+        "parentId": "proposal-behaviour-paw-bat-f04",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "cycle"
+          ],
+          "description": "Tap outward"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      },
+      {
+        "id": "4d45189f-053e-4bff-ad07-d94e414b61b1",
+        "name": "Paw recoils",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........######..........",
+          ".......########.........",
+          ".......#########........",
+          ".......#########........",
+          ".......#########R.......",
+          ".......########...#.....",
+          ".......#######...##.....",
+          ".......###R########....."
+        ],
+        "durationMs": 180,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "behaviour-pixel-proposal",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:39.399Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:39.896Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:02:03.151Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:35:52.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:46.853Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:48.533Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:50.677Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:46:16.180Z"
+          }
+        ],
+        "role": "cycle",
+        "parentId": "proposal-behaviour-paw-bat-f05",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "cycle"
+          ],
+          "description": "Paw recoils"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      },
+      {
+        "id": "e35750e1-7ebe-4a55-ba51-e79d4d4b0494",
+        "name": "Watch result",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........######..........",
+          ".......########.........",
+          ".......#########........",
+          ".......#########........",
+          ".......#########........",
+          ".......#######.R..#.....",
+          ".......#######...##.....",
+          ".......###R########....."
+        ],
+        "durationMs": 500,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "behaviour-pixel-proposal",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:42.704Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:43.194Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:02:05.279Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:35:52.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:54.709Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:55.605Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:57.229Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:46:18.836Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:46:19.068Z"
+          }
+        ],
+        "role": "cycle",
+        "parentId": "proposal-behaviour-paw-bat-f06",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "cycle"
+          ],
+          "description": "Watch result"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      },
+      {
+        "id": "46c65829-32f2-4ae7-b220-7f9105d7dc4c",
+        "name": "Put paw down",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........#######.........",
+          ".......########.........",
+          ".......#########........",
+          ".......#########........",
+          ".......#########........",
+          ".......########...#.....",
+          ".......#########.##.....",
+          ".......###R##R#####....."
+        ],
+        "durationMs": 220,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "human",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "reference-copy",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 17,
+              "y": 3,
+              "width": 4,
+              "height": 5
+            },
+            "dx": 1,
+            "dy": 0,
+            "at": "2026-10-15T09:27:57.053Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T09:28:01.429Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T09:28:01.717Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:35:52.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:46:23.205Z"
+          }
+        ],
+        "role": "exit",
+        "parentId": "proposal-behaviour-paw-bat-f07",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "exit"
+          ],
+          "description": "Put paw down"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      },
+      {
+        "id": "673108ac-1561-4aac-a53b-4238fe9381d7",
+        "name": "Lose interest or re-engage",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........#######.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########...#.....",
+          ".......#########.##.....",
+          ".......###R##R#####....."
+        ],
+        "durationMs": 600,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "human",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "reference-copy",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:35:52.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          }
+        ],
+        "role": "exit",
+        "parentId": "proposal-behaviour-paw-bat-f08",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "exit"
+          ],
+          "description": "Lose interest or re-engage"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      }
+    ],
+    "workQueue": {
+      "version": 1,
+      "repository": "Stick-Pet-Card",
+      "selectedId": "vertical-up",
+      "tasks": [
+        {
+          "id": "vertical-up",
+          "title": "Straight-up jump",
+          "category": "jump",
+          "priority": "high",
+          "tags": [
+            "vertical",
+            "up",
+            "airborne"
+          ],
+          "instructions": "Create a distinct straight-up airborne pose. Keep the body compact and legs beneath him; avoid the diagonal forward-reaching silhouette. Preserve the intended facing on a vertical jump. Start with one missing airborne frame, using existing takeoff and landing frames as onion references.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "vertical-down",
+          "title": "Straight-down drop",
+          "category": "jump",
+          "priority": "high",
+          "tags": [
+            "vertical",
+            "down",
+            "airborne"
+          ],
+          "instructions": "Create a distinct straight-down airborne pose with the feet prepared beneath the body. Preserve facing rather than implying a sideways leap or backwards motion. Start with one missing airborne frame; compare against existing descent preparation and landing crouch.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "look-down",
+          "title": "Look down from a perch",
+          "category": "idle",
+          "priority": "high",
+          "tags": [
+            "look-down",
+            "card-edge"
+          ],
+          "instructions": "Lower the head to inspect a card or landing below. Keep the planted paw cells fixed and allow the body/tail to overhang. Use the sitting/perch frames as references.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "horizontal-refine",
+          "title": "Refine horizontal leap",
+          "category": "jump",
+          "priority": "normal",
+          "tags": [
+            "horizontal",
+            "airborne"
+          ],
+          "instructions": "Refine the approved AI horizontal flight pose. Keep a level back, forward head, trailing tail and gathered legs. Human pixel edits to the AI source make a mixed-origin frame; retain its lineage. No planted contact anchor while airborne.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "walk-head",
+          "title": "Refine independent walk heads",
+          "category": "walk",
+          "priority": "normal",
+          "tags": [
+            "walk",
+            "head-bob"
+          ],
+          "instructions": "Review the high/low head combinations. Improve the head/neck seam if needed while leaving leg frames and every planted paw marker unchanged. Compare original and half-time head bobbing at the same walking speed.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "sitting-glance",
+          "title": "Sitting head glance",
+          "category": "idle",
+          "priority": "later",
+          "tags": [
+            "sit",
+            "look"
+          ],
+          "instructions": "Explore a small head turn toward a nearby object without flipping the whole body. Audit the existing turn/idle catalogue before drawing new pixels; keep bearing paws in their source cells.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        }
+      ]
+    }
+  },
+  "previous": {
+    "schemaVersion": 1,
+    "width": 24,
+    "height": 24,
+    "projectId": "c7352bbe-fd27-4ba2-aafc-1c7b23a7010f",
+    "name": "Play · inspect and bat · variant",
+    "category": "interaction",
+    "description": "Lift a front paw, reach toward an external toy or detail, tap down and recoil. Keep toy motion separate so the same cat clip can investigate, miss, or nudge different props. AI pixel proposal based on saved human artwork; review before runtime use. Research and authoring plan: CAT_BEHAVIOURS.md.",
+    "preferredNeighbours": {
+      "before": [
+        "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "proposal-behaviour-sniff"
+      ],
+      "after": [
+        "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "proposal-behaviour-sniff"
+      ]
+    },
+    "idlePosture": "sitting",
+    "oneShot": false,
+    "variantOf": {
+      "projectId": "proposal-behaviour-paw-bat",
+      "name": "Play · inspect and bat"
+    },
+    "frames": [
+      {
+        "id": "bc1e7aee-ca00-4de3-acc4-c07cbacc74a0",
+        "name": "Watch object",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........#######.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########...#.....",
+          ".......#########.##.....",
+          ".......###R##R#####....."
+        ],
+        "durationMs": 500,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "human",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "reference-copy",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze",
+            "at": "2026-10-15T09:28:56.239Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze",
+            "at": "2026-10-15T09:29:17.191Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze",
+            "at": "2026-10-15T09:29:22.421Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze",
+            "at": "2026-10-15T09:29:22.518Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-15T13:35:48.998Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-15T13:35:51.039Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-handle",
+            "at": "2026-10-15T13:35:52.005Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          }
+        ],
+        "role": "enter",
+        "parentId": "proposal-behaviour-paw-bat-f01",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "enter"
+          ],
+          "description": "Watch object"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      },
+      {
+        "id": "f3a3000b-d490-40cb-bb96-0e5b93b0eb25",
+        "name": "Lift front paw",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........#######.........",
+          ".......#######.#R.......",
+          ".......#########........",
+          ".......########.........",
+          ".......########.........",
+          ".......#######....#.....",
+          ".......########..##.....",
+          ".......###R########....."
+        ],
+        "durationMs": 220,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "behaviour-pixel-proposal",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:15.322Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:15.615Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:16.015Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:16.255Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:16.871Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:18.247Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:19.135Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:50.639Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:51.207Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:51.488Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:52.514Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:53.335Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:35:52.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          }
+        ],
+        "role": "enter",
+        "parentId": "proposal-behaviour-paw-bat-f02",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "enter"
+          ],
+          "description": "Lift front paw"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      },
+      {
+        "id": "12ca9606-f0f7-47c1-80ee-9b43e23d5542",
+        "name": "Reach slowly",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........######..........",
+          ".......########.........",
+          ".......###########R.....",
+          ".......#########........",
+          ".......########.........",
+          ".......#######..........",
+          ".......#######...##.....",
+          ".......###R########....."
+        ],
+        "durationMs": 280,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "behaviour-pixel-proposal",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:22.199Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:23.151Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:23.430Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:24.336Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:56.167Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:56.336Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:57.351Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:35:52.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:09.037Z"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 15,
+              "y": 17,
+              "width": 6,
+              "height": 4
+            },
+            "dx": -1,
+            "dy": 1,
+            "at": "2026-10-17T14:45:09.037Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:11.166Z"
+          }
+        ],
+        "role": "cycle",
+        "parentId": "proposal-behaviour-paw-bat-f03",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "cycle"
+          ],
+          "description": "Reach slowly"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      },
+      {
+        "id": "d07dfc9a-8945-4302-af31-9369919ef7fd",
+        "name": "Tap outward",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........######..........",
+          ".......########.........",
+          ".......#########........",
+          ".......##########R......",
+          ".......#########........",
+          ".......########.........",
+          ".......#######...##.....",
+          ".......###R########....."
+        ],
+        "durationMs": 100,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "behaviour-pixel-proposal",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:28.743Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:30.135Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:30.911Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:32.895Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:33.911Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:34.882Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:59.791Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:35:52.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:16.573Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:16.996Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:17.853Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:38.085Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:41.719Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:46:13.269Z"
+          }
+        ],
+        "role": "cycle",
+        "parentId": "proposal-behaviour-paw-bat-f04",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "cycle"
+          ],
+          "description": "Tap outward"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      },
+      {
+        "id": "4d45189f-053e-4bff-ad07-d94e414b61b1",
+        "name": "Paw recoils",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........######..........",
+          ".......########.........",
+          ".......#########........",
+          ".......#########........",
+          ".......#########R.......",
+          ".......########...#.....",
+          ".......#######...##.....",
+          ".......###R########....."
+        ],
+        "durationMs": 180,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "behaviour-pixel-proposal",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:39.399Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:39.896Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:02:03.151Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:35:52.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:46.853Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:48.533Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:50.677Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:46:16.180Z"
+          }
+        ],
+        "role": "cycle",
+        "parentId": "proposal-behaviour-paw-bat-f05",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "cycle"
+          ],
+          "description": "Paw recoils"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      },
+      {
+        "id": "e35750e1-7ebe-4a55-ba51-e79d4d4b0494",
+        "name": "Watch result",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........######..........",
+          ".......########.........",
+          ".......#########........",
+          ".......#########........",
+          ".......#########........",
+          ".......#######.R..#.....",
+          ".......#######...##.....",
+          ".......###R########....."
+        ],
+        "durationMs": 500,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "mixed",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "behaviour-pixel-proposal",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:42.704Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:01:43.194Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T08:02:05.279Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:35:52.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:54.709Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:55.605Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:45:57.229Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:46:18.836Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-17T14:46:19.068Z"
+          }
+        ],
+        "role": "cycle",
+        "parentId": "proposal-behaviour-paw-bat-f06",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "cycle"
+          ],
+          "description": "Watch result"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      },
+      {
+        "id": "46c65829-32f2-4ae7-b220-7f9105d7dc4c",
+        "name": "Put paw down",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........#######.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########...#.....",
+          ".......#########.##.....",
+          ".......###R##R#####....."
+        ],
+        "durationMs": 220,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "human",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "reference-copy",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "move-selection",
+            "box": {
+              "x": 17,
+              "y": 3,
+              "width": 4,
+              "height": 5
+            },
+            "dx": 1,
+            "dy": 0,
+            "at": "2026-10-15T09:27:57.053Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T09:28:01.429Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-15T09:28:01.717Z"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:35:52.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          }
+        ],
+        "role": "exit",
+        "parentId": "proposal-behaviour-paw-bat-f07",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "exit"
+          ],
+          "description": "Put paw down"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      },
+      {
+        "id": "673108ac-1561-4aac-a53b-4238fe9381d7",
+        "name": "Lose interest or re-engage",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...........#..#.........",
+          "...........####.........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........######........",
+          "..........#####.........",
+          "..........#####.........",
+          ".........######.........",
+          "........#######.........",
+          "........#######.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########.........",
+          ".......########...#.....",
+          ".......#########.##.....",
+          ".......###R##R#####....."
+        ],
+        "durationMs": 600,
+        "anchor": {
+          "x": 10,
+          "y": 23
+        },
+        "origin": "human",
+        "review": "candidate",
+        "locked": false,
+        "source": {
+          "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "savedAt": "2026-10-14T20:26:18.141Z",
+          "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+        },
+        "operations": [
+          {
+            "actor": "ai",
+            "kind": "reference-copy",
+            "at": "2026-10-15T00:00:00.000Z",
+            "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+          },
+          {
+            "actor": "human",
+            "kind": "gaze-apply-all",
+            "at": "2026-10-15T13:35:52.981Z"
+          },
+          {
+            "actor": "human",
+            "kind": "sequence-copy",
+            "at": "2026-10-17T14:44:55.934Z"
+          }
+        ],
+        "role": "exit",
+        "parentId": "proposal-behaviour-paw-bat-f08",
+        "metadata": {
+          "category": "interaction",
+          "tags": [
+            "paw-bat",
+            "draft",
+            "exit"
+          ],
+          "description": "Lose interest or re-engage"
+        },
+        "gaze": {
+          "x": 13,
+          "y": 9,
+          "angle": 49,
+          "fov": 89
+        }
+      }
+    ],
+    "workQueue": {
+      "version": 1,
+      "repository": "Stick-Pet-Card",
+      "selectedId": "vertical-up",
+      "tasks": [
+        {
+          "id": "vertical-up",
+          "title": "Straight-up jump",
+          "category": "jump",
+          "priority": "high",
+          "tags": [
+            "vertical",
+            "up",
+            "airborne"
+          ],
+          "instructions": "Create a distinct straight-up airborne pose. Keep the body compact and legs beneath him; avoid the diagonal forward-reaching silhouette. Preserve the intended facing on a vertical jump. Start with one missing airborne frame, using existing takeoff and landing frames as onion references.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "vertical-down",
+          "title": "Straight-down drop",
+          "category": "jump",
+          "priority": "high",
+          "tags": [
+            "vertical",
+            "down",
+            "airborne"
+          ],
+          "instructions": "Create a distinct straight-down airborne pose with the feet prepared beneath the body. Preserve facing rather than implying a sideways leap or backwards motion. Start with one missing airborne frame; compare against existing descent preparation and landing crouch.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "look-down",
+          "title": "Look down from a perch",
+          "category": "idle",
+          "priority": "high",
+          "tags": [
+            "look-down",
+            "card-edge"
+          ],
+          "instructions": "Lower the head to inspect a card or landing below. Keep the planted paw cells fixed and allow the body/tail to overhang. Use the sitting/perch frames as references.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "horizontal-refine",
+          "title": "Refine horizontal leap",
+          "category": "jump",
+          "priority": "normal",
+          "tags": [
+            "horizontal",
+            "airborne"
+          ],
+          "instructions": "Refine the approved AI horizontal flight pose. Keep a level back, forward head, trailing tail and gathered legs. Human pixel edits to the AI source make a mixed-origin frame; retain its lineage. No planted contact anchor while airborne.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "walk-head",
+          "title": "Refine independent walk heads",
+          "category": "walk",
+          "priority": "normal",
+          "tags": [
+            "walk",
+            "head-bob"
+          ],
+          "instructions": "Review the high/low head combinations. Improve the head/neck seam if needed while leaving leg frames and every planted paw marker unchanged. Compare original and half-time head bobbing at the same walking speed.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "sitting-glance",
+          "title": "Sitting head glance",
+          "category": "idle",
+          "priority": "later",
+          "tags": [
+            "sit",
+            "look"
+          ],
+          "instructions": "Explore a small head turn toward a nearby object without flipping the whole body. Audit the existing turn/idle catalogue before drawing new pixels; keep bearing paws in their source cells.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        }
+      ]
+    }
+  },
+  "receipt": {
+    "status": "pending",
+    "notes": "",
+    "reference": ""
+  }
+}

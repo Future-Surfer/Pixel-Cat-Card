@@ -1,0 +1,29 @@
+{
+  "receipts": [
+    {
+      "changeId": "f7ddf35f756c4fde049f75eea7f9454fb9d453036d71597af07da483a82e4dea",
+      "receipt": {
+        "versionHash": "7af1f3ec54a33ebd4672e755fde6467715e166d151554d8a4fde9fff52cca375",
+        "status": "completed",
+        "notes": "Integrated exact saved human pixels as selectable homeBeds. Primary/secondary palettes retain original shades by default; derived dark shades for custom colours. Simple rest lift 3 cells, igloo loaf/sleep lift 1 cell with authored entrance mask. Tests and local live-resident visual checks pass; HA resources deployed and verified.",
+        "reference": "scripts/build-roaming.mjs homeBeds; prototype/cat-setup.js; frame-studio/user-sequences/beds-2026-10-16/saved-changes.json",
+        "at": "2026-10-16T17:47:04.012Z"
+      }
+    },
+    {
+      "changeId": "13b3c9305ead67a23828d31e54e673664a7e092ab64c5154eb97c9477ea6abba",
+      "receipt": {
+        "versionHash": "539f371d48beff7e7bbf0f59532113e117b9e1a22acf099a31be98c403356921",
+        "status": "completed",
+        "notes": "Integrated exact saved human pixels as selectable homeBeds. Primary/secondary palettes retain original shades by default; derived dark shades for custom colours. Simple rest lift 3 cells, igloo loaf/sleep lift 1 cell with authored entrance mask. Tests and local live-resident visual checks pass; HA resources deployed and verified.",
+        "reference": "scripts/build-roaming.mjs homeBeds; prototype/cat-setup.js; frame-studio/user-sequences/beds-2026-10-16/saved-changes.json",
+        "at": "2026-10-16T17:47:04.016Z"
+      }
+    }
+  ],
+  "deployedBuilds": {
+    "pixel-cat-roaming.js": "5b13950cfcf81bbdc9aa6da5531ae736fa940f3ee2603335a0bff24715b8051f",
+    "pixel-cat-roaming-extras.js": "551fedc22dae9367f20829c13db255d07b1dc9df16979ba39966209f8a52e94a",
+    "pixel-cat-behaviours.js": "16f069547a3b22ff93ef3cdcac81069ca08d8e88d7e1e961d7656a6e3940780e"
+  }
+}

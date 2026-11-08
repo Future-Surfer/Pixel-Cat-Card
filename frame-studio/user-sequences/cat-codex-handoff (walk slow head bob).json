@@ -1,0 +1,622 @@
+{
+  "format": "cat-studio-handoff",
+  "version": 1,
+  "instruction": "Review labelled animations, timing and contact anchors. Confirmed means human-reviewed, not installed. Preserve artwork origin. Only integrate the exact confirmed snapshot.",
+  "project": {
+    "schemaVersion": 1,
+    "width": 24,
+    "height": 24,
+    "name": "Walk head variants · development",
+    "frames": [
+      {
+        "id": "602b7777-2616-45f1-8226-80f0dcedbfb8",
+        "name": "Gait 1 · head high",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...#....................",
+          "..#.....................",
+          "..#.....................",
+          "..#.....................",
+          "..##.............#.#....",
+          "...##............###....",
+          "...##...........#####...",
+          "....##.#####...#######..",
+          "....##################..",
+          ".....################...",
+          ".....##############.....",
+          "....##############......",
+          "...######.#######.......",
+          "...######...#####.......",
+          "..######.....####.......",
+          "..##.##.....###.#.......",
+          "..#..##.....##..#.......",
+          "..R...#R....R...#R......"
+        ],
+        "origin": "human",
+        "review": "accepted",
+        "source": {
+          "file": "pixel-pet-card.js",
+          "symbol": "WALK_FRAMES",
+          "index": 0,
+          "headIndex": 0
+        },
+        "durationMs": 150,
+        "anchor": null,
+        "locked": false,
+        "metadata": {
+          "category": "walk",
+          "tags": [
+            "walk",
+            "head-bob",
+            "development"
+          ],
+          "description": "Copy exact x14..23/y0..13 head cells from gait 0 (high) or 1 (low); retain other cells."
+        },
+        "operations": []
+      },
+      {
+        "id": "4dcc926d-c634-4377-8eb7-14fd8a59f644",
+        "name": "Gait 1 · head low",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...#....................",
+          "..#.....................",
+          "..#.....................",
+          "..#.....................",
+          "..##....................",
+          "...##............#.#....",
+          "...##............###....",
+          "....##.#####...######...",
+          "....##################..",
+          ".....#################..",
+          ".....################...",
+          "....###############.....",
+          "...######.########......",
+          "...######...#####.......",
+          "..######.....####.......",
+          "..##.##.....###.#.......",
+          "..#..##.....##..#.......",
+          "..R...#R....R...#R......"
+        ],
+        "origin": "mixed",
+        "review": "candidate",
+        "source": {
+          "file": "pixel-pet-card.js",
+          "symbol": "WALK_FRAMES",
+          "index": 0,
+          "headIndex": 1
+        },
+        "durationMs": 150,
+        "anchor": null,
+        "locked": false,
+        "metadata": {
+          "category": "walk",
+          "tags": [
+            "walk",
+            "head-bob",
+            "development"
+          ],
+          "description": "Copy exact x14..23/y0..13 head cells from gait 0 (high) or 1 (low); retain other cells."
+        },
+        "operations": [
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:48:34.921Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:48:35.201Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:48:35.745Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:48:57.649Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:49:02.089Z"
+          }
+        ]
+      },
+      {
+        "id": "d30501c3-f73b-4105-b82e-c42ebffb154e",
+        "name": "Gait 2 · head high",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...#....................",
+          "..#.....................",
+          "..#.....................",
+          "..##.............#.#....",
+          "..##.............###....",
+          "...##...........#####...",
+          "...##...###....#######..",
+          "....##################..",
+          "....#################...",
+          ".....###############....",
+          "....##############......",
+          "....##############......",
+          "...#####.....####.......",
+          "...####.....#####.......",
+          "...###......##.#........",
+          "...R##......R..#........",
+          ".....#R........#R......."
+        ],
+        "origin": "mixed",
+        "review": "candidate",
+        "source": {
+          "file": "pixel-pet-card.js",
+          "symbol": "WALK_FRAMES",
+          "index": 1,
+          "headIndex": 0
+        },
+        "durationMs": 150,
+        "anchor": null,
+        "locked": false,
+        "metadata": {
+          "category": "walk",
+          "tags": [
+            "walk",
+            "head-bob",
+            "development"
+          ],
+          "description": "Copy exact x14..23/y0..13 head cells from gait 0 (high) or 1 (low); retain other cells."
+        },
+        "operations": [
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:49:33.761Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:49:34.081Z"
+          }
+        ]
+      },
+      {
+        "id": "cc921574-82d9-4968-8d44-c766e8415d44",
+        "name": "Gait 2 · head low",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...#....................",
+          "..#.....................",
+          "..#.....................",
+          "..##....................",
+          "..##.............#.#....",
+          "...##............###....",
+          "...##...###....######...",
+          "....##################..",
+          "....##################..",
+          ".....################...",
+          "....###############.....",
+          "....##############......",
+          "...#####.....####.......",
+          "...####.....#####.......",
+          "...###......##.#........",
+          "...R##......R..#........",
+          ".....#R........#R......."
+        ],
+        "origin": "human",
+        "review": "candidate",
+        "source": {
+          "file": "pixel-pet-card.js",
+          "symbol": "WALK_FRAMES",
+          "index": 1,
+          "headIndex": 1
+        },
+        "durationMs": 150,
+        "anchor": null,
+        "locked": false,
+        "metadata": {
+          "category": "walk",
+          "tags": [
+            "walk",
+            "head-bob",
+            "development"
+          ],
+          "description": "Copy exact x14..23/y0..13 head cells from gait 0 (high) or 1 (low); retain other cells."
+        },
+        "operations": [
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:49:09.218Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:49:09.505Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:49:14.745Z"
+          }
+        ]
+      },
+      {
+        "id": "f7f3822c-95b0-4ced-8e3b-de861db0e260",
+        "name": "Gait 3 · head high",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "....#...................",
+          "...#....................",
+          "...#....................",
+          "...#.............#.#....",
+          "...##............###....",
+          "....#...........#####...",
+          "....##..###....#######..",
+          "....##################..",
+          ".....################...",
+          ".....###############....",
+          ".....#############......",
+          "....#############.......",
+          "....#####....####.......",
+          "....####.....###........",
+          "....##.......###........",
+          "....##R......#R.........",
+          ".....R........#R........"
+        ],
+        "origin": "mixed",
+        "review": "candidate",
+        "source": {
+          "file": "pixel-pet-card.js",
+          "symbol": "WALK_FRAMES",
+          "index": 2,
+          "headIndex": 0
+        },
+        "durationMs": 150,
+        "anchor": null,
+        "locked": false,
+        "metadata": {
+          "category": "walk",
+          "tags": [
+            "walk",
+            "head-bob",
+            "development"
+          ],
+          "description": "Copy exact x14..23/y0..13 head cells from gait 0 (high) or 1 (low); retain other cells."
+        },
+        "operations": [
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:49:46.156Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:49:48.105Z"
+          }
+        ]
+      },
+      {
+        "id": "798f8ae1-a7a6-4b56-bebd-91a16626e488",
+        "name": "Gait 3 · head low",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "....#...................",
+          "...#....................",
+          "...#....................",
+          "...#....................",
+          "...##............#.#....",
+          "....#............###....",
+          "....##..###....######...",
+          "....##################..",
+          ".....#################..",
+          ".....################...",
+          ".....##############.....",
+          "....#############.......",
+          "....#####....####.......",
+          "....####.....###........",
+          "....##.......###........",
+          "....##R......#R.........",
+          ".....R........#R........"
+        ],
+        "origin": "human",
+        "review": "candidate",
+        "source": {
+          "file": "pixel-pet-card.js",
+          "symbol": "WALK_FRAMES",
+          "index": 2,
+          "headIndex": 1
+        },
+        "durationMs": 150,
+        "anchor": null,
+        "locked": false,
+        "metadata": {
+          "category": "walk",
+          "tags": [
+            "walk",
+            "head-bob",
+            "development"
+          ],
+          "description": "Copy exact x14..23/y0..13 head cells from gait 0 (high) or 1 (low); retain other cells."
+        },
+        "operations": [
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:49:21.401Z"
+          }
+        ]
+      },
+      {
+        "id": "695baf8c-2c1f-45a6-9740-5a2621f2aef1",
+        "name": "Gait 4 · head high",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...#....................",
+          "..#.....................",
+          "..##....................",
+          "...#.............#.#....",
+          "...##............###....",
+          "...##...........#####...",
+          "....##.#####...#######..",
+          "....##################..",
+          ".....################...",
+          ".....###############....",
+          "....##############......",
+          "....#####.#######.......",
+          "....####.....####.......",
+          "...#####.....####.......",
+          "...##.##.....##.#.......",
+          "...#...#R....#..R.......",
+          "...#R........#R........."
+        ],
+        "origin": "human",
+        "review": "candidate",
+        "source": {
+          "file": "pixel-pet-card.js",
+          "symbol": "WALK_FRAMES",
+          "index": 3,
+          "headIndex": 0
+        },
+        "durationMs": 150,
+        "anchor": null,
+        "locked": false,
+        "metadata": {
+          "category": "walk",
+          "tags": [
+            "walk",
+            "head-bob",
+            "development"
+          ],
+          "description": "Copy exact x14..23/y0..13 head cells from gait 0 (high) or 1 (low); retain other cells."
+        },
+        "operations": [
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:50:04.657Z"
+          }
+        ]
+      },
+      {
+        "id": "a10a8662-3b6f-4e79-a455-f22a618f6cc2",
+        "name": "Gait 4 · head low",
+        "rows": [
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "........................",
+          "...#....................",
+          "..#.....................",
+          "..##....................",
+          "...#....................",
+          "...##............#.#....",
+          "...##............###....",
+          "....##.#####...######...",
+          "....##################..",
+          ".....#################..",
+          ".....################...",
+          "....###############.....",
+          "....#####.#######.......",
+          "....####.....####.......",
+          "...#####.....####.......",
+          "...##.##.....##.#.......",
+          "...#...#R....#..R.......",
+          "...#R........#R........."
+        ],
+        "origin": "mixed",
+        "review": "candidate",
+        "source": {
+          "file": "pixel-pet-card.js",
+          "symbol": "WALK_FRAMES",
+          "index": 3,
+          "headIndex": 1
+        },
+        "durationMs": 150,
+        "anchor": null,
+        "locked": false,
+        "metadata": {
+          "category": "walk",
+          "tags": [
+            "walk",
+            "head-bob",
+            "development"
+          ],
+          "description": "Copy exact x14..23/y0..13 head cells from gait 0 (high) or 1 (low); retain other cells."
+        },
+        "operations": [
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:50:07.633Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:50:09.017Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:50:09.289Z"
+          },
+          {
+            "actor": "human",
+            "kind": "pixels",
+            "at": "2026-10-14T16:50:09.801Z"
+          }
+        ]
+      }
+    ],
+    "workQueue": {
+      "version": 1,
+      "repository": "Stick-Pet-Card",
+      "selectedId": "horizontal-refine",
+      "tasks": [
+        {
+          "id": "vertical-up",
+          "title": "Straight-up jump",
+          "category": "jump",
+          "priority": "high",
+          "tags": [
+            "vertical",
+            "up",
+            "airborne"
+          ],
+          "instructions": "Create a distinct straight-up airborne pose. Keep the body compact and legs beneath him; avoid the diagonal forward-reaching silhouette. Preserve the intended facing on a vertical jump. Start with one missing airborne frame, using existing takeoff and landing frames as onion references.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "I refined frame 3 and added a frame 4. Frame 4 might be useful for a pre landing during big mostly vertical drops. Like how a cat lands on all four legs if dropped from a height.",
+          "outputs": []
+        },
+        {
+          "id": "vertical-down",
+          "title": "Straight-down drop",
+          "category": "jump",
+          "priority": "high",
+          "tags": [
+            "vertical",
+            "down",
+            "airborne"
+          ],
+          "instructions": "Create a distinct straight-down airborne pose with the feet prepared beneath the body. Preserve facing rather than implying a sideways leap or backwards motion. Start with one missing airborne frame; compare against existing descent preparation and landing crouch.",
+          "status": "in-progress",
+          "frameIds": [
+            "0157f753-87f1-461e-87b8-aa5b61d5ace2"
+          ],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "look-down",
+          "title": "Look down from a perch",
+          "category": "idle",
+          "priority": "high",
+          "tags": [
+            "look-down",
+            "card-edge"
+          ],
+          "instructions": "Lower the head to inspect a card or landing below. Keep the planted paw cells fixed and allow the body/tail to overhang. Use the sitting/perch frames as references.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "horizontal-refine",
+          "title": "Refine horizontal leap",
+          "category": "jump",
+          "priority": "normal",
+          "tags": [
+            "horizontal",
+            "airborne"
+          ],
+          "instructions": "Refine the approved AI horizontal flight pose. Keep a level back, forward head, trailing tail and gathered legs. Human pixel edits to the AI source make a mixed-origin frame; retain its lineage. No planted contact anchor while airborne.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "Odd frames is a full walk cycle with the head up I think, and even frames is a full walk cycle with the head down.  So at high enough speeds, it feels like instead of head up/down on each frame, it might even be head up/down on each complete walk cycle.",
+          "outputs": []
+        },
+        {
+          "id": "walk-head",
+          "title": "Refine independent walk heads",
+          "category": "walk",
+          "priority": "normal",
+          "tags": [
+            "walk",
+            "head-bob"
+          ],
+          "instructions": "Review the high/low head combinations. Improve the head/neck seam if needed while leaving leg frames and every planted paw marker unchanged. Compare original and half-time head bobbing at the same walking speed.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        },
+        {
+          "id": "sitting-glance",
+          "title": "Sitting head glance",
+          "category": "idle",
+          "priority": "later",
+          "tags": [
+            "sit",
+            "look"
+          ],
+          "instructions": "Explore a small head turn toward a nearby object without flipping the whole body. Audit the existing turn/idle catalogue before drawing new pixels; keep bearing paws in their source cells.",
+          "status": "todo",
+          "frameIds": [],
+          "notes": "",
+          "outputs": []
+        }
+      ]
+    },
+    "projectId": "07ec9e82-9e87-464e-8f70-b3c9c74e9390"
+  },
+  "animations": [],
+  "submissions": []
+}

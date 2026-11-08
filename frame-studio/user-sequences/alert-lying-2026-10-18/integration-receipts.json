@@ -1,0 +1,47 @@
+[
+  {
+    "id": "47976032f340383204e9149b370b9f593b01922e5d07b73b07f0f97fab2dfddd",
+    "entityId": "efe3cc7e-5cca-4fde-933d-5d19b0ca52c7",
+    "name": "Lying down alert",
+    "versionHash": "9db4c61ccdf0c215759244608d7fee77a2d7509c4c9f7b46aabc5b5c1d8e4b12",
+    "currentSavedHash": "9db4c61ccdf0c215759244608d7fee77a2d7509c4c9f7b46aabc5b5c1d8e4b12",
+    "currentMatchesIntegrated": true,
+    "receipt": {
+      "versionHash": "9db4c61ccdf0c215759244608d7fee77a2d7509c4c9f7b46aabc5b5c1d8e4b12",
+      "status": "completed",
+      "reference": "snapshot-143c4bb1b2d839bd; frame-studio/user-sequences/alert-lying-2026-10-18/README.md",
+      "notes": "Integrated exact authored base/head/tail snapshots with independent derived masks and preserved human provenance. Quiet observed-neighbour weighting, alert tail activity and physical head withdrawal; flat enter/exit and planted paws retained. 85/85 suites, reproducible builds, live carrying/head withdrawal/departure checks. Four scoped HA modules verified by exact readback; 20 actors and mixed beds checked in real dashboard. Receipt covers this hash only; newer saved work remains separate.",
+      "at": "2026-10-18T16:08:38.424Z"
+    }
+  },
+  {
+    "id": "032f0a453de2bd5ae1298f06bc88344f6f74a0adbbca0db34800422cf62c9406",
+    "entityId": "9ed9a81d-bc0c-461e-91ce-1a8d5b8931c3",
+    "name": "Lying down alert · head matrix",
+    "versionHash": "d240b92c50b0ff086668100da1175c7839b87667b1b0c614016105cad066198f",
+    "currentSavedHash": "d240b92c50b0ff086668100da1175c7839b87667b1b0c614016105cad066198f",
+    "currentMatchesIntegrated": true,
+    "receipt": {
+      "versionHash": "d240b92c50b0ff086668100da1175c7839b87667b1b0c614016105cad066198f",
+      "status": "completed",
+      "reference": "snapshot-143c4bb1b2d839bd; frame-studio/user-sequences/alert-lying-2026-10-18/README.md",
+      "notes": "Integrated exact authored base/head/tail snapshots with independent derived masks and preserved human provenance. Quiet observed-neighbour weighting, alert tail activity and physical head withdrawal; flat enter/exit and planted paws retained. 85/85 suites, reproducible builds, live carrying/head withdrawal/departure checks. Four scoped HA modules verified by exact readback; 20 actors and mixed beds checked in real dashboard. Receipt covers this hash only; newer saved work remains separate.",
+      "at": "2026-10-18T16:08:38.453Z"
+    }
+  },
+  {
+    "id": "036c340ef6822ceaa2d77f47b07df8135ba34f2779fb992df4c2de5e535e9965",
+    "entityId": "37f99f32-08ac-491c-bd95-ca5c6fa64079",
+    "name": "Lying down alert · tail matrix",
+    "versionHash": "9d8387625a90f928902f2d54ecd2e338f2ee6f7b9ea326fdb8445ba6443fc97a",
+    "currentSavedHash": "9d8387625a90f928902f2d54ecd2e338f2ee6f7b9ea326fdb8445ba6443fc97a",
+    "currentMatchesIntegrated": true,
+    "receipt": {
+      "versionHash": "9d8387625a90f928902f2d54ecd2e338f2ee6f7b9ea326fdb8445ba6443fc97a",
+      "status": "completed",
+      "reference": "snapshot-143c4bb1b2d839bd; frame-studio/user-sequences/alert-lying-2026-10-18/README.md",
+      "notes": "Integrated exact authored base/head/tail snapshots with independent derived masks and preserved human provenance. Quiet observed-neighbour weighting, alert tail activity and physical head withdrawal; flat enter/exit and planted paws retained. 85/85 suites, reproducible builds, live carrying/head withdrawal/departure checks. Four scoped HA modules verified by exact readback; 20 actors and mixed beds checked in real dashboard. Receipt covers this hash only; newer saved work remains separate.",
+      "at": "2026-10-18T16:08:38.484Z"
+    }
+  }
+]

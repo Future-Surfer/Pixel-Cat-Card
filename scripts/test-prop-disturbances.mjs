@@ -1,0 +1,30 @@
+import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';
+const box={window:{},HTMLElement:class{},customElements:{get:()=>true},performance:{now:()=>0},requestAnimationFrame(){}};
+vm.runInNewContext(['pixel-cat-roaming-art.js','pixel-cat-roaming-extras.js','pixel-cat-affordances.js','pixel-cat-behaviours.js','pixel-cat-roaming.js'].map(p=>fs.readFileSync(p,'utf8')).join('\n')+'\nglobalThis.api={Home:PixelCatHome,Scene:DashboardPropScene,CatMood,propBrushesCat,owners:CAT_OWNERS};',box);
+const {Home,Scene,CatMood,propBrushesCat,owners}=box.api;
+for(const scale of [1,2,3])for(const facing of [-1,1]){
+ const surface={id:'floor',el:{},left:0,right:300*scale,min:0,max:276*scale,top:200*scale},rows=Array.from({length:24},(_,y)=>'.'.repeat(8)+(y>=12?'########': '........')+'.'.repeat(8)),attrs={};
+ const cat=Object.assign(Object.create(Home.prototype),{ownerKey:'resting',root:{},active:true,config:{prop_reactions:true,startle_followups:true},scale,facing,x:80*scale,y:surface.top,support:surface,surfaces:[surface],route:[],walkSteps:0,worldRect:{top:0},idle:{rows,pose:'loaf',placement:{x:80*scale,top:176*scale},contactX:97*scale},setAttribute(k,v){attrs[k]=v;},status(){},cancelPlay(){this.startleAfter=null;},mood:new CatMood('resting')});
+ const p={id:'mouse',scale,asset:{id:'toy_mouse',width:1,height:1,pixels:[['red']],facing:-1},direction:-1,node:{dataset:{}}},scene=Object.assign(Object.create(Scene.prototype),{serial:0}),point=x=>({x:x*scale,y:200*scale});
+ assert.equal(propBrushesCat(p,point(40),point(60),cat),false);
+ assert.equal(propBrushesCat(p,point(86),point(98),cat),true,'Swept opaque body contact');
+ assert.equal(propBrushesCat(p,point(80),point(81),cat),false,'Transparent canvas is not body');
+ const walkingCues=[],walker={...cat,idle:null,motion:{kind:'walk'},drawnRows:rows,drawnFacing:facing,svg:{style:{transform:`translate(${80*scale}px,${176*scale}px)`}},receiveDisturbance:e=>walkingCues.push(e)},walkingMouse={...p,id:'walking-mouse'};assert.equal(propBrushesCat(walkingMouse,point(86),point(98),walker),true,'Walking uses actual painted rows/transform, not an absent idle');scene.contact(walkingMouse,surface,point(85),point(85),1,[walker]);scene.contact(walkingMouse,surface,point(85),point(98),2,[walker]);assert.equal(walkingCues.length,1,'Moving props can physically brush walking cats');
+ const cues=[],receive=cat.receiveDisturbance;cat.receiveDisturbance=e=>cues.push(e);
+ scene.contact(p,surface,point(86),point(90),0,[cat]);assert.equal(cues.length,0,'Spawn/layout initialization is silent');
+ scene.contact(p,surface,point(85),point(85),10,[cat]);
+ scene.contact(p,surface,point(85),point(90),20,[cat]);assert.equal(cues.length,1);
+ scene.contact(p,surface,point(90),point(92),30,[cat]);assert.equal(cues.length,1,'Sustained overlap is one event');
+ scene.contact(p,surface,point(92),point(85),40,[cat]);scene.contact(p,surface,point(85),point(90),50,[cat]);assert.equal(cues.length,2,'Re-entry has a fresh identity');assert.notEqual(cues[0].id,cues[1].id);
+ surface.left+=scale;scene.contact(p,surface,point(85),point(90),60,[cat]);assert.equal(cues.length,2,'Reflow cannot fabricate contact');
+ scene.contact(p,surface,point(85),point(85),70,[cat]);p.claimedBy=cat.ownerKey;scene.contact(p,surface,point(85),point(90),80,[cat]);assert.equal(cues.length,2,'An active attacker does not startle itself');
+ cat.receiveDisturbance=receive;const cue={id:'physical',kind:'Moving prop brush',x:50*scale,y:surface.top};cat.mood.landingChoice=()=> 'hop';cat.mood.startleFollowup=()=> 'retreat';
+ assert.equal(cat.receiveDisturbance(cue,1000),true,'No gaze required for physical contact');assert.equal(attrs['data-prop-response'],'hop');assert.equal(cat.motion.followup.kind,'retreat');assert.equal(cat.receiveDisturbance(cue,1100),false,'Shared dedup/cooldown');
+ const follow=cat.motion.followup;cat.x=cat.motion.x;cat.motion=null;cat.startleAfter=follow;cat.runStartleFollowup(2000);assert.equal(attrs['data-startle-followup'],'retreat');assert.equal(cat.motion.kind,'walk');assert.ok(cat.motion.x>cat.motion.fromX);
+ cat.motion=null;cat.startleAfter={...follow,kind:'counter'};cat.runStartleFollowup(3000);assert.equal(attrs['data-startle-followup'],'counter');assert.equal(cat.motion.kind,'jump');assert.ok(cat.motion.x<cat.motion.fromX);assert.equal(cat.motion.y,cat.motion.fromY,'Counter hop does not generate high-landing chains');
+ cat.motion=null;cat.startleAfter=follow;cat.command='home';cat.runStartleFollowup(4000);assert.equal(cat.motion,null,'Home wins over pending follow-up');cat.command=null;
+ const other={active:true,scale,x:cat.x+25*scale,support:surface};owners.set(other,{root:cat.root});cat.startleAfter=follow;cat.runStartleFollowup(5000);assert.equal(cat.motion,null,'Occupied retreat corridor falls back to settle');owners.clear();
+ cat.config.prop_reactions=false;assert.equal(cat.receiveDisturbance({...cue,id:'off'},8000),false);
+}
+const counts={settle:0,retreat:0,counter:0};for(let i=0;i<1000;i++)counts[new CatMood('sample-'+i).startleFollowup()]++;assert.ok(Object.values(counts).every(n=>n>50));
+console.log('PASS: swept opaque prop contact at three scales/both facings, spawn/reflow silence, overlap dedup, independent physical cues, own-claim exclusion, opt-in guards, mood variety, retreat/counter motion, no landing chain, Home and crowd safety.');

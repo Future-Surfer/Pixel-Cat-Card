@@ -1,0 +1,5 @@
+import fs from 'node:fs';import crypto from 'node:crypto';import assert from 'node:assert/strict';import {spawnSync} from 'node:child_process';import {runtimeFiles} from './build-release.mjs';
+const files=[...runtimeFiles,'dist/pixel-cat-card.js','dist/pixel-cat-card.manifest.json','dist/SHA256SUMS','frame-studio/dist/library.json','frame-studio/dist/asset-review.json','frame-studio/SEQUENCE_AUDIT.md','frame-studio/LATEST_ASSET_REVIEW.md','frame-studio/dist/server/index.js'];
+const digest=()=>Object.fromEntries(files.map(f=>[f,crypto.createHash('sha256').update(fs.readFileSync(f,'utf8').replace(/\r\n/g,'\n')).digest('hex')]));
+function build(){const r=spawnSync(process.execPath,['scripts/build-all.mjs'],{stdio:'inherit'});if(r.error)throw r.error;if(r.status!==0)process.exit(r.status??1);}
+build();const before=digest();build();assert.deepEqual(digest(),before,'Repeated builds must preserve catalogue IDs, exact sources, outputs and embedded assets');console.log('PASS: two full builds reproduce all runtime, catalogue, audit and embedded Studio outputs.');

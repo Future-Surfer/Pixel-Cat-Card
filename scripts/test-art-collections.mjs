@@ -1,0 +1,13 @@
+import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';
+const box={window:{},HTMLElement:class{},customElements:{get:()=>true}};
+vm.runInNewContext(fs.readFileSync('prototype/roaming-controller.js','utf8')+'\nglobalThis.art=CAT_ART;',box);
+const art=box.art,empty=art.idleSequences;assert.equal(art.idleSequences,empty);
+box.window.pixelCatRoamingArtV2={idleSequences:{sit:{id:'base'}}};const base=art.idleSequences;assert.equal(base,empty);assert.equal(art.idleSequences,base);
+box.window.pixelCatRoamingExtrasV1={idleSequences:{sit:{id:'extra'}},dashboardProps:[{id:'mouse'}]};assert.equal(art.idleSequences.sit.id,'extra');
+box.window.pixelCatRoamingExtensionsV1={idleSequences:{sit:{id:'extension'}},dashboardProps:[{id:'post'}]};assert.equal(art.idleSequences.sit.id,'extension');
+assert.ok('sit' in art.idleSequences);assert.ok(!('absent' in art.idleSequences));assert.deepEqual(Object.keys(art.idleSequences),['sit']);assert.equal(Object.values(art.idleSequences)[0].id,'extension');const stable=art.idleSequences;assert.equal(art.idleSequences,stable);box.window.pixelCatRoamingExtensionsV1.idleSequences.sleep={id:'sleep'};assert.equal(art.idleSequences.sleep.id,'sleep');
+delete box.window.pixelCatRoamingExtensionsV1.idleSequences.sit;assert.equal(art.idleSequences.sit.id,'extra');
+box.window.pixelCatRoamingExtrasV1.idleSequences={loaf:{id:'replacement'}};assert.equal(art.idleSequences.sit.id,'base');
+const props=art.dashboardProps;assert.equal(art.dashboardProps,props);box.window.pixelCatRoamingExtrasV1.dashboardProps.push({id:'ball'});assert.equal(art.dashboardProps.length,3);
+box.window.pixelCatRoamingExtensionsV1.dashboardProps[0]={id:'new-post'};assert.equal(art.dashboardProps[2].id,'new-post');box.window.pixelCatRoamingExtensionsV1=undefined;assert.equal(art.dashboardProps.length,2);
+console.log('PASS: merged art container reuse, load precedence, late/replaced/removed modules and in-place collection edits.');

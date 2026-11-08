@@ -1,0 +1,12 @@
+import {latestProjects} from './latest-studio-assets.mjs';
+import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';
+import {savedProject,savedRefinements,groundVariantId} from './saved-user-refinements.mjs';
+const box={window:{},HTMLElement:class{},customElements:{get:()=>true}};
+vm.runInNewContext(fs.readFileSync('pixel-cat-roaming-art.js','utf8')+'\n'+['prototype/cat-polish.js','prototype/cat-surface-world.js','prototype/cat-card-attention.js','pixel-cat-roaming.js'].map(f=>fs.readFileSync(f,'utf8')).join('\n')+'\nglobalThis.api={idleSample,frameContact};',box);
+const art=box.window.pixelCatRoamingArtV2,{idleSample,frameContact}=box.api,equal=(a,b)=>assert.equal(JSON.stringify(a),JSON.stringify(b));
+equal(art.acrossFlight.frames,latestProjects.get('sequence-across').project.frames.filter(f=>f.role==='cycle').map(f=>f.rows));equal(art.walkHigh,savedProject('sequence-walk-high').frames.map(f=>f.rows));equal(art.walkLow,savedProject('sequence-walk-low').frames.map(f=>f.rows));
+for(const [pose,id,count] of [['sit',groundVariantId,11],['look','sequence-look-up',10],['glance','pose-sitting-glance',2],['lookdown','pose-look-down',11]]){assert.equal(art.idleSequences[pose].frames.length,count);equal(art.idleSequences[pose].frames,(latestProjects.get(id)?.project||savedProject(id)).frames.map(f=>f.rows));}
+for(const scale of [1,2,3])for(const facing of [-1,1])for(const elapsed of [0,250,500,750,2000]){const sample=idleSample(art,'lookdown',elapsed),anchor=frameContact(sample.rows,facing,sample.anchor);assert.equal(sample.anchor[1],17);assert.equal(sample.rows[sample.anchor[1]][sample.anchor[0]],'R');const x=200-anchor[0]*scale,top=300-(anchor[1]+1)*scale;assert.equal(x+anchor[0]*scale,200);assert.equal(top+(anchor[1]+1)*scale,300);}
+for(const id of ['pose-vertical-up','pose-vertical-down']){assert.equal(savedRefinements.get(id).status,'wip');assert.ok(!art.integratedSnapshots.some(s=>s.sequenceId===id));}
+const lib=JSON.parse(fs.readFileSync('frame-studio/dist/library.json'));for(const [id,saved] of savedRefinements){const g=lib.groups.find(g=>g.projectId===id);assert.ok(g);const latest=latestProjects.get(id)?.project||saved.project;equal(g.savedProject.frames,latest.frames);}
+console.log('PASS: all exact saved snapshots preserved, latest refinements integrated, 11/10-frame idle playback, fixed rear support, and vertical WIP excluded from runtime.');

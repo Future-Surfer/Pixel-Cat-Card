@@ -1,0 +1,4 @@
+import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';
+const b={window:{},HTMLElement:class{},customElements:{get:()=>true},performance:{now:()=>0}};vm.runInNewContext(fs.readFileSync('pixel-cat-roaming.js','utf8')+'\nglobalThis.api={Mood:CatMood,Home:PixelCatHome,art:CAT_ART};',b);assert.equal(b.api.Mood.keys.length,3);assert.equal(b.api.art.walk,undefined);
+for(const f of ['pixel-cat-roaming-art.js','pixel-cat-roaming-extras.js','pixel-cat-affordances.js','pixel-cat-behaviours.js'])vm.runInNewContext(fs.readFileSync(f,'utf8'),b);const a=Object.assign(Object.create(b.api.Home.prototype),{ownerKey:'late',config:{}}),m=a.ensureMood();assert.ok(Number.isFinite(m.random()));assert.equal(a.ensureMood(),m);assert.ok(b.api.art.walk.length);assert.equal(typeof m.step,'function');
+console.log('PASS: controller-first concurrent module loading retains setup keys and resolves the real mood class/artwork when dependencies arrive.');

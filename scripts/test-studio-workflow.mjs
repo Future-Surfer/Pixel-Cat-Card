@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {blankRows,newFrame,applyPixels,validateProject} from '../frame-studio/dist/model.js';
+import {setMetadata,createGroup,submitGroup,reviewSubmission,submissionCurrent,proposeBatch,handoff} from '../frame-studio/dist/workflow.js';
+const p={schemaVersion:1,width:24,height:24,name:'Workflow QA',frames:[newFrame('Human keyframe')]};
+applyPixels(p,p.frames[0].id,[{x:1,y:1,token:'#'}]);p.frames[0].locked=true;
+setMetadata(p,[p.frames[0].id],{category:'jump',tags:['Horizontal','horizontal'],description:'Ground contact'},'ai');
+assert.equal(p.frames[0].origin,'human','Metadata changes must not relabel pixels');assert.deepEqual(p.frames[0].metadata.tags,['horizontal']);
+const before=JSON.stringify(p);assert.throws(()=>proposeBatch(p,{name:'Bad batch',frames:[{rows:blankRows()},{rows:['bad']}]}));assert.equal(JSON.stringify(p),before,'Invalid animation must be atomic');
+const g=proposeBatch(p,{name:'Horizontal flight',category:'jump',tags:['airborne'],description:'Level body between takeoff and landing.',frames:[{name:'Float A',rows:blankRows(),durationMs:100},{name:'Float B',rows:blankRows(),durationMs:200}]});
+assert.equal(g.actor,'ai');assert.equal(g.frameIds.length,2);assert.ok(p.frames.slice(1).every(f=>f.origin==='ai'&&f.review==='candidate'));
+assert.throws(()=>submitGroup(p,g.id,'','ai'));const s=submitGroup(p,g.id,'Review flight body');assert.equal(submissionCurrent(p,s),true);
+assert.throws(()=>reviewSubmission(p,s.id,'confirmed','','ai'));reviewSubmission(p,s.id,'confirmed','Looks good');assert.equal(p.frames[1].origin,'ai');
+applyPixels(p,p.frames[1].id,[{x:4,y:4,token:'#'}],'human');assert.equal(p.frames[1].origin,'human');assert.equal(submissionCurrent(p,s),false);assert.throws(()=>reviewSubmission(p,s.id,'confirmed',''));
+assert.equal(s.snapshot.frames[0].rows[4][4],'.','Submission pixels are immutable snapshots');assert.equal(handoff(p,g.id).submissions[0].current,false);
+const g2=createGroup(p,{name:'Human pose',frameIds:[p.frames[0].id],category:'idle'});const s2=submitGroup(p,g2.id);g2.description='Changed context';assert.equal(submissionCurrent(p,s2),false);
+validateProject(p);assert.throws(()=>setMetadata(p,[p.frames[0].id],{tags:['x'.repeat(41)]}));assert.throws(()=>validateProject({...p,groups:[{...g,category:'invalid'}]}));
+console.log('PASS: metadata, atomic animation proposals, human review, immutable snapshots and stale confirmation protection.');

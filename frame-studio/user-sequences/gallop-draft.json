@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 1,
+  "width": 24,
+  "height": 24,
+  "projectId": "proposal-gallop-24",
+  "name": "Gallop · compact sprint draft",
+  "category": "walk",
+  "wip": true,
+  "description": "Mixed-origin eight-frame gallop proposal based on the human faster walk head/tail. New gathered/extended body and legs fit 24×24 with no clipped pixels. Review silhouette, footfall order and loop before runtime integration. Contact labels are proposals, not verified anchors.",
+  "variantOf": {
+    "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+    "name": "Walking · faster - synced feet"
+  },
+  "gait": {
+    "status": "proposal",
+    "runtimeEnabled": false,
+    "gridFit": "24x24-no-clipping",
+    "sourceProjectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc"
+  },
+  "frames": [
+    {
+      "id": "gallop-draft-1",
+      "name": "Fore catch",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...#....................",
+        "..#.....................",
+        "..#.....................",
+        "..#.....................",
+        "..##.............#.#....",
+        "...##............###....",
+        "...##...........#####...",
+        "....##....#####.######..",
+        "....##################..",
+        "....#################...",
+        ".....###############....",
+        ".....###############....",
+        ".......############.....",
+        ".........######...##....",
+        "............#R#R..###...",
+        "..................R.#...",
+        "....................R..."
+      ],
+      "durationMs": 80,
+      "anchor": null,
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+        "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "gallop-body-and-limbs",
+          "at": "2026-10-15T00:00:00.000Z",
+          "preserved": "Human head and tail motifs",
+          "reference": "CAT_GAITS.md"
+        }
+      ],
+      "role": "cycle",
+      "metadata": {
+        "category": "walk",
+        "tags": [
+          "gallop",
+          "draft",
+          "support"
+        ],
+        "description": "Mixed-origin draft. Proposed support: near-front. Contact timing needs human review; not runtime enabled."
+      },
+      "gaitContacts": [
+        "near-front"
+      ]
+    },
+    {
+      "id": "gallop-draft-2",
+      "name": "Fore support · gather",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...#....................",
+        "..#.....................",
+        "..#.....................",
+        "..#.....................",
+        "..##.............#.#....",
+        "...##............###....",
+        "...##.....#####.#####...",
+        "....##..##############..",
+        "....##################..",
+        "....#################...",
+        ".....##############.....",
+        "......#############.....",
+        ".......###########......",
+        "........###########.....",
+        "........#######..##.....",
+        ".........###..#R.###....",
+        "............#R...R.#....",
+        "...................R...."
+      ],
+      "durationMs": 80,
+      "anchor": null,
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+        "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "gallop-body-and-limbs",
+          "at": "2026-10-15T00:00:00.000Z",
+          "preserved": "Human head and tail motifs",
+          "reference": "CAT_GAITS.md"
+        }
+      ],
+      "role": "cycle",
+      "metadata": {
+        "category": "walk",
+        "tags": [
+          "gallop",
+          "draft",
+          "support"
+        ],
+        "description": "Mixed-origin draft. Proposed support: near-front. Contact timing needs human review; not runtime enabled."
+      },
+      "gaitContacts": [
+        "near-front"
+      ]
+    },
+    {
+      "id": "gallop-draft-3",
+      "name": "Hind load under body",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...#....................",
+        "..#.....................",
+        "..#.....................",
+        "..#.....................",
+        "..##.............#.#....",
+        "...##............###....",
+        "...##.....#####.#####...",
+        "....##..##############..",
+        "....##################..",
+        "....#################...",
+        ".....##############.....",
+        "......#############.....",
+        ".......###########......",
+        "........###########.....",
+        ".........######..###....",
+        "..........###..R#.#.....",
+        "............#....R......",
+        "............R#..........",
+        "..............R........."
+      ],
+      "durationMs": 80,
+      "anchor": null,
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+        "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "gallop-body-and-limbs",
+          "at": "2026-10-15T00:00:00.000Z",
+          "preserved": "Human head and tail motifs",
+          "reference": "CAT_GAITS.md"
+        }
+      ],
+      "role": "cycle",
+      "metadata": {
+        "category": "walk",
+        "tags": [
+          "gallop",
+          "draft",
+          "support"
+        ],
+        "description": "Mixed-origin draft. Proposed support: near-hind. Contact timing needs human review; not runtime enabled."
+      },
+      "gaitContacts": [
+        "near-hind"
+      ]
+    },
+    {
+      "id": "gallop-draft-4",
+      "name": "Hind push · extend",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...#....................",
+        "..#.....................",
+        "..#.....................",
+        "..#.....................",
+        "..##.............#.#....",
+        "...##............###....",
+        "...##...........#####...",
+        "....##....#####.######..",
+        "....##################..",
+        "....#################...",
+        ".....###############....",
+        ".....###############....",
+        ".......###########......",
+        ".......##.#####..###R...",
+        ".......##.#.........#R..",
+        "........#..#............",
+        ".........#.R............",
+        ".........R.............."
+      ],
+      "durationMs": 70,
+      "anchor": null,
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+        "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "gallop-body-and-limbs",
+          "at": "2026-10-15T00:00:00.000Z",
+          "preserved": "Human head and tail motifs",
+          "reference": "CAT_GAITS.md"
+        }
+      ],
+      "role": "cycle",
+      "metadata": {
+        "category": "walk",
+        "tags": [
+          "gallop",
+          "draft",
+          "support"
+        ],
+        "description": "Mixed-origin draft. Proposed support: near-hind. Contact timing needs human review; not runtime enabled."
+      },
+      "gaitContacts": [
+        "near-hind"
+      ]
+    },
+    {
+      "id": "gallop-draft-5",
+      "name": "Release · flight",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...#....................",
+        "..#.....................",
+        "..#.....................",
+        "..#..............#.#....",
+        "..##.............###....",
+        "...##...........#####...",
+        "...##.....#####.######..",
+        "....##.###############..",
+        "....#################...",
+        "....################....",
+        ".....###############....",
+        "......#############.....",
+        ".....##..######..####...",
+        "....##..#.........#..#R.",
+        "....#.R#...........#R...",
+        "...R....................",
+        "........................",
+        "........................",
+        "........................"
+      ],
+      "durationMs": 80,
+      "anchor": null,
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+        "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "gallop-body-and-limbs",
+          "at": "2026-10-15T00:00:00.000Z",
+          "preserved": "Human head and tail motifs",
+          "reference": "CAT_GAITS.md"
+        }
+      ],
+      "role": "cycle",
+      "metadata": {
+        "category": "walk",
+        "tags": [
+          "gallop",
+          "draft",
+          "airborne"
+        ],
+        "description": "Mixed-origin draft. Proposed support: none. Contact timing needs human review; not runtime enabled."
+      },
+      "gaitContacts": []
+    },
+    {
+      "id": "gallop-draft-6",
+      "name": "Extended flight · reach",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...#....................",
+        "..#.....................",
+        "..#.....................",
+        "..#..............#.#....",
+        "..##.............###....",
+        "...##...........#####...",
+        "...##.....#####.######..",
+        "....##.###############..",
+        "....#################...",
+        "....################....",
+        ".....###############....",
+        "......############......",
+        ".....##..######..###....",
+        "....##..#..........###..",
+        "....R...#...........#.#.",
+        ".......R.............R#.",
+        ".......................R",
+        "........................",
+        "........................"
+      ],
+      "durationMs": 90,
+      "anchor": null,
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+        "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "gallop-body-and-limbs",
+          "at": "2026-10-15T00:00:00.000Z",
+          "preserved": "Human head and tail motifs",
+          "reference": "CAT_GAITS.md"
+        }
+      ],
+      "role": "cycle",
+      "metadata": {
+        "category": "walk",
+        "tags": [
+          "gallop",
+          "draft",
+          "airborne"
+        ],
+        "description": "Mixed-origin draft. Proposed support: none. Contact timing needs human review; not runtime enabled."
+      },
+      "gaitContacts": []
+    },
+    {
+      "id": "gallop-draft-7",
+      "name": "Fore reach toward ground",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...#....................",
+        "..#.....................",
+        "..#.....................",
+        "..#..............#.#....",
+        "..##.............###....",
+        "...##...........#####...",
+        "...##.....#####.######..",
+        "....##.###############..",
+        "....#################...",
+        "....################....",
+        ".....###############....",
+        "......############......",
+        "......##..#####..##.....",
+        "......##...#R.....###...",
+        "........#R.........###..",
+        "....................##..",
+        "....................R.#.",
+        "......................R."
+      ],
+      "durationMs": 80,
+      "anchor": null,
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+        "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "gallop-body-and-limbs",
+          "at": "2026-10-15T00:00:00.000Z",
+          "preserved": "Human head and tail motifs",
+          "reference": "CAT_GAITS.md"
+        }
+      ],
+      "role": "cycle",
+      "metadata": {
+        "category": "walk",
+        "tags": [
+          "gallop",
+          "draft",
+          "support"
+        ],
+        "description": "Mixed-origin draft. Proposed support: near-front. Contact timing needs human review; not runtime enabled."
+      },
+      "gaitContacts": [
+        "near-front"
+      ]
+    },
+    {
+      "id": "gallop-draft-8",
+      "name": "Fore support · recover",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...#....................",
+        "..#.....................",
+        "..#.....................",
+        "..#.....................",
+        "..##.............#.#....",
+        "...##............###....",
+        "...##...........#####...",
+        "....##....#####.######..",
+        "....##################..",
+        "....#################...",
+        ".....###############....",
+        ".....###############....",
+        ".......############.....",
+        "........######R...###...",
+        "...........#R......###..",
+        "...................#.#..",
+        "...................R.R.."
+      ],
+      "durationMs": 80,
+      "anchor": null,
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+        "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "gallop-body-and-limbs",
+          "at": "2026-10-15T00:00:00.000Z",
+          "preserved": "Human head and tail motifs",
+          "reference": "CAT_GAITS.md"
+        }
+      ],
+      "role": "cycle",
+      "metadata": {
+        "category": "walk",
+        "tags": [
+          "gallop",
+          "draft",
+          "support"
+        ],
+        "description": "Mixed-origin draft. Proposed support: near-front, far-front. Contact timing needs human review; not runtime enabled."
+      },
+      "gaitContacts": [
+        "near-front",
+        "far-front"
+      ]
+    }
+  ]
+}

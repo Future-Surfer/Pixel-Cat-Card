@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {newFrame,blankRows,validateProject,applyPixels,duplicateFrame,insertCandidate,transform,lineCells,fillCells} from '../frame-studio/dist/model.js';
+const p={schemaVersion:1,width:24,height:24,name:'QA',frames:[newFrame()]},f=p.frames[0];validateProject(p);
+applyPixels(p,f.id,[{x:4,y:8,token:'#'}],'human');assert.equal(f.origin,'human');
+const before=JSON.stringify(p);assert.throws(()=>applyPixels(p,f.id,[{x:5,y:8,token:'#'},{x:24,y:8,token:'#'}],'ai'));assert.equal(JSON.stringify(p),before,'Invalid batch must apply nothing');
+f.locked=true;assert.throws(()=>applyPixels(p,f.id,[{x:4,y:8,token:'.'}],'ai'));f.locked=false;
+applyPixels(p,f.id,[{x:5,y:8,token:'#'}],'ai');assert.equal(f.origin,'mixed');f.review='accepted';assert.equal(f.origin,'mixed');
+const copy=duplicateFrame(p,f.id);assert.notEqual(copy.id,f.id);assert.equal(copy.origin,'mixed');assert.equal(copy.locked,false);
+const ai=insertCandidate(p,{rows:blankRows().map((r,y)=>y===12?r.slice(0,12)+'#'+r.slice(13):r),name:'Candidate',afterId:f.id});assert.equal(ai.origin,'ai');assert.equal(ai.review,'candidate');
+applyPixels(p,ai.id,[{x:13,y:12,token:'#'}],'human');assert.equal(ai.origin,'mixed');
+f.anchor={x:4,y:8};transform(p,f.id,'flip-x');assert.equal(f.anchor.x,19);assert.equal(f.rows[8][19],'#');
+assert.equal(lineCells({x:0,y:0},{x:23,y:23}).length,24);assert.equal(fillCells(blankRows(),{x:0,y:0},'#').length,576);
+assert.throws(()=>validateProject({...p,width:32}));assert.throws(()=>insertCandidate(p,{rows:['bad']}));
+console.log('PASS: fixed grid, atomic pixel batches, protected keyframes, provenance, candidates, transforms and drawing geometry.');

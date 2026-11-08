@@ -1,0 +1,4738 @@
+[
+  {
+    "projectId": "8cf69cf1-de43-48a8-bc9e-c212c3cf8b33",
+    "savedAt": "2026-10-17T12:02:30.100Z",
+    "project": {
+      "schemaVersion": 1,
+      "width": 24,
+      "height": 24,
+      "projectId": "8cf69cf1-de43-48a8-bc9e-c212c3cf8b33",
+      "name": "Walking · faster - DELETE THIS VERSION",
+      "category": "walk",
+      "description": "Please edit this sequence so that the front half of the cat is 4 frames ahead/behind of the back section. So that instead of the legs being in sync, they should look like they run out of sync",
+      "oneShot": false,
+      "variantOf": {
+        "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+        "name": "Walking · faster - synced feet"
+      },
+      "frames": [
+        {
+          "id": "b53f92d2-ca30-4ae0-802b-8d32c012b931",
+          "name": "Original walk 1",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..#.....................",
+            "..##.............#.#....",
+            "...##............###....",
+            "...##...........#####...",
+            "....##.#####...#######..",
+            "....##################..",
+            ".....################...",
+            ".....##############.....",
+            "....##############......",
+            "...##############.......",
+            "...######...#####.......",
+            "..###.##.....####.......",
+            "..R...##....R...#.......",
+            ".......##.......##......",
+            "........R........#R....."
+          ],
+          "durationMs": 150,
+          "anchor": null,
+          "origin": "human",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "file": "pixel-pet-card.js",
+            "symbol": "WALK_FRAMES",
+            "index": 0
+          },
+          "operations": [
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:04:47.757Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:05:57.965Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:05:58.367Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:00.942Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:01.205Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:08.341Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:09.101Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:10.509Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:28.517Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:30.517Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:34.613Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:06.525Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:14.861Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:27.325Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:21.885Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:22.189Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:22.781Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:24.469Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:24.789Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:26.430Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:27.837Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:11:36.269Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:11:37.997Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:11:52.741Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:11:53.373Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:13:07.253Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:13:17.301Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:13:19.989Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:13:23.381Z"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:17:27.765Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "walk"
+            ],
+            "description": "Original four-frame gait and head bob, untouched. Paw markers and movement share the same cell clock."
+          },
+          "parentId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+        },
+        {
+          "id": "f8dd1f78-07af-4fb2-a5d2-4243ea76e39f",
+          "name": "Original walk 1 copy",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..#.....................",
+            "..##.............#.#....",
+            "...##............###....",
+            "...##...........#####...",
+            "....##.#####...#######..",
+            "....##################..",
+            ".....################...",
+            ".....##############.....",
+            "....##############......",
+            "...##############.......",
+            "...######...#####.......",
+            "..######.....R###.......",
+            "..#R.##.........#.......",
+            ".....##.........#.......",
+            ".......R.........R......"
+          ],
+          "durationMs": 150,
+          "anchor": null,
+          "origin": "human",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "file": "pixel-pet-card.js",
+            "symbol": "WALK_FRAMES",
+            "index": 0
+          },
+          "operations": [
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:04:47.757Z"
+            },
+            {
+              "actor": "human",
+              "kind": "duplicate",
+              "at": "2026-10-14T21:05:37.149Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:37.741Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:38.701Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:07:24.686Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:08.190Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:13.358Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:32.253Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:11:59.917Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:13:26.350Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:13:42.533Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:13:42.789Z"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:17:27.765Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "walk"
+            ],
+            "description": "Original four-frame gait and head bob, untouched. Paw markers and movement share the same cell clock."
+          },
+          "parentId": "4d87bff8-f489-44d7-ab46-af36c927bde6"
+        },
+        {
+          "id": "cb48a108-03a5-4d4c-9d01-10c345d9fb40",
+          "name": "Original walk 2",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..##....................",
+            "..##.............#.#....",
+            "...##............###....",
+            "...##...###....######...",
+            "....##################..",
+            "....##################..",
+            ".....################...",
+            "....##############......",
+            "...###############......",
+            "...#####.....####.......",
+            "...####......#R##.......",
+            "....R#.........#........",
+            "....##.........#........",
+            ".....#R........#R......."
+          ],
+          "durationMs": 150,
+          "anchor": null,
+          "origin": "human",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "file": "pixel-pet-card.js",
+            "symbol": "WALK_FRAMES",
+            "index": 1
+          },
+          "operations": [
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:04:47.757Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:09.885Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:11.981Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:35.845Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:39.557Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:05.661Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:13:51.813Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:13:54.389Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:13:56.229Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:13:59.709Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:14:02.061Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:14:05.192Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:14:06.805Z"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:17:27.765Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "walk"
+            ],
+            "description": "Original four-frame gait and head bob, untouched. Paw markers and movement share the same cell clock."
+          },
+          "parentId": "c5016a9a-050f-4a51-8805-24f2c6d68a2e"
+        },
+        {
+          "id": "86d56713-49b0-45b4-b338-1bbc9bd01de7",
+          "name": "Original walk 2 copy",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..##....................",
+            "..##.............#.#....",
+            "...##............###....",
+            "...##...###....######...",
+            "....##################..",
+            "....##################..",
+            ".....################...",
+            "....##############......",
+            "....##############......",
+            "...#####.....####.......",
+            "...##R#.......#R#.......",
+            "...###.........#........",
+            "....##.........#........",
+            ".....R.........R........"
+          ],
+          "durationMs": 150,
+          "anchor": null,
+          "origin": "human",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "file": "pixel-pet-card.js",
+            "symbol": "WALK_FRAMES",
+            "index": 1
+          },
+          "operations": [
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:04:47.757Z"
+            },
+            {
+              "actor": "human",
+              "kind": "duplicate",
+              "at": "2026-10-14T21:05:39.493Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:50.951Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:51.309Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:46.885Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:48.357Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:11.917Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:12.197Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:12.630Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:13.085Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:13.365Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:13.741Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:14:14.533Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:14:43.349Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:14:46.181Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:14:47.117Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:14:47.325Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:07.581Z"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:17:27.765Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "walk"
+            ],
+            "description": "Original four-frame gait and head bob, untouched. Paw markers and movement share the same cell clock."
+          },
+          "parentId": "5d086239-b7d5-4e0a-8f22-1639be262969"
+        },
+        {
+          "id": "6a34b7ea-998a-49e0-a20c-e0421eed5547",
+          "name": "Original walk 3",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "....#...................",
+            "...#....................",
+            "...#....................",
+            "...#....................",
+            "...##............#.#....",
+            "....#............###....",
+            "....##..###....######...",
+            "....##################..",
+            ".....#################..",
+            ".....################...",
+            ".....#############......",
+            "....#############.......",
+            "....#####.....###.......",
+            "....##R#......##R.......",
+            "....###.......##........",
+            "....##........#.........",
+            "....R.........R........."
+          ],
+          "durationMs": 150,
+          "anchor": null,
+          "origin": "human",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "file": "pixel-pet-card.js",
+            "symbol": "WALK_FRAMES",
+            "index": 2
+          },
+          "operations": [
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:04:47.757Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:53.285Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:53.477Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:06:53.725Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:52.229Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:53.349Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:53.685Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:35.501Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:36.293Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:37.021Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:37.725Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:38.781Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:15.622Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:16.318Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:16.541Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:14:20.661Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:14:50.021Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:15.461Z"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:17:27.765Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "walk"
+            ],
+            "description": "Original four-frame gait and head bob, untouched. Paw markers and movement share the same cell clock."
+          },
+          "parentId": "8914e7d1-d2ee-4438-b625-4735295542c8"
+        },
+        {
+          "id": "435695d7-f9db-4213-8995-68fec88ec31f",
+          "name": "Original walk 3 copy",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "....#...................",
+            "...#....................",
+            "...#....................",
+            "...#....................",
+            "...##............#.#....",
+            "....#............###....",
+            "....##..###....######...",
+            "....##################..",
+            ".....#################..",
+            ".....################...",
+            ".....#############......",
+            "....#############.......",
+            "....######...#####......",
+            "....###R.....###.R......",
+            "....##.......##.........",
+            "...##........#..........",
+            "...R.........R.........."
+          ],
+          "durationMs": 150,
+          "anchor": null,
+          "origin": "human",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "file": "pixel-pet-card.js",
+            "symbol": "WALK_FRAMES",
+            "index": 2
+          },
+          "operations": [
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:04:47.757Z"
+            },
+            {
+              "actor": "human",
+              "kind": "duplicate",
+              "at": "2026-10-14T21:05:45.749Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:07:04.485Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:07:04.885Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:07:06.941Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:56.709Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:08:57.958Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:09:38.277Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:09:38.517Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:43.269Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:44.781Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:45.157Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:19.645Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:19.957Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:22.149Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:22.317Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:23.973Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:14:26.885Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:21.269Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:21.757Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:24.533Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:26.094Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:27.461Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:28.191Z"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:17:27.765Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "walk"
+            ],
+            "description": "Original four-frame gait and head bob, untouched. Paw markers and movement share the same cell clock."
+          },
+          "parentId": "e1433839-2446-40b9-9a35-bf54ebb7679b"
+        },
+        {
+          "id": "ac161233-bdbf-48e2-a041-71ed4c680475",
+          "name": "Original walk 4",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..##....................",
+            "...#.............#.#....",
+            "...##............###....",
+            "...##...........#####...",
+            "....##.#####...#######..",
+            "....##################..",
+            ".....################...",
+            ".....##############.....",
+            "....##############......",
+            "....#############.......",
+            "....######...#####......",
+            "...######....######.....",
+            "...##..R.....##...R.....",
+            "..##........##..........",
+            "..R.........R..........."
+          ],
+          "durationMs": 150,
+          "anchor": null,
+          "origin": "human",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "file": "pixel-pet-card.js",
+            "symbol": "WALK_FRAMES",
+            "index": 3
+          },
+          "operations": [
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:04:47.757Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:07:09.181Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:07:14.478Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:09:01.703Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:09:40.589Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:47.581Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:48.157Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:28.029Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:31.149Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:31.957Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:39.958Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:40.198Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:42.277Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:43.614Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:14:29.861Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:37.821Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:38.021Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:40.237Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:16:00.013Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:16:00.358Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:16:01.901Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:16:02.093Z"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:17:27.765Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "walk"
+            ],
+            "description": "Original four-frame gait and head bob, untouched. Paw markers and movement share the same cell clock."
+          },
+          "parentId": "7044cab8-b51f-4885-8a83-89cfcd6ab1b0"
+        },
+        {
+          "id": "988bed5a-f3a8-45be-8723-8fd3de982008",
+          "name": "Original walk 4 copy",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..##....................",
+            "...#.............#.#....",
+            "...##............###....",
+            "...##...........#####...",
+            "....##.#####...#######..",
+            "....##################..",
+            ".....################...",
+            ".....##############.....",
+            "....##############......",
+            "....#############.......",
+            "....######..#####.......",
+            "...######...##.###......",
+            "..###..##...##...##.....",
+            ".R#.....R..R.......R....",
+            "........................"
+          ],
+          "durationMs": 150,
+          "anchor": null,
+          "origin": "human",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "file": "pixel-pet-card.js",
+            "symbol": "WALK_FRAMES",
+            "index": 3
+          },
+          "operations": [
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:04:47.757Z"
+            },
+            {
+              "actor": "human",
+              "kind": "duplicate",
+              "at": "2026-10-14T21:05:47.421Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:07:37.741Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:07:39.573Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:07:41.805Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:07:45.461Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:09:08.029Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:09:12.389Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:09:48.949Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:09:49.141Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:09.757Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:10.053Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:10.686Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:11.453Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:12.029Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:13.374Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:14.846Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:16.221Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:10:18.053Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:52.141Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:54.693Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:12:54.893Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:48.413Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:49.597Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:52.445Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:52.999Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:53.776Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:56.461Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-14T21:15:57.293Z"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-14T21:17:27.765Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "walk"
+            ],
+            "description": "Original four-frame gait and head bob, untouched. Paw markers and movement share the same cell clock."
+          },
+          "parentId": "02b84a68-7189-428f-aa48-67805ac789f8"
+        }
+      ],
+      "workQueue": {
+        "version": 1,
+        "repository": "Stick-Pet-Card",
+        "selectedId": "vertical-up",
+        "tasks": [
+          {
+            "id": "vertical-up",
+            "title": "Straight-up jump",
+            "category": "jump",
+            "priority": "high",
+            "tags": [
+              "vertical",
+              "up",
+              "airborne"
+            ],
+            "instructions": "Create a distinct straight-up airborne pose. Keep the body compact and legs beneath him; avoid the diagonal forward-reaching silhouette. Preserve the intended facing on a vertical jump. Start with one missing airborne frame, using existing takeoff and landing frames as onion references.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "vertical-down",
+            "title": "Straight-down drop",
+            "category": "jump",
+            "priority": "high",
+            "tags": [
+              "vertical",
+              "down",
+              "airborne"
+            ],
+            "instructions": "Create a distinct straight-down airborne pose with the feet prepared beneath the body. Preserve facing rather than implying a sideways leap or backwards motion. Start with one missing airborne frame; compare against existing descent preparation and landing crouch.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "look-down",
+            "title": "Look down from a perch",
+            "category": "idle",
+            "priority": "high",
+            "tags": [
+              "look-down",
+              "card-edge"
+            ],
+            "instructions": "Lower the head to inspect a card or landing below. Keep the planted paw cells fixed and allow the body/tail to overhang. Use the sitting/perch frames as references.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "horizontal-refine",
+            "title": "Refine horizontal leap",
+            "category": "jump",
+            "priority": "normal",
+            "tags": [
+              "horizontal",
+              "airborne"
+            ],
+            "instructions": "Refine the approved AI horizontal flight pose. Keep a level back, forward head, trailing tail and gathered legs. Human pixel edits to the AI source make a mixed-origin frame; retain its lineage. No planted contact anchor while airborne.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "walk-head",
+            "title": "Refine independent walk heads",
+            "category": "walk",
+            "priority": "normal",
+            "tags": [
+              "walk",
+              "head-bob"
+            ],
+            "instructions": "Review the high/low head combinations. Improve the head/neck seam if needed while leaving leg frames and every planted paw marker unchanged. Compare original and half-time head bobbing at the same walking speed.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "sitting-glance",
+            "title": "Sitting head glance",
+            "category": "idle",
+            "priority": "later",
+            "tags": [
+              "sit",
+              "look"
+            ],
+            "instructions": "Explore a small head turn toward a nearby object without flipping the whole body. Audit the existing turn/idle catalogue before drawing new pixels; keep bearing paws in their source cells.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          }
+        ]
+      },
+      "catalogueRevision": 4,
+      "preferredFrame": 0,
+      "importedSavedAt": "2026-10-14T21:20:09.484Z",
+      "wip": false,
+      "deletedAt": "2026-10-15T08:10:46.777Z",
+      "archived": true,
+      "archiveOverride": true
+    }
+  },
+  {
+    "projectId": "f7146398-28aa-48f4-b36a-c44b0af17a14",
+    "savedAt": "2026-10-17T12:02:30.129Z",
+    "project": {
+      "schemaVersion": 1,
+      "width": 24,
+      "height": 24,
+      "projectId": "f7146398-28aa-48f4-b36a-c44b0af17a14",
+      "name": "Gallop · compact sprint draft · DELETE",
+      "category": "walk",
+      "description": "Mixed-origin eight-frame gallop proposal based on the human faster walk head/tail. New gathered/extended body and legs fit 24×24 with no clipped pixels. Review silhouette, footfall order and loop before runtime integration. Contact labels are proposals, not verified anchors.",
+      "oneShot": false,
+      "variantOf": {
+        "projectId": "proposal-gallop-24",
+        "name": "Gallop · compact sprint draft"
+      },
+      "frames": [
+        {
+          "id": "cf8d6d08-b9d1-4eac-8605-8b69357a87c6",
+          "name": "Fore catch",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..#.....................",
+            "..##.............#.#....",
+            "...##............###....",
+            "...##...........#####...",
+            "....##....#####.######..",
+            "....##################..",
+            "....#################...",
+            ".....###############....",
+            ".....###############....",
+            ".......############.....",
+            ".........######...##....",
+            "............#R#R..###...",
+            "..................R.#...",
+            "....................R..."
+          ],
+          "durationMs": 80,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-15T14:10:04.678Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "support"
+            ],
+            "description": "Mixed-origin draft. Proposed support: near-front. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": [
+            "near-front"
+          ],
+          "parentId": "gallop-draft-1"
+        },
+        {
+          "id": "0222f05b-af96-46ad-9433-77c2bfd06ba5",
+          "name": "Fore support · gather",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..#.....................",
+            "..##.............#.#....",
+            "...##............###....",
+            "...##.....#####.#####...",
+            "....##..##############..",
+            "....##################..",
+            "....#################...",
+            ".....##############.....",
+            "......#############.....",
+            ".......#######.###......",
+            "........#######.###.....",
+            "........#######..##.....",
+            ".........###..#R.###....",
+            "............#R...R.#....",
+            "...................R...."
+          ],
+          "durationMs": 80,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:37.503Z"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-15T14:10:04.678Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "support"
+            ],
+            "description": "Mixed-origin draft. Proposed support: near-front. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": [
+            "near-front"
+          ],
+          "parentId": "gallop-draft-2"
+        },
+        {
+          "id": "5886a228-3c97-42ce-8c05-9e61f78040fc",
+          "name": "Hind load under body",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..#.....................",
+            "..##.............#.#....",
+            "...##............###....",
+            "...##......####.#####...",
+            "....##....############..",
+            "....###.##############..",
+            "....#################...",
+            ".....##############.....",
+            "......#############.....",
+            ".......###########......",
+            "........#####..####.....",
+            ".........####...###.....",
+            "..........###..R#.#.....",
+            "............#....R......",
+            "............R#..........",
+            "..............R........."
+          ],
+          "durationMs": 80,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:26.250Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:28.408Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:30.279Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:31.590Z"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-15T14:10:04.678Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "support"
+            ],
+            "description": "Mixed-origin draft. Proposed support: near-hind. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": [
+            "near-hind"
+          ],
+          "parentId": "gallop-draft-3"
+        },
+        {
+          "id": "3b70d6f6-5b84-4dba-9d33-2e48479a255e",
+          "name": "Hind push · extend",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..#.....................",
+            "..##.............#.#....",
+            "...##............###....",
+            "...##...........#####...",
+            "....##....#####.######..",
+            "....##################..",
+            "....#################...",
+            ".....###############....",
+            ".....###############....",
+            ".......###########......",
+            ".......######..#####R...",
+            ".......#####........#R..",
+            "........##.#............",
+            ".........#.R............",
+            ".........R.............."
+          ],
+          "durationMs": 70,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:42.847Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:43.823Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:44.375Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:44.871Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:45.367Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:48.743Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:50.871Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:51.224Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:52.191Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:52.447Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:53.399Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:53.775Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:55.071Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:55.863Z"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-15T14:10:04.678Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "support"
+            ],
+            "description": "Mixed-origin draft. Proposed support: near-hind. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": [
+            "near-hind"
+          ],
+          "parentId": "gallop-draft-4"
+        },
+        {
+          "id": "0268cf6d-2e39-47ed-beb2-042f02c5029d",
+          "name": "Release · flight",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..#..............#.#....",
+            "..##.............###....",
+            "...##...........#####...",
+            "...##.....#####.######..",
+            "....##.###############..",
+            "....#################...",
+            "....################....",
+            ".....###############....",
+            "......#############.....",
+            ".....##.###......####...",
+            "....##.##.........#..#R.",
+            "....#.R#...........#R...",
+            "...R....................",
+            "........................",
+            "........................"
+          ],
+          "durationMs": 80,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:35.466Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:35.991Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:38.528Z"
+            },
+            {
+              "actor": "human",
+              "kind": "down",
+              "at": "2026-10-15T07:59:01.424Z"
+            },
+            {
+              "actor": "human",
+              "kind": "down",
+              "at": "2026-10-15T07:59:02.050Z"
+            },
+            {
+              "actor": "human",
+              "kind": "up",
+              "at": "2026-10-15T07:59:06.527Z"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-15T14:10:04.678Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "airborne"
+            ],
+            "description": "Mixed-origin draft. Proposed support: none. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": [],
+          "parentId": "gallop-draft-5"
+        },
+        {
+          "id": "239cc7cc-0fdb-4823-a2e7-2a402d285765",
+          "name": "Extended flight · reach",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..#..............#.#....",
+            "..##.............###....",
+            "...##...........#####...",
+            "...##.....#####.######..",
+            "....##.###############..",
+            "....#################...",
+            "....################....",
+            ".....###############....",
+            "......##############....",
+            ".....##.###......####...",
+            "....##..##.........###..",
+            "....R...#...........#.#.",
+            ".......R.............R#.",
+            ".......................R",
+            "........................"
+          ],
+          "durationMs": 90,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:46.503Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:48.719Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:49.423Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:51.931Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:52.002Z"
+            },
+            {
+              "actor": "human",
+              "kind": "down",
+              "at": "2026-10-15T07:59:11.183Z"
+            },
+            {
+              "actor": "human",
+              "kind": "left",
+              "at": "2026-10-15T07:59:13.991Z"
+            },
+            {
+              "actor": "human",
+              "kind": "right",
+              "at": "2026-10-15T07:59:17.616Z"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-15T14:10:04.678Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "airborne"
+            ],
+            "description": "Mixed-origin draft. Proposed support: none. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": [],
+          "parentId": "gallop-draft-6"
+        },
+        {
+          "id": "a9202756-708c-4775-9a0e-0fae6ff3ae8b",
+          "name": "Fore reach toward ground",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..#..............#.#....",
+            "..##.............###....",
+            "...##...........#####...",
+            "...##.....#####.######..",
+            "....##.###############..",
+            "....#################...",
+            "....################....",
+            ".....###############....",
+            "......##############....",
+            "......##..#####..####...",
+            "......##...#R.....###...",
+            "........#R.........##...",
+            "...................##R..",
+            "...................R...."
+          ],
+          "durationMs": 80,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:56.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:00.463Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:01.367Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:02.255Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:03.095Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:04.711Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:06.167Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:07.183Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:08.455Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:08.808Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:09.775Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:10.095Z"
+            },
+            {
+              "actor": "human",
+              "kind": "down",
+              "at": "2026-10-15T07:59:20.937Z"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-15T14:10:04.678Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "support"
+            ],
+            "description": "Mixed-origin draft. Proposed support: near-front. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": [
+            "near-front"
+          ],
+          "parentId": "gallop-draft-7"
+        },
+        {
+          "id": "7d5a127c-3ded-4677-b539-83a0ef79dcdd",
+          "name": "Fore support · recover",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..#.....................",
+            "..##.............#.#....",
+            "...##............###....",
+            "...##...........#####...",
+            "....##....#####.######..",
+            "....##################..",
+            "....#################...",
+            ".....###############....",
+            ".....###############....",
+            ".......############.....",
+            "........######R...###...",
+            "...........#R......###..",
+            "...................#.#..",
+            "...................R.R.."
+          ],
+          "durationMs": 80,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "sequence-copy",
+              "at": "2026-10-15T14:10:04.678Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "support"
+            ],
+            "description": "Mixed-origin draft. Proposed support: near-front, far-front. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": [
+            "near-front",
+            "far-front"
+          ],
+          "parentId": "gallop-draft-8"
+        }
+      ],
+      "workQueue": {
+        "version": 1,
+        "repository": "Stick-Pet-Card",
+        "selectedId": "vertical-up",
+        "tasks": [
+          {
+            "id": "vertical-up",
+            "title": "Straight-up jump",
+            "category": "jump",
+            "priority": "high",
+            "tags": [
+              "vertical",
+              "up",
+              "airborne"
+            ],
+            "instructions": "Create a distinct straight-up airborne pose. Keep the body compact and legs beneath him; avoid the diagonal forward-reaching silhouette. Preserve the intended facing on a vertical jump. Start with one missing airborne frame, using existing takeoff and landing frames as onion references.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "vertical-down",
+            "title": "Straight-down drop",
+            "category": "jump",
+            "priority": "high",
+            "tags": [
+              "vertical",
+              "down",
+              "airborne"
+            ],
+            "instructions": "Create a distinct straight-down airborne pose with the feet prepared beneath the body. Preserve facing rather than implying a sideways leap or backwards motion. Start with one missing airborne frame; compare against existing descent preparation and landing crouch.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "look-down",
+            "title": "Look down from a perch",
+            "category": "idle",
+            "priority": "high",
+            "tags": [
+              "look-down",
+              "card-edge"
+            ],
+            "instructions": "Lower the head to inspect a card or landing below. Keep the planted paw cells fixed and allow the body/tail to overhang. Use the sitting/perch frames as references.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "horizontal-refine",
+            "title": "Refine horizontal leap",
+            "category": "jump",
+            "priority": "normal",
+            "tags": [
+              "horizontal",
+              "airborne"
+            ],
+            "instructions": "Refine the approved AI horizontal flight pose. Keep a level back, forward head, trailing tail and gathered legs. Human pixel edits to the AI source make a mixed-origin frame; retain its lineage. No planted contact anchor while airborne.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "walk-head",
+            "title": "Refine independent walk heads",
+            "category": "walk",
+            "priority": "normal",
+            "tags": [
+              "walk",
+              "head-bob"
+            ],
+            "instructions": "Review the high/low head combinations. Improve the head/neck seam if needed while leaving leg frames and every planted paw marker unchanged. Compare original and half-time head bobbing at the same walking speed.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "sitting-glance",
+            "title": "Sitting head glance",
+            "category": "idle",
+            "priority": "later",
+            "tags": [
+              "sit",
+              "look"
+            ],
+            "instructions": "Explore a small head turn toward a nearby object without flipping the whole body. Audit the existing turn/idle catalogue before drawing new pixels; keep bearing paws in their source cells.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          }
+        ]
+      },
+      "catalogueRevision": 4,
+      "preferredFrame": 0,
+      "importedSavedAt": "2026-10-15T14:10:11.465Z",
+      "wip": false,
+      "archived": true,
+      "archiveOverride": true
+    }
+  },
+  {
+    "projectId": "proposal-behaviour-face-wash",
+    "savedAt": "2026-10-17T12:02:30.156Z",
+    "project": {
+      "schemaVersion": 1,
+      "width": 24,
+      "height": 24,
+      "projectId": "proposal-behaviour-face-wash",
+      "name": "Groom · paw wash and face wipe · DELETE",
+      "category": "idle",
+      "idlePosture": "sitting",
+      "wip": true,
+      "oneShot": false,
+      "description": "Lift a front paw toward the mouth, then stroke it over the cheek and ear before lowering it. Review the paw/head overlap at native size; retain the seated bearing. AI pixel proposal based on saved human artwork; review before runtime use. Research and authoring plan: CAT_BEHAVIOURS.md.",
+      "variantOf": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "name": "Sitting · ground · Tail matrix"
+      },
+      "preferredNeighbours": {
+        "before": [
+          "46edfa22-baf5-45b3-a8a6-26fc004059de"
+        ],
+        "after": [
+          "sequence-clean",
+          "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sequence-loaf"
+        ]
+      },
+      "behaviour": {
+        "batch": "2026-10-15-everyday",
+        "status": "draft",
+        "runtimeEnabled": false,
+        "research": [
+          "https://doi.org/10.3390/pets1030021"
+        ],
+        "intent": "face-wash",
+        "entryPosture": "sitting",
+        "exitPosture": "sitting",
+        "optional": true,
+        "contactReview": "proposed-bearing-only",
+        "repeatRange": [
+          1,
+          3
+        ],
+        "mayAbort": true
+      },
+      "frames": [
+        {
+          "id": "proposal-behaviour-face-wash-f01",
+          "name": "Sit before washing",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...........#..#.........",
+            "...........####.........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........#####.........",
+            "..........#####.........",
+            ".........######.........",
+            "........#######.........",
+            "........#######.........",
+            ".......########.........",
+            ".......########.........",
+            ".......########.........",
+            ".......########.........",
+            ".......########...#.....",
+            ".......#########.##.....",
+            ".......###R##R#####....."
+          ],
+          "durationMs": 450,
+          "anchor": {
+            "x": 10,
+            "y": 23
+          },
+          "origin": "human",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+            "savedAt": "2026-10-14T20:26:18.141Z",
+            "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "reference-copy",
+              "at": "2026-10-15T00:00:00.000Z",
+              "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+              "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+            }
+          ],
+          "role": "enter",
+          "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "metadata": {
+            "category": "idle",
+            "tags": [
+              "face-wash",
+              "draft",
+              "enter"
+            ],
+            "description": "Sit before washing"
+          }
+        },
+        {
+          "id": "proposal-behaviour-face-wash-f02",
+          "name": "Lift paw",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...........#..#.........",
+            "...........####.........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........#####.........",
+            "..........#####.........",
+            ".........######.........",
+            "........#######.........",
+            "........########R.......",
+            ".......##########.......",
+            ".......#########........",
+            ".......########.........",
+            ".......########.........",
+            ".......########...#.....",
+            ".......#######...##.....",
+            ".......###R########....."
+          ],
+          "durationMs": 180,
+          "anchor": {
+            "x": 10,
+            "y": 23
+          },
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+            "savedAt": "2026-10-14T20:26:18.141Z",
+            "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "behaviour-pixel-proposal",
+              "at": "2026-10-15T00:00:00.000Z",
+              "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+              "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:47:54.031Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:47:56.295Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:00.735Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:03.391Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:06.305Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:07.271Z"
+            }
+          ],
+          "role": "enter",
+          "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "metadata": {
+            "category": "idle",
+            "tags": [
+              "face-wash",
+              "draft",
+              "enter"
+            ],
+            "description": "Lift paw"
+          }
+        },
+        {
+          "id": "proposal-behaviour-face-wash-f03",
+          "name": "Paw toward mouth",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...........#..#.........",
+            "...........####.........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........######R.......",
+            ".........########.......",
+            "........#########.......",
+            "........########........",
+            ".......#########........",
+            ".......#########........",
+            ".......########.........",
+            ".......#######..........",
+            ".......########...#.....",
+            ".......########..##.....",
+            ".......###R########....."
+          ],
+          "durationMs": 260,
+          "anchor": {
+            "x": 10,
+            "y": 23
+          },
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+            "savedAt": "2026-10-14T20:26:18.141Z",
+            "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "behaviour-pixel-proposal",
+              "at": "2026-10-15T00:00:00.000Z",
+              "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+              "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:10.177Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:11.009Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:11.407Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:12.151Z"
+            }
+          ],
+          "role": "cycle",
+          "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "metadata": {
+            "category": "idle",
+            "tags": [
+              "face-wash",
+              "draft",
+              "cycle"
+            ],
+            "description": "Paw toward mouth"
+          }
+        },
+        {
+          "id": "proposal-behaviour-face-wash-f04",
+          "name": "Small lick pause",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...........#..#.........",
+            "...........####.........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........#####R........",
+            ".........#######........",
+            "........########........",
+            "........########........",
+            ".......#########........",
+            ".......#########........",
+            ".......########.........",
+            ".......#######..........",
+            ".......########...#.....",
+            ".......########..##.....",
+            ".......###R########....."
+          ],
+          "durationMs": 350,
+          "anchor": {
+            "x": 10,
+            "y": 23
+          },
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+            "savedAt": "2026-10-14T20:26:18.141Z",
+            "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "behaviour-pixel-proposal",
+              "at": "2026-10-15T00:00:00.000Z",
+              "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+              "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:43.385Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:43.895Z"
+            }
+          ],
+          "role": "cycle",
+          "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "metadata": {
+            "category": "idle",
+            "tags": [
+              "face-wash",
+              "draft",
+              "cycle"
+            ],
+            "description": "Small lick pause"
+          }
+        },
+        {
+          "id": "proposal-behaviour-face-wash-f05",
+          "name": "Wipe cheek",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...........#..#.........",
+            "...........####.........",
+            "..........######........",
+            "..........######R.......",
+            "..........#######.......",
+            "..........#######.......",
+            "..........#######.......",
+            ".........########.......",
+            "........########........",
+            "........########........",
+            ".......#########........",
+            ".......#########........",
+            ".......########.........",
+            ".......#######..........",
+            ".......########...#.....",
+            ".......########..##.....",
+            ".......###R########....."
+          ],
+          "durationMs": 220,
+          "anchor": {
+            "x": 10,
+            "y": 23
+          },
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+            "savedAt": "2026-10-14T20:26:18.141Z",
+            "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "behaviour-pixel-proposal",
+              "at": "2026-10-15T00:00:00.000Z",
+              "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+              "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:48.783Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:49.199Z"
+            }
+          ],
+          "role": "cycle",
+          "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "metadata": {
+            "category": "idle",
+            "tags": [
+              "face-wash",
+              "draft",
+              "cycle"
+            ],
+            "description": "Wipe cheek"
+          }
+        },
+        {
+          "id": "proposal-behaviour-face-wash-f06",
+          "name": "Wipe over ear",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...........#..#.........",
+            "...........####R........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            ".........#######........",
+            "........########........",
+            "........########........",
+            ".......#########........",
+            ".......#########........",
+            ".......########.........",
+            ".......#######..........",
+            ".......########...#.....",
+            ".......########..##.....",
+            ".......###R########....."
+          ],
+          "durationMs": 220,
+          "anchor": {
+            "x": 10,
+            "y": 23
+          },
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+            "savedAt": "2026-10-14T20:26:18.141Z",
+            "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "behaviour-pixel-proposal",
+              "at": "2026-10-15T00:00:00.000Z",
+              "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+              "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:52.152Z"
+            }
+          ],
+          "role": "cycle",
+          "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "metadata": {
+            "category": "idle",
+            "tags": [
+              "face-wash",
+              "draft",
+              "cycle"
+            ],
+            "description": "Wipe over ear"
+          }
+        },
+        {
+          "id": "proposal-behaviour-face-wash-f07",
+          "name": "Bring paw down",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...........#..#.........",
+            "...........####.........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........#####.........",
+            ".........######.........",
+            "........#######.........",
+            "........########R.......",
+            ".......##########.......",
+            ".......#########........",
+            ".......########.........",
+            ".......########.........",
+            ".......########...#.....",
+            ".......#########.##.....",
+            ".......###R########....."
+          ],
+          "durationMs": 200,
+          "anchor": {
+            "x": 10,
+            "y": 23
+          },
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+            "savedAt": "2026-10-14T20:26:18.141Z",
+            "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "behaviour-pixel-proposal",
+              "at": "2026-10-15T00:00:00.000Z",
+              "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+              "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:55.527Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:56.608Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:48:56.935Z"
+            }
+          ],
+          "role": "exit",
+          "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "metadata": {
+            "category": "idle",
+            "tags": [
+              "face-wash",
+              "draft",
+              "exit"
+            ],
+            "description": "Bring paw down"
+          }
+        },
+        {
+          "id": "proposal-behaviour-face-wash-f08",
+          "name": "Sit after washing",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...........#..#.........",
+            "...........####.........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........######........",
+            "..........#####.........",
+            "..........#####.........",
+            ".........######.........",
+            "........#######.........",
+            "........#######.........",
+            ".......########.........",
+            ".......########.........",
+            ".......########.........",
+            ".......########.........",
+            ".......########...#.....",
+            ".......#########.##.....",
+            ".......###R##R#####....."
+          ],
+          "durationMs": 450,
+          "anchor": {
+            "x": 10,
+            "y": 23
+          },
+          "origin": "human",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+            "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+            "savedAt": "2026-10-14T20:26:18.141Z",
+            "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "reference-copy",
+              "at": "2026-10-15T00:00:00.000Z",
+              "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+              "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+            }
+          ],
+          "role": "exit",
+          "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "metadata": {
+            "category": "idle",
+            "tags": [
+              "face-wash",
+              "draft",
+              "exit"
+            ],
+            "description": "Sit after washing"
+          }
+        }
+      ],
+      "workQueue": {
+        "version": 1,
+        "repository": "Stick-Pet-Card",
+        "selectedId": "",
+        "tasks": []
+      },
+      "catalogueRevision": 4,
+      "preferredFrame": 0,
+      "deletedAt": "2026-10-15T08:10:46.847Z",
+      "archived": true,
+      "archiveOverride": true
+    }
+  },
+  {
+    "projectId": "proposal-gallop-24",
+    "savedAt": "2026-10-17T12:02:30.177Z",
+    "project": {
+      "schemaVersion": 1,
+      "width": 24,
+      "height": 24,
+      "projectId": "proposal-gallop-24",
+      "name": "Gallop · compact sprint - DELETE, replace with improved version",
+      "category": "walk",
+      "wip": false,
+      "description": "Mixed-origin eight-frame gallop proposal based on the human faster walk head/tail. New gathered/extended body and legs fit 24×24 with no clipped pixels. Review silhouette, footfall order and loop before runtime integration. Contact labels are proposals, not verified anchors.",
+      "variantOf": {
+        "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+        "name": "Walking · faster - synced feet"
+      },
+      "gait": {
+        "status": "proposal",
+        "runtimeEnabled": false,
+        "gridFit": "24x24-no-clipping",
+        "sourceProjectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc"
+      },
+      "frames": [
+        {
+          "id": "gallop-draft-1",
+          "name": "Fore catch",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "#.......................",
+            "###..............#.#....",
+            "..##.............###....",
+            "...##...........#####...",
+            "....##.###############..",
+            "....##################..",
+            "....#################...",
+            "....###############.....",
+            "....##########.####.....",
+            ".....#########.###......",
+            ".......######....##.....",
+            "..........#R#R...###....",
+            ".................R.#....",
+            "...................R...."
+          ],
+          "durationMs": 80,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 2,
+                "y": 17,
+                "width": 20,
+                "height": 7
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:32.726Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 5,
+                "y": 18,
+                "width": 10,
+                "height": 6
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:11:32.726Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:34.006Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:34.854Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:45.703Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:46.990Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:18:07.230Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:18:08.022Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:18:16.422Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:18:16.878Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:18:17.318Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:18:34.094Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:18:36.166Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:19:52.422Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:19:53.111Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:19:55.112Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:20:52.662Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "support"
+            ],
+            "description": "Mixed-origin draft. Proposed support: near-front. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": [
+            "near-front"
+          ]
+        },
+        {
+          "id": "gallop-draft-2",
+          "name": "Fore support · gather",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..#.....................",
+            "..##.............#.#....",
+            "...##............###....",
+            "...##.....#####.#####...",
+            "....##..##############..",
+            "....##################..",
+            "....#################...",
+            ".....##############.....",
+            ".....#############......",
+            ".....#######...##.......",
+            "......#######..##.......",
+            "........#####..##.......",
+            "........##..#R.###......",
+            "..........#R...R.#......",
+            ".................R......"
+          ],
+          "durationMs": 80,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:37.503Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 2,
+                "y": 17,
+                "width": 20,
+                "height": 7
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:32.726Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 5,
+                "y": 18,
+                "width": 10,
+                "height": 6
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:11:32.726Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:43.678Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:15:25.086Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 15,
+                "y": 20,
+                "width": 5,
+                "height": 4
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:15:25.086Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:15:25.606Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:16:26.823Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "support"
+            ],
+            "description": "Mixed-origin draft. Proposed support: near-front. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": [
+            "near-front"
+          ]
+        },
+        {
+          "id": "gallop-draft-3",
+          "name": "Hind load under body",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..#.....................",
+            "..##.............#.#....",
+            "...##............###....",
+            "...##...........#####...",
+            "....##...#############..",
+            "....###.##############..",
+            "....#################...",
+            ".....##############.....",
+            "......#############.....",
+            "......###########.......",
+            "......#####...###.......",
+            ".......####...###.......",
+            "........###...#.#.......",
+            "..........#...R.R.......",
+            "..........R#............",
+            "............R..........."
+          ],
+          "durationMs": 80,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:26.250Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:28.408Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:30.279Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:31.590Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 2,
+                "y": 17,
+                "width": 20,
+                "height": 7
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:32.727Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 5,
+                "y": 18,
+                "width": 10,
+                "height": 6
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:11:32.727Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:54.654Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:55.438Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:58.718Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:59.166Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:59.590Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:02.894Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:53.790Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:55.200Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:56.022Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:14:47.662Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 14,
+                "y": 18,
+                "width": 6,
+                "height": 4
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:14:47.662Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:14:52.486Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 13,
+                "y": 18,
+                "width": 6,
+                "height": 4
+              },
+              "dx": 0,
+              "dy": 1,
+              "at": "2026-10-15T14:14:52.486Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:14:54.832Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:14:55.150Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:14:55.448Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "support"
+            ],
+            "description": "Mixed-origin draft. Proposed support: near-hind. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": [
+            "near-hind"
+          ]
+        },
+        {
+          "id": "gallop-draft-4",
+          "name": "Hind push · extend",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..#...............#.#...",
+            "..##..............###...",
+            "...##............#####..",
+            "...##...........#######.",
+            "....##..###############.",
+            "....##################..",
+            "....#################...",
+            ".....##############.....",
+            ".....##############.....",
+            ".....#######...###......",
+            "......#####....####R....",
+            "......####.........#R...",
+            "......##.#..............",
+            ".......#.R..............",
+            ".......R................"
+          ],
+          "durationMs": 70,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:42.847Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:43.823Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:44.375Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:44.871Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:45.367Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:48.743Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:50.871Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:51.224Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:52.191Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:52.447Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:53.399Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:53.775Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:55.071Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:55.863Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 2,
+                "y": 17,
+                "width": 20,
+                "height": 7
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:12.110Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:32.727Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 5,
+                "y": 18,
+                "width": 10,
+                "height": 6
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:11:32.727Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:06.182Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:06.430Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:09.110Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:14:01.134Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:14:07.183Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:16:31.591Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:19:14.806Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 16,
+                "y": 8,
+                "width": 7,
+                "height": 9
+              },
+              "dx": 0,
+              "dy": -1,
+              "at": "2026-10-15T14:19:14.806Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:19:20.534Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:19:28.126Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 16,
+                "y": 7,
+                "width": 7,
+                "height": 9
+              },
+              "dx": 1,
+              "dy": 0,
+              "at": "2026-10-15T14:19:28.126Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:19:32.438Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:19:32.902Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:19:33.153Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:22:48.038Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "support"
+            ],
+            "description": "Mixed-origin draft. Proposed support: near-hind. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": [
+            "near-hind"
+          ]
+        },
+        {
+          "id": "gallop-draft-5",
+          "name": "Release · flight",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "...#....................",
+            "..#.....................",
+            "..#.....................",
+            "..#...............#.#...",
+            "..##..............###...",
+            "...##............#####..",
+            "...##......############.",
+            "....##..###############.",
+            "....##################..",
+            "....#################...",
+            ".....###############....",
+            "....###############.....",
+            "....#####.......####....",
+            "...####..........#..#R..",
+            "...#R#............#R....",
+            "..R.....................",
+            "........................",
+            "........................"
+          ],
+          "durationMs": 80,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:35.466Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:35.991Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:38.528Z"
+            },
+            {
+              "actor": "human",
+              "kind": "down",
+              "at": "2026-10-15T07:59:01.424Z"
+            },
+            {
+              "actor": "human",
+              "kind": "down",
+              "at": "2026-10-15T07:59:02.050Z"
+            },
+            {
+              "actor": "human",
+              "kind": "up",
+              "at": "2026-10-15T07:59:06.527Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 2,
+                "y": 17,
+                "width": 20,
+                "height": 7
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:32.727Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 5,
+                "y": 18,
+                "width": 10,
+                "height": 6
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:11:32.727Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:13.984Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:15.334Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:16.295Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:14:10.830Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:16:02.446Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:16:06.230Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:16:08.202Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:18:44.231Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:18:46.560Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:18:49.894Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:18:50.326Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:20:32.286Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 16,
+                "y": 7,
+                "width": 7,
+                "height": 9
+              },
+              "dx": 1,
+              "dy": 0,
+              "at": "2026-10-15T14:20:32.286Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:20:34.806Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:20:35.672Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:22:35.398Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "airborne"
+            ],
+            "description": "Mixed-origin draft. Proposed support: none. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": []
+        },
+        {
+          "id": "gallop-draft-6",
+          "name": "Extended flight · reach",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            ".#......................",
+            ".##.....................",
+            "..#..............#.#....",
+            "..##.............###....",
+            "...##...........#####...",
+            "...##.....############..",
+            "....##################..",
+            "....#################...",
+            "....################....",
+            ".....###############....",
+            ".....##############.....",
+            "....#####.......####....",
+            "...##.##..........###...",
+            "...R..#............#R...",
+            ".....R..............R...",
+            "........................",
+            "........................"
+          ],
+          "durationMs": 90,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:46.503Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:48.719Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:49.423Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:51.931Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:52.002Z"
+            },
+            {
+              "actor": "human",
+              "kind": "down",
+              "at": "2026-10-15T07:59:11.183Z"
+            },
+            {
+              "actor": "human",
+              "kind": "left",
+              "at": "2026-10-15T07:59:13.991Z"
+            },
+            {
+              "actor": "human",
+              "kind": "right",
+              "at": "2026-10-15T07:59:17.616Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 2,
+                "y": 17,
+                "width": 20,
+                "height": 7
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:32.727Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 5,
+                "y": 18,
+                "width": 10,
+                "height": 6
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:11:32.727Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:22.598Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:23.102Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:26.006Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:27.886Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:28.206Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:28.726Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:31.470Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:36.254Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:36.566Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:14:14.022Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:16:50.798Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:16:53.118Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:17:56.670Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:17:57.758Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:20:19.126Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:20:21.854Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "airborne"
+            ],
+            "description": "Mixed-origin draft. Proposed support: none. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": []
+        },
+        {
+          "id": "gallop-draft-7",
+          "name": "Fore reach toward ground",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            ".##.....................",
+            "#.#..............#.#....",
+            "..##.............###....",
+            "...##...........#####...",
+            "...##.....############..",
+            "....##.###############..",
+            "....#################...",
+            "....################....",
+            "....###############.....",
+            "....######.....####.....",
+            "....##..##......###.....",
+            "....##..##R......###....",
+            ".....##R..........##....",
+            "..................##R...",
+            "..................R....."
+          ],
+          "durationMs": 80,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:57:56.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:00.463Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:01.367Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:02.255Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:03.095Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:04.711Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:06.167Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:07.183Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:08.455Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:08.808Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:09.775Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T07:58:10.095Z"
+            },
+            {
+              "actor": "human",
+              "kind": "down",
+              "at": "2026-10-15T07:59:20.937Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 2,
+                "y": 17,
+                "width": 20,
+                "height": 7
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:32.727Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 5,
+                "y": 18,
+                "width": 10,
+                "height": 6
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:11:32.727Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:12:58.542Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:00.815Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:01.360Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:02.134Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:03.150Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:04.078Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:04.654Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:14:15.711Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:15:06.694Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:17:41.958Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:17:42.944Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:17:43.816Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:17:44.646Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:17:45.350Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "support"
+            ],
+            "description": "Mixed-origin draft. Proposed support: near-front. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": [
+            "near-front"
+          ]
+        },
+        {
+          "id": "gallop-draft-8",
+          "name": "Fore support · recover",
+          "rows": [
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            "........................",
+            ".................#.#....",
+            ".###.............###....",
+            "##.##.....######.####...",
+            "....##..##############..",
+            "....##################..",
+            "....#################...",
+            "....###############.....",
+            "....#######....####.....",
+            ".....#######....###.....",
+            "......######R....##.....",
+            ".........#R.......#.....",
+            "..................##....",
+            "..................RR...."
+          ],
+          "durationMs": 80,
+          "anchor": null,
+          "origin": "mixed",
+          "review": "candidate",
+          "locked": false,
+          "source": {
+            "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+            "frameId": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e"
+          },
+          "operations": [
+            {
+              "actor": "ai",
+              "kind": "gallop-body-and-limbs",
+              "at": "2026-10-15T00:00:00.000Z",
+              "preserved": "Human head and tail motifs",
+              "reference": "CAT_GAITS.md"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 2,
+                "y": 17,
+                "width": 20,
+                "height": 7
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:10:31.895Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:11:32.727Z"
+            },
+            {
+              "actor": "human",
+              "kind": "move-selection",
+              "box": {
+                "x": 5,
+                "y": 18,
+                "width": 10,
+                "height": 6
+              },
+              "dx": -1,
+              "dy": 0,
+              "at": "2026-10-15T14:11:32.727Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:09.350Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:09.998Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:10.382Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:15.190Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:16.151Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:13:16.761Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:14:17.118Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:14:18.886Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:15:14.190Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:15:14.582Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:15:15.086Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:15:16.734Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:17:47.910Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:17:49.110Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:17:49.959Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:18:19.398Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:20:41.606Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:20:46.126Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:23:05.902Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:23:06.799Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:23:07.376Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:23:15.855Z"
+            },
+            {
+              "actor": "human",
+              "kind": "pixels",
+              "at": "2026-10-15T14:23:16.110Z"
+            }
+          ],
+          "role": "cycle",
+          "metadata": {
+            "category": "walk",
+            "tags": [
+              "gallop",
+              "draft",
+              "support"
+            ],
+            "description": "Mixed-origin draft. Proposed support: near-front, far-front. Contact timing needs human review; not runtime enabled."
+          },
+          "gaitContacts": [
+            "near-front",
+            "far-front"
+          ]
+        }
+      ],
+      "catalogueRevision": 4,
+      "oneShot": false,
+      "preferredFrame": 0,
+      "workQueue": {
+        "version": 1,
+        "repository": "Stick-Pet-Card",
+        "selectedId": "vertical-up",
+        "tasks": [
+          {
+            "id": "vertical-up",
+            "title": "Straight-up jump",
+            "category": "jump",
+            "priority": "high",
+            "tags": [
+              "vertical",
+              "up",
+              "airborne"
+            ],
+            "instructions": "Create a distinct straight-up airborne pose. Keep the body compact and legs beneath him; avoid the diagonal forward-reaching silhouette. Preserve the intended facing on a vertical jump. Start with one missing airborne frame, using existing takeoff and landing frames as onion references.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "vertical-down",
+            "title": "Straight-down drop",
+            "category": "jump",
+            "priority": "high",
+            "tags": [
+              "vertical",
+              "down",
+              "airborne"
+            ],
+            "instructions": "Create a distinct straight-down airborne pose with the feet prepared beneath the body. Preserve facing rather than implying a sideways leap or backwards motion. Start with one missing airborne frame; compare against existing descent preparation and landing crouch.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "look-down",
+            "title": "Look down from a perch",
+            "category": "idle",
+            "priority": "high",
+            "tags": [
+              "look-down",
+              "card-edge"
+            ],
+            "instructions": "Lower the head to inspect a card or landing below. Keep the planted paw cells fixed and allow the body/tail to overhang. Use the sitting/perch frames as references.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "horizontal-refine",
+            "title": "Refine horizontal leap",
+            "category": "jump",
+            "priority": "normal",
+            "tags": [
+              "horizontal",
+              "airborne"
+            ],
+            "instructions": "Refine the approved AI horizontal flight pose. Keep a level back, forward head, trailing tail and gathered legs. Human pixel edits to the AI source make a mixed-origin frame; retain its lineage. No planted contact anchor while airborne.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "walk-head",
+            "title": "Refine independent walk heads",
+            "category": "walk",
+            "priority": "normal",
+            "tags": [
+              "walk",
+              "head-bob"
+            ],
+            "instructions": "Review the high/low head combinations. Improve the head/neck seam if needed while leaving leg frames and every planted paw marker unchanged. Compare original and half-time head bobbing at the same walking speed.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          },
+          {
+            "id": "sitting-glance",
+            "title": "Sitting head glance",
+            "category": "idle",
+            "priority": "later",
+            "tags": [
+              "sit",
+              "look"
+            ],
+            "instructions": "Explore a small head turn toward a nearby object without flipping the whole body. Audit the existing turn/idle catalogue before drawing new pixels; keep bearing paws in their source cells.",
+            "status": "todo",
+            "frameIds": [],
+            "notes": "",
+            "outputs": []
+          }
+        ]
+      },
+      "archived": true,
+      "archiveOverride": true
+    }
+  }
+]

@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {defaults,freshDraft,validateDraft,clone} from '../prototype/climb-model.mjs';
+import {scratchColour,sampleClimbDecals} from '../prototype/climb-contact-particles.mjs';
+assert.equal(defaults.hold,120);assert.equal(defaults.leapRise,30);assert.equal(defaults.hop,1);assert.equal(defaults.gainBasis,2);
+const old=freshDraft();delete old.config.gainBasis;old.config.hop=2;const original=JSON.stringify(old),normal=validateDraft(old);assert.equal(normal.config.hop,1);assert.equal(normal.config.hop*normal.config.gainBasis,2);assert.equal(JSON.stringify(old),original);assert.deepEqual(validateDraft(normal),normal,'Gain migration is idempotent');assert.deepEqual(normal.frames,old.frames);
+for(const hop of [.25,1,1.4,2]){const d=clone(old);d.config.hop=hop;const migrated=validateDraft(d);assert.equal(migrated.config.hop*migrated.config.gainBasis,hop,'Legacy drafts retain physical distance');}
+assert.notEqual(scratchColour('#d7d0ba'),'#d7d0ba');assert.ok(parseInt(scratchColour('#eeeeee').slice(1,3),16)<238);assert.ok(parseInt(scratchColour('#101010').slice(1,3),16)>16);assert.notEqual(scratchColour('#001020'),'#001020');
+const face={id:'plane',x:100,top:50,right:300,bottom:400,material:'wallpaper',surfaceColour:'#d7d0ba'},event={at:100,x:120,y:80,localX:20,localY:30,surfaceId:'plane',depth:'foreground',scale:3};
+assert.equal(sampleClimbDecals([event],99,face).length,0);const visible=sampleClimbDecals([event],200,face);assert.equal(visible.length,1);assert.equal(visible[0].x,120);assert.equal(visible[0].y,80);assert.equal(visible[0].colour,scratchColour(face.surfaceColour));assert.equal(sampleClimbDecals([event],18100,face).length,0);assert.ok(sampleClimbDecals([event],17900,face)[0].alpha<visible[0].alpha);
+const moved={...face,x:200,right:400,top:100,bottom:450};assert.equal(sampleClimbDecals([event],200,moved)[0].x,220);assert.equal(sampleClimbDecals([event],200,moved)[0].y,130);
+for(const input of [{...event,depth:'behind'},{...event,surfaceId:'removed'},{...event,localX:-1},{...event,localY:500}])assert.equal(sampleClimbDecals([input],200,face).length,0);
+assert.equal(sampleClimbDecals([event],200,{...face,material:'sisal'}).length,0);assert.equal(sampleClimbDecals([event],200,face,{reducedMotion:true}).length,0);assert.equal(sampleClimbDecals(Array(1000).fill(event),200,face).length,960);assert.deepEqual(sampleClimbDecals([event],200,face),visible,'Scrubbing is deterministic');
+console.log('PASS: adopted tuning, lossless/idempotent gain migration, contrast-aware contact scratches, fade/caps, surface-local movement, depth/reduced-motion and rewind.');

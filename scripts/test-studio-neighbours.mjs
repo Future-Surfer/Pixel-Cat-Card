@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {buildPlaybackPlan} from '../frame-studio/dist/playback.js';import {validateProject,newFrame} from '../frame-studio/dist/model.js';import {duplicateSequence} from '../frame-studio/dist/sequences.js';
+const sit={schemaVersion:1,projectId:'sit',name:'Sitting',width:24,height:24,frames:[{...newFrame(),role:'cycle'}]},groom={...structuredClone(sit),projectId:'groom',name:'Grooming',frames:[{...newFrame(),role:'enter'},{...newFrame(),role:'cycle'},{...newFrame(),role:'exit'}],preferredNeighbours:{before:['sit'],after:['sit']}},book={sit:{project:sit},groom:{project:groom}};
+validateProject(groom);const plan=buildPlaybackPlan(groom,book,{context:true,before:'sit',after:'sit'});assert.deepEqual(plan.map(p=>p.sequenceName),['Sitting','Grooming','Grooming','Grooming','Sitting']);assert.equal(plan[1].frame,groom.frames[0]);
+sit.name='Renamed sitting';assert.equal(buildPlaybackPlan(groom,book,{context:true,before:'sit'})[0].sequenceName,'Renamed sitting');
+assert.equal(buildPlaybackPlan(groom,book,{context:true,before:'sit',after:'sit',includeEnter:false,includeExit:false}).length,3);
+assert.equal(buildPlaybackPlan(groom,book,{context:false,before:'sit',after:'sit'}).length,3);assert.equal(buildPlaybackPlan(groom,book,{context:true,before:'unavailable'}).length,3);
+const copy=duplicateSequence(groom);assert.deepEqual(copy.preferredNeighbours,groom.preferredNeighbours);assert.notEqual(copy.projectId,groom.projectId);
+assert.throws(()=>validateProject({...groom,preferredNeighbours:{before:['groom'],after:[]}}));assert.deepEqual(JSON.parse(JSON.stringify(groom)).preferredNeighbours,{before:['sit'],after:['sit']});
+console.log('PASS: optional stable-ID neighbours, renaming, variants, context order, filtered transitions and unavailable links.');

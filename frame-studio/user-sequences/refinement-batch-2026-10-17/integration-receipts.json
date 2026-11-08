@@ -1,0 +1,85 @@
+{
+  "receipts": [
+    {
+      "changeId": "476e60112c8962b25a603a37a375901e731e8e58d06288c2999d820ba6d5bc6b",
+      "entityId": "proposal-lifted-scruff",
+      "versionHash": "e683a883daac35c6cf2afa3c506292f4d913f86a3203a9963e921d26070dd85c",
+      "status": "completed",
+      "notes": "Integrated the exact mixed-origin saved hanging snapshot: three pixel removals, retained gaze/150ms hold and reviewed POI (11,3) as the cursor grip at cell centre, mirrored for facing. Six-scale/both-facing pickup, release/cancel and planted motion tests pass. Browser preview verifies both grips. 74/74 suites pass; final five HA modules match exact readback and real playground/stress render (20/20 stress actors). Saved artwork and dashboard config preserved.",
+      "reference": "codex/dashboard-roaming after 0d6f9d5; refinement-batch-2026-10-17/integration-receipts.json; extras sha256 cbf316e9eb4ed4c0e0ba1bbf0aa4f643d7978f1322ff056501bbf6496c9aa6bc",
+      "at": "2026-10-17T21:31:53.081Z"
+    },
+    {
+      "changeId": "b97267105e51361ddcfeb52d605487aff38dad70f99e7bbdd6e48659b5afe3b9",
+      "entityId": "proposal-scratching-post-action",
+      "versionHash": "dbeac4f74a79b39373b5faff5eb81f6cd435a366be0949c432da17f71d28aa5f",
+      "status": "completed",
+      "notes": "Integrated the exact mixed-origin 13-frame saved post-scratch sequence, including five added pixels on frame index 4. Holds, gaze and rear bearings retained. Both-face/six-scale contact tests pass. Controlled native-edge browser stroke recorded authored F contact; ordinary five-cat observation completed a home-post scratch with 45 contacts while others rested/explored. 74/74 suites pass; HA playground/stress and exact resource readback verified. No post movement or artwork rewrite.",
+      "reference": "codex/dashboard-roaming after 0d6f9d5; refinement-batch-2026-10-17/integration-receipts.json; extras sha256 cbf316e9eb4ed4c0e0ba1bbf0aa4f643d7978f1322ff056501bbf6496c9aa6bc",
+      "at": "2026-10-17T21:31:53.089Z"
+    },
+    {
+      "changeId": "800d5c8d386169b7d88c45c43594813638caddb95a473eda236f0ca8a434e818",
+      "entityId": "c7352bbe-fd27-4ba2-aafc-1c7b23a7010f",
+      "versionHash": "72e7d115013d8d938a8056eca6e41600788d4608d4513552921ecf945c48c745",
+      "status": "deferred",
+      "notes": "Reviewed this exact three-cell exit-frame refinement as an independent child of the current inspect/bat sequence. Deferred: no distinct runtime role has been assigned, so selecting it would silently replace the active parent. Parent and child remain independently addressable, with original pixels/provenance retained. This receipt does not claim runtime integration.",
+      "reference": "codex/dashboard-roaming after 0d6f9d5; refinement-batch-2026-10-17/integration-receipts.json; extras sha256 cbf316e9eb4ed4c0e0ba1bbf0aa4f643d7978f1322ff056501bbf6496c9aa6bc",
+      "at": "2026-10-17T21:31:53.097Z"
+    }
+  ],
+  "deployment": {
+    "modules": [
+      {
+        "file": "pixel-cat-roaming.js",
+        "id": "519d58d52bbc41f4b0aa6aa2b4124ab5",
+        "bytes": 126430,
+        "sha256": "eeb2c4553925ebe1fbf29c959dc62481ced58d1696080cbe50ac63625720762e",
+        "exactReadback": true
+      },
+      {
+        "file": "pixel-cat-roaming-art.js",
+        "id": "615f9c3801924babb036ba3c228f5384",
+        "bytes": 127489,
+        "sha256": "670100088c27ca812c44365966a39e67044984ace660d64ec57588bbfd01e13a",
+        "exactReadback": true
+      },
+      {
+        "file": "pixel-cat-roaming-extras.js",
+        "id": "b42996b3c9704764b6a31d5e416d6806",
+        "bytes": 123675,
+        "sha256": "cbf316e9eb4ed4c0e0ba1bbf0aa4f643d7978f1322ff056501bbf6496c9aa6bc",
+        "exactReadback": true
+      },
+      {
+        "file": "pixel-cat-behaviours.js",
+        "id": "0a9a73a5d6274c3db41100b8979db711",
+        "bytes": 122262,
+        "sha256": "290a61fbb2df84b102191f3ecb9e767ef5b7fbb8c56915f64984728f8e6e49f7",
+        "exactReadback": true
+      },
+      {
+        "file": "pixel-cat-affordances.js",
+        "id": "e1df19101dfe4ecf963982fc14e5bc3d",
+        "bytes": 100357,
+        "sha256": "33b1d8f45418968423ba0909ba47d0ad6b1fa9abe8ab2a36691aad9fe865734b",
+        "exactReadback": true
+      }
+    ],
+    "dashboardHash": "f31c6fe62a88cd3e"
+  },
+  "checks": {
+    "suites": "74/74",
+    "historyEntries": 909,
+    "unchangedOtherEntries": 906,
+    "propsWorkspaceUnchanged": true,
+    "exactSourceHashes": true,
+    "exactHAReadback": true,
+    "dashboardUnchanged": true
+  },
+  "limits": [
+    "Native card edges remain opt-in; no dashboard config changed to enable them.",
+    "Large-catalogue browser retention/menu checks are not a sustained device capacity benchmark.",
+    "Physical mobile/touch/inertia and unsupported transformed containing blocks remain calibration work."
+  ]
+}

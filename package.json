@@ -1,0 +1,27 @@
+{
+  "name": "pixel-cat-card",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-all.mjs",
+    "build:catalogue": "node scripts/build-studio-library.mjs",
+    "build:roaming": "node scripts/build-roaming.mjs",
+    "build:studio": "node frame-studio/scripts/build.mjs",
+    "test": "node scripts/test-all.mjs",
+    "studio": "node frame-studio/scripts/preview.mjs",
+    "gaze:lab": "node scripts/serve-gaze-lab.mjs",
+    "studio:review": "node scripts/review-studio-changes.mjs",
+    "release:build": "node scripts/build-release.mjs",
+    "verify:build": "node scripts/verify-build.mjs",
+    "build:card": "node scripts/build-card.mjs"
+  },
+  "engines": {
+    "node": ">=22.20.0"
+  },
+  "version": "1.0.0-rc.1",
+  "description": "Independent pixel cats for Home Assistant dashboards",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Future-Surfer/Pixel-Cat-Card.git"
+  }
+}

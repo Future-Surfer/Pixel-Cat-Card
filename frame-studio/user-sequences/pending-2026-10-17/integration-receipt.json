@@ -1,0 +1,22 @@
+{
+  "changeId": "631b1ac1b9d0de7d190a00b4e6079d47a2c0b6bec37a595ffa4d8134abc50f53",
+  "entityId": "proposal-scratching-post-rope",
+  "versionHash": "99334bf77e523fcc7fe20897f36a299caab6e7815cdf511fcb1816c2310b0f88",
+  "status": "completed",
+  "notes": "Integrated the exact local Studio revision-3 scratching-post cap: removed only (3,1), (8,1), (3,2), (8,2) against the prior runtime snapshot. Mixed origin, dimensions, palette metadata and authored scratch faces retained. Build and 72/72 suites passed; additional both-face/six-scale contact checks passed. Browser verified loose-post strokes both facings at scale 3 and home strokes at scales 1/6; real HA playground/stress views rendered, 20/20 stress actors, no captured errors. Only affordances deployed after backup, exact readback verified; dashboard config unchanged. Post-update monitor warm-up did not yield a valid steady timing sample; physical mobile performance remains unverified.",
+  "reference": "codex/dashboard-roaming after 0d6f9d5; scripts/build-roaming.mjs; pixel-cat-affordances.js sha256 93b3a5c5f963d703783779860eefd988a9172099d1d317431661735ec1766b38; docs/history/PROJECT_STATUS.md (cap revision 3)",
+  "at": "2026-10-17T17:18:18.637Z",
+  "implementation": {
+    "module": "pixel-cat-affordances.js",
+    "sha256": "93b3a5c5f963d703783779860eefd988a9172099d1d317431661735ec1766b38",
+    "bytes": 77284,
+    "resourceId": "e1df19101dfe4ecf963982fc14e5bc3d",
+    "dashboardHash": "f31c6fe62a88cd3e",
+    "exactReadback": true
+  },
+  "checks": {
+    "suites": "72/72",
+    "unchangedOtherJournalEntries": 907,
+    "workspaceUnchanged": true
+  }
+}

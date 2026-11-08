@@ -1,0 +1,15 @@
+{
+  "changeId": "ce97f53e11b77ba28ae108acb163452b72bcfa3672f4f51ed093079be66767f6",
+  "receipt": {
+    "versionHash": "e52680e0a844c1a88b4ce041d95607f042b5c4ceab133564de7293fbfc0bf061",
+    "status": "completed",
+    "notes": "Integrated exact saved Eating rows/holds/human origin/blind gaze as runtime eat for nibble pickup and bowl meals, fixed rear bearing (12,23). Mouth origin estimate supports carry/drop without changing vision. 55 suites and live resident eating/contact/recent-meal checks passed; controller/extras/behaviours deployed and read back exactly.",
+    "reference": "prototype/cat-mouth-carry.js; prototype/cat-mouth.js; scripts/test-mouth-affordances.mjs; frame-studio/user-sequences/mouth-actions-2026-10-16/eating.json",
+    "at": "2026-10-16T18:10:13.253Z"
+  },
+  "deployedBuilds": {
+    "pixel-cat-roaming.js": "86d69e478da9d4f20fa67f86698769c58f1205c62638ffa1f34f19412d61865a",
+    "pixel-cat-roaming-extras.js": "29661f0c733ec3b384f096afe2340aeafced135293c40230bc6258865aa71307",
+    "pixel-cat-behaviours.js": "7850d8c42725e04b844fff891a7700a03c41e0bb0533dd699e89ae8c3c17f8ac"
+  }
+}

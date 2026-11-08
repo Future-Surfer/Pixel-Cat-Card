@@ -1,0 +1,119 @@
+{
+  "batchId": "everyday-behaviours-2026-10-15",
+  "source": "CAT_BEHAVIOURS.md",
+  "runtimeEnabled": false,
+  "projects": [
+    {
+      "projectId": "proposal-behaviour-sniff",
+      "name": "Investigate · ground sniff · draft",
+      "file": "proposal-behaviour-sniff.json",
+      "frames": 8,
+      "origins": [
+        "human",
+        "mixed"
+      ],
+      "volume": [
+        154,
+        158
+      ]
+    },
+    {
+      "projectId": "proposal-behaviour-knead",
+      "name": "Comfort · alternating knead · draft",
+      "file": "proposal-behaviour-knead.json",
+      "frames": 8,
+      "origins": [
+        "human",
+        "mixed"
+      ],
+      "volume": [
+        153,
+        158
+      ]
+    },
+    {
+      "projectId": "proposal-behaviour-face-wash",
+      "name": "Groom · paw wash and face wipe · draft",
+      "file": "proposal-behaviour-face-wash.json",
+      "frames": 8,
+      "origins": [
+        "human",
+        "mixed"
+      ],
+      "volume": [
+        111,
+        124
+      ]
+    },
+    {
+      "projectId": "proposal-behaviour-ear-scratch",
+      "name": "Groom · hind-paw ear scratch · draft",
+      "file": "proposal-behaviour-ear-scratch.json",
+      "frames": 7,
+      "origins": [
+        "human",
+        "mixed"
+      ],
+      "volume": [
+        118,
+        126
+      ]
+    },
+    {
+      "projectId": "proposal-behaviour-yawn",
+      "name": "Rest · seated yawn · draft",
+      "file": "proposal-behaviour-yawn.json",
+      "frames": 8,
+      "origins": [
+        "human",
+        "mixed"
+      ],
+      "volume": [
+        124,
+        133
+      ]
+    },
+    {
+      "projectId": "proposal-behaviour-cheek-rub",
+      "name": "Interact · cheek rub at an edge · draft",
+      "file": "proposal-behaviour-cheek-rub.json",
+      "frames": 7,
+      "origins": [
+        "human",
+        "mixed"
+      ],
+      "volume": [
+        158,
+        162
+      ]
+    },
+    {
+      "projectId": "proposal-behaviour-paw-bat",
+      "name": "Play · inspect and bat · draft",
+      "file": "proposal-behaviour-paw-bat.json",
+      "frames": 8,
+      "origins": [
+        "human",
+        "mixed"
+      ],
+      "volume": [
+        114,
+        124
+      ]
+    },
+    {
+      "projectId": "proposal-behaviour-curl-sleep",
+      "name": "Rest · curl into sleep · draft",
+      "file": "proposal-behaviour-curl-sleep.json",
+      "frames": 8,
+      "origins": [
+        "human",
+        "mixed"
+      ],
+      "volume": [
+        73,
+        77
+      ]
+    }
+  ]
+}

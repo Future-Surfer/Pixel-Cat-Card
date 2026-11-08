@@ -1,0 +1,570 @@
+{
+  "schemaVersion": 1,
+  "width": 24,
+  "height": 24,
+  "projectId": "proposal-behaviour-paw-bat",
+  "name": "Play · inspect and bat · draft",
+  "category": "interaction",
+  "idlePosture": "sitting",
+  "wip": true,
+  "oneShot": false,
+  "description": "Lift a front paw, reach toward an external toy or detail, tap down and recoil. Keep toy motion separate so the same cat clip can investigate, miss, or nudge different props. AI pixel proposal based on saved human artwork; review before runtime use. Research and authoring plan: CAT_BEHAVIOURS.md.",
+  "variantOf": {
+    "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+    "name": "Sitting · ground · Tail matrix"
+  },
+  "preferredNeighbours": {
+    "before": [
+      "46edfa22-baf5-45b3-a8a6-26fc004059de",
+      "proposal-behaviour-sniff"
+    ],
+    "after": [
+      "46edfa22-baf5-45b3-a8a6-26fc004059de",
+      "proposal-behaviour-sniff"
+    ]
+  },
+  "behaviour": {
+    "batch": "2026-10-15-everyday",
+    "status": "draft",
+    "runtimeEnabled": false,
+    "research": [
+      "https://doi.org/10.3390/pets1030021"
+    ],
+    "intent": "paw-bat",
+    "entryPosture": "sitting",
+    "exitPosture": "sitting",
+    "optional": true,
+    "contactReview": "proposed-bearing-only",
+    "requires": "reachable-object-or-detail",
+    "targetContact": {
+      "x": 22,
+      "y": 20
+    },
+    "repeatRange": [
+      1,
+      2
+    ],
+    "mayAbort": true,
+    "objectMotion": "separate-runtime-channel"
+  },
+  "frames": [
+    {
+      "id": "proposal-behaviour-paw-bat-f01",
+      "name": "Watch object",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...........#..#.........",
+        "...........####.........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........#####.........",
+        "..........#####.........",
+        ".........######.........",
+        "........#######.........",
+        "........#######.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########...#.....",
+        ".......#########.##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 500,
+      "anchor": {
+        "x": 10,
+        "y": 23
+      },
+      "origin": "human",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "reference-copy",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "enter",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "paw-bat",
+          "draft",
+          "enter"
+        ],
+        "description": "Watch object"
+      }
+    },
+    {
+      "id": "proposal-behaviour-paw-bat-f02",
+      "name": "Lift front paw",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...........#..#.........",
+        "...........####.........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........#####.........",
+        "..........#####.........",
+        ".........######.........",
+        "........#####...........",
+        "........#####...........",
+        ".......######..#R.......",
+        ".......#########........",
+        ".......#######..........",
+        ".......#######..........",
+        ".......######.....#.....",
+        ".......######....##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 220,
+      "anchor": {
+        "x": 10,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "enter",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "paw-bat",
+          "draft",
+          "enter"
+        ],
+        "description": "Lift front paw"
+      }
+    },
+    {
+      "id": "proposal-behaviour-paw-bat-f03",
+      "name": "Reach slowly",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...........#..#.........",
+        "...........####.........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........#####.........",
+        "..........#####.........",
+        ".........######.........",
+        "........#####...........",
+        "........#####...........",
+        ".......######...###R....",
+        ".......##########.......",
+        ".......#######..........",
+        ".......#######..........",
+        ".......######.....#.....",
+        ".......######....##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 280,
+      "anchor": {
+        "x": 10,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "cycle",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "paw-bat",
+          "draft",
+          "cycle"
+        ],
+        "description": "Reach slowly"
+      }
+    },
+    {
+      "id": "proposal-behaviour-paw-bat-f04",
+      "name": "Tap outward",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...........#..#.........",
+        "...........####.........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........#####.........",
+        "..........#####.........",
+        ".........######.........",
+        "........#####...........",
+        "........#####...........",
+        ".......######...........",
+        ".......#########........",
+        ".......#######.#####....",
+        ".......#######.....###R.",
+        ".......######.....#.....",
+        ".......######....##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 100,
+      "anchor": {
+        "x": 10,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "cycle",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "paw-bat",
+          "draft",
+          "cycle"
+        ],
+        "description": "Tap outward"
+      }
+    },
+    {
+      "id": "proposal-behaviour-paw-bat-f05",
+      "name": "Paw recoils",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...........#..#.........",
+        "...........####.........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........#####.........",
+        "..........#####.........",
+        ".........######.........",
+        "........#####...........",
+        "........#####...#R......",
+        ".......######.###.......",
+        ".......########.........",
+        ".......#######..........",
+        ".......#######..........",
+        ".......######.....#.....",
+        ".......######....##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 180,
+      "anchor": {
+        "x": 10,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "cycle",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "paw-bat",
+          "draft",
+          "cycle"
+        ],
+        "description": "Paw recoils"
+      }
+    },
+    {
+      "id": "proposal-behaviour-paw-bat-f06",
+      "name": "Watch result",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...........#..#.........",
+        "...........####.........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........#####.........",
+        "..........#####.........",
+        ".........######.........",
+        "........#####...........",
+        "........#####...........",
+        ".......######...........",
+        ".......########.........",
+        ".......#########R.......",
+        ".......#######..........",
+        ".......######.....#.....",
+        ".......######....##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 500,
+      "anchor": {
+        "x": 10,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "cycle",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "paw-bat",
+          "draft",
+          "cycle"
+        ],
+        "description": "Watch result"
+      }
+    },
+    {
+      "id": "proposal-behaviour-paw-bat-f07",
+      "name": "Put paw down",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...........#..#.........",
+        "...........####.........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........#####.........",
+        "..........#####.........",
+        ".........######.........",
+        "........#######.........",
+        "........#######.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########...#.....",
+        ".......#########.##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 220,
+      "anchor": {
+        "x": 10,
+        "y": 23
+      },
+      "origin": "human",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "reference-copy",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "exit",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "paw-bat",
+          "draft",
+          "exit"
+        ],
+        "description": "Put paw down"
+      }
+    },
+    {
+      "id": "proposal-behaviour-paw-bat-f08",
+      "name": "Lose interest or re-engage",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...........#..#.........",
+        "...........####.........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........######........",
+        "..........#####.........",
+        "..........#####.........",
+        ".........######.........",
+        "........#######.........",
+        "........#######.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########.........",
+        ".......########...#.....",
+        ".......#########.##.....",
+        ".......###R##R#####....."
+      ],
+      "durationMs": 600,
+      "anchor": {
+        "x": 10,
+        "y": 23
+      },
+      "origin": "human",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+        "frameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+        "savedAt": "2026-10-14T20:26:18.141Z",
+        "contentHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "reference-copy",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+          "sourceFrameId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827"
+        }
+      ],
+      "role": "exit",
+      "parentId": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+      "metadata": {
+        "category": "interaction",
+        "tags": [
+          "paw-bat",
+          "draft",
+          "exit"
+        ],
+        "description": "Lose interest or re-engage"
+      }
+    }
+  ],
+  "workQueue": {
+    "version": 1,
+    "repository": "Stick-Pet-Card",
+    "selectedId": "",
+    "tasks": []
+  }
+}

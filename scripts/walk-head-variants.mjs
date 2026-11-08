@@ -1,0 +1,3 @@
+// Retain source cells outside the high/low head patch, especially all paw contacts.
+export function walkHeadVariants(walk){return walk.map(rows=>[0,1].map(head=>rows.map((row,y)=>y<14?row.slice(0,14)+walk[head][y].slice(14):row)));}
+export function walkHeadProvenance(walk,variants){return variants.map((states,gait)=>states.map((rows,head)=>{const original=JSON.stringify(rows)===JSON.stringify(walk[gait]);return {origin:original?'human':'mixed',review:original?'accepted':'candidate',usage:'development',gait,head,source:'pixel-pet-card.js:WALK_FRAMES',recipe:'Copy exact x14..23/y0..13 head cells from gait 0 (high) or 1 (low); retain other cells.'};}));}

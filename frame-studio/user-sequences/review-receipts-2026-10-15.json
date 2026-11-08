@@ -1,0 +1,522 @@
+{
+  "exportedAt": "2026-10-14T23:20:33.138Z",
+  "reference": "roaming-controller sha256:af4cada98ff8807ebd9537b6660a8ed1ccc3f7f76acb9a88c836016f9fd412c9; artwork sha256:bb00d434f5caa061c6b4ce38944ee7be787d5919be8d4555b1fb923be0ebca5e",
+  "changes": [
+    {
+      "id": "163363d6eab17555d0bfa2f084109371053d27fa44a5aa4f60ed4263a60681e0",
+      "kind": "sequence",
+      "entityId": "proposal-gallop-24",
+      "name": "Gallop · compact sprint draft",
+      "versionHash": "b3df297dd5cd2817a4a5f92a5b0b1e34e6702ebec086ba06d12d66116d71d6e1",
+      "at": "2026-10-14T23:15:28.248Z",
+      "summary": {
+        "frames": 8,
+        "previousFrames": null,
+        "editedFrames": 8
+      },
+      "receipt": {
+        "status": "pending",
+        "notes": "",
+        "reference": ""
+      }
+    },
+    {
+      "id": "a444e5c5cdadfce12ab14719c652bd83739505cd994dd69a997788c8c83a63c6",
+      "kind": "sequence",
+      "entityId": "proposal-fast-walk-front-offset",
+      "name": "Walking · faster · front-leg phase proposal",
+      "versionHash": "312de79ac5d3984fda60d585c5f42838cef8310da85380988d9757fa3ac737b8",
+      "at": "2026-10-14T22:28:16.366Z",
+      "summary": {
+        "frames": 8,
+        "previousFrames": null,
+        "editedFrames": 8
+      },
+      "receipt": {
+        "status": "pending",
+        "notes": "",
+        "reference": ""
+      }
+    },
+    {
+      "id": "2321bddb57cb4b7b5216ce3429312cb5c85755ae893418c9c2540c9c1c9103cd",
+      "kind": "prop",
+      "entityId": "dd2bda18-62a3-4f52-972e-e6abe3b7df83",
+      "name": "Igloo Bed",
+      "versionHash": "220c41433f61349fbe1efd31a6b654c8ab23c980ae72e411586418a26c20c4ac",
+      "at": "2026-10-14T22:19:27.444Z",
+      "summary": {
+        "width": 21,
+        "height": 15,
+        "revision": 2
+      },
+      "receipt": {
+        "versionHash": "220c41433f61349fbe1efd31a6b654c8ab23c980ae72e411586418a26c20c4ac",
+        "status": "completed",
+        "notes": "Exact human-authored pixels retained in prop catalogue. Igloo bed is rendered on the HA home dock.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.769Z"
+      }
+    },
+    {
+      "id": "5f37a525087146d8f403866ad35421192ae41e8caf724dc4b6664c1dd9608d8d",
+      "kind": "prop",
+      "entityId": "a5331539-3746-4913-8999-b943781d45a9",
+      "name": "water glass",
+      "versionHash": "a86f5317dc01e277d8df9f31e1dc51f95fb16be642219caf54e8c5adee7fad33",
+      "at": "2026-10-14T22:19:27.444Z",
+      "summary": {
+        "width": 3,
+        "height": 6,
+        "revision": 1
+      },
+      "receipt": {
+        "versionHash": "a86f5317dc01e277d8df9f31e1dc51f95fb16be642219caf54e8c5adee7fad33",
+        "status": "completed",
+        "notes": "Exact human-authored pixels retained in prop catalogue. Igloo bed is rendered on the HA home dock.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.773Z"
+      }
+    },
+    {
+      "id": "cdf7d8d55ac32a9a57be2ece53506c7931c6abb8dfe252b7f166d8381ab79d73",
+      "kind": "sequence",
+      "entityId": "8cf69cf1-de43-48a8-bc9e-c212c3cf8b33",
+      "name": "Walking · faster - desynced feet",
+      "versionHash": "5f3c067779cb2ecaf0f950f4e664bba8a62b7ed53c3a95d10e60e2c88be207ad",
+      "at": "2026-10-14T21:20:09.484Z",
+      "summary": {
+        "frames": 8,
+        "previousFrames": null,
+        "editedFrames": 8
+      },
+      "receipt": {
+        "versionHash": "5f3c067779cb2ecaf0f950f4e664bba8a62b7ed53c3a95d10e60e2c88be207ad",
+        "status": "deferred",
+        "notes": "Exact authored asset catalogued and reviewed; future gait/platform behaviour is not enabled in normal roaming.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; exact source snapshot retained",
+        "at": "2026-10-14T22:29:55.777Z"
+      }
+    },
+    {
+      "id": "99697a98d1629ac53edba46c48d141e53e775fb5a92315300c20bacc23f2452b",
+      "kind": "sequence",
+      "entityId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+      "name": "Walking · faster - synced feet",
+      "versionHash": "d883e06f4160116536222b15daa2ee7befe0e61699acc62a06955c0a9e0a2006",
+      "at": "2026-10-14T21:17:26.783Z",
+      "summary": {
+        "frames": 8,
+        "previousFrames": null,
+        "editedFrames": 8
+      },
+      "receipt": {
+        "versionHash": "d883e06f4160116536222b15daa2ee7befe0e61699acc62a06955c0a9e0a2006",
+        "status": "deferred",
+        "notes": "Exact authored asset catalogued and reviewed; future gait/platform behaviour is not enabled in normal roaming.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; exact source snapshot retained",
+        "at": "2026-10-14T22:29:55.782Z"
+      }
+    },
+    {
+      "id": "9233f7488d7b0939be7018684e88aebd13edc5074c00e6b7fa55bc018ff9f1fc",
+      "kind": "sequence",
+      "entityId": "pose-look-down",
+      "name": "Sitting - Looking down",
+      "versionHash": "e7e46b4b241fe625c40dd7eb9ae8fa880ffef41f4ba64784c594d2b18f93e341",
+      "at": "2026-10-14T21:02:32.778Z",
+      "summary": {
+        "frames": 11,
+        "previousFrames": null,
+        "editedFrames": 11
+      },
+      "receipt": {
+        "versionHash": "e7e46b4b241fe625c40dd7eb9ae8fa880ffef41f4ba64784c594d2b18f93e341",
+        "status": "completed",
+        "notes": "Exact saved frames reviewed against prior catalogue. Applicable idle/leap refinements integrated; existing source artwork and provenance preserved.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.787Z"
+      }
+    },
+    {
+      "id": "88b36d452acf7fe4624b1331e087b2e362c3ed6b77ce8e9e6becbba054bac11a",
+      "kind": "sequence",
+      "entityId": "0d9340b1-6255-4d69-93b6-28d5077987e6",
+      "name": "Sitting · elevated · tail matrix",
+      "versionHash": "9cbf8613e8f839ae63af9f21d9cef8e864d18c38283f2273512583ca9310ae1b",
+      "at": "2026-10-14T21:01:25.843Z",
+      "summary": {
+        "frames": 9,
+        "previousFrames": null,
+        "editedFrames": 9
+      },
+      "receipt": {
+        "versionHash": "9cbf8613e8f839ae63af9f21d9cef8e864d18c38283f2273512583ca9310ae1b",
+        "status": "completed",
+        "notes": "Exact saved frames reviewed against prior catalogue. Applicable idle/leap refinements integrated; existing source artwork and provenance preserved.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.791Z"
+      }
+    },
+    {
+      "id": "83583c1879f54bf895fd8063b95864cc6c11ebed2896b09713a32f4ea649a743",
+      "kind": "sequence",
+      "entityId": "sequence-across",
+      "name": "Jump across",
+      "versionHash": "8da37a800d45751ea8fee214efac509ab17015412ece9697fa79c2be555bd660",
+      "at": "2026-10-14T20:59:56.797Z",
+      "summary": {
+        "frames": 6,
+        "previousFrames": null,
+        "editedFrames": 6
+      },
+      "receipt": {
+        "versionHash": "8da37a800d45751ea8fee214efac509ab17015412ece9697fa79c2be555bd660",
+        "status": "completed",
+        "notes": "Exact saved frames reviewed against prior catalogue. Applicable idle/leap refinements integrated; existing source artwork and provenance preserved.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.796Z"
+      }
+    },
+    {
+      "id": "db2a48f803d5840a08aabb4bfb0fc98200a31c9ca4675777917da8fb5205db2c",
+      "kind": "sequence",
+      "entityId": "dd149c2d-9d62-4f57-bf12-d1cb9924d469",
+      "name": "Walking · sneaky head-low",
+      "versionHash": "c199d120a5a42c369ae351d586504f2cb847494b2201a90f8d9685dc597d316b",
+      "at": "2026-10-14T20:55:27.137Z",
+      "summary": {
+        "frames": 8,
+        "previousFrames": null,
+        "editedFrames": 8
+      },
+      "receipt": {
+        "versionHash": "c199d120a5a42c369ae351d586504f2cb847494b2201a90f8d9685dc597d316b",
+        "status": "completed",
+        "reference": "roaming-controller sha256:af4cada98ff8807ebd9537b6660a8ed1ccc3f7f76acb9a88c836016f9fd412c9; artwork sha256:bb00d434f5caa061c6b4ce38944ee7be787d5919be8d4555b1fb923be0ebca5e",
+        "notes": "Exact human sneaky clip integrated in contextual play; head height tracks speed at whole-stride boundaries. Shared world-cell paw contacts checked at scales 1/2/3 in both facings; live HA episode confirmed through grooming.",
+        "at": "2026-10-14T23:20:33.039Z"
+      }
+    },
+    {
+      "id": "cf0558972236ecac07354a676c53f26f873ef127ce078e35ab485ce19e5b1abd",
+      "kind": "sequence",
+      "entityId": "c45528cf-168a-4dc1-ab61-96ac62816e59",
+      "name": "Walking · sneaky head-mid",
+      "versionHash": "9da16eafd88c1f084e59633344cc460134e27b9fba6a65ce823fe48eebb18015",
+      "at": "2026-10-14T20:55:21.013Z",
+      "summary": {
+        "frames": 8,
+        "previousFrames": null,
+        "editedFrames": 8
+      },
+      "receipt": {
+        "versionHash": "9da16eafd88c1f084e59633344cc460134e27b9fba6a65ce823fe48eebb18015",
+        "status": "completed",
+        "reference": "roaming-controller sha256:af4cada98ff8807ebd9537b6660a8ed1ccc3f7f76acb9a88c836016f9fd412c9; artwork sha256:bb00d434f5caa061c6b4ce38944ee7be787d5919be8d4555b1fb923be0ebca5e",
+        "notes": "Exact human sneaky clip integrated in contextual play; head height tracks speed at whole-stride boundaries. Shared world-cell paw contacts checked at scales 1/2/3 in both facings; live HA episode confirmed through grooming.",
+        "at": "2026-10-14T23:20:33.057Z"
+      }
+    },
+    {
+      "id": "3a4fbeb2f175ea401d4e0d9e2003dc5242170121784b8ac2d913f44e57737e06",
+      "kind": "sequence",
+      "entityId": "a92e1bba-462f-4d89-92e7-d1e7d9142eda",
+      "name": "Walking · sneaky head-up",
+      "versionHash": "205a2c2713b070a8d1bfcfaf8d3d2e83645da401fd7eaeb68b7bab660a6058d5",
+      "at": "2026-10-14T20:55:12.807Z",
+      "summary": {
+        "frames": 8,
+        "previousFrames": null,
+        "editedFrames": 8
+      },
+      "receipt": {
+        "versionHash": "205a2c2713b070a8d1bfcfaf8d3d2e83645da401fd7eaeb68b7bab660a6058d5",
+        "status": "completed",
+        "reference": "roaming-controller sha256:af4cada98ff8807ebd9537b6660a8ed1ccc3f7f76acb9a88c836016f9fd412c9; artwork sha256:bb00d434f5caa061c6b4ce38944ee7be787d5919be8d4555b1fb923be0ebca5e",
+        "notes": "Exact human sneaky clip integrated in contextual play; head height tracks speed at whole-stride boundaries. Shared world-cell paw contacts checked at scales 1/2/3 in both facings; live HA episode confirmed through grooming.",
+        "at": "2026-10-14T23:20:33.066Z"
+      }
+    },
+    {
+      "id": "bf9febec947595fa29ccd54519f871f28a6cb7eb694592efa4fd9e461c7d9a2b",
+      "kind": "sequence",
+      "entityId": "4b73f410-1bfc-4ea3-ba1d-7d6c737a6a63",
+      "name": "Sitting · ground · Head matrix",
+      "versionHash": "6a4bf65f8ba6d6403ca5a6431bc8106a33a7d20068b90c1d6b992a5c14fa306e",
+      "at": "2026-10-14T20:31:23.699Z",
+      "summary": {
+        "frames": 7,
+        "previousFrames": null,
+        "editedFrames": 7
+      },
+      "receipt": {
+        "versionHash": "6a4bf65f8ba6d6403ca5a6431bc8106a33a7d20068b90c1d6b992a5c14fa306e",
+        "status": "completed",
+        "notes": "Exact saved frames reviewed against prior catalogue. Applicable idle/leap refinements integrated; existing source artwork and provenance preserved.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.815Z"
+      }
+    },
+    {
+      "id": "45c9f91e73722d63d7b5b53f269b5919a852e0521647d8b53a230be60b5c21e5",
+      "kind": "sequence",
+      "entityId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+      "name": "Sitting · ground · Tail matrix",
+      "versionHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af",
+      "at": "2026-10-14T20:26:18.141Z",
+      "summary": {
+        "frames": 11,
+        "previousFrames": null,
+        "editedFrames": 11
+      },
+      "receipt": {
+        "versionHash": "34a3e0d68f97dfdfdf0354e3db96b1418ec93106ce534afe393646961d1e08af",
+        "status": "completed",
+        "notes": "Exact saved frames reviewed against prior catalogue. Applicable idle/leap refinements integrated; existing source artwork and provenance preserved.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.819Z"
+      }
+    },
+    {
+      "id": "3220e5b13d222c2b03610c33804b2cd1742c31d18f5277d3f8a7e6040ee14804",
+      "kind": "sequence",
+      "entityId": "pose-vertical-down",
+      "name": "Straight-down drop",
+      "versionHash": "6e8da6583831020b21e23b18460c2c5648cb27b3f6806c545e3978de7d4c898c",
+      "at": "2026-10-14T20:17:27.674Z",
+      "summary": {
+        "frames": 5,
+        "previousFrames": null,
+        "editedFrames": 5
+      },
+      "receipt": {
+        "versionHash": "6e8da6583831020b21e23b18460c2c5648cb27b3f6806c545e3978de7d4c898c",
+        "status": "deferred",
+        "notes": "Exact draft preserved and reviewed. Dedicated vertical-jump geometry still needs separate validation.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; exact source snapshot retained",
+        "at": "2026-10-14T22:29:55.824Z"
+      }
+    },
+    {
+      "id": "7fdb16c0b30499254d24cd53229c9bac0a8a5bd6257c8c7d4018a19762dade28",
+      "kind": "sequence",
+      "entityId": "sequence-freefall-candidate",
+      "name": "Free falling",
+      "versionHash": "8dbaaac1631ce88b4f71a9d34aa0d280f48dbd6322c4daeaeb44c8c21e364d09",
+      "at": "2026-10-14T20:16:40.457Z",
+      "summary": {
+        "frames": 4,
+        "previousFrames": null,
+        "editedFrames": 4
+      },
+      "receipt": {
+        "versionHash": "8dbaaac1631ce88b4f71a9d34aa0d280f48dbd6322c4daeaeb44c8c21e364d09",
+        "status": "completed",
+        "reference": "roaming-controller sha256:af4cada98ff8807ebd9537b6660a8ed1ccc3f7f76acb9a88c836016f9fd412c9; artwork sha256:bb00d434f5caa061c6b4ce38944ee7be787d5919be8d4555b1fb923be0ebca5e",
+        "notes": "Exact four-frame saved sequence enabled for long descents, including lateral drops. Ballistic centre and landing unchanged; live HA diagnostic confirmed sequence selection. Off toggle retained.",
+        "at": "2026-10-14T23:20:33.073Z"
+      }
+    },
+    {
+      "id": "463376555b65de43695900d844854a663f0f8d0d31972a8e78377b06a1c90842",
+      "kind": "sequence",
+      "entityId": "sequence-look-up",
+      "name": "Standing - Looking up",
+      "versionHash": "52601fa1bfdcc4c7323e367a8fa32e44031598b4b1c7fe0e4954c6b7adf470d1",
+      "at": "2026-10-14T20:08:44.036Z",
+      "summary": {
+        "frames": 10,
+        "previousFrames": null,
+        "editedFrames": 10
+      },
+      "receipt": {
+        "versionHash": "52601fa1bfdcc4c7323e367a8fa32e44031598b4b1c7fe0e4954c6b7adf470d1",
+        "status": "completed",
+        "notes": "Exact saved frames reviewed against prior catalogue. Applicable idle/leap refinements integrated; existing source artwork and provenance preserved.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.832Z"
+      }
+    },
+    {
+      "id": "cc15eb339a6ea2c41a409aad142723843ecc94b62346e2bc31160ad574d91d9b",
+      "kind": "sequence",
+      "entityId": "sequence-loaf",
+      "name": "Loafing",
+      "versionHash": "fea71b2bcb3cec09239d39d5fc62c8612917edb6e37e883fa817d5bb9afcab64",
+      "at": "2026-10-14T20:07:36.718Z",
+      "summary": {
+        "frames": 4,
+        "previousFrames": null,
+        "editedFrames": 4
+      },
+      "receipt": {
+        "versionHash": "fea71b2bcb3cec09239d39d5fc62c8612917edb6e37e883fa817d5bb9afcab64",
+        "status": "completed",
+        "notes": "Exact saved frames reviewed against prior catalogue. Applicable idle/leap refinements integrated; existing source artwork and provenance preserved.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.835Z"
+      }
+    },
+    {
+      "id": "4b198211bb9316a95a884184636047bb3fd1e9433663bd29af62496f9094d893",
+      "kind": "sequence",
+      "entityId": "sequence-stretch",
+      "name": "Stretching · exit loaf",
+      "versionHash": "89917992e8281ed4f62b2a2618ec9ad1996e58c10ee72fdb2419c0e3efd0a4ab",
+      "at": "2026-10-14T20:05:39.432Z",
+      "summary": {
+        "frames": 3,
+        "previousFrames": null,
+        "editedFrames": 3
+      },
+      "receipt": {
+        "versionHash": "89917992e8281ed4f62b2a2618ec9ad1996e58c10ee72fdb2419c0e3efd0a4ab",
+        "status": "completed",
+        "notes": "Exact saved frames reviewed against prior catalogue. Applicable idle/leap refinements integrated; existing source artwork and provenance preserved.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.839Z"
+      }
+    },
+    {
+      "id": "3e488d7d1b89b470a00ad63490d9990305f33293722704ea511bc923c94c960d",
+      "kind": "sequence",
+      "entityId": "sequence-clean",
+      "name": "Grooming",
+      "versionHash": "64e809569d86c21c3f796a0cf3d3bf4e91e198cf50adbba92c4457205ec12bfa",
+      "at": "2026-10-14T20:04:47.185Z",
+      "summary": {
+        "frames": 3,
+        "previousFrames": null,
+        "editedFrames": 3
+      },
+      "receipt": {
+        "versionHash": "64e809569d86c21c3f796a0cf3d3bf4e91e198cf50adbba92c4457205ec12bfa",
+        "status": "completed",
+        "notes": "Exact saved frames reviewed against prior catalogue. Applicable idle/leap refinements integrated; existing source artwork and provenance preserved.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.843Z"
+      }
+    },
+    {
+      "id": "cef542595b5681bc356ab2baddc1009f74cc1cebd84e418aa29ef758b39c4862",
+      "kind": "sequence",
+      "entityId": "sequence-robot-ride",
+      "name": "Riding the robot",
+      "versionHash": "b459d14c648d31b5d0b5060aa9bab6807f462786c39cae42c179a50e4c40d3bc",
+      "at": "2026-10-14T19:45:06.518Z",
+      "summary": {
+        "frames": 8,
+        "previousFrames": null,
+        "editedFrames": 8
+      },
+      "receipt": {
+        "versionHash": "b459d14c648d31b5d0b5060aa9bab6807f462786c39cae42c179a50e4c40d3bc",
+        "status": "deferred",
+        "notes": "Exact authored asset catalogued and reviewed; future gait/platform behaviour is not enabled in normal roaming.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; exact source snapshot retained",
+        "at": "2026-10-14T22:29:55.846Z"
+      }
+    },
+    {
+      "id": "205a1631f86d42b78991666cea7546ed32a6c0e56ae2bfdb4ef413687337d9d1",
+      "kind": "sequence",
+      "entityId": "sequence-stand",
+      "name": "Standing",
+      "versionHash": "6d69950c83642ff8d3dd44c71a40dc8f223e0cabea6bfb3fd68a5237ccd2285b",
+      "at": "2026-10-14T19:32:15.671Z",
+      "summary": {
+        "frames": 5,
+        "previousFrames": null,
+        "editedFrames": 5
+      },
+      "receipt": {
+        "versionHash": "6d69950c83642ff8d3dd44c71a40dc8f223e0cabea6bfb3fd68a5237ccd2285b",
+        "status": "completed",
+        "notes": "Exact saved frames reviewed against prior catalogue. Applicable idle/leap refinements integrated; existing source artwork and provenance preserved.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.849Z"
+      }
+    },
+    {
+      "id": "71a66a2d1489926ed2d463db7188dc2610ed404da148b5f05c6a0e8c25d571f1",
+      "kind": "sequence",
+      "entityId": "pose-vertical-up",
+      "name": "Straight-up jump · draft",
+      "versionHash": "56b10108aec7a188adbe222e7f7d10823bc30627c2501085c50f8e01f681005c",
+      "at": "2026-10-14T19:28:15.345Z",
+      "summary": {
+        "frames": 5,
+        "previousFrames": null,
+        "editedFrames": 5
+      },
+      "receipt": {
+        "versionHash": "56b10108aec7a188adbe222e7f7d10823bc30627c2501085c50f8e01f681005c",
+        "status": "deferred",
+        "notes": "Exact draft preserved and reviewed. Dedicated vertical-jump geometry still needs separate validation.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; exact source snapshot retained",
+        "at": "2026-10-14T22:29:55.854Z"
+      }
+    },
+    {
+      "id": "1050910132623f458521b93048214d2dc7ff05551c63c5ab3b91390332eebd05",
+      "kind": "sequence",
+      "entityId": "sequence-walk-low",
+      "name": "Walking · head low",
+      "versionHash": "ff230458351fb11cc434cfa0ba658e62643dc49a7f919776e113779cc4f3f020",
+      "at": "2026-10-14T19:17:55.629Z",
+      "summary": {
+        "frames": 4,
+        "previousFrames": null,
+        "editedFrames": 4
+      },
+      "receipt": {
+        "versionHash": "ff230458351fb11cc434cfa0ba658e62643dc49a7f919776e113779cc4f3f020",
+        "status": "completed",
+        "notes": "Exact saved frames reviewed against prior catalogue. Applicable idle/leap refinements integrated; existing source artwork and provenance preserved.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.857Z"
+      }
+    },
+    {
+      "id": "ce068055b4280866f86359c85c86ad72ac7a534258544c32a285af41534d4556",
+      "kind": "sequence",
+      "entityId": "sequence-walk-high",
+      "name": "Walking · head high",
+      "versionHash": "608f1a3884cde97d1a1ef8e1ec548368eb1807ec384228e650abf9b1a67c07e0",
+      "at": "2026-10-14T19:17:29.607Z",
+      "summary": {
+        "frames": 4,
+        "previousFrames": null,
+        "editedFrames": 4
+      },
+      "receipt": {
+        "versionHash": "608f1a3884cde97d1a1ef8e1ec548368eb1807ec384228e650abf9b1a67c07e0",
+        "status": "completed",
+        "notes": "Exact saved frames reviewed against prior catalogue. Applicable idle/leap refinements integrated; existing source artwork and provenance preserved.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.860Z"
+      }
+    },
+    {
+      "id": "e567218a0e031c8182e3d148bdb5703332dde96b2f5dfb3fa31b66bfd2296330",
+      "kind": "sequence",
+      "entityId": "pose-sitting-glance",
+      "name": "Sitting head glance · draft",
+      "versionHash": "2bd7fa180148d2b21386428b39669494696a49e4e07245e647becf6a962f1c50",
+      "at": "2026-10-14T19:07:40.559Z",
+      "summary": {
+        "frames": 2,
+        "previousFrames": null,
+        "editedFrames": 2
+      },
+      "receipt": {
+        "versionHash": "2bd7fa180148d2b21386428b39669494696a49e4e07245e647becf6a962f1c50",
+        "status": "completed",
+        "notes": "Exact saved frames reviewed against prior catalogue. Applicable idle/leap refinements integrated; existing source artwork and provenance preserved.",
+        "reference": "frame-studio/LATEST_ASSET_REVIEW.md; pixel-cat-roaming-art.js; verified HA resource 615f9c3801924babb036ba3c228f5384",
+        "at": "2026-10-14T22:29:55.863Z"
+      }
+    }
+  ]
+}

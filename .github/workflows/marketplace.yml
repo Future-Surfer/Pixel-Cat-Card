@@ -1,0 +1,20 @@
+name: Marketplace validation
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 4 * * 1'
+permissions:
+  contents: read
+jobs:
+  validate-plugin:
+    # HACS/Marketplace distribution requires a public repository. A skipped
+    # private run is not a passing Marketplace validation claim.
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hacs/action@1ebf01c408f29afcb6406bd431bc98fd8cbb15aa # main, 2026-11-08
+        with:
+          category: plugin
+          comment: false

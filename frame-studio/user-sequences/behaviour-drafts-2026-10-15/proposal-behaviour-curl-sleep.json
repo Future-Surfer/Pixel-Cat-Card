@@ -1,0 +1,565 @@
+{
+  "schemaVersion": 1,
+  "width": 24,
+  "height": 24,
+  "projectId": "proposal-behaviour-curl-sleep",
+  "name": "Rest · curl into sleep · draft",
+  "category": "idle",
+  "idlePosture": "loafing",
+  "wip": true,
+  "oneShot": false,
+  "description": "Lower the head into the body, wrap the tail and hold a compact sleeping silhouette. Only the two sleeping cycle poses breathe; the enter/exit poses should not repeat as a sleep loop. AI pixel proposal based on saved human artwork; review before runtime use. Research and authoring plan: CAT_BEHAVIOURS.md.",
+  "variantOf": {
+    "projectId": "sequence-loaf",
+    "name": "Loafing"
+  },
+  "preferredNeighbours": {
+    "before": [
+      "sequence-loaf"
+    ],
+    "after": [
+      "sequence-stretch",
+      "sequence-loaf"
+    ]
+  },
+  "behaviour": {
+    "batch": "2026-10-15-everyday",
+    "status": "draft",
+    "runtimeEnabled": false,
+    "research": [
+      "https://doi.org/10.3390/pets1030021"
+    ],
+    "intent": "curl-sleep",
+    "entryPosture": "loafing",
+    "exitPosture": "loafing",
+    "optional": true,
+    "contactReview": "proposed-bearing-only",
+    "requires": "wide-resting-place",
+    "repeatRange": [
+      3,
+      8
+    ],
+    "mayAbort": true,
+    "frequencyHint": "longer-rest"
+  },
+  "frames": [
+    {
+      "id": "proposal-behaviour-curl-sleep-f01",
+      "name": "Alert loaf",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...............#.#......",
+        ".......#####...###......",
+        "......#############.....",
+        "......#############.....",
+        "......#############.....",
+        ".....##############.....",
+        ".....######R#####R......"
+      ],
+      "durationMs": 700,
+      "anchor": {
+        "x": 11,
+        "y": 23
+      },
+      "origin": "human",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-loaf",
+        "frameId": "81c86595-95ae-4496-b337-b603c464c007",
+        "savedAt": "2026-10-14T20:07:36.718Z",
+        "contentHash": "fea71b2bcb3cec09239d39d5fc62c8612917edb6e37e883fa817d5bb9afcab64"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "reference-copy",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-loaf",
+          "sourceFrameId": "81c86595-95ae-4496-b337-b603c464c007"
+        }
+      ],
+      "role": "enter",
+      "parentId": "81c86595-95ae-4496-b337-b603c464c007",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "curl-sleep",
+          "draft",
+          "enter"
+        ],
+        "description": "Alert loaf"
+      }
+    },
+    {
+      "id": "proposal-behaviour-curl-sleep-f02",
+      "name": "Head lowers",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        ".......####...#.#.......",
+        "......#############.....",
+        ".....##############.....",
+        "....###############.....",
+        ".....##############.....",
+        ".....######R######......"
+      ],
+      "durationMs": 350,
+      "anchor": {
+        "x": 11,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-loaf",
+        "frameId": "81c86595-95ae-4496-b337-b603c464c007",
+        "savedAt": "2026-10-14T20:07:36.718Z",
+        "contentHash": "fea71b2bcb3cec09239d39d5fc62c8612917edb6e37e883fa817d5bb9afcab64"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-loaf",
+          "sourceFrameId": "81c86595-95ae-4496-b337-b603c464c007"
+        }
+      ],
+      "role": "enter",
+      "parentId": "81c86595-95ae-4496-b337-b603c464c007",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "curl-sleep",
+          "draft",
+          "enter"
+        ],
+        "description": "Head lowers"
+      }
+    },
+    {
+      "id": "proposal-behaviour-curl-sleep-f03",
+      "name": "Tuck head",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        ".......####.............",
+        "......#############.....",
+        ".....##############.....",
+        "....###############.....",
+        ".....##############.....",
+        ".....######R######......"
+      ],
+      "durationMs": 400,
+      "anchor": {
+        "x": 11,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-loaf",
+        "frameId": "81c86595-95ae-4496-b337-b603c464c007",
+        "savedAt": "2026-10-14T20:07:36.718Z",
+        "contentHash": "fea71b2bcb3cec09239d39d5fc62c8612917edb6e37e883fa817d5bb9afcab64"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-loaf",
+          "sourceFrameId": "81c86595-95ae-4496-b337-b603c464c007"
+        }
+      ],
+      "role": "enter",
+      "parentId": "81c86595-95ae-4496-b337-b603c464c007",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "curl-sleep",
+          "draft",
+          "enter"
+        ],
+        "description": "Tuck head"
+      }
+    },
+    {
+      "id": "proposal-behaviour-curl-sleep-f04",
+      "name": "Curled sleep · exhale",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        ".......####.............",
+        "......#############.....",
+        ".....##############.....",
+        "....###############.....",
+        ".....##############.....",
+        ".....######R######......"
+      ],
+      "durationMs": 1700,
+      "anchor": {
+        "x": 11,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-loaf",
+        "frameId": "81c86595-95ae-4496-b337-b603c464c007",
+        "savedAt": "2026-10-14T20:07:36.718Z",
+        "contentHash": "fea71b2bcb3cec09239d39d5fc62c8612917edb6e37e883fa817d5bb9afcab64"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-loaf",
+          "sourceFrameId": "81c86595-95ae-4496-b337-b603c464c007"
+        }
+      ],
+      "role": "cycle",
+      "parentId": "81c86595-95ae-4496-b337-b603c464c007",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "curl-sleep",
+          "draft",
+          "cycle"
+        ],
+        "description": "Curled sleep · exhale"
+      }
+    },
+    {
+      "id": "proposal-behaviour-curl-sleep-f05",
+      "name": "Curled sleep · inhale",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........###.............",
+        "......#####.............",
+        "......#############.....",
+        ".....##############.....",
+        "....###############.....",
+        ".....##############.....",
+        ".....######R######......"
+      ],
+      "durationMs": 1500,
+      "anchor": {
+        "x": 11,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-loaf",
+        "frameId": "81c86595-95ae-4496-b337-b603c464c007",
+        "savedAt": "2026-10-14T20:07:36.718Z",
+        "contentHash": "fea71b2bcb3cec09239d39d5fc62c8612917edb6e37e883fa817d5bb9afcab64"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-loaf",
+          "sourceFrameId": "81c86595-95ae-4496-b337-b603c464c007"
+        }
+      ],
+      "role": "cycle",
+      "parentId": "81c86595-95ae-4496-b337-b603c464c007",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "curl-sleep",
+          "draft",
+          "cycle"
+        ],
+        "description": "Curled sleep · inhale"
+      }
+    },
+    {
+      "id": "proposal-behaviour-curl-sleep-f06",
+      "name": "Uncurl slightly",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        ".......####.............",
+        "......#############.....",
+        ".....##############.....",
+        "....###############.....",
+        ".....##############.....",
+        ".....######R######......"
+      ],
+      "durationMs": 450,
+      "anchor": {
+        "x": 11,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-loaf",
+        "frameId": "81c86595-95ae-4496-b337-b603c464c007",
+        "savedAt": "2026-10-14T20:07:36.718Z",
+        "contentHash": "fea71b2bcb3cec09239d39d5fc62c8612917edb6e37e883fa817d5bb9afcab64"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-loaf",
+          "sourceFrameId": "81c86595-95ae-4496-b337-b603c464c007"
+        }
+      ],
+      "role": "exit",
+      "parentId": "81c86595-95ae-4496-b337-b603c464c007",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "curl-sleep",
+          "draft",
+          "exit"
+        ],
+        "description": "Uncurl slightly"
+      }
+    },
+    {
+      "id": "proposal-behaviour-curl-sleep-f07",
+      "name": "Head lifts",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        ".......####...#.#.......",
+        "......#############.....",
+        ".....##############.....",
+        "....###############.....",
+        ".....##############.....",
+        ".....######R######......"
+      ],
+      "durationMs": 400,
+      "anchor": {
+        "x": 11,
+        "y": 23
+      },
+      "origin": "mixed",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-loaf",
+        "frameId": "81c86595-95ae-4496-b337-b603c464c007",
+        "savedAt": "2026-10-14T20:07:36.718Z",
+        "contentHash": "fea71b2bcb3cec09239d39d5fc62c8612917edb6e37e883fa817d5bb9afcab64"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "behaviour-pixel-proposal",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-loaf",
+          "sourceFrameId": "81c86595-95ae-4496-b337-b603c464c007"
+        }
+      ],
+      "role": "exit",
+      "parentId": "81c86595-95ae-4496-b337-b603c464c007",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "curl-sleep",
+          "draft",
+          "exit"
+        ],
+        "description": "Head lifts"
+      }
+    },
+    {
+      "id": "proposal-behaviour-curl-sleep-f08",
+      "name": "Alert loaf again",
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "...............#.#......",
+        ".......#####...###......",
+        "......#############.....",
+        "......#############.....",
+        "......#############.....",
+        ".....##############.....",
+        ".....######R#####R......"
+      ],
+      "durationMs": 650,
+      "anchor": {
+        "x": 11,
+        "y": 23
+      },
+      "origin": "human",
+      "review": "candidate",
+      "locked": false,
+      "source": {
+        "projectId": "sequence-loaf",
+        "frameId": "81c86595-95ae-4496-b337-b603c464c007",
+        "savedAt": "2026-10-14T20:07:36.718Z",
+        "contentHash": "fea71b2bcb3cec09239d39d5fc62c8612917edb6e37e883fa817d5bb9afcab64"
+      },
+      "operations": [
+        {
+          "actor": "ai",
+          "kind": "reference-copy",
+          "at": "2026-10-15T00:00:00.000Z",
+          "sourceProjectId": "sequence-loaf",
+          "sourceFrameId": "81c86595-95ae-4496-b337-b603c464c007"
+        }
+      ],
+      "role": "exit",
+      "parentId": "81c86595-95ae-4496-b337-b603c464c007",
+      "metadata": {
+        "category": "idle",
+        "tags": [
+          "curl-sleep",
+          "draft",
+          "exit"
+        ],
+        "description": "Alert loaf again"
+      }
+    }
+  ],
+  "workQueue": {
+    "version": 1,
+    "repository": "Stick-Pet-Card",
+    "selectedId": "",
+    "tasks": []
+  }
+}

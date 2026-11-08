@@ -1,0 +1,21 @@
+import {compareSavedVersions} from '../frame-studio/dist/change-diff.js';
+import assert from 'node:assert/strict';
+import {freshDraft,clone,validateDraft,inkCentre} from '../prototype/climb-model.mjs';
+import {cellDepth,depthMarks,applyClimbStroke,paintClimbScene} from '../prototype/climb-depth.mjs';
+import {drawCellMarks} from '../frame-studio/dist/frame-canvas.js';
+const d=freshDraft(),f=d.frames[0],before=JSON.stringify(f),near=f.paws[0],body={x:14,y:10},blank={x:0,y:0};assert.equal(cellDepth(f,near.x,near.y),'N');assert.equal(cellDepth(f,body.x,body.y),'.');
+const changed={...f,...applyClimbStroke(f,[{...near,token:'F'},{...body,token:'N'},{...blank,token:'N'}])};assert.deepEqual(changed.rows,f.rows,'Depth paint never changes silhouette, paw ink or body registration geometry');assert.deepEqual(inkCentre(changed.rows),inkCentre(f.rows));assert.equal(cellDepth(changed,near.x,near.y),'F');assert.equal(cellDepth(changed,body.x,body.y),'N');assert.equal(cellDepth(changed,0,0),'.');assert.equal(JSON.stringify(f),before);d.frames[0]=changed;assert.doesNotThrow(()=>validateDraft(d));assert.deepEqual(validateDraft(JSON.parse(JSON.stringify(d))).frames[0],changed,'Depth metadata survives exact save/export validation');
+for(const contact of ['front','hind','both','free']){const view={...changed,contact};assert.equal(cellDepth(view,body.x,body.y),'N');assert.equal(cellDepth(view,near.x,near.y),'F','Depth order is independent of support phase');}
+const erased={...changed,...applyClimbStroke(changed,[{...body,token:'.'}])};assert.equal(erased.rows[body.y][body.x],'.');assert.equal(cellDepth(erased,body.x,body.y),'.');const automatic={...changed,...applyClimbStroke(changed,[{...body,token:'#'}])};assert.equal(cellDepth(automatic,body.x,body.y),'.');
+const bodyGuide=clone(d);bodyGuide.frames[0].rows[near.y]=bodyGuide.frames[0].rows[near.y].slice(0,near.x)+'#'+bodyGuide.frames[0].rows[near.y].slice(near.x+1);assert.doesNotThrow(()=>validateDraft(bodyGuide),'An explicit contact is valid on visible paw ink regardless of depth material');
+for(const depth of [[],Array(24).fill('X'.repeat(24)),['N'+'.'.repeat(23),...Array(23).fill('.'.repeat(24))]]){const bad=clone(d);bad.frames[0].depth=depth;assert.throws(()=>validateDraft(bad,{playback:false}));}
+const calls=[],context={save(){},restore(){},setLineDash(v){calls.push(v)},strokeRect(...v){calls.push(v)}};drawCellMarks(context,depthMarks(changed),{styles:{N:{colour:'cyan'},F:{colour:'violet',dash:[2,2]}}});assert.ok(calls.some(v=>v.length===4));assert.ok(calls.some(v=>v.length===2&&v[0]===2));assert.equal(JSON.stringify(f),before);console.log('PASS: independent near/far depth masks, legacy wrap preservation, phase-independent ordering, visible-ink contact guides, editor annotation styles, immutable geometry and exact metadata round trips.');
+
+const diff=compareSavedVersions({frames:[f]},{frames:[changed]});assert.equal(diff.frames[0].pixels,0);assert.ok(diff.frames[0].fields.includes('depth'),'Studio history must expose exact depth-only edits separately from artwork pixels');
+
+// Test actual occlusion at overlapping cells, not only callback order. Ordinary
+// movement must survive the face pass; registered far cells must remain hidden.
+function composite(frame){const pixels=Array(3).fill('background'),order=[];paintClimbScene({frame,behindEffects:()=>order.push('far effects'),face:()=>{order.push('prop');pixels.fill('prop');},marks:()=>{order.push('marks');pixels[1]='scratch';},actor:layer=>{order.push(layer);for(let x=0;x<3;x++)if(layer==='all'||(cellDepth(frame,x,0)==='N')===(layer==='near'))pixels[x]='cat';},frontEffects:()=>order.push('near effects')});return {pixels,order};}
+for(const neighbour of ['approach','scratch entry','attach','flight','landing','settle'])assert.deepEqual(composite(null).pixels,['cat','cat','cat'],neighbour+' must render in front of an overlapping prop');
+const mixed={rows:['###'+'.'.repeat(21),...Array(23).fill('.'.repeat(24))],depth:['FN'+'.'.repeat(22),...Array(23).fill('.'.repeat(24))]};assert.deepEqual(composite(mixed).pixels,['prop','cat','prop']);assert.deepEqual(composite(mixed).order,['far effects','behind','prop','marks','near','near effects']);
+console.log('PASS: shared scene compositing keeps flights/neighbours foreground, authored far/near cells split around props, and material scratches beneath the cat.');

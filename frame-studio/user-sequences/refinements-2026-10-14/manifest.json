@@ -1,0 +1,74 @@
+{
+  "records": [
+    {
+      "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+      "name": "Sitting \u00b7 ground \u00b7 variant",
+      "savedAt": "2026-10-14T19:17:02.288Z",
+      "status": "integrate",
+      "snapshot": "46edfa22-baf5-45b3-a8a6-26fc004059de.json"
+    },
+    {
+      "projectId": "pose-look-down",
+      "name": "Look down from a perch \u00b7 draft",
+      "savedAt": "2026-10-14T19:15:48.199Z",
+      "status": "integrate",
+      "snapshot": "pose-look-down.json"
+    },
+    {
+      "projectId": "pose-sitting-glance",
+      "name": "Sitting head glance \u00b7 draft",
+      "savedAt": "2026-10-14T19:07:40.559Z",
+      "status": "integrate",
+      "snapshot": "pose-sitting-glance.json"
+    },
+    {
+      "projectId": "pose-vertical-down",
+      "name": "Straight-down drop \u00b7 draft",
+      "savedAt": "2026-10-14T19:31:43.863Z",
+      "status": "wip",
+      "snapshot": "pose-vertical-down.json"
+    },
+    {
+      "projectId": "pose-vertical-up",
+      "name": "Straight-up jump \u00b7 draft",
+      "savedAt": "2026-10-14T19:28:15.345Z",
+      "status": "wip",
+      "snapshot": "pose-vertical-up.json"
+    },
+    {
+      "projectId": "sequence-across",
+      "name": "Jump across",
+      "savedAt": "2026-10-14T19:19:17.678Z",
+      "status": "integrate",
+      "snapshot": "sequence-across.json"
+    },
+    {
+      "projectId": "sequence-look-up",
+      "name": "Looking up",
+      "savedAt": "2026-10-14T19:21:43.871Z",
+      "status": "integrate",
+      "snapshot": "sequence-look-up.json"
+    },
+    {
+      "projectId": "sequence-stand",
+      "name": "Standing",
+      "savedAt": "2026-10-14T19:32:15.671Z",
+      "status": "integrate",
+      "snapshot": "sequence-stand.json"
+    },
+    {
+      "projectId": "sequence-walk-high",
+      "name": "Walking \u00b7 head high",
+      "savedAt": "2026-10-14T19:17:29.607Z",
+      "status": "integrate",
+      "snapshot": "sequence-walk-high.json"
+    },
+    {
+      "projectId": "sequence-walk-low",
+      "name": "Walking \u00b7 head low",
+      "savedAt": "2026-10-14T19:17:55.629Z",
+      "status": "integrate",
+      "snapshot": "sequence-walk-low.json"
+    }
+  ]
+}

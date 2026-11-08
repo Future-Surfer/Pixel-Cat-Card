@@ -1,0 +1,5 @@
+import assert from 'node:assert/strict';import {ClimbTrace} from '../prototype/kitten-climb-metrics.mjs';
+const trace=new ClimbTrace(),grip={kind:'grip',phase:'Grip idle / reassess',climbing:true,dt:16,serial:1};
+trace.sample('Kitten',grip,0,0);trace.sample('Kitten',{...grip,dt:1000},1,0);trace.sample('Kitten',{...grip,dt:1000},2,0);let r=trace.report(2,2,'native');assert.equal(r.cats[0].longestGripWall,2);assert.equal(r.cats[0].longestGripClock,0);assert.equal(r.cats[0].callbacksOver250ms,2);assert.equal(r.events.length,1,'Do not flood traces with unchanged frames');
+trace.sample('Kitten',grip,2.016,.016);trace.sample('Kitten',{kind:'slip',phase:'slide',climbing:true,dt:16,serial:2},2.032,.032);trace.sample('Kitten',grip,2.048,.048);r=trace.report(2.048,.048,'replay');assert.equal(r.cats[0].longestGripClock,.02);assert.ok(r.cats[0].longestGripWall>2);assert.equal(r.events.length,3);assert.equal(r.samples,6);
+console.log('PASS: separate frozen wall-time/active grip dwell, slow-callback counts, resumed progress and bounded transition-only traces.');

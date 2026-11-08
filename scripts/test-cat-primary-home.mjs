@@ -1,0 +1,12 @@
+import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';
+const nodes=[];const document={createElement:()=>({dataset:{},style:{},remove(){this.removed=true;}})},box={window:{},document,location:{pathname:'/test'}};
+vm.runInNewContext(fs.readFileSync('prototype/cat-primary-home.js','utf8'),box);const primary=box.window.pixelCatPrimaryV1,root={editMode:false};
+const cat=(config={},view=root)=>({active:true,isConnected:true,href:'/test',root:view,config,style:{},shadowRoot:{append(){},querySelector:()=>({append:node=>nodes.push(node)})}});
+assert.equal(primary.defaultPrimary(),true);const first=cat({primary_home:primary.defaultPrimary()});primary.join(first);assert.equal(first.config.primary_home,true);assert.equal(primary.defaultPrimary(),false);const second=cat({primary_home:primary.defaultPrimary()});primary.join(second);assert.equal(second.config.primary_home,false);
+primary.tick(first,1000);assert.equal(nodes.length,0,'No primary badge outside edit mode');root.editMode=true;primary.tick(first,1600);primary.tick(second,1600);assert.equal(first.primaryFlag.textContent,'Primary');assert.equal(second.primaryFlag,undefined);
+second.config.primary_home=true;primary.tick(first,2200);primary.tick(second,2200);assert.equal(first.primaryFlag.textContent,'Primary · conflict');assert.equal(second.primaryFlag.textContent,'Primary · conflict','Copied/promoted primaries are visible conflicts, not last-render-wins');
+root.editMode=false;const flag=first.primaryFlag;primary.tick(first,2800);assert.equal(first.primaryFlag,null);assert.equal(flag.removed,true);
+primary.leave(first);primary.leave(second);assert.equal(primary.defaultPrimary(),true);const legacy=cat();primary.join(legacy);root.editMode=true;primary.tick(legacy,1000);assert.equal(legacy.primaryFlag.textContent,'Primary · automatic');assert.equal(legacy.config.primary_home,undefined,'Legacy fallback never writes config');
+const other=cat({primary_home:true},{editMode:true});primary.join(other);assert.equal(primary.selection(root).primary,legacy,'Primary selection is view-scoped');
+primary.leave(legacy);primary.leave(other);const preview=cat();preview.active=false;primary.join(preview);assert.equal(primary.defaultPrimary(),true,'Inactive previews cannot consume first-home status');primary.leave(preview);
+console.log('PASS: persisted first/second-home defaults, edit-only badges, visible duplicate conflicts, legacy fallback without writes, view isolation, preview exclusion and lifecycle cleanup.');

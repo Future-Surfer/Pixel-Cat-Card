@@ -1,0 +1,532 @@
+{
+  "title": "Cat stress test",
+  "path": "cat-stress-test",
+  "icon": "mdi:cat",
+  "type": "sections",
+  "max_columns": 3,
+  "sections": [
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "custom:pixel-cat-monitor",
+          "title": "Twenty-cat performance",
+          "grid_options": {
+            "columns": "full",
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Charlie",
+          "color": "#447c77",
+          "primary_home": true,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-1",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "igloo",
+          "home_mouse": true
+        },
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Darcy",
+          "color": "#b57840",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-2",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "simple",
+          "home_mouse": true
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Mango",
+          "color": "#447c77",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-3",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "igloo",
+          "home_mouse": true
+        },
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Boots",
+          "color": "#263b49",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-4",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "igloo",
+          "home_mouse": true
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Lola",
+          "color": "#b76473",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-5",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "igloo",
+          "home_mouse": true
+        },
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Porridge",
+          "color": "#527ca6",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-6",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "igloo",
+          "home_mouse": true
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Chili",
+          "color": "#637985",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-7",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "simple",
+          "home_mouse": true
+        },
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Miso",
+          "color": "#b76473",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-8",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "simple",
+          "home_mouse": true
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Domino",
+          "color": "#447c77",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-9",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "simple",
+          "home_mouse": true
+        },
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Duke",
+          "color": "#45856e",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-10",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "simple",
+          "home_mouse": true
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Maple",
+          "color": "#447c77",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-11",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "igloo",
+          "home_mouse": true
+        },
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Queenie",
+          "color": "#447c77",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-12",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "igloo",
+          "home_mouse": true
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Fig",
+          "color": "#b76473",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-13",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "simple",
+          "home_mouse": true
+        },
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Lucy",
+          "color": "#b57840",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-14",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "igloo",
+          "home_mouse": true
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Moose",
+          "color": "#263b49",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-15",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "igloo",
+          "home_mouse": true
+        },
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Kiwi",
+          "color": "#b76473",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-16",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "simple",
+          "home_mouse": true
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Elvis",
+          "color": "#b57840",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-17",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "igloo",
+          "home_mouse": true
+        },
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Cosmo",
+          "color": "#7761a6",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-18",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "igloo",
+          "home_mouse": true
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Hugo",
+          "color": "#b57840",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-19",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "simple",
+          "home_mouse": true
+        },
+        {
+          "type": "custom:pixel-cat-home",
+          "name": "Jess",
+          "color": "#bb783d",
+          "primary_home": false,
+          "arrival": "igloo",
+          "show_controls": false,
+          "debug_labels": true,
+          "mood_behaviour": true,
+          "social_behaviour": true,
+          "interaction_behaviour": true,
+          "dashboard_props": true,
+          "prop_reactions": true,
+          "landing_reactions": true,
+          "startle_followups": true,
+          "cat_id": "stress-resident-20261018-20",
+          "grid_options": {
+            "columns": 6,
+            "rows": "auto"
+          },
+          "bed_style": "igloo",
+          "home_mouse": true
+        }
+      ]
+    }
+  ]
+}

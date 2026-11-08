@@ -1,0 +1,69 @@
+[
+  {
+    "type": "entities",
+    "title": "Native entities · dividers",
+    "show_header_toggle": false,
+    "entities": [
+      "sensor.average_indoor_temp",
+      "sensor.hue_outdoor_motion_sensor_1_temperature",
+      {
+        "type": "divider"
+      },
+      "sensor.ep_lite_with_co2_co2",
+      {
+        "type": "divider"
+      }
+    ]
+  },
+  {
+    "type": "markdown",
+    "title": "Native Markdown · rules",
+    "content": "A standard text card with a horizontal rule.\n\nThe cat can look at this area.\n\n---\n\nLower text area.\n\n---\n\nA second actual divider."
+  },
+  {
+    "type": "glance",
+    "title": "Native glance",
+    "entities": [
+      "sensor.average_indoor_temp",
+      "sensor.hue_outdoor_motion_sensor_1_temperature",
+      "sensor.ep_lite_with_co2_co2"
+    ]
+  },
+  {
+    "type": "gauge",
+    "name": "Native temperature gauge",
+    "entity": "sensor.average_indoor_temp",
+    "min": 0,
+    "max": 40
+  },
+  {
+    "type": "sensor",
+    "name": "Native CO₂ sensor",
+    "entity": "sensor.ep_lite_with_co2_co2",
+    "graph": "line",
+    "detail": 2,
+    "hours_to_show": 6
+  },
+  {
+    "type": "history-graph",
+    "title": "Native temperature history",
+    "entities": [
+      "sensor.average_indoor_temp",
+      "sensor.hue_outdoor_motion_sensor_1_temperature"
+    ],
+    "hours_to_show": 2
+  },
+  {
+    "type": "tile",
+    "name": "Native temperature tile",
+    "entity": "sensor.average_indoor_temp"
+  },
+  {
+    "type": "button",
+    "name": "Native outside button",
+    "entity": "sensor.hue_outdoor_motion_sensor_1_temperature",
+    "tap_action": {
+      "action": "more-info"
+    }
+  }
+]

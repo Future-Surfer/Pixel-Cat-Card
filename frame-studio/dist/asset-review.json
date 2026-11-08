@@ -1,0 +1,713 @@
+{
+  "sourceSnapshotAt": "2026-10-17T22:06:38.069Z",
+  "source": "local exact snapshots",
+  "sequences": [
+    {
+      "projectId": "0d9340b1-6255-4d69-93b6-28d5077987e6",
+      "name": "Sitting · elevated · tail matrix",
+      "frames": 9,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+      "name": "Sitting · ground · Tail matrix",
+      "frames": 11,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "4b73f410-1bfc-4ea3-ba1d-7d6c737a6a63",
+      "name": "Sitting · ground · Head matrix",
+      "frames": 7,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+      "name": "Walking · faster - synced feet",
+      "frames": 8,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "future-motion-candidate"
+    },
+    {
+      "projectId": "8cf69cf1-de43-48a8-bc9e-c212c3cf8b33",
+      "name": "Walking · faster - DELETE THIS VERSION",
+      "frames": 8,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "deleted-recoverably"
+    },
+    {
+      "projectId": "a92e1bba-462f-4d89-92e7-d1e7d9142eda",
+      "name": "Walking · sneaky head-up",
+      "frames": 8,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "active-playful-sneak"
+    },
+    {
+      "projectId": "c45528cf-168a-4dc1-ab61-96ac62816e59",
+      "name": "Walking · sneaky head-mid",
+      "frames": 8,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "active-playful-sneak"
+    },
+    {
+      "projectId": "dd149c2d-9d62-4f57-bf12-d1cb9924d469",
+      "name": "Walking · sneaky head-low",
+      "frames": 8,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "active-playful-sneak"
+    },
+    {
+      "projectId": "pose-look-down",
+      "name": "Sitting - Looking down",
+      "frames": 11,
+      "roles": [
+        "enter",
+        "enter",
+        "enter",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "exit",
+        "exit",
+        "exit"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "pose-sitting-glance",
+      "name": "Sitting head glance",
+      "frames": 2,
+      "roles": [
+        "enter",
+        "cycle"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "pose-vertical-down",
+      "name": "Straight-down drop",
+      "frames": 5,
+      "roles": [
+        "enter",
+        "cycle",
+        "cycle",
+        "cycle",
+        "exit"
+      ],
+      "status": "wip"
+    },
+    {
+      "projectId": "pose-vertical-up",
+      "name": "Straight-up jump · draft",
+      "frames": 5,
+      "roles": [
+        "enter",
+        "cycle",
+        "cycle",
+        "cycle",
+        "exit"
+      ],
+      "status": "wip"
+    },
+    {
+      "projectId": "sequence-across",
+      "name": "Jump across",
+      "frames": 6,
+      "roles": [
+        "enter",
+        "enter",
+        "cycle",
+        "cycle",
+        "cycle",
+        "exit"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "sequence-clean",
+      "name": "Grooming",
+      "frames": 3,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "sequence-freefall-candidate",
+      "name": "Free falling",
+      "frames": 4,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "active-long-drop"
+    },
+    {
+      "projectId": "sequence-loaf",
+      "name": "Loafing",
+      "frames": 4,
+      "roles": [
+        "enter",
+        "cycle",
+        "cycle",
+        "exit"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "sequence-look-up",
+      "name": "Standing - Looking up",
+      "frames": 10,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "sequence-robot-ride",
+      "name": "Riding the robot",
+      "frames": 8,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "sequence-stand",
+      "name": "Standing",
+      "frames": 5,
+      "roles": [
+        "enter",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "sequence-stretch",
+      "name": "Stretching · exit loaf",
+      "frames": 3,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "sequence-walk-high",
+      "name": "Walking · head high",
+      "frames": 4,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "sequence-walk-low",
+      "name": "Walking · head low",
+      "frames": 4,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "proposal-behaviour-cheek-rub",
+      "name": "Interact · cheek rub at an edge",
+      "frames": 7,
+      "roles": [
+        "enter",
+        "enter",
+        "cycle",
+        "cycle",
+        "cycle",
+        "exit",
+        "exit"
+      ],
+      "status": "contact-preview"
+    },
+    {
+      "projectId": "proposal-behaviour-curl-sleep",
+      "name": "Rest · curl into sleep with slow breath",
+      "frames": 8,
+      "roles": [
+        "enter",
+        "enter",
+        "enter",
+        "cycle",
+        "cycle",
+        "exit",
+        "exit",
+        "exit"
+      ],
+      "status": "active-refined-action"
+    },
+    {
+      "projectId": "proposal-behaviour-ear-scratch",
+      "name": "Groom · hind-paw ear scratch",
+      "frames": 9,
+      "roles": [
+        "enter",
+        "enter",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "exit",
+        "exit"
+      ],
+      "status": "active-refined-action"
+    },
+    {
+      "projectId": "proposal-behaviour-face-wash",
+      "name": "Groom · paw wash and face wipe · DELETE",
+      "frames": 8,
+      "roles": [
+        "enter",
+        "enter",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "exit",
+        "exit"
+      ],
+      "status": "deleted-recoverably"
+    },
+    {
+      "projectId": "proposal-behaviour-knead",
+      "name": "Comfort · alternating knead · draft",
+      "frames": 8,
+      "roles": [
+        "enter",
+        "enter",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "exit",
+        "exit"
+      ],
+      "status": "draft-deferred"
+    },
+    {
+      "projectId": "proposal-behaviour-paw-bat",
+      "name": "Play · inspect and bat",
+      "frames": 8,
+      "roles": [
+        "enter",
+        "enter",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "exit",
+        "exit"
+      ],
+      "status": "active-prop-interaction"
+    },
+    {
+      "projectId": "proposal-behaviour-sniff",
+      "name": "Investigate · ground sniff",
+      "frames": 8,
+      "roles": [
+        "enter",
+        "enter",
+        "enter",
+        "cycle",
+        "cycle",
+        "cycle",
+        "exit",
+        "exit"
+      ],
+      "status": "active-refined-action"
+    },
+    {
+      "projectId": "proposal-behaviour-yawn",
+      "name": "Rest · seated yawn/meow",
+      "frames": 5,
+      "roles": [
+        "enter",
+        "enter",
+        "cycle",
+        "exit",
+        "exit"
+      ],
+      "status": "active-refined-action"
+    },
+    {
+      "projectId": "proposal-fast-walk-front-offset",
+      "name": "Walking · faster · front-leg phase",
+      "frames": 8,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "active-fast-15fps-min"
+    },
+    {
+      "projectId": "proposal-gallop-24",
+      "name": "Gallop · compact sprint - DELETE, replace with improved version",
+      "frames": 8,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "active-long-prompted-gallop-25fps"
+    },
+    {
+      "projectId": "f7146398-28aa-48f4-b36a-c44b0af17a14",
+      "name": "Gallop · compact sprint draft · DELETE",
+      "frames": 8,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "future-motion-candidate"
+    },
+    {
+      "projectId": "0d6931c8-a2ff-404e-ad47-aef258c0d898",
+      "name": "Gallop · compact sprint · improved",
+      "frames": 8,
+      "roles": [
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle"
+      ],
+      "status": "future-motion-candidate"
+    },
+    {
+      "projectId": "sequence-descend",
+      "name": "Jump down",
+      "frames": 4,
+      "roles": [
+        "enter",
+        "enter",
+        "cycle",
+        "exit"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "1e7741cb-f178-4c6e-916c-ef23f2ebd934",
+      "name": "Walking · sneaky head-low · wiggle butt",
+      "frames": 2,
+      "roles": [
+        "cycle",
+        "cycle"
+      ],
+      "status": "future-motion-candidate"
+    },
+    {
+      "projectId": "proposal-lifted-scruff",
+      "name": "Lifted · hanging by scruff · Refined",
+      "frames": 1,
+      "roles": [
+        "cycle"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "proposal-scratching-post-action",
+      "name": "Scratch post · alternating strokes · Refined",
+      "frames": 13,
+      "roles": [
+        "enter",
+        "enter",
+        "enter",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "exit",
+        "exit"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "projectId": "proposal-scratching-post-tracks",
+      "name": "Scratch post · independent arms and tail",
+      "frames": 13,
+      "roles": [
+        "enter",
+        "enter",
+        "enter",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "cycle",
+        "exit",
+        "exit"
+      ],
+      "status": "reviewed"
+    }
+  ],
+  "props": [
+    {
+      "id": "original-cardboard_box",
+      "name": "cardboard box",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-food_bowl",
+      "name": "food bowl",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-robot_vacuum_side",
+      "name": "robot vacuum side",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-robot_vacuum_turn_1",
+      "name": "robot vacuum turn 1",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-robot_vacuum_turn_2",
+      "name": "robot vacuum turn 2",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-robot_vacuum_turn_3",
+      "name": "robot vacuum turn 3",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-robot_vacuum_turn_4",
+      "name": "robot vacuum turn 4",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-robot_vacuum_turn_5",
+      "name": "robot vacuum turn 5",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-robot_vacuum_turn_6",
+      "name": "robot vacuum turn 6",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-robot_vacuum_turn_7",
+      "name": "robot vacuum turn 7",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-robot_vacuum_turn_8",
+      "name": "robot vacuum turn 8",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-sofa_half",
+      "name": "sofa half",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-toy_mouse",
+      "name": "toy mouse",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-ball",
+      "name": "ball",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-mug",
+      "name": "mug",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-water_glass",
+      "name": "water glass",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-plant",
+      "name": "plant",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-floor_lamp",
+      "name": "floor lamp",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "original-clock",
+      "name": "clock",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "a5331539-3746-4913-8999-b943781d45a9",
+      "name": "water glass",
+      "revision": 1,
+      "origin": "human"
+    },
+    {
+      "id": "dd2bda18-62a3-4f52-972e-e6abe3b7df83",
+      "name": "Igloo Bed",
+      "revision": 2,
+      "origin": "human"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "projectId": "proposal-scratching-post-tracks",
+  "versionHash": "e0766dd95302d68c2dc374c70544d8720b4acdf9672bfb23a40441fbbd419e85",
+  "changeId": "57a919ebb53459a652dcc1a2d447def49791da4b537f6db82eb4101265d5834f",
+  "receipt": {
+    "versionHash": "e0766dd95302d68c2dc374c70544d8720b4acdf9672bfb23a40441fbbd419e85",
+    "status": "completed",
+    "notes": "Integrated exact derived arm/contact plus independent tail metadata. All 13 source grids, holds, anchors, gaze and mixed provenance retained from dbeac4f74a79b39373b5faff5eb81f6cd435a366be0949c432da17f71d28aa5f. 79/79 suites; Studio composed/solo/mute preview; real paw-driven rope fibres and sub-cell lateral post response; controlled bed/travel tests; 20-cat HA stress resize recovery. Five scoped HA modules backed up and read back exactly; dashboard hash f31c6fe62a88cd3e unchanged. Rejected QA pixel version remains deferred and was never deployed.",
+    "reference": "frame-studio/user-sequences/animation-tracks-2026-10-17/README.md; controller sha256 a45e7475c7e53d371c294f2f81064ffa6c997b054685450fb4390d4b47d669c1",
+    "at": "2026-10-18T05:46:54.812Z"
+  },
+  "modules": [
+    {
+      "file": "pixel-cat-roaming.js",
+      "bytes": 125897,
+      "sha256": "a45e7475c7e53d371c294f2f81064ffa6c997b054685450fb4390d4b47d669c1"
+    },
+    {
+      "file": "pixel-cat-roaming-art.js",
+      "bytes": 127769,
+      "sha256": "73beb163e63f284caa92f14dab93aab9acd1b12eb36c420512326a0c723a77e7"
+    },
+    {
+      "file": "pixel-cat-roaming-extras.js",
+      "bytes": 125363,
+      "sha256": "34892c4bff83799dab53af2c2cd31a02a1ee9040037fb949b9a9df5955e9f63c"
+    },
+    {
+      "file": "pixel-cat-behaviours.js",
+      "bytes": 122411,
+      "sha256": "df64c51b161b091a4543104f72bcfef5b9940742c316fc59548b255d9df66a51"
+    },
+    {
+      "file": "pixel-cat-affordances.js",
+      "bytes": 125195,
+      "sha256": "dd75a9f48cd2aa03445db0a85e1d1fa0b9d2a6a8d633fcfa46b6d9a59920c4a9"
+    }
+  ],
+  "deployment": {
+    "dashboardConfigHash": "f31c6fe62a88cd3e",
+    "exactReadback": true,
+    "affectedResources": 5,
+    "configChanged": false
+  },
+  "validation": {
+    "suites": 79,
+    "allPassed": true,
+    "physicalPhone": false,
+    "browserDownloadHandshake": "Automation timed out; shared export function passed full metadata round-trip regression."
+  }
+}

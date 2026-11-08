@@ -1,0 +1,3 @@
+import {validateDraft} from '../prototype/climb-model.mjs';
+import {workspaceApi} from './workspace-storage.mjs';
+export const handleClimbDraftApi=workspaceApi({kind:'climb',route:'climb-drafts',main:'climb-main',history:'climb-history',title:'Climb workbench · ',validate:value=>validateDraft(value,{playback:false}),messages:{unknown:'Unknown climb draft.',empty:'No durable draft yet.',large:'Draft exceeds 500 KB.',load:'Load the current version before saving.',conflict:'A newer saved draft exists. Browser work is retained.',failed:'Save conflict; browser copy and version history retained.'}});

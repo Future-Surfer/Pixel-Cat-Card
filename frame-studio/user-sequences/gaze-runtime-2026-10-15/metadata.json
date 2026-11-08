@@ -1,0 +1,3151 @@
+{
+  "records": [
+    {
+      "sequenceId": "0d9340b1-6255-4d69-93b6-28d5077987e6",
+      "savedAt": "2026-10-15T13:07:24.869Z",
+      "sourceHash": "8a4778df39299dd97208003c78b77a54280d6c864e3aa48a2fa10ff0a5306f23",
+      "frames": [
+        {
+          "id": "25c1783d-e4de-48f2-be11-3a7a8508b2fd",
+          "key": "16krd4g",
+          "rowsHash": "9de8c9486792eef124e91abc6dbb97719ffc4bb64b0a11d16e049cfa2326b8ed",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 2,
+            "fov": 143
+          }
+        },
+        {
+          "id": "afbff9dc-2b21-4c45-a409-fbf0af9be83d",
+          "key": "1pdyawu",
+          "rowsHash": "8be27ef242b012cf84f2e0287e9988fd489ecbe51f8b21c748f1997c1ec857a9",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 2,
+            "fov": 143
+          }
+        },
+        {
+          "id": "5aef5b5a-add2-4594-98ab-66c5787782ed",
+          "key": "4atxjq",
+          "rowsHash": "78bf77094c35231448a6b5ec85e748447643d095df2407294196eec9365e63dd",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 2,
+            "fov": 143
+          }
+        },
+        {
+          "id": "5930beb9-ef1e-41de-832b-3a2310d34fdd",
+          "key": "12a62d3",
+          "rowsHash": "3ec3332b4d4e0479e0083ead1334e6ca61c62641ae25d72c5f16e2eaf3e41943",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 2,
+            "fov": 143
+          }
+        },
+        {
+          "id": "7e4d91ab-b845-4567-96c4-02fa22b11aeb",
+          "key": "6xac0w",
+          "rowsHash": "5efc75ccd87e2f179429554a287ba2f43acb0fb2e758af6a7b5905f20030d956",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 2,
+            "fov": 143
+          }
+        },
+        {
+          "id": "08d089ce-2ff8-43e1-b215-3a85d050bc51",
+          "key": "efehv8",
+          "rowsHash": "79eaa4c7b9ba4713d889d69abe187122beb99f7aa7c2564902cb83f0db2eb232",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 2,
+            "fov": 143
+          }
+        },
+        {
+          "id": "3e32fb9d-1e61-4102-b4c7-8b7bc9444c2e",
+          "key": "l515qr",
+          "rowsHash": "6debfc377a08a9a205c4066325f7dc2da1e7950b98c467d149c9849d39ea35db",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 2,
+            "fov": 143
+          }
+        },
+        {
+          "id": "f9abbed8-c462-46b1-afa0-ce6aea66d703",
+          "key": "16d2f8c",
+          "rowsHash": "d9d592955ac4ba0c203169f4e64e7aed1d65808d095001c903fa8958d91da081",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 2,
+            "fov": 143
+          }
+        },
+        {
+          "id": "6b9fe5c5-572a-4cfc-a5f6-8952c5bc34bb",
+          "key": "1mvtsu9",
+          "rowsHash": "3b5f4d27c409f2172103f14f35acbb5e679220b735258c30279e8ec7c2b2c64f",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 2,
+            "fov": 143
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "46edfa22-baf5-45b3-a8a6-26fc004059de",
+      "savedAt": "2026-10-15T13:06:49.348Z",
+      "sourceHash": "655486a433c2ddb6778be483e197c9109d838e4cb3e748260bd5834a251548e8",
+      "frames": [
+        {
+          "id": "e82a84f1-09a9-40a1-a12a-e92f1d2b1827",
+          "key": "10rntmr",
+          "rowsHash": "5960d3ae38fe1dd674f5c9441cb4a5c9150acb5598120701187da8f5dc75a705",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "cd8b1f38-3fad-4cb1-943f-892b4274864d",
+          "key": "1ed33au",
+          "rowsHash": "653ef57a84d7b80727b0ce2e941192c74c369890d6d6c7fdb208e5a5182a84fb",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "6842f46e-9082-4489-8364-0d7a7fbb0627",
+          "key": "1a0fpmy",
+          "rowsHash": "df4d373a4533c5b2c27830b3aadbe87a13e3a4a8c6c4103d9615a7c172dea85d",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "aaa9a273-4e90-4896-b51c-5e679fabc259",
+          "key": "la1pa0",
+          "rowsHash": "eee1a2dc4c69912b9777d53bc5210701e184843d9a1ef8544c81ae45d670c39d",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "a0c9de83-9ae1-4884-8ff3-e120a02940d6",
+          "key": "17uoncn",
+          "rowsHash": "7bb447fe2f29cd45033c12dc560fff9e5ccd432494391da1a82045ec0a5f55e5",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "dc6c53d2-ccc1-433c-8f7b-d940dd582f62",
+          "key": "151i8gl",
+          "rowsHash": "c341828fb87a60ced6e9c192d130de4ff71c117dad7c78f0ca3d7fcf54c7739c",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "0920aad7-4897-44a5-8ba0-9dbe7172c68a",
+          "key": "1pig4ir",
+          "rowsHash": "655ee3eaabec2b8d2bbe01c8225c6713bfd2e5f155664aec6664d4ab311385c8",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "a463d42c-caab-4240-b12e-ef9e53fe5b88",
+          "key": "1x5ckyu",
+          "rowsHash": "7f3a174ef88d7acfc791625119f86d0f20a4d57d3972c64872a627405384e0dc",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "5f62b2f2-b0ee-42a6-a412-acff580b8e27",
+          "key": "1nj0xpe",
+          "rowsHash": "25a3f4af405654aea50710bf8e1cc9c7c79ebecec734f4a16b941579f21ff855",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "d4eccadb-fa5e-4430-8246-281d887995a6",
+          "key": "itgipk",
+          "rowsHash": "98ad6fa70170bfa4fd5f5123e8bf27822c62a4d8bc22c3204f0263057e3875d6",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "3116eeab-8354-4010-a362-e26dcb7d5b49",
+          "key": "g202s4",
+          "rowsHash": "579851d082d3a4dfaa8f5e4ebff0fcf85463fcf742c49f29463d42c80e2d6373",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "4b73f410-1bfc-4ea3-ba1d-7d6c737a6a63",
+      "savedAt": "2026-10-15T13:07:10.510Z",
+      "sourceHash": "0c3d6c13de00e8be5f2b3dfd7a7371c72d93d0fd3df39c6cd48a2002c744efd3",
+      "frames": [
+        {
+          "id": "0e81d0ff-2a8b-4e10-9290-34289e72a82f",
+          "key": "1ed33au",
+          "rowsHash": "653ef57a84d7b80727b0ce2e941192c74c369890d6d6c7fdb208e5a5182a84fb",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "fd53a2be-d8dd-4ae8-a1f5-887ab2a18034",
+          "key": "1lkymqb",
+          "rowsHash": "692d568c1d8d916ec834f76f9816d3d14d32647073b486b1b062bafcf43ec75b",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "0f9193e2-b05f-43ab-bf89-eb156766cc02",
+          "key": "1ed33au",
+          "rowsHash": "653ef57a84d7b80727b0ce2e941192c74c369890d6d6c7fdb208e5a5182a84fb",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "c7b4d79f-2689-4337-9198-0aa3dd0b5438",
+          "key": "bdfxx5",
+          "rowsHash": "48a29f3c8bf2ba8aae72ee993e9ba8d5d7180def786380df0c1dc1a2d336c398",
+          "gaze": {
+            "x": 11,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "7898918f-be4b-46f7-9c42-20595b46bded",
+          "key": "dsqnvv",
+          "rowsHash": "80dbebd506e66dbe37696792d1a1ba0797b0d248715f59e2adaa3f5057ac66c4",
+          "gaze": {
+            "x": 9,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "560a20e0-7bfc-4b19-a546-9ee44869317e",
+          "key": "ddi5xj",
+          "rowsHash": "26823f0cd78f487a6f8628bd85b84d1088a7f5fd5072e14c66d50fe230840a07",
+          "gaze": {
+            "x": 11,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        },
+        {
+          "id": "8acdd79a-2964-45b4-bfe2-b44108b65ef7",
+          "key": "1nsgpoo",
+          "rowsHash": "705fe4c248de4926113a500f277f47efcdbfaaf2e30bf327db9d2186f54f64cb",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 2,
+            "fov": 360
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "6cfeeb8e-959a-4d04-b3cf-173d8093f0dc",
+      "savedAt": "2026-10-15T13:30:12.924Z",
+      "sourceHash": "4e35e9462e95cc449e53d0706799338f0570e643d0217118161a4a5cf9cb4f7b",
+      "frames": [
+        {
+          "id": "a7863c3c-1e83-4dca-b0cd-f7c8f24a921e",
+          "key": "l8tcpf",
+          "rowsHash": "00ed6600345121a4503fa315956ee73c96130ff14ff8ec9cd51991a7983cce9c",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        },
+        {
+          "id": "4d87bff8-f489-44d7-ab46-af36c927bde6",
+          "key": "1twhj26",
+          "rowsHash": "2de4c5c78ebbcaca1a1a0d3c0f4932f1da1750fd6929a73310ac897a3ae96f79",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        },
+        {
+          "id": "c5016a9a-050f-4a51-8805-24f2c6d68a2e",
+          "key": "1bfdsii",
+          "rowsHash": "f52045f0bf47277b9c0904b5f72b632770a9a387bdc514e3e561b641d3359f59",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        },
+        {
+          "id": "5d086239-b7d5-4e0a-8f22-1639be262969",
+          "key": "1fn5ip",
+          "rowsHash": "68e7945ca5c26b065005367a7b4080de5e2192a1758ef7a28856ad2e48f4e42f",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        },
+        {
+          "id": "8914e7d1-d2ee-4438-b625-4735295542c8",
+          "key": "1t089q2",
+          "rowsHash": "714531046b0ca39a08d99c10d0647cc1babcb4cf39137956762468176c9f3dfa",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        },
+        {
+          "id": "e1433839-2446-40b9-9a35-bf54ebb7679b",
+          "key": "eff0h7",
+          "rowsHash": "b8352b3ba4e74b4b98a79279bf817f6f7369bf883584552ae906e8d1767f26a3",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        },
+        {
+          "id": "7044cab8-b51f-4885-8a83-89cfcd6ab1b0",
+          "key": "14n5eto",
+          "rowsHash": "0cc2a2e40e0f468634b9b4c55cd1b76bb5f1e962a96f9ac23ed179b10ea9f776",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        },
+        {
+          "id": "02b84a68-7189-428f-aa48-67805ac789f8",
+          "key": "jpifvf",
+          "rowsHash": "9229d1bb87dd1a9ba98fbe7e0f0bd526ef6a6b320b61ceb682a68ae710cf041d",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "9d3fad6c-765c-4baf-a14f-2bca13c5a0bf",
+      "savedAt": "2026-10-14T14:19:54.440Z",
+      "sourceHash": "b1d34ed93ccf21fed123905fbd365ba5bbb5107ea386c6e032de3d97b190fbd5",
+      "frames": [
+        {
+          "id": "ccabdf94-aa7f-4250-bd59-318406b492f2",
+          "key": "1nae2kd",
+          "rowsHash": "9af820bf88cd52978783a5d4ecd5648c4b7dc7b455b28d9432da79ce84b7bb78",
+          "gaze": null
+        },
+        {
+          "id": "acb7dbbd-6005-4b6a-adcd-4c89909e5eda",
+          "key": "cs0nin",
+          "rowsHash": "6a51e36eb28ca43b891bd2047975c5c33da752b9f744f1f8abed3a5533b4b18b",
+          "gaze": null
+        },
+        {
+          "id": "370cd8c8-ba52-41d7-9f21-c8d0f751b2de",
+          "key": "1luopbq",
+          "rowsHash": "e3267449df23db89b4ff0ddd1022da9d0bcce47b480d04c59cca953d5045187b",
+          "gaze": null
+        },
+        {
+          "id": "ae442d88-171a-44c4-bed2-aece9712fcf3",
+          "key": "1dhyv2d",
+          "rowsHash": "6e4361d625c8777d8aafd96b32a3378d80ee2471f069df3fbea759711866c5cb",
+          "gaze": null
+        },
+        {
+          "id": "d5d40704-60db-4f24-8434-b95fbd2b02bf",
+          "key": "cs0nin",
+          "rowsHash": "6a51e36eb28ca43b891bd2047975c5c33da752b9f744f1f8abed3a5533b4b18b",
+          "gaze": null
+        },
+        {
+          "id": "43d6c123-8772-4223-905e-0116dc10c0d0",
+          "key": "1lsv5g0",
+          "rowsHash": "dca448fede0eb0b86ab8c15bfc9b8e980f33c28e9c0eb21becb069ad5f9452a2",
+          "gaze": null
+        }
+      ]
+    },
+    {
+      "sequenceId": "a92e1bba-462f-4d89-92e7-d1e7d9142eda",
+      "savedAt": "2026-10-15T13:29:30.994Z",
+      "sourceHash": "98a4b9c31694d7c287d175f4d6df15a63f2c0d060872c109139d71a3d19466c7",
+      "frames": [
+        {
+          "id": "0d3a17e7-6234-4cd4-825e-34c6b43d32d7",
+          "key": "1vxrd49",
+          "rowsHash": "404c680ebaf7ef371be24e17cc40b2b49b0fafc18ff9df63ea736d26effb315e",
+          "gaze": {
+            "x": 19,
+            "y": 17,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "0c74dc7d-bb48-4253-ae5b-a7bbee93a009",
+          "key": "1wh01vl",
+          "rowsHash": "9be5b85647019ca66adf9d5d6af0f2701b4de1d513dbea4a6666d5350e165dc2",
+          "gaze": {
+            "x": 19,
+            "y": 17,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "0975757c-e352-4aee-b171-16148168d718",
+          "key": "1k7i7d",
+          "rowsHash": "81638f0422502a621dec9ab7e7e0a4c2c8b2d5af4ed3902b2e3442509519040f",
+          "gaze": {
+            "x": 19,
+            "y": 17,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "21072354-2132-4645-baf2-993791a3df1a",
+          "key": "xinzpl",
+          "rowsHash": "961b21f0cccda35ad7328fc5015c310c7f04452fca794d08c09355b24a59b3b5",
+          "gaze": {
+            "x": 19,
+            "y": 17,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "57e950ae-5707-48ec-bb18-33726ad61ca9",
+          "key": "yzgsnt",
+          "rowsHash": "3c133f91a6743653e1fcfee6a7fd4fb90dd120d45cb16b2528dd9594f35dcf1f",
+          "gaze": {
+            "x": 19,
+            "y": 17,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "b85b7f09-e0f3-4cc1-b20c-ec6144eaf713",
+          "key": "c5h8rs",
+          "rowsHash": "18f276fc69b0b9ffe3e96cd92463e57512b94c133a2451989f44af0fe39e7530",
+          "gaze": {
+            "x": 19,
+            "y": 17,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "dd1ccf8c-faca-4428-8ada-e0331a1a9070",
+          "key": "1ns9qxg",
+          "rowsHash": "23f1f182ca6088b871eeb82ce1f9bca9b9d551ad00a29747c7cd39fddc5a72cb",
+          "gaze": {
+            "x": 19,
+            "y": 17,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "e8b461d9-5722-446e-9de2-d2bf28adf9ca",
+          "key": "ptrekl",
+          "rowsHash": "b29e9892e024dbc37baacf65c9cc376ee12b8eb4fe98249114539f32773dc20e",
+          "gaze": {
+            "x": 19,
+            "y": 17,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "b065236f-bce6-40d3-bf48-27c58822f40c",
+      "savedAt": "2026-10-14T17:27:09.619Z",
+      "sourceHash": "3e785c008d36f0b2a31ba3caf4f4aa2c84c0e201cfa45e233ffc8598d66008a3",
+      "frames": [
+        {
+          "id": "43526a90-cdf8-481d-b7d0-3545d3db0987",
+          "key": "1dhyv2d",
+          "rowsHash": "6e4361d625c8777d8aafd96b32a3378d80ee2471f069df3fbea759711866c5cb",
+          "gaze": null
+        }
+      ]
+    },
+    {
+      "sequenceId": "c45528cf-168a-4dc1-ab61-96ac62816e59",
+      "savedAt": "2026-10-15T13:29:38.230Z",
+      "sourceHash": "07526fb87560c0da2a8d3731ae35cc05d510d398897af5124f2823b8d37528f8",
+      "frames": [
+        {
+          "id": "b12f1ae8-8f40-4544-932f-4542484d9e54",
+          "key": "4n1qf4",
+          "rowsHash": "5851bb154b0ae839601baa54fca4624b63b48edbcd7aa6f4416c08821dab4bee",
+          "gaze": {
+            "x": 20,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "0bd0de83-d0a5-419b-a05d-661828ffd7d8",
+          "key": "192hms4",
+          "rowsHash": "c027d570f1e070350c2cb8cda56a40387508c06847f5337d69ae1647ce1259f4",
+          "gaze": {
+            "x": 20,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "61d6ed0c-ac5c-4978-ad2e-9d123048d484",
+          "key": "4yitq9",
+          "rowsHash": "14a253dfd75ae63a9d24a41ff92ca18d94a70238f77e8cda30b3304ff4f4ab8a",
+          "gaze": {
+            "x": 20,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "4f6b4ede-f179-418d-a6fd-02f6cdde5bb6",
+          "key": "1na0zk1",
+          "rowsHash": "ce8d6398f1c572ddc5e81c52763b3bfe31d35cbbceffb407533e5334fca4a618",
+          "gaze": {
+            "x": 20,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "d1559a34-61d2-4ca2-99e9-a780a1a786c1",
+          "key": "g6fzw1",
+          "rowsHash": "2a4ee09ccadc38e9344d46468f26bcdfdde67f40d9fc0de35cdecb6f533edb00",
+          "gaze": {
+            "x": 20,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "982ed87d-9fda-485e-8837-612da2af0917",
+          "key": "5x4nw0",
+          "rowsHash": "87b23b076e8629e6f5405f2d6f69a9790cc355c03f54c808454bbee108526f6a",
+          "gaze": {
+            "x": 20,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "3b9c2601-1ee9-4104-9ed1-eea87745ffc3",
+          "key": "mfomgr",
+          "rowsHash": "60c01d6b723a0ba54d3adcfe551e1b4d2702f9506a8cad2622c5916bf889524b",
+          "gaze": {
+            "x": 20,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "e2ca8f99-5886-4e5e-8ff5-42c9c19d682a",
+          "key": "1s2ujqt",
+          "rowsHash": "544838c8ec1ec0ee2b0abb68c4d7f4204d3bcccb0e7bd389b7c436f3647a69a4",
+          "gaze": {
+            "x": 20,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "dd149c2d-9d62-4f57-bf12-d1cb9924d469",
+      "savedAt": "2026-10-15T13:29:45.189Z",
+      "sourceHash": "b74a0983d8779952fbb93d5454d647368a1d545ce2b6bd64afb115847c5e51bb",
+      "frames": [
+        {
+          "id": "100eec16-25e3-4933-92cd-25cee4160f4a",
+          "key": "yb4unu",
+          "rowsHash": "c184fdeb168107d9f64eeb83be708f9f32eefa0176f6898d5641354e6d568481",
+          "gaze": {
+            "x": 21,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "e0501a75-01e7-476d-b9ee-d5a10d7ae017",
+          "key": "leat6e",
+          "rowsHash": "79820c2bfe14dcb56a51be7a9ec84722da19fb682dce863b0aac929d9a99ec91",
+          "gaze": {
+            "x": 21,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "67765da8-e9a3-4484-96c4-059998728bb9",
+          "key": "1u1kwyn",
+          "rowsHash": "67a60941981d5a0e65d5b8182a58611c14ae2a490dec0dc50b689f2d0d382ffe",
+          "gaze": {
+            "x": 21,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "74547f46-4327-43f0-a8a0-66ac33dccdc4",
+          "key": "wk5kr3",
+          "rowsHash": "1c6a34bf4696c9ae15031d605e28c77d6009bcfed5e9ea0a1c29f54bf5d2841f",
+          "gaze": {
+            "x": 21,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "56b7f378-cf9e-413e-9f24-1324ccd7f9ee",
+          "key": "1w7vdh3",
+          "rowsHash": "3a3ff44741a4bd86865f9488075da4e5a83ba7f98fb73e1899decbe3251c3874",
+          "gaze": {
+            "x": 21,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "fa4e69c2-a7b2-4e70-9dcd-0be43f5078a6",
+          "key": "tq5s8m",
+          "rowsHash": "e100f7283c328096a4a6f567af645c9d4396a790c3d13700bde47392d9079245",
+          "gaze": {
+            "x": 21,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "c56c2046-b419-4219-a9b1-e0eb13f6a03e",
+          "key": "7o966h",
+          "rowsHash": "3c0ef642e7e13d9289e730e8490c2439680192c842da1d38b131f945dad4698a",
+          "gaze": {
+            "x": 21,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        },
+        {
+          "id": "e8a86f4e-19d0-426c-8315-1c2ceb903174",
+          "key": "5cx6yn",
+          "rowsHash": "c05061d6a2fde3c79dbe2c322d524495bd9bda4e82a375b6b9f40703e66cbf4e",
+          "gaze": {
+            "x": 21,
+            "y": 18,
+            "angle": 5,
+            "fov": 76,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "f7146398-28aa-48f4-b36a-c44b0af17a14",
+      "savedAt": "2026-10-15T14:10:11.465Z",
+      "sourceHash": "f7e8d818c87ad05611f9db9d0579650f2ef0f007284cad69c238e633f4e028f1",
+      "frames": [
+        {
+          "id": "cf8d6d08-b9d1-4eac-8605-8b69357a87c6",
+          "key": "19hozil",
+          "rowsHash": "2b784dcd23ce32b684079e17afbee69d7d3be1e2de9267f494751f80cfe2fc43",
+          "gaze": null
+        },
+        {
+          "id": "0222f05b-af96-46ad-9433-77c2bfd06ba5",
+          "key": "4i4fzu",
+          "rowsHash": "721ea6344b39080dee9adf7d5d794156207044397ce600df2afc34e9ed53e369",
+          "gaze": null
+        },
+        {
+          "id": "5886a228-3c97-42ce-8c05-9e61f78040fc",
+          "key": "24917u",
+          "rowsHash": "bb7a5e7a0cb809e7c05f21b938d3817685397f2a926d9c375d4ec6aa8f8b8094",
+          "gaze": null
+        },
+        {
+          "id": "3b70d6f6-5b84-4dba-9d33-2e48479a255e",
+          "key": "dimjnb",
+          "rowsHash": "048a0b0f382179698610bbb478028563186e7d1e0836474620bd09e0542b68f5",
+          "gaze": null
+        },
+        {
+          "id": "0268cf6d-2e39-47ed-beb2-042f02c5029d",
+          "key": "13192vu",
+          "rowsHash": "da37576beb88e732fb00da6fcae2892f4c36332068368c8bbc646dde3cbda727",
+          "gaze": null
+        },
+        {
+          "id": "239cc7cc-0fdb-4823-a2e7-2a402d285765",
+          "key": "cnaci7",
+          "rowsHash": "7f943fdca7f5d6b72c40c47d687b076dbfca72c0fab32161284269cf5bd9036c",
+          "gaze": null
+        },
+        {
+          "id": "a9202756-708c-4775-9a0e-0fae6ff3ae8b",
+          "key": "1t1hxcn",
+          "rowsHash": "7b5ac1881a78d0e78615520aca5e99aa4ddfa9863ab4686f719cbaf71933ee19",
+          "gaze": null
+        },
+        {
+          "id": "7d5a127c-3ded-4677-b539-83a0ef79dcdd",
+          "key": "18u1fg4",
+          "rowsHash": "6010330f70b83c003e6aec0bc6b1a98eb5356fafdf1a05d98b9a25aa6fbf3cfa",
+          "gaze": null
+        }
+      ]
+    },
+    {
+      "sequenceId": "pose-look-down",
+      "savedAt": "2026-10-15T13:05:55.715Z",
+      "sourceHash": "aa4a444b8307cecf5cd7eb307c055695b0bc6706af47e7ed79c42156f17c7a12",
+      "frames": [
+        {
+          "id": "0c603462-3b74-49f9-a6e6-ffa1291d7945",
+          "key": "16krd4g",
+          "rowsHash": "9de8c9486792eef124e91abc6dbb97719ffc4bb64b0a11d16e049cfa2326b8ed",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 14,
+            "fov": 106
+          }
+        },
+        {
+          "id": "f31d6f73-2b83-49a3-9dbb-f11f4f2cbe5b",
+          "key": "1x4nom6",
+          "rowsHash": "559283579875e2a3320eb490d09375e6bda80765af151437eec281fe2ab867c5",
+          "gaze": {
+            "x": 18,
+            "y": 7,
+            "angle": 76,
+            "fov": 102
+          }
+        },
+        {
+          "id": "46010aa5-52ef-42ad-b381-90ce4e6ca4c4",
+          "key": "qjlrfb",
+          "rowsHash": "f506b7521bc15904f7fc51184879990ad85670883441a3713dd4e7937550d749",
+          "gaze": {
+            "x": 19,
+            "y": 10,
+            "angle": 82,
+            "fov": 101
+          }
+        },
+        {
+          "id": "1617c158-1dd6-4bc9-9bcb-f0cf9d15d375",
+          "key": "yayvyj",
+          "rowsHash": "f9c498ed816247e4d009fbf96034f8bd796d697ab1f398ce43aeb1e2ed8b4f53",
+          "gaze": {
+            "x": 21,
+            "y": 14,
+            "angle": 82,
+            "fov": 142
+          }
+        },
+        {
+          "id": "562f3ff1-0597-4952-890d-149d4a9b141f",
+          "key": "7shk9s",
+          "rowsHash": "a94cd45610965301c6441383f038a56b7bc3afe37c1b36e5be751b8cca6f327a",
+          "gaze": {
+            "x": 21,
+            "y": 14,
+            "angle": 82,
+            "fov": 138
+          }
+        },
+        {
+          "id": "6c3ca4e1-77fd-4ef7-9bd2-1f2509288c88",
+          "key": "xg43ti",
+          "rowsHash": "9fc8ff67cd686053f600cd4265678de6ab3dc3a0cdb07437212d75dbf7b00fd9",
+          "gaze": {
+            "x": 21,
+            "y": 14,
+            "angle": 82,
+            "fov": 168
+          }
+        },
+        {
+          "id": "790cbdd9-7134-4580-aa28-d40853990a03",
+          "key": "1m1xnq0",
+          "rowsHash": "cfada24732246f8807c1ab857afe8740663f7c8bb42ce7f33b1e79079cec6008",
+          "gaze": {
+            "x": 21,
+            "y": 13,
+            "angle": 82,
+            "fov": 138
+          }
+        },
+        {
+          "id": "6fb067e1-5663-4727-bc1c-a6e90e975d39",
+          "key": "1lgbxas",
+          "rowsHash": "9a2bee6cc71c1de4a15d912fab5b103ed3a5c6ffa4a799bb318d7eb9f5d97ddc",
+          "gaze": {
+            "x": 21,
+            "y": 14,
+            "angle": 82,
+            "fov": 131
+          }
+        },
+        {
+          "id": "03bf9827-c842-4452-a739-cc342a47720c",
+          "key": "qjlrfb",
+          "rowsHash": "f506b7521bc15904f7fc51184879990ad85670883441a3713dd4e7937550d749",
+          "gaze": {
+            "x": 19,
+            "y": 10,
+            "angle": 39,
+            "fov": 120
+          }
+        },
+        {
+          "id": "dc018a5c-0f8c-4faf-82ab-e24ce87d543e",
+          "key": "1x4nom6",
+          "rowsHash": "559283579875e2a3320eb490d09375e6bda80765af151437eec281fe2ab867c5",
+          "gaze": {
+            "x": 18,
+            "y": 6,
+            "angle": 16,
+            "fov": 123
+          }
+        },
+        {
+          "id": "f0c78470-a719-4936-8820-3bd82dbc80f6",
+          "key": "16krd4g",
+          "rowsHash": "9de8c9486792eef124e91abc6dbb97719ffc4bb64b0a11d16e049cfa2326b8ed",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 3,
+            "fov": 126
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "pose-sitting-glance",
+      "savedAt": "2026-10-15T13:06:22.250Z",
+      "sourceHash": "2d11c0161e34f29211a7cd017c52ad851d7e5c8a5934fdfc5c017c0160ace6ba",
+      "frames": [
+        {
+          "id": "e56fa4cd-ad81-4e98-96cf-1a0e501af6e4",
+          "key": "10rntmr",
+          "rowsHash": "5960d3ae38fe1dd674f5c9441cb4a5c9150acb5598120701187da8f5dc75a705",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 3,
+            "fov": 360
+          }
+        },
+        {
+          "id": "ec0f23b3-b347-440c-973a-b84138b57cea",
+          "key": "q8kmow",
+          "rowsHash": "dd6fa92e82b17ae24333d43acee80728249b3272c8cc488368b068a52ed7ce46",
+          "gaze": {
+            "x": 11,
+            "y": 9,
+            "angle": -177,
+            "fov": 160
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "pose-vertical-down",
+      "savedAt": "2026-10-15T13:32:50.587Z",
+      "sourceHash": "02feec8f783440495f8531b88c4b5e5f1dbc81467a18ef41603c6d931159dbf8",
+      "frames": [
+        {
+          "id": "6be59956-a2f0-470d-974f-dbcc82d29e7d",
+          "key": "og24zo",
+          "rowsHash": "7720c323bcc0b06b508fb87f87d9755976b07c22524575b1de04a421b35d6ef1",
+          "gaze": {
+            "x": 16,
+            "y": 15,
+            "angle": 81,
+            "fov": 160,
+            "canSee": true
+          }
+        },
+        {
+          "id": "3412bc9c-9921-4644-9342-5f68f9574ef7",
+          "key": "qotgb7",
+          "rowsHash": "ba14a0861350683b6af19d41baf15e0773f63e0b1a12385657ccf4a41cc93738",
+          "gaze": {
+            "x": 16,
+            "y": 17,
+            "angle": 81,
+            "fov": 69,
+            "canSee": true
+          }
+        },
+        {
+          "id": "f2c3ca70-9edf-4cd2-96cf-c6dae979b9aa",
+          "key": "7kkold",
+          "rowsHash": "f4e781ee5d195aa4f2a43fdde8cb1805991bac669e2163b82ad9db2eceabaf34",
+          "gaze": {
+            "x": 18,
+            "y": 12,
+            "angle": 34,
+            "fov": 160,
+            "canSee": true
+          }
+        },
+        {
+          "id": "09ddd74b-5715-4813-88cb-079ee912d1f5",
+          "key": "17b0q3i",
+          "rowsHash": "1aed131038340b67c86d22ce1b75fdbc17e109c6d5113227ec0afec29f32eb46",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": -19,
+            "fov": 160,
+            "canSee": true
+          }
+        },
+        {
+          "id": "a24c5fa8-cb4b-42a6-8e23-73ee95c63161",
+          "key": "cs0nin",
+          "rowsHash": "6a51e36eb28ca43b891bd2047975c5c33da752b9f744f1f8abed3a5533b4b18b",
+          "gaze": {
+            "x": 18,
+            "y": 16,
+            "angle": -10,
+            "fov": 160,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "pose-vertical-up",
+      "savedAt": "2026-10-14T19:28:15.345Z",
+      "sourceHash": "56b10108aec7a188adbe222e7f7d10823bc30627c2501085c50f8e01f681005c",
+      "frames": [
+        {
+          "id": "bc44c36a-d600-4a08-97ab-b28766f6a2df",
+          "key": "cs0nin",
+          "rowsHash": "6a51e36eb28ca43b891bd2047975c5c33da752b9f744f1f8abed3a5533b4b18b",
+          "gaze": null
+        },
+        {
+          "id": "d57cfcd6-726c-4a50-ba43-ffc139f64b57",
+          "key": "ns6df4",
+          "rowsHash": "321ed5ac9fa272a54e1546600a19b61de8168b275a1c2c852759d72b3854b9fa",
+          "gaze": null
+        },
+        {
+          "id": "b6eceec4-63b7-4ca9-a271-69a3c1ddc48a",
+          "key": "feyy3g",
+          "rowsHash": "70ee07b990a13dbc87530342a1ab9fdcfac5d9dc76786932950441606517122e",
+          "gaze": null
+        },
+        {
+          "id": "61233787-fc90-4c99-8ccf-0aa9e0383591",
+          "key": "1n5t32c",
+          "rowsHash": "93fc2488783ad18dd22b2cd67ad365b84768662652eef15f356cd10361aebfe2",
+          "gaze": null
+        },
+        {
+          "id": "b4ae5f32-d34f-40ac-a5c6-74798a81bec6",
+          "key": "cs0nin",
+          "rowsHash": "6a51e36eb28ca43b891bd2047975c5c33da752b9f744f1f8abed3a5533b4b18b",
+          "gaze": null
+        }
+      ]
+    },
+    {
+      "sequenceId": "proposal-behaviour-cheek-rub",
+      "savedAt": "2026-10-15T13:35:37.529Z",
+      "sourceHash": "0e26e3d4ba70c3384e4bbf92abd6ae1c0d5da9ea922391619c9aabd20be6a7fb",
+      "frames": [
+        {
+          "id": "proposal-behaviour-cheek-rub-f01",
+          "key": "weogy3",
+          "rowsHash": "3942110aa056117db2d0105c3937486283e7df5635080efd47d80a3a438e97c1",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 4,
+            "fov": 149,
+            "canSee": true
+          }
+        },
+        {
+          "id": "proposal-behaviour-cheek-rub-f02",
+          "key": "1jkcz32",
+          "rowsHash": "91cdcaa67d36c645e5557e1a03a087d1d80f30eb06a12cee8d88e682ce58f454",
+          "gaze": {
+            "x": 20,
+            "y": 13,
+            "angle": 4,
+            "fov": 149,
+            "canSee": true
+          }
+        },
+        {
+          "id": "proposal-behaviour-cheek-rub-f03",
+          "key": "nv1os1",
+          "rowsHash": "5208738c99fbab3c29a566575cb6d895f58a4a463eb7b73dcca806b593a1d857",
+          "gaze": {
+            "x": 20,
+            "y": 14,
+            "angle": 4,
+            "fov": 149,
+            "canSee": true
+          }
+        },
+        {
+          "id": "proposal-behaviour-cheek-rub-f04",
+          "key": "5ihxw5",
+          "rowsHash": "5ab0e5f5db06494d8aa3175a173ee5cb8eaaddd8c7ac5e2dcd5417d1733a2b8d",
+          "gaze": {
+            "x": 20,
+            "y": 12,
+            "angle": 4,
+            "fov": 149,
+            "canSee": true
+          }
+        },
+        {
+          "id": "proposal-behaviour-cheek-rub-f05",
+          "key": "1jkcz32",
+          "rowsHash": "91cdcaa67d36c645e5557e1a03a087d1d80f30eb06a12cee8d88e682ce58f454",
+          "gaze": {
+            "x": 20,
+            "y": 13,
+            "angle": 4,
+            "fov": 149,
+            "canSee": true
+          }
+        },
+        {
+          "id": "proposal-behaviour-cheek-rub-f06",
+          "key": "weogy3",
+          "rowsHash": "3942110aa056117db2d0105c3937486283e7df5635080efd47d80a3a438e97c1",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 4,
+            "fov": 149,
+            "canSee": true
+          }
+        },
+        {
+          "id": "proposal-behaviour-cheek-rub-f07",
+          "key": "weogy3",
+          "rowsHash": "3942110aa056117db2d0105c3937486283e7df5635080efd47d80a3a438e97c1",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 4,
+            "fov": 149,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "proposal-behaviour-curl-sleep",
+      "savedAt": "2026-10-15T13:27:37.339Z",
+      "sourceHash": "64884f7f7289dc24086848d58714a4395b1b8c99d1da2ae5b4c959f73d3416d7",
+      "frames": [
+        {
+          "id": "proposal-behaviour-curl-sleep-f01",
+          "key": "l63ncb",
+          "rowsHash": "af27e50b59b01976078bfd7f5d83fdd1d53bdda0d286c6e000bc41f098b30d1a",
+          "gaze": {
+            "x": 17,
+            "y": 20,
+            "angle": 7,
+            "fov": 360,
+            "canSee": true
+          }
+        },
+        {
+          "id": "proposal-behaviour-curl-sleep-f02",
+          "key": "1js2gv",
+          "rowsHash": "ed3410f6587906404d35b4f1d728d1de3dc79eaf00ad8f1aca2c14a6b172b134",
+          "gaze": {
+            "x": 17,
+            "y": 20,
+            "angle": 7,
+            "fov": 360,
+            "canSee": true
+          }
+        },
+        {
+          "id": "proposal-behaviour-curl-sleep-f03",
+          "key": "yvzqmu",
+          "rowsHash": "0a023a48748f78b1dd5eb1c4794bb9122fa693093d207b88aac070d3388082ea",
+          "gaze": {
+            "x": 17,
+            "y": 20,
+            "angle": 7,
+            "fov": 91,
+            "canSee": false
+          }
+        },
+        {
+          "id": "proposal-behaviour-curl-sleep-f04",
+          "key": "yvzqmu",
+          "rowsHash": "0a023a48748f78b1dd5eb1c4794bb9122fa693093d207b88aac070d3388082ea",
+          "gaze": {
+            "x": 17,
+            "y": 20,
+            "angle": 7,
+            "fov": 91,
+            "canSee": false
+          }
+        },
+        {
+          "id": "proposal-behaviour-curl-sleep-f05",
+          "key": "1k9el1m",
+          "rowsHash": "39406e2de9806bf81d4b7ebb4aaadc420b00f48d93d2615177c804a0f7ecf5bf",
+          "gaze": {
+            "x": 17,
+            "y": 20,
+            "angle": 7,
+            "fov": 91,
+            "canSee": false
+          }
+        },
+        {
+          "id": "proposal-behaviour-curl-sleep-f06",
+          "key": "yvzqmu",
+          "rowsHash": "0a023a48748f78b1dd5eb1c4794bb9122fa693093d207b88aac070d3388082ea",
+          "gaze": {
+            "x": 17,
+            "y": 20,
+            "angle": 7,
+            "fov": 91,
+            "canSee": false
+          }
+        },
+        {
+          "id": "proposal-behaviour-curl-sleep-f07",
+          "key": "1js2gv",
+          "rowsHash": "ed3410f6587906404d35b4f1d728d1de3dc79eaf00ad8f1aca2c14a6b172b134",
+          "gaze": {
+            "x": 17,
+            "y": 20,
+            "angle": 7,
+            "fov": 360,
+            "canSee": true
+          }
+        },
+        {
+          "id": "proposal-behaviour-curl-sleep-f08",
+          "key": "l63ncb",
+          "rowsHash": "af27e50b59b01976078bfd7f5d83fdd1d53bdda0d286c6e000bc41f098b30d1a",
+          "gaze": {
+            "x": 16,
+            "y": 19,
+            "angle": 7,
+            "fov": 360,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "proposal-behaviour-ear-scratch",
+      "savedAt": "2026-10-15T13:07:58.068Z",
+      "sourceHash": "92cc4402666fe5609762939178dbe4a01b5c3f637ba8118b611ccc565d541ab4",
+      "frames": [
+        {
+          "id": "proposal-behaviour-ear-scratch-f01",
+          "key": "10rntmr",
+          "rowsHash": "5960d3ae38fe1dd674f5c9441cb4a5c9150acb5598120701187da8f5dc75a705",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 95,
+            "fov": 360
+          }
+        },
+        {
+          "id": "proposal-behaviour-ear-scratch-f02",
+          "key": "979ig2",
+          "rowsHash": "15f5c9d32b87e6e94cf4bb8a39ad87982a55e5a8c7cc381b4f03f87d8a7d4c43",
+          "gaze": {
+            "x": 14,
+            "y": 11,
+            "angle": 95,
+            "fov": 143
+          }
+        },
+        {
+          "id": "7108801c-e444-4381-b7de-8740cd60093b",
+          "key": "i968os",
+          "rowsHash": "71dea420dfd0dd585da937d9a4cc3f403a4b646e3daff6e334f09c6cd98e0ae4",
+          "gaze": {
+            "x": 14,
+            "y": 11,
+            "angle": 95,
+            "fov": 143
+          }
+        },
+        {
+          "id": "4a048e2f-b3aa-4eaa-ab7e-d39d592ecceb",
+          "key": "i968os",
+          "rowsHash": "71dea420dfd0dd585da937d9a4cc3f403a4b646e3daff6e334f09c6cd98e0ae4",
+          "gaze": {
+            "x": 14,
+            "y": 11,
+            "angle": 95,
+            "fov": 143
+          }
+        },
+        {
+          "id": "8fedd9bf-7410-48fe-91ce-9a4205998130",
+          "key": "1f582om",
+          "rowsHash": "f7b3ed62e91eca701f7c2d4d14791c326cf592a28def30bff80188a92315017a",
+          "gaze": {
+            "x": 14,
+            "y": 11,
+            "angle": 95,
+            "fov": 143
+          }
+        },
+        {
+          "id": "efc1e17a-b98c-4eab-b5e8-c3ffaa0b6c62",
+          "key": "zgsj09",
+          "rowsHash": "6cf091f05ca864116710edcd2f181fdf5a49b5473e05d798ec33609ff2509b91",
+          "gaze": {
+            "x": 14,
+            "y": 11,
+            "angle": 95,
+            "fov": 143
+          }
+        },
+        {
+          "id": "4c081093-4b9c-4614-b45f-10eb916a9b7f",
+          "key": "1np7v2a",
+          "rowsHash": "8406de6adf8055ebf988b9bca6b515e0c8303e7ef6a8f657f57fc24c8ffe6bdc",
+          "gaze": {
+            "x": 14,
+            "y": 11,
+            "angle": 95,
+            "fov": 143
+          }
+        },
+        {
+          "id": "proposal-behaviour-ear-scratch-f06",
+          "key": "1v0aluh",
+          "rowsHash": "5f26679fe81692743bfc6ba7e0c0289ebfd65dd89efdd7c4a872a6746f6bbed7",
+          "gaze": {
+            "x": 12,
+            "y": 9,
+            "angle": 95,
+            "fov": 143
+          }
+        },
+        {
+          "id": "proposal-behaviour-ear-scratch-f07",
+          "key": "10rntmr",
+          "rowsHash": "5960d3ae38fe1dd674f5c9441cb4a5c9150acb5598120701187da8f5dc75a705",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 95,
+            "fov": 360
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "proposal-behaviour-knead",
+      "savedAt": "2026-10-14T23:36:10.326Z",
+      "sourceHash": "68e90ec521aeaff6f8700c0c8668ba8ca8baba4be43e04e13f064332655a45fd",
+      "frames": [
+        {
+          "id": "proposal-behaviour-knead-f01",
+          "key": "weogy3",
+          "rowsHash": "3942110aa056117db2d0105c3937486283e7df5635080efd47d80a3a438e97c1",
+          "gaze": null
+        },
+        {
+          "id": "proposal-behaviour-knead-f02",
+          "key": "1pzqblo",
+          "rowsHash": "fd405b3a51de1788948579b238d947523cab96b5fd5f5e38dff8aeb60e36c5eb",
+          "gaze": null
+        },
+        {
+          "id": "proposal-behaviour-knead-f03",
+          "key": "1cuqep1",
+          "rowsHash": "1de36ca3e3a599bcef8e624898ce0655a25b1be63c306126d64e5aad9436c7ed",
+          "gaze": null
+        },
+        {
+          "id": "proposal-behaviour-knead-f04",
+          "key": "ho46x6",
+          "rowsHash": "0beddce4d908a59e516f4ce7563f3bd231c424779626b18b5a0302f6e9385d0b",
+          "gaze": null
+        },
+        {
+          "id": "proposal-behaviour-knead-f05",
+          "key": "5bv7fq",
+          "rowsHash": "afc3bde8301d71647048a660b179af26bc7b44e1533cd1cb6337bae13c8259e3",
+          "gaze": null
+        },
+        {
+          "id": "proposal-behaviour-knead-f06",
+          "key": "ho46x6",
+          "rowsHash": "0beddce4d908a59e516f4ce7563f3bd231c424779626b18b5a0302f6e9385d0b",
+          "gaze": null
+        },
+        {
+          "id": "proposal-behaviour-knead-f07",
+          "key": "1pzqblo",
+          "rowsHash": "fd405b3a51de1788948579b238d947523cab96b5fd5f5e38dff8aeb60e36c5eb",
+          "gaze": null
+        },
+        {
+          "id": "proposal-behaviour-knead-f08",
+          "key": "weogy3",
+          "rowsHash": "3942110aa056117db2d0105c3937486283e7df5635080efd47d80a3a438e97c1",
+          "gaze": null
+        }
+      ]
+    },
+    {
+      "sequenceId": "proposal-behaviour-paw-bat",
+      "savedAt": "2026-10-15T13:35:55.001Z",
+      "sourceHash": "830272fa4a948fbb5ce31b2332963832755705a82e2eb9eefdeba53919367dc7",
+      "frames": [
+        {
+          "id": "proposal-behaviour-paw-bat-f01",
+          "key": "10rntmr",
+          "rowsHash": "5960d3ae38fe1dd674f5c9441cb4a5c9150acb5598120701187da8f5dc75a705",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 49,
+            "fov": 89
+          }
+        },
+        {
+          "id": "proposal-behaviour-paw-bat-f02",
+          "key": "kwtdnn",
+          "rowsHash": "dc5cf9430f3bb4fca906325e424b620e58b17cb4b867b384e742ef4e5bcfb228",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 49,
+            "fov": 89
+          }
+        },
+        {
+          "id": "proposal-behaviour-paw-bat-f03",
+          "key": "18lgcjc",
+          "rowsHash": "4d8c5ade77f4f3883d46af4f8534513642ebd3c7774e725eb5f2efbd66c4316b",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 49,
+            "fov": 89
+          }
+        },
+        {
+          "id": "proposal-behaviour-paw-bat-f04",
+          "key": "9tbz3v",
+          "rowsHash": "da8b8b0c04f47e549d165dfe33951a6561d57933fa50a8a14b6a415664169d23",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 49,
+            "fov": 89
+          }
+        },
+        {
+          "id": "proposal-behaviour-paw-bat-f05",
+          "key": "1k3aliy",
+          "rowsHash": "d7b0f9cee6df19133103e13c415a8d0d7d03cce2941e497b2e3a9f1d8afc9164",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 49,
+            "fov": 89
+          }
+        },
+        {
+          "id": "proposal-behaviour-paw-bat-f06",
+          "key": "19cp1q0",
+          "rowsHash": "cf1d487730fd4bd0f77525d41a792d5c0f3791eec5afa88d62582391642711f5",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 49,
+            "fov": 89
+          }
+        },
+        {
+          "id": "proposal-behaviour-paw-bat-f07",
+          "key": "10rntmr",
+          "rowsHash": "5960d3ae38fe1dd674f5c9441cb4a5c9150acb5598120701187da8f5dc75a705",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 49,
+            "fov": 89
+          }
+        },
+        {
+          "id": "proposal-behaviour-paw-bat-f08",
+          "key": "10rntmr",
+          "rowsHash": "5960d3ae38fe1dd674f5c9441cb4a5c9150acb5598120701187da8f5dc75a705",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 49,
+            "fov": 89
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "proposal-behaviour-sniff",
+      "savedAt": "2026-10-15T13:03:36.515Z",
+      "sourceHash": "fdf515a15924514d1d424c2615cf6fe07a441f40121dd5c4c793c6c818e366a5",
+      "frames": [
+        {
+          "id": "proposal-behaviour-sniff-f01",
+          "key": "weogy3",
+          "rowsHash": "3942110aa056117db2d0105c3937486283e7df5635080efd47d80a3a438e97c1",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 15,
+            "fov": 100
+          }
+        },
+        {
+          "id": "proposal-behaviour-sniff-f02",
+          "key": "tex91d",
+          "rowsHash": "52e360b0572eb8eae22c2c7ea02229d97e9365084e8d6d1424ecd79a6bef939e",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 41,
+            "fov": 100
+          }
+        },
+        {
+          "id": "proposal-behaviour-sniff-f03",
+          "key": "aw1jvt",
+          "rowsHash": "31e4ee038905e31990a1f293eaa063a38c9d52c8ad7c03716c86481a2f8f92d8",
+          "gaze": {
+            "x": 20,
+            "y": 15,
+            "angle": 58,
+            "fov": 100
+          }
+        },
+        {
+          "id": "proposal-behaviour-sniff-f04",
+          "key": "16rqww4",
+          "rowsHash": "2d6e3fed1e118211030f9add5815f2942c4468452d49958d0c61b30790ccb99a",
+          "gaze": {
+            "x": 20,
+            "y": 16,
+            "angle": 77,
+            "fov": 133
+          }
+        },
+        {
+          "id": "proposal-behaviour-sniff-f05",
+          "key": "197nmxg",
+          "rowsHash": "a48a767c8a5a1d24e3808a8cac61d8e85e92e03a3eac536ead4370245c963c47",
+          "gaze": {
+            "x": 19,
+            "y": 16,
+            "angle": 74,
+            "fov": 130
+          }
+        },
+        {
+          "id": "proposal-behaviour-sniff-f06",
+          "key": "m64yi3",
+          "rowsHash": "109418e1a80c5570e79151e284e0ca84ce891581e14d14092f4f95a321247b04",
+          "gaze": {
+            "x": 20,
+            "y": 15,
+            "angle": 17,
+            "fov": 121
+          }
+        },
+        {
+          "id": "proposal-behaviour-sniff-f07",
+          "key": "11p1c5y",
+          "rowsHash": "6ebf41416d7770ba32ec73c6ba24063e6c17cf2f49c8c2c9ec0a77bf5f638f1a",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 24,
+            "fov": 100
+          }
+        },
+        {
+          "id": "proposal-behaviour-sniff-f08",
+          "key": "weogy3",
+          "rowsHash": "3942110aa056117db2d0105c3937486283e7df5635080efd47d80a3a438e97c1",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 4,
+            "fov": 100
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "proposal-behaviour-yawn",
+      "savedAt": "2026-10-15T13:08:32.777Z",
+      "sourceHash": "45aea116b853728d30b021ed52a63cb65247bfb40f4f3d0baa71d452f5690c1a",
+      "frames": [
+        {
+          "id": "proposal-behaviour-yawn-f01",
+          "key": "10rntmr",
+          "rowsHash": "5960d3ae38fe1dd674f5c9441cb4a5c9150acb5598120701187da8f5dc75a705",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": 95,
+            "fov": 360
+          }
+        },
+        {
+          "id": "proposal-behaviour-yawn-f02",
+          "key": "1u8a6ny",
+          "rowsHash": "6690541d3047f3d271360df7dddbc1443069e34afb9b436bed61060a8d9e654a",
+          "gaze": {
+            "x": 13,
+            "y": 8,
+            "angle": 95,
+            "fov": 360
+          }
+        },
+        {
+          "id": "proposal-behaviour-yawn-f03",
+          "key": "ka741p",
+          "rowsHash": "dd56ac0be507236db6d9a7bd921f91e66895129b5331eb36a61612e72aaa1a0d",
+          "gaze": {
+            "x": 13,
+            "y": 8,
+            "angle": -38,
+            "fov": 140
+          }
+        },
+        {
+          "id": "proposal-behaviour-yawn-f05",
+          "key": "1gjczld",
+          "rowsHash": "e507b8b5e638c1a4019bf383ad116d0773cf156f5cdca0f414c957a7c9dc979a",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": -29,
+            "fov": 149
+          }
+        },
+        {
+          "id": "proposal-behaviour-yawn-f08",
+          "key": "10rntmr",
+          "rowsHash": "5960d3ae38fe1dd674f5c9441cb4a5c9150acb5598120701187da8f5dc75a705",
+          "gaze": {
+            "x": 13,
+            "y": 9,
+            "angle": -9,
+            "fov": 151
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "proposal-fast-walk-front-offset",
+      "savedAt": "2026-10-15T13:30:33.001Z",
+      "sourceHash": "345d3724bd4cccf5514e9b1675fab2bf11fe09e8df64efd01194c21756f1d803",
+      "frames": [
+        {
+          "id": "64ad2d5a-89c8-4902-a23c-a074a71f8c3c",
+          "key": "jcmga8",
+          "rowsHash": "00ba8c7bb7205cec033962bbbc6ec2414ada6c837dc320ac35e7ec8c712b350a",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        },
+        {
+          "id": "66fcd2d6-47d7-4179-be16-f48586681e88",
+          "key": "1leth5n",
+          "rowsHash": "5e650e0e18bac8860adada7752662301d3f1e1b87d9cefd0bf2489355898be8f",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        },
+        {
+          "id": "1c09cd12-14d3-4766-b066-dc80c3768c79",
+          "key": "1n5hf3x",
+          "rowsHash": "20846316068e2b9f5064142725aa48a5da47bad1ed5a8bb7c422316af0cac932",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        },
+        {
+          "id": "81572e7c-6658-4309-a514-930e2c60dfca",
+          "key": "z0k8zr",
+          "rowsHash": "997eb7f7a2501e23551dbe4aa71aa1b0b4926178964ee9443dc58fb6e64b228c",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        },
+        {
+          "id": "3cf56911-9400-4415-bb98-b4f32890e27d",
+          "key": "15w2rs5",
+          "rowsHash": "ddc6227c5b405e58fbfaaef475ed3eaaf394110625092c1fc54bf78f99bbb8a8",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        },
+        {
+          "id": "85b3cadd-3c8f-426e-8c23-f3c2fd231bbf",
+          "key": "1qgk3gy",
+          "rowsHash": "152158014c431bc5720f67830368144bb8717c539d17ccf4790cb2316d08a86d",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        },
+        {
+          "id": "3891d598-c611-44c7-a8ce-3b54df736de4",
+          "key": "1b85hlf",
+          "rowsHash": "b19c91a33ecd1af078ccbdca260db7ca69473ffe961fd04d31b1f6ac2c774de3",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        },
+        {
+          "id": "e1fff6a4-522e-488e-a6d8-e5670e44ef2d",
+          "key": "p1qfux",
+          "rowsHash": "5f0b52bddad93b94476197358809875c8f08a83dcedc6c3cd28f5dbe33d4e981",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 5,
+            "fov": 200,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "proposal-gallop-24",
+      "savedAt": "2026-10-15T14:25:16.701Z",
+      "sourceHash": "835360875a55d3e4c455479aaa43cc5c4d9bc6be49318240631b4008f233ef05",
+      "frames": [
+        {
+          "id": "gallop-draft-1",
+          "key": "1t4xcem",
+          "rowsHash": "2adb1b6b094cc355d9a15ecd79f4d96b028ac451603b43af67b02374a2870af6",
+          "gaze": null
+        },
+        {
+          "id": "gallop-draft-2",
+          "key": "oixamn",
+          "rowsHash": "171aa8953d3afdef8a23a65f1c554fbbc5d1fb2037a4e5fa50670aa184fbba2a",
+          "gaze": null
+        },
+        {
+          "id": "gallop-draft-3",
+          "key": "tfcry8",
+          "rowsHash": "7858dcde78273e2a33756c9e3a7453278c6fa2549d9f36acf911108ed7a6847d",
+          "gaze": null
+        },
+        {
+          "id": "gallop-draft-4",
+          "key": "17mzb8",
+          "rowsHash": "53312551f361e82500bdcc43202f24ebbbd0ab3c3763f47c0b57a8f17c18612c",
+          "gaze": null
+        },
+        {
+          "id": "gallop-draft-5",
+          "key": "3hly1z",
+          "rowsHash": "606979906b7d78c787284f377db7b6c67dd858d890953c6bd7dd2375895e5900",
+          "gaze": null
+        },
+        {
+          "id": "gallop-draft-6",
+          "key": "1ys029j",
+          "rowsHash": "419142e782baa7bd47b6c9b2fcba16a1aa8fbed41b5574b1d495b3db8227220c",
+          "gaze": null
+        },
+        {
+          "id": "gallop-draft-7",
+          "key": "5dd65e",
+          "rowsHash": "37530515a861d5b803f3330752de705ab9d38a2b16523afaa31ddd8f5cc6294d",
+          "gaze": null
+        },
+        {
+          "id": "gallop-draft-8",
+          "key": "1b0erpy",
+          "rowsHash": "c8d594c28102cbd2d62eaa78a90de03897daded1c52678465a5a7839a51a4189",
+          "gaze": null
+        }
+      ]
+    },
+    {
+      "sequenceId": "proposal-startle-hop",
+      "savedAt": "2026-10-15T16:47:36.370Z",
+      "sourceHash": "2ef88e9498298b98094934b60bec69d8c137358ff593a8247c15f44dd6625854",
+      "frames": [
+        {
+          "id": "proposal-startle-hop-f01",
+          "key": "tp6hxh",
+          "rowsHash": "6654ec7e02d11af63e14c898c89e7f8eb55663af919685d9fcc81b6b1b909d9c",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 0,
+            "fov": 100
+          }
+        },
+        {
+          "id": "proposal-startle-hop-f02",
+          "key": "cs0nin",
+          "rowsHash": "6a51e36eb28ca43b891bd2047975c5c33da752b9f744f1f8abed3a5533b4b18b",
+          "gaze": {
+            "x": 19,
+            "y": 16,
+            "angle": 9,
+            "fov": 122,
+            "canSee": true
+          }
+        },
+        {
+          "id": "proposal-startle-hop-f03",
+          "key": "1r8sadq",
+          "rowsHash": "ba2fdfddd2a79a021a5ddb094c8e4cbda42d1ab36066ac378d0096262960ee32",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": -1,
+            "fov": 253,
+            "canSee": true
+          }
+        },
+        {
+          "id": "proposal-startle-hop-f04",
+          "key": "ccwow8",
+          "rowsHash": "ed6da5dfabe622b64f72a52e4fd4f0e54d75dc6b50f79231d8fcd4c841ec70f0",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": -1,
+            "fov": 253,
+            "canSee": true
+          }
+        },
+        {
+          "id": "proposal-startle-hop-f05",
+          "key": "1e2m1k6",
+          "rowsHash": "89e28d97cf5f5045a8954622bbbf673e8ed6c7d9728093cabc1018bfce4f874c",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": -1,
+            "fov": 253,
+            "canSee": true
+          }
+        },
+        {
+          "id": "proposal-startle-hop-f06",
+          "key": "cs0nin",
+          "rowsHash": "6a51e36eb28ca43b891bd2047975c5c33da752b9f744f1f8abed3a5533b4b18b",
+          "gaze": {
+            "x": 19,
+            "y": 16,
+            "angle": 9,
+            "fov": 122,
+            "canSee": true
+          }
+        },
+        {
+          "id": "proposal-startle-hop-f07",
+          "key": "tp6hxh",
+          "rowsHash": "6654ec7e02d11af63e14c898c89e7f8eb55663af919685d9fcc81b6b1b909d9c",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 0,
+            "fov": 100
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-across",
+      "savedAt": "2026-10-15T13:32:16.952Z",
+      "sourceHash": "819f4f283dc7e6abe61ffc82f958b91c1b4c5415449b09f220f4baf74398c651",
+      "frames": [
+        {
+          "id": "779228a1-22bc-426c-a120-44a4481a921b",
+          "key": "weogy3",
+          "rowsHash": "3942110aa056117db2d0105c3937486283e7df5635080efd47d80a3a438e97c1",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": -2,
+            "fov": 160,
+            "canSee": true
+          }
+        },
+        {
+          "id": "a1b45d5c-69ef-4447-9ac2-aba787943e6c",
+          "key": "cs0nin",
+          "rowsHash": "6a51e36eb28ca43b891bd2047975c5c33da752b9f744f1f8abed3a5533b4b18b",
+          "gaze": {
+            "x": 19,
+            "y": 16,
+            "angle": -2,
+            "fov": 160,
+            "canSee": true
+          }
+        },
+        {
+          "id": "f240bd8b-ac04-4141-8e17-66ce11d049f2",
+          "key": "nai449",
+          "rowsHash": "044170c051346e851223a603d56b64db78762905f9e8dd6045d1b6f873cedfc1",
+          "gaze": {
+            "x": 18,
+            "y": 8,
+            "angle": -2,
+            "fov": 97,
+            "canSee": true
+          }
+        },
+        {
+          "id": "38097229-8b3f-4c3d-9270-7bb9d09e6089",
+          "key": "1lt0eg7",
+          "rowsHash": "a3ea37bc6b8d5d9af7736ba120faffb9ca338184c9be420887658997b0916324",
+          "gaze": {
+            "x": 19,
+            "y": 8,
+            "angle": -2,
+            "fov": 65,
+            "canSee": true
+          }
+        },
+        {
+          "id": "1803dd64-a59a-49be-b55c-a01542eccad1",
+          "key": "17b0q3i",
+          "rowsHash": "1aed131038340b67c86d22ce1b75fdbc17e109c6d5113227ec0afec29f32eb46",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": -2,
+            "fov": 222,
+            "canSee": true
+          }
+        },
+        {
+          "id": "031da508-33a2-4ceb-b2aa-d720647a714c",
+          "key": "cs0nin",
+          "rowsHash": "6a51e36eb28ca43b891bd2047975c5c33da752b9f744f1f8abed3a5533b4b18b",
+          "gaze": {
+            "x": 19,
+            "y": 16,
+            "angle": -2,
+            "fov": 160,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-ascend",
+      "savedAt": "2026-10-15T13:31:27.183Z",
+      "sourceHash": "087c16b7d5f2525be3e1888d6dca7ab44b1fb5bb505c9738aed5c023dba99f03",
+      "frames": [
+        {
+          "id": "8550a9fa-4126-42bd-a557-a38df62193dd",
+          "key": "1nae2kd",
+          "rowsHash": "9af820bf88cd52978783a5d4ecd5648c4b7dc7b455b28d9432da79ce84b7bb78",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": -43,
+            "fov": 122,
+            "canSee": true
+          }
+        },
+        {
+          "id": "56686a7f-9d2c-4b6a-9ee7-4d2ee3abd17c",
+          "key": "cs0nin",
+          "rowsHash": "6a51e36eb28ca43b891bd2047975c5c33da752b9f744f1f8abed3a5533b4b18b",
+          "gaze": {
+            "x": 19,
+            "y": 16,
+            "angle": -43,
+            "fov": 122,
+            "canSee": true
+          }
+        },
+        {
+          "id": "3d968f63-3cd8-4aab-8317-dad4d97d944b",
+          "key": "1yjje0u",
+          "rowsHash": "82413c1cdc88b081062d7bfbc6b8fa8fd362412837991bb132a5a23c079717c1",
+          "gaze": {
+            "x": 18,
+            "y": 4,
+            "angle": -43,
+            "fov": 122,
+            "canSee": true
+          }
+        },
+        {
+          "id": "54cbabd1-4025-4efc-b748-f564476f3a02",
+          "key": "16rc3u0",
+          "rowsHash": "8712b7dc5ec500b88144a9e133f618ddae95ddfc02d6d4be823d9b69adb44002",
+          "gaze": {
+            "x": 17,
+            "y": 4,
+            "angle": 2,
+            "fov": 122,
+            "canSee": true
+          }
+        },
+        {
+          "id": "315b4264-9069-42d2-b394-dbcd96d33e29",
+          "key": "17f0rg1",
+          "rowsHash": "ba4694831da2b09d64d276bb1502b82dde41afa9183a3cb812f8a3234fc8f78e",
+          "gaze": {
+            "x": 20,
+            "y": 11,
+            "angle": 19,
+            "fov": 122,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-box-entry",
+      "savedAt": "2026-10-15T13:33:34.503Z",
+      "sourceHash": "424fc5845555b3cce22df0df52b9fad9b5495bbc2bcf935cebba9155804e0ad1",
+      "frames": [
+        {
+          "id": "dc0650cb-97fe-43a7-b2fd-10a894fe6186",
+          "key": "1c6plwa",
+          "rowsHash": "6df1c85026ceddeb232b7790d726b9942a8a4cca0c571eda69d7b6afe6c86bdd",
+          "gaze": {
+            "x": 18,
+            "y": 5,
+            "angle": -4,
+            "fov": 62,
+            "canSee": true
+          }
+        },
+        {
+          "id": "85226c1f-a531-4e24-84d5-3aef1f67623a",
+          "key": "1jfupcp",
+          "rowsHash": "6a7b610334308fabf09a95f83ed7314f2417d5066ad25314a59488feaab6c0b8",
+          "gaze": {
+            "x": 20,
+            "y": 4,
+            "angle": 32,
+            "fov": 81,
+            "canSee": true
+          }
+        },
+        {
+          "id": "89bb37e7-e349-4cb8-bc6d-f76acd50432c",
+          "key": "1o03neu",
+          "rowsHash": "48303acb80e8901c15f03a1821484b00e5d11286a9607eb4e2c22495cc3d0ffa",
+          "gaze": {
+            "x": 15,
+            "y": 17,
+            "angle": -1,
+            "fov": 253,
+            "canSee": false
+          }
+        },
+        {
+          "id": "a2c1a6b2-b3a0-4cab-bc86-92a209c90858",
+          "key": "1cmw0x3",
+          "rowsHash": "e6f94e909df1e7a701b9704156021a4bddabdbe97b10809345af1ee590f55d38",
+          "gaze": {
+            "x": 16,
+            "y": 19,
+            "angle": -1,
+            "fov": 253,
+            "canSee": false
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-box-exit",
+      "savedAt": "2026-10-15T13:34:02.410Z",
+      "sourceHash": "e26d37ddd44fb5388d31bf2f726ea8edc450c5766553f5d521878214fadf2b66",
+      "frames": [
+        {
+          "id": "f991dac7-7ecd-4868-951d-ece8d6c194cd",
+          "key": "1dt7y0g",
+          "rowsHash": "7f1f693b18a06d86e63a7b93b5b59dedb2694adfd12e8ebdf1d8d53b763252d1",
+          "gaze": {
+            "x": 12,
+            "y": 8,
+            "angle": -3,
+            "fov": 118,
+            "canSee": true
+          }
+        },
+        {
+          "id": "c85a236e-9df7-4cb8-b3f5-8455583d1e40",
+          "key": "z7kvr4",
+          "rowsHash": "045ca6bbd754d22b026b49c290168354b364ade0a017e909d2d5157b822eb514",
+          "gaze": {
+            "x": 16,
+            "y": 4,
+            "angle": -1,
+            "fov": 169,
+            "canSee": true
+          }
+        },
+        {
+          "id": "aac09adb-0b2d-422c-8037-96b4b92324d2",
+          "key": "1s73cqd",
+          "rowsHash": "6affd7607f7bf63ebcb57f57adb117f2e08dd2c93af44e03a8d91fd7b9390a88",
+          "gaze": {
+            "x": 17,
+            "y": 16,
+            "angle": 56,
+            "fov": 83,
+            "canSee": true
+          }
+        },
+        {
+          "id": "8a43385a-f695-49db-a790-db263751ec74",
+          "key": "cs0nin",
+          "rowsHash": "6a51e36eb28ca43b891bd2047975c5c33da752b9f744f1f8abed3a5533b4b18b",
+          "gaze": {
+            "x": 19,
+            "y": 16,
+            "angle": -1,
+            "fov": 149,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-clean",
+      "savedAt": "2026-10-15T13:04:13.685Z",
+      "sourceHash": "795301c4a96457a76b0bff2b7f109483e5be2d3480caac2680cf014b6a8b9f53",
+      "frames": [
+        {
+          "id": "407a3b31-418d-4f86-bedc-75b20852f2f5",
+          "key": "h5nn1",
+          "rowsHash": "d84f11aa832d15e2edccb692f272243939bbe749f1f96f6bd18a86c43a12cf15",
+          "gaze": {
+            "x": 13,
+            "y": 12,
+            "angle": 76,
+            "fov": 39
+          }
+        },
+        {
+          "id": "c582ed22-2fdf-4b77-b961-ef6fb8257b33",
+          "key": "3xf9wf",
+          "rowsHash": "c096baebc0899532a1e3a6260c55feb7a1357f3fa7596b780beaaf76b59104bc",
+          "gaze": {
+            "x": 14,
+            "y": 13,
+            "angle": 84,
+            "fov": 39
+          }
+        },
+        {
+          "id": "c7bfdfa1-f663-4e5e-96aa-ffc4250d481d",
+          "key": "11sw9pr",
+          "rowsHash": "e9d92f24c7be5354583376e79dfcec29a8370d4d96399f1a970096b3831c7130",
+          "gaze": {
+            "x": 14,
+            "y": 13,
+            "angle": 82,
+            "fov": 39
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-descend",
+      "savedAt": "2026-10-15T13:31:50.729Z",
+      "sourceHash": "d51ebe5aa44961a68e6e39a6ae53cac06eeb635ac4bcdcef78f4c6267cd11cbf",
+      "frames": [
+        {
+          "id": "2cf3cf4e-417f-4222-bac7-fb36558a5ce9",
+          "key": "iq1v8v",
+          "rowsHash": "10bb1c97fdd68564c536268dab073d23cad07f579520b18462b2ca0b0e2e6cee",
+          "gaze": {
+            "x": 17,
+            "y": 16,
+            "angle": 89,
+            "fov": 122,
+            "canSee": true
+          }
+        },
+        {
+          "id": "3c066dc3-c476-44f1-a495-3a0927d15b48",
+          "key": "og24zo",
+          "rowsHash": "7720c323bcc0b06b508fb87f87d9755976b07c22524575b1de04a421b35d6ef1",
+          "gaze": {
+            "x": 16,
+            "y": 15,
+            "angle": 89,
+            "fov": 122,
+            "canSee": true
+          }
+        },
+        {
+          "id": "26bd6a90-5d27-4c0d-b3b6-956e7762c634",
+          "key": "j27dh5",
+          "rowsHash": "a826d01715f1826be6649ca6cd8908b3b224fded9ca08683b9bfbee50f56a8f4",
+          "gaze": {
+            "x": 17,
+            "y": 17,
+            "angle": 89,
+            "fov": 122,
+            "canSee": true
+          }
+        },
+        {
+          "id": "89b59c61-4ed4-41a3-b529-d8efe4563c14",
+          "key": "cs0nin",
+          "rowsHash": "6a51e36eb28ca43b891bd2047975c5c33da752b9f744f1f8abed3a5533b4b18b",
+          "gaze": {
+            "x": 19,
+            "y": 16,
+            "angle": 9,
+            "fov": 122,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-eat",
+      "savedAt": "2026-10-15T13:34:20.820Z",
+      "sourceHash": "e52680e0a844c1a88b4ce041d95607f042b5c4ceab133564de7293fbfc0bf061",
+      "frames": [
+        {
+          "id": "820936ab-27b8-43b5-86f2-aed9820b7796",
+          "key": "1qcd7hr",
+          "rowsHash": "145655ad37182250f72b3fc26b07e284063c6835d1c244000f01be71079a119e",
+          "gaze": {
+            "x": 19,
+            "y": 20,
+            "angle": -1,
+            "fov": 149,
+            "canSee": false
+          }
+        },
+        {
+          "id": "c2e21c34-1b1d-44e7-9c23-3ebbbbb09446",
+          "key": "1dnm1qz",
+          "rowsHash": "faea247fac18b18bc5b469cb5e9ebf7796bdeaa8873fb689fde1199447954665",
+          "gaze": {
+            "x": 19,
+            "y": 20,
+            "angle": -1,
+            "fov": 149,
+            "canSee": false
+          }
+        },
+        {
+          "id": "4266ab81-c010-4a19-84fd-8d73330b1e15",
+          "key": "aspvhg",
+          "rowsHash": "0c4c9bd3052acf2d8d38635cd5910cf4b87cb1491305451cdb03ce1cf2f296e9",
+          "gaze": {
+            "x": 19,
+            "y": 20,
+            "angle": -1,
+            "fov": 149,
+            "canSee": false
+          }
+        },
+        {
+          "id": "1a7fe5d9-6955-4381-92b2-1c84482c0d53",
+          "key": "a01lxs",
+          "rowsHash": "f62f2901256122e585ef6050a53a6052cfa01aa479e1b3e3dc1ddd5cc64d0ec1",
+          "gaze": {
+            "x": 19,
+            "y": 20,
+            "angle": -1,
+            "fov": 149,
+            "canSee": false
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-freefall-candidate",
+      "savedAt": "2026-10-15T13:33:12.264Z",
+      "sourceHash": "05f5bed08d146c179e65fd93410de24d0607adedcec60d930c9f029263edccee",
+      "frames": [
+        {
+          "id": "573d11cd-772b-4d93-b872-9835b8744ffb",
+          "key": "1r8sadq",
+          "rowsHash": "ba2fdfddd2a79a021a5ddb094c8e4cbda42d1ab36066ac378d0096262960ee32",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": -1,
+            "fov": 253,
+            "canSee": true
+          }
+        },
+        {
+          "id": "78c72ac7-16fd-42ab-a0d0-ba701b98fa61",
+          "key": "1jy4e3n",
+          "rowsHash": "5ca4e8fceae7d8109e4ecf397ba63f427e40e882687229ea8de770f27bea439c",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": -1,
+            "fov": 253,
+            "canSee": true
+          }
+        },
+        {
+          "id": "e209be99-2dd3-40fa-8a13-09e50a506cf4",
+          "key": "ccwow8",
+          "rowsHash": "ed6da5dfabe622b64f72a52e4fd4f0e54d75dc6b50f79231d8fcd4c841ec70f0",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": -1,
+            "fov": 253,
+            "canSee": true
+          }
+        },
+        {
+          "id": "49c327f6-db44-439d-8a28-f6c6c3ec6fa7",
+          "key": "1e2m1k6",
+          "rowsHash": "89e28d97cf5f5045a8954622bbbf673e8ed6c7d9728093cabc1018bfce4f874c",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": -1,
+            "fov": 253,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-loaf",
+      "savedAt": "2026-10-15T13:26:36.866Z",
+      "sourceHash": "b43388824449801db5f27afa9f89fc8bb430ae7999d2990f306ea0dd6b07a991",
+      "frames": [
+        {
+          "id": "56bfabeb-a4d2-4771-8c10-584699a2971b",
+          "key": "wo3pgs",
+          "rowsHash": "5cedcb05ced7778a01fe68b69496693743c25e7652e40c0369acdc2911d50417",
+          "gaze": {
+            "x": 14,
+            "y": 16,
+            "angle": -2,
+            "fov": 91
+          }
+        },
+        {
+          "id": "81c86595-95ae-4496-b337-b603c464c007",
+          "key": "l63ncb",
+          "rowsHash": "af27e50b59b01976078bfd7f5d83fdd1d53bdda0d286c6e000bc41f098b30d1a",
+          "gaze": {
+            "x": 17,
+            "y": 20,
+            "angle": -2,
+            "fov": 10,
+            "canSee": false
+          }
+        },
+        {
+          "id": "1b47498c-3047-4830-86f8-1391e3df5119",
+          "key": "2ly6rb",
+          "rowsHash": "813dea01485e0cab27dc600042c12f0126211c7676e2f3759bb566d1377553c2",
+          "gaze": {
+            "x": 17,
+            "y": 19,
+            "angle": -2,
+            "fov": 10,
+            "canSee": false
+          }
+        },
+        {
+          "id": "d691a58f-aed5-414b-830d-f0fb922b67f5",
+          "key": "wo3pgs",
+          "rowsHash": "5cedcb05ced7778a01fe68b69496693743c25e7652e40c0369acdc2911d50417",
+          "gaze": {
+            "x": 14,
+            "y": 16,
+            "angle": -2,
+            "fov": 85
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-look-up",
+      "savedAt": "2026-10-15T12:59:57.969Z",
+      "sourceHash": "0e45fc662d9a58832bc42a4223acd7c1cb9b1c9d35c496a7f1fb953a16e7a175",
+      "frames": [
+        {
+          "id": "f5824d21-58cc-4370-a2e6-1bae2e471875",
+          "key": "1qtj1f2",
+          "rowsHash": "55bf4b84a26f7d645e187ea10acf6cd1933970db35a5b1a96665ee2b54fd264b",
+          "gaze": {
+            "x": 17,
+            "y": 11,
+            "angle": -47,
+            "fov": 100
+          }
+        },
+        {
+          "id": "e5304bd4-1998-4393-bafc-5317d5e88ead",
+          "key": "o2plvc",
+          "rowsHash": "e8f601d615c5d68c02a7616541e0631982f7d4987ed827725f5f946ff0aaca37",
+          "gaze": {
+            "x": 17,
+            "y": 11,
+            "angle": -43,
+            "fov": 100
+          }
+        },
+        {
+          "id": "7cb5ae6d-266e-49d0-a5a8-3916481b097c",
+          "key": "759wcu",
+          "rowsHash": "d2de27e8e11e1ce4076067801f9d6d164e9d79536168dfb87dcff2575188019b",
+          "gaze": {
+            "x": 17,
+            "y": 11,
+            "angle": -40,
+            "fov": 100
+          }
+        },
+        {
+          "id": "2b47051d-2b5f-4b6c-9c79-6efe2ca56d29",
+          "key": "18og3a0",
+          "rowsHash": "dbb9dbc6bb089557c0e307c74614ce2bb9081d5f2f878d1b7341fa06135922e1",
+          "gaze": {
+            "x": 17,
+            "y": 11,
+            "angle": -46,
+            "fov": 100
+          }
+        },
+        {
+          "id": "0edc8a53-1940-4798-8a0e-24c851248b0b",
+          "key": "9ump38",
+          "rowsHash": "66b58c1dc647e211cdfcfb297a4f848a957b2601c6d405d5c738e96a733d0bc0",
+          "gaze": {
+            "x": 17,
+            "y": 11,
+            "angle": -42,
+            "fov": 100
+          }
+        },
+        {
+          "id": "af3f2b34-77e9-422a-9f1c-7530a926dea6",
+          "key": "a0ftj4",
+          "rowsHash": "0a9e62a802e7b149a3e81eb057d7d579e532113838dd827fbe7b1ba2a38a7ac6",
+          "gaze": {
+            "x": 17,
+            "y": 11,
+            "angle": -41,
+            "fov": 100
+          }
+        },
+        {
+          "id": "2df79724-f23e-4637-a6c1-2300e4175948",
+          "key": "1pfrgee",
+          "rowsHash": "94f5fc77671f3aaddfd4c84f370e52d8e7c1a2190a1997d1f320e36d314cb441",
+          "gaze": {
+            "x": 17,
+            "y": 11,
+            "angle": -52,
+            "fov": 100
+          }
+        },
+        {
+          "id": "936b62ca-bdb6-4233-8054-9a0c2cf6d7da",
+          "key": "9fjnm7",
+          "rowsHash": "ccaf09d3fbcdb1aedd846f22834ea81806a0d623c6f4d7e7d48a27ae99916ce3",
+          "gaze": {
+            "x": 17,
+            "y": 11,
+            "angle": -47,
+            "fov": 100
+          }
+        },
+        {
+          "id": "338cfdea-b967-452a-91ad-34fd0531186d",
+          "key": "752o7m",
+          "rowsHash": "50e3ce1df3351e66f294fe48ffd0b9d50d3a95f24ad0e69c5f4422cef8aef958",
+          "gaze": {
+            "x": 17,
+            "y": 11,
+            "angle": -36,
+            "fov": 100
+          }
+        },
+        {
+          "id": "25af9e24-1de8-47d5-91db-51c4ea8b2104",
+          "key": "1p27j38",
+          "rowsHash": "1233bd092775f7a6cc0bb1882e3fd27fc327e4c750bf7df8de95f67993c4c766",
+          "gaze": {
+            "x": 17,
+            "y": 11,
+            "angle": -37,
+            "fov": 100
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-robot-ride",
+      "savedAt": "2026-10-15T13:35:22.876Z",
+      "sourceHash": "4dd8412ad6c645df39c87c1676aa174a4477e115d3567f7abc993cb864ccea61",
+      "frames": [
+        {
+          "id": "2413acb7-dddf-4001-86a9-d5473b46f262",
+          "key": "l3htc0",
+          "rowsHash": "8eca12219c5a48b31ef074f9903fae8a44679ffa492959fd0d000a08e844695c",
+          "gaze": {
+            "x": 20,
+            "y": 8,
+            "angle": 2,
+            "fov": 149,
+            "canSee": true
+          }
+        },
+        {
+          "id": "2bf492aa-c434-4297-8d8e-73183a7a84e5",
+          "key": "12di8bn",
+          "rowsHash": "a0dcd8a6bb1ed1eccc446d999393a068c20cc96ed5f3d32bc587d3c29ef57b5b",
+          "gaze": {
+            "x": 16,
+            "y": 8,
+            "angle": -173,
+            "fov": 360,
+            "canSee": true
+          }
+        },
+        {
+          "id": "6aef3546-f327-4469-901f-8c5780c60b20",
+          "key": "zm15k8",
+          "rowsHash": "2e6710c892ac37cbe60d5661aa3d39162c9064bb93488cac46e87ae8e3f6b25b",
+          "gaze": {
+            "x": 12,
+            "y": 8,
+            "angle": -173,
+            "fov": 360,
+            "canSee": true
+          }
+        },
+        {
+          "id": "20b75f00-4c93-44f0-8d10-74aa72338938",
+          "key": "1jau5wr",
+          "rowsHash": "2bbe4912e647855c3df575a0d5590884e12642bcc820d0c41310719fe0e3aaaf",
+          "gaze": {
+            "x": 7,
+            "y": 8,
+            "angle": -173,
+            "fov": 149,
+            "canSee": true
+          }
+        },
+        {
+          "id": "7ff7e202-bdd9-4789-bb6d-5bfa3c840a2f",
+          "key": "261pq7",
+          "rowsHash": "5c7efaa5e02e01aa25210cf0f68f43d40be5675a4dc5fa00a52dee22051bfb81",
+          "gaze": {
+            "x": 4,
+            "y": 8,
+            "angle": 169,
+            "fov": 149,
+            "canSee": true
+          }
+        },
+        {
+          "id": "582ea064-b5cb-4093-9680-07208df05aa9",
+          "key": "vt8uz0",
+          "rowsHash": "3cffe6182f5c38de92ce7d76d51b23ee9cb699a46a18f64da2c38541348a5f85",
+          "gaze": {
+            "x": 7,
+            "y": 8,
+            "angle": -173,
+            "fov": 360,
+            "canSee": true
+          }
+        },
+        {
+          "id": "a238b629-9849-4a25-8cce-c6335a552a64",
+          "key": "7dq36q",
+          "rowsHash": "d7ad8eda39901917b66153f99d632e9e54fbb9ae643d49279f7472e0f42374e9",
+          "gaze": {
+            "x": 11,
+            "y": 8,
+            "angle": -173,
+            "fov": 360,
+            "canSee": true
+          }
+        },
+        {
+          "id": "94facf5d-ac31-48ac-8c22-d3f05b96b06d",
+          "key": "na0q8x",
+          "rowsHash": "5d45e7abd6d8f24df75c21bd4f03c992239f6dfae9969404c18a052c91d3a702",
+          "gaze": {
+            "x": 16,
+            "y": 8,
+            "angle": 4,
+            "fov": 149,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-sit-elevated",
+      "savedAt": "2026-10-15T13:06:31.991Z",
+      "sourceHash": "a00c23aed76bbdfea6214d04b15d1c7d80fb44f1d63cb637e1927395f3a33eb1",
+      "frames": [
+        {
+          "id": "75b1853b-92b3-4a6b-a562-36e5b38677b8",
+          "key": "16krd4g",
+          "rowsHash": "9de8c9486792eef124e91abc6dbb97719ffc4bb64b0a11d16e049cfa2326b8ed",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 2,
+            "fov": 160
+          }
+        },
+        {
+          "id": "918a22b7-c750-4be3-b4f1-a1c8dcb038ef",
+          "key": "1pdyawu",
+          "rowsHash": "8be27ef242b012cf84f2e0287e9988fd489ecbe51f8b21c748f1997c1ec857a9",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 2,
+            "fov": 160
+          }
+        },
+        {
+          "id": "51a232e4-deb0-4fe7-9992-3e4baa59bd64",
+          "key": "4atxjq",
+          "rowsHash": "78bf77094c35231448a6b5ec85e748447643d095df2407294196eec9365e63dd",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 2,
+            "fov": 160
+          }
+        },
+        {
+          "id": "cf3c1e4e-1eb8-437d-8353-092599daf34b",
+          "key": "12a62d3",
+          "rowsHash": "3ec3332b4d4e0479e0083ead1334e6ca61c62641ae25d72c5f16e2eaf3e41943",
+          "gaze": {
+            "x": 17,
+            "y": 5,
+            "angle": 2,
+            "fov": 160
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-sit",
+      "savedAt": "2026-10-15T13:03:48.898Z",
+      "sourceHash": "3e408369ca81b51846dfb91fd793fb8f6918f739f61c74e9945f8521506d2018",
+      "frames": [
+        {
+          "id": "874ae236-1e72-4020-9d8d-a9d97174d850",
+          "key": "10rntmr",
+          "rowsHash": "5960d3ae38fe1dd674f5c9441cb4a5c9150acb5598120701187da8f5dc75a705",
+          "gaze": {
+            "x": 13,
+            "y": 10,
+            "angle": 4,
+            "fov": 360
+          }
+        },
+        {
+          "id": "f0b3cf7b-4d98-4511-a209-7b1c089839a1",
+          "key": "1ed33au",
+          "rowsHash": "653ef57a84d7b80727b0ce2e941192c74c369890d6d6c7fdb208e5a5182a84fb",
+          "gaze": {
+            "x": 13,
+            "y": 10,
+            "angle": 4,
+            "fov": 360
+          }
+        },
+        {
+          "id": "d0bc04ab-9e88-42f0-9284-5d712617e6eb",
+          "key": "1d8i0nv",
+          "rowsHash": "3321d38f8b95c26ab4c49ec93c59cc22a167bb35b6ae9cecab2497191b70f468",
+          "gaze": {
+            "x": 13,
+            "y": 10,
+            "angle": 4,
+            "fov": 360
+          }
+        },
+        {
+          "id": "c9f39078-0587-4066-b665-6122b7ad8fa5",
+          "key": "1rd8gke",
+          "rowsHash": "d637938da66bf31283d141492a49f8490d16a2d23e53391f2e9efb4c188cfa8a",
+          "gaze": {
+            "x": 13,
+            "y": 10,
+            "angle": 4,
+            "fov": 360
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-stand",
+      "savedAt": "2026-10-15T12:52:00.819Z",
+      "sourceHash": "f85aedee8cc05ba7da5da98a777c2524af0485a6202659526c7c9cc37db892ad",
+      "frames": [
+        {
+          "id": "88f7122a-831f-44a1-830c-0237434a226d",
+          "key": "weogy3",
+          "rowsHash": "3942110aa056117db2d0105c3937486283e7df5635080efd47d80a3a438e97c1",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 0,
+            "fov": 100
+          }
+        },
+        {
+          "id": "7c279a08-5d52-402c-8afb-818d51791bfb",
+          "key": "tp6hxh",
+          "rowsHash": "6654ec7e02d11af63e14c898c89e7f8eb55663af919685d9fcc81b6b1b909d9c",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 0,
+            "fov": 100
+          }
+        },
+        {
+          "id": "bbe9a782-dc9a-4d9a-bfe2-2c8b2058e4ce",
+          "key": "9juq9n",
+          "rowsHash": "621f9173836921f37bdb903a730f3cf4cbfa0a1c02ea528e4fef3e3aa30848c9",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 0,
+            "fov": 100
+          }
+        },
+        {
+          "id": "155ce022-a689-42c5-ada3-4cdf70339225",
+          "key": "1xai7sh",
+          "rowsHash": "f5fa4de4511f6c14046ec68cb4c7cfa6eb7b614d1bb016f1bcaff32b3d45b7f7",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 0,
+            "fov": 100
+          }
+        },
+        {
+          "id": "095ab777-8ee6-4c6c-b814-eb087507e6fe",
+          "key": "1ci2xpy",
+          "rowsHash": "bbb1507c9946ff26ccee2ba42b562c0da98b8ea268e150d1710fb26b4a448ce5",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 0,
+            "fov": 100
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-stretch",
+      "savedAt": "2026-10-15T13:27:02.050Z",
+      "sourceHash": "7dde6de259548d82bd21c5253455808cbc619db472d85a96bc0b67e6945e5d55",
+      "frames": [
+        {
+          "id": "8da4df5e-536a-454a-8cbc-526aa7317f03",
+          "key": "430sx7",
+          "rowsHash": "a48dd0ec0ff66db8f8d7cd196f0e9f63111f16404eb2b5a7a68d0fe727ff0764",
+          "gaze": {
+            "x": 15,
+            "y": 16,
+            "angle": 7,
+            "fov": 91,
+            "canSee": true
+          }
+        },
+        {
+          "id": "023e3ae5-316f-4bf3-a8ab-363874d85d70",
+          "key": "wnhmr9",
+          "rowsHash": "bffe97b91abac2f05c2c3c858bd67c865dbc279135810aab6169ea95935da738",
+          "gaze": {
+            "x": 14,
+            "y": 17,
+            "angle": 21,
+            "fov": 91,
+            "canSee": true
+          }
+        },
+        {
+          "id": "9bb3315b-63b3-46a7-a921-90f77e4e881c",
+          "key": "pxr2ac",
+          "rowsHash": "3af55af91af00ee2542b1332a451fe5c47869ce3190e52a1c437348f451ce19c",
+          "gaze": {
+            "x": 15,
+            "y": 17,
+            "angle": 21,
+            "fov": 91,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-turn",
+      "savedAt": "2026-10-15T13:34:47.703Z",
+      "sourceHash": "0fb2e175e86e3ffcdb2942d32b1333b47e03a5a424e1b3ae67428be462999bee",
+      "frames": [
+        {
+          "id": "7806ca61-ae08-4d5a-a799-e8f3c3e6ea05",
+          "key": "kfeoid",
+          "rowsHash": "d7cd79099a07383b9b9cb0d28affd5f98f462818c7632b03b769762f44fccc7c",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": -1,
+            "fov": 149,
+            "canSee": true
+          }
+        },
+        {
+          "id": "ddbc30b2-48cf-4955-9c73-bf409d9173c9",
+          "key": "qwxioj",
+          "rowsHash": "17c7b8a05576493137d8557be3cae0a01fcaa3036fe46ec448c5b37ab3022520",
+          "gaze": {
+            "x": 15,
+            "y": 13,
+            "angle": -1,
+            "fov": 360,
+            "canSee": true
+          }
+        },
+        {
+          "id": "7e182c5d-aedf-4a42-bbbc-3af6702e1239",
+          "key": "6ii0u",
+          "rowsHash": "efb1e7005e7e5ca7b63797364df342b19b7bb8ffa0a9151d5cc51870a5d862e9",
+          "gaze": {
+            "x": 12,
+            "y": 13,
+            "angle": -1,
+            "fov": 360,
+            "canSee": true
+          }
+        },
+        {
+          "id": "be83ebbd-a713-4437-815d-0ce20cd407c6",
+          "key": "jxn9jc",
+          "rowsHash": "493889fd552136a169d993581216765267c83bb2d942f82b841f0e35a89d0808",
+          "gaze": {
+            "x": 8,
+            "y": 13,
+            "angle": -179,
+            "fov": 149,
+            "canSee": true
+          }
+        },
+        {
+          "id": "9a6567f1-445c-4872-a1e3-abfeefd575e3",
+          "key": "4gzp1t",
+          "rowsHash": "9b0e24695f11c472f324851e4f11920b1d7216216c0931f5b6cd726266b34a71",
+          "gaze": {
+            "x": 4,
+            "y": 13,
+            "angle": -173,
+            "fov": 149,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-walk-high",
+      "savedAt": "2026-10-15T13:29:08.888Z",
+      "sourceHash": "396b54a5bf9676912af6fc6578e6e20453c3977ca01c1b67568b64ecb7bb06a3",
+      "frames": [
+        {
+          "id": "01c3d3f9-d728-4628-890c-7667c35fa94b",
+          "key": "rnncot",
+          "rowsHash": "c31ec6d3fc6a05e71ce2c51c6e104d0bd210409a69eb18fb81faf64ce4af5e2b",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 1,
+            "fov": 220,
+            "canSee": true
+          }
+        },
+        {
+          "id": "6701bce9-d49e-4f5f-8c24-a588158a3f13",
+          "key": "1j388a2",
+          "rowsHash": "c4e73d0b6c9917c2ac6b2ab1970953bff3cd3e1c7e75973f6923ed267c94a8b1",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 1,
+            "fov": 220,
+            "canSee": true
+          }
+        },
+        {
+          "id": "c1296b2f-e34a-4b77-bb98-a551929fbd0c",
+          "key": "9wvpx1",
+          "rowsHash": "d1cf3088e7b96cc56f7c2aca263bf6892ef5c79346e190058fcef64469369624",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 1,
+            "fov": 220,
+            "canSee": true
+          }
+        },
+        {
+          "id": "21fa88d0-bd14-4ca0-9025-7e3d6ab236ef",
+          "key": "1jm5o3p",
+          "rowsHash": "68faf43432056844ce7aef07e03f674e73c2fc05e45b17bd0a9e3476431cd901",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 1,
+            "fov": 220,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-walk-low",
+      "savedAt": "2026-10-15T13:29:14.703Z",
+      "sourceHash": "202bb14d698266af516d77cf8520a18d4de2ca4e62a1c4563c1591776e1a2f85",
+      "frames": [
+        {
+          "id": "9ea6f525-0371-4485-94ff-8dac56ccd7af",
+          "key": "6arb1k",
+          "rowsHash": "bed56fae38eb2b955443f50eed3e26df5d2603e1e685ef64244584f0ec210c19",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 1,
+            "fov": 220,
+            "canSee": true
+          }
+        },
+        {
+          "id": "c1875190-3bd5-4630-ba35-ce3ca7fe1df6",
+          "key": "1hwf5lo",
+          "rowsHash": "4af4ca4fa815bfeae7050f2b1b4086895584a28e3d49a30d434f8a8bced54daf",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 1,
+            "fov": 220,
+            "canSee": true
+          }
+        },
+        {
+          "id": "14a20c4d-c79b-4efd-91aa-5e58dd05fea3",
+          "key": "1jyoioj",
+          "rowsHash": "914e41e134dc597a5ee34d2d8fd1a0b10e1237fae2345f6c17a3ff01caa6b252",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 1,
+            "fov": 220,
+            "canSee": true
+          }
+        },
+        {
+          "id": "82fd5b69-4b24-4b8b-99b2-0b210417e8c8",
+          "key": "upk88n",
+          "rowsHash": "d3f4116721b75f0ecb36b2f7defa1fa038971f78b56dd793ebbfcf7480071bd1",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 1,
+            "fov": 220,
+            "canSee": true
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-walk-sit",
+      "savedAt": "2026-10-15T13:06:39.499Z",
+      "sourceHash": "76205713d634aebfc6b2b43e7a9b583cc5898a43bad7de26d363f0a072e35414",
+      "frames": [
+        {
+          "id": "3a4fdd8b-7391-4c35-9b5a-2faf519e91cc",
+          "key": "18ac2r1",
+          "rowsHash": "f778706073da75d0a438ade9a1ede9d28d329310f4aac65e592917c228a49405",
+          "gaze": {
+            "x": 14,
+            "y": 13,
+            "angle": 2,
+            "fov": 160
+          }
+        }
+      ]
+    },
+    {
+      "sequenceId": "sequence-walk",
+      "savedAt": "2026-10-15T13:28:54.503Z",
+      "sourceHash": "e67a47f85d888e41de2f1632577da6f6e3ba83ab0c4315ef582fc8f4c145dd85",
+      "frames": [
+        {
+          "id": "8d359417-487a-4acb-8388-4b30f74cdd46",
+          "key": "rnncot",
+          "rowsHash": "c31ec6d3fc6a05e71ce2c51c6e104d0bd210409a69eb18fb81faf64ce4af5e2b",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 1,
+            "fov": 220,
+            "canSee": true
+          }
+        },
+        {
+          "id": "9b2252ab-7904-43fb-a493-327d370e5d52",
+          "key": "smg6sl",
+          "rowsHash": "935ddf8020ef6e5653c249ea549079a792d2d9f6ac668e95a28375b774edc06a",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 1,
+            "fov": 220,
+            "canSee": true
+          }
+        },
+        {
+          "id": "d9f4184f-6abc-424c-98dd-ac563f457d7e",
+          "key": "1vpv0la",
+          "rowsHash": "a8b79ec6775667dbf2a85304535ca1e17d03fb0240aff6a4d204fcc03e5c3c94",
+          "gaze": {
+            "x": 19,
+            "y": 14,
+            "angle": 1,
+            "fov": 220,
+            "canSee": true
+          }
+        },
+        {
+          "id": "9a59b9ed-1526-400f-8159-3c98193c6b55",
+          "key": "1jm5o3p",
+          "rowsHash": "68faf43432056844ce7aef07e03f674e73c2fc05e45b17bd0a9e3476431cd901",
+          "gaze": {
+            "x": 19,
+            "y": 13,
+            "angle": 1,
+            "fov": 220,
+            "canSee": true
+          }
+        }
+      ]
+    }
+  ]
+}

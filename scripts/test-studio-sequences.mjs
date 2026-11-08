@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {starterSequences,rememberSequence,migrateTasks} from '../frame-studio/dist/sequences.js';
+import {ensureQueue} from '../frame-studio/dist/queue.js';
+// Exercise the pre-v4 migration contract from committed source frames, never a private local backup.
+const current=JSON.parse(await fs.readFile('frame-studio/dist/library.json'));
+const library={schemaVersion:1,catalogueRevision:1,groups:current.groups.filter(g=>!g.savedProject).slice(0,2)};
+assert.equal(library.groups.length,2);
+const refinements=JSON.parse(await fs.readFile('frame-studio/dist/refinements.json'));
+const projects=starterSequences(library,refinements),book={};
+for(const p of projects)rememberSequence(book,p);
+for(const p of refinements)assert.deepEqual(book[p.projectId].project.frames,p.frames,'User grids, origins, timing, history and anchors survive exactly');
+const first=projects[0],second=projects[1];first.frames[0].name='Edited draft';rememberSequence(book,first,2);rememberSequence(book,second);
+assert.equal(book[first.projectId].index,2);assert.equal(book[first.projectId].project.frames[0].name,'Edited draft');
+first.frames[0].name='Unsaved';assert.equal(book[first.projectId].project.frames[0].name,'Edited draft');
+assert.equal(projects.filter(p=>p.projectId.startsWith('pose-')).length,4);
+ensureQueue(first).tasks[0].frameIds=[first.frames[0].id];
+assert.deepEqual(migrateTasks(first)[0].frames,[first.frames[0]]);
+assert.doesNotThrow(()=>JSON.parse(JSON.stringify(book)));
+console.log('PASS: sequence browsing preserves independent drafts, exact user refinements and legacy task frames.');
