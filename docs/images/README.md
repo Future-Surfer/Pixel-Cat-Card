@@ -13,4 +13,4 @@ To refresh the first two images, build the roaming modules, serve the repository
 
 ## Scripted routine GIF
 
-`pixel-cat-routine.gif` is a deterministic media render from the existing runtime artwork, not a recording of autonomous HA decisions. The orange cat and slate-grey igloo keep the reviewed palette. The queue and renderer live in `prototype/readme-routine.mjs`; regenerate with `npm run media:gif` (Python + Pillow). Original pixel grids, provenance and integration receipts are unchanged. `pixel-cat-routine.json` records dimensions and timing.
+`pixel-cat-routine.gif` uses a staged destination queue with the release's own gait, idle/track playback, contact placement and mouth planner. It is not a recording of autonomous HA decisions. The orange cat and slate-grey igloo keep the reviewed palette; bed recolouring uses the runtime helper. The queue lives in `scripts/readme-playback.mjs`; the shared renderer is `prototype/readme-routine.mjs`. Regenerate with `npm run media:gif` (Python + Pillow). Original pixel grids, provenance and integration receipts are unchanged. `pixel-cat-routine.json` records dimensions and timing.

@@ -5,8 +5,8 @@ from PIL import Image,ImageDraw
 
 data=json.load(sys.stdin)
 assert 1 <= data['width'] <= 1600 and 1 <= data['height'] <= 900
-assert 1 <= len(data['frames']) <= 1000
-colours=list(dict.fromkeys(r['c'] for frame in data['frames'] for r in frame))
+assert 1 <= len(data['frames']) <= 3000
+colours=list(dict.fromkeys(r['c'] for frame in [data.get('base',[]),*data['frames']] for r in frame))
 assert len(colours)<=256
 palette=[]
 for colour in colours:
@@ -14,10 +14,15 @@ for colour in colours:
  palette.extend(int(colour[i:i+2],16) for i in (1,3,5))
 palette.extend([0]*(768-len(palette)))
 indices={c:i for i,c in enumerate(colours)}
+base=Image.new('P',(data['width'],data['height']))
+base.putpalette(palette)
+base_draw=ImageDraw.Draw(base)
+for r in data.get('base',[]):
+ x,y,w,h=(r[k] for k in ('x','y','w','h'))
+ base_draw.rectangle((x,y,x+w-1,y+h-1),fill=indices[r['c']])
 frames=[]
 for commands in data['frames']:
- image=Image.new('P',(data['width'],data['height']))
- image.putpalette(palette)
+ image=base.copy()
  draw=ImageDraw.Draw(image)
  for r in commands:
   x,y,w,h=(r[k] for k in ('x','y','w','h'))

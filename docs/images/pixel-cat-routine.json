@@ -1,7 +1,7 @@
 {
-  "source": "Existing runtime artwork; deterministic media-only choreography",
-  "durationMs": 21360,
-  "frameMs": 80,
+  "source": "Release walk/idle/track/placement/mouth helpers; media-only queue",
+  "durationMs": 21240,
+  "frameMs": 20,
   "width": 800,
   "height": 200
 }
