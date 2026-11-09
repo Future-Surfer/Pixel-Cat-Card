@@ -3,9 +3,9 @@ export function contactRow(rows){
  return marked>=0?marked:rows.findLastIndex(row=>/[^.]/.test(row));
 }
 
-export function contactShadows({rows,x,top,facing,surfaces,split},scale,reach){
+export function contactShadows({rows,x,top,facing,surfaces,split,contactSurface},scale,reach){
  const bottom=split?rows.length-1:contactRow(rows),receivers=new Map();
- const ordered=[...surfaces].sort((a,b)=>b.top-a.top);
+ const ordered=(contactSurface?surfaces.filter(surface=>surface===contactSurface||surface.top>contactSurface.top):[...surfaces]).sort((a,b)=>b.top-a.top);
  const heights=Array.from({length:bottom+1},(_,y)=>top+(y+1)*scale);
  const weights=heights.map((_,y)=>Math.exp(-y/reach));
  for(let column=0;column<24;column++){

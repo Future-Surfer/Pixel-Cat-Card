@@ -37,7 +37,7 @@ function shadowJump(kind,from,to,fromX,x){
  const frames=Array.from({length:count+1},(_,i)=>{
   const pose=jumpActor.jumpSample(motion,i/count);
   const feet=pose.frame<2?from.top:pose.frame>2?to.top:pose.top+(contactRow(pose.rows)+1)*shadowScale;
-  return {rows:pose.rows,x:pose.x,top:pose.top,feet,facing:direction,airborne:pose.frame===2};
+  return {rows:pose.rows,x:pose.x,top:pose.top,feet,facing:direction,airborne:pose.frame===2,contact:pose.frame<2?0:1};
  });
  return {surfaces:[from,to,floor],frames,duration};
 }

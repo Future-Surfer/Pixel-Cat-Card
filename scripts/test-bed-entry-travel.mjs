@@ -13,6 +13,8 @@ assert.deepEqual([...contactShadows(shadowPose,6,4).keys()],[upper],'A perched t
 const splitShadow=contactShadows({...shadowPose,split:true},6,4);
 assert.equal(splitShadow.get(upper)[0].nearest,3,'An upper surface receives only pixels above it');
 assert.equal(splitShadow.get(lower)[0].nearest,15,'Pixels below the edge can shade the next surface down');
+const groundedShadow=contactShadows({...shadowPose,contactSurface:lower},6,4);
+assert.deepEqual([...groundedShadow.keys()],[lower],'A nearby higher surface cannot steal a grounded shadow');
 const climbProbe={getAttribute(){throw Error('Synthetic motion probes have no DOM element');}};
 assert.equal(polish.turnaround(climbProbe,art,0,0,null,1,art.walk[0]),null);
 for(const facing of [1,-1])for(const urgency of ['casual','relaxed','prompted','interested']){

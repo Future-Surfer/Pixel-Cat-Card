@@ -55,14 +55,16 @@
   const scene=$('scene').value,jump=jumps[scene];
   if(jump){
    const index=Math.min(jump.frames.length-1,Math.floor(time/jump.duration*(jump.frames.length-1)));
-   return {...jump.frames[index],surfaces:jump.surfaces,duration:jump.duration,split:true};
+   const pose=jump.frames[index];
+   return {...pose,surfaces:jump.surfaces,duration:jump.duration,split:pose.airborne,contactSurface:pose.airborne?null:jump.surfaces[pose.contact]};
   }
   const clip=poses[scene],duration=clip.durations.reduce((a,b)=>a+b,0);
   let frame=0,elapsed=time;
   while(frame<clip.frames.length-1&&elapsed>=clip.durations[frame])elapsed-=clip.durations[frame++];
   const rows=clip.frames[frame],contact=contactRow(rows)+1;
   const top=standing[0].top-(clip.inPlace?24:contact)*scale,feet=top+contact*scale;
-  return {rows,x:328,top,feet,facing:1,surfaces:standing,duration,airborne:clip.grounded?.[frame]===false};
+  const airborne=clip.grounded?.[frame]===false;
+  return {rows,x:328,top,feet,facing:1,surfaces:standing,duration,airborne,contactSurface:airborne?null:standing[0]};
  }
  function draw(){
   const pose=current(),{rows,x,top,feet,facing,surfaces,duration,airborne}=pose,dark=$('dark').checked;

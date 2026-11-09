@@ -68,11 +68,19 @@ window.pixelCatFloorShadowV1={
   if(group.style.visibility!==(visible?'visible':'hidden'))group.style.visibility=visible?'visible':'hidden';
   if(!visible)return;
   const x=Number(transform[1]),top=Number(transform[2]),facing=a.drawnFacing,contact=contactRow(rows);
-  const split=a.motion?.kind==='jump'||a.motion?.kind==='startle'||!!(a.motion?.gallopTimeline&&contact<23);
-  if(rows===entry.rows&&facing===entry.facing&&x===entry.x&&top===entry.top&&split===entry.split&&a.surfaces===entry.surfaces&&a.support===entry.support&&entry.strength===entry.paintedStrength)return;
-  Object.assign(entry,{rows,facing,x,top,split,surfaces:a.surfaces,support:a.support,paintedStrength:entry.strength});
-  const surfaces=(a.surfaces||[]).filter(surface=>surface.right>x&&surface.left<x+24*s&&surface.top>=top&&surface.el?.isConnected!==false);
-  const receivers=contactShadows({rows,x,top,facing,surfaces,split},s,4);
+  const motion=a.motion,flight=motion?.kind==='jump'||motion?.kind==='startle';
+  const frame=flight?Number(a.getAttribute('data-frame')?.split('-').at(-1)):0;
+  const split=flight?(motion.kind==='startle'?frame>=3&&frame<=5:frame===3):!!(motion?.gallopTimeline&&contact<23);
+  const support=flight&&frame>=(motion.kind==='startle'?6:4)?motion.target:a.support;
+  const primary=split?null:support;
+  if(rows===entry.rows&&facing===entry.facing&&x===entry.x&&top===entry.top&&split===entry.split&&a.surfaces===entry.surfaces&&primary===entry.primary&&a.support===entry.support&&entry.strength===entry.paintedStrength)return;
+  Object.assign(entry,{rows,facing,x,top,split,surfaces:a.surfaces,support:a.support,primary,paintedStrength:entry.strength});
+  const surfaces=(a.surfaces||[]).filter(surface=>surface.right>x&&surface.left<x+24*s&&surface.top>=top&&surface.el?.isConnected!==false&&(!primary||surface===primary||surface.top>primary.top));
+  if(primary&&!surfaces.includes(primary))surfaces.push(primary);
+  const feet=top+(contact+1)*s;
+  const band=primary&&Math.abs(primary.top-feet)<=s?{...primary,top:feet}:primary;
+  const candidates=band!==primary?surfaces.map(surface=>surface===primary?band:surface):surfaces;
+  const receivers=contactShadows({rows,x,top,facing,surfaces:candidates,split,contactSurface:band},s,4);
   let patchIndex=0;
   for(const [surface,points]of receivers){
    const {left,right,top:y,rectSnapshot:r}=surface;
