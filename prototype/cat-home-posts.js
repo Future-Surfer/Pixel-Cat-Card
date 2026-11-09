@@ -11,7 +11,7 @@ window.pixelCatHomePostsV1={
   const c=node.getContext('2d');asset.pixels.forEach((r,y)=>r.forEach((v,x)=>{if(v){c.fillStyle=v;c.fillRect(x,y,1,1);}}));dock.append(node);
   a.homePost={id:'home-post-'+a.ownerKey,asset,node,scale:(a.worldScale||a.scale),homeOwner:a,claimedBy:null,cooldownUntil:0};window.pixelCatVerticalScratchV1?.bind(a.homePost,()=>[...a.decisionLayer()?.owners()||[]].map(([owner])=>owner),a.root);this.sync(a,dock.clientWidth);
  },
- sync(a,width){const p=a.homePost;if(!p)return;if(a.ownerKey)p.id='home-post-'+a.ownerKey;const offset=this.offset(a,width??(a.home?.right-a.home?.left+8));p.offset=offset;p.node.style.display=this.visible(a)&&offset!==null?'':'none';if(offset!==null)p.node.style.left=offset*(a.worldScale||a.scale)+'px';window.pixelCatDepthV1?.home(a);},
+ sync(a,width){const p=a.homePost;if(!p)return;if(a.ownerKey)p.id='home-post-'+a.ownerKey;const offset=a.catTree?null:this.offset(a,width??(a.home?.right-a.home?.left+8));p.offset=offset;p.node.style.display=this.visible(a)&&offset!==null?'':'none';if(offset!==null)p.node.style.left=offset*(a.worldScale||a.scale)+'px';window.pixelCatDepthV1?.home(a);},
  entries(layer){const a=layer.actor,out=[];if(typeof layer.owners!=='function')return out;for(const [owner,info]of layer.owners()){
   const p=owner.homePost;if(!p||!owner.active||!owner.isConnected||info.root!==a.root||!this.visible(owner)||!owner.home||p.offset===null||p.node.isConnected===false)continue;
   const s=owner===a?owner.home:a.surfaces?.find(s=>s.bedOwner===owner&&!s.bed&&!s.foodOwner);if(!s)continue;
