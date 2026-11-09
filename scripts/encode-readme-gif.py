@@ -1,5 +1,5 @@
 """Generic rectangle-stream encoder. Choreography and pixels come from JS."""
-import json,sys
+import json,os,shutil,subprocess,sys
 from pathlib import Path
 from PIL import Image,ImageDraw
 
@@ -39,3 +39,31 @@ with Image.open(target) as check:
   check.seek(i);total+=check.info['duration']
  assert total==len(frames)*data['frameMs']
 print(json.dumps({'file':str(target),'bytes':target.stat().st_size,'frames':len(frames),'durationMs':total}))
+
+if len(sys.argv)>2:
+ video=Path(sys.argv[2]).resolve()
+ assert video.name=='pixel-cat-routine.mp4' and video.parent.name=='.release'
+ executable=os.environ.get('FFMPEG') or shutil.which('ffmpeg')
+ if not executable:
+  from imageio_ffmpeg import get_ffmpeg_exe
+  executable=get_ffmpeg_exe()
+ video.parent.mkdir(exist_ok=True)
+ temporary=video.with_name('pixel-cat-routine.partial.mp4')
+ arguments=[
+  executable,'-hide_banner','-loglevel','error','-y',
+  '-f','rawvideo','-pixel_format','rgb24',
+  '-video_size',f"{data['width']}x{data['height']}",
+  '-framerate',str(1000//data['frameMs']),'-i','pipe:0',
+  '-vf','scale=1920:1080:flags=neighbor,setsar=1',
+  '-an','-c:v','libx264','-pix_fmt','yuv420p','-crf','18',
+  '-movflags','+faststart',str(temporary)
+ ]
+ with subprocess.Popen(arguments,stdin=subprocess.PIPE) as encoder:
+  for frame in frames:
+   encoder.stdin.write(frame.convert('RGB').tobytes())
+  encoder.stdin.close()
+  if encoder.wait()!=0:
+   raise RuntimeError('MP4 encoding failed')
+ subprocess.run([executable,'-v','error','-xerror','-i',str(temporary),'-f','null',os.devnull],check=True)
+ temporary.replace(video)
+ print(json.dumps({'file':str(video),'bytes':video.stat().st_size,'durationMs':total}))

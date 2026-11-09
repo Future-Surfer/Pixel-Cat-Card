@@ -8,7 +8,7 @@ export function readmeRuntime(){
  return {...box.api,window:box.window};
 }
 export function readmeAssets(runtime=readmeRuntime()){
- const {art,window}=runtime,owner={config:{bed_style:'igloo',bed_primary_color:'#52616c',bed_secondary_color:'#22323e'}};
- const bed=art.homeBeds.igloo;
+ const {art,window}=runtime,owner={config:{bed_style:'simple',bed_primary_color:'#52616c',bed_secondary_color:'#adc1bf'}};
+ const bed=window.pixelCatSetupV1.bed(owner,art);
  return {bed:{...bed,pixels:bed.pixels.map(row=>row.map(c=>c?window.pixelCatSetupV1.bedColour(owner,c):c))},post:art.dashboardProps.find(p=>p.id==='scratching_post'),bowl:art.homeProps.bowl};
 }

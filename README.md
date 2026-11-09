@@ -2,7 +2,7 @@
 
 A pixel cat for your Home Assistant dashboard. It wanders, naps, scratches and plays while you get on with your day.
 
-![An orange cat leaves its grey igloo, scratches a post, eats, grooms and returns to bed](docs/images/pixel-cat-routine.gif)
+![An orange cat wakes in an open bed, scratches a post, eats, grooms and walks back to sleep](docs/images/pixel-cat-routine.gif)
 
 *A short scripted demo using the card’s artwork.*
 

@@ -43,6 +43,8 @@ The GIF is a staged media routine: emerge → approach post → scratch → appr
 
 `scripts/readme-playback.mjs` defines the queue using a DOM-free release harness. Walking advances one native cell per release gait step. Ear scratching keeps the release's 75 ms cycle holds and repeated cycles; eating uses its mouth planner and authored gaze anchor. `prototype/readme-routine.mjs` draws the sampled frames. The browser preview and GIF encoder consume the same playback samples and drawing commands. No artwork, saved versions or integration receipts are modified.
 
-To preview: `npm run demo`, then open `http://127.0.0.1:8770/routine`. To export: install Python 3 with Pillow, then run `npm run media:gif`. Pillow is needed only for GIF authoring, not builds, tests or installation. The GIF is 800×200, sampled at 50 fps for 21.24 seconds, and loops continuously. Use the [still image](images/pixel-cat-habitat-light.jpg) if animation is unsuitable.
+The 480 × 270 scene uses the relaxed walk pace and the open bed's release height transition. The first and last frames meet during the authored sleep cycle.
+
+Run `npm run demo` and open `http://127.0.0.1:8770/routine` to preview. Run `npm run media:gif` with Python 3 and Pillow to export the looping GIF. With FFmpeg on PATH or the Python `imageio-ffmpeg` package installed, `npm run media:video` also writes a silent 1080p H.264 MP4 to `.release/pixel-cat-routine.mp4`. Both exports use the same 50 fps samples. A [still image](images/pixel-cat-habitat-light.jpg) is available.
 
 [Contributing](../CONTRIBUTING.md) · [Security reporting](../SECURITY.md) · [Documentation index](README.md).

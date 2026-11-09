@@ -13,7 +13,7 @@ for(let time=0;time<duration;time+=frameMs){
   const beats=state.walk.step-previous.walk.step;
   assert.ok(beats===0||beats===1,'GIF captures each individual release gait beat');
   assert.equal(state.x-previous.x,beats*state.walk.direction*scene.scale||0,'Exactly one native cell per gait beat');
-  if(beats===0){assert.equal(state.x,previous.x);assert.deepEqual(state.rows,previous.rows,'A held gait frame cannot translate');}
+  if(beats===0){assert.equal(state.x,previous.x);assert.equal(state.top,previous.top);assert.deepEqual(state.rows,previous.rows,'A held gait frame cannot translate');}
   else {assert.notEqual(state.walk.frame,previous.walk.frame);walkBeats++;}
  }
  if(state.pose==='scratch'){if(state.frame===firstCycle&&previousScratch!==firstCycle)scratchCycles++;previousScratch=state.frame;}
@@ -28,7 +28,23 @@ for(let time=0;time<duration;time+=frameMs){
  }
  previous=state;
 }
-assert.ok(walkBeats>100);assert.ok(scratchCycles>=2,'Ear scratch repeats the fast cycle before its exit');assert.ok(eatingFrames>100);
+assert.ok(walkBeats>40);assert.ok(scratchCycles>=2,'Ear scratch repeats the fast cycle before its exit');assert.ok(eatingFrames>100);
+for(const id of ['emerge','return']){
+ const stage=stages.find(s=>s.id===id),heights=[];
+ for(let t=stage.start;t<stage.start+stage.ms;t+=frameMs){
+  const state=playback.sample(t);
+  if(state.walk)heights.push(state.top+24*scene.scale);
+ }
+ assert.equal(Math.min(...heights),playback.bed.top);
+ assert.equal(Math.max(...heights),scene.ground);
+ assert.ok(new Set(heights).size>=3,'Bed transition has intermediate heights');
+ for(let i=1;i<heights.length;i++){
+  const rise=(heights[i]-heights[i-1])*(id==='return'?-1:1);
+  assert.ok(rise>=0&&rise<=scene.scale,'Bed height changes at most one cell per step');
+ }
+}
+assert.equal(playback.sample(0).pose,'sleep');
+assert.equal(playback.sample(duration-1).pose,'sleep');
 assert.equal(JSON.stringify([api.art.homeBeds,api.art.idleSequences.scratch,api.art.idleSequences.eat,api.art.idleSequences.postScratch]),original,'Source artwork and provenance stay unchanged');
 assert.deepEqual(commands(assets,playback.sample(0)).ops,commands(assets,playback.sample(duration-1)).ops);
 assert.ok(stages.every(s=>s.ms%frameMs===0));
