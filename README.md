@@ -1,6 +1,6 @@
 # Pixel Cat Card
 
-A pixel cat for your Home Assistant dashboard. It wanders, naps, scratches and plays while you get on with your day.
+A pixel cat that roams around your Home Assistant dashboard. Watch it leave its bed, wander from card to card, and find spots to nap, scratch or play.
 
 ![An orange cat wakes in an open bed, scratches a post, eats, grooms and walks back to sleep](docs/images/pixel-cat-routine.gif)
 
