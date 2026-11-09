@@ -1,13 +1,15 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pixel Cat — scripted media routine</title>
 <style>body{font:15px system-ui;background:#f7f5f0;color:#29313b;max-width:800px;margin:40px auto;padding:0 20px}canvas{width:100%;height:auto;image-rendering:pixelated}button{font:inherit;padding:8px 14px;margin-right:8px}li{padding:4px}li[aria-current=true]{font-weight:700}small{color:#53606b}</style>
-<h1>A little routine</h1><p>A staged demo using the card’s existing artwork.</p><canvas width="800" height="200" aria-label="Orange cat, grey igloo, scratching post and bowl"></canvas>
-<p><button id="pause">Pause</button><button id="replay">Replay</button><output></output></p><ol></ol><small>This queue is for recording media. Installed cats keep their own decisions and clocks.</small>
+<h1>A little routine</h1><p>A staged demo using the card’s existing artwork.</p><canvas width="480" height="270" aria-label="Orange cat, open bed, scratching post and bowl"></canvas>
+<p><button id="pause">Pause</button><button id="replay">Replay</button><label>Preview step <select id="step"></select></label> <output></output></p><ol></ol><small>This queue is for recording media. Installed cats keep their own decisions and clocks.</small>
 <script type="module">
-import {queue,duration,commands,draw} from '/prototype/readme-routine.mjs';
-const assets=await (await fetch('/readme-assets.json')).json(),ctx=document.querySelector('canvas').getContext('2d');
+import {commands,draw} from '/prototype/readme-routine.mjs';
+const playback=await (await fetch('/readme-playback.json')).json(),{assets,queue,duration,frameMs}=playback,ctx=document.querySelector('canvas').getContext('2d');
 document.querySelector('ol').innerHTML=queue.map(s=>`<li data-step="${s.id}">${s.label}</li>`).join('');
 let elapsed=0,last=null,paused=false;
+const chooser=document.querySelector('#step');chooser.innerHTML=queue.map(s=>`<option value="${s.id}">${s.label}</option>`).join('');
+chooser.onchange=()=>{elapsed=queue.slice(0,queue.findIndex(s=>s.id===chooser.value)).reduce((t,s)=>t+s.ms,0);paused=true;document.querySelector('#pause').textContent='Resume';};
 document.querySelector('#pause').onclick=e=>{paused=!paused;e.target.textContent=paused?'Resume':'Pause';};
 document.querySelector('#replay').onclick=()=>{elapsed=0;};
-function frame(t){if(last!==null&&!paused)elapsed+=Math.min(100,t-last);last=t;const f=commands(assets,elapsed);draw(ctx,f);document.querySelector('output').textContent=f.label;for(const li of document.querySelectorAll('li'))li.setAttribute('aria-current',String(li.dataset.step===f.step));requestAnimationFrame(frame);}requestAnimationFrame(frame);
+function frame(t){if(last!==null&&!paused)elapsed+=Math.min(100,t-last);last=t;const state=playback.frames[Math.floor((elapsed%duration)/frameMs)],f=commands(assets,{...state,rows:playback.sprites[state.sprite]});draw(ctx,f);document.querySelector('output').textContent=f.label;chooser.value=state.id;for(const li of document.querySelectorAll('li'))li.setAttribute('aria-current',String(li.dataset.step===f.step));requestAnimationFrame(frame);}requestAnimationFrame(frame);
 </script></html>

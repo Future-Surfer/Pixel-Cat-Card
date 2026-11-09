@@ -14,7 +14,8 @@
     "verify:build": "node scripts/verify-build.mjs",
     "build:card": "node scripts/build-card.mjs",
     "demo": "node scripts/serve-release-demo.mjs",
-    "media:gif": "node scripts/render-readme-demo.mjs"
+    "media:gif": "node scripts/render-readme-demo.mjs",
+    "media:video": "node scripts/render-readme-demo.mjs --video"
   },
   "engines": {
     "node": ">=22.20.0"
