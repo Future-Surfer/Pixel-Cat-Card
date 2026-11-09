@@ -44,6 +44,9 @@ for(const id of ['emerge','return']){
  }
 }
 assert.equal(playback.sample(0).pose,'sleep');
+assert.ok(playback.payload.frames.some(frame=>frame.id==='post'&&frame.postOffset),'Scratch contacts move the post');
+assert.ok(playback.payload.frames.some(frame=>frame.id==='post'&&frame.particles?.length),'Scratch contacts shed visible particles');
+assert.ok(playback.payload.frames.every(frame=>frame.id==='post'||!frame.postOffset),'The post settles after scratching');
 assert.equal(playback.sample(duration-1).pose,'sleep');
 assert.equal(JSON.stringify([api.art.homeBeds,api.art.idleSequences.scratch,api.art.idleSequences.eat,api.art.idleSequences.postScratch]),original,'Source artwork and provenance stay unchanged');
 assert.deepEqual(commands(assets,playback.sample(0)).ops,commands(assets,playback.sample(duration-1)).ops);

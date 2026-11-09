@@ -2,7 +2,7 @@ import fs from 'node:fs';import path from 'node:path';import {spawnSync} from 'n
 import {buildReadmePlayback} from './readme-playback.mjs';
 import {commands,frameMs,size} from '../prototype/readme-routine.mjs';
 const playback=buildReadmePlayback(),{assets,duration}=playback,frames=[];
-const base=commands(assets,{hidden:true}).ops;
+const base=commands(assets,{hidden:true},{backgroundOnly:true}).ops;
 for(let time=0;time<duration;time+=frameMs)frames.push(commands(assets,playback.sample(time)).ops.slice(base.length));
 const output=path.resolve('docs/images/pixel-cat-routine.gif');
 const outputs=[output];

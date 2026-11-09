@@ -1,4 +1,5 @@
 import {readmeAssets,readmeRuntime} from './readme-assets.mjs';
+import {captureReadmeEffects} from './readme-effects.mjs';
 import {scene,size,frameMs} from '../prototype/readme-routine.mjs';
 
 export function buildReadmePlayback(){
@@ -67,7 +68,12 @@ export function buildReadmePlayback(){
  pose('groom','An ear scratch','scratch',2200);
  walk('return','Walk up into bed',bedOrigin,bed);
  pose('sleep','Curl up and sleep','sleep',sleepEntry+sleepCycle+split);
- function sample(time){const t=((time%clock)+clock)%clock,step=stages.find(s=>t<s.start+s.ms);return step.sampler(t-step.start);}
+ function poseAt(t){const step=stages.find(s=>t<s.start+s.ms);return step.sampler(t-step.start);}
+ const effectFrames=captureReadmeEffects(window,art,face,surface,stages,poseAt,clock,frameMs);
+ function sample(time){
+  const t=((time%clock)+clock)%clock;
+  return {...poseAt(t),...effectFrames.get(Math.floor(t/frameMs)*frameMs)};
+ }
  const sprites=[],indices=new Map(),frames=[];
  for(let time=0;time<clock;time+=frameMs){const state=sample(time),key=state.rows?.join('\n');let sprite;if(key!==undefined){if(!indices.has(key)){indices.set(key,sprites.length);sprites.push(state.rows);}sprite=indices.get(key);}const {rows,walk,anchor,mouthPoint,...small}=state;frames.push({...small,sprite});}
  return {api,assets,stages,duration:clock,sample,target,face,bed,payload:{assets,sprites,frames,duration:clock,frameMs,queue:stages.map(({id,label,ms})=>({id,label,ms}))}};
