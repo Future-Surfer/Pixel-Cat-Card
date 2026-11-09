@@ -4,7 +4,7 @@ import {commands,frameMs,size} from '../prototype/readme-routine.mjs';
 const playback=buildReadmePlayback(),{assets,duration}=playback,frames=[];
 const base=commands(assets,{hidden:true},{backgroundOnly:true}).ops;
 for(let time=0;time<duration;time+=frameMs)frames.push(commands(assets,playback.sample(time)).ops.slice(base.length));
-const output=path.resolve('docs/images/pixel-cat-routine.gif');
+const output=path.resolve('docs/images/pixel-cat-routine-v2.gif');
 const outputs=[output];
 if(process.argv.includes('--video'))outputs.push(path.resolve('.release/pixel-cat-routine.mp4'));
 const result=spawnSync(process.env.PYTHON||'python',['scripts/encode-readme-gif.py',...outputs],{input:JSON.stringify({...size,frameMs,base,frames}),encoding:'utf8',maxBuffer:1024*1024});

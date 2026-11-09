@@ -29,7 +29,7 @@ for commands in data['frames']:
   draw.rectangle((x,y,x+w-1,y+h-1),fill=indices[r['c']])
  frames.append(image)
 target=Path(sys.argv[1]).resolve()
-assert target.name=='pixel-cat-routine.gif' and target.parent.name=='images'
+assert target.name=='pixel-cat-routine-v2.gif' and target.parent.name=='images'
 frames[0].save(target,save_all=True,append_images=frames[1:],duration=data['frameMs'],loop=0,disposal=2,optimize=True)
 with Image.open(target) as check:
  assert check.size==(data['width'],data['height'])
