@@ -2,6 +2,27 @@ import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:asser
 const node=()=>({style:{},attrs:{},setAttribute(k,v){this.attrs[k]=v;},removeAttribute(k){delete this.attrs[k];},append(){}}),b={window:{},HTMLElement:class{},customElements:{get:()=>true},performance:{now:()=>0},document:{createElementNS:()=>node()}};
 vm.runInNewContext(['pixel-cat-roaming-art.js','pixel-cat-roaming-extras.js','pixel-cat-affordances.js','pixel-cat-behaviours.js','pixel-cat-roaming.js'].map(f=>fs.readFileSync(f,'utf8')).join('\n')+'\nglobalThis.api={Home:PixelCatHome,art:CAT_ART,walkSample,walkAppearance,groundedFront,idleSample,idleContact,frameContact};',b);
 const {Home,art,walkSample,walkAppearance,groundedFront,idleSample,idleContact,frameContact}=b.api,bed=b.window.pixelCatBedEntryV1,setup=b.window.pixelCatSetupV1,shallow=b.window.pixelCatShallowV1;
+const polish=b.window.pixelCatPolishV1;
+for(const facing of [1,-1])for(const urgency of ['casual','relaxed','prompted','interested']){
+ const surface={id:'floor',min:0,max:500,top:200},a=Object.assign(Object.create(Home.prototype),{
+  config:{},facing,urgency,scale:3,x:210,y:200,support:surface,walkSteps:4,
+  drawnRows:art.walk[1],svg:node(),getAttribute:()=> 'walk-2',setAttribute(){},draw(){},status(){}
+ });
+ a.moveTo(210-facing*60,200,1000,'walk',surface,1000);
+ const m=a.motion,slow=['casual','relaxed'].includes(urgency);
+ assert.equal(!!m.departure?.facings,slow,'Only unhurried walk reversals get a sit turn');
+ if(!slow){assert.equal(a.facing,-facing);continue;}
+ assert.equal(a.facing,facing,'The cat keeps its old facing while it sits down');
+ assert.equal(m.start,1580);
+ for(const [t,direction] of [[1000,facing],[1300,facing],[1310,-facing],[1500,-facing]]){
+  assert.equal(polish.departure(a,t,frameContact,idleContact),true);
+  assert.equal(a.facing,direction);
+ }
+ assert.equal(polish.departure(a,m.start,frameContact,idleContact),false);
+ const first=walkSample(m,0,a.scale,art.walk),next=walkSample(m,m.cumulativeMs[0],a.scale,art.walk);
+ assert.equal(next.x-first.x,-facing*a.scale);
+ assert.notEqual(first.frame,next.frame,'A walk frame advances on the same beat as its position');
+}
 for(const catScale of [2,3,4])for(const bedScale of [2,3,4])for(const entering of [false,true]){
  const fromY=500-(entering?0:3*bedScale),y=500-(entering?3*bedScale:0);
  const motion={homeStep:true,fromY,y,cells:10,target:{bed:entering}};

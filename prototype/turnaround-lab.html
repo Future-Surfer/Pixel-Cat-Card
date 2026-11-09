@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixel Cat · Turnaround Lab</title>
+<style>
+ :root{color-scheme:light dark;font:16px system-ui}
+ body{max-width:740px;margin:2rem auto;padding:0 1rem}
+ p{line-height:1.5}canvas{display:block;width:100%;height:auto;border-radius:12px;image-rendering:pixelated}
+ .controls{display:flex;flex-wrap:wrap;gap:.65rem;align-items:center;margin:1rem 0}
+ button,select{font:inherit;padding:.45rem .65rem}
+ .timing{display:grid;grid-template-columns:minmax(9rem,1fr) minmax(5rem,2fr) 5rem;gap:.6rem;align-items:center}
+ input[type=range]{width:100%;min-width:0}output{font-variant-numeric:tabular-nums}
+ #phase{margin:.7rem 0;min-height:1.5em}a{color:LinkText}
+</style>
+<main>
+ <h1>Slow turnaround</h1>
+ <p>Take a few slow steps, sit, turn, stand, and walk back. Try the instant flip for comparison, or scrub through the sit turn one pose at a time.</p>
+ <canvas id="stage" width="600" height="210" aria-label="Pixel cat turnaround animation"></canvas>
+ <p id="phase"></p>
+ <div class="controls">
+  <button id="play" type="button">Play</button>
+  <button id="replay" type="button">Replay</button>
+  <label><input id="loop" type="checkbox" checked> Loop</label>
+  <label>Turn <select id="mode"><option value="sit">Sit turn</option><option value="snap">Instant flip</option></select></label>
+  <label>Approach <select id="direction"><option value="1">From the left</option><option value="-1">From the right</option></select></label>
+ </div>
+ <label for="scrub">Timeline</label>
+ <input id="scrub" type="range" min="0" step="1" value="0">
+ <div class="timing">
+  <label for="step">Slow walk beat</label><input id="step" type="range" min="80" max="280" step="10" value="160"><output for="step"></output>
+  <label for="stop">Standing pause</label><input id="stop" type="range" min="0" max="400" step="10" value="70"><output for="stop"></output>
+  <label for="down">Sit down</label><input id="down" type="range" min="30" max="350" step="10" value="110"><output for="down"></output>
+  <label for="before">Sit before turn</label><input id="before" type="range" min="0" max="650" step="10" value="130"><output for="before"></output>
+  <label for="after">Sit after turn</label><input id="after" type="range" min="0" max="650" step="10" value="100"><output for="after"></output>
+  <label for="up">Stand up</label><input id="up" type="range" min="30" max="350" step="10" value="100"><output for="up"></output>
+ </div>
+ <p>The lab uses the existing <strong>Walk → sit</strong> bridge and reverses it to stand. The flip happens while seated. <a href="http://127.0.0.1:8767/" target="_blank" rel="noopener">Open Cat Frame Studio</a> to inspect the drawings.</p>
+</main>
+<script type="module">
+ const $=id=>document.getElementById(id),canvas=$('stage'),ctx=canvas.getContext('2d');
+ const controls=['step','stop','down','before','after','up'].map($);
+ const {walk,stand,bridge,sit}=await fetch('/turnaround-art.json').then(response=>response.json());
+ const pixel=6,floor=177,pivot=canvas.width/2;
+ const plantedOrigin=(pose,facing,x)=>x-(facing<0?24-pose.feet:pose.feet)*pixel;
+ let frames=[],duration=0,time=0,last=null,playing=false,request=0;
+ function rebuild(){
+  const direction=Number($('direction').value),previousDuration=duration;
+  frames=[];duration=0;
+  const [step,stop,down,before,after,up]=controls.map(input=>Number(input.value));
+  for(const input of controls)input.nextElementSibling.value=input.value+' ms';
+  function add(pose,facing,origin,ms,label){
+   if(ms<=0)return;
+   duration+=ms;frames.push({rows:pose.rows,facing,origin,end:duration,label});
+  }
+  const arrival=walk.at(-1),incoming=plantedOrigin(arrival,direction,pivot);
+  const outgoing=plantedOrigin(walk[0],-direction,pivot);
+  const held=(pose,facing,ms,label)=>add(pose,facing,plantedOrigin(pose,facing,pivot),ms,label);
+  for(const pose of walk.slice(0,-1))add(pose,direction,incoming+(pose.offset-arrival.offset)*direction*pixel,step,'Slow walk in');
+  if($('mode').value==='sit'){
+   held(stand,direction,stop,'Stand');
+   for(const pose of bridge)held(pose,direction,down,'Sit down');
+   held(sit,direction,before,'Sit · original direction');
+   held(sit,-direction,after,'Sit · new direction');
+   for(const pose of [...bridge].reverse())held(pose,-direction,up,'Stand up');
+   held(stand,-direction,stop,'Stand');
+  }
+  for(const pose of walk)add(pose,-direction,outgoing-pose.offset*direction*pixel,step,'Slow walk back');
+  $('scrub').max=duration-1;
+  time=Math.min(duration-1,previousDuration?time*duration/previousDuration:0);
+  draw();
+ }
+ function draw(){
+  const {rows,facing,origin,label}=frames.find(frame=>time<frame.end)||frames.at(-1);
+  const bottom=rows.findLastIndex(row=>row.includes('#')||row.includes('R'));
+  const top=floor-(bottom+1)*pixel;
+  ctx.fillStyle='#e9eee9';ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle='#ccd7cf';ctx.fillRect(0,floor,canvas.width,canvas.height-floor);
+  ctx.fillStyle='#bdc9c0';ctx.fillRect(pivot,floor,1,12);
+  ctx.fillStyle='#aa5b2e';
+  for(const [y,row] of rows.entries())for(const [column,cell] of [...row].entries()){
+   if(cell!=='.')ctx.fillRect(origin+(facing>0?column:23-column)*pixel,top+y*pixel,pixel,pixel);
+  }
+  $('scrub').value=Math.floor(time);
+  $('phase').textContent=label+' · '+(time/1000).toFixed(2)+' / '+(duration/1000).toFixed(2)+' s';
+ }
+ function toggle(value){
+  playing=value;last=null;$('play').textContent=value?'Pause':'Play';
+  cancelAnimationFrame(request);
+  if(value)request=requestAnimationFrame(tick);
+ }
+ function tick(now){
+  if(last!==null)time+=Math.min(60,now-last);
+  last=now;
+  if(time>=duration){
+   if($('loop').checked)time%=duration;
+   else{time=duration-1;draw();toggle(false);return;}
+  }
+  draw();request=requestAnimationFrame(tick);
+ }
+ $('play').onclick=()=>{if(!playing&&time>=duration-1)time=0;toggle(!playing);};
+ $('replay').onclick=()=>{time=0;draw();toggle(true);};
+ $('scrub').oninput=()=>{toggle(false);time=Number($('scrub').value);draw();};
+ for(const input of [...controls,$('mode'),$('direction')])input.oninput=rebuild;
+ rebuild();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)toggle(true);
+</script>
+</html>
