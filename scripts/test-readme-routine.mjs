@@ -29,6 +29,19 @@ for(let time=0;time<duration;time+=frameMs){
  previous=state;
 }
 assert.ok(walkBeats>40);assert.ok(scratchCycles>=2,'Ear scratch repeats the fast cycle before its exit');assert.ok(eatingFrames>100);
+const eating=stages.find(s=>s.id==='eat');
+const eatingHolds=[];
+for(let elapsed=0;elapsed<eating.ms;elapsed+=frameMs){
+ const {frame}=playback.sample(eating.start+elapsed);
+ const hold=eatingHolds.at(-1);
+ if(hold?.frame===frame)hold.ms+=frameMs;
+ else eatingHolds.push({frame,ms:frameMs});
+}
+assert.deepEqual(eatingHolds.map(hold=>hold.frame),[0,1,2,3,0],'The demo lowers its head again after each brief lift');
+for(const {frame,ms} of eatingHolds.slice(0,-1)){
+ if(frame%2===0)assert.ok(ms>=1000,'Head stays down for at least a second per bite');
+ else assert.ok(ms>=100&&ms<=200,'Head lifts briefly between bites');
+}
 for(const id of ['emerge','return']){
  const stage=stages.find(s=>s.id===id),heights=[];
  for(let t=stage.start;t<stage.start+stage.ms;t+=frameMs){

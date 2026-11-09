@@ -58,7 +58,8 @@ art.assetManifest.push({sequenceId:roll.projectId,name:roll.name,savedAt:rollCha
 const savedBeds=JSON.parse(fs.readFileSync('frame-studio/user-sequences/beds-2026-10-16/saved-changes.json','utf8'));
 additions.homeBeds=Object.fromEntries(savedBeds.map(e=>[e.snapshot.name==='Simple Bed'?'simple':'igloo',{...e.snapshot,versionHash:e.versionHash}]));
 const eatingRecord=JSON.parse(fs.readFileSync('frame-studio/user-sequences/mouth-actions-2026-10-16/eating.json','utf8')),eating=eatingRecord.project;
-additions.idleSequences.eat={sequenceId:eating.projectId,frames:eating.frames.map(f=>f.rows),durations:eating.frames.map(f=>f.durationMs),origins:eating.frames.map(f=>f.origin),gazes:eating.frames.map(f=>f.gaze),anchors:eating.frames.map(()=>[12,23]),loop:true};
+// Alternate longer bites with brief lifts. Keep the original Studio frames and metadata.
+additions.idleSequences.eat={sequenceId:eating.projectId,frames:eating.frames.map(f=>f.rows),durations:[1100,160,1320,180],origins:eating.frames.map(f=>f.origin),gazes:eating.frames.map(f=>f.gaze),anchors:eating.frames.map(()=>[12,23]),loop:true};
 const nose=art.idleSequences.lookdown;additions.idleSequences.nose={...nose,anchors:nose.frames.map(rows=>{const points=rows.flatMap((r,y)=>[...r].flatMap((v,x)=>v==='R'?[[x,y]]:[]));return points.sort((a,b)=>b[1]-a[1])[0]||[14,23];})};
 const reviews=JSON.parse(fs.readFileSync('frame-studio/user-sequences/review-2026-10-17/approved-sequences.json','utf8')).map(r=>{const c=followupChanges.find(c=>c.entityId===r.projectId);return c?{...r,project:c.snapshot,contentHash:c.versionHash,savedAt:c.at}:r;}),lifted=reviews.find(r=>r.projectId==='proposal-lifted-scruff').project;
 additions.lifted={sequenceId:lifted.projectId,rows:lifted.frames[0].rows,anchor:lifted.frames[0].poi?[lifted.frames[0].poi.x,lifted.frames[0].poi.y]:[14,7],anchorAtCellCenter:!!lifted.frames[0].poi,origin:lifted.frames[0].origin,review:'accepted',temporary:false};
