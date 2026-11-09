@@ -612,7 +612,7 @@ class PixelCatHome extends HTMLElement {
   }
   routeSpeed(){return travelSpeed(this.config,this.urgency);}
   routeJump(from,to,fromX,x){const direction=movementFacing(fromX,x,this.scale,this.facing,'jump');return this.planJump({fromX,fromY:from.top,x,y:to.top,direction,jumpKind:jumpKindFor(from.top,to.top,this.scale,x-fromX)});}
-  pathTo(target,origin=this.support){return window.pixelCatTreeV1?.preferred(this,target,origin)??window.pixelCatSurfaceWorldV1.route(this,target,origin)??window.pixelCatClimbV1?.fallback(this,target,origin)??null;}
+  pathTo(target,origin=this.support){return window.pixelCatSurfaceWorldV1.route(this,target,origin)??window.pixelCatClimbV1?.fallback(this,target,origin)??null;}
   plan() {
     const requested=!!this.command||!!this.goal;this.casualWander=false;
     const now=performance.now();if(!requested&&window.pixelCatClimbV1?.offer(this,now))return;this.visits||=new Map();if(window.pixelCatPostRestV1?.beforePlan(this,now,requested))return;

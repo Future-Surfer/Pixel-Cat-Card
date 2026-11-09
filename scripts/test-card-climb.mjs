@@ -49,12 +49,24 @@ for(const [age,scale] of [['adult',2],['kitten',1]]){
   const from=a.support,clear=a.social.clear;a.social.clear=s=>s!==platform;
   assert.equal(N.treeRoute(a,platform,from),null,'Occupied tree destination is rejected');
   a.social.clear=clear;
-  const path=tree.preferred(a,platform,from);assert.ok(path,age+' checked climb to level '+platform.tree);
-  a.route=path;N.start(a,path[0],t);assert.ok(a.climb?.nativeTransfer?.tree);
+  const path=b.window.pixelCatPointRoutesV1.plan(a,platform,platform.min);assert.ok(path,age+' checked climb to level '+platform.tree);
+  a.route=path;N.start(a,path[0],t);assert.ok(a.climb?.nativeTransfer?.tree);assert.ok(a.climb.plan.segments.some(s=>s.kind==='climb'&&b.window.pixelCatClimbAssetsV1.frames.some(f=>f.id===s.frame.id)),'Tree uses authored side frames');
   const end=t+25000;while(a.climb&&t<end){t+=16;C.tick(a,t,art);}
   assert.equal(a.support,platform,age+' lands on level '+platform.tree);
  }
  assert.ok(a.catTree.impulses.length,'Grip contact moves the hanging ball');
  assert.ok(a.routeJump(upper,lower,upper.max,lower.min),age+' can jump to lower platform');
  assert.ok(a.routeJump(lower,a.home,lower.min,a.home.max),age+' can jump to the home floor');
+}
+
+{
+ const tree=b.window.pixelCatTreeV1,owner=actor(),sleeper=actor(),outsider=actor();
+ const node={};owner.catTree={node,clock:0,impulses:[]};
+ for(const cat of [sleeper,outsider])cat.idle={pose:'sleep',poseUntil:5000};
+ sleeper.support={el:node,tree:2};sleeper.removeAttribute=()=>{};
+ owner.decisionLayer=()=>({owners:()=>[[sleeper,{root:owner.root}],[outsider,{root:owner.root}]]});
+ tree.tap(owner,100);
+ assert.equal(owner.catTree.impulses.length,1);
+ assert.equal(sleeper.idle.poseUntil,100);
+ assert.equal(outsider.idle.poseUntil,5000);
 }
