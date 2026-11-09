@@ -41,8 +41,9 @@ window.pixelCatPolishV1={
   return [[art.stand,facing,stand],...bridge.map(rows=>[rows,facing,down]),[sit,facing,before],[sit,-facing,after],...[...bridge].reverse().map(rows=>[rows,-facing,up]),[art.stand,-facing,stand]];
  },
  turnaround(a,art,x,y,target,facing,walkFrame){
+  if(!a.drawnRows||facing===a.facing||!['relaxed','casual'].includes(a.urgency)||a.command||a.goal||a.play||a.toyHunt||a.social?.episode||a.mouthAction||a.carriedToy||a.previewPose||a.userHeld||a.bedEntry||a.bedInside||a.support?.narrow||a.support?.bed||target?.id!==a.support?.id||y!==a.y)return null;
   const onFoot=a.idle?a.idle.pose==='stand':a.getAttribute?.('data-frame')?.startsWith('walk-');
-  if(!onFoot||facing===a.facing||!['relaxed','casual'].includes(a.urgency)||a.command||a.goal||a.play||a.toyHunt||a.social?.episode||a.mouthAction||a.carriedToy||a.previewPose||a.userHeld||a.bedEntry||a.bedInside||a.support?.narrow||a.support?.bed||target?.id!==a.support?.id||y!==a.y||!a.drawnRows)return null;
+  if(!onFoot)return null;
   const s=a.scale,bearing=a.x+this.turnFeet(a.drawnRows,a.facing)*s;
   const poses=this.turnFrames(art,a.facing);
   const start=Math.round((bearing-this.turnFeet(walkFrame,facing)*s)/s)*s;

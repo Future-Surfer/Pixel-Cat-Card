@@ -18,6 +18,7 @@ Opt-in release candidate for Home Assistant 2026.11 and later. Pixel Cat Card gi
 - A brief sit turn when a cat reverses during an unhurried walk.
 - Random fur colours are independent of theme. Automatic outlines add a thin white edge to near-black fur and a black edge to near-white fur on light themes.
 - The editor cat rests briefly between yawns, ear scratches, and grooming. An optional black or white fur outline helps cats stand out on the dashboard.
+- Cats cast a soft floor shadow over dashboard surfaces and beneath toys and furniture. Turn it off under **Your cat → Floor shadow**.
 
 ## Validation and limits
 

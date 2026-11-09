@@ -17,7 +17,7 @@
 </style>
 <main>
  <h1>Shadow &amp; Outline Lab</h1>
- <p>Cast the live sprite onto a flat floor. Try different background colours, or use the scratching poses to compare outlines on a thin tail.</p>
+ <p>Compare how the shadow darkens a blue dashboard card and the floor beside it. The bowl, mouse, ball, and post are painted over the shadow.</p>
  <canvas id="stage" width="800" height="405" aria-label="Animated pixel cat with a floor shadow"></canvas>
  <div class="choices">
   <button id="play" type="button">Play</button>
@@ -25,11 +25,16 @@
   <label><input type="checkbox" id="flip"> Face left</label>
   <label><input type="checkbox" id="dark"> Dark scene</label>
   <label>Background <input type="color" id="background" value="#edf0f2"></label>
+  <label><input type="checkbox" id="card" checked> Sample dashboard card</label>
+  <label><input type="checkbox" id="props" checked> Show props</label>
   <label for="frame">Frame</label><input id="frame" type="range" min="0" max="0" value="0"><output id="frameNumber"></output>
  </div>
  <div class="layout">
   <fieldset><legend>Shadow</legend>
-   <div class="choices"><label><input id="shadow" type="checkbox" checked> Show shadow</label><label>Colour <input id="tone" type="color" value="#283036"></label></div>
+   <div class="choices"><label><input id="shadow" type="checkbox" checked> Show shadow</label>
+    <label>Blend <select id="blend"><option value="multiply">Multiply</option><option value="source-over">Tint overlay</option></select></label>
+    <label>Overlay colour <input id="tone" type="color" value="#283036" disabled></label>
+   </div>
    <div class="sliders">
     <label for="direction">Direction</label><input id="direction" type="range" min="-75" max="75" value="18"><output for="direction"></output>
     <label for="elevation">Light elevation</label><input id="elevation" type="range" min="15" max="85" value="63"><output for="elevation"></output>
@@ -49,20 +54,37 @@
  import '/dist/pixel-cat-card.js';
  const $=id=>document.getElementById(id),stage=$('stage'),ctx=stage.getContext('2d');
  const mask=document.createElement('canvas');mask.width=stage.width;mask.height=stage.height;
- const ink=mask.getContext('2d'),art=await fetch('/shadow-art.json').then(response=>response.json());
+ const ink=mask.getContext('2d'),{clips,props}=await fetch('/shadow-art.json').then(response=>response.json());
  const cell=9,originX=283,feetY=337,depthScale=.68;
  const number=id=>Number($(id).value),radians=degrees=>degrees*Math.PI/180;
  let frame=0,last=0,playing=!matchMedia('(prefers-reduced-motion: reduce)').matches;
- function clip(){return art[$('pose').value];}
+ function clip(){return clips[$('pose').value];}
+ function drawCard(){
+  const dark=$('dark').checked;
+  ctx.fillStyle=dark?'#274567':'#aac9eb';ctx.beginPath();ctx.roundRect(390,213,300,170,12);ctx.fill();
+  ctx.fillStyle=dark?'#b9d4f0':'#29476a';ctx.font='600 16px system-ui';ctx.fillText('Dashboard card',410,241);
+  ctx.globalAlpha=.32;ctx.fillRect(410,255,153,5);ctx.fillRect(410,269,104,5);ctx.globalAlpha=1;
+ }
+ function drawProps(){
+  const [mouse,ball,post,bowl]=props;
+  for(const [asset,left,base,size] of [[post,526,333,4],[mouse,446,305,4],[ball,504,323,4],[bowl,435,337,7]]){
+   asset.pixels.forEach((row,y)=>row.forEach((colour,x)=>{
+    if(!colour)return;
+    ctx.fillStyle=colour;ctx.fillRect(left+x*size,base+(y-asset.height)*size,size,size);
+   }));
+  }
+ }
  function render(){
   const rows=clip().frames[frame],direction=radians(number('direction')),elevation=radians(number('elevation'));
   const floor=(x,h)=>[originX+(x+h*Math.sin(direction)/Math.tan(elevation))*cell,feetY-h*Math.cos(direction)/Math.tan(elevation)*cell*depthScale];
   const facing=$('flip').checked?-1:1;
   ctx.fillStyle=$('background').value;ctx.fillRect(0,0,stage.width,stage.height);
+  if($('card').checked)drawCard();
   const pixels=[];
   rows.forEach((row,y)=>[...row].forEach((v,x)=>{if(v!=='.')pixels.push([facing<0?23-x:x,y]);}));
   if($('shadow').checked){
-   ink.clearRect(0,0,mask.width,mask.height);ink.fillStyle=$('tone').value;ink.beginPath();
+   const blend=$('blend').value;
+   ink.clearRect(0,0,mask.width,mask.height);ink.fillStyle=blend==='multiply'?'#000':$('tone').value;ink.beginPath();
    function face(project,x,low,high){
     const corners=[[x,low],[x+1,low],[x+1,high],[x,high]].map(([u,h])=>project(u,h));
     ink.moveTo(...corners[0]);for(const point of corners.slice(1))ink.lineTo(...point);ink.closePath();
@@ -71,8 +93,9 @@
     face(floor,x,23-y,24-y);
    }
    ink.fill();
-   ctx.save();ctx.globalAlpha=number('opacity')/100;ctx.filter=`blur(${number('blur')*cell}px)`;ctx.drawImage(mask,0,0);ctx.restore();
+   ctx.save();ctx.globalCompositeOperation=blend;ctx.globalAlpha=number('opacity')/100;ctx.filter=`blur(${number('blur')*cell}px)`;ctx.drawImage(mask,0,0);ctx.restore();
   }
+  if($('props').checked)drawProps();
   ctx.save();ctx.translate(originX,feetY-24*cell);ctx.scale(cell,cell);
   const stroke=$('outline').value;
   if(stroke!=='none'&&number('weight')>0){ctx.strokeStyle=stroke;ctx.lineWidth=2*number('weight');ctx.lineCap='round';ctx.stroke(new Path2D(window.pixelCatOutlineV1.path(rows,facing)));}
@@ -100,7 +123,8 @@
  }
  $('dark').oninput=()=>{$('background').value=$('dark').checked?'#263239':'#edf0f2';backgroundChanged();};
  $('background').oninput=backgroundChanged;
- for(const id of [...Object.keys(units),'flip','shadow','tone','fur','outline'])$(id).oninput=update;
+ $('blend').oninput=()=>{$('tone').disabled=$('blend').value==='multiply';update();};
+ for(const id of [...Object.keys(units),'flip','shadow','card','props','tone','fur','outline'])$(id).oninput=update;
  toggle(playing);update();requestAnimationFrame(tick);
 </script>
 </html>

@@ -5,6 +5,7 @@ const catEditorGroups=[
   ['name','Name','text',null,'What would you like to call them?'],
   ['color','Fur colour','text','#222','Pick a swatch or enter a colour of your own.'],
   ['outline','Fur outline','select','auto','Automatic helps black fur stand out and gives white fur an edge on light themes.'],
+  ['floor_shadow','Floor shadow','checkbox',true,'Show a soft shadow underneath your cat.'],
   ['life_stage','Age','select','adult','Kittens are smaller and tend to move and play a little more.'],
  ]},
  {title:'Daily rhythm',fields:[

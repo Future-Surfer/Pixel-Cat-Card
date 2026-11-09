@@ -3,6 +3,8 @@ const node=()=>({style:{},attrs:{},setAttribute(k,v){this.attrs[k]=v;},removeAtt
 vm.runInNewContext(['pixel-cat-roaming-art.js','pixel-cat-roaming-extras.js','pixel-cat-affordances.js','pixel-cat-behaviours.js','pixel-cat-roaming.js'].map(f=>fs.readFileSync(f,'utf8')).join('\n')+'\nglobalThis.api={Home:PixelCatHome,art:CAT_ART,walkSample,walkAppearance,groundedFront,idleSample,idleContact,frameContact};',b);
 const {Home,art,walkSample,walkAppearance,groundedFront,idleSample,idleContact,frameContact}=b.api,bed=b.window.pixelCatBedEntryV1,setup=b.window.pixelCatSetupV1,shallow=b.window.pixelCatShallowV1;
 const polish=b.window.pixelCatPolishV1;
+const climbProbe={getAttribute(){throw Error('Synthetic motion probes have no DOM element');}};
+assert.equal(polish.turnaround(climbProbe,art,0,0,null,1,art.walk[0]),null);
 for(const facing of [1,-1])for(const urgency of ['casual','relaxed','prompted','interested']){
  const surface={id:'floor',min:0,max:500,top:200},a=Object.assign(Object.create(Home.prototype),{
   config:{},facing,urgency,scale:3,x:210,y:200,support:surface,walkSteps:4,
