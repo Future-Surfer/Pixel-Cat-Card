@@ -25,6 +25,25 @@ for(const scale of [1,2,3,4,5,6]){
 }
 console.log('PASS: exact human props, continuous placement, once-per-frame shared motion, exclusive claims, independent mouse schedule, actual sneak/pounce/groom and landing contact at scales 1–6, cooldown/resume, reflow, numbering, hidden/pause and removal cleanup.');
 
+const invitation=box.window.pixelCatToyInvitationV1,invitationRoot={},calls=[];
+const toy={asset:art.dashboardProps[0],node:element(),scale:2,cooldownUntil:0};
+const inviteCat=(name,x,pose='sit',random=0)=>({
+ root:invitationRoot,isConnected:true,config:{},scale:2,x,y:0,idle:{pose},
+ decisionLayer:()=>({available:()=>true,scene:new Map()}),
+ ensureMood:()=>({random:()=>random}),
+ beginToyHunt(t,forced,selected){calls.push(name);assert.equal(forced,false);assert.equal(selected,toy);return true;}
+});
+const invitationScene={root:invitationRoot,enabled:true,time:0,props:[toy],members:new Set([
+ inviteCat('far',-300),inviteCat('sleeper',0,'sleep'),inviteCat('declines',0,'sit',.99),
+ inviteCat('second',-60),inviteCat('nearest',-20)
+])};
+const pointFor=()=>({x:24,y:0});
+assert.equal(invitation.invite(toy,invitationScene,pointFor,100),true);
+assert.deepEqual(calls,['nearest']);
+assert.equal(invitation.invite(toy,invitationScene,pointFor,101),false,'Repeated taps respect the scene clock');
+invitation.clip(toy,false,0);const normalClip=toy.node.style.clipPath;
+invitation.clip(toy,true,0);assert.notEqual(toy.node.style.clipPath,normalClip,'Hit area follows the visible facing');
+
 // Identical private seeds produce identical schedules despite reservations and
 // unrelated random choices. Both moving and paused intervals and turns occur.
 const free={moving:true,u:.5,low:.3,high:.7,direction:1,scale:2,mouseSeed:42},claimed={...free,claimedBy:'cat'};

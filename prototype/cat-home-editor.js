@@ -91,12 +91,16 @@ class PixelCatHomeEditor extends HTMLElement{
  disconnectedCallback(){this.clearPending();}
  render(){
   const expanded=new Map([...this.shadowRoot.querySelectorAll('details')].map(el=>[el.dataset.group,el.open]));
+  const focusedKey=this.shadowRoot.activeElement?.dataset.key;
   this.shadowRoot.innerHTML=`<style>
    :host{display:block;color:var(--primary-text-color,#202b33);font:14px var(--paper-font-body1_-_font-family,system-ui)}
    p{color:var(--secondary-text-color,#64717d);line-height:1.5;margin:0 0 16px}details{border:1px solid var(--divider-color,#dce3e8);border-radius:12px;margin:12px 0;overflow:hidden}summary{cursor:pointer;padding:16px;font-weight:650;background:var(--secondary-background-color,#f5f7f9)}.fields{padding:0 16px}.field{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,42%);align-items:center;gap:8px 16px;padding:13px 0;border-bottom:1px solid var(--divider-color,#e4e8ec)}.field:last-child{border:0}.field small{display:block;color:var(--secondary-text-color,#667482);font-size:12px;line-height:1.4;margin-top:5px}.field input{box-sizing:border-box;width:100%;padding:9px 10px;border:1px solid var(--divider-color,#bdcbd5);border-radius:7px;font:inherit;background:var(--card-background-color,#fff);color:inherit;min-width:0}.field input[type=checkbox]{width:20px;height:20px;justify-self:end;accent-color:var(--primary-color,#189b87);cursor:pointer}.note{font-size:12px;margin-top:14px}@media(max-width:360px){.field{gap:8px}.fields{padding:0 12px}}
    .purpose{display:grid;gap:8px;margin-bottom:16px}.purpose select{padding:12px;font:inherit;color:inherit;background:var(--card-background-color,#fff);border:1px solid var(--divider-color,#aaa);border-radius:8px}.swatches{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 16px}.swatches button{width:30px;height:30px;border:2px solid var(--divider-color,#aaa);border-radius:50%;cursor:pointer}.steps{font-weight:600;color:var(--primary-text-color)}
    .field select{box-sizing:border-box;width:100%;min-width:0;padding:9px 6px;font:inherit;color:inherit;background:var(--card-background-color,#fff);border:1px solid var(--divider-color,#bdcbd5);border-radius:7px}
    .field:has(select[data-key=settling_mode]){grid-template-columns:1fr}
+   :is(summary,input,select,button):focus-visible{outline:2px solid var(--primary-color,#006b78);outline-offset:2px}
+   summary:focus-visible{outline-offset:-3px}
+   @media(pointer:coarse){.swatches button{width:44px;height:44px}}
    </style><p class="steps">1 · Choose your card</p>`;
   const monitor=this.config.mode==='monitor',purpose=document.createElement('label');purpose.className='purpose';purpose.textContent='What would you like to add?';
   const select=document.createElement('select');select.setAttribute('aria-label','Card purpose');select.dataset.key='mode';
@@ -143,6 +147,7 @@ class PixelCatHomeEditor extends HTMLElement{
 
   }
   if(!monitor)window.pixelCatWorldV1?.editor(this,expanded);
+  if(focusedKey)[...this.shadowRoot.querySelectorAll('[data-key]')].find(control=>control.dataset.key===focusedKey)?.focus();
   const note=document.createElement('p');note.className='note';note.textContent=monitor?'Save to add a shared page monitor. Switching purpose retains your companion settings.':'3 · Save to welcome your cat. Extra settings are optional. Preview never spawns a roaming cat. One resident per home for now; existing YAML and advanced settings are retained. Hidden homes skip igloo emergence.';this.shadowRoot.append(note);this.rendered=true;
  }
 }

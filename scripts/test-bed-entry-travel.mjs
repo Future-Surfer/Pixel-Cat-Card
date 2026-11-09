@@ -2,6 +2,14 @@ import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:asser
 const node=()=>({style:{},attrs:{},setAttribute(k,v){this.attrs[k]=v;},removeAttribute(k){delete this.attrs[k];},append(){}}),b={window:{},HTMLElement:class{},customElements:{get:()=>true},performance:{now:()=>0},document:{createElementNS:()=>node()}};
 vm.runInNewContext(['pixel-cat-roaming-art.js','pixel-cat-roaming-extras.js','pixel-cat-affordances.js','pixel-cat-behaviours.js','pixel-cat-roaming.js'].map(f=>fs.readFileSync(f,'utf8')).join('\n')+'\nglobalThis.api={Home:PixelCatHome,art:CAT_ART,walkSample,walkAppearance,groundedFront,idleSample,idleContact,frameContact};',b);
 const {Home,art,walkSample,walkAppearance,groundedFront,idleSample,idleContact,frameContact}=b.api,bed=b.window.pixelCatBedEntryV1,setup=b.window.pixelCatSetupV1,shallow=b.window.pixelCatShallowV1;
+for(const catScale of [2,3,4])for(const bedScale of [2,3,4])for(const entering of [false,true]){
+ const fromY=500-(entering?0:3*bedScale),y=500-(entering?3*bedScale:0);
+ const motion={homeStep:true,fromY,y,cells:10,target:{bed:entering}};
+ const heights=Array.from({length:11},(_,step)=>setup.walkHeight({scale:catScale},motion,{step}));
+ assert.equal(heights[0],fromY);
+ assert.equal(heights.at(-1),y,'A guest lands at the host bed height even off its own pixel grid');
+ assert.ok(heights.every(height=>height>=Math.min(y,fromY)&&height<=Math.max(y,fromY)));
+}
 let maxCenter=0;for(const scale of [1,2,3,4,5,6])for(const style of ['igloo','simple'])for(const side of [-1,1])for(const coin of [.5,.05]){
  const a=Object.create(Home.prototype),floor={id:'home',home:true,left:100,right:100+120*scale,top:500,min:100,max:100+96*scale},svg=node();svg.firstElementChild=node();Object.assign(a,{config:{bed_style:style},scale,size:24*scale,ownerKey:'audit-'+scale+style+side,home:floor,support:floor,surfaces:[floor],bedEntryManaged:true,active:true,ensureMood:()=>({random:()=>coin}),walkSteps:0,facing:-side,x:100+(side>0?76:4)*scale,y:500,svg,setAttribute(){},route:[]});floor.bedOwner=a;setup.surfaces(a);for(const s of a.surfaces){s.min=s.left;s.max=s.right-24*scale;if(s.bed)s.min=s.max=(s.left+s.right-24*scale)/2;}
  // Only begin within the old centring radius, but visibly outside the doorway.

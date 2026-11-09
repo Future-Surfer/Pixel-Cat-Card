@@ -43,6 +43,10 @@ const catDebugSetup=(a,owners)=>{
  const root=a.shadowRoot,outer=root?.querySelector?.('details');if(outer?.tagName!=='DETAILS')return false;
  const section=(title,open=false)=>{const d=document.createElement('details'),s=document.createElement('summary');s.textContent=title;d.append(s);d.open=open;d.setAttribute('name','cat-menu');outer.append(d);return d;};
  const title=outer.querySelector('summary');title.textContent='Cat controls & diagnostics';
+ outer.addEventListener('keydown',event=>{
+  if(event.key!=='Escape'||event.defaultPrevented||!outer.open||event.target.matches?.('input, select, textarea'))return;
+  event.stopPropagation();outer.open=false;title.focus();
+ });
  const host=root.querySelector('.cat-debug-host')||document.createElement('div');host.hidden=a.config.show_controls===false;host.style.cssText='position:relative;height:26px;z-index:0';if(outer.parentElement!==host){outer.before(host);host.append(outer);}outer.style.cssText='position:absolute;left:0;right:0;top:0;margin:0;max-height:min(70vh,600px);overflow:auto;scrollbar-gutter:stable';outer.classList.add('cat-debug-panel');const card=root.querySelector('ha-card');if(card)card.style.overflow='visible';
  outer.addEventListener('toggle',e=>{if(e.target!==outer)return;host.style.zIndex=outer.open?'100':'0';if(outer.open)for(const [b,entry]of owners())if(b!==a&&entry.root===a.root){const other=b.shadowRoot?.querySelector('details');if(other)other.open=false;}});
  const labels=[...outer.querySelectorAll(':scope > label')],visit=outer.querySelector('.visit')?.parentElement,report=outer.querySelector('.surface-report')?.parentElement,mood=outer.querySelector('.mood-controls'),props=outer.querySelector('.dashboard-prop-controls'),diagnostics=outer.querySelector('.diagnostics'),preview=outer.querySelector('[aria-label="Preview refined action"]'),previewButton=preview?.nextElementSibling,canvas=outer.querySelector('.gallop-preview');
