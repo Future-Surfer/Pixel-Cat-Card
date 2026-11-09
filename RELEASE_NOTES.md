@@ -4,7 +4,7 @@ Opt-in release candidate for Home Assistant 2026.11 and later. Pixel Cat Card gi
 
 ## Before updating
 
-- Add the repository through the Marketplace link in the README and enable **Pre-release** on the repository page.
+- Add the repository through the Marketplace link in the README and [enable pre-releases](https://github.com/Future-Surfer/Pixel-Cat-Card/blob/main/docs/guides/PIXEL_CAT_INSTALL.md#marketplace).
 - If you installed manually, follow the [migration guide](https://github.com/Future-Surfer/Pixel-Cat-Card/blob/main/docs/guides/PIXEL_CAT_INSTALL.md) before installing the Marketplace copy. Keep your card YAML and cat IDs.
 
 ## Included

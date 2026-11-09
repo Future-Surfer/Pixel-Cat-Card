@@ -14,7 +14,7 @@ Updated 9 November 2026. [ROADMAP](../../ROADMAP.md#release-and-maintenance) own
 
 1. After protected-main checks pass, tag the tested `package.json` version and run **Prepare release**. Confirm the draft's bundle, manifest and checksum match the tagged build. Publish `v1.0.0-rc.2` as an opt-in prerelease. Keep the older RC draft and tag intact.
 2. On an isolated Home Assistant 2026.11+ instance, connect GitHub, add the custom repository as **Dashboard**, enable **Pre-release** and install. Record the version, served file checksum and exactly one registered module. Reload and check the card picker, save a companion, watch it move, and verify Pause/Resume and view return.
-3. Test an upgrade and versioned cache with two installable versions. Check removal and reinstall, then use the available-version picker to roll back. Capture installed bytes, registration and saved YAML at each step. Keep the live dashboard out of this test.
+3. Test an upgrade and versioned cache with two installable versions. Check removal and reinstall, then restore the isolated instance's pre-upgrade backup and verify rollback. Capture installed bytes, registration and saved YAML at each step. Keep the live dashboard out of this test. [Marketplace version and backup guidance](https://www.home-assistant.io/integrations/marketplace/#installing-another-version).
 4. Address failures through tested PRs and fresh versions. Publish the first stable release as a regular GitHub release after acceptance and green validation. Recheck the stable release asset and clean-install path. Preserve old assets and tags for rollback.
 
 ## Catalog submission

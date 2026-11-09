@@ -4,7 +4,9 @@ Pixel Cat Card targets Home Assistant 2026.11 and later.
 
 ## Marketplace
 
-Use the [Marketplace link](https://my.home-assistant.io/redirect/marketplace_repository/?owner=Future-Surfer&repository=Pixel-Cat-Card&category=plugin) or enter `Future-Surfer/Pixel-Cat-Card` under **Settings → Marketplace → Add from link**. Connect GitHub if prompted, and choose **Dashboard** if asked for a type. Enable **Pre-release** on the repository page to try a release candidate, then install it and refresh the dashboard.
+Use the [Marketplace link](https://my.home-assistant.io/redirect/marketplace_repository/?owner=Future-Surfer&repository=Pixel-Cat-Card&category=plugin) or enter `Future-Surfer/Pixel-Cat-Card` under **Settings → Marketplace → Add from link**. Connect GitHub if prompted, and choose **Dashboard** if asked for a type. Install it and refresh the dashboard.
+
+To see release candidates, open the repository's device page under **Settings → Devices & services → Marketplace**. Enable the **Pre-release** entity and turn it on, then return to Marketplace. [Home Assistant's Marketplace instructions](https://www.home-assistant.io/integrations/marketplace/#keeping-installations-up-to-date).
 
 For dashboards with storage-mode resources, Marketplace registers the JavaScript module automatically. In YAML resource mode, add `/local/community/pixel-cat-card/pixel-cat-card.js` as a module in the Lovelace resources configuration and version its URL when updating. If you already have a manually registered copy, back it up and remove its registration when switching to Marketplace so only one bundle loads.
 

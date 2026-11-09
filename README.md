@@ -14,7 +14,7 @@ Requires **Home Assistant 2026.11+**.
 
 [![Open Pixel Cat Card in Home Assistant Marketplace](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=Future-Surfer&repository=Pixel-Cat-Card&category=plugin)
 
-Add Pixel Cat Card as a custom repository, then install it from **Settings → Marketplace**. To try a release candidate, enable **Pre-release** on its Marketplace page. [Manual install and migration](docs/guides/PIXEL_CAT_INSTALL.md).
+Add Pixel Cat Card as a custom repository, then install it from **Settings → Marketplace**. [Release candidates, manual install and migration](docs/guides/PIXEL_CAT_INSTALL.md).
 
 ## Add a cat
 
