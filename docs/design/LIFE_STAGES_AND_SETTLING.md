@@ -53,7 +53,7 @@ These remain ideas pending measurement, rather than commitments for this batch:
 - Broader category/profile calibration remains parked. Longer settled holds are now available through the optional extended/custom choices above; the default remains 5–10 minutes.
 - PiDisplay acceptance: compare the same three cats/layout before and after, using actual CPU busy time and visible frame timing. The handover's TouchKio processor usage is a load-average measure; do not treat it as CPU busy percentage. Preserve the supplied handover/design briefs in the private notes folder.
 
-Related: [world/body scale design](WORLD_AND_RESIDENTS.md), [idea intake](IDEA_INTAKE_2026-10-19.md), [roadmap](../../ROADMAP.md).
+Related: [world/body scale design](WORLD_AND_RESIDENTS.md), [idea intake](IDEA_INTAKE_2026-10-19.md), [roadmap](../ROADMAP.md).
 
 ## Shared sequence policy contract
 

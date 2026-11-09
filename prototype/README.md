@@ -1,6 +1,6 @@
 # Dashboard roaming prototype
 
-> Planning authority: [../ROADMAP.md](../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
+> Planning authority: [../ROADMAP.md](../docs/ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
 
 
 This adapter registers `custom:pixel-cat-home`; the original `custom:pixel-pet-card` remains separate. It renders a small home in normal dashboard layout and the cat in a pointer-transparent overlay across neighbouring cards.
@@ -59,4 +59,4 @@ The 14 October development build was rendered in the real HA testing playground.
 
 Actual phone/Companion testing remains outstanding. Generic surface inference is approximate: decorative foreground traversal is not collision simulation, and unsupported layouts can require declared surfaces or an in-card fallback. There is no runtime image generator, care backend, scratching interaction or bed-entry animation.
 
-For deployment and targeted rollback, see [DEVELOPMENT.md](../DEVELOPMENT.md). Use normal versioned module files for a portable installation; development-instance inline resource IDs and personal dashboard snapshots are not required by a fresh checkout.
+For deployment and targeted rollback, see [DEVELOPMENT.md](../docs/DEVELOPMENT.md). Use normal versioned module files for a portable installation; development-instance inline resource IDs and personal dashboard snapshots are not required by a fresh checkout.

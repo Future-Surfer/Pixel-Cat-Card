@@ -35,7 +35,7 @@ npm test
 npm run verify:build
 ```
 
-Run the build before tests on a fresh checkout. Edit source and rebuild the package. The [development guide](../DEVELOPMENT.md) owns source mapping, detailed checks and deployment procedures. [Frame Studio](../frame-studio/README.md) is optional authoring software and is not installed with the card. Live stores and personal backups stay outside Git.
+Run the build before tests on a fresh checkout. Edit source and rebuild the package. The [development guide](DEVELOPMENT.md) owns source mapping, detailed checks and deployment procedures. [Frame Studio](../frame-studio/README.md) is optional authoring software and is not installed with the card. Live stores and personal backups stay outside Git.
 
 ## README animation
 
@@ -47,4 +47,4 @@ The 480 × 270 scene uses the relaxed walk pace and the open bed's release heigh
 
 Run `npm run demo` and open `http://127.0.0.1:8770/routine` to preview. Run `npm run media:gif` with Python 3 and Pillow to export the looping GIF. With FFmpeg on PATH or the Python `imageio-ffmpeg` package installed, `npm run media:video` also writes a silent 1080p H.264 MP4 to `.release/pixel-cat-routine.mp4`. Both exports use the same 50 fps samples. A [still image](images/pixel-cat-habitat-light.jpg) is available.
 
-[Contributing](../CONTRIBUTING.md) · [Security reporting](../SECURITY.md) · [Documentation index](README.md).
+[Contributing](CONTRIBUTING.md) · [Security reporting](SECURITY.md) · [Documentation index](README.md).

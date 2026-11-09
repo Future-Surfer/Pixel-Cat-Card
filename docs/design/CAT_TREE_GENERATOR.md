@@ -1,6 +1,6 @@
 # Cat-tree generator references
 
-User-supplied concept references, 24 October 2026. Neither image is an approved final design. Priority and delivery stages remain in [ROADMAP — PROP-09](../../ROADMAP.md); the references inform the lab foundation described below, not a final artwork specification.
+User-supplied concept references, 24 October 2026. Neither image is an approved final design. Priority and delivery stages remain in [ROADMAP — PROP-09](../ROADMAP.md); the references inform the lab foundation described below, not a final artwork specification.
 
 - Stacked tree concept (development reference retained privately): varied post lengths, offset platforms, a connecting shelf, enclosed house, upper resting bed and optional hanging toy.
 - Pixel tree concept (development reference retained privately): a simpler silhouette and limited warm palette, with recognisable rope posts, distinct platform edges and an inset house opening. Pixel treatment is a reference, not approved runtime artwork.

@@ -1,6 +1,6 @@
 # Cat gait research and animation direction
 
-> Research/reference, not an active task list. Remaining gait work is **MOTION-02/03** in [ROADMAP.md](../../ROADMAP.md#near-term). The phase-offset trot and refined 25 FPS travelling gallop are already integrated; the synced faster walk remains an authoring asset pending its own travel/contact validation. Earlier authoring recommendations below are retained as research history.
+> Research/reference, not an active task list. Remaining gait work is **MOTION-02/03** in [ROADMAP.md](../ROADMAP.md#near-term). The phase-offset trot and refined 25 FPS travelling gallop are already integrated; the synced faster walk remains an authoring asset pending its own travel/contact validation. Earlier authoring recommendations below are retained as research history.
 
 15 October 2026. Research and authoring notes, with current runtime checkpoints explicitly identified below.
 

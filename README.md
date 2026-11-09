@@ -30,6 +30,6 @@ bed_style: igloo
 
 Give each cat a different `cat_id`.
 
-[Configuration](docs/guides/ROAMING_CONFIGURATION.md) · [Technical details](docs/TECHNICAL_DETAILS.md) · [Report a bug](https://github.com/Future-Surfer/Pixel-Cat-Card/issues)
+[Configuration](docs/guides/ROAMING_CONFIGURATION.md) · [Technical details](docs/TECHNICAL_DETAILS.md) · [Project docs](docs/README.md) · [Report a bug](https://github.com/Future-Surfer/Pixel-Cat-Card/issues)
 
 [MIT license](LICENSE)

@@ -1,6 +1,6 @@
 # Pixel Cat detailed feature contracts
 
-Audited **18 October 2026** against current source, exact-asset integration records and guides. This is the grouped reference for **what exists and the rules it follows**, not a second task list. [ROADMAP](../ROADMAP.md) remains the only forward plan; project checkpoints (development reference retained privately) record validation and deployment evidence.
+Audited **18 October 2026** against current source, exact-asset integration records and guides. This is the grouped reference for **what exists and the rules it follows**, not a second task list. [ROADMAP](ROADMAP.md) remains the only forward plan; project checkpoints (development reference retained privately) record validation and deployment evidence.
 
 Scope: the current roaming Pixel Cat card, shared monitor, labs and Frame Studio. The separately usable original in-card world has its own [configuration and feature reference](guides/PIXEL_PET_CARD.md).
 
@@ -339,7 +339,7 @@ Sources: [Studio guide](../frame-studio/README.md), [current editor modules](../
 | Agent access | Read-only saved asset/change tools and constrained proposal/edit tools support exact handoffs. | AI proposals need human review; model generation is not required for playback. |
 | Shared lab menu | Studio and local fixtures have common workshop navigation. | Local servers remain required; portable standalone HTML is not yet built. |
 
-Sources: [Studio guide](../frame-studio/README.md), [palette proposals](../frame-studio/dist/prop-colour-themes.js), [review snapshots](../frame-studio/user-sequences/review-2026-10-17/), [development workflow](../DEVELOPMENT.md).
+Sources: [Studio guide](../frame-studio/README.md), [palette proposals](../frame-studio/dist/prop-colour-themes.js), [review snapshots](../frame-studio/user-sequences/review-2026-10-17/), [development workflow](DEVELOPMENT.md).
 
 ## 17. Planned concepts that must not be mistaken for live features
 
@@ -363,7 +363,7 @@ This is a boundary index, not a duplicate backlog. Follow the roadmap IDs for sc
 | Authoring growth | Subcategories/intent facets, richer social/prop map regions and portable HTML remain extensions. | STUDIO-04/05/08 |
 | General hearing / persistent relationships / AI generation | Local impact sensing, short toy interest and review tools exist; these broader systems do not. | SENSE-01, COMP-03, AI-01/02 |
 
-Maintain this inventory when behaviour ships or its contract changes; record evidence in checkpoints and keep future work in [ROADMAP](../ROADMAP.md). When a dated guide conflicts with current source and a later integration checkpoint, reconcile the guide rather than treating an old proposal as the supported API.
+Maintain this inventory when behaviour ships or its contract changes; record evidence in checkpoints and keep future work in [ROADMAP](ROADMAP.md). When a dated guide conflicts with current source and a later integration checkpoint, reconcile the guide rather than treating an old proposal as the supported API.
 
 ## Reproducible release and observation tools
 

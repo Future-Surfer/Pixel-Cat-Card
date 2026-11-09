@@ -1,6 +1,6 @@
 # Default-card surfaces and ballistic jumps
 
-> Planning authority: [../ROADMAP.md](../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
+> Planning authority: [../ROADMAP.md](../docs/ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
 
 
 Testing → Cat playground now includes native Entities (with divider rows), Markdown (with horizontal rules), Glance, Gauge, Sensor, History Graph, Tile and Button cards, using the existing temperature/CO₂ entities. Structural cards are near Home so they can be tested in the first viewport. The previous custom chart and shelf scenarios remain in later sections. Only the Cat playground view was changed in this pass.

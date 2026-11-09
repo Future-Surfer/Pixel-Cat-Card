@@ -1,6 +1,6 @@
 # Feature index
 
-Implemented baseline; updated 23 October 2026. **Read by topic.** [FEATURE_DETAILS](FEATURE_DETAILS.md) holds full rules/config/source references; [ROADMAP](../ROADMAP.md) owns future work. [CURRENT_STATE](CURRENT_STATE.md) gives the deployment handoff. Native cells scale with the actor/prop; CSS pixels differ.
+Implemented baseline; updated 23 October 2026. **Read by topic.** [FEATURE_DETAILS](FEATURE_DETAILS.md) holds full rules/config/source references; [ROADMAP](ROADMAP.md) owns future work. [CURRENT_STATE](CURRENT_STATE.md) gives the deployment handoff. Native cells scale with the actor/prop; CSS pixels differ.
 
 ## 1. Companion principles and decision rules
 
@@ -122,4 +122,4 @@ Implemented baseline; updated 23 October 2026. **Read by topic.** [FEATURE_DETAI
 
 - Full resident rosters/persistence, world-scale authority, exertion/life stages, general group participation, broader vertical surfaces and runtime prop palette themes remain planned.
 - Purpose-built entrance/vertical/toy-shake art and additional effects require review. No runtime AI generation.
-- [Roadmap](../ROADMAP.md) owns priority/dependencies; [boundary detail](FEATURE_DETAILS.md#17-planned-concepts-that-must-not-be-mistaken-for-live-features).
+- [Roadmap](ROADMAP.md) owns priority/dependencies; [boundary detail](FEATURE_DETAILS.md#17-planned-concepts-that-must-not-be-mistaken-for-live-features).
