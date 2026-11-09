@@ -16,7 +16,10 @@ const walk=Array.from({length:cells+1},(_,i)=>{
  return {...pose(walkAppearance(art,motion,sample).rows),offset:sample.x};
 });
 const turnaround=JSON.stringify({walk,stand:pose(art.stand),bridge:art.bridges.walkToSit.map(pose),sit:pose(art.idleSequences.sit.frames[0])});
-const shadow=JSON.stringify(Object.fromEntries(['sit','walk','scratch','clean','yawn','postScratch'].map(name=>[name,name==='walk'?{frames:art.walk,durations:art.walk.map(()=>160)}:art.idleSequences[name]])));
+const shadow=JSON.stringify({
+ clips:Object.fromEntries(['sit','walk','scratch','clean','yawn','postScratch'].map(name=>[name,name==='walk'?{frames:art.walk,durations:art.walk.map(()=>160)}:art.idleSequences[name]])),
+ props:[...art.dashboardProps,art.homeProps.bowl]
+});
 const data=new Map([['/readme-playback.json',playback],['/turnaround-art.json',turnaround],['/shadow-art.json',shadow]]);
 http.createServer((req,res)=>{
  if(!loopbackOrigin(req.headers.host,port)){res.writeHead(403);res.end('Use the loopback demonstration hostname.');return;}
