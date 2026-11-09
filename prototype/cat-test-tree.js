@@ -1,16 +1,22 @@
 /* Fixed test furniture. Geometry is in native furniture cells; the pose planner
    still checks each landing and grip in the individual actor's scale. */
-const testTree={width:48,height:36,platform:{left:1,right:47,top:5},rope:{left:22,right:28,top:9,bottom:33},pivot:{x:36,y:9},length:11};
-const treeInk=[
- [1,33,46,2,'#ab7135'],[3,35,42,1,'#754726'],
- [22,9,6,24,'#ad9969'],[23,9,4,24,'#d7c490'],
- [1,5,46,1,'#c58d4b'],[0,6,48,3,'#ab7135'],[1,9,46,1,'#754726']
-];
+const testTree={
+ width:62,height:70,
+ platforms:[
+  {id:'home:test-tree',label:'Cat tree · lower platform',left:20,right:61,top:39},
+  {id:'home:test-tree:upper',label:'Cat tree · upper perch',left:1,right:44,top:5}
+ ],
+ ropes:[
+  {left:30,right:36,top:43,bottom:67},
+  {left:30,right:36,top:9,bottom:39}
+ ],
+ pivot:{x:52,y:43},length:11
+};
 window.pixelCatTreeV1={
  mount(a){
   const dock=a.shadowRoot?.querySelector('.dock'),s=a.worldScale||a.scale;
   if(!dock)return;
-  const fits=a.config.test_cat_tree===true&&a.config.show_home!==false&&(a.config.show_scratching_post??a.config.scratching_posts??true)!==false&&dock.clientWidth>=100*s;
+  const fits=a.config.test_cat_tree===true&&a.config.show_home!==false&&(a.config.show_scratching_post??a.config.scratching_posts??true)!==false&&dock.clientWidth>=(52+testTree.width)*s;
   if(!fits){if(a.catTree){a.catTree.node.remove();delete a.catTree;}if(dock.style?.getPropertyValue('--test-tree-height'))dock.style.removeProperty('--test-tree-height');return;}
   if(a.catTree?.node.parentNode===dock&&a.catTree.scale===s)return;
   a.catTree?.node.remove();
@@ -20,11 +26,21 @@ window.pixelCatTreeV1={
   canvas.width=testTree.width;canvas.height=testTree.height;
   canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated';
   const c=canvas.getContext('2d');
-  for(const [x,y,w,h,colour] of treeInk){c.fillStyle=colour;c.fillRect(x,y,w,h);}
-  c.fillStyle='#e5d6ab';for(let y=10;y<33;y+=3)c.fillRect(23,y,4,1);
+  const paint=(x,y,w,h,colour)=>{c.fillStyle=colour;c.fillRect(x,y,w,h);};
+  paint(9,67,52,2,'#ab7135');paint(11,69,48,1,'#754726');
+  for(const r of testTree.ropes){
+   paint(r.left,r.top,r.right-r.left,r.bottom-r.top,'#ad9969');
+   paint(r.left+1,r.top,r.right-r.left-2,r.bottom-r.top,'#d7c490');
+   for(let y=r.top+1;y<r.bottom;y+=3)paint(r.left+1,y,r.right-r.left-2,1,'#e5d6ab');
+  }
+  for(const p of testTree.platforms){
+   paint(p.left,p.top,p.right-p.left,1,'#c58d4b');
+   paint(p.left-1,p.top+1,p.right-p.left+2,3,'#ab7135');
+   paint(p.left,p.top+4,p.right-p.left,1,'#754726');
+  }
   toy.width=7;toy.height=15;toy.style.cssText='position:absolute;image-rendering:pixelated;transform-origin:50% 0;left:'+(testTree.pivot.x-3.5)*s+'px;top:'+testTree.pivot.y*s+'px;width:'+7*s+'px;height:'+15*s+'px';
   const b=toy.getContext('2d');b.fillStyle='#754726';b.fillRect(3,0,1,10);b.fillStyle='#ab7135';b.fillRect(1,10,5,4);b.fillStyle='#c58d4b';b.fillRect(2,9,3,4);
-  node.append(canvas,toy);dock.append(node);dock.style.setProperty('--test-tree-height',60*s+'px');
+  node.append(canvas,toy);dock.append(node);dock.style.setProperty('--test-tree-height',(testTree.height+24)*s+'px');
   a.catTree={node,canvas,toy,scale:s,pass:new WeakMap(),clock:0,impulses:[]};
  },
  geometry(a){
@@ -33,17 +49,19 @@ window.pixelCatTreeV1={
  },
  surfaces(a){
   const g=this.geometry(a);if(!g)return;
-  const {tree,s,x,y}=g,p=testTree.platform,r=a.home.rectSnapshot;
-  a.surfaces.push({id:'home:test-tree',el:tree.node,rectNode:a.home.rectNode,rectSnapshot:r,left:x+p.left*s,right:x+p.right*s,top:y+p.top*s,label:'Cat tree · platform',source:'authored tree',tree:true});
+  const {tree,s,x,y}=g,r=a.home.rectSnapshot;
+  for(const [level,p] of testTree.platforms.entries()){
+   a.surfaces.push({id:p.id,el:tree.node,rectNode:a.home.rectNode,rectSnapshot:r,left:x+p.left*s,right:x+p.right*s,top:y+p.top*s,label:p.label,source:'authored tree',tree:level+1});
+  }
  },
- face(a){
-  const g=this.geometry(a);if(!g)return null;
-  const {s,x,y}=g,r=testTree.rope,centre=x+(r.left+r.right)*s/2;
+ face(a,level=1){
+  const g=this.geometry(a),r=testTree.ropes[level-1];if(!g||!r)return null;
+  const {s,x,y}=g,centre=x+(r.left+r.right)*s/2;
   const rect={left:x+r.left*s,right:x+r.right*s,top:y+r.top*s,bottom:y+r.bottom*s};
-  return {id:'home:test-tree:rope',rect,grips:{left:centre,right:centre,top:rect.top+2*s,bottom:rect.bottom-2*s},generation:0};
+  return {id:'home:test-tree:rope:'+level,rect,grips:{left:centre,right:centre,top:rect.top+2*s,bottom:rect.bottom-2*s},generation:0};
  },
  preferred(a,target,origin){
-  if(!target?.tree||!origin?.home||!a.catTree||a.ensureMood().random()>=.7)return null;
+  if(!target?.tree||!a.catTree||a.ensureMood().random()>=.7)return null;
   return window.pixelCatCardClimbV1?.treeRoute(a,target,origin);
  },
  impact(tree,strength=1,direction=1,shake=true){

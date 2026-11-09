@@ -29533,8 +29533,10 @@ window.pixelCatCardClimbV1={
   if(g.cache.size>=64)g.cache.delete(g.cache.keys().next().value);g.cache.set(key,path);return path;
  },
  treeRoute(a,target,origin){
-  if(!origin?.home||origin!==a.support||a.config.climbing===false||a.carriedToy||target.narrow)return null;
-  const face=window.pixelCatTreeV1?.face(a);
+  if(!origin||(!origin.home&&!origin.tree)||origin.id!==a.support?.id||a.config.climbing===false||a.carriedToy||target.narrow)return null;
+  const fromLevel=origin.tree||0,toLevel=target.tree;
+  if(Math.abs(toLevel-fromLevel)!==1)return null;
+  const face=window.pixelCatTreeV1?.face(a,Math.max(fromLevel,toLevel));
   if(!face)return null;
   const model=window.pixelCatClimbModelV1,frame=window.pixelCatClimbAssetsV1.centred.front.frames[0];
   const probe=model.runtimeProbe(a.constructor,cardClimbArt(),{...a.config,grip_max_rise:30,climbWorld:a.worldRect},a.scale);
@@ -29588,9 +29590,9 @@ window.pixelCatCardClimbV1={
   a.climb={stage:'approach',virtual:true,prop,face:{surface:a.support,below,direction:1},base:a.support,origin:a.x,goalSurface:target,remaining,started:t,last:t,age:0,decisions:0,serial:0};
   if(!C.setup(a,cardClimbArt())){C.cancel(a,'native entry unavailable',false);a.route=[];a.deadline=t+1000;return true;}
   const plan=this.compile(a,choice);if(!plan){C.cancel(a,'native grip path unavailable',false);a.route=[];a.deadline=t+1000;return true;}
-  a.climb.plan=plan;a.climb.elapsed=0;a.climb.nativeTransfer={faceId:choice.face.id,rect:{...choice.face.rect},node:next.tree?a.catTree?.node:a.cardGeometry.byOwner.get(choice.face.panelId),tree:!!next.tree,kind:choice.result.route.kind,releaseAt:plan.releaseAt};a.route=[];a.setAttribute('data-native-transfer',choice.result.route.kind);if(next.manualWallJump)a.setAttribute('data-wall-jump-command','wall-jump');return true;
+  a.climb.plan=plan;a.climb.elapsed=0;a.climb.nativeTransfer={faceId:choice.face.id,rect:{...choice.face.rect},node:next.tree?a.catTree?.node:a.cardGeometry.byOwner.get(choice.face.panelId),tree:next.tree?Math.max(a.support.tree||0,target.tree):0,kind:choice.result.route.kind,releaseAt:plan.releaseAt};a.route=[];a.setAttribute('data-native-transfer',choice.result.route.kind);if(next.manualWallJump)a.setAttribute('data-wall-jump-command','wall-jump');return true;
  },
- audit(a){const e=a.climb,n=e.nativeTransfer;if(!n)return true;if(n.node?.isConnected===false)return false;const base=a.surfaces.find(s=>s.id===e.base.id),target=a.surfaces.find(s=>s.id===e.goalSurface.id),face=n.tree?window.pixelCatTreeV1?.face(a):this.reconcile(a)?.faces.find(f=>f.id===n.faceId);if(!base||!target||!face)return false;const dx=base.left-e.geometry[0],dy=base.top-e.geometry[1];if(['left','right','top','bottom'].some(k=>Math.abs(face.rect[k]-n.rect[k]-(k==='left'||k==='right'?dx:dy))>.75))return false;
+ audit(a){const e=a.climb,n=e.nativeTransfer;if(!n)return true;if(n.node?.isConnected===false)return false;const base=a.surfaces.find(s=>s.id===e.base.id),target=a.surfaces.find(s=>s.id===e.goalSurface.id),face=n.tree?window.pixelCatTreeV1?.face(a,n.tree):this.reconcile(a)?.faces.find(f=>f.id===n.faceId);if(!base||!target||!face)return false;const dx=base.left-e.geometry[0],dy=base.top-e.geometry[1];if(['left','right','top','bottom'].some(k=>Math.abs(face.rect[k]-n.rect[k]-(k==='left'||k==='right'?dx:dy))>.75))return false;
   if(!n.releaseChecked&&e.elapsed+50>=n.releaseAt){const flight=e.plan.segments.at(-1).jump,x=flight.landingX+dx;if(x<target.min||x>target.max||a.social?.clear(target,x)===false)return false;n.releaseChecked=true;}return true;
  },
  debug(a,add){
@@ -29605,17 +29607,23 @@ window.pixelCatCardClimbV1={
 
 /* Fixed test furniture. Geometry is in native furniture cells; the pose planner
    still checks each landing and grip in the individual actor's scale. */
-const testTree={width:48,height:36,platform:{left:1,right:47,top:5},rope:{left:22,right:28,top:9,bottom:33},pivot:{x:36,y:9},length:11};
-const treeInk=[
- [1,33,46,2,'#ab7135'],[3,35,42,1,'#754726'],
- [22,9,6,24,'#ad9969'],[23,9,4,24,'#d7c490'],
- [1,5,46,1,'#c58d4b'],[0,6,48,3,'#ab7135'],[1,9,46,1,'#754726']
-];
+const testTree={
+ width:62,height:70,
+ platforms:[
+  {id:'home:test-tree',label:'Cat tree · lower platform',left:20,right:61,top:39},
+  {id:'home:test-tree:upper',label:'Cat tree · upper perch',left:1,right:44,top:5}
+ ],
+ ropes:[
+  {left:30,right:36,top:43,bottom:67},
+  {left:30,right:36,top:9,bottom:39}
+ ],
+ pivot:{x:52,y:43},length:11
+};
 window.pixelCatTreeV1={
  mount(a){
   const dock=a.shadowRoot?.querySelector('.dock'),s=a.worldScale||a.scale;
   if(!dock)return;
-  const fits=a.config.test_cat_tree===true&&a.config.show_home!==false&&(a.config.show_scratching_post??a.config.scratching_posts??true)!==false&&dock.clientWidth>=100*s;
+  const fits=a.config.test_cat_tree===true&&a.config.show_home!==false&&(a.config.show_scratching_post??a.config.scratching_posts??true)!==false&&dock.clientWidth>=(52+testTree.width)*s;
   if(!fits){if(a.catTree){a.catTree.node.remove();delete a.catTree;}if(dock.style?.getPropertyValue('--test-tree-height'))dock.style.removeProperty('--test-tree-height');return;}
   if(a.catTree?.node.parentNode===dock&&a.catTree.scale===s)return;
   a.catTree?.node.remove();
@@ -29625,11 +29633,21 @@ window.pixelCatTreeV1={
   canvas.width=testTree.width;canvas.height=testTree.height;
   canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated';
   const c=canvas.getContext('2d');
-  for(const [x,y,w,h,colour] of treeInk){c.fillStyle=colour;c.fillRect(x,y,w,h);}
-  c.fillStyle='#e5d6ab';for(let y=10;y<33;y+=3)c.fillRect(23,y,4,1);
+  const paint=(x,y,w,h,colour)=>{c.fillStyle=colour;c.fillRect(x,y,w,h);};
+  paint(9,67,52,2,'#ab7135');paint(11,69,48,1,'#754726');
+  for(const r of testTree.ropes){
+   paint(r.left,r.top,r.right-r.left,r.bottom-r.top,'#ad9969');
+   paint(r.left+1,r.top,r.right-r.left-2,r.bottom-r.top,'#d7c490');
+   for(let y=r.top+1;y<r.bottom;y+=3)paint(r.left+1,y,r.right-r.left-2,1,'#e5d6ab');
+  }
+  for(const p of testTree.platforms){
+   paint(p.left,p.top,p.right-p.left,1,'#c58d4b');
+   paint(p.left-1,p.top+1,p.right-p.left+2,3,'#ab7135');
+   paint(p.left,p.top+4,p.right-p.left,1,'#754726');
+  }
   toy.width=7;toy.height=15;toy.style.cssText='position:absolute;image-rendering:pixelated;transform-origin:50% 0;left:'+(testTree.pivot.x-3.5)*s+'px;top:'+testTree.pivot.y*s+'px;width:'+7*s+'px;height:'+15*s+'px';
   const b=toy.getContext('2d');b.fillStyle='#754726';b.fillRect(3,0,1,10);b.fillStyle='#ab7135';b.fillRect(1,10,5,4);b.fillStyle='#c58d4b';b.fillRect(2,9,3,4);
-  node.append(canvas,toy);dock.append(node);dock.style.setProperty('--test-tree-height',60*s+'px');
+  node.append(canvas,toy);dock.append(node);dock.style.setProperty('--test-tree-height',(testTree.height+24)*s+'px');
   a.catTree={node,canvas,toy,scale:s,pass:new WeakMap(),clock:0,impulses:[]};
  },
  geometry(a){
@@ -29638,17 +29656,19 @@ window.pixelCatTreeV1={
  },
  surfaces(a){
   const g=this.geometry(a);if(!g)return;
-  const {tree,s,x,y}=g,p=testTree.platform,r=a.home.rectSnapshot;
-  a.surfaces.push({id:'home:test-tree',el:tree.node,rectNode:a.home.rectNode,rectSnapshot:r,left:x+p.left*s,right:x+p.right*s,top:y+p.top*s,label:'Cat tree · platform',source:'authored tree',tree:true});
+  const {tree,s,x,y}=g,r=a.home.rectSnapshot;
+  for(const [level,p] of testTree.platforms.entries()){
+   a.surfaces.push({id:p.id,el:tree.node,rectNode:a.home.rectNode,rectSnapshot:r,left:x+p.left*s,right:x+p.right*s,top:y+p.top*s,label:p.label,source:'authored tree',tree:level+1});
+  }
  },
- face(a){
-  const g=this.geometry(a);if(!g)return null;
-  const {s,x,y}=g,r=testTree.rope,centre=x+(r.left+r.right)*s/2;
+ face(a,level=1){
+  const g=this.geometry(a),r=testTree.ropes[level-1];if(!g||!r)return null;
+  const {s,x,y}=g,centre=x+(r.left+r.right)*s/2;
   const rect={left:x+r.left*s,right:x+r.right*s,top:y+r.top*s,bottom:y+r.bottom*s};
-  return {id:'home:test-tree:rope',rect,grips:{left:centre,right:centre,top:rect.top+2*s,bottom:rect.bottom-2*s},generation:0};
+  return {id:'home:test-tree:rope:'+level,rect,grips:{left:centre,right:centre,top:rect.top+2*s,bottom:rect.bottom-2*s},generation:0};
  },
  preferred(a,target,origin){
-  if(!target?.tree||!origin?.home||!a.catTree||a.ensureMood().random()>=.7)return null;
+  if(!target?.tree||!a.catTree||a.ensureMood().random()>=.7)return null;
   return window.pixelCatCardClimbV1?.treeRoute(a,target,origin);
  },
  impact(tree,strength=1,direction=1,shake=true){
@@ -29917,7 +29937,7 @@ window.pixelCatClimbV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0-rc.3",sourceHash:"3747c29d7a4294ffe14e4efc56f60888cdfcc1617776faa5b46671c7f4a6f7a9"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0-rc.3",sourceHash:"27e8c937f237affc6b5dd7a541e1057509e38e3feb927d86d7ba3238901e46df"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0-rc.3");
 })();

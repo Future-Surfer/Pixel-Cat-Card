@@ -48,9 +48,9 @@ Sources: `prototype/tree-components.mjs`, `tree-model.mjs`, `tree-workspace-clie
 
 ## Fixed tree pilot
 
-Open **Cat tree testing** from Workshop > Simulate to run the bundled card with a single platform, rope and hanging ball. The fixture has age selection and repeatable climb, leap, jump-down and pass controls. The card editor exposes **Test cat tree** under **Make them at home** (YAML: `test_cat_tree: true`). It requires the home and scratching furniture to be enabled and uses the post on narrow cards.
+Open **Cat tree testing** from Workshop > Simulate to run the bundled card with two offset platforms, rope grips and a hanging ball. The fixture has age and level selection, repeatable climb, leap, jump-down and pass controls, and a free-roam toggle. The card editor exposes **Test cat tree** under **Make them at home** (YAML: `test_cat_tree: true`). It requires the home and scratching furniture to be enabled and uses the post on narrow cards.
 
-The pilot registers one authored platform in the resident's home and uses the existing checked climb planner for the rope. The fixture isolates movement from autonomy so the same action can be replayed. Generation remains in the construction workshop.
+The pilot registers two authored platforms in the resident's home and uses the existing checked climb planner for the rope. The fixture isolates movement from autonomy so the same action can be replayed. Generation remains in the construction workshop.
 
 ## Card integration proposal
 

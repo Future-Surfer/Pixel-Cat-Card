@@ -38,8 +38,10 @@ window.pixelCatCardClimbV1={
   if(g.cache.size>=64)g.cache.delete(g.cache.keys().next().value);g.cache.set(key,path);return path;
  },
  treeRoute(a,target,origin){
-  if(!origin?.home||origin!==a.support||a.config.climbing===false||a.carriedToy||target.narrow)return null;
-  const face=window.pixelCatTreeV1?.face(a);
+  if(!origin||(!origin.home&&!origin.tree)||origin.id!==a.support?.id||a.config.climbing===false||a.carriedToy||target.narrow)return null;
+  const fromLevel=origin.tree||0,toLevel=target.tree;
+  if(Math.abs(toLevel-fromLevel)!==1)return null;
+  const face=window.pixelCatTreeV1?.face(a,Math.max(fromLevel,toLevel));
   if(!face)return null;
   const model=window.pixelCatClimbModelV1,frame=window.pixelCatClimbAssetsV1.centred.front.frames[0];
   const probe=model.runtimeProbe(a.constructor,cardClimbArt(),{...a.config,grip_max_rise:30,climbWorld:a.worldRect},a.scale);
@@ -93,9 +95,9 @@ window.pixelCatCardClimbV1={
   a.climb={stage:'approach',virtual:true,prop,face:{surface:a.support,below,direction:1},base:a.support,origin:a.x,goalSurface:target,remaining,started:t,last:t,age:0,decisions:0,serial:0};
   if(!C.setup(a,cardClimbArt())){C.cancel(a,'native entry unavailable',false);a.route=[];a.deadline=t+1000;return true;}
   const plan=this.compile(a,choice);if(!plan){C.cancel(a,'native grip path unavailable',false);a.route=[];a.deadline=t+1000;return true;}
-  a.climb.plan=plan;a.climb.elapsed=0;a.climb.nativeTransfer={faceId:choice.face.id,rect:{...choice.face.rect},node:next.tree?a.catTree?.node:a.cardGeometry.byOwner.get(choice.face.panelId),tree:!!next.tree,kind:choice.result.route.kind,releaseAt:plan.releaseAt};a.route=[];a.setAttribute('data-native-transfer',choice.result.route.kind);if(next.manualWallJump)a.setAttribute('data-wall-jump-command','wall-jump');return true;
+  a.climb.plan=plan;a.climb.elapsed=0;a.climb.nativeTransfer={faceId:choice.face.id,rect:{...choice.face.rect},node:next.tree?a.catTree?.node:a.cardGeometry.byOwner.get(choice.face.panelId),tree:next.tree?Math.max(a.support.tree||0,target.tree):0,kind:choice.result.route.kind,releaseAt:plan.releaseAt};a.route=[];a.setAttribute('data-native-transfer',choice.result.route.kind);if(next.manualWallJump)a.setAttribute('data-wall-jump-command','wall-jump');return true;
  },
- audit(a){const e=a.climb,n=e.nativeTransfer;if(!n)return true;if(n.node?.isConnected===false)return false;const base=a.surfaces.find(s=>s.id===e.base.id),target=a.surfaces.find(s=>s.id===e.goalSurface.id),face=n.tree?window.pixelCatTreeV1?.face(a):this.reconcile(a)?.faces.find(f=>f.id===n.faceId);if(!base||!target||!face)return false;const dx=base.left-e.geometry[0],dy=base.top-e.geometry[1];if(['left','right','top','bottom'].some(k=>Math.abs(face.rect[k]-n.rect[k]-(k==='left'||k==='right'?dx:dy))>.75))return false;
+ audit(a){const e=a.climb,n=e.nativeTransfer;if(!n)return true;if(n.node?.isConnected===false)return false;const base=a.surfaces.find(s=>s.id===e.base.id),target=a.surfaces.find(s=>s.id===e.goalSurface.id),face=n.tree?window.pixelCatTreeV1?.face(a,n.tree):this.reconcile(a)?.faces.find(f=>f.id===n.faceId);if(!base||!target||!face)return false;const dx=base.left-e.geometry[0],dy=base.top-e.geometry[1];if(['left','right','top','bottom'].some(k=>Math.abs(face.rect[k]-n.rect[k]-(k==='left'||k==='right'?dx:dy))>.75))return false;
   if(!n.releaseChecked&&e.elapsed+50>=n.releaseAt){const flight=e.plan.segments.at(-1).jump,x=flight.landingX+dx;if(x<target.min||x>target.max||a.social?.clear(target,x)===false)return false;n.releaseChecked=true;}return true;
  },
  debug(a,add){
