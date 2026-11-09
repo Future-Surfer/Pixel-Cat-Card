@@ -26415,8 +26415,50 @@ window.pixelCatTrackRuntimeV1={
 
 window.pixelCatPolishV1={
  scratchCycleMs:75,
- colours:['#263b49','#bb783d','#7761a6','#447c77','#b76473','#527ca6','#797443','#99563c','#637985','#824c7e','#45856e','#b57840'],
- colour(random=Math.random){return this.colours[Math.min(this.colours.length-1,Math.floor(random()*this.colours.length))];},
+ colours:['#263b49','#bb783d','#7761a6','#447c77','#b76473','#527ca6','#797443','#99563c','#637985','#824c7e','#45856e','#b57840','#33241e','#d7a773','#e8d8bf'],
+ luminance(rgb){
+  return rgb.reduce((sum,byte,i)=>{
+   const c=byte/255,linear=c<=.04045?c/12.92:((c+.055)/1.055)**2.4;
+   return sum+linear*[.2126,.7152,.0722][i];
+  },0);
+ },
+ furBackgrounds(){
+  const doc=typeof document==='undefined'?null:document,app=doc?.querySelector?.('home-assistant');
+  const style=doc?.documentElement&&typeof getComputedStyle==='function'?getComputedStyle(app||doc.body||doc.documentElement):null;
+  const canvas=style&&doc.createElement('canvas');
+  if(canvas){
+   canvas.width=canvas.height=1;
+   const ctx=canvas.getContext?.('2d');
+   if(ctx){
+    const backgrounds=[];
+    for(const key of ['--primary-background-color','--ha-card-background','--card-background-color']){
+     ctx.clearRect(0,0,1,1);
+     ctx.fillStyle='transparent';
+     ctx.fillStyle=style.getPropertyValue(key).trim();
+     ctx.fillRect(0,0,1,1);
+     const [r,g,b,a]=ctx.getImageData(0,0,1,1).data;
+     if(a===255){
+      backgrounds.push([r,g,b]);
+      if(key==='--ha-card-background')break;
+     }
+    }
+    if(backgrounds.length)return backgrounds;
+   }
+  }
+  const dark=app?.hass?.themes?.darkMode??(typeof matchMedia==='function'&&matchMedia('(prefers-color-scheme: dark)').matches);
+  return [dark?[28,28,28]:[255,255,255]];
+ },
+ colour(random=Math.random,backgrounds=this.furBackgrounds()){
+  const lights=backgrounds.map(rgb=>this.luminance(rgb));
+  const scored=this.colours.map(colour=>{
+   const light=this.luminance(colour.slice(1).match(/../g).map(byte=>parseInt(byte,16)));
+   const contrast=Math.min(...lights.map(bg=>(Math.max(bg,light)+.05)/(Math.min(bg,light)+.05)));
+   return {colour,contrast};
+  });
+  const pool=scored.filter(({contrast})=>contrast>=3);
+  if(!pool.length)return scored.reduce((best,entry)=>entry.contrast>best.contrast?entry:best).colour;
+  return pool[Math.min(pool.length-1,Math.floor(random()*pool.length))].colour;
+ },
  walkTimings(cells,config,urgency,speed,headDivisor){
   const name=urgency==='prompted'?'prompt':urgency==='interested'?'poi':'amble',override=config.motion_profiles?.[name]||{},prompt=urgency==='prompted';
   const numeric=(key,fallback)=>Number.isFinite(Number(override[key]))?Number(override[key]):fallback;
@@ -29597,7 +29639,7 @@ window.pixelCatClimbV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0-rc.3",sourceHash:"b7962dc78a7de9b4841070b105a78768091103754a7a27d76a039abccfa200cd"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0-rc.3",sourceHash:"12429a7546d6994ffa16602c076b6c0fc031416d7e77049cd9c76d042ca3c6fc"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0-rc.3");
 })();
