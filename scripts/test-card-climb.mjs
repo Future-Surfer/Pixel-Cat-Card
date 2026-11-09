@@ -33,3 +33,15 @@ console.log('PASS: manual wall jumps use nearest checked faces, support same-flo
  owner.active=true;owner.config.show_home=true;owner.config.shared_home_surfaces=true;a.config.shared_home_surfaces=true;a.verticalCardRects=[{el,r}];a.surfaces=[...supports,{id:'roof',el,left:90,right:650,min:90,max:626,top:80}];g=N.reconcile(a);assert.equal(g.panels.length,1);assert.ok(g.faces.length);assert.ok(g.tops.length);assert.equal(g.rejected.length,0);const before=g.panels[0].rect.top;N.shift(a,0,-120);assert.equal(g.panels[0].rect.top,before-120,'Outline follows the same uniform scroll translation');api.rect=oldRect;
 }
 console.log('PASS: excluded home cards retain outlines/reasons without enabling faces, roofs or nested furniture; allowed sharing and scroll remain intact.');
+
+{
+ const a=actor();a.config.life_stage='adult';a.home.home=true;a.home.rectSnapshot={};a.worldRect={left:0,top:0,right:800,bottom:800};
+ a.catTree={node:{isConnected:true},scale:1,clock:0,impulses:[]}; a.x=630;
+ const tree=b.window.pixelCatTreeV1;
+ tree.surfaces(a);const platform=a.surfaces.at(-1);platform.min=platform.left;platform.max=platform.right-24;
+ const path=tree.preferred(a,platform,a.support);assert.ok(path,'Authored tree has a checked adult climb');
+ a.route=path;N.start(a,path[0],0);assert.ok(a.climb?.nativeTransfer?.tree);
+ let t=0;while(a.climb&&t<30000){t+=16;C.tick(a,t,art);}
+ assert.equal(a.support,platform);assert.ok(a.catTree.impulses.length,'Grip contact moves the hanging ball');
+ assert.ok(a.routeJump(platform,a.home,platform.min,a.home.max),'Adult can jump back to the home floor');
+}

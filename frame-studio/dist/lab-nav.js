@@ -3,7 +3,7 @@
  if(document.querySelector('cat-lab-menu'))return;
  const floating=document.currentScript.dataset.workshopNav==='floating',source=document.currentScript.src,{workshopGroups,resolveWorkshopTools,currentWorkshopTool,matchesWorkshopTool}=await import(new URL('workshop-tools.js',source));
  if(document.querySelector('cat-lab-menu'))return;
- const isStudio=document.title==='Cat Frame Studio',studio=isStudio?location.href.split('#')[0]:'http://127.0.0.1:8767/',tools=resolveWorkshopTools(studio,'http://127.0.0.1:8769/');
+ const isStudio=document.title==='Cat Frame Studio',studio=isStudio?location.href.split('#')[0]:'http://127.0.0.1:8767/',tools=resolveWorkshopTools(studio,isStudio?'http://127.0.0.1:8769/':location.origin+'/');
  const host=document.createElement('cat-lab-menu'),root=host.attachShadow({mode:'open'});
  if(floating)host.setAttribute('floating','');
  root.innerHTML=`<style>
