@@ -3,7 +3,7 @@ import {runtimeFiles} from './build-release.mjs';
 // Same DOM-free release harness as the contact/track tests. Reuse its clocks.
 export function readmeRuntime(){
  const box={window:{},HTMLElement:class{},customElements:{get:()=>true}};
- const expose='\nglobalThis.api={art:CAT_ART,walkSample,walkAppearance,walkTimings,travelSpeed,groundedFront,idleSample,frameContact,idleContact,idleTransitionContact};';
+ const expose='\nglobalThis.api={Home:PixelCatHome,art:CAT_ART,walkSample,walkAppearance,walkTimings,travelSpeed,groundedFront,idleSample,frameContact,idleContact,idleTransitionContact};';
  vm.runInNewContext(runtimeFiles.map(f=>fs.readFileSync(f,'utf8')).join('\n')+expose,box,{timeout:10000});
  return {...box.api,window:box.window};
 }

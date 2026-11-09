@@ -1,24 +1,18 @@
-// A flat projection of the drawn pixels. Translucent black dims the backdrop
-// even when the dashboard's scroll portal creates its own stacking context.
+// Paw-level contact shadows share a layer below the cats and their props.
 const catShadowViews=new WeakMap(),catShadowActors=new WeakMap();
 const shadowSvg=tag=>document.createElementNS('http://www.w3.org/2000/svg',tag);
-const shadowSide=Math.sin(Math.PI/10)/Math.tan(63*Math.PI/180);
-const shadowDepth=.68*Math.cos(Math.PI/10)/Math.tan(63*Math.PI/180);
 let catShadowSerial=0;
 window.pixelCatFloorShadowV1={
- projection(rows,facing){
-  const bottom=rows.findLastIndex(row=>/[^.]/.test(row))+1;
-  let d='';
-  for(let y=0;y<bottom;y++)for(const run of rows[y].matchAll(/[^.]+/g)){
-   const w=run[0].length,x=facing<0?24-run.index-w:run.index,h=bottom-y-1;
-   d+=`M${x+h*shadowSide} ${-h*shadowDepth}h${w}l${shadowSide} ${-shadowDepth}h-${w}Z`;
-  }
-  return {bottom,d};
- },
  view(root){
   let view=catShadowViews.get(root);if(view)return view;
   const layer=shadowSvg('svg'),defs=shadowSvg('defs'),clip=shadowSvg('clipPath'),cut=shadowSvg('path'),ink=shadowSvg('g');
-  clip.id='pixel-cat-shadow-cut-'+(++catShadowSerial);
+  const serial=++catShadowSerial,gradient=shadowSvg('radialGradient');
+  gradient.id='pixel-cat-shadow-ink-'+serial;
+  for(const [offset,opacity]of [[0,1],[1,0]]){
+   const stop=shadowSvg('stop');stop.setAttribute('offset',offset);stop.setAttribute('stop-opacity',opacity);gradient.append(stop);
+  }
+  defs.append(gradient);ink.setAttribute('fill',`url(#${gradient.id})`);
+  clip.id='pixel-cat-shadow-cut-'+serial;
   cut.setAttribute('clip-rule','evenodd');clip.append(cut);defs.append(clip);
   ink.setAttribute('clip-path',`url(#${clip.id})`);layer.append(defs,ink);
   layer.setAttribute('aria-hidden','true');layer.dataset.catFloorShadows='';
@@ -37,7 +31,7 @@ window.pixelCatFloorShadowV1={
    if(asset)entry.holes+=`M${h.left-4+offset*s} ${bottom-asset.height*s}h${asset.width*s}v${asset.height*s}h-${asset.width*s}Z`;
   }
  },
- sync(a,ground){
+ sync(a){
   if(!a.root||!a.svg||!a.active||typeof MutationObserver!=='function')return;
   let entry=catShadowActors.get(a);
   if(entry?.root!==a.root){this.remove(a);entry=null;}
@@ -47,13 +41,13 @@ window.pixelCatFloorShadowV1={
   }
   const {view}=entry;
   this.furniture(a,entry);
-  if(a.config.floor_shadow!==false&&!entry.path){
-   entry.path=shadowSvg('path');entry.path.dataset.catFloorShadow='';view.ink.append(entry.path);
+  if(a.config.floor_shadow!==false&&!entry.group){
+   entry.group=shadowSvg('g');entry.group.dataset.catFloorShadow='';view.ink.append(entry.group);
    entry.observer=new MutationObserver(()=>this.paint(a,entry));
    entry.observer.observe(a.layer,{attributes:true,attributeFilter:['style']});
    entry.observer.observe(a.svg,{attributes:true,attributeFilter:['style','clip-path'],subtree:true,childList:true});
   }
-  if(!entry.path)return;
+  if(!entry.group)return;
   const overlay=window.pixelCatScrollOverlayV1;
   if(!overlay?.mount(view.layer,a.root))return;
   overlay.follow(view.layer,a.layer);
@@ -62,29 +56,48 @@ window.pixelCatFloorShadowV1={
    view.dirty=false;view.viewport=viewport;
    view.cut.setAttribute('d',`M0 0H${window.innerWidth}V${window.innerHeight}H0Z`+[...view.actors.values()].map(other=>other.holes).join(''));
   }
-  const dark=a._hass?.themes?.darkMode??entry.dark,opacity=dark?.6:.2;
-  if(opacity!==entry.opacity){entry.opacity=opacity;entry.path.style.opacity=String(opacity);}
-  const changed=entry.ground!==ground;entry.ground=ground;
-  if(!entry.rows||changed&&['jump','startle'].includes(a.motion?.kind))this.paint(a,entry);
+  const dark=a._hass?.themes?.darkMode??entry.dark,strength=dark?.6:.4;
+  if(strength!==entry.strength||a.surfaces!==entry.surfaces||a.support!==entry.support){
+   entry.strength=strength;this.paint(a,entry);
+  }
  },
  paint(a,entry){
-  const {path}=entry,rows=a.drawnRows,s=a.scale;
+  const {group}=entry,rows=a.drawnRows,s=a.scale;
   const transform=/^translate\(([-\d.]+)px,\s*([-\d.]+)px\)$/.exec(a.svg.style.transform);
   const visible=!!(rows&&transform&&a.layer.style.visibility==='visible'&&!a.userHeld&&!a.climb&&!a.bedInside&&!a.svg.firstElementChild?.hasAttribute('clip-path'));
-  if(path.style.visibility!==(visible?'visible':'hidden'))path.style.visibility=visible?'visible':'hidden';
+  if(group.style.visibility!==(visible?'visible':'hidden'))group.style.visibility=visible?'visible':'hidden';
   if(!visible)return;
-  if(rows!==entry.rows||a.drawnFacing!==entry.facing){
-   entry.rows=rows;entry.facing=a.drawnFacing;entry.shape=this.projection(rows,a.drawnFacing);path.setAttribute('d',entry.shape.d);
+  const x=Number(transform[1]),top=Number(transform[2]),facing=a.drawnFacing,contact=contactRow(rows);
+  const split=a.motion?.kind==='jump'||a.motion?.kind==='startle'||!!(a.motion?.gallopTimeline&&contact<23);
+  if(rows===entry.rows&&facing===entry.facing&&x===entry.x&&top===entry.top&&split===entry.split&&a.surfaces===entry.surfaces&&a.support===entry.support&&entry.strength===entry.paintedStrength)return;
+  Object.assign(entry,{rows,facing,x,top,split,surfaces:a.surfaces,support:a.support,paintedStrength:entry.strength});
+  const surfaces=(a.surfaces||[]).filter(surface=>surface.right>x&&surface.left<x+24*s&&surface.top>=top&&surface.el?.isConnected!==false);
+  const receivers=contactShadows({rows,x,top,facing,surfaces,split},s,4);
+  let patchIndex=0;
+  for(const [surface,points]of receivers){
+   const {left,right,top:y,rectSnapshot:r}=surface;
+   const depth=surface.home||surface.internal?2*s:r?Math.min(2*s,r.top+r.height-y):2*s;
+   if(depth<=0)continue;
+   let patch=group.children[patchIndex++];
+   if(!patch){patch=shadowSvg('svg');patch.style.overflow='hidden';group.append(patch);}
+   patch.style.display='';
+   patch.setAttribute('x',left);patch.setAttribute('y',y);
+   patch.setAttribute('width',right-left);patch.setAttribute('height',depth);
+   let pointIndex=0;
+   for(const {center,density,lift}of points){
+    let ellipse=patch.children[pointIndex++];
+    if(!ellipse){ellipse=shadowSvg('ellipse');ellipse.setAttribute('cy',0);patch.append(ellipse);}
+    const spread=(2.5+Math.min(2,lift*.065))*s;
+    ellipse.style.display='';ellipse.setAttribute('cx',center-left);ellipse.setAttribute('rx',spread);ellipse.setAttribute('ry',spread*.36);
+    ellipse.setAttribute('opacity',(1-Math.exp(-density/2.1))*entry.strength*Math.exp(-lift/12)*.68);
+   }
+   for(let i=pointIndex;i<patch.children.length;i++)patch.children[i].style.display='none';
   }
-  const feet=Number(transform[2])+entry.shape.bottom*s,airborne=['jump','startle'].includes(a.motion?.kind);
-  const lift=airborne?Math.max(0,(entry.ground-feet)/s):0;
-  const place=`translate(${Number(transform[1])+lift*shadowSide*s} ${feet+lift*(1-shadowDepth)*s}) scale(${s})`;
-  if(place!==entry.place){entry.place=place;path.setAttribute('transform',place);}
-  if(!path.style.filter)path.style.filter='blur(.3px)';
+  for(let i=patchIndex;i<group.children.length;i++)group.children[i].style.display='none';
  },
  remove(a){
   const entry=catShadowActors.get(a);if(!entry)return;
-  entry.observer?.disconnect();entry.path?.remove();catShadowActors.delete(a);
+  entry.observer?.disconnect();entry.group?.remove();catShadowActors.delete(a);
   const {view}=entry;view.actors.delete(a);view.dirty=true;
   if(!view.actors.size){window.pixelCatScrollOverlayV1?.unmount(view.layer);view.layer.remove();catShadowViews.delete(entry.root);}
  }
