@@ -2,11 +2,11 @@
   "schema": 1,
   "name": "Pixel Cat Card",
   "version": "1.0.0-rc.3",
-  "sourceHash": "ab7b42142b2468a7a2263455d968a26effd7e3b7e1fc1896375b69da66ed76ec",
+  "sourceHash": "b3455a1c86b64e91b26d68bea826c8df4279ac80649b1acc9ab279aeb4ac30be",
   "artifact": {
     "file": "pixel-cat-card.js",
-    "bytes": 1750067,
-    "sha256": "56303a54efbd429a630ca955f7b7ba8804ec6ece0e6d78feecf6c8132d9c1c9a"
+    "bytes": 1750350,
+    "sha256": "db48954e328a8aefee0514bcc8abb5a02bc71b3bb1369d11cdb5483c5365eac5"
   },
   "modules": [
     {
@@ -19,7 +19,7 @@
     },
     {
       "file": "pixel-cat-roaming-art.js",
-      "sha256": "95542d34aede81197afaca415688f36289c9d550cf191938efa958837a7481d7"
+      "sha256": "c00435ab4ebcf7cf6cc5b657dc59206a95aff6c24a78218e1441a1cb32be1b23"
     },
     {
       "file": "pixel-cat-roaming-extras.js",
@@ -31,7 +31,7 @@
     },
     {
       "file": "pixel-cat-behaviours.js",
-      "sha256": "25f6a9363839db4dd566b098b02075b04632113c1f66eaded6a1c88c55d9dd36"
+      "sha256": "a4bb146f32fb9f5afc65dc3dd19d1c2cb49180857d73d55123b42dbc202285a4"
     },
     {
       "file": "pixel-cat-roaming.js",
