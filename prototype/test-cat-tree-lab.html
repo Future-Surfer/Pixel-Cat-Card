@@ -54,7 +54,7 @@ function perform(kind){
   const path=window.pixelCatCardClimbV1.treeRoute(a,platform,below);
   if(!path){say('No safe climb from this position.');return;}
   a.route=path;window.pixelCatCardClimbV1.start(a,path[0],t);
-  say(a.climb?'Climbing the rope':'The climb was cancelled.');return;
+  say(a.climb?'Climbing the post':'The climb was cancelled.');return;
  }
  if(kind==='pass'){
   const g=tree.geometry(a),ball=g.x+52*g.s;

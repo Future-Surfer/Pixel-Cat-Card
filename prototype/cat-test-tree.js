@@ -21,7 +21,7 @@ window.pixelCatTreeV1={
   if(a.catTree?.node.parentNode===dock&&a.catTree.scale===s)return;
   a.catTree?.node.remove();
   const node=document.createElement('div'),canvas=document.createElement('canvas'),toy=document.createElement('canvas');
-  node.setAttribute('role','img');node.setAttribute('aria-label','Cat tree with hanging ball');
+  node.setAttribute('role','group');node.setAttribute('aria-label','Cat tree with hanging ball');
   node.style.cssText='position:absolute;bottom:0;right:0;pointer-events:none;width:'+testTree.width*s+'px;height:'+testTree.height*s+'px';
   canvas.width=testTree.width;canvas.height=testTree.height;
   canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated';
@@ -40,8 +40,16 @@ window.pixelCatTreeV1={
   }
   toy.width=7;toy.height=15;toy.style.cssText='position:absolute;image-rendering:pixelated;transform-origin:50% 0;left:'+(testTree.pivot.x-3.5)*s+'px;top:'+testTree.pivot.y*s+'px;width:'+7*s+'px;height:'+15*s+'px';
   const b=toy.getContext('2d');b.fillStyle='#754726';b.fillRect(3,0,1,10);b.fillStyle='#ab7135';b.fillRect(1,10,5,4);b.fillStyle='#c58d4b';b.fillRect(2,9,3,4);
-  node.append(canvas,toy);dock.append(node);dock.style.setProperty('--test-tree-height',(testTree.height+24)*s+'px');
-  a.catTree={node,canvas,toy,scale:s,pass:new WeakMap(),clock:0,impulses:[]};
+  const ropeHosts=testTree.ropes.map(r=>{
+   const host=document.createElement('div');
+   host.style.cssText='position:absolute;pointer-events:none;left:'+r.left*s+'px;top:'+r.top*s+'px;width:'+(r.right-r.left)*s+'px;height:'+(r.bottom-r.top)*s+'px';
+   return host;
+  });
+  const ball=document.createElement('button');ball.type='button';ball.dataset.catTreeBall='';ball.setAttribute('aria-label','Sway the hanging ball');
+  ball.style.cssText='position:absolute;pointer-events:auto;touch-action:manipulation;margin:0;padding:0;border:0;background:transparent;left:'+(testTree.pivot.x-12)*s+'px;top:'+(testTree.pivot.y+testTree.length-8)*s+'px;width:'+24*s+'px;height:'+24*s+'px';
+  ball.onclick=event=>{event.stopPropagation();this.tap(a);};
+  node.append(canvas,...ropeHosts,toy,ball);dock.append(node);dock.style.setProperty('--test-tree-height',(testTree.height+24)*s+'px');
+  a.catTree={node,canvas,toy,ropeHosts,scale:s,pass:new WeakMap(),clock:0,impulses:[]};
  },
  geometry(a){
   const tree=a.catTree,h=a.home;if(!tree||!h||tree.node.isConnected===false)return null;
@@ -61,8 +69,30 @@ window.pixelCatTreeV1={
   return {id:'home:test-tree:rope:'+level,rect,grips:{left:centre,right:centre,top:rect.top+2*s,bottom:rect.bottom-2*s},generation:0};
  },
  preferred(a,target,origin){
-  if(!target?.tree||!a.catTree||a.ensureMood().random()>=.7)return null;
+  if(!target?.tree||!a.catTree||(!origin?.home&&!origin?.tree)||Math.abs(target.tree-(origin.tree||0))!==1||a.ensureMood().random()>=.7)return null;
   return window.pixelCatCardClimbV1?.treeRoute(a,target,origin);
+ },
+ tap(a,t=performance.now()){
+  const tree=a.catTree;if(!tree)return;
+  this.impact(tree,.85);
+  const g=this.geometry(a),ballX=g&&g.x+testTree.pivot.x*g.s,ballY=g&&g.y+(testTree.pivot.y+testTree.length)*g.s;
+  for(const [cat,entry] of a.decisionLayer()?.owners?.()||[[a,{root:a.root}]]){
+   if(entry.root!==a.root||!cat.active||cat.paused||cat.suspended||cat.layoutPaused||cat.stranded||cat.userHeld||cat.motion||cat.climb||cat.previewPose)continue;
+   const idle=cat.idle;if(!idle)continue;
+   const sleeping=idle.pose==='sleep'||cat.settling?.idle===idle;
+   if(sleeping){
+    if(cat.support?.el!==tree.node||!cat.support.tree)continue;
+    window.pixelCatSettlingV1?.wake(cat,t);
+    idle.poseUntil=t;cat.deadline=t+1500;
+    continue;
+   }
+   if(!g||cat.command||cat.goal||cat.play||cat.social?.episode||cat.route?.length||t<(cat.nextTreeAttentionAt||0))continue;
+   const x=cat.x+12*cat.scale,y=cat.y-12*cat.scale;
+   if(Math.hypot(ballX-x,ballY-y)>45*g.s)continue;
+   cat.nextTreeAttentionAt=t+2500;
+   if(cat.ensureMood().random()>=.45)continue;
+   cat.facing=ballX<x?-1:1;cat.previewPose='glance';cat.forcedIdleUntil=t+1100;cat.deadline=t+1400;idle.poseUntil=t;
+  }
  },
  impact(tree,strength=1,direction=1,shake=true){
   if(!tree)return;
