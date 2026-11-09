@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pixel Cat · Contact Shadow Lab V2</title>
+<style>
+ :root{color-scheme:light dark;font:16px system-ui}body{max-width:850px;margin:2rem auto;padding:0 1rem}
+ p{line-height:1.5}canvas{display:block;width:100%;height:auto;border-radius:12px}
+ .row{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin:1rem 0}
+ .sliders{display:grid;grid-template-columns:minmax(9rem,1fr) minmax(5rem,2fr) 5rem;gap:.55rem;align-items:center}
+ button,select{font:inherit;padding:.3rem .5rem}input[type=range]{width:100%;min-width:0}
+ output{font-variant-numeric:tabular-nums}
+</style>
+<main>
+ <h1>Contact Shadow Lab V2</h1>
+ <p>A compact shadow follows the cat’s footprint. During a jump, pixels above a ledge can shade it while pixels below it shade the next surface down.</p>
+ <canvas id="stage" width="800" height="405" aria-label="Pixel cat and contact shadow on dashboard ledges"></canvas>
+ <div class="row">
+  <button id="play" type="button">Play</button><button id="replay" type="button">Replay</button>
+  <label>Scene <select id="scene">
+   <option value="perch">Perch · tail below paws</option><option value="sit">Sit</option><option value="lookdown">Look down · tail below paws</option>
+   <option value="scratch">Ear scratch</option><option value="clean">Groom</option><option value="yawn">Yawn</option>
+   <optgroup label="Gaits in place">
+    <option value="stroll">Walk · stroll</option><option value="meander">Walk · meander</option>
+    <option value="walkHigh">Walk · head high</option><option value="walkLow">Walk · head low</option>
+    <option value="trot">Trot</option><option value="gallop">Gallop</option>
+    <option value="sneak0">Sneak · high</option><option value="sneak1">Sneak · middle</option><option value="sneak2">Sneak · low</option>
+   </optgroup>
+   <option value="across">Leap across a gap</option><option value="up">Jump to a higher ledge</option><option value="down">Jump to a lower ledge</option>
+  </select></label>
+  <label><input type="checkbox" id="markers"> Show contact marks</label>
+  <label><input type="checkbox" id="dark"> Dark scene</label>
+  <label><input type="checkbox" id="shadow" checked> Show shadow</label>
+ </div>
+ <label for="scrub">Timeline</label><input id="scrub" type="range" min="0" max="1000" value="0">
+ <p><output id="status"></output></p>
+ <div class="sliders">
+  <label for="strength">Strength</label><input id="strength" type="range" min="0" max="100" value="58"><output for="strength"></output>
+  <label for="reach">Pixel height influence</label><input id="reach" type="range" min="1" max="14" step=".5" value="4"><output for="reach"></output>
+  <label for="spread">Ground spread</label><input id="spread" type="range" min=".5" max="3" step=".1" value="2.5"><output for="spread"></output>
+  <label for="fade">Airborne fade distance</label><input id="fade" type="range" min="3" max="30" value="12"><output for="fade"></output>
+ </div>
+ <p>Contact marks show the authored paw row in green and the shadow receivers in blue. On a stationary perch, the tail below the paws is left out.</p>
+</main>
+<script type="module">
+ import {contactRow,contactShadows} from '/prototype/contact-shadow.mjs';
+ const $=id=>document.getElementById(id),canvas=$('stage'),ctx=canvas.getContext('2d');
+ const {scale,poses,jumps}=await fetch('/contact-shadow-art.json').then(r=>r.json());
+ const standing=[{id:'Perch',left:175,right:625,top:285},{id:'Floor',left:0,right:800,top:376}];
+ const units={strength:'%',reach:' cells',spread:' cells',fade:' cells'};
+ const value=id=>Number($(id).value);
+ const surfaceDepth=surface=>surface.id==='Floor'?29:16;
+ let time=0,last=null,playing=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function current(){
+  const scene=$('scene').value,jump=jumps[scene];
+  if(jump){
+   const index=Math.min(jump.frames.length-1,Math.floor(time/jump.duration*(jump.frames.length-1)));
+   return {...jump.frames[index],surfaces:jump.surfaces,duration:jump.duration,split:true};
+  }
+  const clip=poses[scene],duration=clip.durations.reduce((a,b)=>a+b,0);
+  let frame=0,elapsed=time;
+  while(frame<clip.frames.length-1&&elapsed>=clip.durations[frame])elapsed-=clip.durations[frame++];
+  const rows=clip.frames[frame],contact=contactRow(rows)+1;
+  const top=standing[0].top-(clip.inPlace?24:contact)*scale,feet=top+contact*scale;
+  return {rows,x:328,top,feet,facing:1,surfaces:standing,duration,airborne:clip.grounded?.[frame]===false};
+ }
+ function draw(){
+  const pose=current(),{rows,x,top,feet,facing,surfaces,duration,airborne}=pose,dark=$('dark').checked;
+  ctx.fillStyle=dark?'#23323b':'#e7ecef';ctx.fillRect(0,0,canvas.width,canvas.height);
+  for(const surface of surfaces){
+   ctx.fillStyle=dark?'#3b5260':'#bbcdd9';ctx.fillRect(surface.left,surface.top,surface.right-surface.left,surfaceDepth(surface));
+   ctx.fillStyle=dark?'#688492':'#93acbc';ctx.fillRect(surface.left,surface.top,surface.right-surface.left,1);
+  }
+  const receivers=contactShadows(pose,scale,value('reach'));
+  for(const [surface,points]of receivers){
+   ctx.save();ctx.beginPath();ctx.rect(surface.left,surface.top,surface.right-surface.left,surfaceDepth(surface));ctx.clip();
+   if($('shadow').checked)for(const {center,density,lift}of points){
+    const spread=(value('spread')+Math.min(2,lift*.065))*scale;
+    const strength=value('strength')/100*Math.exp(-lift/value('fade'));
+    const weight=1-Math.exp(-density/2.1);
+    ctx.save();ctx.translate(center,surface.top);ctx.scale(1,.36);
+    const gradient=ctx.createRadialGradient(0,0,0,0,0,spread);
+    gradient.addColorStop(0,`rgba(0,0,0,${weight*strength*.68})`);gradient.addColorStop(1,'transparent');
+    ctx.fillStyle=gradient;ctx.fillRect(-spread,-spread,spread*2,spread*2);ctx.restore();
+   }
+   ctx.restore();
+   if($('markers').checked){
+    ctx.fillStyle='#4285e8';for(const {center}of points)ctx.fillRect(center-1,surface.top+4,2,4);
+   }
+  }
+  const paw=contactRow(rows);
+  ctx.fillStyle=dark?'#e8ab69':'#a15a37';
+  rows.forEach((row,y)=>[...row].forEach((cell,c)=>{
+   if(cell!=='.')ctx.fillRect(x+(facing<0?23-c:c)*scale,top+y*scale,scale,scale);
+  }));
+  if($('markers').checked){
+   ctx.fillStyle='#56bd72';
+   [...rows[paw]].forEach((cell,c)=>{if(cell==='R')ctx.fillRect(x+(facing<0?23-c:c)*scale,feet-2,scale,3);});
+  }
+  $('scrub').value=Math.round(time/duration*1000);
+  $('status').value=`${airborne?'Airborne':'Grounded'} · ${[...receivers.keys()].map(s=>s.id).join(' + ')||'No receiver'} · ${(time/1000).toFixed(2)} s`;
+ }
+ function play(value){playing=value;last=null;$('play').textContent=value?'Pause':'Play';}
+ function update(){for(const [id,unit]of Object.entries(units))$(id).nextElementSibling.value=$(id).value+unit;draw();}
+ function tick(now){
+  if(playing&&!document.hidden){
+   const {duration}=current();
+   if(last!==null)time=(time+Math.min(70,now-last))%duration;
+   last=now;draw();
+  }else last=null;
+  requestAnimationFrame(tick);
+ }
+ $('play').onclick=()=>play(!playing);
+ $('replay').onclick=()=>{time=0;play(true);draw();};
+ $('scene').onchange=()=>{time=0;last=null;draw();};
+ $('scrub').oninput=()=>{play(false);time=value('scrub')/1000*current().duration;draw();};
+ for(const id of [...Object.keys(units),'markers','dark','shadow'])$(id).oninput=update;
+ play(playing);update();requestAnimationFrame(tick);
+</script>
+</html>

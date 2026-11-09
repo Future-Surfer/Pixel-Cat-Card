@@ -2,7 +2,7 @@
 window.pixelCatDepthV1={
  key(y,tie=0){return Math.max(0,Math.min(2000000000,Math.round((Number(y)||0)*16)+1000000))*4+tie;},
  set(node,y,tie=0){if(!node?.style)return;const z=String(this.key(y,tie));if(node.style.zIndex!==z)node.style.zIndex=z;},
- cat(a,t){if(!a.layer)return;const m=a.motion,u=m?Math.max(0,Math.min(1,(t-m.start)/(m.duration||1))):0,y=m?m.fromY+(m.y-m.fromY)*u:a.support?.top??a.y;this.set(a.layer,y,2);if(a.userHeld)a.layer.style.zIndex='2147483647';this.home(a);window.pixelCatFloorShadowV1?.sync(a,y);},
+ cat(a,t){if(!a.layer)return;const m=a.motion,u=m?Math.max(0,Math.min(1,(t-m.start)/(m.duration||1))):0,y=m?m.fromY+(m.y-m.fromY)*u:a.support?.top??a.y;this.set(a.layer,y,2);if(a.userHeld)a.layer.style.zIndex='2147483647';this.home(a);window.pixelCatFloorShadowV1?.sync(a);},
  prop(scene,p,s,visible=true,source){if(!p.node||!scene.root)return;window.pixelCatScrollOverlayV1?.mount(p.node,scene.root);window.pixelCatScrollOverlayV1?.follow(p.node,source?.layer);p.node.style.visibility=visible?'visible':'hidden';this.set(p.node,s.top);},
  home(a){const p=a.homePost;if(!p?.node||!a.active||!a.home||!a.root||typeof document==='undefined')return;
   if(!a.postRenderLayer){const n=document.createElement('div');n.style.cssText='position:fixed;inset:0;pointer-events:none';n.dataset.catHomeFurniture='';document.body?.append?.(n);a.postRenderLayer=n;}

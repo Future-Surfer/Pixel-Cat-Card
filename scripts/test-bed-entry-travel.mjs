@@ -1,8 +1,18 @@
 import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';
+import {contactRow,contactShadows} from '../prototype/contact-shadow.mjs';
 const node=()=>({style:{},attrs:{},setAttribute(k,v){this.attrs[k]=v;},removeAttribute(k){delete this.attrs[k];},append(){}}),b={window:{},HTMLElement:class{},customElements:{get:()=>true},performance:{now:()=>0},document:{createElementNS:()=>node()}};
 vm.runInNewContext(['pixel-cat-roaming-art.js','pixel-cat-roaming-extras.js','pixel-cat-affordances.js','pixel-cat-behaviours.js','pixel-cat-roaming.js'].map(f=>fs.readFileSync(f,'utf8')).join('\n')+'\nglobalThis.api={Home:PixelCatHome,art:CAT_ART,walkSample,walkAppearance,groundedFront,idleSample,idleContact,frameContact};',b);
 const {Home,art,walkSample,walkAppearance,groundedFront,idleSample,idleContact,frameContact}=b.api,bed=b.window.pixelCatBedEntryV1,setup=b.window.pixelCatSetupV1,shallow=b.window.pixelCatShallowV1;
 const polish=b.window.pixelCatPolishV1;
+const upper={left:0,right:144,top:60},lower={left:0,right:144,top:160};
+const hanging=Array.from({length:24},()=>'.'.repeat(24));
+hanging[3]='R'+hanging[3].slice(1);hanging[15]='#'+hanging[15].slice(1);
+const shadowPose={rows:hanging,x:0,top:0,facing:1,surfaces:[upper,lower]};
+assert.equal(contactRow(hanging),3);
+assert.deepEqual([...contactShadows(shadowPose,6,4).keys()],[upper],'A perched tail does not cast below the paws');
+const splitShadow=contactShadows({...shadowPose,split:true},6,4);
+assert.equal(splitShadow.get(upper)[0].nearest,3,'An upper surface receives only pixels above it');
+assert.equal(splitShadow.get(lower)[0].nearest,15,'Pixels below the edge can shade the next surface down');
 const climbProbe={getAttribute(){throw Error('Synthetic motion probes have no DOM element');}};
 assert.equal(polish.turnaround(climbProbe,art,0,0,null,1,art.walk[0]),null);
 for(const facing of [1,-1])for(const urgency of ['casual','relaxed','prompted','interested']){
