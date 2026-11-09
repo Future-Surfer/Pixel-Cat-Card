@@ -639,7 +639,9 @@ class PixelCatHome extends HTMLElement {
     const {gallop,fast}=window.pixelCatMotionOptionsV1?.select(this,kind,gait,target,x,CAT_ART,travelSpeed(this.config,this.urgency))||{};
     const desiredFacing=movementFacing(this.x,x,this.scale,this.facing,kind),intentDx=x-this.x,jumpKind=jumpKindFor(this.y,y,this.scale,intentDx);
     const continuation=gait==='sneak'&&oldIdle?.sneakExit&&this.sneakState?.direction===desiredFacing?this.sneakState:null;
-    if(this.idle&&!continuation) {
+    const turn=kind==='walk'&&!gait&&!gallop&&!fast&&window.pixelCatPolishV1?.turnaround(this,CAT_ART,x,y,target,desiredFacing,CAT_ART.walk[(this.walkSteps+1)%CAT_ART.walk.length]);
+    if(turn)this.x=turn.start;
+    else if(this.idle&&!continuation) {
       const direction=desiredFacing,next=gallop?gallop.frames[0]:gait==='sneak'?CAT_ART.sneak[0].frames[0]:fast?fast.frames[(this.walkSteps+1)%fast.frames.length]:CAT_ART.walk[(this.walkSteps+1)%CAT_ART.walk.length];
       const anchor=kind==='walk'?groundedFront(next,direction):jumpKind==='descend'?null:frameContact(CAT_ART[jumpKind][0],direction,CAT_ART.leapAnchors[jumpKind][0].point)[0];
       if(anchor!==null){const bearing=kind==='walk'&&oldIdle.rows&&oldIdle.placement?oldIdle.placement.x+frameContact(oldIdle.rows,oldIdle.facing??this.facing,(window.pixelCatPolishV1?.departureAnchor(oldIdle,CAT_ART)||idleContact(oldIdle.rows)))[0]*this.scale:oldIdle.contactX;this.x=bearing-anchor*this.scale;}
@@ -657,7 +659,7 @@ class PixelCatHome extends HTMLElement {
       if(fast){const rate=Math.max(15,Math.min(30,Number(this.config.fast_walk_fps)||fast.fps||21));this.motion.fastClip=fast;this.motion.stepMs=1000/rate;this.motion.cumulativeMs=Array.from({length:cells},(_,i)=>(i+1)*1000/rate);this.motion.duration=cells*1000/rate;}
       if(gallop){this.motion.gallopTimeline=gallopTimeline(cells,CAT_ART,this.config,gallop);this.motion.duration=this.motion.gallopTimeline.at(-1).until;this.setAttribute?.('data-gait','gallop');}else this.setAttribute?.('data-gait',fast?'trot':gait==='sneak'?'sneak':this.urgency==='casual'?'casual':'walk');
       if(gait==='sneak'){this.motion.sneakTimeline=sneakTimeline(cells,CAT_ART,continuation||undefined);this.motion.duration=this.motion.sneakTimeline.at(-1).until;}
-      window.pixelCatBehaviourV1?.movement(this,this.motion,(gallop||fast||gait==='sneak'&&CAT_ART.sneak[0])?.behaviourPolicy||CAT_ART.walkBehaviour);window.pixelCatPolishV1?.prelude(this,this.motion,oldIdle,CAT_ART,groundedFront(walkAppearance(CAT_ART,this.motion,walkSample(this.motion,0,this.scale,CAT_ART.walk),this.config).rows,this.facing));
+      window.pixelCatBehaviourV1?.movement(this,this.motion,(gallop||fast||gait==='sneak'&&CAT_ART.sneak[0])?.behaviourPolicy||CAT_ART.walkBehaviour);if(turn){this.facing=turn.facings[0];this.motion.departure=turn;this.motion.start+=turn.total;}else window.pixelCatPolishV1?.prelude(this,this.motion,oldIdle,CAT_ART,groundedFront(walkAppearance(CAT_ART,this.motion,walkSample(this.motion,0,this.scale,CAT_ART.walk),this.config).rows,this.facing));
     } else {
       this.motion.jumpKind=jumpKind;
       this.flightAssets=new Set();
@@ -742,7 +744,7 @@ class PixelCatHome extends HTMLElement {
     window.pixelCatDepthV1?.cat(this,t);if(window.pixelCatDragV1?.tick(this,t,CAT_ART))return;
     if(this.waitingForSurface){this.layer.style.visibility='hidden';this.freezeClocks(gap);this.status(this.noPathMessage);return;}
     if(!this.homeArtReady)this.renderHomeProp();
-    if(this.paused) {this.layer.style.visibility='visible';if(!this.signature)this.draw(CAT_ART.stand);this.propScene?.tick(t,this);this.freezeClocks(gap);if(this.motion){const m=this.motion;if(m.kind==='jump'||m.kind==='startle'){const p=this.jumpSample(m,Math.min(1,(t-m.start)/m.duration));this.draw(p.rows);this.svg.style.transform=`translate(${p.x}px,${p.top}px)`;}else{const p=walkSample(m,t-m.start,this.scale,CAT_ART.walk);this.x=p.x;this.y=window.pixelCatSetupV1?.walkHeight?.(this,m,p)??m.fromY;this.draw(walkAppearance(CAT_ART,m,p,this.config).rows);if(m.gallopTimeline)this.svg.style.transform=`translate(${p.x}px,${m.fromY-24*this.scale}px)`;}}else if(this.idle?.placement)this.svg.style.transform=`translate(${this.idle.placement.x}px,${this.idle.placement.top}px)`;this.renderMoodDebug(t);this.status('Paused');return;}
+    if(this.paused) {this.layer.style.visibility='visible';if(!this.signature)this.draw(CAT_ART.stand);this.propScene?.tick(t,this);this.freezeClocks(gap);if(this.motion?.departure?.facings&&window.pixelCatPolishV1.departure(this,t,frameContact,idleContact)){this.status('Paused');return;}if(this.motion){const m=this.motion;if(m.kind==='jump'||m.kind==='startle'){const p=this.jumpSample(m,Math.min(1,(t-m.start)/m.duration));this.draw(p.rows);this.svg.style.transform=`translate(${p.x}px,${p.top}px)`;}else{const p=walkSample(m,t-m.start,this.scale,CAT_ART.walk);this.x=p.x;this.y=window.pixelCatSetupV1?.walkHeight?.(this,m,p)??m.fromY;this.draw(walkAppearance(CAT_ART,m,p,this.config).rows);if(m.gallopTimeline)this.svg.style.transform=`translate(${p.x}px,${m.fromY-24*this.scale}px)`;}}else if(this.idle?.placement)this.svg.style.transform=`translate(${this.idle.placement.x}px,${this.idle.placement.top}px)`;this.renderMoodDebug(t);this.status('Paused');return;}
     if(t>this.checkAt) {
       const wasSuspended=this.suspended;this.suspended=this.blocked(t);
       // Geometry changes trigger a batched reset before stale landing coordinates can be used.
@@ -797,7 +799,7 @@ class PixelCatHome extends HTMLElement {
         if(this.recallPending) {this.recallPending=false;this.route=[];this.deadline=0;}
         else if(this.finishing) {this.finishing=false;this.recordVisit(t);this.deadline=t+restDuration(this.config,this.support.home,this);this.urgency='relaxed';}
       }
-    } else if(this.route?.length) this.advance(t);
+    } else if(this.route?.length){this.advance(t);if(this.motion?.departure?.facings&&window.pixelCatPolishV1.departure(this,t,frameContact,idleContact))return;}
     else if(!this.play&&!this.social?.episode&&t>this.deadline) {this.plan();}
     else {
       if(!this.idle||this.idle.support!==this.support.id||t>=this.idle.poseUntil||this.inspectionPending){

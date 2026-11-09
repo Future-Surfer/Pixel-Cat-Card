@@ -30,6 +30,26 @@ window.pixelCatPolishV1={
  },
  bridgeDuration(frames,config={}){return frames.holds?.reduce((n,h)=>n+h,0)??frames.length*Math.max(80,Number(config.idle_frame_ms)||250);},
  bridgeSample(frames,elapsed,beat){let frame=0;while(frame<frames.length-1&&elapsed>=(frames.holds?.[frame]??beat)){elapsed-=frames.holds?.[frame]??beat;frame++;}return {rows:frames[frame],frame};},
+ turnFeet(rows,facing){
+  const row=rows.findLast(line=>line.includes('R'))||rows.findLast(line=>/[^.]/.test(line));
+  const cells=[...row].flatMap((cell,x)=>(row.includes('R')?cell==='R':cell!=='.')?[x]:[]);
+  const center=(cells[0]+cells.at(-1)+1)/2;
+  return facing<0?24-center:center;
+ },
+ turnFrames(art,facing,holds=[70,110,130,100,100]){
+  const [stand,down,before,after,up]=holds,bridge=art.bridges.walkToSit,sit=art.idleSequences.sit.frames[0];
+  return [[art.stand,facing,stand],...bridge.map(rows=>[rows,facing,down]),[sit,facing,before],[sit,-facing,after],...[...bridge].reverse().map(rows=>[rows,-facing,up]),[art.stand,-facing,stand]];
+ },
+ turnaround(a,art,x,y,target,facing,walkFrame){
+  const onFoot=a.idle?a.idle.pose==='stand':a.getAttribute?.('data-frame')?.startsWith('walk-');
+  if(!onFoot||facing===a.facing||!['relaxed','casual'].includes(a.urgency)||a.command||a.goal||a.play||a.toyHunt||a.social?.episode||a.mouthAction||a.carriedToy||a.previewPose||a.userHeld||a.bedEntry||a.bedInside||a.support?.narrow||a.support?.bed||target?.id!==a.support?.id||y!==a.y||!a.drawnRows)return null;
+  const s=a.scale,bearing=a.x+this.turnFeet(a.drawnRows,a.facing)*s;
+  const poses=this.turnFrames(art,a.facing);
+  const start=Math.round((bearing-this.turnFeet(walkFrame,facing)*s)/s)*s;
+  if((x-start)*facing<s||start<target.min||start>target.max||poses.some(([rows,direction])=>{const origin=bearing-this.turnFeet(rows,direction)*s;return origin<target.min||origin>target.max;}))return null;
+  const frames=poses.map(([rows])=>rows);frames.holds=poses.map(([, ,hold])=>hold);
+  return {start,frames,bearing,facings:poses.map(([,direction])=>direction),total:frames.holds.reduce((sum,hold)=>sum+hold,0)};
+ },
  restBridge(art,from,to,old,config,now){
   if(to==='backRoll'&&from==='loaf')return [];
   if(from!=='alertLying'||to===from)return null;
@@ -40,7 +60,7 @@ window.pixelCatPolishV1={
   if(exit.holds)frames.holds=exit.holds.concat(art.bridges.walkToSit.map(()=>beat));
   const total=frames.holds?.reduce((n,h)=>n+h,0)??frames.length*beat;m.departure={frames,anchors,beat,total,bearing:m.fromX+front*a.scale};m.start+=total;
  },
- departure(a,t,contact,idleContact){const m=a.motion,d=m?.departure;if(!d)return false;if(t>=m.start){delete m.departure;return false;}const frame=this.bridgeSample(d.frames,Math.max(0,t-(m.start-d.total)),d.beat).frame,rows=d.frames[frame],p=contact(rows,a.facing,d.anchors?.[frame]||idleContact(rows));a.draw(rows);a.svg.style.transform=`translate(${d.bearing-p[0]*a.scale}px,${m.fromY-(p[1]+1)*a.scale}px)`;const drawn=/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/.exec(a.svg.style.transform);window.pixelCatBedEntryV1?.mask?.(a,rows);if(a.carriedToy&&drawn)window.pixelCatMouthV1?.frame(a,rows,drawn,t,a.carryArt);a.setAttribute('data-pose','leaving-loaf');a.setAttribute('data-frame','loaf-departure-'+frame);a.status('Getting up');return true;},
+ departure(a,t,contact,idleContact){const m=a.motion,d=m?.departure;if(!d)return false;if(t>=m.start){if(d.facings)a.facing=m.direction;delete m.departure;return false;}const frame=this.bridgeSample(d.frames,Math.max(0,t-(m.start-d.total)),d.beat).frame,rows=d.frames[frame];if(d.facings)a.facing=d.facings[frame];const p=contact(rows,a.facing,d.anchors?.[frame]||idleContact(rows));a.draw(rows);a.svg.style.transform=`translate(${d.bearing-(d.facings?this.turnFeet(rows,a.facing):p[0])*a.scale}px,${m.fromY-(p[1]+1)*a.scale}px)`;const drawn=/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/.exec(a.svg.style.transform);window.pixelCatBedEntryV1?.mask?.(a,rows);if(a.carriedToy&&drawn)window.pixelCatMouthV1?.frame(a,rows,drawn,t,a.carryArt);a.setAttribute('data-pose',d.facings?'turning':'leaving-loaf');a.setAttribute('data-frame',(d.facings?'sit-turn-':'loaf-departure-')+frame);a.status(d.facings?'Turning around':'Getting up');return true;},
  travelEnd(a,m){window.pixelCatExertionV1?.complete(a,m);if(m.kind==='jump'||m.shallow)a.shallowChoice=null;if(m.sneakTimeline&&a.idle){const last=m.sneakTimeline.at(-1);a.sneakState={frame:(last.frame+1)%8,variant:last.variant,direction:m.direction};a.idle.sneakExit=true;}else a.sneakState=null;},
  cancelDeparture(a){if(a.motion?.departure){a.motion=null;a.idle=null;} }
 };
