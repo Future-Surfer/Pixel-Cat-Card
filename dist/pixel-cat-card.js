@@ -25852,49 +25852,53 @@ window.pixelCatCommandsV1={
 if(typeof HTMLElement!=="undefined"){// Dependency-free Lovelace editor. Unknown YAML settings are retained, and
 const catEditorGroups=[
  {title:'Your cat',open:true,fields:[
-  ['name','Name','text',null,'Optional display name for this resident.'],
-  ['life_stage','Life stage','select','adult','Kitten is half body size with quicker steps and more playful gallops. Adult and senior keep baseline behaviour; furniture keeps its pixel scale.'],
-  ['settling_mode','Activity & settling','select','default','Default: after 5 active, visible minutes, newly chosen sleep/loaf bouts last 5–10 minutes. Settling reduces ordinary decisions during longer rests; commands and startles can wake the cat. Always active disables these prolonged holds, while allowing ordinary brief rests. Extended keeps the 5-minute threshold and holds rests for 15–30 minutes.'],
-  ['settle_after_minutes','Settle after (minutes)','number',5,'Custom: active, visible time before longer rests become eligible. Default: 5 minutes. Zero allows them immediately; it does not force sleep.',0,1440],
-  ['settled_rest_min_minutes','Minimum settled rest (minutes)','number',5,'Custom: shortest prolonged sleep/loaf bout. Default: 5 minutes. Each cat chooses its own duration within the range.',1,1440],
-  ['settled_rest_max_minutes','Maximum settled rest (minutes)','number',10,'Custom: longest prolonged sleep/loaf bout. Default: 10 minutes. Must be at least the minimum.',1,1440],
-  ['color','Cat colour','text','#222','Choose a swatch below, or enter any CSS colour.'],
+  ['name','Name','text',null,'What would you like to call them?'],
+  ['color','Fur colour','text','#222','Pick a swatch or enter a colour of your own.'],
+  ['life_stage','Age','select','adult','Kittens are smaller and tend to move and play a little more.'],
+ ]},
+ {title:'Daily rhythm',fields:[
+  ['settling_mode','Activity & settling','select','default','Choose how long your cat settles in for a nap. They still take short rests when set to Always active.'],
+  ['settle_after_minutes','Settle after (minutes)','number',5,'How long your cat spends on the open dashboard before they may take a longer nap.',0,1440],
+  ['settled_rest_min_minutes','Minimum settled rest (minutes)','number',5,'The shortest a long nap can be.',1,1440],
+  ['settled_rest_max_minutes','Maximum settled rest (minutes)','number',10,'The longest a long nap can be.',1,1440],
+ ]},
+ {title:'Make them at home',fields:[
   ['bed_style','Bed style','select','igloo','Choose an igloo or open simple bed.'],
-  ['bed_primary_color','Bed primary colour','text','#aa6627','Shell colour. Its darker shading is derived automatically.'],
-  ['bed_secondary_color','Bed secondary colour','text',null,'Lining / entrance colour. Blank keeps the selected bed’s authored palette.'],
-  ['show_home','Show bed home','checkbox',true,'Turn off to place the cat on another suitable surface. Controls have their own switch.'],
-  ['show_scratching_post','Show scratching post','checkbox',true,'Include a post beside the bed when the home has room. Reduce pixel scale if the card is too narrow.']
+  ['bed_primary_color','Bed primary colour','text','#aa6627','Pick a colour for the outside of the bed.'],
+  ['bed_secondary_color','Bed secondary colour','text',null,'Pick a colour for the inside, or leave it blank for the original colour.'],
+  ['show_home','Show bed home','checkbox',true,'Hide the bed and let your cat find another spot.'],
+  ['show_scratching_post','Show scratching post','checkbox',true,'Put a scratching post beside the bed if there’s room.']
  ]},
  {title:'Home & appearance',fields:[
-  ['primary_home','Primary home','checkbox',false,'Editor presentation only. This flag does not grant world authority; explicit world linkage is configured separately.'],
-  ['cell_size','Pixel scale','number',2,'Integer scale 1–6 for furniture, toys and adult-sized cats. Kitten body cells are half this size.',1,6],
+  ['primary_home','Primary home','checkbox',false,'Mark this card as the main home in the editor.'],
+  ['cell_size','Pixel scale','number',2,'Higher numbers make cats, toys, and furniture bigger.',1,6],
   ['start_paused','Start paused','checkbox',false,'Pause this cat until Explore or Home is requested.']
  ]},
  {title:'Behaviour & toys',fields:[
-  ['post_rest_behaviour','Gentle waking after rest','checkbox',true,'Varied yawns, stretches, quiet activity and slower first walks after sustained sleep/loaf; surprises and commands still take precedence.'],
+  ['post_rest_behaviour','Gentle waking after rest','checkbox',true,'After a long nap, your cat may yawn, stretch, or take a slow walk.'],
   ['mood_behaviour','Mood-driven exploration','checkbox',false,'Softly varies resting, pace and playful interest.'],
   ['social_behaviour','Nearby company & chasing','checkbox',false,'Allows independent cats to invite one another to rest or play.'],
-  ['interaction_behaviour','Gaze-aware encounters','checkbox',false,'Passing acknowledgement, stalking, pats and shared play. Enable moods and company too.'],
-  ['dashboard_props','Shared dashboard toys','checkbox',false,'Join the shared mouse/ball scene; multiple homes share one scene.'],
+  ['interaction_behaviour','Notice other cats','checkbox',false,'Cats can notice, greet, or play with each other. Works with moods and nearby company.'],
+  ['dashboard_props','Shared dashboard toys','checkbox',false,'Put mice and balls on the dashboard for cats to share.'],
   ['toy_carrying','Pick up & carry toys','checkbox',true,'Nibble or catch a toy, carry it, then nose down to release it.'],
   ['bowl_eating','Eat at food bowls','checkbox',true,'Occasional meals; a bowl click offers food. Recently fed cats can ignore it.'],
-  ['prop_reactions','React to moving prop contact','checkbox',false,'Can watch, ignore or startle after a toy brushes past.'],
-  ['landing_reactions','React to nearby landings','checkbox',false,'Physical surprise can be noticed without looking at its source.'],
-  ['startle_followups','Varied startle recovery','checkbox',false,'May settle, retreat or counter-pounce after a hop.']
+  ['prop_reactions','React when a toy brushes past','checkbox',false,'Can watch, ignore or startle after a toy brushes past.'],
+  ['landing_reactions','React to nearby landings','checkbox',false,'A landing nearby can surprise your cat.'],
+  ['startle_followups','Different reactions after a scare','checkbox',false,'A startled cat may settle down, back away, or pounce.']
  ]},
  {title:'Advanced settings',fields:[
-  ['show_controls','Show controls','checkbox',false,'Explore, Home, Pause, status and diagnostics. New cards hide these controls. Igloo visibility is independent; HA may retain a layout gap when both are hidden.'],
-  ['draggable','Pick up and drag cats','checkbox',true,'Drag painted cat pixels with a mouse or touch; release above a clear surface. Escape cancels.'],
-  ['cat_id','Stable cat ID','text',null,'Optional identity override. Use a different ID for each home; changing it changes the cat’s identity.']
+  ['show_controls','Show controls','checkbox',false,'Show shortcuts such as Explore, Home, and Pause.'],
+  ['draggable','Pick up and drag cats','checkbox',true,'Pick up your cat and set them down somewhere clear. Press Escape to cancel.'],
+  ['cat_id','Stable cat ID','text',null,'Give each cat a unique ID. Keep it the same when editing their home.']
  ]},
  {title:'Movement & surfaces',fields:[
   ['casual_wander','Occasional meandering','checkbox',true,'Adds a slower casual pace to uncommitted exploration.'],
-  ['casual_speed','Meandering speed','number',6,'Cell-clock rate; animation and travel stay in step.',1,60],
-  ['relaxed_speed','Strolling speed','number',9,'Cell-clock rate for ordinary relaxed walking.',1,60],
-  ['freefall_enabled','Long-drop freefall pose','checkbox',true,'Use the reviewed freefall pose on eligible long drops.'],
-  ['use_surface_candidates','Try interior and bottom-border candidates','checkbox',true,'Candidates are decorative possible supports, not detected physical shelves.'],
-  ['card_climbing','Climb visible card faces (experimental)','checkbox',false,'Use checked wall-jump/climb transfers only when ordinary routes fail. Vertical surfaces diagnostics show exact card and grip bounds.'],
-  ['native_vertical_surfaces','Scratch native card edges (experimental)','checkbox',false,'Allow noticed structural card borders with a supported stance and safe approach. Use Vertical surfaces diagnostics to inspect candidates.'],
+  ['casual_speed','Meandering speed','number',6,'Higher numbers make this gentle walk faster.',1,60],
+  ['relaxed_speed','Strolling speed','number',9,'Higher numbers make an ordinary stroll faster.',1,60],
+  ['freefall_enabled','Long-drop freefall pose','checkbox',true,'Let your cat stretch out during a long fall.'],
+  ['use_surface_candidates','Try interior and bottom-border candidates','checkbox',true,'Let your cat try extra spots inside cards and along their lower edges.'],
+  ['card_climbing','Climb visible card faces (experimental)','checkbox',false,'Let your cat climb a card when they can’t reach a spot by walking or jumping.'],
+  ['native_vertical_surfaces','Scratch native card edges (experimental)','checkbox',false,'Let your cat scratch a card edge if they can reach it safely.'],
   ['shared_home_surfaces','Share visible home-card roofs','checkbox',false,'Both home cards must enable this; hidden homes never provide a roof.'],
   ['click_attention','Follow dashboard clicks','checkbox',true,'The nearest eligible cat can investigate the clicked surface.']
  ]},
@@ -25904,7 +25908,7 @@ const catEditorGroups=[
   ['debug_mood','Mood glow','checkbox',false,'Optional coloured halo around the cat.'],
   ['debug_vertical_surfaces','Show card outlines & climbing faces','checkbox',false,'Cyan card borders, purple grip areas and green usable tops; labels explain rejected faces.'],
   ['debug_surfaces','Show walking surfaces','checkbox',false,'Draw discovered supports on the dashboard.'],
-  ['debug_paths','Show routes & jump arcs','checkbox',false,'Visualise travel and ballistic flight paths.'],
+  ['debug_paths','Show routes & jump arcs','checkbox',false,'Draw where your cat plans to walk and jump.'],
   ['debug_pois','Show points of interest','checkbox',false,'Mark potential destinations and resting points.']
  ]}
 ];
@@ -25937,28 +25941,58 @@ class PixelCatHomeEditor extends HTMLElement{
  set hass(value){this._hass=value;}
  setConfig(config){if(this.rendered&&JSON.stringify(config)===JSON.stringify(this.config))return;this.clearPending();this.config={...config};this.render();}
  clearPending(){for(const timer of this.timers.values())clearTimeout(timer);this.timers.clear();}
- disconnectedCallback(){this.clearPending();}
+ connectedCallback(){if(this.rendered&&!this.catPreview&&this.config.mode!=='monitor')this.render();}
+ disconnectedCallback(){this.clearPending();clearTimeout(this.previewTimer);this.catPreview=null;}
+ updatePreview(){
+  if(!this.catPreview)return;
+  this.catPreview.style.color=catEditorValue(this.config,'color');
+  this.catPreview.dataset.age=catEditorValue(this.config,'life_stage');
+ }
+ makePreview(){
+  const art=window.pixelCatRoamingArtV2?.idleSequences,extras=window.pixelCatRoamingExtrasV1?.idleSequences;
+  if(!art?.sit||!document.createElementNS)return;
+  const ns='http://www.w3.org/2000/svg',cat=document.createElementNS(ns,'svg'),ink=document.createElementNS(ns,'path');
+  cat.setAttribute('viewBox','0 0 24 24');cat.setAttribute('aria-hidden','true');cat.setAttribute('class','patient-cat');
+  ink.setAttribute('fill','currentColor');cat.append(ink);this.catPreview=cat;this.updatePreview();
+  const seat=art.sit.frames[0],clip=sequence=>sequence?.frames.map((rows,i)=>[rows,sequence.durations[i]])||[];
+  const poses=[[seat,5500],...clip(art.clean),...clip(art.clean),[seat,7300],...clip(extras?.yawn)];
+  const reduced=typeof matchMedia==='function'?matchMedia('(prefers-reduced-motion: reduce)'):null;
+  let frame=0;
+  const draw=()=>{
+   if(this.catPreview!==cat)return;
+   const still=reduced?.matches;
+   const [rows,hold]=still?poses[0]:poses[frame];
+   if(!document.hidden||frame===0){
+    ink.setAttribute('d',rows.map((row,y)=>[...row].map((v,x)=>v==='.'?'':`M${x} ${y}h1v1h-1Z`).join('')).join(''));
+    if(!document.hidden)frame=(frame+1)%poses.length;
+   }
+   if(!still)this.previewTimer=setTimeout(draw,document.hidden?1000:hold);
+  };
+  draw();return cat;
+ }
  render(){
+  clearTimeout(this.previewTimer);this.catPreview=null;
   const expanded=new Map([...this.shadowRoot.querySelectorAll('details')].map(el=>[el.dataset.group,el.open]));
   const focusedKey=this.shadowRoot.activeElement?.dataset.key;
   this.shadowRoot.innerHTML=`<style>
    :host{display:block;color:var(--primary-text-color,#202b33);font:14px var(--paper-font-body1_-_font-family,system-ui)}
    p{color:var(--secondary-text-color,#64717d);line-height:1.5;margin:0 0 16px}details{border:1px solid var(--divider-color,#dce3e8);border-radius:12px;margin:12px 0;overflow:hidden}summary{cursor:pointer;padding:16px;font-weight:650;background:var(--secondary-background-color,#f5f7f9)}.fields{padding:0 16px}.field{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,42%);align-items:center;gap:8px 16px;padding:13px 0;border-bottom:1px solid var(--divider-color,#e4e8ec)}.field:last-child{border:0}.field small{display:block;color:var(--secondary-text-color,#667482);font-size:12px;line-height:1.4;margin-top:5px}.field input{box-sizing:border-box;width:100%;padding:9px 10px;border:1px solid var(--divider-color,#bdcbd5);border-radius:7px;font:inherit;background:var(--card-background-color,#fff);color:inherit;min-width:0}.field input[type=checkbox]{width:20px;height:20px;justify-self:end;accent-color:var(--primary-color,#189b87);cursor:pointer}.note{font-size:12px;margin-top:14px}@media(max-width:360px){.field{gap:8px}.fields{padding:0 12px}}
-   .purpose{display:grid;gap:8px;margin-bottom:16px}.purpose select{padding:12px;font:inherit;color:inherit;background:var(--card-background-color,#fff);border:1px solid var(--divider-color,#aaa);border-radius:8px}.swatches{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 16px}.swatches button{width:30px;height:30px;border:2px solid var(--divider-color,#aaa);border-radius:50%;cursor:pointer}.steps{font-weight:600;color:var(--primary-text-color)}
+   .purpose{display:grid;gap:8px;margin:12px 0 16px}.purpose select{padding:12px;font:inherit;color:inherit;background:var(--card-background-color,#fff);border:1px solid var(--divider-color,#aaa);border-radius:8px}.swatches{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 16px}.swatches button{width:30px;height:30px;border:2px solid var(--divider-color,#aaa);border-radius:50%;cursor:pointer}
+   .welcome{display:flex;align-items:center;gap:16px}.welcome p{margin:0}.patient-cat{width:72px;height:72px;flex:none;shape-rendering:crispEdges;transform-origin:center bottom}.patient-cat[data-age=kitten]{transform:scale(.5)}
    .field select{box-sizing:border-box;width:100%;min-width:0;padding:9px 6px;font:inherit;color:inherit;background:var(--card-background-color,#fff);border:1px solid var(--divider-color,#bdcbd5);border-radius:7px}
    .field:has(select[data-key=settling_mode]){grid-template-columns:1fr}
    :is(summary,input,select,button):focus-visible{outline:2px solid var(--primary-color,#006b78);outline-offset:2px}
    summary:focus-visible{outline-offset:-3px}
    @media(pointer:coarse){.swatches button{width:44px;height:44px}}
-   </style><p class="steps">1 · Choose your card</p>`;
-  const monitor=this.config.mode==='monitor',purpose=document.createElement('label');purpose.className='purpose';purpose.textContent='What would you like to add?';
+   </style>`;
+  const monitor=this.config.mode==='monitor',purpose=document.createElement('label');purpose.className='purpose';purpose.textContent='Card purpose';
   const select=document.createElement('select');select.setAttribute('aria-label','Card purpose');select.dataset.key='mode';
   for(const [value,label]of [['companion','Cat companion'],['monitor','Performance monitor · no cat']]){const option=document.createElement('option');option.value=value;option.textContent=label;select.append(option);}select.value=monitor?'monitor':'companion';
-  select.addEventListener('change',()=>{for(const input of this.shadowRoot.querySelectorAll('input'))if(this.timers.has(input.dataset.key))input.dispatchEvent(new Event('change'));this.config={...this.config,mode:select.value};this.dispatchEvent(new CustomEvent('config-changed',{detail:{config:{...this.config}},bubbles:true,composed:true}));this.render();});purpose.append(select);this.shadowRoot.append(purpose);
-  const intro=document.createElement('p');intro.textContent=monitor?'2 · Name your monitor. It measures the page and creates no cat.':'2 · Meet your cat. Choose a name, colours and bed, check the preview, then Save in Home Assistant. Igloo residents sneak out on arrival; open beds use normal placement.';this.shadowRoot.append(intro);
+  select.addEventListener('change',()=>{for(const input of this.shadowRoot.querySelectorAll('input'))if(this.timers.has(input.dataset.key))input.dispatchEvent(new Event('change'));this.config={...this.config,mode:select.value};this.dispatchEvent(new CustomEvent('config-changed',{detail:{config:{...this.config}},bubbles:true,composed:true}));this.render();});purpose.append(select);
+  const welcome=document.createElement('div'),intro=document.createElement('p');welcome.className='welcome';intro.textContent=monitor?'Give your monitor a name. It tracks how this dashboard is running.':'It’s time to meet your new friend. Give them a name, choose their fur colour and age, and make them feel at home.';welcome.append(intro);const cat=monitor?null:this.makePreview();if(cat)welcome.append(cat);this.shadowRoot.append(welcome);
   const groups=monitor?[{title:'Performance monitor',open:true,fields:[['title','Monitor title','text','Cat performance','Saved title for this page’s shared performance monitor.']]}]:catEditorGroups;
   for(const group of groups){
-   const section=document.createElement('details');section.dataset.group=group.title;section.open=expanded.get(group.title)??!!group.open;
+   const section=document.createElement('details');section.dataset.group=group.title;const hasPurpose=monitor||group.title==='Advanced settings';section.open=(hasPurpose&&focusedKey==='mode')||(expanded.get(group.title)??!!group.open);
    const summary=document.createElement('summary');summary.textContent=group.title;section.append(summary);
    const fields=document.createElement('div');fields.className='fields';
    for(const [key,title,kind,,help,min,max]of group.fields){
@@ -25980,6 +26014,7 @@ class PixelCatHomeEditor extends HTMLElement{
      const next=key==='title'?{...this.config,title:input.value}:catEditorChange(this.config,key,kind==='checkbox'?input.checked:input.value);
      if(JSON.stringify(next)===JSON.stringify(this.config))return;
      this.config=next;
+     this.updatePreview();
      this.dispatchEvent(new CustomEvent('config-changed',{detail:{config:{...this.config}},bubbles:true,composed:true}));
      if(key==='settling_mode')this.render();
     };
@@ -25992,12 +26027,13 @@ class PixelCatHomeEditor extends HTMLElement{
      for(const [name,colour]of palette){const button=document.createElement('button');button.type='button';button.style.background=colour;button.setAttribute('aria-label',name+(cat?' cat':' '+title.toLowerCase()));button.title=name;button.addEventListener('click',()=>{input.value=colour;input.dispatchEvent(new Event('change'));});swatches.append(button);}fields.append(swatches);
     }
    }
+   if(hasPurpose)fields.append(purpose);
    section.append(fields);this.shadowRoot.append(section);
 
   }
   if(!monitor)window.pixelCatWorldV1?.editor(this,expanded);
   if(focusedKey)[...this.shadowRoot.querySelectorAll('[data-key]')].find(control=>control.dataset.key===focusedKey)?.focus();
-  const note=document.createElement('p');note.className='note';note.textContent=monitor?'Save to add a shared page monitor. Switching purpose retains your companion settings.':'3 · Save to welcome your cat. Extra settings are optional. Preview never spawns a roaming cat. One resident per home for now; existing YAML and advanced settings are retained. Hidden homes skip igloo emergence.';this.shadowRoot.append(note);this.rendered=true;
+  const note=document.createElement('p');note.className='note';note.textContent=monitor?'Save to add your monitor.':'When you’re ready, save to welcome your cat to the dashboard.';this.shadowRoot.append(note);this.rendered=true;
  }
 }
 if(!customElements.get('pixel-cat-home-editor'))customElements.define('pixel-cat-home-editor',PixelCatHomeEditor);
@@ -28821,8 +28857,13 @@ class PixelCatHome extends HTMLElement {
     if(document.hidden || location.pathname!==this.href || !this.isConnected) return true;
     if(matchMedia('(prefers-reduced-motion: reduce)').matches) return true;
     if(this.root?.editMode||this.root?.lovelace?.editMode) return true;
-    return deepElements(document,el => el.hasAttribute('role') && el.getAttribute('role')==='dialog' || ['dialog','ha-dialog','ha-more-info-dialog','hui-dialog-edit-card','hui-dialog-edit-dashboard','ha-drawer'].includes(el.localName))
-      .some(el => { const r=el.getBoundingClientRect(); return r.width>0&&r.height>0&&getComputedStyle(el).visibility!=='hidden' && (el.hasAttribute('open') || el.getAttribute('role')==='dialog' || el.localName.startsWith('hui-dialog')); });
+    return deepElements(document,el => el.getAttribute('role')==='dialog' || ['dialog','ha-dialog','hui-dialog-edit-card','hui-dialog-edit-dashboard','ha-drawer'].includes(el.localName))
+      .some(el => {
+        const r=el.getBoundingClientRect();
+        if(!r.width||!r.height||getComputedStyle(el).visibility==='hidden'||!(el.hasAttribute('open')||el.getAttribute('role')==='dialog'||el.localName.startsWith('hui-dialog')))return false;
+        for(let node=el;node;node=node.parentElement||node.getRootNode?.()?.host)if(node.localName==='ha-more-info-dialog')return false;
+        return true;
+      });
   }
   freezeClocks(gap){gap=Math.max(0,gap);if(this.climb)this.climb.last+=gap;if(this.explorationResidence)this.explorationResidence.since+=gap;if(this.nextLandingReactionAt)this.nextLandingReactionAt+=gap;if(this.nextStartleAt)this.nextStartleAt+=gap;if(this.motion)this.motion.start+=gap;if(this.idle){this.idle.start+=gap;this.idle.poseUntil+=gap;}if(this.play&&Number.isFinite(this.play.waitUntil))this.play.waitUntil+=gap;if(this.toyHunt)this.toyHunt.started+=gap;if(this.nextReactiveMouseAt)this.nextReactiveMouseAt+=gap;if(this.nextToyAttemptAt)this.nextToyAttemptAt+=gap;if(this.nextToyAt)this.nextToyAt+=gap;if(this.nextPlayAt)this.nextPlayAt+=gap;if(this.forcedIdleUntil)this.forcedIdleUntil+=gap;if(this.deadline>0)this.deadline+=gap;}
   renderDebug(){window.pixelCatSurfaceDebugV1?.render.call(this,{restingPoints,flightPoint,propSurfaceFor,propPosition,travelSpeed});}
@@ -29534,7 +29575,7 @@ window.pixelCatClimbV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0-rc.3",sourceHash:"a9d79ebeb4d018a46968f85557c4c48ea235ae3f487cfec299acee0d2f9e45d0"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0-rc.3",sourceHash:"d0c775aac755d270144a62a5cbfc3d6a1a3f4b4da3c5fb712696d7fc72a50dcc"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0-rc.3");
 })();
