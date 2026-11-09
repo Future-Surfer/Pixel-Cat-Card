@@ -704,8 +704,13 @@ class PixelCatHome extends HTMLElement {
     if(document.hidden || location.pathname!==this.href || !this.isConnected) return true;
     if(matchMedia('(prefers-reduced-motion: reduce)').matches) return true;
     if(this.root?.editMode||this.root?.lovelace?.editMode) return true;
-    return deepElements(document,el => el.hasAttribute('role') && el.getAttribute('role')==='dialog' || ['dialog','ha-dialog','ha-more-info-dialog','hui-dialog-edit-card','hui-dialog-edit-dashboard','ha-drawer'].includes(el.localName))
-      .some(el => { const r=el.getBoundingClientRect(); return r.width>0&&r.height>0&&getComputedStyle(el).visibility!=='hidden' && (el.hasAttribute('open') || el.getAttribute('role')==='dialog' || el.localName.startsWith('hui-dialog')); });
+    return deepElements(document,el => el.getAttribute('role')==='dialog' || ['dialog','ha-dialog','hui-dialog-edit-card','hui-dialog-edit-dashboard','ha-drawer'].includes(el.localName))
+      .some(el => {
+        const r=el.getBoundingClientRect();
+        if(!r.width||!r.height||getComputedStyle(el).visibility==='hidden'||!(el.hasAttribute('open')||el.getAttribute('role')==='dialog'||el.localName.startsWith('hui-dialog')))return false;
+        for(let node=el;node;node=node.parentElement||node.getRootNode?.()?.host)if(node.localName==='ha-more-info-dialog')return false;
+        return true;
+      });
   }
   freezeClocks(gap){gap=Math.max(0,gap);if(this.climb)this.climb.last+=gap;if(this.explorationResidence)this.explorationResidence.since+=gap;if(this.nextLandingReactionAt)this.nextLandingReactionAt+=gap;if(this.nextStartleAt)this.nextStartleAt+=gap;if(this.motion)this.motion.start+=gap;if(this.idle){this.idle.start+=gap;this.idle.poseUntil+=gap;}if(this.play&&Number.isFinite(this.play.waitUntil))this.play.waitUntil+=gap;if(this.toyHunt)this.toyHunt.started+=gap;if(this.nextReactiveMouseAt)this.nextReactiveMouseAt+=gap;if(this.nextToyAttemptAt)this.nextToyAttemptAt+=gap;if(this.nextToyAt)this.nextToyAt+=gap;if(this.nextPlayAt)this.nextPlayAt+=gap;if(this.forcedIdleUntil)this.forcedIdleUntil+=gap;if(this.deadline>0)this.deadline+=gap;}
   renderDebug(){window.pixelCatSurfaceDebugV1?.render.call(this,{restingPoints,flightPoint,propSurfaceFor,propPosition,travelSpeed});}
