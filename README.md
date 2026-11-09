@@ -2,7 +2,7 @@
 
 A pixel cat that roams around your Home Assistant dashboard. Watch it leave its bed, wander from card to card, and find spots to nap, scratch or play.
 
-![An orange cat wakes in an open bed, scratches a post, eats, grooms and walks back to sleep](docs/images/pixel-cat-routine.gif)
+![An orange cat wakes in an open bed, scratches a post, eats, grooms and walks back to sleep](docs/images/pixel-cat-routine-v2.gif)
 
 *A short scripted demo using the card’s artwork.*
 
