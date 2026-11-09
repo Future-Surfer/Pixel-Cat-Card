@@ -16,6 +16,7 @@ Opt-in release candidate for Home Assistant 2026.11 and later. Pixel Cat Card gi
 - Tap a mouse or ball to invite a nearby cat to investigate.
 - Exact landing height when a differently sized cat steps on or off a simple bed.
 - A brief sit turn when a cat reverses during an unhurried walk.
+- New cats get a random fur colour chosen for the current dashboard theme.
 
 ## Validation and limits
 

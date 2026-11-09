@@ -17,6 +17,22 @@ const timers=new Map();let nextTimer=0;
 const box={window:{},document,Event:class{constructor(type){this.type=type;}},setTimeout:fn=>{timers.set(++nextTimer,fn);return nextTimer;},clearTimeout:id=>timers.delete(id),HTMLElement:Node,CustomEvent:class{constructor(type,options){this.type=type;Object.assign(this,options);}},customElements:{get:k=>registered.get(k),define:(k,v)=>registered.set(k,v),whenDefined:k=>registered.has(k)?Promise.resolve():Promise.reject(Error(k))}};
 vm.runInNewContext(fs.readFileSync('prototype/cat-home-editor.js','utf8')+'\n'+['prototype/cat-polish.js','prototype/cat-surface-world.js','prototype/cat-card-attention.js','pixel-cat-roaming.js'].map(f=>fs.readFileSync(f,'utf8')).join('\n')+'\nglobalThis.Editor=PixelCatHomeEditor;globalThis.Home=PixelCatHome;',box);
 const editor=await box.Home.getConfigElement();assert.ok(editor instanceof box.Editor);assert.equal(box.Home.getStubConfig().type,'custom:pixel-cat-home');
+const polish=box.window.pixelCatPolishV1;
+for(const [backgrounds,rejected] of [
+ [[[18,18,18],[34,34,34]],'#263b49'],
+ [[[255,255,255],[240,240,240]],'#e8d8bf']
+]){
+ const picks=new Set(Array.from({length:100},(_,i)=>polish.colour(()=>i/100,backgrounds)));
+ assert.ok(picks.size>1,'New cards still get varied colours');
+ assert.ok(!picks.has(rejected),'Low contrast fur is excluded from the random pool');
+ for(const colour of picks){
+  const rgb=colour.slice(1).match(/../g).map(byte=>parseInt(byte,16)),fur=polish.luminance(rgb);
+  for(const bg of backgrounds){
+   const light=polish.luminance(bg);
+   assert.ok((Math.max(light,fur)+.05)/(Math.min(light,fur)+.05)>=3);
+  }
+ }
+}
 const advanced={surface_rules:[{match:{type:'entities'},surfaces:[]}],mood:{seed:17}},initial={type:'custom:pixel-cat-home',name:'<b>Miso</b>',...advanced};editor.setConfig(initial);assert.equal(editor.event,undefined,'Opening editor never writes defaults');
 const input=key=>editor.shadowRoot.querySelectorAll('input').find(n=>n.dataset.key===key);
 assert.equal(input('name').value,'<b>Miso</b>');assert.equal(input('show_home').checked,true);assert.equal(input('debug_labels').checked,true);assert.equal(input('casual_speed').value,6);
