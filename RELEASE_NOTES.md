@@ -1,4 +1,4 @@
-# Pixel Cat Card 1.0.0-rc.2
+# Pixel Cat Card 1.0.0-rc.3
 
 Opt-in release candidate for Home Assistant 2026.11 and later. Pixel Cat Card gives your dashboard a cat that can roam between cards, nap, scratch and play.
 
@@ -12,6 +12,9 @@ Opt-in release candidate for Home Assistant 2026.11 and later. Pixel Cat Card gi
 - One JavaScript bundle with the cat, props and editor.
 - Longer head-down holds and brief lifts when eating.
 - A corrected tail mask for the scratching-post animation.
+- Clearer keyboard focus and larger touch controls.
+- Tap a mouse or ball to invite a nearby cat to investigate.
+- Exact landing height when a differently sized cat steps on or off a simple bed.
 
 ## Validation and limits
 

@@ -37,6 +37,8 @@ Object.assign(window.pixelCatSetupV1,{
   if(!m.homeStep)return m.fromY;
   // Height changes follow the same native-cell clock as the planted walk cycle.
   const cells=Math.max(1,m.cells||1),step=Math.min(cells,Math.max(0,m.sneakTimeline?Math.abs(sample.x-m.fromX)/a.scale:sample.step||0)),u=m.target.bed?Math.max(0,(step-Math.max(0,cells-6))/Math.min(6,cells)):Math.min(1,step/Math.min(6,cells));
-  return m.fromY+Math.round((m.y-m.fromY)/a.scale*u)*a.scale;
+  const delta=m.y-m.fromY;
+  if(u===1)return m.y;
+  return m.fromY+Math.sign(delta)*Math.min(Math.abs(delta),Math.round(Math.abs(delta)/a.scale*u)*a.scale);
  }
 });
