@@ -15,13 +15,13 @@ jobs:
       - run: npm test
       - run: npm run release:build
       - run: git diff --exit-code -- dist pixel-cat-roaming.js pixel-cat-roaming-art.js pixel-cat-roaming-extras.js pixel-cat-behaviours.js pixel-cat-affordances.js pixel-cat-climbing.js frame-studio/dist/library.json frame-studio/dist/asset-review.json frame-studio/SEQUENCE_AUDIT.md frame-studio/LATEST_ASSET_REVIEW.md
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: pixel-cat-roaming
           path: .release/
           include-hidden-files: true
           if-no-files-found: error
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: pixel-cat-card
           path: dist/
