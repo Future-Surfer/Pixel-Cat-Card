@@ -60,7 +60,7 @@ Delivered refinements: [feature index](docs/FEATURES.md); dated evidence (develo
 | UX-02 | Compact/hidden home gaps, late/absent surfaces and reflow/removal; no phantom roof or duplicate actor. See task 4. |
 | REL-01, REL-04 | Desktop baseline and shared geometry delivered. Calibrate sustained 1/2/5/10/20-cat target-device costs; separate layout, routing, sensing, rendering and scheduling. |
 | REL-02, REL-03 | Task 4; physical Companion scroll/inertia/sticky/viewport coverage remains separate from desktop fixtures. |
-| REL-05 | Random fur colours now check the active theme at creation. Continue reviewing contrast for roaming cats across individual cards and for labels, controls and effects, alongside reduced motion, touch/keyboard and safe hidden/resume behaviour. |
+| REL-05 | Automatic fur outlines help near-black cats and near-white cats on light themes. Continue reviewing contrast across individual cards, alongside reduced motion, touch/keyboard and safe hidden/resume behaviour. |
 | REL-06 | Resize coordinator and unchanged-bed-endpoint regression fixed; initial layout ownership/first placement now separated from repair (evidence (development reference retained privately)). Keep steady 28-default-home checks alongside actual reflow tests; retain quiet settling, shared capture, bounded shared rebuild work/RAF, manual Pause and staggered recovery. |
 | PERF-01 | Conditional gaze optimisation only after measured cost; preserve exact gaze, blindness and head variants. |
 | MOTION-01 | Task 5; distinguish contact/phase bugs from missing art. |
