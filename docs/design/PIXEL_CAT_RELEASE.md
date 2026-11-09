@@ -1,6 +1,6 @@
 # Pixel Cat Card release plan
 
-Updated 8 November 2026. [ROADMAP](../../ROADMAP.md#release-and-maintenance) owns priority and SHIP IDs; this document owns release gates.
+Updated 9 November 2026. [ROADMAP](../../ROADMAP.md#release-and-maintenance) owns priority and SHIP IDs; this document owns release gates.
 
 ## Settled decisions
 
@@ -12,11 +12,20 @@ Updated 8 November 2026. [ROADMAP](../../ROADMAP.md#release-and-maintenance) own
 
 ## Remaining release sequence
 
-1. Review the immutable `v1.0.0-rc.1` draft: built file, manifest and checksum assets must match the tested commit. The prepared assets already match the tested local hashes.
-2. Publish an explicitly opt-in prerelease. Draft releases are not discoverable by Marketplace; do not claim they can be installed there. Keep the RC label and known limits clear.
-3. On an isolated instance, test fresh Marketplace installation, upgrade/versioned caching, removal/reinstall and rollback. Keep exact resource/configuration backups; verify unrelated configuration and real browser behaviour after each step. Do not use the owner's live dashboard as the installation experiment.
-4. Address acceptance failures through tested PRs and a new candidate version. Never replace an existing version's assets or move its tag.
-5. Promote a stable release only after acceptance. Catalog submission to `hacs/default` is a separate step; custom-repository support does not imply catalog inclusion.
+1. After protected-main checks pass, tag the tested `package.json` version and run **Prepare release**. Confirm the draft's bundle, manifest and checksum match the tagged build. Publish `v1.0.0-rc.2` as an opt-in prerelease. Keep the older RC draft and tag intact.
+2. On an isolated Home Assistant 2026.11+ instance, connect GitHub, add the custom repository as **Dashboard**, enable **Pre-release** and install. Record the version, served file checksum and exactly one registered module. Reload and check the card picker, save a companion, watch it move, and verify Pause/Resume and view return.
+3. Test an upgrade and versioned cache with two installable versions. Check removal and reinstall, then restore the isolated instance's pre-upgrade backup and verify rollback. Capture installed bytes, registration and saved YAML at each step. Keep the live dashboard out of this test. [Marketplace version and backup guidance](https://www.home-assistant.io/integrations/marketplace/#installing-another-version).
+4. Address failures through tested PRs and fresh versions. Publish the first stable release as a regular GitHub release after acceptance and green validation. Recheck the stable release asset and clean-install path. Preserve old assets and tags for rollback.
+
+## Catalog submission
+
+Home Assistant 2026.11 includes Marketplace. The default catalog still lives in [hacs/default](https://github.com/hacs/default), whose default branch is `master`.
+
+1. Recheck [catalog guidance](https://contributors.home-assistant.io/marketplace/guides/catalog/) and the [current PR template](https://github.com/hacs/default/blob/master/.github/PULL_REQUEST_TEMPLATE.md). Confirm there is no existing listing or open submission.
+2. Confirm the public repo is active with a description, topics, issues, MIT license, an illustrated README, and a working custom-repository install. Keep the link to the full release and the exact green [Marketplace validation](https://github.com/Future-Surfer/Pixel-Cat-Card/actions/workflows/marketplace.yml) run with zero ignored checks. Hassfest and integration branding are for integrations.
+3. From the owner's or major contributor's personal GitHub account, fork `hacs/default` and branch from its current `master`. Add only `Future-Surfer/Pixel-Cat-Card` to [`plugin`](https://github.com/hacs/default/blob/master/plugin), in alphabetical order. Validate the JSON and keep the diff to one entry.
+4. Open the PR against `hacs/default:master`, allow maintainer edits and complete the template with the release and workflow-run links. Mark the integration-only items as inapplicable and leave reviewer assignment to the maintainers.
+5. Follow the automated checks and maintainer feedback. After merge and the next catalog refresh, verify the card appears in Marketplace search. In the meantime, the README links to custom-repository installation.
 
 ## Preservation and rollback
 

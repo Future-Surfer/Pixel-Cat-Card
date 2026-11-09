@@ -1,12 +1,20 @@
 # Pixel Cat Card installation and migration
 
-Candidate `1.0.0-rc.1` targets HA 2026.11+. The repository is public; the first Marketplace prerelease and installation acceptance are still in preparation.
+Pixel Cat Card targets Home Assistant 2026.11 and later.
+
+## Marketplace
+
+Use the [Marketplace link](https://my.home-assistant.io/redirect/marketplace_repository/?owner=Future-Surfer&repository=Pixel-Cat-Card&category=plugin) or enter `Future-Surfer/Pixel-Cat-Card` under **Settings → Marketplace → Add from link**. Connect GitHub if prompted, and choose **Dashboard** if asked for a type. Install it and refresh the dashboard.
+
+To see release candidates, open the repository's device page under **Settings → Devices & services → Marketplace**. Enable the **Pre-release** entity and turn it on, then return to Marketplace. [Home Assistant's Marketplace instructions](https://www.home-assistant.io/integrations/marketplace/#keeping-installations-up-to-date).
+
+For dashboards with storage-mode resources, Marketplace registers the JavaScript module automatically. In YAML resource mode, add `/local/community/pixel-cat-card/pixel-cat-card.js` as a module in the Lovelace resources configuration and version its URL when updating. If you already have a manually registered copy, back it up and remove its registration when switching to Marketplace so only one bundle loads.
 
 ## Package
 
 `dist/pixel-cat-card.js` is the sole entrypoint. `dist/SHA256SUMS` and `dist/pixel-cat-card.manifest.json` identify its exact bytes, version and source modules. Its strict module scopes preserve the existing runtime order; transitional Stick Pet/Pixel Pet elements are included without changing their sources. Node/Studio are build/authoring tools, not runtime requirements.
 
-For manual testing, copy the verified file into HA `/config/www/` and register `/local/pixel-cat-card.js?v=1.0.0-rc.1` as a module. A future public release should be installed through Marketplace, which manages the resource version. Keep the previous release file for rollback; do not overwrite its bytes in place.
+For manual installation, download `pixel-cat-card.js` from [GitHub Releases](https://github.com/Future-Surfer/Pixel-Cat-Card/releases). Copy it into HA `/config/www/` and register `/local/pixel-cat-card.js` as a JavaScript module. Change the URL or its version query parameter on each update to avoid a stale browser cache. Keep the previous release file for rollback.
 
 ## Existing six-module or inline installation
 
@@ -21,7 +29,3 @@ Registering both the bundle and a separate roaming runtime is unsupported. The b
 ## Legacy cards
 
 The candidate still registers `custom:stick-pet-card`, `custom:pixel-pet-card` and the latter's editor. They remain usable by existing YAML, while the picker promotes Pixel Cat Card. Unit checks verify legacy class identity when the old Pixel Pet resource loaded first. Test the store's real update/resource-path behaviour before changing an existing installed repository. Files merely retained in Git do not prove an installed upgrade is safe.
-
-## Marketplace release gates
-
-Before claiming Marketplace support: pass public plugin validation without ignored checks, publish an opt-in candidate and test fresh installation, upgrade, versioned caching, uninstall/reinstall and rollback on an isolated instance. Preserve previous assets/releases. Catalog inclusion is a later submission to `hacs/default`; custom-repository availability does not mean catalog acceptance.
