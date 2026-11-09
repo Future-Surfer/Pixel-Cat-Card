@@ -17,6 +17,7 @@ Opt-in release candidate for Home Assistant 2026.11 and later. Pixel Cat Card gi
 - Exact landing height when a differently sized cat steps on or off a simple bed.
 - A brief sit turn when a cat reverses during an unhurried walk.
 - New cats get a random fur colour chosen for the current dashboard theme.
+- The editor cat rests briefly between yawns, ear scratches, and grooming. An optional black or white fur outline helps cats stand out on the dashboard.
 
 ## Validation and limits
 

@@ -721,7 +721,7 @@ class PixelCatHome extends HTMLElement {
     if(signature!==this.signature) {
       this.signature=signature;this.drawnRows=rows;this.drawnFacing=this.facing;
       this.svg.style.color = this.config.color || '#222';
-      this.svg.firstElementChild.innerHTML = rows.map((row,y)=>[...row].map((v,x)=>v==='.'?'':`<rect x="${this.facing<0?23-x:x}" y="${y}" width="1" height="1" fill="currentColor"/>`).join('')).join('');
+      this.svg.firstElementChild.innerHTML = (window.pixelCatOutlineV1?.markup(rows,this.facing,this.config.outline)||'')+rows.map((row,y)=>[...row].map((v,x)=>v==='.'?'':`<rect x="${this.facing<0?23-x:x}" y="${y}" width="1" height="1" fill="currentColor"/>`).join('')).join('');
     }
     const bounds=catBounds(rows); const x=this.x, y=this.y-bounds.bottom*s;
     this.svg.style.transform=`translate(${x}px,${y}px)`;

@@ -25849,11 +25849,34 @@ window.pixelCatCommandsV1={
  }
 };
 
+window.pixelCatOutlineV1={
+ width:.36,
+ colour(value){return value==='black'||value==='white'?value:'none';},
+ path(rows,facing=1){
+  const solid=(x,y)=>x>=0&&x<24&&!!rows[y]?.[x]&&rows[y][x]!=='.';
+  let path='';
+  for(let y=0;y<rows.length;y++)for(let x=0;x<24;x++){
+   if(!solid(x,y))continue;
+   const left=facing<0?23-x:x;
+   if(!solid(x,y-1))path+=`M${left} ${y}h1`;
+   if(!solid(x,y+1))path+=`M${left} ${y+1}h1`;
+   if(!solid(x-1,y))path+=`M${left+(facing<0?1:0)} ${y}v1`;
+   if(!solid(x+1,y))path+=`M${left+(facing<0?0:1)} ${y}v1`;
+  }
+  return path;
+ },
+ markup(rows,facing,value){
+  const stroke=this.colour(value);
+  return stroke==='none'?'':`<path d="${this.path(rows,facing)}" fill="none" stroke="${stroke}" stroke-width="${this.width}" stroke-linecap="round" shape-rendering="geometricPrecision"/>`;
+ }
+};
+
 if(typeof HTMLElement!=="undefined"){// Dependency-free Lovelace editor. Unknown YAML settings are retained, and
 const catEditorGroups=[
  {title:'Your cat',open:true,fields:[
   ['name','Name','text',null,'What would you like to call them?'],
   ['color','Fur colour','text','#222','Pick a swatch or enter a colour of your own.'],
+  ['outline','Fur outline','select','none','A thin edge can help your cat stand out as they roam.'],
   ['life_stage','Age','select','adult','Kittens are smaller and tend to move and play a little more.'],
  ]},
  {title:'Daily rhythm',fields:[
@@ -25913,7 +25936,7 @@ const catEditorGroups=[
  ]}
 ];
 const catEditorFields=new Map(catEditorGroups.flatMap(g=>g.fields.map(f=>[f[0],f])));
-const catEditorOptions={life_stage:[['kitten','Kitten'],['adult','Adult'],['senior','Senior']],bed_style:[['igloo','Igloo'],['simple','Simple bed']],settling_mode:[['active','Always active'],['default','Default settle periods (5–10 min)'],['extended','Extended settle periods (15–30 min)'],['custom','Custom']]};
+const catEditorOptions={outline:[['none','None'],['black','Black'],['white','White']],life_stage:[['kitten','Kitten'],['adult','Adult'],['senior','Senior']],bed_style:[['igloo','Igloo'],['simple','Simple bed']],settling_mode:[['active','Always active'],['default','Default settle periods (5–10 min)'],['extended','Extended settle periods (15–30 min)'],['custom','Custom']]};
 const catEditorValue=(config,key)=>{
  if(key==='settling_mode')return catEditorOptions.settling_mode.some(([v])=>v===config[key])?config[key]:'default';
  if(config[key]!==undefined)return config[key];
@@ -25947,26 +25970,33 @@ class PixelCatHomeEditor extends HTMLElement{
   if(!this.catPreview)return;
   this.catPreview.style.color=catEditorValue(this.config,'color');
   this.catPreview.dataset.age=catEditorValue(this.config,'life_stage');
+  this.catPreview.firstElementChild.setAttribute('stroke',window.pixelCatOutlineV1.colour(this.config.outline));
  }
  makePreview(){
   const art=window.pixelCatRoamingArtV2?.idleSequences,extras=window.pixelCatRoamingExtrasV1?.idleSequences;
-  if(!art?.sit||!document.createElementNS)return;
-  const ns='http://www.w3.org/2000/svg',cat=document.createElementNS(ns,'svg'),ink=document.createElementNS(ns,'path');
+  const outline=window.pixelCatOutlineV1;
+  if(!art?.sit||!outline||!document.createElementNS)return;
+  const ns='http://www.w3.org/2000/svg',cat=document.createElementNS(ns,'svg'),ink=document.createElementNS(ns,'path'),edge=document.createElementNS(ns,'path');
   cat.setAttribute('viewBox','0 0 24 24');cat.setAttribute('aria-hidden','true');cat.setAttribute('class','patient-cat');
-  ink.setAttribute('fill','currentColor');cat.append(ink);this.catPreview=cat;this.updatePreview();
-  const seat=art.sit.frames[0],clip=sequence=>sequence?.frames.map((rows,i)=>[rows,sequence.durations[i]])||[];
-  const poses=[[seat,5500],...clip(art.clean),...clip(art.clean),[seat,7300],...clip(extras?.yawn)];
+  edge.setAttribute('fill','none');edge.setAttribute('stroke-width',outline.width);edge.setAttribute('stroke-linecap','round');edge.setAttribute('shape-rendering','geometricPrecision');
+  ink.setAttribute('fill','currentColor');cat.append(edge,ink);this.catPreview=cat;this.updatePreview();
+  const seat=art.sit.frames[0],clip=(sequence,name)=>sequence?.frames.map((rows,i)=>[rows,window.pixelCatPolishV1.hold(name,sequence,i)])||[];
+  const actions=[clip(art.clean,'clean'),clip(extras?.scratch||art.scratch,'scratch'),clip(extras?.yawn,'yawn')].filter(action=>action.length);
+  let pending=[],last=null;
   const reduced=typeof matchMedia==='function'?matchMedia('(prefers-reduced-motion: reduce)'):null;
-  let frame=0;
   const draw=()=>{
    if(this.catPreview!==cat)return;
+   if(document.hidden){this.previewTimer=setTimeout(draw,500);return;}
    const still=reduced?.matches;
-   const [rows,hold]=still?poses[0]:poses[frame];
-   if(!document.hidden||frame===0){
-    ink.setAttribute('d',rows.map((row,y)=>[...row].map((v,x)=>v==='.'?'':`M${x} ${y}h1v1h-1Z`).join('')).join(''));
-    if(!document.hidden)frame=(frame+1)%poses.length;
+   const [rows,hold]=still?[seat,0]:pending.shift()||[seat,1300+Math.random()*1400];
+   if(!still&&rows===seat&&!pending.length&&actions.length){
+    const choices=actions.filter(action=>action!==last||actions.length===1);
+    last=choices[Math.floor(Math.random()*choices.length)];
+    pending=[...last];
    }
-   if(!still)this.previewTimer=setTimeout(draw,document.hidden?1000:hold);
+   ink.setAttribute('d',rows.map((row,y)=>[...row].map((v,x)=>v==='.'?'':`M${x} ${y}h1v1h-1Z`).join('')).join(''));
+   edge.setAttribute('d',outline.path(rows));
+   if(!still)this.previewTimer=setTimeout(draw,hold);
   };
   draw();return cat;
  }
@@ -25978,7 +26008,7 @@ class PixelCatHomeEditor extends HTMLElement{
    :host{display:block;color:var(--primary-text-color,#202b33);font:14px var(--paper-font-body1_-_font-family,system-ui)}
    p{color:var(--secondary-text-color,#64717d);line-height:1.5;margin:0 0 16px}details{border:1px solid var(--divider-color,#dce3e8);border-radius:12px;margin:12px 0;overflow:hidden}summary{cursor:pointer;padding:16px;font-weight:650;background:var(--secondary-background-color,#f5f7f9)}.fields{padding:0 16px}.field{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,42%);align-items:center;gap:8px 16px;padding:13px 0;border-bottom:1px solid var(--divider-color,#e4e8ec)}.field:last-child{border:0}.field small{display:block;color:var(--secondary-text-color,#667482);font-size:12px;line-height:1.4;margin-top:5px}.field input{box-sizing:border-box;width:100%;padding:9px 10px;border:1px solid var(--divider-color,#bdcbd5);border-radius:7px;font:inherit;background:var(--card-background-color,#fff);color:inherit;min-width:0}.field input[type=checkbox]{width:20px;height:20px;justify-self:end;accent-color:var(--primary-color,#189b87);cursor:pointer}.note{font-size:12px;margin-top:14px}@media(max-width:360px){.field{gap:8px}.fields{padding:0 12px}}
    .purpose{display:grid;gap:8px;margin:12px 0 16px}.purpose select{padding:12px;font:inherit;color:inherit;background:var(--card-background-color,#fff);border:1px solid var(--divider-color,#aaa);border-radius:8px}.swatches{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 16px}.swatches button{width:30px;height:30px;border:2px solid var(--divider-color,#aaa);border-radius:50%;cursor:pointer}
-   .welcome{display:flex;align-items:center;gap:16px}.welcome p{margin:0}.patient-cat{width:72px;height:72px;flex:none;shape-rendering:crispEdges;transform-origin:center bottom}.patient-cat[data-age=kitten]{transform:scale(.5)}
+   .welcome{display:flex;align-items:center;gap:16px}.welcome p{margin:0}.patient-cat{width:72px;height:72px;flex:none;shape-rendering:crispEdges;overflow:visible;transform-origin:center bottom}.patient-cat[data-age=kitten]{transform:scale(.5)}
    .field select{box-sizing:border-box;width:100%;min-width:0;padding:9px 6px;font:inherit;color:inherit;background:var(--card-background-color,#fff);border:1px solid var(--divider-color,#bdcbd5);border-radius:7px}
    .field:has(select[data-key=settling_mode]){grid-template-columns:1fr}
    :is(summary,input,select,button):focus-visible{outline:2px solid var(--primary-color,#006b78);outline-offset:2px}
@@ -28936,7 +28966,7 @@ class PixelCatHome extends HTMLElement {
     if(signature!==this.signature) {
       this.signature=signature;this.drawnRows=rows;this.drawnFacing=this.facing;
       this.svg.style.color = this.config.color || '#222';
-      this.svg.firstElementChild.innerHTML = rows.map((row,y)=>[...row].map((v,x)=>v==='.'?'':`<rect x="${this.facing<0?23-x:x}" y="${y}" width="1" height="1" fill="currentColor"/>`).join('')).join('');
+      this.svg.firstElementChild.innerHTML = (window.pixelCatOutlineV1?.markup(rows,this.facing,this.config.outline)||'')+rows.map((row,y)=>[...row].map((v,x)=>v==='.'?'':`<rect x="${this.facing<0?23-x:x}" y="${y}" width="1" height="1" fill="currentColor"/>`).join('')).join('');
     }
     const bounds=catBounds(rows); const x=this.x, y=this.y-bounds.bottom*s;
     this.svg.style.transform=`translate(${x}px,${y}px)`;
@@ -29639,7 +29669,7 @@ window.pixelCatClimbV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0-rc.3",sourceHash:"12429a7546d6994ffa16602c076b6c0fc031416d7e77049cd9c76d042ca3c6fc"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0-rc.3",sourceHash:"c5b79d69fdbd61cfcf2ddb11f820fbaa411a42b3a590344f48e472d43948b9c3"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0-rc.3");
 })();
