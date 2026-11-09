@@ -29,14 +29,20 @@ for commands in data['frames']:
   draw.rectangle((x,y,x+w-1,y+h-1),fill=indices[r['c']])
  frames.append(image)
 target=Path(sys.argv[1]).resolve()
-assert target.name=='pixel-cat-routine-v2.gif' and target.parent.name=='images'
-frames[0].save(target,save_all=True,append_images=frames[1:],duration=data['frameMs'],loop=0,disposal=2,optimize=True)
+assert target.name=='pixel-cat-routine-v3.gif' and target.parent.name=='images'
+frames[0].save(target,save_all=True,append_images=frames[1:],duration=data['frameMs'],loop=0,disposal=1,optimize=True)
 with Image.open(target) as check:
  assert check.size==(data['width'],data['height'])
  assert check.info.get('loop')==0
  total=0
  for i in range(check.n_frames):
-  check.seek(i);total+=check.info['duration']
+  check.seek(i)
+  duration=check.info['duration']
+  assert duration % data['frameMs']==0
+  pixels=check.convert('RGB').tobytes()
+  for time in range(total,total+duration,data['frameMs']):
+   assert pixels==frames[time//data['frameMs']].convert('RGB').tobytes(), time
+  total+=duration
  assert total==len(frames)*data['frameMs']
 print(json.dumps({'file':str(target),'bytes':target.stat().st_size,'frames':len(frames),'durationMs':total}))
 

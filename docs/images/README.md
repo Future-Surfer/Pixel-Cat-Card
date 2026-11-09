@@ -13,4 +13,4 @@ To refresh the first two images, build the roaming modules, serve the repository
 
 ## Scripted routine GIF
 
-`pixel-cat-routine-v2.gif` uses scripted destinations with the release's gait, action timing, contact placement and mouth planner. The open bed uses the release's height transition and the loop joins during sleep. Scratch contacts drive the release's post wiggle and rope particles. The queue lives in `scripts/readme-playback.mjs` and the renderer in `prototype/readme-routine.mjs`. `pixel-cat-routine.json` records dimensions and timing. See [media export instructions](../TECHNICAL_DETAILS.md#readme-animation).
+`pixel-cat-routine-v3.gif` uses scripted destinations with the release's gait, action timing, contact placement and mouth planner. The open bed uses the release's height transition and the loop joins during sleep. Scratch contacts drive the release's post wiggle and rope particles. The queue lives in `scripts/readme-playback.mjs` and the renderer in `prototype/readme-routine.mjs`. `pixel-cat-routine.json` records dimensions and timing. See [media export instructions](../TECHNICAL_DETAILS.md#readme-animation).
