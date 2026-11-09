@@ -25849,9 +25849,40 @@ window.pixelCatCommandsV1={
  }
 };
 
+const catOutlineByConfig=new WeakMap();
 window.pixelCatOutlineV1={
- width:.36,
- colour(value){return value==='black'||value==='white'?value:'none';},
+ width:.30,
+ luminance([r,g,b]){
+  const linear=byte=>{const c=byte/255;return c<=.04045?c/12.92:((c+.055)/1.055)**2.4;};
+  return .2126*linear(r)+.7152*linear(g)+.0722*linear(b);
+ },
+ rgb(value){
+  const hex=/^#([\da-f]{3}|[\da-f]{6})$/i.exec(value||'')?.[1];
+  if(hex)return (hex.length===3?[...hex].map(c=>c+c):hex.match(/../g)).map(c=>parseInt(c,16));
+  const canvas=typeof document==='undefined'?null:document.createElement('canvas'),ctx=canvas?.getContext?.('2d');
+  if(!ctx)return null;
+  ctx.fillStyle='transparent';ctx.fillStyle=value||'transparent';ctx.fillRect(0,0,1,1);
+  const [r,g,b,a]=ctx.getImageData(0,0,1,1).data;
+  return a===255?[r,g,b]:null;
+ },
+ darkTheme(){
+  const doc=typeof document==='undefined'?null:document,app=doc?.querySelector?.('home-assistant');
+  if(typeof app?.hass?.themes?.darkMode==='boolean')return app.hass.themes.darkMode;
+  if(doc?.documentElement&&typeof getComputedStyle==='function'){
+   const style=getComputedStyle(app||doc.body||doc.documentElement);
+   const rgb=this.rgb(style.getPropertyValue('--primary-background-color').trim()||style.getPropertyValue('--ha-card-background').trim());
+   if(rgb)return this.luminance(rgb)<.18;
+  }
+  return typeof matchMedia==='function'&&matchMedia('(prefers-color-scheme: dark)').matches;
+ },
+ colour(config){
+  if(['black','white','none'].includes(config.outline))return config.outline;
+  if(catOutlineByConfig.has(config))return catOutlineByConfig.get(config);
+  const rgb=this.rgb(config.color||'#222'),light=rgb?this.luminance(rgb):.5;
+  const outline=light<=.03?'white':light>=.8&&!this.darkTheme()?'black':'none';
+  catOutlineByConfig.set(config,outline);
+  return outline;
+ },
  path(rows,facing=1){
   const solid=(x,y)=>x>=0&&x<24&&!!rows[y]?.[x]&&rows[y][x]!=='.';
   let path='';
@@ -25865,8 +25896,8 @@ window.pixelCatOutlineV1={
   }
   return path;
  },
- markup(rows,facing,value){
-  const stroke=this.colour(value);
+ markup(rows,facing,config){
+  const stroke=this.colour(config);
   return stroke==='none'?'':`<path d="${this.path(rows,facing)}" fill="none" stroke="${stroke}" stroke-width="${this.width}" stroke-linecap="round" shape-rendering="geometricPrecision"/>`;
  }
 };
@@ -25876,7 +25907,7 @@ const catEditorGroups=[
  {title:'Your cat',open:true,fields:[
   ['name','Name','text',null,'What would you like to call them?'],
   ['color','Fur colour','text','#222','Pick a swatch or enter a colour of your own.'],
-  ['outline','Fur outline','select','none','A thin edge can help your cat stand out as they roam.'],
+  ['outline','Fur outline','select','auto','Automatic helps black fur stand out and gives white fur an edge on light themes.'],
   ['life_stage','Age','select','adult','Kittens are smaller and tend to move and play a little more.'],
  ]},
  {title:'Daily rhythm',fields:[
@@ -25936,7 +25967,7 @@ const catEditorGroups=[
  ]}
 ];
 const catEditorFields=new Map(catEditorGroups.flatMap(g=>g.fields.map(f=>[f[0],f])));
-const catEditorOptions={outline:[['none','None'],['black','Black'],['white','White']],life_stage:[['kitten','Kitten'],['adult','Adult'],['senior','Senior']],bed_style:[['igloo','Igloo'],['simple','Simple bed']],settling_mode:[['active','Always active'],['default','Default settle periods (5–10 min)'],['extended','Extended settle periods (15–30 min)'],['custom','Custom']]};
+const catEditorOptions={outline:[['auto','Automatic'],['none','None'],['black','Black'],['white','White']],life_stage:[['kitten','Kitten'],['adult','Adult'],['senior','Senior']],bed_style:[['igloo','Igloo'],['simple','Simple bed']],settling_mode:[['active','Always active'],['default','Default settle periods (5–10 min)'],['extended','Extended settle periods (15–30 min)'],['custom','Custom']]};
 const catEditorValue=(config,key)=>{
  if(key==='settling_mode')return catEditorOptions.settling_mode.some(([v])=>v===config[key])?config[key]:'default';
  if(config[key]!==undefined)return config[key];
@@ -25970,7 +26001,7 @@ class PixelCatHomeEditor extends HTMLElement{
   if(!this.catPreview)return;
   this.catPreview.style.color=catEditorValue(this.config,'color');
   this.catPreview.dataset.age=catEditorValue(this.config,'life_stage');
-  this.catPreview.firstElementChild.setAttribute('stroke',window.pixelCatOutlineV1.colour(this.config.outline));
+  this.catPreview.firstElementChild.setAttribute('stroke',window.pixelCatOutlineV1.colour(this.config));
  }
  makePreview(){
   const art=window.pixelCatRoamingArtV2?.idleSequences,extras=window.pixelCatRoamingExtrasV1?.idleSequences;
@@ -26445,50 +26476,8 @@ window.pixelCatTrackRuntimeV1={
 
 window.pixelCatPolishV1={
  scratchCycleMs:75,
- colours:['#263b49','#bb783d','#7761a6','#447c77','#b76473','#527ca6','#797443','#99563c','#637985','#824c7e','#45856e','#b57840','#33241e','#d7a773','#e8d8bf'],
- luminance(rgb){
-  return rgb.reduce((sum,byte,i)=>{
-   const c=byte/255,linear=c<=.04045?c/12.92:((c+.055)/1.055)**2.4;
-   return sum+linear*[.2126,.7152,.0722][i];
-  },0);
- },
- furBackgrounds(){
-  const doc=typeof document==='undefined'?null:document,app=doc?.querySelector?.('home-assistant');
-  const style=doc?.documentElement&&typeof getComputedStyle==='function'?getComputedStyle(app||doc.body||doc.documentElement):null;
-  const canvas=style&&doc.createElement('canvas');
-  if(canvas){
-   canvas.width=canvas.height=1;
-   const ctx=canvas.getContext?.('2d');
-   if(ctx){
-    const backgrounds=[];
-    for(const key of ['--primary-background-color','--ha-card-background','--card-background-color']){
-     ctx.clearRect(0,0,1,1);
-     ctx.fillStyle='transparent';
-     ctx.fillStyle=style.getPropertyValue(key).trim();
-     ctx.fillRect(0,0,1,1);
-     const [r,g,b,a]=ctx.getImageData(0,0,1,1).data;
-     if(a===255){
-      backgrounds.push([r,g,b]);
-      if(key==='--ha-card-background')break;
-     }
-    }
-    if(backgrounds.length)return backgrounds;
-   }
-  }
-  const dark=app?.hass?.themes?.darkMode??(typeof matchMedia==='function'&&matchMedia('(prefers-color-scheme: dark)').matches);
-  return [dark?[28,28,28]:[255,255,255]];
- },
- colour(random=Math.random,backgrounds=this.furBackgrounds()){
-  const lights=backgrounds.map(rgb=>this.luminance(rgb));
-  const scored=this.colours.map(colour=>{
-   const light=this.luminance(colour.slice(1).match(/../g).map(byte=>parseInt(byte,16)));
-   const contrast=Math.min(...lights.map(bg=>(Math.max(bg,light)+.05)/(Math.min(bg,light)+.05)));
-   return {colour,contrast};
-  });
-  const pool=scored.filter(({contrast})=>contrast>=3);
-  if(!pool.length)return scored.reduce((best,entry)=>entry.contrast>best.contrast?entry:best).colour;
-  return pool[Math.min(pool.length-1,Math.floor(random()*pool.length))].colour;
- },
+ colours:['#263b49','#bb783d','#7761a6','#447c77','#b76473','#527ca6','#797443','#99563c','#637985','#824c7e','#45856e','#b57840','#33241e','#d7a773','#e8d8bf','#222222','#eeeeee'],
+ colour(random=Math.random){return this.colours[Math.min(this.colours.length-1,Math.floor(random()*this.colours.length))];},
  walkTimings(cells,config,urgency,speed,headDivisor){
   const name=urgency==='prompted'?'prompt':urgency==='interested'?'poi':'amble',override=config.motion_profiles?.[name]||{},prompt=urgency==='prompted';
   const numeric=(key,fallback)=>Number.isFinite(Number(override[key]))?Number(override[key]):fallback;
@@ -28966,7 +28955,7 @@ class PixelCatHome extends HTMLElement {
     if(signature!==this.signature) {
       this.signature=signature;this.drawnRows=rows;this.drawnFacing=this.facing;
       this.svg.style.color = this.config.color || '#222';
-      this.svg.firstElementChild.innerHTML = (window.pixelCatOutlineV1?.markup(rows,this.facing,this.config.outline)||'')+rows.map((row,y)=>[...row].map((v,x)=>v==='.'?'':`<rect x="${this.facing<0?23-x:x}" y="${y}" width="1" height="1" fill="currentColor"/>`).join('')).join('');
+      this.svg.firstElementChild.innerHTML = (window.pixelCatOutlineV1?.markup(rows,this.facing,this.config)||'')+rows.map((row,y)=>[...row].map((v,x)=>v==='.'?'':`<rect x="${this.facing<0?23-x:x}" y="${y}" width="1" height="1" fill="currentColor"/>`).join('')).join('');
     }
     const bounds=catBounds(rows); const x=this.x, y=this.y-bounds.bottom*s;
     this.svg.style.transform=`translate(${x}px,${y}px)`;
@@ -29669,7 +29658,7 @@ window.pixelCatClimbV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0-rc.3",sourceHash:"c5b79d69fdbd61cfcf2ddb11f820fbaa411a42b3a590344f48e472d43948b9c3"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0-rc.3",sourceHash:"20af705b491685819bae2b5f8270263a48b0c39d3015a5e08d4e33d5b6481332"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0-rc.3");
 })();

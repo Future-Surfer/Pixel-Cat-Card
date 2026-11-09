@@ -4,7 +4,7 @@ const catEditorGroups=[
  {title:'Your cat',open:true,fields:[
   ['name','Name','text',null,'What would you like to call them?'],
   ['color','Fur colour','text','#222','Pick a swatch or enter a colour of your own.'],
-  ['outline','Fur outline','select','none','A thin edge can help your cat stand out as they roam.'],
+  ['outline','Fur outline','select','auto','Automatic helps black fur stand out and gives white fur an edge on light themes.'],
   ['life_stage','Age','select','adult','Kittens are smaller and tend to move and play a little more.'],
  ]},
  {title:'Daily rhythm',fields:[
@@ -64,7 +64,7 @@ const catEditorGroups=[
  ]}
 ];
 const catEditorFields=new Map(catEditorGroups.flatMap(g=>g.fields.map(f=>[f[0],f])));
-const catEditorOptions={outline:[['none','None'],['black','Black'],['white','White']],life_stage:[['kitten','Kitten'],['adult','Adult'],['senior','Senior']],bed_style:[['igloo','Igloo'],['simple','Simple bed']],settling_mode:[['active','Always active'],['default','Default settle periods (5–10 min)'],['extended','Extended settle periods (15–30 min)'],['custom','Custom']]};
+const catEditorOptions={outline:[['auto','Automatic'],['none','None'],['black','Black'],['white','White']],life_stage:[['kitten','Kitten'],['adult','Adult'],['senior','Senior']],bed_style:[['igloo','Igloo'],['simple','Simple bed']],settling_mode:[['active','Always active'],['default','Default settle periods (5–10 min)'],['extended','Extended settle periods (15–30 min)'],['custom','Custom']]};
 const catEditorValue=(config,key)=>{
  if(key==='settling_mode')return catEditorOptions.settling_mode.some(([v])=>v===config[key])?config[key]:'default';
  if(config[key]!==undefined)return config[key];
@@ -99,7 +99,7 @@ class PixelCatHomeEditor extends HTMLElement{
   if(!this.catPreview)return;
   this.catPreview.style.color=catEditorValue(this.config,'color');
   this.catPreview.dataset.age=catEditorValue(this.config,'life_stage');
-  this.catPreview.firstElementChild.setAttribute('stroke',window.pixelCatOutlineV1.colour(this.config.outline));
+  this.catPreview.firstElementChild.setAttribute('stroke',window.pixelCatOutlineV1.colour(this.config));
  }
  makePreview(){
   const art=window.pixelCatRoamingArtV2?.idleSequences,extras=window.pixelCatRoamingExtrasV1?.idleSequences;

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixel Cat · Shadow & Outline Lab</title>
+<style>
+ :root{color-scheme:light dark;font:16px system-ui}
+ body{max-width:880px;margin:2rem auto;padding:0 1rem}
+ p{line-height:1.5}canvas{display:block;width:100%;height:auto;border-radius:12px}
+ .layout{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+ fieldset{min-width:0;margin:1rem 0;padding:1rem;border:1px solid #888;border-radius:10px}
+ .sliders{display:grid;grid-template-columns:8rem minmax(0,1fr) 4rem;gap:.55rem;align-items:center}
+ input[type=range]{width:100%;min-width:0}button,select{font:inherit}
+ .choices{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem;margin:.8rem 0}
+ output{font-variant-numeric:tabular-nums;font-size:.9rem}
+ @media(max-width:640px){.layout{display:block}}
+</style>
+<main>
+ <h1>Shadow &amp; Outline Lab</h1>
+ <p>Cast the live sprite onto a flat floor. Try different background colours, or use the scratching poses to compare outlines on a thin tail.</p>
+ <canvas id="stage" width="800" height="405" aria-label="Animated pixel cat with a floor shadow"></canvas>
+ <div class="choices">
+  <button id="play" type="button">Play</button>
+  <label>Pose <select id="pose"><option value="sit">Sitting</option><option value="walk">Walking</option><option value="scratch">Ear scratch</option><option value="clean">Grooming</option><option value="yawn">Yawning</option><option value="postScratch">Post scratch · tail check</option></select></label>
+  <label><input type="checkbox" id="flip"> Face left</label>
+  <label><input type="checkbox" id="dark"> Dark scene</label>
+  <label>Background <input type="color" id="background" value="#edf0f2"></label>
+  <label for="frame">Frame</label><input id="frame" type="range" min="0" max="0" value="0"><output id="frameNumber"></output>
+ </div>
+ <div class="layout">
+  <fieldset><legend>Shadow</legend>
+   <div class="choices"><label><input id="shadow" type="checkbox" checked> Show shadow</label><label>Colour <input id="tone" type="color" value="#283036"></label></div>
+   <div class="sliders">
+    <label for="direction">Direction</label><input id="direction" type="range" min="-75" max="75" value="18"><output for="direction"></output>
+    <label for="elevation">Light elevation</label><input id="elevation" type="range" min="15" max="85" value="63"><output for="elevation"></output>
+    <label for="opacity">Opacity</label><input id="opacity" type="range" min="0" max="100" value="20"><output for="opacity"></output>
+    <label for="blur">Blur</label><input id="blur" type="range" min="0" max="1.5" step=".05" value=".3"><output for="blur"></output>
+   </div>
+  </fieldset>
+  <fieldset><legend>Fur &amp; outline</legend>
+   <div class="choices"><label>Fur <input id="fur" type="color" value="#824c7e"></label>
+   <label>Outline <select id="outline"><option value="none">None</option><option value="black">Black</option><option value="white" selected>White</option></select></label></div>
+   <div class="sliders"><label for="weight">Edge width</label><input id="weight" type="range" min="0" max=".5" step=".01" value=".15"><output for="weight"></output></div>
+   <p>Edge width is a fraction of one sprite cell. The card uses 0.15 cell.</p>
+  </fieldset>
+ </div>
+</main>
+<script type="module">
+ import '/dist/pixel-cat-card.js';
+ const $=id=>document.getElementById(id),stage=$('stage'),ctx=stage.getContext('2d');
+ const mask=document.createElement('canvas');mask.width=stage.width;mask.height=stage.height;
+ const ink=mask.getContext('2d'),art=await fetch('/shadow-art.json').then(response=>response.json());
+ const cell=9,originX=283,feetY=337,depthScale=.68;
+ const number=id=>Number($(id).value),radians=degrees=>degrees*Math.PI/180;
+ let frame=0,last=0,playing=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function clip(){return art[$('pose').value];}
+ function render(){
+  const rows=clip().frames[frame],direction=radians(number('direction')),elevation=radians(number('elevation'));
+  const floor=(x,h)=>[originX+(x+h*Math.sin(direction)/Math.tan(elevation))*cell,feetY-h*Math.cos(direction)/Math.tan(elevation)*cell*depthScale];
+  const facing=$('flip').checked?-1:1;
+  ctx.fillStyle=$('background').value;ctx.fillRect(0,0,stage.width,stage.height);
+  const pixels=[];
+  rows.forEach((row,y)=>[...row].forEach((v,x)=>{if(v!=='.')pixels.push([facing<0?23-x:x,y]);}));
+  if($('shadow').checked){
+   ink.clearRect(0,0,mask.width,mask.height);ink.fillStyle=$('tone').value;ink.beginPath();
+   function face(project,x,low,high){
+    const corners=[[x,low],[x+1,low],[x+1,high],[x,high]].map(([u,h])=>project(u,h));
+    ink.moveTo(...corners[0]);for(const point of corners.slice(1))ink.lineTo(...point);ink.closePath();
+   }
+   for(const [x,y] of pixels){
+    face(floor,x,23-y,24-y);
+   }
+   ink.fill();
+   ctx.save();ctx.globalAlpha=number('opacity')/100;ctx.filter=`blur(${number('blur')*cell}px)`;ctx.drawImage(mask,0,0);ctx.restore();
+  }
+  ctx.save();ctx.translate(originX,feetY-24*cell);ctx.scale(cell,cell);
+  const stroke=$('outline').value;
+  if(stroke!=='none'&&number('weight')>0){ctx.strokeStyle=stroke;ctx.lineWidth=2*number('weight');ctx.lineCap='round';ctx.stroke(new Path2D(window.pixelCatOutlineV1.path(rows,facing)));}
+  ctx.fillStyle=$('fur').value;for(const [x,y] of pixels)ctx.fillRect(x,y,1,1);
+  ctx.restore();
+  $('frame').max=clip().frames.length-1;$('frame').value=frame;$('frameNumber').value=`${frame+1} / ${clip().frames.length}`;
+ }
+ const units={direction:'°',elevation:'°',opacity:'%',blur:' cell',weight:' cell'};
+ function update(){for(const [id,unit] of Object.entries(units))$(id).nextElementSibling.value=$(id).value+unit;render();}
+ function toggle(value){playing=value;last=0;$('play').textContent=value?'Pause':'Play';}
+ function tick(now){
+  if(playing&&!document.hidden){
+   if(!last)last=now;
+   if(now-last>=clip().durations[frame]){last=now;frame=(frame+1)%clip().frames.length;render();}
+  }
+  requestAnimationFrame(tick);
+ }
+ $('play').onclick=()=>toggle(!playing);
+ $('pose').onchange=()=>{frame=0;last=0;render();};
+ $('frame').oninput=()=>{toggle(false);frame=number('frame');render();};
+ function backgroundChanged(){
+  const outline=window.pixelCatOutlineV1;
+  const dark=outline.luminance(outline.rgb($('background').value))<.18;
+  $('dark').checked=dark;$('opacity').value=dark?60:20;update();
+ }
+ $('dark').oninput=()=>{$('background').value=$('dark').checked?'#263239':'#edf0f2';backgroundChanged();};
+ $('background').oninput=backgroundChanged;
+ for(const id of [...Object.keys(units),'flip','shadow','tone','fur','outline'])$(id).oninput=update;
+ toggle(playing);update();requestAnimationFrame(tick);
+</script>
+</html>
