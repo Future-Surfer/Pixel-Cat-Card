@@ -160,9 +160,9 @@ Semantic POIs need deliberate exact-version integration into a grip/mouth/contac
 
 ## Release and maintenance
 
-**Next delivery checkpoint:** publish an opt-in Pixel Cat Card prerelease, then verify isolated Marketplace installation, update, removal/reinstall and scoped rollback before a stable release. The [release plan](docs/design/PIXEL_CAT_RELEASE.md) owns the remaining acceptance sequence. Broader runtime features stay behind this release work.
+**Next delivery checkpoint:** verify isolated Marketplace installation, update, removal/reinstall and scoped rollback on the opt-in Pixel Cat Card prerelease before a stable release. The [release plan](docs/design/PIXEL_CAT_RELEASE.md) owns the acceptance and catalog submission sequence. Broader runtime features stay behind this release work.
 
-- **SHIP-01, SHIP-02:** single-file packaging, manifest/checksums, deterministic builds, 120 test suites, public plugin validation and concise README/GIF are delivered. Version `v1.0.0-rc.1` has verified draft assets. Remaining: published opt-in prerelease and isolated Marketplace install/update/removal/reinstall/rollback acceptance.
+- **SHIP-01, SHIP-02:** single-file packaging, manifest/checksums, deterministic builds, 120 test suites, public plugin validation and concise README/GIF are delivered. Remaining: candidate publication and isolated Marketplace acceptance.
 - **SHIP-03:** independent clean public repository, protected main, CI/support/release workflows and reviewed presentation PR are delivered. Manual HA single-bundle migration has exact backups/readback, unchanged unrelated resources and browser checks. Preserve the private original history and scoped rollback evidence.
 - **SHIP-04:** **Pixel Cat Card** lives at `Future-Surfer/Pixel-Cat-Card`; the original `Stick-Pet-Card` stays private and unrenamed. Public `custom:pixel-cat-home` and existing options remain. Legacy sources are internal compatibility inputs; no separate legacy resources are needed beside the bundle.
 - **SHIP-05:** choose simple launcher vs standalone Studio; common lab menu, loopback defaults, separate stores and optional read-only MCP remain. Card Lab stays mock-only.

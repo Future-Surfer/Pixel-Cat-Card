@@ -4,15 +4,17 @@ A pixel cat that roams around your Home Assistant dashboard. Watch it leave its 
 
 ![An orange cat wakes in an open bed, scratches a post, eats, grooms and walks back to sleep](docs/images/pixel-cat-routine-v2.gif)
 
-*A short scripted demo using the card’s artwork.*
+*A short scripted demo. [See the habitat in a dashboard](docs/images/pixel-cat-habitat-light.jpg).*
 
 Choose a name, colour, bed and life stage. Add another card for another cat.
 
 ## Install
 
-Requires **Home Assistant 2026.11+**. The first HACS release is being prepared.
+Requires **Home Assistant 2026.11+**.
 
-For now, download [pixel-cat-card.js](dist/pixel-cat-card.js), copy it to `/config/www/`, and add `/local/pixel-cat-card.js` as a **JavaScript module** resource. Reload your browser.
+[![Open Pixel Cat Card in Home Assistant Marketplace](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=Future-Surfer&repository=Pixel-Cat-Card&category=plugin)
+
+Add Pixel Cat Card as a custom repository, then install it from **Settings → Marketplace**. To try a release candidate, enable **Pre-release** on its Marketplace page. [Manual install and migration](docs/guides/PIXEL_CAT_INSTALL.md).
 
 ## Add a cat
 
@@ -30,6 +32,6 @@ bed_style: igloo
 
 Give each cat a different `cat_id`.
 
-[Installation help](docs/guides/PIXEL_CAT_INSTALL.md) · [Configuration](docs/guides/ROAMING_CONFIGURATION.md) · [Technical details](docs/TECHNICAL_DETAILS.md) · [Report a bug](https://github.com/Future-Surfer/Pixel-Cat-Card/issues)
+[Configuration](docs/guides/ROAMING_CONFIGURATION.md) · [Technical details](docs/TECHNICAL_DETAILS.md) · [Report a bug](https://github.com/Future-Surfer/Pixel-Cat-Card/issues)
 
 [MIT license](LICENSE)

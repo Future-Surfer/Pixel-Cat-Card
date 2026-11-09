@@ -21,10 +21,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-// Pixel Cat Card 1.0.0-rc.1 | MIT | https://github.com/Future-Surfer/Pixel-Cat-Card
+// Pixel Cat Card 1.0.0-rc.2 | MIT | https://github.com/Future-Surfer/Pixel-Cat-Card
 // Transitional legacy elements are retained; their source and artwork are unchanged.
 (()=>{'use strict';
-if(window.pixelCatCardRelease){if(window.pixelCatCardRelease.version!=="1.0.0-rc.1")console.warn('Pixel Cat Card: multiple versions loaded; remove duplicate resources and reload.');return;}
+if(window.pixelCatCardRelease){if(window.pixelCatCardRelease.version!=="1.0.0-rc.2")console.warn('Pixel Cat Card: multiple versions loaded; remove duplicate resources and reload.');return;}
 if(customElements.get('pixel-cat-home')){console.warn('Pixel Cat Card: a separate roaming runtime is already loaded; migrate its resources before loading this bundle.');return;}
 
 // Module: stick-pet-card.js
@@ -29472,7 +29472,7 @@ window.pixelCatClimbV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0-rc.1",sourceHash:"9937a2364aa482071cd2bdabd4620578a80122de680daaddd719e9d68e91066d"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0-rc.2",sourceHash:"9937a2364aa482071cd2bdabd4620578a80122de680daaddd719e9d68e91066d"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
-console.info('Pixel Cat Card',"1.0.0-rc.1");
+console.info('Pixel Cat Card',"1.0.0-rc.2");
 })();
