@@ -2,7 +2,7 @@ Current extension: **16 October 2026**. The five richer interaction milestones a
 
 # Mood-driven exploration and two-cat pilot
 
-> Planning authority: [ROADMAP.md](../../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
+> Planning authority: [ROADMAP.md](../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
 
 
 Implementation checkpoint: 15 October 2026. The generated controller and extras support this opt-in pilot; other cards keep their existing exploration when the flags are absent.

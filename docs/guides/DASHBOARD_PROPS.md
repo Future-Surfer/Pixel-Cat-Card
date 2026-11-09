@@ -1,6 +1,6 @@
 # Dashboard props and toy hunting
 
-> Planning authority: [ROADMAP.md](../../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
+> Planning authority: [ROADMAP.md](../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
 
 
 15 October 2026. First working version, using the original human-authored mouse and ball grids. Studio AI prop drafts remain review candidates and are not implicitly installed.
@@ -48,7 +48,7 @@ Home/Explore/card-click commands interrupt the encounter through existing route/
 
 The props suite checks shared update cadence, human asset provenance, arbitrary placement, exclusive reservations, independent move/pause/turn schedules, paused-away opportunities, planted interruption, actual sneak/pounce/groom, landing-paw contact at 1×/2×/3×, cooldown independence, reflow, independent surface numbering, pause/visibility and removal cleanup. Live HA verification recorded a ball pounce from one cat and a mouse pounce from the other. Scrolling shifted both props by the same 262 pixels as the underlying cards. Actual phone/Companion behaviour remains unverified.
 
-Remaining prop selection, metadata/state, carrying, decals and moving-platform work is consolidated in [ROADMAP.md](../../ROADMAP.md#next-product-phase), tasks PROP-01/02/03/04 and SCENE-01/02. The later [interaction system](INTERACTION_SYSTEM.md) adds observed same-support rolling-ball interception and cat awareness; these dated prop notes are not a claim that those features are still unbuilt.
+Remaining prop selection, metadata/state, carrying, decals and moving-platform work is consolidated in [ROADMAP.md](../ROADMAP.md#next-product-phase), tasks PROP-01/02/03/04 and SCENE-01/02. The later [interaction system](INTERACTION_SYSTEM.md) adds observed same-support rolling-ball interception and cat awareness; these dated prop notes are not a claim that those features are still unbuilt.
 
 ## Describing prop behaviour in Studio
 

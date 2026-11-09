@@ -1,6 +1,6 @@
 # Awareness, moods and reactions: implementation reference
 
-Updated 16 October 2026. **Remaining work and delivery order live only in [ROADMAP.md](../../ROADMAP.md).** The original decision proposal (development reference retained privately) is archived; its staged delivery order and proposed configuration keys are not current instructions.
+Updated 16 October 2026. **Remaining work and delivery order live only in [ROADMAP.md](../ROADMAP.md).** The original decision proposal (development reference retained privately) is archived; its staged delivery order and proposed configuration keys are not current instructions.
 
 This reference keeps the reaction inventory and knowledge/choice rules. [INTERACTION_SYSTEM.md](INTERACTION_SYSTEM.md) describes the implemented same-surface systems, [CAT_DEBUG.md](CAT_DEBUG.md) the controls, and INTERACTION_VALIDATION.md (development reference retained privately) dated evidence. Moods, awareness, quiet company, social pats/ambushes, bounded chase choices and shared same-support ball interception are implemented pilots, not unbuilt milestones.
 
@@ -47,4 +47,4 @@ Use **Cat controls & diagnostics → Behaviour & mood** for values, hold/drift/r
 
 Sources: `prototype/cat-mood.js`, `gaze-perception.js`, `cat-decisions.js`, `cat-interactions.js`, `cat-reactions.js` and `roaming-controller.js`. Tests cover exact-frame vision/blindness, bounded independent moods, seeded outcomes, actual contacts/landings, immediate versus deferred interruption, reservations, misses, clocks and cleanup. Forced opportunity/preview tests and natural HA observations must remain distinguishable.
 
-All future hearing, cross-surface pursuit, extra pose, roster, tuning and optimisation tasks are in [the consolidated roadmap](../../ROADMAP.md); do not append another implementation order here.
+All future hearing, cross-surface pursuit, extra pose, roster, tuning and optimisation tasks are in [the consolidated roadmap](../ROADMAP.md); do not append another implementation order here.

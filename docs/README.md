@@ -6,9 +6,10 @@
 | --- | --- |
 | User setup | [Root README](../README.md), then [configuration](guides/ROAMING_CONFIGURATION.md) or [release/install guide](guides/PIXEL_CAT_INSTALL.md) |
 | Current checkpoint / limits | [CURRENT_STATE](CURRENT_STATE.md); verify live Git/HA/Studio state before mutation |
-| Priorities / dependencies | [ROADMAP](../ROADMAP.md) only |
+| Priorities / dependencies | [ROADMAP](ROADMAP.md) only |
 | Pixel Cat Card release preparation | [Proposed identity, Marketplace packaging, Git cleanup, media and release gates](design/PIXEL_CAT_RELEASE.md) |
-| Commands, source ownership, deployment | [DEVELOPMENT](../DEVELOPMENT.md) |
+| Commands, source ownership, deployment | [Development guide](DEVELOPMENT.md) |
+| Contributing, reporting vulnerabilities, release notes | [Contributing](CONTRIBUTING.md), [security policy](SECURITY.md), [release notes](RELEASE_NOTES.md) |
 | Find implemented behaviour | [Feature index](FEATURES.md), then the linked [detailed contract](FEATURE_DETAILS.md) section |
 | Studio integration | [Studio AGENTS](../frame-studio/AGENTS.md), then relevant [Studio guide](../frame-studio/README.md)/exact saved snapshot |
 | Life stages / new owner briefs | [Size-only V1 and settling design](design/LIFE_STAGES_AND_SETTLING.md), [19 October idea intake](design/IDEA_INTAKE_2026-10-19.md); size-only runtime V1 delivered, behaviour/settling modifiers remain planned |

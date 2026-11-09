@@ -1,6 +1,6 @@
 # Gaze and awareness test lab
 
-> Planning authority: [ROADMAP.md](../../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order. The one-target fixture below has a narrower scope than the current full roaming/social runtime; see INTERACTION_SYSTEM.md.
+> Planning authority: [ROADMAP.md](../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order. The one-target fixture below has a narrower scope than the current full roaming/social runtime; see INTERACTION_SYSTEM.md.
 
 
 Run `npm run gaze:lab`, then open <http://127.0.0.1:8769/>. Keep the foreground browser window visible for performance comparisons. The loopback server exposes only the lab files and a read-only asset endpoint. It does not deploy to HA, write Studio projects, complete change receipts or alter production roaming scripts.

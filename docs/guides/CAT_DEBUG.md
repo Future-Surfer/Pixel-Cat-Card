@@ -1,6 +1,6 @@
 # Cat controls, diagnostics and stress testing
 
-> Planning authority: [ROADMAP.md](../../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
+> Planning authority: [ROADMAP.md](../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
 
 
 Updated 23 October 2026. **Cat controls & diagnostics** has six task-based sections; one opens at a time. Controls retain their original handlers. Changes here apply to this browser session; use HA **Edit card** to save defaults.

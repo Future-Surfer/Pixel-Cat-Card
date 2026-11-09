@@ -1,6 +1,6 @@
 # Multiple roaming cat homes
 
-> Planning authority: [../ROADMAP.md](../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
+> Planning authority: [../ROADMAP.md](../docs/ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
 
 
 Place more than one `custom:pixel-cat-home` card on the same dashboard view. Each

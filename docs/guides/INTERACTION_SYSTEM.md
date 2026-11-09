@@ -1,6 +1,6 @@
 # Interaction system — implementation and next experiments
 
-> Planning authority: [ROADMAP.md](../../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
+> Planning authority: [ROADMAP.md](../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
 
 
 16 October 2026. The five interaction milestones now have an opt-in implementation, using existing reviewed artwork. They remain a same-surface pilot rather than a general crowd/rigid-body simulation. Enable `mood_behaviour`, `social_behaviour`, `interaction_behaviour`, and optionally `prop_reactions`, `landing_reactions`, `startle_followups`. The new flag defaults off. Debug controls expose the flag and temperament; normal relaxed exploration remains available.
@@ -103,4 +103,4 @@ The implementation reviews produced two important refinements: committed jumps m
 
 ## Remaining work
 
-See [ROADMAP.md](../../ROADMAP.md), especially INT-01/02/03/04, PROP-02/03/04, SCENE-02, SENSE-01, PERF-01 and STUDIO-04. This document specifies implemented behaviour; it does not maintain a separate future-feature list.
+See [ROADMAP.md](../ROADMAP.md), especially INT-01/02/03/04, PROP-02/03/04, SCENE-02, SENSE-01, PERF-01 and STUDIO-04. This document specifies implemented behaviour; it does not maintain a separate future-feature list.

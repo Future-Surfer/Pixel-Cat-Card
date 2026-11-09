@@ -1,6 +1,6 @@
 # Pixel Cat Card release plan
 
-Updated 9 November 2026. [ROADMAP](../../ROADMAP.md#release-and-maintenance) owns priority and SHIP IDs; this document owns release gates.
+Updated 9 November 2026. [ROADMAP](../ROADMAP.md#release-and-maintenance) owns priority and SHIP IDs; this document owns release gates.
 
 ## Settled decisions
 

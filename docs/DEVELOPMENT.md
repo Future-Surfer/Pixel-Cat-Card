@@ -1,6 +1,6 @@
 # Development workflow
 
-Read [CURRENT_STATE](docs/CURRENT_STATE.md) for the handoff; use [ROADMAP](ROADMAP.md) for priorities.
+Read [CURRENT_STATE](CURRENT_STATE.md) for the handoff; use [ROADMAP](ROADMAP.md) for priorities.
 
 ## Build and validate
 
@@ -20,7 +20,7 @@ Node.js 22.20+, no npm dependencies.
 - Avoid repeating unchanged full-suite/build passes. Documentation-only edits: validate links, retained contracts and whitespace; no HA write/rebuild required.
 - CI repeats runtime/package checks and rejects generated-file drift. Verify the actual remote result before calling it green.
 - Studio reads generated assets at startup. Restart deliberately after a rebuild only when safe for user work; never restart it merely to edit docs.
-- [Release guide](docs/guides/ROAMING_RELEASE.md) owns install/upgrade/rollback instructions. Keep the 128000-byte inline guard.
+- [Release guide](guides/ROAMING_RELEASE.md) owns install/upgrade/rollback instructions. Keep the 128000-byte inline guard.
 
 ## Source map
 
@@ -31,7 +31,7 @@ Node.js 22.20+, no npm dependencies.
 | `prototype/cat-surface-world.js`, `cat-point-routes.js`, `cat-layout-pause.js` | Shared discovery, routes and layout settling |
 | `prototype/cat-home-life.js`, `cat-home-surfaces.js`, `cat-home-posts.js` | Home/igloo/toy affordances |
 | `prototype/cat-mouth*.js`, `prop-scene.js` | Carrying, ownership and shared props |
-| `prototype/cat-behaviour-policy.js` | Shared category/tag profiles, protected rest-duration modifiers, numeric pace preference, eligibility and bounded movement cadence; [contract](docs/design/LIFE_STAGES_AND_SETTLING.md#shared-sequence-policy-contract) |
+| `prototype/cat-behaviour-policy.js` | Shared category/tag profiles, protected rest-duration modifiers, numeric pace preference, eligibility and bounded movement cadence; [contract](design/LIFE_STAGES_AND_SETTLING.md#shared-sequence-policy-contract) |
 | `prototype/cat-decisions.js`, `cat-interactions.js`, `cat-debug.js` | Social choices, contacts and labels |
 | `scripts/build-roaming.mjs` | Authoritative source-to-module mapping; do not duplicate its file lists |
 | `scripts/apply-latest-studio-art.mjs`, `latest-studio-assets.mjs` | Selected exact artwork versions and overlays |
@@ -44,11 +44,11 @@ Runtime loading order: art → extras → affordances → behaviours → control
 
 ## Browser evidence
 
-Use the shared **All tools** directory to search all editors/labs by capability. Grouped navigation is defined by `frame-studio/dist/workshop-tools.js` and rendered by `lab-nav.js`; timing/layout fixtures use a fixed launcher that adds no document height. [Guide](docs/guides/WORKSHOP_TOOLS.md).
+Use the shared **All tools** directory to search all editors/labs by capability. Grouped navigation is defined by `frame-studio/dist/workshop-tools.js` and rendered by `lab-nav.js`; timing/layout fixtures use a fixed launcher that adds no document height. [Guide](guides/WORKSHOP_TOOLS.md).
 
 Use task-relevant labs on 8769:
 
-- `prototype/tree-lab.html`: seeded component assembly, rectangular shared drawing tools, socket/support/grip/depth metadata and exact versioned tree workspaces. `?draft=qa-<name>` isolates test saves. Tree geometry is not yet wired into HA cat traversal or default cards; [contract](docs/design/CAT_TREE_GENERATOR.md).
+- `prototype/tree-lab.html`: seeded component assembly, rectangular shared drawing tools, socket/support/grip/depth metadata and exact versioned tree workspaces. `?draft=qa-<name>` isolates test saves. Tree geometry is not yet wired into HA cat traversal or default cards; [contract](design/CAT_TREE_GENERATOR.md).
 
 - `prototype/vertical-surfaces-lab.html`: finite face/top discovery, exposure/fit rejection and actual-art wall-jump/climb transfers; foundation plus an opt-in HA finite-face transfer pilot; see its integration contract.
 - `prototype/settling-lab.html`: three ages, before/after-five-minute eligibility, real prolonged sleep/loaf, startle and timer expiry; eligibility advancement is diagnostic only.
@@ -57,7 +57,7 @@ Use task-relevant labs on 8769:
 - `prototype/route-quality-lab.html`: chosen endpoints, point/legacy routes and changed geometry. `node scripts/audit-route-quality.mjs [release-directory]` emits a controlled seven-layout/six-scale JSON audit without changing runtime files.
 - `prototype/kitten-climb-stress-lab.html`: six-kitten native/replay observations, active versus wall grip dwell, landing/recovery traces, early decal eviction and actual paw guides. Optional temporary landing blockade is an explicit diagnostic; scoped clock substitution is restored after each replay chunk.
 - `prototype/climb-runtime-lab.html`: actual default-post fit, kitten last-resort background routes, half-hop/slip contact previews, material marks, pause, landing removal and reflow. The explicit simulated-clock button supports throttled browser inspection; it is not a performance measurement.
-- `prototype/climb-lab.html`: isolated AI climb workbench; editable grids, gripped support decisions, ten entry neighbours, per-frame holds/gain, destination/leap-budget controls and real runtime trajectories. Use `?draft=qa-<name>` for separate browser test storage; export the owner draft before work. [Contract](docs/design/CLIMBING_WORKSHOP.md). Durable climb drafts share the local Studio Asset changes journal; ordinary projects/props and HA artwork remain untouched. Wait for the saved hash before relying on a durable handoff.
+- `prototype/climb-lab.html`: isolated AI climb workbench; editable grids, gripped support decisions, ten entry neighbours, per-frame holds/gain, destination/leap-budget controls and real runtime trajectories. Use `?draft=qa-<name>` for separate browser test storage; export the owner draft before work. [Contract](design/CLIMBING_WORKSHOP.md). Durable climb drafts share the local Studio Asset changes journal; ordinary projects/props and HA artwork remain untouched. Wait for the saved hash before relying on a durable handoff.
 - `prototype/carry-lab.html`: all runtime clips, facings/scales, live handoffs and igloo checks. Alert exit selector covers four gaits and five successor poses; bounded frame/carrier traces expose skipped or replayed exits.
 - Its **Igloo doorway mask inspection** close-up uses the shared mask and actual sneak art; choose Enter/Exit and the outside side, then scrub journey progress at adult/kitten scales. Exit reverses travel and facing; the outside side remains visible.
 - `prototype/life-stage-preview-lab.html`: size-only art comparison (half-size kitten, unchanged adult/senior and furniture). Appearance review only; not runtime contact/behaviour acceptance.
@@ -72,7 +72,7 @@ Use real HA playground/stress views as well as controlled fixtures. Keep timed t
 
 ## Studio and data preservation
 
-- Read [Studio agent contract](frame-studio/AGENTS.md) before authoring/integration work.
+- Read [Studio agent contract](../frame-studio/AGENTS.md) before authoring/integration work.
 - Compare current saved local/hosted version with the intended immutable snapshot; preserve newer drafts and mixed provenance.
 - Only curated source snapshots belong in Git. `.studio-data/`, browser outboxes and hosted databases are separate stores.
 - Disposable Studio: `node frame-studio/scripts/preview.mjs --port=8768 --data=.studio-data/qa-tasks4-9`. Its banner identifies the test store; keep the normal Studio store separate. Verify actual downloaded JSON, stale-tab conflicts and offline outbox recovery there before changing the live workshop.

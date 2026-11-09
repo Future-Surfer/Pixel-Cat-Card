@@ -1,6 +1,6 @@
 # Scrolling, pose transitions and roaming variety
 
-> Planning authority: [../ROADMAP.md](../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
+> Planning authority: [../ROADMAP.md](../docs/ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
 
 
 The controller measures scrolling on the next animation frame, without hiding the

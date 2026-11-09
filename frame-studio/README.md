@@ -2,7 +2,7 @@
 
 Use **Create**, **Behaviours**, **Simulate**, **Diagnose**, **Review** or searchable **All tools** to find the editors and 8769 fixtures. [Navigation guide](../docs/guides/WORKSHOP_TOOLS.md).
 
-> Planning authority: [../ROADMAP.md](../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order. Feature-history sections and saved review records are not current runtime integration queues.
+> Planning authority: [../ROADMAP.md](../docs/ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order. Feature-history sections and saved review records are not current runtime integration queues.
 
 
 Current version: **Asset workshop v8**. From the repository root, use `npm run build` then `npm run studio`; open `http://127.0.0.1:8767/`. Restart the preview after rebuilding its embedded assets. No npm dependencies are required.
@@ -19,7 +19,7 @@ An additional **!** warns when a gaze origin is on a transparent cell. Hover for
 
 **Frame range timing:** expand the panel below the timeline, set From/Through frame and Hold (ms), then Apply. All frames and Current frame are shortcuts; Shift-click a thumbnail extends from the active frame. A range containing a locked frame is rejected in full. The change uses one undo/autosave and preserves pixels, stable IDs, gaze, anchors and artwork origin. Other range operations remain roadmap work.
 
-Curated snapshots under `user-sequences/` are checked into Git. Live `.studio-data/`, browser drafts and hosted storage are separate and are not restored by checkout. The optional private deployment's identity is configuration, not a credential. See [DEVELOPMENT.md](../DEVELOPMENT.md) for source layout, build, integration and deployment, and [ROADMAP.md](../ROADMAP.md) for future options.
+Curated snapshots under `user-sequences/` are checked into Git. Live `.studio-data/`, browser drafts and hosted storage are separate and are not restored by checkout. The optional private deployment's identity is configuration, not a credential. See [DEVELOPMENT.md](../docs/DEVELOPMENT.md) for source layout, build, integration and deployment, and [ROADMAP.md](../docs/ROADMAP.md) for future options.
 
 The sections below retain feature history and earlier workflow descriptions. The v8 summary above supersedes earlier save-button, read-only-props and catalogue-count statements.
 
@@ -46,7 +46,7 @@ Props use collapsible families, including the nine original vacuum angles. The C
 
 The map shows teal conditional runtime links separately from gold dashed neighbour preferences. Select a node to trace its links; click blank canvas, the selected node again, or Escape to clear. Previews animate at saved holds at 72px. Animate previews can be disabled and respects reduced-motion preference initially. Runtime links document capabilities; they never modify sequence metadata or impose a transition whitelist.
 
-A portable single-HTML edition is feasible but not yet built. See [PORTABLE_MODE.md](../ROADMAP.md#authoring-and-integration). The current Node server has no npm dependencies.
+A portable single-HTML edition is feasible but not yet built. See [PORTABLE_MODE.md](../docs/ROADMAP.md#authoring-and-integration). The current Node server has no npm dependencies.
 
 ## Authorship
 

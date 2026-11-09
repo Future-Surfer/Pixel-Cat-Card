@@ -44,4 +44,4 @@ jobs:
           if [[ "$RELEASE_TAG" == *-* ]]; then
             release_flags+=(--prerelease)
           fi
-          gh release create "$RELEASE_TAG" dist/pixel-cat-card.js dist/pixel-cat-card.manifest.json dist/SHA256SUMS "${release_flags[@]}" --title "Pixel Cat Card $RELEASE_TAG" --notes-file RELEASE_NOTES.md
+          gh release create "$RELEASE_TAG" dist/pixel-cat-card.js dist/pixel-cat-card.manifest.json dist/SHA256SUMS "${release_flags[@]}" --title "Pixel Cat Card $RELEASE_TAG" --notes-file docs/RELEASE_NOTES.md

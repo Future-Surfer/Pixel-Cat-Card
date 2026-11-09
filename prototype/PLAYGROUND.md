@@ -1,6 +1,6 @@
 # Expanded roaming playground
 
-> Planning authority: [../ROADMAP.md](../ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
+> Planning authority: [../ROADMAP.md](../docs/ROADMAP.md) is the only active vision/task backlog. This document is an operational reference or dated engineering record; earlier proposed steps are not a separate delivery order.
 
 
 The default-card and jump-physics refinement is documented in [DEFAULT_CARDS_AND_PHYSICS.md](DEFAULT_CARDS_AND_PHYSICS.md). Native divider detection and amber candidate perches extend the explicit interior definitions below; ballistic flight now replaces the previous fixed flight beats.
