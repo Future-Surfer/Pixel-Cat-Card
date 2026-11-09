@@ -11,6 +11,28 @@ const partial=clone(p);assert.throws(()=>moveSelection(partial,[partial.frames[3
 const added=clone(base);createAnimationTrack(added,{name:'Tail',mask:[...mask],frameIds:added.frames.slice(3,11).map(f=>f.id),id:'tail'});assert.deepEqual(added.frames,base.frames);validateProject(JSON.parse(JSON.stringify(added)));
 // The real runtime samples composed pixels while gaze stays bound to the exact driver.
 const box={window:{},HTMLElement:class{},customElements:{get:()=>true}};vm.runInNewContext(['pixel-cat-roaming-art.js','pixel-cat-roaming-extras.js','pixel-cat-affordances.js','pixel-cat-behaviours.js','pixel-cat-roaming.js'].map(f=>fs.readFileSync(f,'utf8')).join('\n')+'\nglobalThis.api={art:CAT_ART,idleSample,frameContact,idleContact};',box);const {art,idleSample,frameContact,idleContact}=box.api;
+const runtimeClip=art.idleSequences.postScratch;
+assert.equal(JSON.stringify(runtimeClip.frames),JSON.stringify(p.frames.map(frame=>frame.rows)));
+const runtimeTracks=compileAnimationTracks({...p,animationTracks:box.window.pixelCatTrackRuntimeV1.definition(runtimeClip)});
+const runtimePhases=new Set();
+for(let seed=0;seed<20;seed++)for(let t=0;t<5000;t+=37)for(let i=3;i<=10;i++){
+ const {rows,trackFrames}=sampleAnimationTracks(runtimeTracks,i,t,{seed});
+ const key=i+':'+trackFrames.tail;
+ if(runtimePhases.has(key))continue;
+ runtimePhases.add(key);
+ const pixels=new Set(rows.flatMap((row,y)=>[...row].flatMap((cell,x)=>cell==='.'?[]:[y*24+x])));
+ const connected=[[...pixels][0]];
+ pixels.delete(connected[0]);
+ for(const pixel of connected){
+  for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+   const x=pixel%24+dx;
+   const neighbour=pixel+dy*24+dx;
+   if(x>=0&&x<24&&pixels.delete(neighbour))connected.push(neighbour);
+  }
+ }
+ assert.equal(pixels.size,0,`Detached cat pixels in arm/tail combination ${key}`);
+}
+assert.equal(runtimePhases.size,64);
 for(let t=800;t<6000;t+=33){const r=idleSample(art,'postScratch',t,{track_seed:'cat-a'}),clip=art.idleSequences.postScratch;assert.deepEqual(Array.from(frameContact(r.rows,1,r.anchor||idleContact(r.rows))),Array.from(frameContact(clip.frames[r.frame],1,clip.anchors[r.frame]||idleContact(clip.frames[r.frame]))));const metadata=box.window.pixelCatTrackRuntimeV1.metadata(r.rows);if(metadata)assert.equal(JSON.stringify(metadata.gaze),JSON.stringify(p.frames[r.frame].gaze));}
 const {exportSequenceProject}=await import('../frame-studio/dist/model.js');const exported=JSON.parse(JSON.stringify(exportSequenceProject(p)));validateProject(exported);assert.deepEqual(exported,p,'The actual sequence export preserves masks, events, gaze, source lineage and every original frame');exported.animationTracks.tracks[1].mask.pop();assert.equal(JSON.stringify(p),original,'Export returns an independent snapshot');
 console.log('PASS: independent source-only arm/tail combinations, flat enter/exit, protected contacts/gaze, bounded cache, duplicate/import/mirror/move lineage and atomic locked/conflicting edits.');
