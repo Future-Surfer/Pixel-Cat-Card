@@ -4,8 +4,6 @@ A pixel cat that roams around your Home Assistant dashboard. Watch it leave its 
 
 ![An orange cat wakes in an open bed, scratches a post, eats, grooms and walks back to sleep](docs/images/pixel-cat-routine-v2.gif)
 
-*A short scripted demo. [See the habitat in a dashboard](docs/images/pixel-cat-habitat-light.jpg).*
-
 Choose a name, colour, bed and life stage. Add another card for another cat.
 
 ## Install
