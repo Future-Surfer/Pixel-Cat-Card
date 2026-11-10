@@ -12,6 +12,7 @@ Node.js 22.20+, no npm dependencies.
 | `npm test` | Discover/run `scripts/test-*.mjs`; nonzero exit on failure |
 | `npm run verify:build` | Two full builds; reject non-reproducible generated outputs |
 | `npm run release:build` | Versioned normal-file loader, source digests and integrity manifest |
+| `node scripts/build-dev-card.mjs` | Build the separately namespaced HA dev bundle after building the runtime |
 | `npm run studio:review` | Read-only local change-journal review; distinguish stores and exact versions |
 | `npm run studio` | Studio at loopback 8767; local data in `.studio-data/` |
 | `npm run gaze:lab` | Runtime labs at loopback 8769; scoped durable climb/tree saves only |
@@ -21,6 +22,8 @@ Node.js 22.20+, no npm dependencies.
 - CI repeats runtime/package checks and rejects generated-file drift. Verify the actual remote result before calling it green.
 - Studio reads generated assets at startup. Restart deliberately after a rebuild only when safe for user work; never restart it merely to edit docs.
 - [Release guide](guides/ROAMING_RELEASE.md) owns install/upgrade/rollback instructions. Keep the 128000-byte inline guard.
+
+For a dev install alongside Marketplace, serve the dev bundle from a versioned path under Home Assistant's `www` folder and register it as a module. Use `custom:pixel-cat-dev-home` and `custom:pixel-cat-dev-monitor` on development views. Keep a separate view using `custom:pixel-cat-home` to test the Marketplace version. For each dev update, point the existing dev resource to the new hash directory and reload the frontend. To roll back a dev update, point the dev resource back to its previous URL.
 
 ## Source map
 

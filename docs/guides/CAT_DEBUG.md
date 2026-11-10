@@ -5,7 +5,9 @@
 
 Updated 23 October 2026. **Cat controls & diagnostics** has six task-based sections; one opens at a time. Controls retain their original handlers. Changes here apply to this browser session; use HA **Edit card** to save defaults.
 
-The main buttons are **Explore**, **Home**, **Pause**, **Startle all** and **Wall jump**:
+The main buttons are **Pause / Resume**, **Spawn toy** and **Come home**. Spawn toy places a mouse on a reachable surface for the cats to discover.
+
+Open **Cat controls & diagnostics → Travel & climbing** for **Explore**, **Startle all** and **Wall jump**:
 
 - **Startle all** wakes every active cat in this view and resets its five-minute settling clock. Each cat attempts its own safe hop. Flights/climbs finish before a queued reaction; manual Pause stays in force. A blocked hop still wakes the cat. Other views are unaffected.
 - **Wall jump** invites only this card's cat to approach the nearest checked finite wall, grip it and leap off onto another support or back onto the same one. It waits for current movement/handling, checks the route again on arrival and respects home-sharing permissions. It works without enabling autonomous card climbing. If no safe route exists, the status explains this; carrying cats must put their toy down first.
