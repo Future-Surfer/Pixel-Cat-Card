@@ -27,6 +27,25 @@ for(const scale of [1,2,3])for(const side of [-1,1]){
 for(const random of [0,.99]){reset();a=cat('stalker',100);b=cat('sleeper',340,'sleep');a.mood.random=()=>random;see(a,b);const option=a.social.socialOptions('ambush')[0];assert.ok(option);const cues=[];b.receiveDisturbance=e=>{cues.push(e);return true;};assert.ok(a.social.startSocial(option,time));run([a,b],10000);assert.equal(a.social.episode,null);if(random===0){assert.equal(cues.length,0);assert.ok(a.social.trace.some(e=>e.reason==='interest faded'));}else{assert.ok(a.social.trace.some(e=>e.kind==='ambush pounce'));assert.equal(cues.length,1);assert.equal(cues[0].kind,'Nearby play landing');}}
 // Removing a partner / Home interrupts ownership; no unseen partner tracking.
 reset();a=cat('interrupt',100);b=cat('partner',340,'sleep');see(a,b);a.social.startSocial(a.social.socialOptions('ambush')[0],time);a.shadowRoot={querySelector:()=>({})};a.requestVisit('home');assert.equal(a.social.scene.size,0);assert.ok(!b.social.episode);
+// A kitten uses the normal walk and sleep clips, with independent wake clocks.
+for(const [wakes,roll] of [['adult',0],['kitten',0],['kitten',.99]]){
+ reset();a=cat('cuddle-kitten',100,'sit',1);b=cat('cuddle-adult',190,'sleep',2);
+ a.config.life_stage='kitten';a.mood.random=()=>.99;a.layer.style.zIndex='10';b.layer.style.zIndex='10';see(a,b);
+ const options=[];a.social.offerCuddle(options,{sleepiness:.9},()=>0,time);assert.equal(options.length,1);
+ assert.ok(a.social.startSocial(options[0],time));assert.ok(!b.social.episode);
+ while(a.social.episode?.stage!=='cuddled'&&time<12500)run([a,b],16);
+ assert.equal(a.social.episode?.stage,'cuddled',JSON.stringify(a.social.trace.slice(0,4)));assert.equal(a.idle.pose,'sleep');assert.equal(b.idle.pose,'sleep');box.window.pixelCatDepthV1.cat(a,time);assert.ok(Number(a.layer.style.zIndex)>Number(b.layer.style.zIndex));
+ const sleeper=wakes==='adult'?a:b,waker=wakes==='adult'?b:a,cues=[];
+ sleeper.mood.random=()=>roll;sleeper.receiveDisturbance=e=>cues.push(e);
+ waker.idle.poseUntil=time;a.social.advance(time);
+ assert.equal(cues.length,roll===0?1:0);box.window.pixelCatDepthV1.cat(a,time);assert.equal(a.layer.style.zIndex,b.layer.style.zIndex);assert.equal(a.social.scene.size,0);
+}
+reset();a=cat('brave-kitten',100,'sit',1);a.config.life_stage='kitten';b=cat('pounce-sleeper',220,'sleep',2);see(a,b);
+a.social.traits.boldness=.3;assert.equal(a.social.socialOptions('ambush').length,0);
+a.social.traits.boldness=.8;assert.ok(a.social.socialOptions('ambush').length);
+for(const [roll,expected] of [[.79,'hop'],[.8,'ignore']]){
+ b.mood.random=()=>roll;assert.equal(b.social.disturbanceChoice({kind:'Pounce beside sleeper'}),expected);
+}
 // Two watchers compete for one observed prop. Flight destination is fixed, not homing.
 reset();a=cat('gaze-gated-hunter',100);const mouse={id:'observed-mouse',asset:{id:'toy_mouse',width:8,height:3},scale:2,u:.9,surfaceEl:surface.el,surfaceSuffix:':top',cooldownUntil:0,claimedBy:null,direction:1,mouseMotion:{phase:'pause'}},mouseScene={enabled:true,time:0,props:[mouse],release(owner){if(mouse.claimedBy===owner)mouse.claimedBy=null;}};a.propScene=mouseScene;a.social.clock=300;assert.equal(a.beginToyHunt(time),false,'A legacy hunt cannot start from hidden registry geometry in the new mode');a.social.propMemory.set(mouse.id,{id:mouse.id,x:200,y:400,width:16,height:6,surface:surface.el,observedAt:300,moving:false,direction:-1});assert.ok(a.beginToyHunt(time));assert.ok(a.route.at(-1).x<400,'Approach uses the observation rather than the unseen current position');assert.equal(a.social.toyOpening(mouse,100,200,2,true),false,'Opening direction uses observed facing');a.social.frame.gaze.canSee=false;assert.ok(Number.isNaN(a.toyLanding(mouse.id,1)),'A blind frame cannot refresh the target');a.toyHunt.forced=true;assert.ok(Number.isFinite(a.toyLanding(mouse.id,1)),'Explicit forced debug hunt remains available');a.cancelPlay(time);
 reset();a=cat('interceptor',100);b=cat('other-watcher',400);const toy={id:'moving-ball',asset:{id:'ball'},scale:2,claimedBy:null,cooldownUntil:0},impulses=[],props={enabled:true,time:2000,props:[toy],strikeBall(...args){impulses.push(args);return false;},release(){}};a.propScene=b.propScene=props;const observed={id:toy.id,kind:'ball',x:175,y:400,top:400,surface:surface.el,observedAt:300,moving:true,vx:20};a.social.propMemory.set(toy.id,observed);a.social.clock=300;let options=a.social.propOptions();assert.ok(options.length);assert.ok(a.social.startProp(options[0],time));assert.equal(toy.claimedBy,a.ownerKey);b.social.clock=300;b.social.propMemory.set(toy.id,observed);assert.equal(b.social.propOptions().length,0);a.social.clock=500;a.social.advance(time);assert.equal(a.motion.kind,'jump');const committed=a.motion.x;a.social.propMemory.get(toy.id).x=900;a.social.advance(time+20);assert.equal(a.motion.x,committed,'No airborne retarget');a.x=a.motion.x;a.motion=null;a.social.advance(time+1000);assert.equal(impulses.length,1);assert.equal(toy.claimedBy,null);assert.ok(a.social.trace.some(e=>e.kind==='prop intercept miss'));

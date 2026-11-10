@@ -1,10 +1,10 @@
-# Pixel Cat Card 1.0.0-rc.3
+# Pixel Cat Card 1.0.0
 
-Opt-in release candidate for Home Assistant 2026.11 and later. Pixel Cat Card gives your dashboard a cat that can roam between cards, nap, scratch and play.
+First stable release for Home Assistant 2026.11 and later. Pixel Cat Card gives your dashboard a cat that can roam between cards, nap, scratch and play.
 
 ## Before updating
 
-- Add the repository through the Marketplace link in the README and [enable pre-releases](https://github.com/Future-Surfer/Pixel-Cat-Card/blob/main/docs/guides/PIXEL_CAT_INSTALL.md#marketplace).
+- Add the repository through the Marketplace link in the README.
 - If you installed manually, follow the [migration guide](https://github.com/Future-Surfer/Pixel-Cat-Card/blob/main/docs/guides/PIXEL_CAT_INSTALL.md) before installing the Marketplace copy. Keep your card YAML and cat IDs.
 
 ## Included
@@ -20,6 +20,9 @@ Opt-in release candidate for Home Assistant 2026.11 and later. Pixel Cat Card gi
 - The editor cat rests briefly between yawns, ear scratches, and grooming. An optional black or white fur outline helps cats stand out on the dashboard.
 - Cats cast a compact shadow beneath their paws. During a jump, it can land on more than one dashboard surface. Turn it off under **Your cat → Floor shadow**.
 
-## Validation and limits
+- Optional two-level cat tree with side climbing and a hanging ball you can tap.
+- Kittens can curl up beside a sleeping cat or try a playful pounce.
 
-The release assets include SHA-256 checksums. The stable release is gated on a clean Marketplace install and upgrade, removal and rollback checks.
+## Verification
+
+The release assets include SHA-256 checksums. The release candidate was installed through Marketplace and verified with existing dashboards and the card editor. The upgrade to 1.0.0 will be checked on the same instance. Uninstall and reinstall are untested.

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cat tree testing</title>
+<style>
+body{font:16px system-ui;background:#eef1f4;color:#233440;margin:24px}
+main{max-width:760px;margin:auto}section{min-height:440px;padding:12px;background:#fff;border:1px solid #c0cbd3;border-radius:12px}
+pixel-cat-home{display:block;max-width:440px;margin:48px auto 0}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}button,select{font:inherit;padding:6px 9px}
+#status{min-height:1.5em}
+</style>
+</head>
+<body>
+<main data-cat-world>
+<h1>Cat tree testing</h1>
+<p>Two offset platforms in the real Pixel Cat Card. Pick an age and a level, or let the cat choose its own route.</p>
+<div class="actions">
+<label>Age <select id="age"><option>adult</option><option>senior</option><option>kitten</option></select></label>
+<label>Level <select id="level"><option value="1">Lower platform</option><option value="2">Upper perch</option></select></label>
+<label><input type="checkbox" id="roam"> Roam freely</label>
+<button id="climb">Climb to platform</button><button id="leap">Leap to platform</button><button id="down">Jump down</button>
+<button id="pass">Walk past the ball</button><button id="reset">Reset</button>
+</div>
+<section id="stage"><div id="home"></div><p id="status" role="status"></p></section>
+</main>
+<script type="module">
+import '/dist/pixel-cat-card.js';
+const $=selector=>document.querySelector(selector);
+let a;
+const say=text=>$('#status').textContent=text;
+function reset(){
+ a?.remove();
+ a=document.createElement('pixel-cat-home');
+ a.setConfig({type:'custom:pixel-cat-home',cat_id:'tree-testing',name:'Tree tester',life_stage:$('#age').value,cell_size:2,test_cat_tree:true,bed_style:'simple',show_controls:false,dashboard_props:false,mood_behaviour:true,social_behaviour:false,interaction_behaviour:false,playful_pounces:false,toy_hunting:false,arrival:'normal'});
+ const plan=a.plan;
+ a.plan=function(){if($('#roam').checked)return plan.call(this);};
+ $('#home').append(a);say('Ready');
+}
+function perform(kind){
+ if(!a.active)return;
+ if(a.climb||a.motion){say('Wait for the current move to finish, or reset.');return;}
+ a.measure();
+ const level=Number($('#level').value),platform=a.surfaces.find(s=>s.tree===level),floor=a.home;
+ const below=level===2?a.surfaces.find(s=>s.tree===1):floor;
+ if(!platform){say('Widen the page until the tree fits.');return;}
+ const t=performance.now(),s=a.scale,tree=window.pixelCatTreeV1;
+ const target=kind==='down'?below:platform;
+ const place=(surface,x)=>{a.support=surface;a.x=Math.max(surface.min,Math.min(surface.max,Math.round(x/s)*s));a.y=surface.top;a.idle=null;a.route=[];a.goal=a.command=null;a.deadline=t+60000;};
+ if(kind==='down')place(platform,(platform.min+platform.max)/2);
+ else place(below,level===1?platform.left-13*s:below.min);
+ if(kind==='climb'){
+  const path=window.pixelCatCardClimbV1.treeRoute(a,platform,below);
+  if(!path){say('No safe climb from this position.');return;}
+  a.route=path;window.pixelCatCardClimbV1.start(a,path[0],t);
+  say(a.climb?'Climbing the post':'The climb was cancelled.');return;
+ }
+ if(kind==='pass'){
+  const g=tree.geometry(a),ball=g.x+52*g.s;
+  place(floor,ball-34*s);
+  const x=Math.min(floor.max,ball+2*s-12*s);
+  a.urgency='relaxed';a.moveTo(x,floor.top,0,'walk',floor,t);
+  say('Walking under the ball.');return;
+ }
+ const from=a.support;
+ const snap=(x,surface)=>Math.max(surface.min,Math.min(surface.max,Math.round(x/s)*s));
+ const arrival=kind==='down'?platform.left-13*s:(platform.min+platform.max)/2;
+ const landings=[arrival,target.min,target.max].map(x=>snap(x,target));
+ const starts=[a.x,from.min,from.max,...Array.from({length:11},(_,i)=>a.x+(i-5)*4*s)].map(x=>snap(x,from));
+ const path=starts.flatMap(start=>landings.map(end=>({start,end}))).find(({start,end})=>a.routeJump(from,target,start,end));
+ if(!path){say('No safe jump from this position.');return;}
+ place(from,path.start);
+ const ok=a.moveTo(path.end,target.top,0,'jump',target,t);
+ say(ok===false?'No safe jump from this position.':kind==='down'?'Jumping down.':'Leaping to the platform.');
+}
+for(const kind of ['climb','leap','down','pass'])$('#'+kind).onclick=()=>perform(kind);
+$('#reset').onclick=$('#age').onchange=reset;
+$('#roam').onchange=()=>{if($('#roam').checked)a.deadline=0;};
+reset();
+</script>
+<script defer src="../frame-studio/dist/lab-nav.js" data-workshop-nav="floating"></script>
+</body>
+</html>

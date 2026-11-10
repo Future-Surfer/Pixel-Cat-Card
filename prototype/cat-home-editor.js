@@ -19,7 +19,8 @@ const catEditorGroups=[
   ['bed_primary_color','Bed primary colour','text','#aa6627','Pick a colour for the outside of the bed.'],
   ['bed_secondary_color','Bed secondary colour','text',null,'Pick a colour for the inside, or leave it blank for the original colour.'],
   ['show_home','Show bed home','checkbox',true,'Hide the bed and let your cat find another spot.'],
-  ['show_scratching_post','Show scratching post','checkbox',true,'Put a scratching post beside the bed if there’s room.']
+  ['show_scratching_post','Show scratching post','checkbox',true,'Put a scratching post beside the bed if there’s room.'],
+  ['test_cat_tree','Test cat tree','checkbox',false,'Try a fixed climbing tree and hanging ball. On narrow cards, use the post.']
  ]},
  {title:'Home & appearance',fields:[
   ['primary_home','Primary home','checkbox',false,'Mark this card as the main home in the editor.'],

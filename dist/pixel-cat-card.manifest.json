@@ -1,12 +1,12 @@
 {
   "schema": 1,
   "name": "Pixel Cat Card",
-  "version": "1.0.0-rc.3",
-  "sourceHash": "ab7b42142b2468a7a2263455d968a26effd7e3b7e1fc1896375b69da66ed76ec",
+  "version": "1.0.0",
+  "sourceHash": "82e5262ef150dc6ce3619a6cf05793bd5b04036419773c4dca7e64694f69fca7",
   "artifact": {
     "file": "pixel-cat-card.js",
-    "bytes": 1750067,
-    "sha256": "56303a54efbd429a630ca955f7b7ba8804ec6ece0e6d78feecf6c8132d9c1c9a"
+    "bytes": 1760699,
+    "sha256": "8a8cb845f409753fdd240aeec132b0f6e92ba2c323ed560bc75e2801bc582c8f"
   },
   "modules": [
     {
@@ -19,27 +19,27 @@
     },
     {
       "file": "pixel-cat-roaming-art.js",
-      "sha256": "95542d34aede81197afaca415688f36289c9d550cf191938efa958837a7481d7"
+      "sha256": "d0c9331d3362358c009562d1bb7c449c59887042a5cf30b8662ca37cc97635c1"
     },
     {
       "file": "pixel-cat-roaming-extras.js",
-      "sha256": "557cb315b539884ba2cf172f9dac8e5d76ad9fc7882f1d4decfced602a5998db"
+      "sha256": "8f8ea4e8d20efcb45f7bd4e66a75b4449759dd4e32b9022b7bae8e1db82b7089"
     },
     {
       "file": "pixel-cat-affordances.js",
-      "sha256": "c10cb1d14b1b0ee71bf520f021cc64a1449f52d8d6c0c76069c6c01a4c4cecc4"
+      "sha256": "23f5d994fb0262631af0afff8a2cc7771d68646ae72d6073c42431fb859b689a"
     },
     {
       "file": "pixel-cat-behaviours.js",
-      "sha256": "25f6a9363839db4dd566b098b02075b04632113c1f66eaded6a1c88c55d9dd36"
+      "sha256": "a4bb146f32fb9f5afc65dc3dd19d1c2cb49180857d73d55123b42dbc202285a4"
     },
     {
       "file": "pixel-cat-roaming.js",
-      "sha256": "41ae73fecf09e286986d703905d12540c900571cb626daee44899b48a8d3cd5c"
+      "sha256": "0f1675c1d07de41f80b05047e67e621fbabe806bcaa10d88fdda4f63f25cb96a"
     },
     {
       "file": "pixel-cat-climbing.js",
-      "sha256": "c09eae70571681740edfac9205b4556db5ef88ecf830b56fc16000ed29328e05"
+      "sha256": "a36446aea69bb84d77b4b09d641499ded90672b0be4077ebe0861618d93b0d04"
     }
   ],
   "decodedArtworkSha256": "d55cc78620f069f632b2c36d0c63aa430921dcc41bfa8776c910e6b9bd088077",

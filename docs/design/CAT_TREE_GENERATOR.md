@@ -46,6 +46,36 @@ Open [Cat-tree workshop](http://127.0.0.1:8769/prototype/tree-lab.html) through 
 
 Sources: `prototype/tree-components.mjs`, `tree-model.mjs`, `tree-workspace-client.mjs`, `tree-lab.*`, `scripts/tree-storage.mjs`. Checkpoint and checks (development reference retained privately).
 
+## Fixed tree pilot
+
+Open **Cat tree testing** from Workshop > Simulate to run the bundled card with two offset platforms, rope grips and a hanging ball. The fixture has age and level selection, repeatable climb, leap, jump-down and pass controls, and a free-roam toggle. The card editor exposes **Test cat tree** under **Make them at home** (YAML: `test_cat_tree: true`). It requires the home and scratching furniture to be enabled and uses the post on narrow cards.
+
+The pilot registers two authored platforms in the resident's home and uses the existing checked climb planner for the rope. The fixture isolates movement from autonomy so the same action can be replayed. Generation remains in the construction workshop.
+
+## Card integration proposal
+
+Start with an opt-in tree for each home. Keep the current post at level 0 and use the workshop's assembly model and component geometry for levels 1–3. The first runtime set should use rope posts and open platforms with enough room for an adult. Add houses, inset beds and bridges when their doorway, depth and support rules work with real cats.
+
+### Space and seeds
+
+The home dock currently reserves 28 furniture cells of height. The minimum post layout leaves about 14 cells to its right, while the tree foundation alone is 32 cells wide. Give an enabled tree its own bay beside the bed and bowl when there is room, and reserve a separate row on narrow cards. Measure with the shared furniture scale, independently of the resident's age. If the tree cannot fit at that scale, show the ordinary post and explain the fallback in the editor. Preserve the chosen level and seed through resize.
+
+The workshop treats levels as an upper limit. In a sample of 64 seeds at a 64 × 100 cell budget with one branch and only platform caps, 56, 54 and 35 seeds returned exactly one, two and three platforms. With a preliminary 28-cell horizontal clearance check, only 43, 32 and 13 had that much span on every requested level. This check did not test headroom or travel. Even forcing toy probability to 100% produced a toy in only 19, 30 and 31 cases because some platforms have no toy socket or the toy cannot fit. The card needs to accept only assemblies that satisfy the requested level count, with a checked template as a bounded fallback. Require a clear toy socket in the template when showing a hanging ball. Build on configuration or size changes and cache the result by seed, level, size and component revision.
+
+In **Make them at home**, show the current level with **Add a level**, **Remove a level**, and **Generate cat tree**. Generating keeps the chosen level and changes the seed. Preview the resulting tree in the editor and save the level and seed with the card. Disable generation at level 0. A card with no tree settings keeps its existing post.
+
+### Routes and movement
+
+Publish authored standing spans and rope grips with stable IDs from the same geometry used to draw the tree. For each eligible level, check actor width, headroom, arrival, and a return to the base. Reuse the checked transfer planner with the tree's authored grips rather than detecting edges from painted pixels. Allow adults and seniors to use tree grips without enabling the kitten-only background climbing fallback. When a climb and a leap are both valid, give the climb more weight and let mood and the cat's pace influence the choice. Keep ordinary leaps and the option to ignore the tree. Revalidate or recover through existing route handling after a resize, seed change, or removal.
+
+Treat the ball and string as one visual pendulum. Its pivot is the parent's toy socket, and the distance from pivot to ball stays constant. Give a small signed impulse when a cat passes close to the ball, once per pass. Apply a second kind of impulse from a landed jump or a confirmed grip contact. Reuse the post's shake timing as a starting point. Shake the artwork and the pivot together while keeping the navigation geometry steady. A first lab pass can compare peak swings around 6° for a pass and 10° for an impact, with a cap near 14° and damping back to rest. These are visual tuning values.
+
+### Order of work
+
+1. Build a real-actor tree fixture with selectable seeds, widths, levels and cat ages. Check exact level counts, reachability, return paths and safe recovery. Include side-by-side leap and climb cases.
+2. Tune movement in that fixture with repeatable pass, landing and grip triggers. Check that the string stays attached, a stationary cat does not repeatedly kick it, and a paused or hidden scene does not accumulate motion.
+3. Connect the accepted fixture to the home allocator and editor. Check keyboard use, save and reload, two homes with distinct seeds, narrow dashboards, and the post fallback. Run Home Assistant acceptance before enabling the tree outside the opt-in configuration.
+
 ## Readable construction codes
 
 [Named assembly format `tree 2`](CAT_TREE_CODE.md) is the canonical editable/export syntax: unique part names, explicit socket connections, optional numbered assembly levels, forward references and exact multi-support joins. The lab has central-post and shared-support examples. Short expressions such as `ITOO` remain convenient input shorthand, but complex layouts do not depend on nested brackets.

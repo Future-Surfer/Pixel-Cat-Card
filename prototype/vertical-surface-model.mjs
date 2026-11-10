@@ -60,7 +60,7 @@ function flightFits(flight,world,scale,framePlacement){
  }
  return true;
 }
-export function planVerticalTransfer({face,from,target,startX,world,scale,frame,probe,framePlacement,climbFrames,maxChecks=48,generation=face?.generation,mode='either',clear=()=>true}){
+export function planVerticalTransfer({face,from,target,startX,world,scale,frame,probe,framePlacement,climbFrames,maxChecks=48,generation=face?.generation,mode='either',side='centre-front',clear=()=>true}){
  const stats={checks:0,entries:0,releases:0},reject=reason=>({ok:false,reason,stats});
  if(!face||!valid(world)||!Number.isFinite(scale)||scale<=0||!from||!target||target.connected===false||from.connected===false||target.max<target.min||from.max<from.min)return reject('Fresh face, origin and landing required');
  if(target.top<world.top+24*scale||target.top>world.bottom||target.min<world.left||target.max+24*scale>world.right)return reject('Landing stance or headroom lies outside the world');
@@ -79,7 +79,7 @@ export function planVerticalTransfer({face,from,target,startX,world,scale,frame,
    if(mode==='wall-jump'&&Math.abs(exitY-entryY)>.01||mode==='climb'&&exitY<=entryY+.01&&exitY>=entryY-.01)continue;
    // One exposed patch owns the whole grip path; never climb across a visual gap.
    if(!contains(g,x,exitY))continue;
-   const releaseRoot={x,y:exitY},exit=check(()=>probe.release(releaseRoot,frame,{...target,source:target},{side:'centre-front'}));stats.releases++;
+   const releaseRoot={x,y:exitY},exit=check(()=>probe.release(releaseRoot,frame,{...target,source:target},{side}));stats.releases++;
    if(!flightFits(exit,world,scale,framePlacement)||!clear(target,exit.landingX))continue;
    const distance=Math.abs(exitY-entryY),kind=distance<.01?'wall-jump':'climb-and-leap',cost=(approach?.duration||0)+enter.duration+exit.duration+distance/scale*35+150;
    routes.push({kind,cost,faceId:face.id,panelId:face.panelId,stance,entryRoot:root,releaseRoot,approach,enter,exit,distanceCells:distance/scale,frame,climbFrames,passThrough:true});
