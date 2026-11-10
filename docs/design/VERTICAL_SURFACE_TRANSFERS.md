@@ -1,6 +1,6 @@
 # Visible vertical surfaces and transfers
 
-Finite-face discovery and checked transfers now have an opt-in HA pilot (23 October 2026). Ordinary routes remain preferred; default cards retain their existing behaviour.
+Finite-face discovery and checked transfers now have an opt-in HA pilot (23 October 2026). Ordinary routes remain preferred for requested destinations. An opted-in cat can occasionally choose to climb an exposed face and leap to a higher support.
 
 ## Shared opportunity model
 
@@ -32,13 +32,13 @@ Focused tests exercise actual compiled jump probes and reviewed climb playback, 
 - `card_climbing: true` enables bounded ground → finite grip → real landing routes when ordinary routing fails. Default off. A query checks the three nearest exposed patches, at most 32 flight probes each; geometry/route results are cached and invalidated with existing layout discovery. No new global clock or per-frame DOM discovery.
 - Detection and permission are separate: excluded outer cat-home cards retain dashed cyan boundaries and explicit sharing/hidden/inactive reasons, but contribute no grips or tops. Existing bilateral `shared_home_surfaces` permission remains authoritative; nested furniture is not an outer card.
 - `debug_vertical_surfaces: true` draws cyan measured card boundaries, purple exposed grip areas and green clear standing tops. Horizontal surfaces also show cyan boundaries alongside the existing inset walking lines. A boundary is a measured box, not a promise that its face or top is usable. Transparent, hidden, clipped and undersized regions explain rejection.
-- Open **Cat controls & diagnostics → Travel & climbing → Try visible wall transfer** on an enabled, free cat. This explicit preview may bypass an ordinary route; automatic choices do not. If the cat is travelling or busy, wait for it to settle. Other cats remain independent.
+- Open **Cat controls & diagnostics → Travel & climbing → Try climbing a card** on an enabled, free cat. The preview looks for a higher landing and requires at least four cells of upward grip movement before the leap. Opted-in cats can also choose this route at a leisure decision, with a cooldown and an ordinary way back home. If the cat is travelling or busy, wait for it to settle. Other cats remain independent.
 - Entry is freshly planned; changed/removed faces and occupied release landings trigger existing visible checked recovery. Uniform scrolling translates cached faces and records. Real support identities own final landings. Existing pause/startle/command, marks and particle paths remain in use.
-- The runtime fixture adds an adjacent tall painted panel and a **Try native-card transfer** control. Simulation stepping exercises the complete walk/attach/climb/release route; it is not a device-performance measurement.
+- The runtime fixture adds an adjacent tall painted panel and a **Climb card and leap** control. Simulation stepping exercises the complete walk/attach/climb/release route; it is not a device-performance measurement.
 
 ## Remaining implementation gates
 
-The top-level **Wall jump** invitation is separate from the opt-in autonomous pilot and longer transfer preview. It sorts finite exposed faces by distance from the actor, checks ordinary approaches from the current/three nearby supports, and checks up to five nearby alternative landings plus the entry support. A shared 512-flight-probe budget bounds each explicit query. Only zero-distance grip transfers qualify: leap on, brief grip, leap off. The chosen face/landing is rechecked after approaching; existing lifecycle recovery owns later invalidation. This is a bounded nearest-viable search, not an exhaustive route guarantee on arbitrarily complex dashboards. It changes no saved permissions or autonomous defaults, and virtual grips do not require social behaviour to be enabled.
+The **Wall jump** invitation in diagnostics is separate from the opt-in autonomous pilot and longer transfer preview. It sorts finite exposed faces by distance from the actor, checks ordinary approaches from the current/three nearby supports, and checks up to five nearby alternative landings plus the entry support. A shared 512-flight-probe budget bounds each explicit query. Only zero-distance grip transfers qualify: leap on, brief grip, leap off. The chosen face/landing is rechecked after approaching; existing lifecycle recovery owns later invalidation. This is a bounded nearest-viable search, not an exhaustive route guarantee on arbitrarily complex dashboards. It changes no saved permissions or autonomous defaults, and virtual grips do not require social behaviour to be enabled.
 
 1. Grip → grip graph edges, reviewed right-side entry and distinct descent artwork.
 2. Full composed-shadow control/occlusion auditing, arbitrary CSS stacking, border-only material confidence and transformed shapes. Current diagnostics expose provisional painted rectangles; explicit inclusion does not infer physical material.

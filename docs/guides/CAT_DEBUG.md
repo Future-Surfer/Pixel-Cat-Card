@@ -29,7 +29,7 @@ In **Display & overlays**, **Name & action below cat** controls the two-line lab
 
 The floating, bounded panel preserves the home card's height and walking surfaces. Its title stays visible during menu scrolling. Opening a section never enables a feature or forces an action. Normal play invitations retain existing eligibility/queueing; **Preview action** is the separate animation override.
 
-In **Travel & climbing**, enable **Climb visible cards (experimental)** before **Try visible wall transfer** becomes available. Ordinary routes remain preferred automatically; this explicit preview can use a checked wall transfer even when another route exists. Try it when the cat is resting. **Scratch card borders** controls the separate supported-edge scratching pilot. [Finite-face contract and limits](../design/VERTICAL_SURFACE_TRANSFERS.md).
+In **Travel & climbing**, enable **Climb visible cards (experimental)** before **Try climbing a card** becomes available. Ordinary routes remain preferred automatically; this explicit preview can use a checked wall transfer even when another route exists. Try it when the cat is resting. **Scratch card borders** controls the separate supported-edge scratching pilot. [Finite-face contract and limits](../design/VERTICAL_SURFACE_TRANSFERS.md).
 
 Shared prop controls affect this dashboard. Running-count and all-cat sampling controls are behind **Diagnostics → Whole-dashboard test controls**, away from ordinary single-cat actions.
 
