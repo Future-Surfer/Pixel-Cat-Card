@@ -1,6 +1,6 @@
 # Pixel Cat roadmap
 
-Updated 8 November 2026. **Sole forward plan.** [Current state](CURRENT_STATE.md) records delivered facts; [feature contracts](FEATURE_DETAILS.md) describe current behaviour.
+Updated 10 November 2026. **Sole forward plan.** [Current state](CURRENT_STATE.md) records delivered facts; [feature contracts](FEATURE_DETAILS.md) describe current behaviour.
 
 ## Vision and principles
 
@@ -12,6 +12,12 @@ Updated 8 November 2026. **Sole forward plan.** [Current state](CURRENT_STATE.md
 - Measure before adding caches, routing complexity, probability tuning or device-performance claims.
 
 ## Recommended next sequence
+
+**Next · LAB-01 — Behaviour Lab.** Add a dedicated testing card alongside Companion and Performance. One dropdown applies a temporary focus to every active cat on the current dashboard view, including cats that join after selection. Start with **Natural behaviour** and **Climb and leap**. Use a shared view-scoped preference, default to Natural, and clear it on reload or when the lab is removed. Keep saved cat settings and normal behaviour weights separate.
+
+- First slice: connect the selector to the existing climb decision. Check more often and strongly favour a climb when one is viable, while retaining a chance to decline. Each cat keeps its own clock, and pause, sleep, busy states, grip checks, safe landings and return routes still apply.
+- Show per-view counts for busy cats, no usable wall, no safe landing, eligible but declined, attempted and completed. Validate on a known climbable fixture and the HA Testing view. Verify that another view is unaffected and Natural restores baseline decisions.
+- Register subsequent scenarios through the same interface. **Scratch card edges** is the next candidate once the climbing focus is useful.
 
 The desktop stability/calibration batch is delivered. Evidence, measured limits and device checklist (development reference retained privately).
 
