@@ -26528,6 +26528,13 @@ window.pixelCatPolishV1={
   return {start,frames,bearing,facings:poses.map(([,direction])=>direction),total:frames.holds.reduce((sum,hold)=>sum+hold,0)};
  },
  seated(pose){return ['sit','sithead','glance','clean','scratch','yawn','meow','chatter','bat'].includes(pose);},
+ interruptedRise(art,old){
+  if(!old?.bridge?.includes(old.rows)||old.bridgeDone)return null;
+  const {walkToSit,sitToLoaf}=art.bridges,step=walkToSit.indexOf(old.rows),low=sitToLoaf.indexOf(old.rows);
+  if(step>=0)return walkToSit.slice(0,step+1).reverse();
+  if(low>=0)return [...sitToLoaf.slice(0,low+1).reverse(),art.sit,...[...walkToSit].reverse()];
+  return old.rows===art.sit?[...walkToSit].reverse():null;
+ },
  restBridge(art,from,to,old,config,now){
   const {walkToSit,sitToLoaf}=art.bridges;
   const seated=this.seated(from),nextSeated=this.seated(to);
@@ -26551,8 +26558,15 @@ window.pixelCatPolishV1={
   if(seated&&standing(to))return timed(up);
   return [];
  },
- prelude(a,m,old,art,front){if(m.kind!=='walk'||!old||!this.seated(old.pose)&&!['backRoll','alertLying','loaf','sleep'].includes(old.pose)||a.previewPose||a.userHeld)return;const clip=art.idleSequences[old.pose],exit=old.pose==='alertLying'?this.alertExit(art,old,a.config,m.start):clip?.frames.filter((_,i)=>clip.roles?.[i]==='exit')||[],frames=(exit.length?exit:['loaf','sleep'].includes(old.pose)?[...art.bridges.sitToLoaf].reverse():[]).concat([...art.bridges.walkToSit].reverse());if(!frames.length)return;const anchors=old.pose==='backRoll'?exit.map((rows,i)=>this.departureAnchor({pose:old.pose,anchor:clip.anchors[clip.roles.flatMap((r,j)=>r==='exit'?[j]:[])[i]]},art)).concat(art.bridges.walkToSit.map(()=>null)):null,beat=Math.max(60,Math.min(120,Number(a.config.idle_frame_ms)||100));
-  if(exit.holds)frames.holds=exit.holds.concat(art.bridges.walkToSit.map(()=>beat));
+ prelude(a,m,old,art,front){
+  if(m.kind!=='walk'||!old||a.previewPose||a.userHeld)return;
+  const interrupted=this.interruptedRise(art,old),low=['alertLying','loaf','sleep'].includes(old.pose);
+  if(!interrupted&&!low&&!this.seated(old.pose)&&old.pose!=='backRoll')return;
+  const clip=art.idleSequences[old.pose],exit=interrupted?[]:old.pose==='alertLying'?this.alertExit(art,old,a.config,m.start):clip?.frames.filter((_,i)=>clip.roles?.[i]==='exit')||[];
+  const up=[...art.bridges.walkToSit].reverse(),rise=low?[...art.bridges.sitToLoaf].reverse().concat([art.sit],up):up;
+  const frames=interrupted||exit.concat(rise);
+  const anchors=!interrupted&&old.pose==='backRoll'?exit.map((rows,i)=>this.departureAnchor({pose:old.pose,anchor:clip.anchors[clip.roles.flatMap((r,j)=>r==='exit'?[j]:[])[i]]},art)).concat(up.map(()=>null)):null,beat=Math.max(60,Math.min(120,Number(a.config.idle_frame_ms)||100));
+  if(exit.holds)frames.holds=exit.holds.concat(rise.map(()=>beat));
   const total=frames.holds?.reduce((n,h)=>n+h,0)??frames.length*beat;m.departure={frames,anchors,beat,total,bearing:m.fromX+front*a.scale};m.start+=total;
  },
  departure(a,t,contact,idleContact){const m=a.motion,d=m?.departure;if(!d)return false;if(t>=m.start){if(d.facings)a.facing=m.direction;delete m.departure;return false;}const frame=this.bridgeSample(d.frames,Math.max(0,t-(m.start-d.total)),d.beat).frame,rows=d.frames[frame];if(d.facings)a.facing=d.facings[frame];const p=contact(rows,a.facing,d.anchors?.[frame]||idleContact(rows));a.draw(rows);a.svg.style.transform=`translate(${d.bearing-(d.facings?this.turnFeet(rows,a.facing):p[0])*a.scale}px,${m.fromY-(p[1]+1)*a.scale}px)`;const drawn=/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/.exec(a.svg.style.transform);window.pixelCatBedEntryV1?.mask?.(a,rows);if(a.carriedToy&&drawn)window.pixelCatMouthV1?.frame(a,rows,drawn,t,a.carryArt);a.setAttribute('data-pose',d.facings?'turning':'leaving-loaf');a.setAttribute('data-frame',(d.facings?'sit-turn-':'loaf-departure-')+frame);a.status(d.facings?'Turning around':'Getting up');return true;},
@@ -30015,7 +30029,7 @@ window.pixelCatClimbV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"1ae6b1017541ca89072cab331c07acec7c11929c8ef721eee5786a57337d54cf"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"1c37eb7a12cdad5c56688c62454e9f32911a58c11d7f442095986a18616c35aa"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0");
 })();

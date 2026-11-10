@@ -19,7 +19,7 @@ for(const frameMs of [80,250,500]){
  for(const [frame,now,expected,holds]of [[3,1000,[11,12],[150*rate,250*rate]],[11,until-300*rate,[11,12],[50*rate,250*rate]],[12,until-100*rate,[12],[100*rate]],[12,until,[],[]]]){
   const old={pose:'alertLying',rows:idleSample(art,'alertLying',now,{...config,clip_exit_at_ms:until}).rows,poseUntil:until},exit=P.alertExit(art,old,config,now);
   assert.deepEqual(Array.from(exit,r=>alert.frames.indexOf(r)),expected);assert.deepEqual(Array.from(exit.holds),holds);
-  const actor={config,scale:1,facing:1},motion={kind:'walk',start:now,fromX:100};P.prelude(actor,motion,old,art,18);assert.deepEqual(Array.from(motion.departure.frames.slice(0,exit.length)),Array.from(exit));assert.equal(motion.start-now,holds.reduce((a,b)=>a+b,0)+Math.max(60,Math.min(120,frameMs)));
+  const actor={config,scale:1,facing:1},motion={kind:'walk',start:now,fromX:100};P.prelude(actor,motion,old,art,18);assert.deepEqual(Array.from(motion.departure.frames.slice(0,exit.length)),Array.from(exit));assert.equal(motion.start-now,holds.reduce((a,b)=>a+b,0)+3*Math.max(60,Math.min(120,frameMs)));
   const loaf=P.restBridge(art,'alertLying','loaf',old,config,now);assert.deepEqual(Array.from(loaf),Array.from(exit),'Returning to loaf never sits upright');
   for(const target of ['sit','clean','stand','backRoll']){const bridge=P.restBridge(art,'alertLying',target,old,config,now);const added=target==='stand'?3:1;assert.equal(bridge.length,exit.length+added);assert.deepEqual(Array.from(bridge.slice(0,exit.length)),Array.from(exit));assert.equal(P.bridgeDuration(bridge,config),holds.reduce((a,b)=>a+b,0)+added*frameMs);}
   let elapsed=0;for(let i=0;i<exit.length;i++){assert.equal(P.bridgeSample(exit,elapsed+holds[i]/2,frameMs).rows,exit[i]);elapsed+=holds[i];}
@@ -36,3 +36,12 @@ for(const standing of ['walk','stand','sniff','look','perch','lookdown'])for(con
 }
 assert.equal(P.restBridge(art,'sit','glance').length,0);
 assert.equal(P.restBridge(art,'look','stand').length,0);
+
+// A walk requested during a sit or rise continues from the frame on screen.
+for(const [from,to] of [['stand','sit'],['sit','stand'],['sit','loaf']]){
+ const bridge=P.restBridge(art,from,to),old={pose:to,bridge,rows:bridge[0]};
+ const m={kind:'walk',start:0,fromX:100};
+ P.prelude({scale:1,config:{}},m,old,art,18);
+ assert.equal(m.departure.frames[0],bridge[0]);
+ assert.equal(m.departure.frames.at(-1),art.bridges.walkToSit[0]);
+}
