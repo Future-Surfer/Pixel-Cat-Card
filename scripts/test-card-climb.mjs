@@ -11,6 +11,27 @@ for(const to of [180,680]){const a=native();a.surfaces[1].top=to;if(to>500){a.ca
 for(const change of ['removed','moved','occupied','scroll']){const a=native(),path=N.route(a,a.surfaces[1],a.support);a.route=path;N.start(a,path[0],0);C.tick(a,16,art);assert.ok(N.audit(a));if(change==='removed')a.climb.nativeTransfer.node.isConnected=false;if(change==='moved')a.cardGeometry.faces[0].rect.right-=30;if(change==='occupied'){a.climb.elapsed=a.climb.nativeTransfer.releaseAt-10;a.social.clear=()=>false;}if(change==='scroll'){const dx=12,dy=-45;a.surfaces=a.surfaces.map(s=>({...s,left:s.left+dx,right:s.right+dx,min:s.min+dx,max:s.max+dx,top:s.top+dy}));a.cardGeometry.panels=[];N.shift(a,dx,dy);assert.equal(N.audit(a),true,'uniform translation stays valid');}else assert.equal(N.audit(a),false,change+' invalidates checked release');}
 console.log('PASS: native finite-face transfers land up/down, preserve ordinary priority, cache geometry, reject lifecycle/occupied changes and follow scrolling.');
 
+// An opted-in leisure choice can climb even when an ordinary route exists.
+{
+ const a=native(),target=a.surfaces[1],ordinary=b.window.pixelCatSurfaceWorldV1.route,faces=C.faces;
+ a.ensureMood=()=>({random:()=>0,values:{playfulness:.7,sleepiness:.2}});
+ b.window.pixelCatSurfaceWorldV1.route=()=>[{kind:'ordinary'}];C.faces=()=>[];
+ try{
+  a.config.card_climbing=false;assert.equal(C.offer(a,0),false);assert.equal(a.climb,undefined);
+  a.config.card_climbing=true;
+  assert.equal(C.offer(a,100),false,'Optional offer retains its cooldown');
+  a.social.clear=()=>false;
+  assert.equal(N.ascent(a,100,true),false,'Manual ascent still requires a clear landing');
+  a.social.clear=()=>true;assert.equal(C.offer(a,40000),true);
+  assert.equal(a.climb.nativeTransfer.kind,'climb-and-leap');
+  const grips=a.climb.plan.grips;
+  assert.ok(grips.at(-1).root.y<=grips[0].root.y-4*a.scale,'Climb travels visibly upward');
+  assert.equal(a.climb.plan.segments.at(-1).phase,'Leaping off card');
+  let t=40000;while(a.climb&&t<70000){t+=16;C.tick(a,t,art);}
+  assert.equal(a.support,target,'The flight ends on the real support');
+ }finally{b.window.pixelCatSurfaceWorldV1.route=ordinary;C.faces=faces;}
+}
+
 // Explicit wall invitations are independent of autonomous climbing permission.
 {const a=native();a.config.card_climbing=false;a.social=undefined;a.decisionLayer=()=>undefined;a.surfaces=[a.support];a.cardGeometry.surfaces=a.surfaces;
  const path=N.wallRoute(a);assert.ok(path,'Same-support checked bounce');assert.equal(path.at(-1).surface,a.support);assert.equal(path.at(-1).choice.result.route.distanceCells,0,'No climb loop between entry and release');assert.equal(a.config.card_climbing,false);

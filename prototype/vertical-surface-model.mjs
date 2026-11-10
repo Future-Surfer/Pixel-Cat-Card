@@ -76,7 +76,7 @@ export function planVerticalTransfer({face,from,target,startX,world,scale,frame,
   const enter=check(()=>probe.attach(stance,from,root,frame,'jump-up'));stats.entries++;
   if(!flightFits(enter,world,scale,framePlacement))continue;
   for(const exitY of new Set([entryY,...exits])){
-   if(mode==='wall-jump'&&Math.abs(exitY-entryY)>.01||mode==='climb'&&exitY<=entryY+.01&&exitY>=entryY-.01)continue;
+   if(mode==='wall-jump'&&Math.abs(exitY-entryY)>.01||mode==='climb'&&Math.abs(exitY-entryY)<=.01||mode==='ascent'&&entryY-exitY<4*scale)continue;
    // One exposed patch owns the whole grip path; never climb across a visual gap.
    if(!contains(g,x,exitY))continue;
    const releaseRoot={x,y:exitY},exit=check(()=>probe.release(releaseRoot,frame,{...target,source:target},{side}));stats.releases++;

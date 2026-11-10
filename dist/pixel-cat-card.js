@@ -29456,7 +29456,7 @@ function planVerticalTransfer({face,from,target,startX,world,scale,frame,probe,f
   const enter=check(()=>probe.attach(stance,from,root,frame,'jump-up'));stats.entries++;
   if(!flightFits(enter,world,scale,framePlacement))continue;
   for(const exitY of new Set([entryY,...exits])){
-   if(mode==='wall-jump'&&Math.abs(exitY-entryY)>.01||mode==='climb'&&exitY<=entryY+.01&&exitY>=entryY-.01)continue;
+   if(mode==='wall-jump'&&Math.abs(exitY-entryY)>.01||mode==='climb'&&Math.abs(exitY-entryY)<=.01||mode==='ascent'&&entryY-exitY<4*scale)continue;
    // One exposed patch owns the whole grip path; never climb across a visual gap.
    if(!contains(g,x,exitY))continue;
    const releaseRoot={x,y:exitY},exit=check(()=>probe.release(releaseRoot,frame,{...target,source:target},{side}));stats.releases++;
@@ -29501,8 +29501,23 @@ const moveRect=(r,dx,dy)=>({...r,left:r.left+dx,right:r.right+dx,top:r.top+dy,bo
 window.pixelCatCardClimbV1={
  controls(a){
   const outer=a.shadowRoot?.querySelector('.cat-debug-host>details');if(!outer)return;const box=outer.querySelector('[data-cat-ui=\"climbing\"]')||outer,existing=outer.querySelector('[data-card-climb-preview]');if(existing){existing.disabled=!a.config.card_climbing;if(existing.parentElement!==box)box.append(existing);return;}
-  const button=document.createElement('button');button.textContent='Try visible wall transfer';button.disabled=!a.config.card_climbing;button.setAttribute('data-card-climb-preview','');button.title='Experimental checked transfer to a visible card. Manual preview can bypass an ordinary route; autonomous routes prefer walking and jumping.';
-  button.onclick=()=>{if(a.climb||a.motion||a.carriedToy||a.goal||a.command||a.previewPose||!a.config.card_climbing){a.status('Enable card climbing and try again when this cat is resting');return;}let next;for(const s of [...a.surfaces].filter(s=>s.id!==a.support?.id).sort((s,t)=>s.top-t.top)){next=this.route(a,s,a.support,true)?.[0];if(next)break;}if(!next){a.status('No checked visible-face transfer from here');return;}a.paused=false;a.idle=null;a.route=[{...next,preview:true}];this.start(a,a.route[0],performance.now());};box.append(button);
+  const button=document.createElement('button');button.textContent='Try climbing a card';button.disabled=!a.config.card_climbing;button.setAttribute('data-card-climb-preview','');button.title='Climb an exposed card face, then leap to a checked landing.';
+  button.onclick=()=>{if(a.climb||a.motion||a.carriedToy||a.goal||a.command||a.previewPose||!a.config.card_climbing){a.status('Enable card climbing and try again when this cat is resting');return;}if(!this.ascent(a,performance.now(),true))a.status('No reachable wall with room to climb and land higher');};box.append(button);
+ },
+ ascent(a,t,preview=false){
+  const from=a.support;
+  if(!a.config.card_climbing||!from)return false;
+  const world=window.pixelCatSurfaceWorldV1;
+  const distance=s=>Math.hypot(Math.max(s.min-a.x,0,a.x-s.max),from.top-s.top);
+  const targets=a.surfaces.filter(s=>!s.tree&&!s.home&&!s.bed&&!s.narrow&&from.top-s.top>=8*a.scale).sort((x,y)=>distance(x)-distance(y)).slice(0,3);
+  for(const target of targets){
+   if(!preview&&!world.route(a,a.home,target))continue;
+   const next=this.route(a,target,from,true,'ascent')?.[0];
+   if(!next)continue;
+   a.route=[next];this.start(a,next,t);
+   if(a.climb){a.paused=false;const pause=a.shadowRoot?.querySelector('[data-action="pause"]');if(pause)pause.textContent='Pause';return true;}
+  }
+  return false;
  },
  homeOwner(el){for(let p=el;p;p=p.parentElement||p.getRootNode?.()?.host)if(p.localName==='pixel-cat-home')return p;return null;},
  reconcile(a,manual=false){
@@ -29522,16 +29537,16 @@ window.pixelCatCardClimbV1={
   return a.cardGeometry={...found,panels,byOwner,records,surfaces:a.surfaces,scale:a.scale,generation,cache:new Map()};
  },
  shift(a,dx,dy){if(a.verticalCardRects)a.verticalCardRects=a.verticalCardRects.map(v=>({...v,r:{...moveRect(v.r,dx,dy),width:v.r.width,height:v.r.height}}));const g=a.cardGeometry;if(!g)return;g.panels=g.panels.map(p=>({...p,rect:moveRect(p.rect,dx,dy),clip:moveRect(p.clip,dx,dy),blockers:p.blockers.map(r=>moveRect(r,dx,dy))}));g.faces=g.faces.map(f=>({...f,rect:moveRect(f.rect,dx,dy),grips:moveRect(f.grips,dx,dy)}));g.tops=g.tops.map(t=>({...t,left:t.left+dx,right:t.right+dx,min:t.min+dx,max:t.max+dx,top:t.top+dy}));g.records=a.verticalCardRects;g.surfaces=a.surfaces;g.cache.clear();},
- route(a,target,origin,fresh=false){
+ route(a,target,origin,fresh=false,mode='either'){
   if(target?.tree)return this.treeRoute(a,target,origin);
   if(a.config?.card_climbing!==true||!origin||!target||a.carriedToy||target.bed||target.narrow||Math.abs(origin.top-target.top)<8*a.scale)return null;
   const g=this.reconcile(a);if(!g)return null;
-  const key=origin.id+'>'+target.id+':'+Math.round(a.x/a.scale),cached=g.cache.get(key);if(!fresh&&cached!==undefined)return cached;
+  const key=origin.id+'>'+target.id+':'+Math.round(a.x/a.scale)+':'+mode,cached=g.cache.get(key);if(!fresh&&cached!==undefined)return cached;
   const model=window.pixelCatClimbModelV1,art=cardClimbArt(),frame=window.pixelCatClimbAssetsV1.centred.front.frames[0],probe=model.runtimeProbe(a.constructor,art,{...a.config,grip_max_rise:30,climbWorld:a.worldRect},a.scale),owner=g.panels.find(p=>g.byOwner.get(p.id)===target.el&&Math.abs(target.top-p.rect.top)<.5);
   let landing=target;if(owner){landing=g.tops.find(t=>t.sourceId===target.id||t.id===target.id);if(!landing){g.cache.set(key,null);return null;}}
   const candidates=[...g.faces].sort((f,h)=>Math.abs(f.grips.left-a.x)+Math.abs(f.grips.top-target.top)-Math.abs(h.grips.left-a.x)-Math.abs(h.grips.top-target.top)).slice(0,3);let best;
-  for(const face of candidates){const result=planVerticalTransfer({face,from:origin,target:landing,startX:a.x,world:a.worldRect,scale:a.scale,frame,probe,framePlacement:model.framePlacement,generation:g.generation,maxChecks:32,clear:(s,x)=>a.social?.clear(s,x)!==false});if(result.ok&&(!best||result.route.cost<best.result.route.cost))best={face,result,landing};}
-  const path=best?[{climbRoute:true,nativeTransfer:true,fromId:origin.id,surface:target,kind:best.result.route.kind,choice:best}]:null;
+  for(const face of candidates){const result=planVerticalTransfer({face,from:origin,target:landing,startX:a.x,world:a.worldRect,scale:a.scale,frame,probe,framePlacement:model.framePlacement,generation:g.generation,maxChecks:32,mode,clear:(s,x)=>a.social?.clear(s,x)!==false});if(result.ok&&(!best||result.route.cost<best.result.route.cost))best={face,result,landing};}
+  const path=best?[{climbRoute:true,nativeTransfer:true,fromId:origin.id,surface:target,kind:best.result.route.kind,mode,choice:best}]:null;
   if(g.cache.size>=64)g.cache.delete(g.cache.keys().next().value);g.cache.set(key,path);return path;
  },
  treeRoute(a,target,origin){
@@ -29586,9 +29601,9 @@ window.pixelCatCardClimbV1={
   return {ok:true,scene,segments,grips,duration:clock,goalReached:true,releaseAt};
  },
  start(a,next,t){
-  const C=window.pixelCatClimbV1,target=a.surfaces.find(s=>s.id===next.surface.id),ordinary=target&&window.pixelCatSurfaceWorldV1.route(a,target,a.support),last=a.route.at(-1);
+  const C=window.pixelCatClimbV1,target=a.surfaces.find(s=>s.id===next.surface.id),ordinary=target&&next.mode!=='ascent'&&window.pixelCatSurfaceWorldV1.route(a,target,a.support),last=a.route.at(-1);
   if(ordinary&&!next.preview&&!next.tree){a.route=[...ordinary,...last?.settle?[last]:[]];return true;}
-  const current=next.manualWallJump?this.wallRoute(a,next)?.at(-1):this.route(a,target,a.support,true)?.[0];if(!current||a.support.id!==next.fromId){a.route=[];a.deadline=t+1000;if(next.manualWallJump){a.setAttribute('data-wall-jump-command','landing changed');a.status('Wall jump cancelled: entry or landing changed');}return true;}
+  const current=next.manualWallJump?this.wallRoute(a,next)?.at(-1):this.route(a,target,a.support,true,next.mode)?.[0];if(!current||a.support.id!==next.fromId){a.route=[];a.deadline=t+1000;if(next.manualWallJump){a.setAttribute('data-wall-jump-command','landing changed');a.status('Wall jump cancelled: entry or landing changed');}return true;}
   const choice=current.choice,remaining=a.route.slice(1),prop={id:'card-grip-'+a.ownerKey,virtual:true,claimedBy:a.ownerKey,scale:a.scale,node:{isConnected:true}},assets=window.pixelCatClimbAssetsV1,below=Math.max(...assets.centred.front.frames.map(f=>f.rows.findLastIndex(r=>r.includes('#')||r.includes('R'))+1-f.anchor.y));
   a.climb={stage:'approach',virtual:true,prop,face:{surface:a.support,below,direction:1},base:a.support,origin:a.x,goalSurface:target,remaining,started:t,last:t,age:0,decisions:0,serial:0};
   if(!C.setup(a,cardClimbArt())){C.cancel(a,'native entry unavailable',false);a.route=[];a.deadline=t+1000;return true;}
@@ -29887,8 +29902,8 @@ window.pixelCatClimbV1={
  faces(a){const layer=a.decisionLayer(),data=window.pixelCatClimbAssetsV1,frames=[...data.frames,...data.centred.front.frames],below=Math.max(...frames.map(f=>f.rows.findLastIndex(r=>/[#R]/.test(r))+1-f.anchor.y)),above=Math.max(...frames.map(f=>f.anchor.y-f.rows.findIndex(r=>/[#R]/.test(r)))),gain=data.centred.front.frames.reduce((n,f)=>n+f.gain,0)*2;
   return (window.pixelCatVerticalScratchV1?.faces(layer,false)||[]).filter(f=>f.direction>0&&!f.prop.native&&!f.prop.igloo&&f.prop.asset.id==='scratching_post'&&f.prop.node?.isConnected!==false&&f.surface.top-f.top>=(above+below+gain)*a.scale&&layer.clear(f.surface,f.origin)).map(f=>({...f,below})).sort((f,g)=>Math.abs(f.origin-a.x)-Math.abs(g.origin-a.x)).slice(0,8);
  },
- offer(a,t,force=false){if(!this.ready(a)||!a.config.interaction_behaviour||a.idle?.pose==='sleep'&&t<a.idle.poseUntil||!force&&t<(a.nextClimbAt||0))return false;const r=()=>a.ensureMood().random();a.nextClimbAt=t+12000+18000*r();const choices=this.faces(a);if(!choices.length)return false;const weight=window.pixelCatBehaviourV1?.weight(a,{behaviourPolicy:{category:'locomotion',tags:['play','energetic','vertical']}})||1;if(!force&&r()>.14*weight*(1-.8*a.ensureMood().values.sleepiness))return false;
-  const route=f=>window.pixelCatSurfaceWorldV1.route(a,f.surface,a.support),face=choices.find(f=>route(f)&&a.pathTo(a.home,f.surface));if(!face)return false;const p=face.prop;p.claimedBy=a.ownerKey;a.climb={stage:'approach',face,prop:p,base:face.surface,origin:face.origin,started:t,last:t,age:0,decisions:0,serial:0};a.route=[...route(face),{settle:true,surface:face.surface,x:face.origin}];a.destinationId=face.surface.id;a.deadline=t+30000;a.setAttribute('data-climb','approach');return true;
+ offer(a,t,force=false){if(!this.ready(a)||!a.config.interaction_behaviour||a.idle?.pose==='sleep'&&t<a.idle.poseUntil||!force&&t<(a.nextClimbAt||0))return false;const r=()=>a.ensureMood().random();a.nextClimbAt=t+12000+18000*r();const choices=this.faces(a);if(!choices.length&&!a.config.card_climbing)return false;const weight=window.pixelCatBehaviourV1?.weight(a,{behaviourPolicy:{category:'locomotion',tags:['play','energetic','vertical']}})||1;if(!force&&r()>.14*weight*(1-.8*a.ensureMood().values.sleepiness))return false;
+  const route=f=>window.pixelCatSurfaceWorldV1.route(a,f.surface,a.support),face=choices.find(f=>route(f)&&a.pathTo(a.home,f.surface));if(!face)return !force&&window.pixelCatCardClimbV1?.ascent(a,t)||false;const p=face.prop;p.claimedBy=a.ownerKey;a.climb={stage:'approach',face,prop:p,base:face.surface,origin:face.origin,started:t,last:t,age:0,decisions:0,serial:0};a.route=[...route(face),{settle:true,surface:face.surface,x:face.origin}];a.destinationId=face.surface.id;a.deadline=t+30000;a.setAttribute('data-climb','approach');return true;
  },
  setup(a,art){const e=a.climb,s=a.scale,f=e.face,p=e.prop,entries=e.virtual?[]:window.pixelCatHomePostsV1.entries(a.decisionLayer()),entry=entries.find(x=>x.prop===p),left=entry?.left??f.x-(f.direction>0?4:8)*p.scale,floor={...f.surface,id:'home',source:f.surface},candidates=a.surfaces.filter(x=>x.el?.isConnected!==false&&!x.narrow&&!x.bed&&x.el!==floor.el&&x.top<floor.top&&floor.top-x.top<90*s+floor.top-f.top&&Math.max(0,x.left-left,left-x.right)<100*s).sort((x,y)=>Math.abs(x.top-floor.top)-Math.abs(y.top-floor.top)).slice(0,8),target=e.goalSurface||candidates.find(x=>this.surface(a,x)&&a.pathTo(a.home,x))||f.surface;if(!this.surface(a,target))return false;
   e.scene={scale:s,floor,face:{id:p.id,x:left+4*p.scale,right:left+8*p.scale,top:f.top,bottom:f.bottom,grippy:true,passThrough:true,sides:['left','right']},target:{...target,id:target===f.surface?'recreation':'upper-card',source:target},startX:a.x,ledge:floor};if(e.virtual){const x=a.x+13*s;e.scene.face={id:p.id,x:x-8*s,right:x+8*s,top:Math.min(floor.top,target.top)-(f.below+4)*s,bottom:Math.max(floor.top,target.top),grippy:true,passThrough:true,sides:['left','right']};e.scene.gripFloorY=Math.max(floor.top,target.top)-f.below*s;}
@@ -29982,7 +29997,7 @@ window.pixelCatClimbV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"66c34bda513aa325c6a779f608249825e9a03a99b78ebcbf326a9e9040f9ca63"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"1fe0ea7c35f1102e248f431089e906d3bb5c439006880c821fdd7a8af639e7b8"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0");
 })();
