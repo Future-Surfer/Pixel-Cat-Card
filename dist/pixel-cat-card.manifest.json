@@ -1,12 +1,12 @@
 {
   "schema": 1,
   "name": "Pixel Cat Card",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0",
   "sourceHash": "82e5262ef150dc6ce3619a6cf05793bd5b04036419773c4dca7e64694f69fca7",
   "artifact": {
     "file": "pixel-cat-card.js",
-    "bytes": 1760719,
-    "sha256": "cf62940ec35a65e58a781068910a3172cf2ce6dca125c7557428b7086ba584e4"
+    "bytes": 1760699,
+    "sha256": "8a8cb845f409753fdd240aeec132b0f6e92ba2c323ed560bc75e2801bc582c8f"
   },
   "modules": [
     {
