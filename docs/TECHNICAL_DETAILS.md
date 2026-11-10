@@ -45,6 +45,6 @@ The GIF is a staged media routine: emerge → approach post → scratch → appr
 
 The 480 × 270 scene uses the relaxed walk pace and the open bed's release height transition. The first and last frames meet during the authored sleep cycle.
 
-Run `npm run demo` and open `http://127.0.0.1:8770/routine` to preview. Run `npm run media:gif` with Python 3 and Pillow to export the looping GIF. With FFmpeg on PATH or the Python `imageio-ffmpeg` package installed, `npm run media:video` also writes a silent 1080p H.264 MP4 to `.release/pixel-cat-routine.mp4`. Both exports use the same 50 fps samples. A [still image](images/pixel-cat-habitat-light.jpg) is available.
+Run `npm run demo` and open `http://127.0.0.1:8770/routine` to preview. Run `npm run media:gif` with Python 3 and Pillow to export the looping GIF. With FFmpeg on PATH or the Python `imageio-ffmpeg` package installed, `npm run media:video` also writes a silent 1080p H.264 MP4 to `.release/pixel-cat-routine.mp4`. Both exports use the same 50 fps samples. A [ready-to-share MP4](images/pixel-cat-routine.mp4) and a [still image](images/pixel-cat-habitat-light.jpg) are available.
 
 [Contributing](CONTRIBUTING.md) · [Security reporting](SECURITY.md) · [Documentation index](README.md).
