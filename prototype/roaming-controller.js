@@ -391,6 +391,7 @@ class PixelCatHome extends HTMLElement {
   }
   receiveDisturbance(cue,t=performance.now(),debug=false,type='prop'){return window.pixelCatReactionsV1?.receive(this,cue,t,debug,type)||false;}
   publishLanding(m,t){
+    window.pixelCatTreeV1?.land(this);
     if(m.kind!=='jump'||m.y-m.fromY<16*this.scale)return;
     const id=this.ownerKey+'/landing/'+(this.landingSerial=(this.landingSerial||0)+1);
     for(const [cat,entry]of CAT_OWNERS){if(cat===this||entry.root!==this.root||!cat.active||!cat.config.landing_reactions)continue;const cue=landingCue(this,m,cat,id);if(cue)cat.receiveLanding(cue,t);}
@@ -531,6 +532,7 @@ class PixelCatHome extends HTMLElement {
     if(window.pixelCatScrollV1?.shift(this))return;
     const oldSupport=this.support,oldSurfaces=this.surfaces||[],oldById=new Map(oldSurfaces.map(s=>[s.id,s]));
     this.root = this.worldRoot();
+    window.pixelCatTreeV1?.mount(this);
     const d = this.shadowRoot.querySelector('.dock').getBoundingClientRect(), s = this.scale;
     if(!this.support&&this.config.show_home!==false&&(!(d.width>0)||!(d.height>0))){this.waitingForPlacement=true;this.needsMeasure=true;this.layer.style.visibility='hidden';return;}this.waitingForPlacement=false;
     this.home = {id:'home',label:'Bed & bowl',el:this,rectNode:this.shadowRoot.querySelector('.dock'),left:d.left+4,right:d.right-4,top:d.bottom,home:true,scale:this.worldScale||s,rectSnapshot:{left:d.left,top:d.top,width:d.width,height:d.height}};

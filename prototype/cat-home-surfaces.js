@@ -2,6 +2,7 @@
 Object.assign(window.pixelCatSetupV1,{
  surfaces(a){
   window.pixelCatHomePostsV1?.sync(a);
+  window.pixelCatTreeV1?.surfaces(a);
   a.bedSurface=null;if(a.home&&a.config.show_home!==false)a.home.bedOwner=a;
   const owners=new Set([a,...window.pixelCatMouthV1?.homes||[]]);
   for(const owner of owners){if(owner!==a&&(!owner.active||owner.root!==a.root)||owner.config.show_home===false||!owner.home)continue;
