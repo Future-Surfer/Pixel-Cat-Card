@@ -52,6 +52,18 @@ window.pixelCatClimbMarksV1={
  },
  contact(a,frame,placement,key,scrape=false,distance=0){
   this.install();const e=a.climb,fx=window.pixelCatEffectsV1;if(!e||!fx||a.config.effects===false||fx.reduced())return;
+  if(e.nativeTransfer?.tree){
+   const host=a.catTree?.ropeHosts?.[e.nativeTransfer.tree-1],box=host?.getBoundingClientRect();
+   if(!box)return;
+   for(const [index,paw] of frame.paws.entries()){
+    const y=placement.top+(paw.y+.5)*a.scale;
+    if(y<box.top||y>=box.bottom||frame.rows[paw.y]?.[paw.x]==='.')continue;
+    const x=placement.x+(paw.x+.5)*a.scale;
+    if(x<box.left-a.scale||x>box.right+a.scale)continue;
+    this.mark(a,host,{x:Math.max(box.left+.5,Math.min(box.right-.5,x)),y},'#d7c490',scrape,distance,null,null,scrape?key+':'+index:null);
+   }
+   return;
+  }
   const cards=e.virtual?this.cards(a):null,trail=e.serial+':'+e.sample.segment;
   const face=e.virtual?null:{...e.face,x:e.face.x+(e.dx||0),top:e.face.top+(e.dy||0),bottom:e.face.bottom+(e.dy||0),surface:{...e.face.surface,top:e.face.surface.top+(e.dy||0)}};
   for(const [index,paw]of frame.paws.entries()){

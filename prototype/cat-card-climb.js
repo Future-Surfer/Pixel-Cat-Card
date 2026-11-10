@@ -26,6 +26,7 @@ window.pixelCatCardClimbV1={
  },
  shift(a,dx,dy){if(a.verticalCardRects)a.verticalCardRects=a.verticalCardRects.map(v=>({...v,r:{...moveRect(v.r,dx,dy),width:v.r.width,height:v.r.height}}));const g=a.cardGeometry;if(!g)return;g.panels=g.panels.map(p=>({...p,rect:moveRect(p.rect,dx,dy),clip:moveRect(p.clip,dx,dy),blockers:p.blockers.map(r=>moveRect(r,dx,dy))}));g.faces=g.faces.map(f=>({...f,rect:moveRect(f.rect,dx,dy),grips:moveRect(f.grips,dx,dy)}));g.tops=g.tops.map(t=>({...t,left:t.left+dx,right:t.right+dx,min:t.min+dx,max:t.max+dx,top:t.top+dy}));g.records=a.verticalCardRects;g.surfaces=a.surfaces;g.cache.clear();},
  route(a,target,origin,fresh=false){
+  if(target?.tree)return this.treeRoute(a,target,origin);
   if(a.config?.card_climbing!==true||!origin||!target||a.carriedToy||target.bed||target.narrow||Math.abs(origin.top-target.top)<8*a.scale)return null;
   const g=this.reconcile(a);if(!g)return null;
   const key=origin.id+'>'+target.id+':'+Math.round(a.x/a.scale),cached=g.cache.get(key);if(!fresh&&cached!==undefined)return cached;
@@ -35,6 +36,18 @@ window.pixelCatCardClimbV1={
   for(const face of candidates){const result=planVerticalTransfer({face,from:origin,target:landing,startX:a.x,world:a.worldRect,scale:a.scale,frame,probe,framePlacement:model.framePlacement,generation:g.generation,maxChecks:32,clear:(s,x)=>a.social?.clear(s,x)!==false});if(result.ok&&(!best||result.route.cost<best.result.route.cost))best={face,result,landing};}
   const path=best?[{climbRoute:true,nativeTransfer:true,fromId:origin.id,surface:target,kind:best.result.route.kind,choice:best}]:null;
   if(g.cache.size>=64)g.cache.delete(g.cache.keys().next().value);g.cache.set(key,path);return path;
+ },
+ treeRoute(a,target,origin){
+  if(!origin||(!origin.home&&!origin.tree)||origin.id!==a.support?.id||a.config.climbing===false||a.carriedToy||target.narrow)return null;
+  const fromLevel=origin.tree||0,toLevel=target.tree;
+  if(Math.abs(toLevel-fromLevel)!==1)return null;
+  const face=window.pixelCatTreeV1?.face(a,Math.max(fromLevel,toLevel));
+  if(!face)return null;
+  const model=window.pixelCatClimbModelV1,frame=window.pixelCatClimbAssetsV1.frames.filter(f=>f.role==='cycle').at(-1);
+  face.grips.left=face.grips.right=face.rect.left;
+  const probe=model.runtimeProbe(a.constructor,cardClimbArt(),{...a.config,grip_max_rise:30,climbWorld:a.worldRect},a.scale);
+  const result=planVerticalTransfer({face,from:origin,target,startX:a.x,world:a.worldRect,scale:a.scale,frame,probe,framePlacement:model.framePlacement,mode:'climb',side:'left',maxChecks:48,clear:(s,x)=>a.social?.clear(s,x)!==false});
+  return result.ok?[{climbRoute:true,nativeTransfer:true,tree:true,fromId:origin.id,surface:target,kind:result.route.kind,choice:{face,result,landing:target,side:'left'}}]:null;
  },
  wallRoute(a,only){
   if(!a.support||a.carriedToy)return null;
@@ -68,8 +81,8 @@ window.pixelCatCardClimbV1={
   if(r.approach)add({kind:'approach',phase:'Walking to visible face',jump:r.approach},r.approach.duration);
   add({kind:'attach',phase:'Leaping to card grip',jump:r.enter},r.enter.duration);
   const hold=root=>add({kind:'grip',phase:'Checked card grip',frame:r.frame,from:{...root},to:{...root}},160);hold(r.entryRoot);
-  let root={...r.entryRoot},hops=0;scene.face={id:f.id,x:root.x-8*a.scale,right:root.x+8*a.scale,top:f.grips.top-4*a.scale,bottom:f.rect.bottom,grippy:true,passThrough:true};scene.gripCeilingY=f.grips.top;scene.gripFloorY=f.grips.bottom;
-  while(Math.abs(r.releaseRoot.y-root.y)>.01&&hops++<100){const plan=model.planClimb(a.climb.draft,{ground:()=>null,release:()=>null},{state:{surfaceId:f.id,root,side:'centre-front',frame:r.frame},action:r.releaseRoot.y<root.y?'up':'down',distanceCells:Math.abs(r.releaseRoot.y-root.y)/a.scale},{scene});if(!plan.ok)return null;for(const s of plan.segments.slice(1))add(s,s.ms);grips.push(...plan.grips);const next=plan.grips.at(-1).root;if(Math.abs(next.y-root.y)<.001)return null;root={...next};}
+  let root={...r.entryRoot},hops=0;const side=choice.side||'centre-front';scene.face={id:f.id,x:choice.side?root.x:root.x-8*a.scale,right:choice.side?f.rect.right:root.x+8*a.scale,top:f.grips.top-4*a.scale,bottom:f.rect.bottom,grippy:true,passThrough:true};scene.gripCeilingY=f.grips.top;scene.gripFloorY=f.grips.bottom;
+  while(Math.abs(r.releaseRoot.y-root.y)>.01&&hops++<100){const plan=model.planClimb(a.climb.draft,{ground:()=>null,release:()=>null},{state:{surfaceId:f.id,root,side,frame:r.frame},action:r.releaseRoot.y<root.y?'up':'down',distanceCells:Math.abs(r.releaseRoot.y-root.y)/a.scale},{scene});if(!plan.ok)return null;for(const s of plan.segments.slice(1))add(s,s.ms);grips.push(...plan.grips);const next=plan.grips.at(-1).root;if(Math.abs(next.y-root.y)<.001)return null;root={...next};}
   if(hops>=100)return null;hold(r.releaseRoot);const releaseAt=clock;
   // Keep original support identity for ordinary landing/lifecycle ownership.
   r.exit.motion.target={...r.exit.motion.target,source:a.climb.goalSurface};add({kind:'jump',phase:r.kind==='wall-jump'?'Wall jump to landing':'Leaping off card',jump:r.exit},r.exit.duration);
@@ -77,15 +90,15 @@ window.pixelCatCardClimbV1={
  },
  start(a,next,t){
   const C=window.pixelCatClimbV1,target=a.surfaces.find(s=>s.id===next.surface.id),ordinary=target&&window.pixelCatSurfaceWorldV1.route(a,target,a.support),last=a.route.at(-1);
-  if(ordinary&&!next.preview){a.route=[...ordinary,...last?.settle?[last]:[]];return true;}
+  if(ordinary&&!next.preview&&!next.tree){a.route=[...ordinary,...last?.settle?[last]:[]];return true;}
   const current=next.manualWallJump?this.wallRoute(a,next)?.at(-1):this.route(a,target,a.support,true)?.[0];if(!current||a.support.id!==next.fromId){a.route=[];a.deadline=t+1000;if(next.manualWallJump){a.setAttribute('data-wall-jump-command','landing changed');a.status('Wall jump cancelled: entry or landing changed');}return true;}
   const choice=current.choice,remaining=a.route.slice(1),prop={id:'card-grip-'+a.ownerKey,virtual:true,claimedBy:a.ownerKey,scale:a.scale,node:{isConnected:true}},assets=window.pixelCatClimbAssetsV1,below=Math.max(...assets.centred.front.frames.map(f=>f.rows.findLastIndex(r=>r.includes('#')||r.includes('R'))+1-f.anchor.y));
   a.climb={stage:'approach',virtual:true,prop,face:{surface:a.support,below,direction:1},base:a.support,origin:a.x,goalSurface:target,remaining,started:t,last:t,age:0,decisions:0,serial:0};
   if(!C.setup(a,cardClimbArt())){C.cancel(a,'native entry unavailable',false);a.route=[];a.deadline=t+1000;return true;}
   const plan=this.compile(a,choice);if(!plan){C.cancel(a,'native grip path unavailable',false);a.route=[];a.deadline=t+1000;return true;}
-  a.climb.plan=plan;a.climb.elapsed=0;a.climb.nativeTransfer={faceId:choice.face.id,rect:{...choice.face.rect},node:a.cardGeometry.byOwner.get(choice.face.panelId),kind:choice.result.route.kind,releaseAt:plan.releaseAt};a.route=[];a.setAttribute('data-native-transfer',choice.result.route.kind);if(next.manualWallJump)a.setAttribute('data-wall-jump-command','wall-jump');return true;
+  a.climb.plan=plan;a.climb.elapsed=0;a.climb.nativeTransfer={faceId:choice.face.id,rect:{...choice.face.rect},node:next.tree?a.catTree?.node:a.cardGeometry.byOwner.get(choice.face.panelId),tree:next.tree?Math.max(a.support.tree||0,target.tree):0,kind:choice.result.route.kind,releaseAt:plan.releaseAt};a.route=[];a.setAttribute('data-native-transfer',choice.result.route.kind);if(next.manualWallJump)a.setAttribute('data-wall-jump-command','wall-jump');return true;
  },
- audit(a){const e=a.climb,n=e.nativeTransfer;if(!n)return true;if(n.node?.isConnected===false)return false;const base=a.surfaces.find(s=>s.id===e.base.id),target=a.surfaces.find(s=>s.id===e.goalSurface.id),g=this.reconcile(a),face=g?.faces.find(f=>f.id===n.faceId);if(!base||!target||!face)return false;const dx=base.left-e.geometry[0],dy=base.top-e.geometry[1];if(['left','right','top','bottom'].some(k=>Math.abs(face.rect[k]-n.rect[k]-(k==='left'||k==='right'?dx:dy))>.75))return false;
+ audit(a){const e=a.climb,n=e.nativeTransfer;if(!n)return true;if(n.node?.isConnected===false)return false;const base=a.surfaces.find(s=>s.id===e.base.id),target=a.surfaces.find(s=>s.id===e.goalSurface.id),face=n.tree?window.pixelCatTreeV1?.face(a,n.tree):this.reconcile(a)?.faces.find(f=>f.id===n.faceId);if(!base||!target||!face)return false;const dx=base.left-e.geometry[0],dy=base.top-e.geometry[1];if(['left','right','top','bottom'].some(k=>Math.abs(face.rect[k]-n.rect[k]-(k==='left'||k==='right'?dx:dy))>.75))return false;
   if(!n.releaseChecked&&e.elapsed+50>=n.releaseAt){const flight=e.plan.segments.at(-1).jump,x=flight.landingX+dx;if(x<target.min||x>target.max||a.social?.clear(target,x)===false)return false;n.releaseChecked=true;}return true;
  },
  debug(a,add){

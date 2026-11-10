@@ -4,6 +4,7 @@
  window.pixelCatPointRoutesV1={
   limits:{states:128,checks:96,neighbours:16},
   plan(a,target,endX,origin=a.support,startX=a.x){
+   if(origin===a.support){const climb=window.pixelCatTreeV1?.preferred(a,target,origin);if(climb)return climb;}
    if(a.config.point_routes===false||!origin||!target||origin.bed||target.bed||origin.narrow||target.narrow)return null;
    const started=performance.now(),scale=a.scale,goal=snap(clamp(endX,target),scale),start=snap(clamp(startX,origin),scale),surfaces=a.surfaces||[],profile=JSON.stringify(a.config),prior=cache.get(a),geometry=surfaces.map(f=>[f.id,f.min,f.max,f.top].join(',')).join(';'),key=[origin.id,start,target.id,goal,scale,a.facing,a.urgency,a.worldRect?.top||0,profile,geometry].join('|');
    if(prior?.surfaces===surfaces&&prior.key===key){a.pointRouteStats={...prior.stats,cached:true};return prior.steps?.map(s=>({...s}))??null;}

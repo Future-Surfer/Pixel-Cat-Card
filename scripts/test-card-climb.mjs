@@ -33,3 +33,40 @@ console.log('PASS: manual wall jumps use nearest checked faces, support same-flo
  owner.active=true;owner.config.show_home=true;owner.config.shared_home_surfaces=true;a.config.shared_home_surfaces=true;a.verticalCardRects=[{el,r}];a.surfaces=[...supports,{id:'roof',el,left:90,right:650,min:90,max:626,top:80}];g=N.reconcile(a);assert.equal(g.panels.length,1);assert.ok(g.faces.length);assert.ok(g.tops.length);assert.equal(g.rejected.length,0);const before=g.panels[0].rect.top;N.shift(a,0,-120);assert.equal(g.panels[0].rect.top,before-120,'Outline follows the same uniform scroll translation');api.rect=oldRect;
 }
 console.log('PASS: excluded home cards retain outlines/reasons without enabling faces, roofs or nested furniture; allowed sharing and scroll remain intact.');
+
+for(const [age,scale] of [['adult',2],['kitten',1]]){
+ const a=actor(650);a.config.life_stage=age;a.scale=scale;a.size=24*scale;
+ a.home.home=true;a.home.rectSnapshot={};a.worldRect={left:0,top:0,right:800,bottom:800};
+ a.catTree={node:{isConnected:true},scale:2,clock:0,impulses:[]};
+ const tree=b.window.pixelCatTreeV1;
+ tree.surfaces(a);const [lower,upper]=a.surfaces.filter(s=>s.tree);
+ for(const platform of [lower,upper]){
+  platform.min=Math.ceil(platform.left/scale)*scale;
+  platform.max=Math.floor((platform.right-24*scale)/scale)*scale;
+ }
+ let t=0;a.x=lower.min-20*scale;
+ for(const platform of [lower,upper]){
+  const from=a.support,clear=a.social.clear;a.social.clear=s=>s!==platform;
+  assert.equal(N.treeRoute(a,platform,from),null,'Occupied tree destination is rejected');
+  a.social.clear=clear;
+  const path=b.window.pixelCatPointRoutesV1.plan(a,platform,platform.min);assert.ok(path,age+' checked climb to level '+platform.tree);
+  a.route=path;N.start(a,path[0],t);assert.ok(a.climb?.nativeTransfer?.tree);assert.ok(a.climb.plan.segments.some(s=>s.kind==='climb'&&b.window.pixelCatClimbAssetsV1.frames.some(f=>f.id===s.frame.id)),'Tree uses authored side frames');
+  const end=t+25000;while(a.climb&&t<end){t+=16;C.tick(a,t,art);}
+  assert.equal(a.support,platform,age+' lands on level '+platform.tree);
+ }
+ assert.ok(a.catTree.impulses.length,'Grip contact moves the hanging ball');
+ assert.ok(a.routeJump(upper,lower,upper.max,lower.min),age+' can jump to lower platform');
+ assert.ok(a.routeJump(lower,a.home,lower.min,a.home.max),age+' can jump to the home floor');
+}
+
+{
+ const tree=b.window.pixelCatTreeV1,owner=actor(),sleeper=actor(),outsider=actor();
+ const node={};owner.catTree={node,clock:0,impulses:[]};
+ for(const cat of [sleeper,outsider])cat.idle={pose:'sleep',poseUntil:5000};
+ sleeper.support={el:node,tree:2};sleeper.removeAttribute=()=>{};
+ owner.decisionLayer=()=>({owners:()=>[[sleeper,{root:owner.root}],[outsider,{root:owner.root}]]});
+ tree.tap(owner,100);
+ assert.equal(owner.catTree.impulses.length,1);
+ assert.equal(sleeper.idle.poseUntil,100);
+ assert.equal(outsider.idle.poseUntil,5000);
+}
