@@ -14,7 +14,7 @@ Implemented baseline; updated 23 October 2026. **Read by topic.** [FEATURE_DETAI
 - Opt-in [world authority and reversible migration](guides/WORLD_AUTHORITY.md); explicit owners, waiting/conflicts and unchanged legacy scales.
 - One-time random names/colours; explicit settings win. Base pixel scale 1–6; half-size kitten and unchanged adult/senior life stages with fixed furniture/toy sizes; one-time random igloo/simple bed defaults; separate home/control visibility.
 - Picker defaults enable core behaviours/arrival/props, hide diagnostics. Minimal YAML retains older opt-in behaviour defaults.
-- Visible on-card controls include **Startle all** (wake this view) and **Wall jump** (this cat's checked nearest-wall invitation). [Controls and limits](guides/CAT_DEBUG.md).
+- On-card controls offer **Pause / Resume**, **Spawn toy** and **Come home**. **Startle all** and **Wall jump** are in the debug panel. [Controls and limits](guides/CAT_DEBUG.md).
 - [Setup contracts](FEATURE_DETAILS.md#2-card-setup-identity-and-appearance) · [configuration](guides/ROAMING_CONFIGURATION.md).
 
 ## 3. World geometry, surfaces and navigation

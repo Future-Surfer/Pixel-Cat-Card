@@ -25,7 +25,7 @@ const catEditorGroups=[
  {title:'Home & appearance',fields:[
   ['primary_home','Primary home','checkbox',false,'Mark this card as the main home in the editor.'],
   ['cell_size','Pixel scale','number',2,'Higher numbers make cats, toys, and furniture bigger.',1,6],
-  ['start_paused','Start paused','checkbox',false,'Pause this cat until Explore or Home is requested.']
+  ['start_paused','Start paused','checkbox',false,'Let this cat wait until you press Resume or Come home.']
  ]},
  {title:'Behaviour & toys',fields:[
   ['post_rest_behaviour','Gentle waking after rest','checkbox',true,'After a long nap, your cat may yawn, stretch, or take a slow walk.'],
@@ -40,7 +40,7 @@ const catEditorGroups=[
   ['startle_followups','Different reactions after a scare','checkbox',false,'A startled cat may settle down, back away, or pounce.']
  ]},
  {title:'Advanced settings',fields:[
-  ['show_controls','Show controls','checkbox',false,'Show shortcuts such as Explore, Home, and Pause.'],
+  ['show_controls','Show controls','checkbox',false,'Show Pause, Spawn toy, Come home, and the debug menu.'],
   ['draggable','Pick up and drag cats','checkbox',true,'Pick up your cat and set them down somewhere clear. Press Escape to cancel.'],
   ['cat_id','Stable cat ID','text',null,'Give each cat a unique ID. Keep it the same when editing their home.']
  ]},

@@ -1,6 +1,7 @@
 // Explicit invitations share the existing actor tick: no extra timers or world scans.
 window.pixelCatCommandsV1={
  bind(a,owners){
+  a.shadowRoot.querySelector('[data-action="spawn-toy"]').onclick=()=>a.spawnDashboardProp('toy_mouse');
   a.shadowRoot.querySelector('[data-action="startle-all"]').onclick=()=>this.startleAll(a,owners,performance.now());
   a.shadowRoot.querySelector('[data-action="wall-jump"]').onclick=()=>this.wallJump(a,performance.now());
  },
