@@ -50,8 +50,8 @@ const catEditorGroups=[
   ['relaxed_speed','Strolling speed','number',9,'Higher numbers make an ordinary stroll faster.',1,60],
   ['freefall_enabled','Long-drop freefall pose','checkbox',true,'Let your cat stretch out during a long fall.'],
   ['use_surface_candidates','Try interior and bottom-border candidates','checkbox',true,'Let your cat try extra spots inside cards and along their lower edges.'],
-  ['card_climbing','Climb visible card faces (experimental)','checkbox',false,'Let your cat climb a card when they can’t reach a spot by walking or jumping.'],
-  ['native_vertical_surfaces','Scratch native card edges (experimental)','checkbox',false,'Let your cat scratch a card edge if they can reach it safely.'],
+  ['card_climbing','Climb visible card faces','checkbox',true,'Let your cat climb a card when they can’t reach a spot by walking or jumping.'],
+  ['native_vertical_surfaces','Scratch card edges','checkbox',true,'Let your cat scratch a card edge if they can reach it safely.'],
   ['shared_home_surfaces','Share visible home-card roofs','checkbox',false,'Both home cards must enable this; hidden homes never provide a roof.'],
   ['click_attention','Follow dashboard clicks','checkbox',true,'The nearest eligible cat can investigate the clicked surface.']
  ]},

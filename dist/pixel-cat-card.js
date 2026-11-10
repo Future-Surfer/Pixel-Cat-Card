@@ -25954,8 +25954,8 @@ const catEditorGroups=[
   ['relaxed_speed','Strolling speed','number',9,'Higher numbers make an ordinary stroll faster.',1,60],
   ['freefall_enabled','Long-drop freefall pose','checkbox',true,'Let your cat stretch out during a long fall.'],
   ['use_surface_candidates','Try interior and bottom-border candidates','checkbox',true,'Let your cat try extra spots inside cards and along their lower edges.'],
-  ['card_climbing','Climb visible card faces (experimental)','checkbox',false,'Let your cat climb a card when they can’t reach a spot by walking or jumping.'],
-  ['native_vertical_surfaces','Scratch native card edges (experimental)','checkbox',false,'Let your cat scratch a card edge if they can reach it safely.'],
+  ['card_climbing','Climb visible card faces','checkbox',true,'Let your cat climb a card when they can’t reach a spot by walking or jumping.'],
+  ['native_vertical_surfaces','Scratch card edges','checkbox',true,'Let your cat scratch a card edge if they can reach it safely.'],
   ['shared_home_surfaces','Share visible home-card roofs','checkbox',false,'Both home cards must enable this; hidden homes never provide a roof.'],
   ['click_attention','Follow dashboard clicks','checkbox',true,'The nearest eligible cat can investigate the clicked surface.']
  ]},
@@ -26527,13 +26527,31 @@ window.pixelCatPolishV1={
   const frames=poses.map(([rows])=>rows);frames.holds=poses.map(([, ,hold])=>hold);
   return {start,frames,bearing,facings:poses.map(([,direction])=>direction),total:frames.holds.reduce((sum,hold)=>sum+hold,0)};
  },
+ seated(pose){return ['sit','sithead','glance','clean','scratch','yawn','meow','chatter','bat'].includes(pose);},
  restBridge(art,from,to,old,config,now){
+  const {walkToSit,sitToLoaf}=art.bridges;
+  const seated=this.seated(from),nextSeated=this.seated(to);
+  const up=[...walkToSit].reverse();
+  const standing=pose=>['walk','stand','look','sniff','perch','lookdown','rub','wiggle','postScratch'].includes(pose);
+  const timed=frames=>{frames.holds=frames.map(()=>100);return frames;};
   if(to==='backRoll'&&from==='loaf')return [];
-  if(from!=='alertLying'||to===from)return null;
-  const frames=this.alertExit(art,old,config,now),extra=to==='backRoll'?[art.idleSequences.loaf.frames[1]]:['loaf','sleep'].includes(to)?[]:[...(['sit','sithead','clean','scratch','yawn','meow','chatter'].includes(to)?art.bridges.sitToLoaf:art.bridges.walkToSit)].reverse();
-  frames.push(...extra);frames.holds.push(...extra.map(()=>Math.max(80,Number(config?.idle_frame_ms)||250)));return frames;
+  if(to===from)return [];
+  if(from==='alertLying'){
+   const frames=this.alertExit(art,old,config,now),rise=[...sitToLoaf].reverse();
+   const extra=to==='backRoll'?[art.idleSequences.loaf.frames[1]]:nextSeated?rise:standing(to)?[...rise,art.sit,...up]:[];
+   frames.push(...extra);frames.holds.push(...extra.map(()=>Math.max(80,Number(config?.idle_frame_ms)||250)));return frames;
+  }
+  if(to==='loaf')return seated?[...sitToLoaf]:[...walkToSit,art.sit,...sitToLoaf];
+  if(from==='loaf'){
+   if(to==='alertLying')return [art.idleSequences.loaf.frames.at(-1)];
+   const frames=[...sitToLoaf].reverse();
+   return standing(to)?timed([...frames,art.sit,...up]):frames;
+  }
+  if(standing(from)&&nextSeated)return timed([...walkToSit]);
+  if(seated&&standing(to))return timed(up);
+  return [];
  },
- prelude(a,m,old,art,front){if(m.kind!=='walk'||!old||!['backRoll','alertLying','loaf','sleep','sit','sithead','clean','scratch','yawn','meow','chatter','look'].includes(old.pose)||a.previewPose||a.userHeld)return;const clip=art.idleSequences[old.pose],exit=old.pose==='alertLying'?this.alertExit(art,old,a.config,m.start):clip?.frames.filter((_,i)=>clip.roles?.[i]==='exit')||[],frames=(exit.length?exit:['loaf','sleep'].includes(old.pose)?[...art.bridges.sitToLoaf].reverse():[]).concat([...art.bridges.walkToSit].reverse());if(!frames.length)return;const anchors=old.pose==='backRoll'?exit.map((rows,i)=>this.departureAnchor({pose:old.pose,anchor:clip.anchors[clip.roles.flatMap((r,j)=>r==='exit'?[j]:[])[i]]},art)).concat(art.bridges.walkToSit.map(()=>null)):null,beat=Math.max(60,Math.min(120,Number(a.config.idle_frame_ms)||100));
+ prelude(a,m,old,art,front){if(m.kind!=='walk'||!old||!this.seated(old.pose)&&!['backRoll','alertLying','loaf','sleep'].includes(old.pose)||a.previewPose||a.userHeld)return;const clip=art.idleSequences[old.pose],exit=old.pose==='alertLying'?this.alertExit(art,old,a.config,m.start):clip?.frames.filter((_,i)=>clip.roles?.[i]==='exit')||[],frames=(exit.length?exit:['loaf','sleep'].includes(old.pose)?[...art.bridges.sitToLoaf].reverse():[]).concat([...art.bridges.walkToSit].reverse());if(!frames.length)return;const anchors=old.pose==='backRoll'?exit.map((rows,i)=>this.departureAnchor({pose:old.pose,anchor:clip.anchors[clip.roles.flatMap((r,j)=>r==='exit'?[j]:[])[i]]},art)).concat(art.bridges.walkToSit.map(()=>null)):null,beat=Math.max(60,Math.min(120,Number(a.config.idle_frame_ms)||100));
   if(exit.holds)frames.holds=exit.holds.concat(art.bridges.walkToSit.map(()=>beat));
   const total=frames.holds?.reduce((n,h)=>n+h,0)??frames.length*beat;m.departure={frames,anchors,beat,total,bearing:m.fromX+front*a.scale};m.start+=total;
  },
@@ -28603,7 +28621,7 @@ const weightedPick = (items,weight,random=Math.random) => {const weights=items.m
 const lookDownFacing=(surface,x,scale,facing=1)=>{if(!surface||surface.home||surface.internal&&!surface.poses?.includes('lookdown'))return null;const left=Math.abs(x-surface.left),right=Math.abs(surface.right-(x+24*scale));if(!surface.narrow&&Math.min(left,right)>8*scale)return null;return Math.abs(left-right)<scale?facing:left<right?-1:1;};
 const idlePoseWeight=(pose,history,peek)=>{const recent=Array.isArray(history)?history:history?[history]:[],distance=[...recent].reverse().findIndex(p=>p.pose===pose);return (distance===0?.05:distance===1?.35:distance===2?.65:1)*(pose==='lookdown'?(peek===null?0:3):({backRoll:.15,alertLying:.6,sleep:.5,yawn:.5,meow:.12,chatter:.08,scratch:.85}[pose]||1));};
 const restingPoints = surface => {const {min,max}=surface;if(surface.home)return [{id:'bed',x:Math.min(max,min+20*(surface.scale||2)),weight:1}];const base=max-min<12?[{id:'perch',x:(min+max)/2,weight:1}]:[{id:'left',x:min,weight:2},{id:'right',x:max,weight:2},{id:'middle',x:(min+max)/2,weight:1}];return [...base,...surface.roamPoints||[],...surface.propPoints||[],...surface.inspectionPoints||[]];};
-const loafBridge = (art,from,to,...context) => window.pixelCatPolishV1?.restBridge?.(art,from,to,...context)??(to==='loaf'&&from!=='loaf'?(['sit','sithead','clean','scratch','yawn','meow','chatter'].includes(from)?[...art.bridges.sitToLoaf]:[...art.bridges.walkToSit,art.sit,...art.bridges.sitToLoaf]):from==='loaf'&&to!=='loaf'?(to==='alertLying'?[art.idleSequences.loaf.frames.at(-1)]:[...art.bridges.sitToLoaf].reverse()):[]);
+const loafBridge = (...args) => window.pixelCatPolishV1.restBridge(...args);
 const deepElements = (root, predicate) => {
   const result = [];
   const visit = node => {
@@ -28654,7 +28672,7 @@ class PixelCatHome extends HTMLElement {
   static async getConfigElement(){await customElements.whenDefined('pixel-cat-home-editor');return document.createElement('pixel-cat-home-editor');}
   constructor() { super(); this.attachShadow({mode:'open'}); this.config = {}; this.facing=1;this.onLayout = e => {window.pixelCatLayoutV1?.notify(this,e);window.pixelCatScrollV1?.mark(this,e);this.invalidate();}; this.onCardClick=event=>this.attractToClick(event); }
   setConfig(config) {
-    this.creationColour||=window.pixelCatPolishV1?.colour()||'#222';this.config = {...config,color:config.color||this.creationColour,show_controls:config.show_controls??config.show_home!==false,use_surface_candidates:config.use_surface_candidates!==false}; this.worldScale = Math.max(1,Math.min(6,Math.round(config.cell_size || 2)));this.lifeStage=['kitten','adult','senior'].includes(config.life_stage)?config.life_stage:'adult';this.scale=this.worldScale*(this.lifeStage==='kitten'?.5:1);
+    this.creationColour||=window.pixelCatPolishV1?.colour()||'#222';this.config = {...config,color:config.color||this.creationColour,show_controls:config.show_controls??config.show_home!==false,use_surface_candidates:config.use_surface_candidates!==false,card_climbing:config.card_climbing!==false,native_vertical_surfaces:config.native_vertical_surfaces!==false}; this.worldScale = Math.max(1,Math.min(6,Math.round(config.cell_size || 2)));this.lifeStage=['kitten','adult','senior'].includes(config.life_stage)?config.life_stage:'adult';this.scale=this.worldScale*(this.lifeStage==='kitten'?.5:1);
     if (this.isConnected) { this.disconnectedCallback(); this.connectedCallback(); }
   }
   set hass(value) { this._hass = value;if(this.monitorCard)this.monitorCard.hass=value; }
@@ -29210,7 +29228,7 @@ class PixelCatHome extends HTMLElement {
         this.previewBedPose=null;if(window.pixelCatBedEntryV1?.beforeIdle(this,pose,t,CAT_ART,groundedFront))return;
         const poseConfig=pose==='bat'?{...this.config,bat_stroke:this.play?.strokes?.[this.play.strokeIndex]}:this.config,first=idleSample(CAT_ART,pose,0,poseConfig);
         const duration={backRoll:16000,alertLying:12000,loaf:20000,sit:12000,sithead:12000,perch:12000,clean:3000,look:4000,lookdown:3000,glance:3000,stretch:1250,stand:6000,sniff:2200,scratch:2200,yawn:2300,sleep:8500,meow:950,chatter:850,rub:1900,bat:2600}[pose];
-        const bridge=this.previewPose?[]:loafBridge(CAT_ART,oldPose==='sleep'?'loaf':oldPose,pose==='sleep'?'loaf':pose,oldIdle,this.config,t),bridgeMs=window.pixelCatPolishV1.bridgeDuration(bridge,this.config);
+        const bridge=this.previewPose||this.play||this.social?.episode?[]:loafBridge(CAT_ART,oldPose==='sleep'?'loaf':oldPose,pose==='sleep'?'loaf':pose,oldIdle,this.config,t),bridgeMs=window.pixelCatPolishV1.bridgeDuration(bridge,this.config);
         this.idle={pose,bridge,bridgeMs,inspectionId:inspection?.id,start:t,poseUntil:t+bridgeMs+(this.social?.idleDuration(pose,duration,restDuration(this.config,this.support.home))??Math.min(duration,restDuration(this.config,this.support.home)/(pose==='sleep'?1.1:3))),support:this.support.id,contactX:idleTransitionContact(oldIdle,pose,bridge.length?{rows:bridge[0]}:first,this.facing,this.scale,this.x,previousFacing)};this.social?.prepareIdle?.(this.idle,t);if(this.previewPose)this.idle.poseUntil=this.forcedIdleUntil;if(this.play?.stage==='bat'&&pose==='bat'){this.idle.poseUntil=t+bridgeMs+batClipFor(CAT_ART,poseConfig).durations.reduce((a,b)=>a+b,0)*Math.max(80,Number(this.config.idle_frame_ms)||250)/250;this.play.waitUntil=this.idle.poseUntil;}window.pixelCatReactionsV1?.prepareIdle(this,this.idle,t,CAT_ART);window.pixelCatPostRestV1?.idleStarted(this,this.idle,CAT_ART);
       }
       const elapsed=t-this.idle.start,bridging=elapsed<(this.idle.bridgeMs||0),sample=bridging?window.pixelCatPolishV1.bridgeSample(this.idle.bridge,elapsed,Math.max(80,Number(this.config.idle_frame_ms)||250)):idleSample(CAT_ART,this.idle.pose,elapsed-(this.idle.bridgeMs||0),{...this.config,track_seed:this.ownerKey,bat_stroke:this.play?.strokes?.[this.play.strokeIndex],clip_exit_at_ms:this.idle.poseUntil-this.idle.start-(this.idle.bridgeMs||0)}),point=frameContact(sample.rows,this.facing,sample.anchor||idleContact(sample.rows));rows=sample.rows;this.setAttribute('data-frame-origin',sample.origin||'human');
@@ -29902,7 +29920,7 @@ window.pixelCatClimbV1={
  faces(a){const layer=a.decisionLayer(),data=window.pixelCatClimbAssetsV1,frames=[...data.frames,...data.centred.front.frames],below=Math.max(...frames.map(f=>f.rows.findLastIndex(r=>/[#R]/.test(r))+1-f.anchor.y)),above=Math.max(...frames.map(f=>f.anchor.y-f.rows.findIndex(r=>/[#R]/.test(r)))),gain=data.centred.front.frames.reduce((n,f)=>n+f.gain,0)*2;
   return (window.pixelCatVerticalScratchV1?.faces(layer,false)||[]).filter(f=>f.direction>0&&!f.prop.native&&!f.prop.igloo&&f.prop.asset.id==='scratching_post'&&f.prop.node?.isConnected!==false&&f.surface.top-f.top>=(above+below+gain)*a.scale&&layer.clear(f.surface,f.origin)).map(f=>({...f,below})).sort((f,g)=>Math.abs(f.origin-a.x)-Math.abs(g.origin-a.x)).slice(0,8);
  },
- offer(a,t,force=false){if(!this.ready(a)||!a.config.interaction_behaviour||a.idle?.pose==='sleep'&&t<a.idle.poseUntil||!force&&t<(a.nextClimbAt||0))return false;const r=()=>a.ensureMood().random();a.nextClimbAt=t+12000+18000*r();const choices=this.faces(a);if(!choices.length&&!a.config.card_climbing)return false;const weight=window.pixelCatBehaviourV1?.weight(a,{behaviourPolicy:{category:'locomotion',tags:['play','energetic','vertical']}})||1;if(!force&&r()>.14*weight*(1-.8*a.ensureMood().values.sleepiness))return false;
+ offer(a,t,force=false){if(!this.ready(a)||(!a.config.interaction_behaviour&&!a.config.card_climbing)||a.idle?.pose==='sleep'&&t<a.idle.poseUntil||!force&&t<(a.nextClimbAt||0))return false;const r=()=>a.ensureMood().random();a.nextClimbAt=t+12000+18000*r();const choices=a.config.interaction_behaviour?this.faces(a):[];if(!choices.length&&!a.config.card_climbing)return false;const weight=window.pixelCatBehaviourV1?.weight(a,{behaviourPolicy:{category:'locomotion',tags:['play','energetic','vertical']}})||1;if(!force&&r()>.14*weight*(1-.8*a.ensureMood().values.sleepiness))return false;
   const route=f=>window.pixelCatSurfaceWorldV1.route(a,f.surface,a.support),face=choices.find(f=>route(f)&&a.pathTo(a.home,f.surface));if(!face)return !force&&window.pixelCatCardClimbV1?.ascent(a,t)||false;const p=face.prop;p.claimedBy=a.ownerKey;a.climb={stage:'approach',face,prop:p,base:face.surface,origin:face.origin,started:t,last:t,age:0,decisions:0,serial:0};a.route=[...route(face),{settle:true,surface:face.surface,x:face.origin}];a.destinationId=face.surface.id;a.deadline=t+30000;a.setAttribute('data-climb','approach');return true;
  },
  setup(a,art){const e=a.climb,s=a.scale,f=e.face,p=e.prop,entries=e.virtual?[]:window.pixelCatHomePostsV1.entries(a.decisionLayer()),entry=entries.find(x=>x.prop===p),left=entry?.left??f.x-(f.direction>0?4:8)*p.scale,floor={...f.surface,id:'home',source:f.surface},candidates=a.surfaces.filter(x=>x.el?.isConnected!==false&&!x.narrow&&!x.bed&&x.el!==floor.el&&x.top<floor.top&&floor.top-x.top<90*s+floor.top-f.top&&Math.max(0,x.left-left,left-x.right)<100*s).sort((x,y)=>Math.abs(x.top-floor.top)-Math.abs(y.top-floor.top)).slice(0,8),target=e.goalSurface||candidates.find(x=>this.surface(a,x)&&a.pathTo(a.home,x))||f.surface;if(!this.surface(a,target))return false;
@@ -29997,7 +30015,7 @@ window.pixelCatClimbV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"1fe0ea7c35f1102e248f431089e906d3bb5c439006880c821fdd7a8af639e7b8"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"1ae6b1017541ca89072cab331c07acec7c11929c8ef721eee5786a57337d54cf"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0");
 })();

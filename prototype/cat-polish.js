@@ -51,13 +51,31 @@ window.pixelCatPolishV1={
   const frames=poses.map(([rows])=>rows);frames.holds=poses.map(([, ,hold])=>hold);
   return {start,frames,bearing,facings:poses.map(([,direction])=>direction),total:frames.holds.reduce((sum,hold)=>sum+hold,0)};
  },
+ seated(pose){return ['sit','sithead','glance','clean','scratch','yawn','meow','chatter','bat'].includes(pose);},
  restBridge(art,from,to,old,config,now){
+  const {walkToSit,sitToLoaf}=art.bridges;
+  const seated=this.seated(from),nextSeated=this.seated(to);
+  const up=[...walkToSit].reverse();
+  const standing=pose=>['walk','stand','look','sniff','perch','lookdown','rub','wiggle','postScratch'].includes(pose);
+  const timed=frames=>{frames.holds=frames.map(()=>100);return frames;};
   if(to==='backRoll'&&from==='loaf')return [];
-  if(from!=='alertLying'||to===from)return null;
-  const frames=this.alertExit(art,old,config,now),extra=to==='backRoll'?[art.idleSequences.loaf.frames[1]]:['loaf','sleep'].includes(to)?[]:[...(['sit','sithead','clean','scratch','yawn','meow','chatter'].includes(to)?art.bridges.sitToLoaf:art.bridges.walkToSit)].reverse();
-  frames.push(...extra);frames.holds.push(...extra.map(()=>Math.max(80,Number(config?.idle_frame_ms)||250)));return frames;
+  if(to===from)return [];
+  if(from==='alertLying'){
+   const frames=this.alertExit(art,old,config,now),rise=[...sitToLoaf].reverse();
+   const extra=to==='backRoll'?[art.idleSequences.loaf.frames[1]]:nextSeated?rise:standing(to)?[...rise,art.sit,...up]:[];
+   frames.push(...extra);frames.holds.push(...extra.map(()=>Math.max(80,Number(config?.idle_frame_ms)||250)));return frames;
+  }
+  if(to==='loaf')return seated?[...sitToLoaf]:[...walkToSit,art.sit,...sitToLoaf];
+  if(from==='loaf'){
+   if(to==='alertLying')return [art.idleSequences.loaf.frames.at(-1)];
+   const frames=[...sitToLoaf].reverse();
+   return standing(to)?timed([...frames,art.sit,...up]):frames;
+  }
+  if(standing(from)&&nextSeated)return timed([...walkToSit]);
+  if(seated&&standing(to))return timed(up);
+  return [];
  },
- prelude(a,m,old,art,front){if(m.kind!=='walk'||!old||!['backRoll','alertLying','loaf','sleep','sit','sithead','clean','scratch','yawn','meow','chatter','look'].includes(old.pose)||a.previewPose||a.userHeld)return;const clip=art.idleSequences[old.pose],exit=old.pose==='alertLying'?this.alertExit(art,old,a.config,m.start):clip?.frames.filter((_,i)=>clip.roles?.[i]==='exit')||[],frames=(exit.length?exit:['loaf','sleep'].includes(old.pose)?[...art.bridges.sitToLoaf].reverse():[]).concat([...art.bridges.walkToSit].reverse());if(!frames.length)return;const anchors=old.pose==='backRoll'?exit.map((rows,i)=>this.departureAnchor({pose:old.pose,anchor:clip.anchors[clip.roles.flatMap((r,j)=>r==='exit'?[j]:[])[i]]},art)).concat(art.bridges.walkToSit.map(()=>null)):null,beat=Math.max(60,Math.min(120,Number(a.config.idle_frame_ms)||100));
+ prelude(a,m,old,art,front){if(m.kind!=='walk'||!old||!this.seated(old.pose)&&!['backRoll','alertLying','loaf','sleep'].includes(old.pose)||a.previewPose||a.userHeld)return;const clip=art.idleSequences[old.pose],exit=old.pose==='alertLying'?this.alertExit(art,old,a.config,m.start):clip?.frames.filter((_,i)=>clip.roles?.[i]==='exit')||[],frames=(exit.length?exit:['loaf','sleep'].includes(old.pose)?[...art.bridges.sitToLoaf].reverse():[]).concat([...art.bridges.walkToSit].reverse());if(!frames.length)return;const anchors=old.pose==='backRoll'?exit.map((rows,i)=>this.departureAnchor({pose:old.pose,anchor:clip.anchors[clip.roles.flatMap((r,j)=>r==='exit'?[j]:[])[i]]},art)).concat(art.bridges.walkToSit.map(()=>null)):null,beat=Math.max(60,Math.min(120,Number(a.config.idle_frame_ms)||100));
   if(exit.holds)frames.holds=exit.holds.concat(art.bridges.walkToSit.map(()=>beat));
   const total=frames.holds?.reduce((n,h)=>n+h,0)??frames.length*beat;m.departure={frames,anchors,beat,total,bearing:m.fromX+front*a.scale};m.start+=total;
  },

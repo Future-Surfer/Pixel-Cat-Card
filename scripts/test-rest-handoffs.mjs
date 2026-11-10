@@ -21,8 +21,18 @@ for(const frameMs of [80,250,500]){
   assert.deepEqual(Array.from(exit,r=>alert.frames.indexOf(r)),expected);assert.deepEqual(Array.from(exit.holds),holds);
   const actor={config,scale:1,facing:1},motion={kind:'walk',start:now,fromX:100};P.prelude(actor,motion,old,art,18);assert.deepEqual(Array.from(motion.departure.frames.slice(0,exit.length)),Array.from(exit));assert.equal(motion.start-now,holds.reduce((a,b)=>a+b,0)+Math.max(60,Math.min(120,frameMs)));
   const loaf=P.restBridge(art,'alertLying','loaf',old,config,now);assert.deepEqual(Array.from(loaf),Array.from(exit),'Returning to loaf never sits upright');
-  for(const target of ['sit','clean','stand','backRoll']){const bridge=P.restBridge(art,'alertLying',target,old,config,now);assert.equal(bridge.length,exit.length+1);assert.deepEqual(Array.from(bridge.slice(0,exit.length)),Array.from(exit));assert.equal(P.bridgeDuration(bridge,config),holds.reduce((a,b)=>a+b,0)+frameMs);}
+  for(const target of ['sit','clean','stand','backRoll']){const bridge=P.restBridge(art,'alertLying',target,old,config,now);const added=target==='stand'?3:1;assert.equal(bridge.length,exit.length+added);assert.deepEqual(Array.from(bridge.slice(0,exit.length)),Array.from(exit));assert.equal(P.bridgeDuration(bridge,config),holds.reduce((a,b)=>a+b,0)+added*frameMs);}
   let elapsed=0;for(let i=0;i<exit.length;i++){assert.equal(P.bridgeSample(exit,elapsed+holds[i]/2,frameMs).rows,exit[i]);elapsed+=holds[i];}
  }
 }
 console.log('PASS: alert exits retain authored timing, resume partial exits and never replay completed exits; low/seated/standing handoffs use existing frames.');
+
+for(const standing of ['walk','stand','sniff','look','perch','lookdown'])for(const seated of ['sit','sithead','glance','clean','scratch','yawn','meow','chatter','bat']){
+ const down=P.restBridge(art,standing,seated),up=P.restBridge(art,seated,standing);
+ assert.deepEqual(Array.from(down),Array.from(art.bridges.walkToSit));
+ assert.deepEqual(Array.from(up),Array.from(art.bridges.walkToSit).reverse());
+ assert.equal(P.bridgeDuration(down),100*down.length);
+ assert.equal(P.bridgeDuration(up),100*up.length);
+}
+assert.equal(P.restBridge(art,'sit','glance').length,0);
+assert.equal(P.restBridge(art,'look','stand').length,0);
