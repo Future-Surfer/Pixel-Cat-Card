@@ -13,10 +13,10 @@ Updated 10 November 2026. **Sole forward plan.** [Current state](CURRENT_STATE.m
 
 ## Recommended next sequence
 
-**Next · LAB-01 — Behaviour Lab.** Add a dedicated testing card alongside Companion and Performance. One dropdown applies a temporary focus to every active cat on the current dashboard view, including cats that join after selection. Start with **Natural behaviour** and **Climb and leap**. Use a shared view-scoped preference, default to Natural, and clear it on reload or when the lab is removed. Keep saved cat settings and normal behaviour weights separate.
+**LAB-01 — Behaviour Lab.** The first version is on the HA dev Testing view. One dropdown applies a temporary focus to every eligible cat on the current dashboard view, including cats that join after selection. **Natural behaviour** is the default. **Climb and leap** resets on reload or when the last lab card is removed. Saved cat settings and everyday behaviour weights are independent of the lab.
 
-- First slice: connect the selector to the existing climb decision. Check more often and strongly favour a climb when one is viable, while retaining a chance to decline. Each cat keeps its own clock, and pause, sleep, busy states, grip checks, safe landings and return routes still apply.
-- Show per-view counts for busy cats, no usable wall, no safe landing, eligible but declined, attempted and completed. Validate on a known climbable fixture and the HA Testing view. Verify that another view is unaffected and Natural restores baseline decisions.
+- First slice: use each cat's ordinary leisure decisions, with an independent 6–12 second minimum between focus checks. Once the climb planner finds a valid route and an ordinary way back home, the cat has a 75% chance of taking it. Pause, sleep, ongoing actions and the card climbing setting still apply.
+- The card shows the current busy count and running totals for missing walls, missing safe routes, declines, attempts and completed landings. A safe route includes the approach, grip, landing and way home. The first HA Testing run recorded a completed climb and separate declines and route skips. Automated checks cover view isolation and resetting the focus.
 - Register subsequent scenarios through the same interface. **Scratch card edges** is the next candidate once the climbing focus is useful.
 
 The desktop stability/calibration batch is delivered. Evidence, measured limits and device checklist (development reference retained privately).

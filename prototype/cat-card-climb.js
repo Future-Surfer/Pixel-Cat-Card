@@ -7,7 +7,7 @@ window.pixelCatCardClimbV1={
   const button=document.createElement('button');button.textContent='Try climbing a card';button.disabled=!a.config.card_climbing;button.setAttribute('data-card-climb-preview','');button.title='Climb an exposed card face, then leap to a checked landing.';
   button.onclick=()=>{if(a.climb||a.motion||a.carriedToy||a.goal||a.command||a.previewPose||!a.config.card_climbing){a.status('Enable card climbing and try again when this cat is resting');return;}if(!this.ascent(a,performance.now(),true))a.status('No reachable wall with room to climb and land higher');};box.append(button);
  },
- ascent(a,t,preview=false){
+ ascent(a,t,preview=false,accept,report){
   const from=a.support;
   if(!a.config.card_climbing||!from)return false;
   const world=window.pixelCatSurfaceWorldV1;
@@ -17,10 +17,11 @@ window.pixelCatCardClimbV1={
    if(!preview&&!world.route(a,a.home,target))continue;
    const next=this.route(a,target,from,true,'ascent')?.[0];
    if(!next)continue;
+   if(accept&&!accept())return false;
    a.route=[next];this.start(a,next,t);
-   if(a.climb){a.paused=false;const pause=a.shadowRoot?.querySelector('[data-action="pause"]');if(pause)pause.textContent='Pause';return true;}
+   if(a.climb){if(report){report('Attempted');a.climb.labReport=report;}a.paused=false;const pause=a.shadowRoot?.querySelector('[data-action="pause"]');if(pause)pause.textContent='Pause';return true;}
   }
-  return false;
+  report?.('No safe route');return false;
  },
  homeOwner(el){for(let p=el;p;p=p.parentElement||p.getRootNode?.()?.host)if(p.localName==='pixel-cat-home')return p;return null;},
  reconcile(a,manual=false){

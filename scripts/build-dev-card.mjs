@@ -42,11 +42,11 @@ const box = {
   }
 };
 runInNewContext(code, box, { timeout: 10000 });
-for (const name of ['pixel-cat-dev-home', 'pixel-cat-dev-home-editor', 'pixel-cat-dev-monitor']) {
+for (const name of ['pixel-cat-dev-home', 'pixel-cat-dev-home-editor', 'pixel-cat-dev-monitor', 'pixel-cat-dev-behaviour-lab']) {
   if (!elements.has(name)) throw new Error('Missing dev element: ' + name);
 }
-if (elements.size !== 4 || window.pixelCatCardRelease !== release
-    || window.customCards.length !== 2 || window.pixelCatRoamingArtV2 !== undefined) {
+if (elements.size !== 5 || window.pixelCatCardRelease !== release
+    || window.customCards.length !== 3 || window.pixelCatRoamingArtV2 !== undefined) {
   throw new Error('Dev build affected the release namespace');
 }
 

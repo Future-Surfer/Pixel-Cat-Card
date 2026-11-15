@@ -26431,6 +26431,18 @@ window.pixelCatAlertV1={
   return {...result,frame,anchor:clip.anchors[frame],headFrame:h,tailFrame:j};
  }
 };
+// A hidden dock owns an actor, but contributes no physical surface. Its return
+// anchor aliases an ordinary discovered surface, retaining normal graph routing.
+window.pixelCatHiddenHomeV1={
+ select(a){
+  const eligible=a.surfaces.filter(s=>!s.narrow&&s.max-s.min>=4*a.scale);
+  const previous=eligible.find(s=>s.id===a.hiddenHomeId);
+  const visible=eligible.filter(s=>s.top>=Math.max(24,a.size)&&s.top<=innerHeight-8&&s.right>0&&s.left<innerWidth);
+  const home=previous||visible.find(s=>!s.candidate)||visible[0];
+  a.home=home||null;a.waitingForSurface=!home;
+  if(home)a.hiddenHomeId=home.id;
+ }
+};
 })();
 
 })();
@@ -26630,14 +26642,17 @@ window.pixelCatSurfaceWorldV1={
  }
 };
 
-window.pixelCatCardAttentionV1=function(event,{cardOwnerFor,clickDestination,attentionWinner,CAT_OWNERS}) {
-    if(this.userHeld||this.config.click_attention===false||!this.root||event.button!==0||event.ctrlKey||event.metaKey||event.altKey||event.shiftKey||this.blocked())return;
-    const path=event.composedPath();if(!path.includes(this.root)||path.includes(this)||path.some(el=>el.dataset?.pixelCatOverlay!==undefined||el.dataset?.catPost!==undefined||el.localName==='pixel-cat-home'||el.matches?.('input,textarea,select,[contenteditable="true"]')))return;
-    const card=path.find(el=>el.localName==='ha-card'||el.hasAttribute?.('data-cat-surface'));if(!card)return;const owner=cardOwnerFor(card),surfaces=this.surfaces.filter(s=>!s.home&&cardOwnerFor(s.el)===owner);
-    const destination=clickDestination(surfaces,event.clientX,event.clientY,this.scale,s=>!!this.pathTo(s)&&!!this.pathTo(this.home,s));if(!destination)return;
-    const peers=[...CAT_OWNERS].filter(([cat,info])=>info.root===this.root&&cat.isConnected&&!cat.blocked()&&cat.surfaces.some(s=>!s.home&&cardOwnerFor(s.el)===owner&&cat.pathTo(s)&&cat.pathTo(cat.home,s))).map(([cat])=>cat);if(peers.length&&attentionWinner(peers,event.clientX,event.clientY)!==this)return;
-    this.setAttribute('data-attention-source','card-click');this.setAttribute('data-attention-target',destination.id);this.requestVisit(destination.id,'interested',destination.point);
-  };
+window.pixelCatObserverV1={
+ step(layer,t){const a=layer.actor;if(a.config.third_party_awareness===false||!a.config.social_behaviour||!a.config.interaction_behaviour){layer.observerWatch=null;return;}
+  const watch=layer.observerWatch;if(watch&&layer.clock>=watch.until){layer.observerWatch=null;layer.observerStats.expired++;layer.log('watch ended');}
+  if(layer.clock<Math.max(layer.observerNext||0,layer.observerProbeAt||0)||layer.observerWatch||layer.episode||a.bedInside&&a.bedInside.config.bed_style!=='simple'||!layer.available(a)||!['loaf','alertLying','sit','sithead','stand','look'].includes(a.idle?.pose))return;layer.observerProbeAt=layer.clock+250;
+  const cue=[...layer.memory.values()].find(m=>layer.clock-m.at<700&&layer.visible?.has(m.id)&&['moving','bat','wiggle','postScratch'].includes(m.pose));if(!cue)return;
+  const stats=layer.observerStats||={opportunities:0,watches:0,ignored:0,expired:0};stats.opportunities++;const random=()=>a.ensureMood().random();layer.observerNext=layer.clock+12000+random()*23000;
+  const pose=['loaf','alertLying'].includes(a.idle.pose)?'alertLying':'glance';if(a.support?.poses?.length&&!a.support.poses.includes(pose)||random()>.15+.3*layer.traits.curiosity){stats.ignored++;layer.log('noticed activity; continued',{source:cue.id});return;}
+  const duration=1500+random()*2500;layer.observerWatch={source:cue.id,pose,until:layer.clock+duration};stats.watches++;a.facing=cue.x+12*cue.scale>=a.x+12*a.scale?1:-1;if(a.idle)a.idle.poseUntil=t;layer.log('quietly watching observed activity',{source:cue.id,duration:Math.round(duration)});
+ },
+ pose(layer){const a=layer.actor,w=layer.observerWatch;return a.config.third_party_awareness!==false&&a.config.social_behaviour&&a.config.interaction_behaviour&&!layer.episode&&w&&layer.available(a)&&layer.clock<w.until?w.pose:null;}
+};
 
 window.pixelCatHomePostsV1={
  visible(a){return a.config.show_home!==false&&(a.config.show_scratching_post??a.config.scratching_posts??true)!==false;},
@@ -27537,18 +27552,6 @@ class CatDecisions {
 }
 window.pixelCatDecisionsV1=CatDecisions;
 
-window.pixelCatObserverV1={
- step(layer,t){const a=layer.actor;if(a.config.third_party_awareness===false||!a.config.social_behaviour||!a.config.interaction_behaviour){layer.observerWatch=null;return;}
-  const watch=layer.observerWatch;if(watch&&layer.clock>=watch.until){layer.observerWatch=null;layer.observerStats.expired++;layer.log('watch ended');}
-  if(layer.clock<Math.max(layer.observerNext||0,layer.observerProbeAt||0)||layer.observerWatch||layer.episode||a.bedInside&&a.bedInside.config.bed_style!=='simple'||!layer.available(a)||!['loaf','alertLying','sit','sithead','stand','look'].includes(a.idle?.pose))return;layer.observerProbeAt=layer.clock+250;
-  const cue=[...layer.memory.values()].find(m=>layer.clock-m.at<700&&layer.visible?.has(m.id)&&['moving','bat','wiggle','postScratch'].includes(m.pose));if(!cue)return;
-  const stats=layer.observerStats||={opportunities:0,watches:0,ignored:0,expired:0};stats.opportunities++;const random=()=>a.ensureMood().random();layer.observerNext=layer.clock+12000+random()*23000;
-  const pose=['loaf','alertLying'].includes(a.idle.pose)?'alertLying':'glance';if(a.support?.poses?.length&&!a.support.poses.includes(pose)||random()>.15+.3*layer.traits.curiosity){stats.ignored++;layer.log('noticed activity; continued',{source:cue.id});return;}
-  const duration=1500+random()*2500;layer.observerWatch={source:cue.id,pose,until:layer.clock+duration};stats.watches++;a.facing=cue.x+12*cue.scale>=a.x+12*a.scale?1:-1;if(a.idle)a.idle.poseUntil=t;layer.log('quietly watching observed activity',{source:cue.id,duration:Math.round(duration)});
- },
- pose(layer){const a=layer.actor,w=layer.observerWatch;return a.config.third_party_awareness!==false&&a.config.social_behaviour&&a.config.interaction_behaviour&&!layer.episode&&w&&layer.available(a)&&layer.clock<w.until?w.pose:null;}
-};
-
 const INTERACTION_WORLDS=new WeakMap();
 const bounded=(v,f=.5)=>Number.isFinite(Number(v))?Math.max(0,Math.min(1,Number(v))):f;
 const temperament=(id,config={})=>{let seed=[...id].reduce((n,c)=>Math.imul(n^c.charCodeAt(0),16777619)>>>0,2166136261);return Object.fromEntries(['boldness','sociability','curiosity','patience'].map(k=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return [k,bounded(config[k],.25+.5*seed/4294967296)];}));};
@@ -27849,17 +27852,6 @@ class CatBedVisits extends window.pixelCatDecisionsV1{
  finish(reason){const ep=this.episode;if(ep?.kind==='shelf-ambush')window.pixelCatShelfAmbushV1?.release(this);if(ep?.kind==='vertical-scratch')window.pixelCatVerticalScratchV1?.release(this);if(ep?.kind==='bed'){if(ep.stage==='approach'){this.actor.route=[];this.actor.finishing=false;}this.nextBed=this.clock+45000;}return super.finish(reason);}
 }
 window.pixelCatDecisionsV1=CatBedVisits;
-
-window.pixelCatHiddenHomeV1={
- select(a){
-  const eligible=a.surfaces.filter(s=>!s.narrow&&s.max-s.min>=4*a.scale);
-  const previous=eligible.find(s=>s.id===a.hiddenHomeId);
-  const visible=eligible.filter(s=>s.top>=Math.max(24,a.size)&&s.top<=innerHeight-8&&s.right>0&&s.left<innerWidth);
-  const home=previous||visible.find(s=>!s.candidate)||visible[0];
-  a.home=home||null;a.waitingForSurface=!home;
-  if(home)a.hiddenHomeId=home.id;
- }
-};
 
 const catScrollPortals=new WeakMap(),catScrollLayers=new WeakMap(),catScrollAnchors=new WeakMap();
 window.pixelCatScrollOverlayV1={
@@ -28327,6 +28319,86 @@ window.pixelCatLabelsV1.render=function(t){
     const decisions=this.shadowRoot?.querySelector('.decision-readout');if(decisions&&window.pixelCatLabelsV1?.visible(decisions))decisions.textContent=(this.getAttribute('data-encounters')||'')+'\n'+(this.social?.trace||[]).slice(0,5).map(e=>JSON.stringify(e)).join('\n');
   };
 
+})();
+
+window.pixelCatCardAttentionV1=function(event,{cardOwnerFor,clickDestination,attentionWinner,CAT_OWNERS}) {
+    if(this.userHeld||this.config.click_attention===false||!this.root||event.button!==0||event.ctrlKey||event.metaKey||event.altKey||event.shiftKey||this.blocked())return;
+    const path=event.composedPath();if(!path.includes(this.root)||path.includes(this)||path.some(el=>el.dataset?.pixelCatOverlay!==undefined||el.dataset?.catPost!==undefined||el.localName==='pixel-cat-home'||el.matches?.('input,textarea,select,[contenteditable="true"]')))return;
+    const card=path.find(el=>el.localName==='ha-card'||el.hasAttribute?.('data-cat-surface'));if(!card)return;const owner=cardOwnerFor(card),surfaces=this.surfaces.filter(s=>!s.home&&cardOwnerFor(s.el)===owner);
+    const destination=clickDestination(surfaces,event.clientX,event.clientY,this.scale,s=>!!this.pathTo(s)&&!!this.pathTo(this.home,s));if(!destination)return;
+    const peers=[...CAT_OWNERS].filter(([cat,info])=>info.root===this.root&&cat.isConnected&&!cat.blocked()&&cat.surfaces.some(s=>!s.home&&cardOwnerFor(s.el)===owner&&cat.pathTo(s)&&cat.pathTo(cat.home,s))).map(([cat])=>cat);if(peers.length&&attentionWinner(peers,event.clientX,event.clientY)!==this)return;
+    this.setAttribute('data-attention-source','card-click');this.setAttribute('data-attention-target',destination.id);this.requestVisit(destination.id,'interested',destination.point);
+  };
+
+(() => {
+  const views = new WeakMap();
+  const scenarios = {
+    climb: {
+      label: 'Climb and leap',
+      offer(a, t, report) {
+        const climb = window.pixelCatCardClimbV1;
+        if (!climb?.reconcile(a)?.faces.length) return report('No usable wall');
+        return climb.ascent(a, t, false, () => {
+          if (a.ensureMood().random() < .75) return true;
+          report('Declined'); return false;
+        }, report);
+      }
+    }
+  };
+  window.pixelCatBehaviourLabV1 = {
+    offer(a, t) {
+      const view = views.get(a.root), scenario = scenarios[view?.focus];
+      if (!scenario || view.path !== location.pathname || !a.config.card_climbing ||
+          !window.pixelCatClimbV1.ready(a) || a.idle?.pose === 'sleep' && t < a.idle.poseUntil) return false;
+      if (t < (view.next.get(a) || 0)) return false;
+      view.next.set(a, t + 6000 + a.ensureMood().random() * 6000);
+      const counts = view.counts;
+      const report = label => { counts[label] = (counts[label] || 0) + 1; };
+      return scenario.offer(a, t, report) === true;
+    }
+  };
+  if (typeof HTMLElement === 'undefined' || customElements.get('pixel-cat-behaviour-lab')) return;
+  class BehaviourLab extends HTMLElement {
+    setConfig() {}
+    getCardSize() { return 2; }
+    connectedCallback() {
+      let root = this;
+      while (root && !root.matches?.('[data-cat-world],hui-sections-view,hui-masonry-view')) {
+        root = root.parentElement || root.getRootNode()?.host;
+      }
+      if (!root) return;
+      let view = views.get(root);
+      if (!view || view.path !== location.pathname) {
+        view = {path:location.pathname, focus:'', cards:0, next:new WeakMap(), counts:{}};
+        views.set(root, view);
+      }
+      view.cards++;
+      this.cleanup = () => { if (!--view.cards && views.get(root) === view) views.delete(root); };
+      const shadow = this.shadowRoot || this.attachShadow({mode:'open'});
+      shadow.innerHTML = '<ha-card header="Behaviour Lab"><div class="card-content"><label>Focus <select><option value="">Natural behaviour</option></select></label><p></p></div></ha-card>';
+      const select = shadow.querySelector('select'), status = shadow.querySelector('p');
+      for (const [id, scenario] of Object.entries(scenarios)) select.add(new Option(scenario.label,id));
+      select.onchange = () => {
+        view.focus = select.value;
+        view.counts = {};
+        view.next = new WeakMap();
+        refresh();
+      };
+      const refresh = () => {
+        select.value = view.focus;
+        const cats = (window.pixelCatPrimaryV1?.current() || []).filter(a => a.root === root);
+        const busy = cats.filter(a => !window.pixelCatClimbV1?.ready(a) || a.idle?.pose === 'sleep').length;
+        status.textContent = view.focus
+          ? [`${cats.length} cats (${busy} busy)`, ...['No usable wall','No safe route','Declined','Attempted','Completed'].map(k => `${k}: ${view.counts[k] || 0}`)].join(' · ')
+          : 'Choose a focus for the cats on this view until you reload.';
+      };
+      refresh();
+      this.timer = setInterval(refresh, 1000);
+    }
+    disconnectedCallback() { clearInterval(this.timer); this.cleanup?.(); this.cleanup = null; }
+  }
+  customElements.define('pixel-cat-behaviour-lab', BehaviourLab);
+  (window.customCards ||= []).push({type:'pixel-cat-behaviour-lab',name:'Pixel Cat Behaviour Lab',description:'Temporarily favour a behaviour on this view.'});
 })();
 
 })();
@@ -29049,7 +29121,7 @@ class PixelCatHome extends HTMLElement {
   pathTo(target,origin=this.support){return window.pixelCatSurfaceWorldV1.route(this,target,origin)??window.pixelCatClimbV1?.fallback(this,target,origin)??null;}
   plan() {
     const requested=!!this.command||!!this.goal;this.casualWander=false;
-    const now=performance.now();if(!requested&&window.pixelCatClimbV1?.offer(this,now))return;this.visits||=new Map();if(window.pixelCatPostRestV1?.beforePlan(this,now,requested))return;
+    const now=performance.now();if(!requested&&(window.pixelCatBehaviourLabV1?.offer(this,now)||window.pixelCatClimbV1?.offer(this,now)))return;this.visits||=new Map();if(window.pixelCatPostRestV1?.beforePlan(this,now,requested))return;
     if(!requested&&(this.config.mood_behaviour||this.config.social_behaviour)&&this.decisionLayer()?.decide(now))return;
     const leisure={points:restingPoints,weight:visitWeight,pick:weightedPick};if(!requested&&window.pixelCatExplorationV1?.plan(this,now,leisure))return;
     const [goalSurface,goalPoint]=String(this.goal||'').split('::');
@@ -29538,7 +29610,7 @@ window.pixelCatCardClimbV1={
   const button=document.createElement('button');button.textContent='Try climbing a card';button.disabled=!a.config.card_climbing;button.setAttribute('data-card-climb-preview','');button.title='Climb an exposed card face, then leap to a checked landing.';
   button.onclick=()=>{if(a.climb||a.motion||a.carriedToy||a.goal||a.command||a.previewPose||!a.config.card_climbing){a.status('Enable card climbing and try again when this cat is resting');return;}if(!this.ascent(a,performance.now(),true))a.status('No reachable wall with room to climb and land higher');};box.append(button);
  },
- ascent(a,t,preview=false){
+ ascent(a,t,preview=false,accept,report){
   const from=a.support;
   if(!a.config.card_climbing||!from)return false;
   const world=window.pixelCatSurfaceWorldV1;
@@ -29548,10 +29620,11 @@ window.pixelCatCardClimbV1={
    if(!preview&&!world.route(a,a.home,target))continue;
    const next=this.route(a,target,from,true,'ascent')?.[0];
    if(!next)continue;
+   if(accept&&!accept())return false;
    a.route=[next];this.start(a,next,t);
-   if(a.climb){a.paused=false;const pause=a.shadowRoot?.querySelector('[data-action="pause"]');if(pause)pause.textContent='Pause';return true;}
+   if(a.climb){if(report){report('Attempted');a.climb.labReport=report;}a.paused=false;const pause=a.shadowRoot?.querySelector('[data-action="pause"]');if(pause)pause.textContent='Pause';return true;}
   }
-  return false;
+  report?.('No safe route');return false;
  },
  homeOwner(el){for(let p=el;p;p=p.parentElement||p.getRootNode?.()?.host)if(p.localName==='pixel-cat-home')return p;return null;},
  reconcile(a,manual=false){
@@ -30002,7 +30075,7 @@ window.pixelCatClimbV1={
   if(base&&Math.abs(base.right-e.geometry[2]-dx)<.5&&(!target||Math.abs(target.top-e.scene.target.top-dy)<.5&&Math.abs(target.left-e.scene.target.left-dx)<.5)&&p.scale===e.geometry[3]&&p.offset===e.geometry[4]){e.dx=dx;e.dy=dy;}else if(!e.recovering&&!this.recover(a,'layout changed'))return false;
   if(a.config.debug_labels&&(e.activeTime||0)>=(e.debugAt||0)){e.debugAt=(e.activeTime||0)+250;a.setAttribute('data-climb-active-ms',String(Math.round(e.activeTime)));a.setAttribute('data-climb-wait-ms',String(Math.round(e.waitReason?e.activeTime-e.waitStart:0)));a.setAttribute('data-climb-slow-callbacks',String(e.slowTicks||0));}
   if(e.sample?.kind==='grip')e.heldFor=(e.heldFor||0)+dt;
-  e.elapsed+=dt;if(e.elapsed>=e.plan.duration){if(e.plan.goalReached){const flight=e.plan.segments.findLast(s=>s.kind==='jump')?.jump,surface=a.surfaces.find(x=>x.id===flight?.motion.target.source?.id);if(surface){a.support=surface;a.x=flight.motion.x+(e.dx||0);a.y=surface.top;a.facing=flight.motion.direction;a.publishLanding?.(flight.motion,t);}const remaining=e.remaining;this.cancel(a,'landed',false);if(remaining?.length&&surface&&!e.recovering)a.route=remaining;a.deadline=t+2000;return false;}this.choose(a);if(!a.climb)return false;}
+  e.elapsed+=dt;if(e.elapsed>=e.plan.duration){if(e.plan.goalReached){const flight=e.plan.segments.findLast(s=>s.kind==='jump')?.jump,surface=a.surfaces.find(x=>x.id===flight?.motion.target.source?.id);if(surface){a.support=surface;a.x=flight.motion.x+(e.dx||0);a.y=surface.top;a.facing=flight.motion.direction;a.publishLanding?.(flight.motion,t);if(!e.recovering)e.labReport?.('Completed');}const remaining=e.remaining;this.cancel(a,'landed',false);if(remaining?.length&&surface&&!e.recovering)a.route=remaining;a.deadline=t+2000;return false;}this.choose(a);if(!a.climb)return false;}
   const sample=window.pixelCatClimbModelV1.samplePlan(e.plan,e.elapsed);if(!sample)return false;const shifted={...sample,...sample.rows?{x:sample.x+(e.dx||0),top:sample.top+(e.dy||0)}:{root:{x:sample.root.x+(e.dx||0),y:sample.root.y+(e.dy||0)}}};if(!this.sampleInside(a,shifted)){if(!e.recovering)this.recover(a,'world boundary changed');return true;}if(e.nativeTransfer?.tree&&!e.treeContact&&sample.kind==='grip'){e.treeContact=true;window.pixelCatTreeV1?.impact(a.catTree,.65);}
   this.draw(a,sample,t);a.propScene?.tick(t,a);return true;
  },
@@ -30031,7 +30104,7 @@ window.pixelCatClimbV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"ada4d073ec781f61a15937ca2e263f5942a865f6790cbfb38d2f7ff480605167"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"41ecd1a3d1a9fd9529cd7ccc1eb2a8e30b3e17a5b65150dafde6ac31c106cb5d"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0");
 })();

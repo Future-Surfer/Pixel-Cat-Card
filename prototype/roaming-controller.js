@@ -615,7 +615,7 @@ class PixelCatHome extends HTMLElement {
   pathTo(target,origin=this.support){return window.pixelCatSurfaceWorldV1.route(this,target,origin)??window.pixelCatClimbV1?.fallback(this,target,origin)??null;}
   plan() {
     const requested=!!this.command||!!this.goal;this.casualWander=false;
-    const now=performance.now();if(!requested&&window.pixelCatClimbV1?.offer(this,now))return;this.visits||=new Map();if(window.pixelCatPostRestV1?.beforePlan(this,now,requested))return;
+    const now=performance.now();if(!requested&&(window.pixelCatBehaviourLabV1?.offer(this,now)||window.pixelCatClimbV1?.offer(this,now)))return;this.visits||=new Map();if(window.pixelCatPostRestV1?.beforePlan(this,now,requested))return;
     if(!requested&&(this.config.mood_behaviour||this.config.social_behaviour)&&this.decisionLayer()?.decide(now))return;
     const leisure={points:restingPoints,weight:visitWeight,pick:weightedPick};if(!requested&&window.pixelCatExplorationV1?.plan(this,now,leisure))return;
     const [goalSurface,goalPoint]=String(this.goal||'').split('::');
