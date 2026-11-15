@@ -114,6 +114,14 @@ for(const [age,scale] of [['adult',2],['kitten',1]]){
   a.support=origin;a.x=310;a.y=origin.top;
   a.ensureMood=()=>({random:()=>0,values:{playfulness:.7,sleepiness:.2}});
   b.window.pixelCatSurfaceWorldV1.route=(_a,to)=>[to];
+  a.ensureMood=()=>({random:()=>.12,values:{playfulness:.7,sleepiness:.2}});
+  const preferred=N.prefer(a,target);
+  assert.equal(preferred?.[0].mode,'card-ascent','The workshop ascent can compete with an ordinary direct leap');
+  const workshopPlan=preferred[0].choice.result.route.plan;
+  assert.equal(workshopPlan.route,'edge climb');
+  assert.ok(workshopPlan.segments.some(s=>s.kind==='climb'&&s.cycle>0&&b.window.pixelCatClimbAssetsV1.frames.some(f=>f.id===s.frame.id)));
+  assert.ok(workshopPlan.grips.every(g=>g.side==='left'||g.side==='right'));
+  a.wallRetry=0;a.ensureMood=()=>({random:()=>0,values:{playfulness:.7,sleepiness:.2}});
   const jump=N.prefer(a,target);
   assert.ok(jump,'An ordinary one-jump destination may be reached via the current face');
   assert.equal(jump[0].choice.result.route.distanceCells,0,'Quick grip followed by a leap');

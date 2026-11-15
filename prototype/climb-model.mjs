@@ -60,11 +60,11 @@ export function samplePlan(plan,ms){
 // A grip is a support state, not a mandatory next-animation script. These pure
 // transitions can later become bounded route-graph edges without a second planner.
 export function planClimb(input,probe,resume=null,{contactPreview=false,previewRotation=null,scene:explicitScene=null,stopAtFirstGrip=false}={}){
- const d=validateDraft(input,{contactPixels:!contactPreview}),c=d.config;if(c.entryPose!=='side'&&!d.centred?.[c.entryPose.slice(7)])throw Error('Create the centred draft before choosing its landing pose.');const scene=explicitScene||sceneFor(c),s=scene.scale,{floor,face,target}=scene,entryFrames=c.entryPose==='side'?d.frames:d.centred[c.entryPose.slice(7)].frames,enter=entryFrames.filter(f=>f.role==='enter'),cycle=entryFrames.filter(f=>f.role==='cycle'),segments=[],attempts=[],grips=[],cache=new Map(),gripCeilingY=Math.max(face.top+4*s,scene.gripCeilingY??-Infinity),gripFloorY=scene.gripFloorY??floor.top-Math.max(...d.frames.map(f=>f.rows.findLastIndex(r=>r.includes('R'))+1-f.anchor.y))*s;let side=resume?.state.side||(c.entryPose==='side'?'left':c.entryPose),cursor=0,checks=0,cycles=0,root=resume?{...resume.state.root}:{x:face.x,y:floor.top-c.attach*s};
+ const d=validateDraft(input,{contactPixels:!contactPreview}),c=d.config;if(c.entryPose!=='side'&&!d.centred?.[c.entryPose.slice(7)])throw Error('Create the centred draft before choosing its landing pose.');const scene=explicitScene||sceneFor(c),s=scene.scale,{floor,face,target,transfer}=scene,entryFrames=c.entryPose==='side'?d.frames:d.centred[c.entryPose.slice(7)].frames,enter=entryFrames.filter(f=>f.role==='enter'),cycle=entryFrames.filter(f=>f.role==='cycle'),segments=[],attempts=[],grips=[],cache=new Map(),gripCeilingY=Math.max(face.top+4*s,scene.gripCeilingY??-Infinity),gripFloorY=scene.gripFloorY??floor.top-Math.max(...d.frames.map(f=>f.rows.findLastIndex(r=>r.includes('R'))+1-f.anchor.y))*s;let side=resume?.state.side||transfer?.side||(c.entryPose==='side'?'left':c.entryPose),cursor=0,checks=0,cycles=0,root=resume?{...resume.state.root}:{x:face.x,y:transfer?.entryY??floor.top-c.attach*s};
  const add=(seg,ms)=>{segments.push({...seg,ms,start:cursor,end:cursor+ms});cursor+=ms;};
  const sideX=value=>value==='right'?face.right:value.startsWith('centre-')?(face.x+face.right)/2:face.x;root.x=sideX(side);
  const goalSide=target.left>=face.right?'right':'left',sideFrame=frame=>side==='right'?mirrorClimbFrame(frame):frame,rotationFrames=path=>d.rotations?.[path]?.frames;
- const release=(point,frame,dest)=>{let departureSide=side;if(dest===target&&side!==goalSide&&c.scenario!=='plane'){const clip=rotationFrames(side.startsWith('centre-')?side.slice(7):c.rotationPath);if(!clip)return null;point={x:goalSide==='right'?face.right:face.x,y:point.y};frame=goalSide==='right'?clip.at(-1):clip[0];departureSide=goalSide;}const key=[point.x,point.y,frame.id,dest.id,departureSide].join(':');if(!cache.has(key)){if(checks>=95)return null;checks++;cache.set(key,probe.release(point,frame,dest,{side:departureSide}));}return cache.get(key);};
+ const release=(point,frame,dest)=>{let departureSide=side;if(dest===target&&side!==goalSide&&c.scenario!=='plane'&&!transfer){const clip=rotationFrames(side.startsWith('centre-')?side.slice(7):c.rotationPath);if(!clip)return null;point={x:goalSide==='right'?face.right:face.x,y:point.y};frame=goalSide==='right'?clip.at(-1):clip[0];departureSide=goalSide;}const key=[point.x,point.y,frame.id,dest.id,departureSide].join(':');if(!cache.has(key)){if(checks>=95)return null;checks++;cache.set(key,probe.release(point,frame,dest,{side:departureSide}));}return cache.get(key);};
  const rotate=(path,destination=side==='left'?'right':'left')=>{
   if(side.startsWith('centre-')&&side.slice(7)!==path)throw Error('Return to a side before changing the rotation arc.');
   const clip=rotationFrames(path),a=side==='left'?0:side==='right'?1:.5,b=destination==='left'?0:destination==='right'?1:.5,list=clip.filter(f=>f.around>=Math.min(a,b)&&f.around<=Math.max(a,b));if(b<a)list.reverse();
@@ -74,7 +74,7 @@ export function planClimb(input,probe,resume=null,{contactPreview=false,previewR
  const currentCatch=()=>side.startsWith('centre-')?d.centred[side.slice(7)].frames.at(-1):sideFrame(d.frames.filter(f=>f.role==='cycle').at(-1));
  const finish=(route,exit=null)=>{if(exit){add({kind:'jump',jump:exit},exit.duration);if(c.exitPose!=='none'&&probe.settle){const rest=probe.settle(exit,c.exitPose);if(rest)add({kind:'rest',jump:rest,phase:'After landing / '+c.exitPose},rest.duration);}}const destination=resume?(resume.action==='floor'?floor:target):c.mode==='return'?floor:target;let safeReturn=destination===floor;if(exit&&!safeReturn){checks++;safeReturn=!!probe.ground(exit.landingX,destination,floor);}return {ok:true,route,scene,segments,grips,duration:cursor,checks,cycles,safeReturn,directReachable:!!direct,attempts,holdAtEnd:segments.at(-1)?.kind==='grip',goalReached:!!exit,returnNote:exit?(safeReturn?'A normal return jump is reachable.':'Outbound lab route only: a reviewed descent route is still needed.'):'Gripped support: pause, reassess or choose another available edge.'};};
  const baseGain=cycle.reduce((n,f)=>n+f.gain,0)*c.hop*c.gainBasis*s,first=enter[0]||cycle[0],catchFrame=cycle.at(-1),entryY=floor.top-c.attach*s;
- const direct=probe.ground(scene.startX,floor,target);checks++;
+ const direct=!transfer&&probe.ground(scene.startX,floor,target);checks++;
  if(!resume&&!['rotate-exit','centre-route'].includes(c.scenario)&&c.mode==='auto'&&direct&&c.entry!=='grip'){add({kind:'jump',jump:direct},direct.duration);checks++;return {ok:true,route:'direct jump',scene,segments,grips,duration:cursor,checks,cycles:0,directReachable:true,safeReturn:!!probe.ground(direct.landingX,target,floor)};}
  if(!face.grippy&&c.mode!=='rebound')return {ok:false,reason:'This face has no claw grip. Use a brief rebound; sustained climbing needs an explicit grippable face.',scene,checks,directReachable:!!direct,attempts};
  if(root.y<gripCeilingY||root.y>gripFloorY)return {ok:false,reason:'This grip lies outside the usable face. Extend the post or adjust the first-grip height.',scene,checks,directReachable:!!direct,attempts};
@@ -104,14 +104,24 @@ export function planClimb(input,probe,resume=null,{contactPreview=false,previewR
  }
  if(c.entry!=='grip'){
   if(['jump-up','pounce','ledge-jump'].includes(c.entry)){
-   checks++;const jump=probe.attach?.(scene.startX,c.entry==='ledge-jump'?scene.ledge:floor,root,first,c.entry);if(!jump)return {ok:false,reason:'The chosen entry leap cannot reach this grip with the normal jump limits. Move the approach closer or adjust the first grip.',scene,checks,attempts};add({kind:'attach',phase:'Leap to Find grip / '+c.entry,jump},jump.duration);
+   checks++;const jump=probe.attach?.(scene.startX,c.entry==='ledge-jump'?scene.ledge:floor,root,sideFrame(first),transfer?'edge':c.entry,side);if(!jump)return {ok:false,reason:'The chosen entry leap cannot reach this grip with the normal jump limits. Move the approach closer or adjust the first grip.',scene,checks,attempts};add({kind:'attach',phase:'Leap to Find grip / '+c.entry,jump},jump.duration);
   }else {
    const approach=probe.approach?.(c.entry==='scratch'?'meander':c.entry,scene.startX,floor,face.x-20*s,c.entrySpeed);if(approach)add({kind:'approach',phase:'Approach / '+c.entry,jump:approach},approach.duration);else add({kind:'approach',frame:first,from:{x:scene.startX+first.anchor.x*s,y:root.y},to:{...root},cycle:0},c.approach);
    const entry=probe.scratch?.(face,floor,c.entry==='scratch');if(entry)add({kind:'entry',phase:c.entry==='scratch'?'Scratch / consider climbing':'Raise shoulders / reach for grip',jump:entry},entry.duration);
   }
  }
- for(const frame of enter)add({kind:'climb',frame,from:{...root},to:{...root},cycle:0},frame.ms/c.tempo);
- const initialGrip=grip(first);if(c.entry==='grip'||stopAtFirstGrip)return finish('start on gripped support');
+ for(const frame of enter)add({kind:'climb',frame:sideFrame(frame),from:{...root},to:{...root},cycle:0},frame.ms/c.tempo);
+ const initialGrip=grip(sideFrame(first));if(c.entry==='grip'||stopAtFirstGrip)return finish('start on gripped support');
+ if(transfer){
+  let exit=transfer.min?null:initialGrip.flights.upper;
+  for(let n=1;!exit&&!transfer.quick&&n<=c.maxCycles;n++){
+   const previous=root.y;cycles=n;moveCycle(transfer.direction);
+   if(root.y===previous)break;
+   const node=grip();
+   if(Math.abs(root.y-transfer.entryY)>=transfer.min*s)exit=node.flights.upper;
+  }
+  return finish(transfer.quick?'wall jump':'edge climb',exit);
+ }
  let exit=null;const destination=c.mode==='return'?floor:target,limit=c.mode==='rebound'?1:c.maxCycles;
  // The destination and actual flight envelope decide release; post height only
  // bounds available grips. A failed goal leaves a playable state for reassessment.
@@ -150,9 +160,9 @@ export function runtimeProbe(Home,art,config,scale){
   const skip=centre?plan.durations[0]+plan.durations[1]:0,duration=plan.duration-skip;
   return {duration,landingX:x,motion:m,start:plan.start,flight:plan.flight,sample:ms=>({...jumper.jumpSample(m,Math.min(1,(skip+Math.max(.001,ms))/plan.duration)),facing:m.direction})};
  }
- function attach(fromX,from,root,frame,style){
-  const p=framePlacement(frame,root,scale),b=inkCentre(frame.rows),centre={x:p.x+b.x*scale,y:p.top+b.y*scale},direction=1,kind=style==='pounce'?'across':style==='jump-up'||centre.y<from.top-12*scale?'ascend':'descend',rows=art[kind][3],landing=art.leapAnchors[kind],last=landing.at(-1).point,point=landing[3].point,c=inkCentre(rows,direction),offset=kind==='ascend'?(landing[3].edgeOffset-7):0;
-  const m={kind:'jump',jumpKind:kind,direction,fromX,fromY:from.top,x:centre.x-(last[0]+offset-point[0]+c.x)*scale,y:centre.y-(c.y-point[1]-1)*scale};
+ function attach(fromX,from,root,frame,style,side='left'){
+  const p=framePlacement(frame,root,scale),b=inkCentre(frame.rows),centre={x:p.x+b.x*scale,y:p.top+b.y*scale},direction=side==='right'?-1:1,kind=style==='pounce'?'across':style==='jump-up'||centre.y<from.top-12*scale?'ascend':'descend',rows=art[kind][3],landing=art.leapAnchors[kind],last=facingPoint(landing.at(-1).point,direction),point=facingPoint(landing[3].point,direction),c=inkCentre(rows,direction),offset=kind==='ascend'?(landing[3].edgeOffset-7)*direction:0;
+  const m={kind:'jump',jumpKind:kind,direction,fromX,fromY:from.top,x:centre.x-(last.x+offset-point.x+c.x)*scale,y:centre.y-(c.y-point.y-1)*scale};
   const plan=actor.planJump(m,config.climbWorld?.top);if(!plan)return null;m.jumpProfile=plan;m.duration=plan.duration;const duration=plan.durations[0]+plan.durations[1]+plan.flight.flightMs;
   return {duration,landingKind:'grip',landingRoot:{...root},motion:m,end:plan.end,sample:ms=>({...actor.jumpSample(m,Math.min(duration-.001,ms)/plan.duration),facing:direction})};
  }
