@@ -133,3 +133,19 @@ for(const [age,scale] of [['adult',2],['kitten',1]]){
   assert.equal(a.support,target);
  }finally{b.window.pixelCatSurfaceWorldV1.route=ordinary;}
 }
+
+// The testing flag extends just the horizontal home floor and can be removed.
+{
+ const a=native(),dock={style:{removeProperty(name){assert.equal(name,'border-image');delete this.borderImage;}}};
+ a.home={left:66,right:334,top:500,rectNode:dock,rectSnapshot:{left:62,width:276}};
+ a.shadowRoot={querySelector:()=>({getBoundingClientRect:()=>({left:49,right:351,width:302})})};
+ N.extendFloor(a);
+ assert.deepEqual([a.home.left,a.home.right],[66,334]);
+ a.config.test_border_floor=true;
+ N.extendFloor(a);
+ assert.deepEqual([a.home.left,a.home.right,a.home.top],[49,351,500]);
+ assert.match(dock.style.borderImage,/13px 0 13px$/);
+ delete a.config.test_border_floor;
+ N.extendFloor(a);
+ assert.equal(dock.style.borderImage,undefined);
+}

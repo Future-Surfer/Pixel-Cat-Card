@@ -26800,6 +26800,7 @@ catCleanPicker();for(const type of catLegacyPickerTypes)customElements.whenDefin
 
 Object.assign(window.pixelCatSetupV1,{
 surfaces(a){
+window.pixelCatCardClimbV1?.extendFloor(a);
 window.pixelCatHomePostsV1?.sync(a);
 window.pixelCatTreeV1?.surfaces(a);
 a.bedSurface=null;if(a.home&&a.config.show_home!==false)a.home.bedOwner=a;
@@ -29665,6 +29666,19 @@ return list;
 const cardClimbArt=()=>({...window.pixelCatRoamingArtV2,...window.pixelCatRoamingExtrasV1,idleSequences:{...window.pixelCatRoamingArtV2?.idleSequences,...window.pixelCatRoamingExtrasV1?.idleSequences,...window.pixelCatRoamingExtensionsV1?.idleSequences}});
 const moveRect=(r,dx,dy)=>({...r,left:r.left+dx,right:r.right+dx,top:r.top+dy,bottom:r.bottom+dy});
 window.pixelCatCardClimbV1={
+extendFloor(a){
+const floor=a.home,dock=floor?.rectNode;
+if(!dock)return;
+if(a.config.test_border_floor!==true||a.config.show_home===false){
+dock.style.removeProperty('border-image');
+return;
+}
+const rect=a.shadowRoot.querySelector('ha-card')?.getBoundingClientRect();
+if(!rect||!(rect.width>=a.size)||!Number.isFinite(rect.left)||!Number.isFinite(rect.right))return;
+const r=floor.rectSnapshot;
+floor.left=rect.left;floor.right=rect.right;
+dock.style.borderImage='linear-gradient(#bbb,#bbb) 1 / 0 0 1px / 0 '+Math.max(0,rect.right-r.left-r.width)+'px 0 '+Math.max(0,r.left-rect.left)+'px';
+},
 controls(a){
 const outer=a.shadowRoot?.querySelector('.cat-debug-host>details');if(!outer)return;const box=outer.querySelector('[data-cat-ui=\"climbing\"]')||outer,existing=outer.querySelector('[data-card-climb-preview]');if(existing){existing.disabled=!a.config.card_climbing;if(existing.parentElement!==box)box.append(existing);return;}
 const button=document.createElement('button');button.textContent='Try climbing a card';button.disabled=!a.config.card_climbing;button.setAttribute('data-card-climb-preview','');button.title='Climb an exposed card face, then leap to a checked landing.';
@@ -30202,7 +30216,7 @@ window.pixelCatClimbV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"4daa286d984f05080afab15ec5d5059d502e14ad9a2791a1d1fe0e8ced8b0b71"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"cb4d7af058f2abeaa80086819269e813b704edb73b376134331e129edd716a13"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0");
 })();

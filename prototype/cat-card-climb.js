@@ -2,6 +2,19 @@
 const cardClimbArt=()=>({...window.pixelCatRoamingArtV2,...window.pixelCatRoamingExtrasV1,idleSequences:{...window.pixelCatRoamingArtV2?.idleSequences,...window.pixelCatRoamingExtrasV1?.idleSequences,...window.pixelCatRoamingExtensionsV1?.idleSequences}});
 const moveRect=(r,dx,dy)=>({...r,left:r.left+dx,right:r.right+dx,top:r.top+dy,bottom:r.bottom+dy});
 window.pixelCatCardClimbV1={
+ extendFloor(a){
+  const floor=a.home,dock=floor?.rectNode;
+  if(!dock)return;
+  if(a.config.test_border_floor!==true||a.config.show_home===false){
+   dock.style.removeProperty('border-image');
+   return;
+  }
+  const rect=a.shadowRoot.querySelector('ha-card')?.getBoundingClientRect();
+  if(!rect||!(rect.width>=a.size)||!Number.isFinite(rect.left)||!Number.isFinite(rect.right))return;
+  const r=floor.rectSnapshot;
+  floor.left=rect.left;floor.right=rect.right;
+  dock.style.borderImage='linear-gradient(#bbb,#bbb) 1 / 0 0 1px / 0 '+Math.max(0,rect.right-r.left-r.width)+'px 0 '+Math.max(0,r.left-rect.left)+'px';
+ },
  controls(a){
   const outer=a.shadowRoot?.querySelector('.cat-debug-host>details');if(!outer)return;const box=outer.querySelector('[data-cat-ui=\"climbing\"]')||outer,existing=outer.querySelector('[data-card-climb-preview]');if(existing){existing.disabled=!a.config.card_climbing;if(existing.parentElement!==box)box.append(existing);return;}
   const button=document.createElement('button');button.textContent='Try climbing a card';button.disabled=!a.config.card_climbing;button.setAttribute('data-card-climb-preview','');button.title='Climb an exposed card face, then leap to a checked landing.';
