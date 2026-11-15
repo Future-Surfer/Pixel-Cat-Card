@@ -253,7 +253,7 @@ class PixelCatHome extends HTMLElement {
   }
   set hass(value) { this._hass = value;if(this.monitorCard)this.monitorCard.hass=value; }
   getCardSize() { return this.config.mode==='monitor'?4:this.config.show_home===false&&this.config.show_controls!==true?0:2; }
-  getGridOptions() { return {columns:this.config.mode==='monitor'||(this.worldScale||this.scale)>3?12:6,rows:'auto',min_columns:3}; }
+  getGridOptions() { return {columns:['monitor','behaviour-lab'].includes(this.config.mode)||(this.worldScale||this.scale)>3?12:6,rows:'auto',min_columns:3}; }
   paintHome() {
     this.primaryFlag=null;this.primaryAt=0;this.debugOrganized=false;this.homeArtReady=false;
     this.shadowRoot.innerHTML = window.pixelCatHomeMarkupV1(this);
@@ -280,7 +280,13 @@ class PixelCatHome extends HTMLElement {
   }
   connectedCallback() {
     if(this.active) return;
-    if(this.config.mode==='monitor'){customElements.whenDefined('pixel-cat-monitor').then(()=>{if(this.isConnected&&this.config.mode==='monitor'&&!this.monitorCard)window.pixelCatSetupV1?.connect(this);});return;}
+    const mode=this.config.mode;
+    if(mode==='monitor'||mode==='behaviour-lab'){
+      customElements.whenDefined('pixel-cat-'+mode).then(()=>{
+        if(this.isConnected&&this.config.mode===mode&&!this.monitorCard)window.pixelCatSetupV1?.connect(this);
+      });
+      return;
+    }
     this.bedEntryManaged=true;this.waitingForSurface=false;this.surfaceRetryAt=0;
     this.home=null;this.scale ||= 2; this.paintHome();this.style.display=this.config.show_home===false&&!this.config.show_controls&&!editorPreviewFor(this)?'none':''; this.root=this.worldRoot();
     this.href = location.pathname;
@@ -807,8 +813,8 @@ class PixelCatHome extends HTMLElement {
       if(!this.idle||this.idle.support!==this.support.id||t>=this.idle.poseUntil||this.inspectionPending){
         const oldIdle=this.idle,previousFacing=this.facing,oldPose=this.idle?.pose||'walk';
         const base=this.support.poses?.length?this.support.poses:this.support.home||this.support.internal?['alertLying','loaf','sit','sithead','clean','look','stretch','stand','sniff','scratch','yawn','sleep','meow']:['backRoll','alertLying','perch','sit','sithead','glance','clean','loaf','look','lookdown','stand','scratch','yawn','meow','chatter'];const peek=lookDownFacing(this.support,this.x,this.scale,this.facing),choices=base.filter(p=>(window.pixelCatBehaviourV1?.allowed(this,CAT_ART.idleSequences?.[p])!==false)&&(p!=='backRoll'||['loaf','alertLying'].includes(oldPose))&&(p!=='lookdown'||peek!==null)&&(!['sniff','scratch','yawn','sleep','meow','chatter'].includes(p)||CAT_ART.idleSequences?.[p]));
-        if(!this.support.narrow&&!this.support.poses?.length&&this.config.mood_behaviour&&CAT_ART.idleSequences?.sleep&&window.pixelCatBehaviourV1?.allowed(this,CAT_ART.idleSequences.sleep)!==false&&!choices.includes('sleep'))choices.push('sleep');const inspection=this.inspectionPending;let pose=this.previewPose||this.play?.pose||this.previewBedPose||this.social?.restPose()||(inspection?'look':weightedPick(choices,p=>idlePoseWeight(p,this.recentPoses,peek)*(window.pixelCatBehaviourV1?.weight(this,CAT_ART.idleSequences?.[p])??1)*(this.social?.poseWeight(p)||1)*(window.pixelCatPostRestV1?.poseWeight(this,p)||1),this.config.mood_behaviour?()=>this.ensureMood().random():Math.random));if(!pose||window.pixelCatBehaviourV1?.allowed(this,CAT_ART.idleSequences?.[pose])===false)pose='stand';this.recentPoses||=[];this.recentPoses.push({pose});if(this.recentPoses.length>3)this.recentPoses.shift();if(['glance','lookdown'].includes(pose)&&!CAT_ART.idleSequences?.[pose])pose='sit';if(pose==='lookdown'&&peek!==null)this.facing=peek;this.inspectionPending=null;if(inspection)this.facing=inspection.lookAt.x>=this.x+12*this.scale?1:-1;this.idleSequence=(this.idleSequence||0)+1;
-        this.previewBedPose=null;if(window.pixelCatBedEntryV1?.beforeIdle(this,pose,t,CAT_ART,groundedFront))return;
+        if(!this.support.narrow&&!this.support.poses?.length&&this.config.mood_behaviour&&CAT_ART.idleSequences?.sleep&&window.pixelCatBehaviourV1?.allowed(this,CAT_ART.idleSequences.sleep)!==false&&!choices.includes('sleep'))choices.push('sleep');const inspection=this.inspectionPending;let pose=this.previewPose||this.play?.pose||this.previewBedPose||this.social?.restPose()||this.labPose||(inspection?'look':weightedPick(choices,p=>idlePoseWeight(p,this.recentPoses,peek)*(window.pixelCatBehaviourV1?.weight(this,CAT_ART.idleSequences?.[p])??1)*(this.social?.poseWeight(p)||1)*(window.pixelCatPostRestV1?.poseWeight(this,p)||1),this.config.mood_behaviour?()=>this.ensureMood().random():Math.random));if(!pose||window.pixelCatBehaviourV1?.allowed(this,CAT_ART.idleSequences?.[pose])===false)pose='stand';this.recentPoses||=[];this.recentPoses.push({pose});if(this.recentPoses.length>3)this.recentPoses.shift();if(['glance','lookdown'].includes(pose)&&!CAT_ART.idleSequences?.[pose])pose='sit';if(pose==='lookdown'&&peek!==null)this.facing=peek;this.inspectionPending=null;if(inspection)this.facing=inspection.lookAt.x>=this.x+12*this.scale?1:-1;this.idleSequence=(this.idleSequence||0)+1;
+        this.labPose=this.previewBedPose=null;if(window.pixelCatBedEntryV1?.beforeIdle(this,pose,t,CAT_ART,groundedFront))return;
         const poseConfig=pose==='bat'?{...this.config,bat_stroke:this.play?.strokes?.[this.play.strokeIndex]}:this.config,first=idleSample(CAT_ART,pose,0,poseConfig);
         const duration={backRoll:16000,alertLying:12000,loaf:20000,sit:12000,sithead:12000,perch:12000,clean:3000,look:4000,lookdown:3000,glance:3000,stretch:1250,stand:6000,sniff:2200,scratch:2200,yawn:2300,sleep:8500,meow:950,chatter:850,rub:1900,bat:2600}[pose];
         const bridge=this.previewPose||this.play||this.social?.episode?[]:loafBridge(CAT_ART,oldPose==='sleep'?'loaf':oldPose,pose==='sleep'?'loaf':pose,oldIdle,this.config,t),bridgeMs=window.pixelCatPolishV1.bridgeDuration(bridge,this.config);

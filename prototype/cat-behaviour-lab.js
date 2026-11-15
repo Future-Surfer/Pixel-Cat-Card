@@ -3,6 +3,8 @@
   const scenarios = {
     climb: {
       label: 'Climb and leap',
+      counters: ['No usable wall','No safe route','No higher landing','No way home','Declined','Attempted','Completed'],
+      enabled: a => !!a.config.card_climbing,
       offer(a, t, report) {
         const climb = window.pixelCatCardClimbV1;
         if (!climb?.reconcile(a)?.faces.length) return report('No usable wall');
@@ -11,12 +13,29 @@
           report('Declined'); return false;
         }, report);
       }
+    },
+    yawn: {
+      label: 'Yawn',
+      counters: ['Declined','Yawns chosen'],
+      offer(a, t, report) {
+        if (a.idle?.pose === 'yawn' || a.support.narrow ||
+            a.support.poses?.length && !a.support.poses.includes('yawn')) return false;
+        if (a.ensureMood().random() >= .75) {
+          report('Declined');
+          return false;
+        }
+        a.labPose = 'yawn';
+        a.deadline = t + 4000;
+        if (a.idle) a.idle.poseUntil = t;
+        report('Yawns chosen');
+        return true;
+      }
     }
   };
   window.pixelCatBehaviourLabV1 = {
     offer(a, t) {
       const view = views.get(a.root), scenario = scenarios[view?.focus];
-      if (!scenario || view.path !== location.pathname || !a.config.card_climbing ||
+      if (!scenario || view.path !== location.pathname || !a.support || scenario.enabled?.(a) === false ||
           !window.pixelCatClimbV1.ready(a) || a.idle?.pose === 'sleep' && t < a.idle.poseUntil) return false;
       if (t < (view.next.get(a) || 0)) return false;
       view.next.set(a, t + 6000 + a.ensureMood().random() * 6000);
@@ -57,7 +76,7 @@
         const cats = (window.pixelCatPrimaryV1?.current() || []).filter(a => a.root === root);
         const busy = cats.filter(a => !window.pixelCatClimbV1?.ready(a) || a.idle?.pose === 'sleep').length;
         status.textContent = view.focus
-          ? [`${cats.length} cats (${busy} busy)`, ...['No usable wall','No safe route','Declined','Attempted','Completed'].map(k => `${k}: ${view.counts[k] || 0}`)].join(' · ')
+          ? [`${cats.length} cats (${busy} busy)`, ...scenarios[view.focus].counters.map(k => `${k}: ${view.counts[k] || 0}`)].join(' · ')
           : 'Choose a focus for the cats on this view until you reload.';
       };
       refresh();

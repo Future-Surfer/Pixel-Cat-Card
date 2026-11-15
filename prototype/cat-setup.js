@@ -63,9 +63,9 @@ window.pixelCatSetupV1={
   a.homeArtReady=true;
  },
  connect(a){
-  if(a.config.mode!=='monitor')return false;
+  if(!['monitor','behaviour-lab'].includes(a.config.mode))return false;
   a.style.display='';a.shadowRoot.innerHTML='';
-  const monitor=document.createElement('pixel-cat-monitor');monitor.setConfig(a.config);monitor.hass=a._hass;a.monitorCard=monitor;a.shadowRoot.append(monitor);
+  const monitor=document.createElement('pixel-cat-'+a.config.mode);monitor.setConfig(a.config);monitor.hass=a._hass;a.monitorCard=monitor;a.shadowRoot.append(monitor);
   return true;
  },
  disconnect(a){window.pixelCatAlertV1?.leave(a);window.pixelCatDepthV1?.remove(a);window.pixelCatMouthV1?.disconnect?.(a);a.monitorCard?.remove();a.monitorCard=null;if(a.svg)a.svg.style.clipPath='';a.arriving=null;a.bedInside=null;a.bedEntry=null;a.previewBedPose=null;},

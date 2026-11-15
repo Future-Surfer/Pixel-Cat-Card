@@ -96,7 +96,7 @@ class PixelCatHomeEditor extends HTMLElement{
  set hass(value){this._hass=value;}
  setConfig(config){if(this.rendered&&JSON.stringify(config)===JSON.stringify(this.config))return;this.clearPending();this.config={...config};this.render();}
  clearPending(){for(const timer of this.timers.values())clearTimeout(timer);this.timers.clear();}
- connectedCallback(){if(this.rendered&&!this.catPreview&&this.config.mode!=='monitor')this.render();}
+ connectedCallback(){if(this.rendered&&!this.catPreview&&!['monitor','behaviour-lab'].includes(this.config.mode))this.render();}
  disconnectedCallback(){this.clearPending();clearTimeout(this.previewTimer);this.catPreview=null;}
  updatePreview(){
   if(!this.catPreview)return;
@@ -147,14 +147,14 @@ class PixelCatHomeEditor extends HTMLElement{
    summary:focus-visible{outline-offset:-3px}
    @media(pointer:coarse){.swatches button{width:44px;height:44px}}
    </style>`;
-  const monitor=this.config.mode==='monitor',purpose=document.createElement('label');purpose.className='purpose';purpose.textContent='Card purpose';
+  const lab=this.config.mode==='behaviour-lab',monitor=this.config.mode==='monitor',utility=lab||monitor,purpose=document.createElement('label');purpose.className='purpose';purpose.textContent='Card purpose';
   const select=document.createElement('select');select.setAttribute('aria-label','Card purpose');select.dataset.key='mode';
-  for(const [value,label]of [['companion','Cat companion'],['monitor','Performance monitor · no cat']]){const option=document.createElement('option');option.value=value;option.textContent=label;select.append(option);}select.value=monitor?'monitor':'companion';
+  for(const [value,label]of [['companion','Cat companion'],['monitor','Performance monitor · no cat'],['behaviour-lab','Behaviour Lab · no cat']]){const option=document.createElement('option');option.value=value;option.textContent=label;select.append(option);}select.value=utility?this.config.mode:'companion';
   select.addEventListener('change',()=>{for(const input of this.shadowRoot.querySelectorAll('input'))if(this.timers.has(input.dataset.key))input.dispatchEvent(new Event('change'));this.config={...this.config,mode:select.value};this.dispatchEvent(new CustomEvent('config-changed',{detail:{config:{...this.config}},bubbles:true,composed:true}));this.render();});purpose.append(select);
-  const welcome=document.createElement('div'),intro=document.createElement('p');welcome.className='welcome';intro.textContent=monitor?'Give your monitor a name. It tracks how this dashboard is running.':'It’s time to meet your new friend. Give them a name, choose their fur colour and age, and make them feel at home.';welcome.append(intro);const cat=monitor?null:this.makePreview();if(cat)welcome.append(cat);this.shadowRoot.append(welcome);
-  const groups=monitor?[{title:'Performance monitor',open:true,fields:[['title','Monitor title','text','Cat performance','Saved title for this page’s shared performance monitor.']]}]:catEditorGroups;
+  const welcome=document.createElement('div'),intro=document.createElement('p');welcome.className='welcome';intro.textContent=lab?'Temporarily favour a behaviour for cats on this view.':monitor?'Give your monitor a name. It tracks how this dashboard is running.':'It’s time to meet your new friend. Give them a name, choose their fur colour and age, and make them feel at home.';welcome.append(intro);const cat=utility?null:this.makePreview();if(cat)welcome.append(cat);this.shadowRoot.append(welcome);
+  const groups=lab?[{title:'Behaviour Lab',open:true,fields:[]}]:monitor?[{title:'Performance monitor',open:true,fields:[['title','Monitor title','text','Cat performance','Saved title for this page’s shared performance monitor.']]}]:catEditorGroups;
   for(const group of groups){
-   const section=document.createElement('details');section.dataset.group=group.title;const hasPurpose=monitor||group.title==='Advanced settings';section.open=(hasPurpose&&focusedKey==='mode')||(expanded.get(group.title)??!!group.open);
+   const section=document.createElement('details');section.dataset.group=group.title;const hasPurpose=utility||group.title==='Advanced settings';section.open=(hasPurpose&&focusedKey==='mode')||(expanded.get(group.title)??!!group.open);
    const summary=document.createElement('summary');summary.textContent=group.title;section.append(summary);
    const fields=document.createElement('div');fields.className='fields';
    for(const [key,title,kind,,help,min,max]of group.fields){
@@ -193,9 +193,9 @@ class PixelCatHomeEditor extends HTMLElement{
    section.append(fields);this.shadowRoot.append(section);
 
   }
-  if(!monitor)window.pixelCatWorldV1?.editor(this,expanded);
+  if(!utility)window.pixelCatWorldV1?.editor(this,expanded);
   if(focusedKey)[...this.shadowRoot.querySelectorAll('[data-key]')].find(control=>control.dataset.key===focusedKey)?.focus();
-  const note=document.createElement('p');note.className='note';note.textContent=monitor?'Save to add your monitor.':'When you’re ready, save to welcome your cat to the dashboard.';this.shadowRoot.append(note);this.rendered=true;
+  const note=document.createElement('p');note.className='note';note.textContent=lab?'Save to add Behaviour Lab.':monitor?'Save to add your monitor.':'When you’re ready, save to welcome your cat to the dashboard.';this.shadowRoot.append(note);this.rendered=true;
  }
 }
 if(!customElements.get('pixel-cat-home-editor'))customElements.define('pixel-cat-home-editor',PixelCatHomeEditor);

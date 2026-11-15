@@ -13,15 +13,17 @@ window.pixelCatCardClimbV1={
   const world=window.pixelCatSurfaceWorldV1;
   const distance=s=>Math.hypot(Math.max(s.min-a.x,0,a.x-s.max),from.top-s.top);
   const targets=a.surfaces.filter(s=>!s.tree&&!s.home&&!s.bed&&!s.narrow&&from.top-s.top>=8*a.scale).sort((x,y)=>distance(x)-distance(y)).slice(0,3);
+  let hasReturn=false;
   for(const target of targets){
    if(!preview&&!world.route(a,a.home,target))continue;
+   hasReturn=true;
    const next=this.route(a,target,from,true,'ascent')?.[0];
    if(!next)continue;
    if(accept&&!accept())return false;
    a.route=[next];this.start(a,next,t);
    if(a.climb){if(report){report('Attempted');a.climb.labReport=report;}a.paused=false;const pause=a.shadowRoot?.querySelector('[data-action="pause"]');if(pause)pause.textContent='Pause';return true;}
   }
-  report?.('No safe route');return false;
+  report?.(!targets.length?'No higher landing':!hasReturn?'No way home':'No safe route');return false;
  },
  homeOwner(el){for(let p=el;p;p=p.parentElement||p.getRootNode?.()?.host)if(p.localName==='pixel-cat-home')return p;return null;},
  reconcile(a,manual=false){

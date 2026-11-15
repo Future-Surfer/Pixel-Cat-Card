@@ -43,6 +43,7 @@ console.log('PASS: real editor factory/stub, silent defaults, composed config-ch
 const swatch=editor.shadowRoot.querySelectorAll('button').find(n=>n.title==='Ginger');swatch.listeners.click();assert.equal(editor.config.color,'#ad6c2d');
 const purpose=()=>editor.shadowRoot.querySelectorAll('select').find(n=>n.dataset.key==='mode');
 input('name').value='Pending name';input('name').listeners.input();purpose().value='monitor';purpose().listeners.change();assert.equal(editor.config.name,'Pending name');assert.equal(editor.config.mode,'monitor');assert.equal(input('name'),undefined);assert.equal(input('title').value,'Cat performance');change('title','Stress timing');assert.equal(editor.event.detail.config.title,'Stress timing');assert.equal(editor.config.surface_rules,advanced.surface_rules);
+purpose().value='behaviour-lab';purpose().listeners.change();assert.equal(editor.event.detail.config.mode,'behaviour-lab');assert.equal(input('name'),undefined);assert.equal(input('title'),undefined);
 purpose().value='companion';purpose().listeners.change();assert.equal(input('name').value,'Pending name');assert.equal(input('color').value,'#ad6c2d');assert.equal(editor.config.title,'Stress timing');assert.equal(timers.size,0);
 assert.equal(box.Home.getStubConfig().arrival,'igloo');assert.equal(box.Home.getStubConfig().debug_labels,false);
 assert.deepEqual(Array.from(box.window.customCards,c=>c.type),['pixel-cat-home']);
