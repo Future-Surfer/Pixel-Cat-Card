@@ -2,19 +2,6 @@
 const cardClimbArt=()=>({...window.pixelCatRoamingArtV2,...window.pixelCatRoamingExtrasV1,idleSequences:{...window.pixelCatRoamingArtV2?.idleSequences,...window.pixelCatRoamingExtrasV1?.idleSequences,...window.pixelCatRoamingExtensionsV1?.idleSequences}});
 const moveRect=(r,dx,dy)=>({...r,left:r.left+dx,right:r.right+dx,top:r.top+dy,bottom:r.bottom+dy});
 window.pixelCatCardClimbV1={
- extendFloor(a){
-  const floor=a.home,dock=floor?.rectNode;
-  if(!dock)return;
-  if(a.config.test_border_floor!==true||a.config.show_home===false){
-   dock.style.removeProperty('border-image');
-   return;
-  }
-  const rect=a.shadowRoot.querySelector('ha-card')?.getBoundingClientRect();
-  if(!rect||!(rect.width>=a.size)||!Number.isFinite(rect.left)||!Number.isFinite(rect.right))return;
-  const r=floor.rectSnapshot;
-  floor.left=rect.left;floor.right=rect.right;
-  dock.style.borderImage='linear-gradient(#bbb,#bbb) 1 / 0 0 1px / 0 '+Math.max(0,rect.right-r.left-r.width)+'px 0 '+Math.max(0,r.left-rect.left)+'px';
- },
  controls(a){
   const outer=a.shadowRoot?.querySelector('.cat-debug-host>details');if(!outer)return;const box=outer.querySelector('[data-cat-ui=\"climbing\"]')||outer,existing=outer.querySelector('[data-card-climb-preview]');if(existing){existing.disabled=!a.config.card_climbing;if(existing.parentElement!==box)box.append(existing);return;}
   const button=document.createElement('button');button.textContent='Try climbing a card';button.disabled=!a.config.card_climbing;button.setAttribute('data-card-climb-preview','');button.title='Climb an exposed card face, then leap to a checked landing.';
@@ -53,7 +40,7 @@ window.pixelCatCardClimbV1={
   this.controls(a);
   const generation=(old?.generation||0)+1,byOwner=new Map(),sources=[...records],included=new Set(records.map(v=>v.el)),denied=new Map(),ownHome=a.shadowRoot?.querySelector('ha-card');
   // Detection retains excluded outer home cards without granting any affordance.
-  for(const el of a.cardPanelElements||[]){if(included.has(el))continue;const owner=this.homeOwner(el);if(!owner||el!==owner.shadowRoot?.querySelector('ha-card'))continue;const reason=!owner.active?'Home inactive · outline only':owner.config?.show_home===false?'Home hidden · outline only':!a.config.shared_home_surfaces||!owner.config?.shared_home_surfaces?'Sharing off · both homes must opt in':'Home excluded · outline only';sources.push({el,r:window.pixelCatSurfaceWorldV1.rect(a.root,el),label:owner.config?.name||'Cat home'});included.add(el);if(el!==ownHome||a.config.show_home===false)denied.set(a.surfaceId(el),reason);a.observer?.observe(el);}
+  for(const el of a.cardPanelElements||[]){if(included.has(el))continue;const owner=this.homeOwner(el);if(!owner||el!==owner.shadowRoot?.querySelector('ha-card'))continue;const reason=!owner.active?'Home inactive · outline only':owner.config?.show_home===false?'Home hidden · outline only':a.config.shared_home_surfaces===false||owner.config?.shared_home_surfaces===false?'Sharing off on one home':'Home excluded · outline only';sources.push({el,r:window.pixelCatSurfaceWorldV1.rect(a.root,el),label:owner.config?.name||'Cat home'});included.add(el);if(el!==ownHome||a.config.show_home===false)denied.set(a.surfaceId(el),reason);a.observer?.observe(el);}
   const panels=snapshotVerticalPanels(sources.map(v=>({...v,id:a.surfaceId(v.el),label:v.label||a.surfaces.find(s=>s.el===v.el)?.label?.replace(/ · top$/,'')||v.el.localName})),a.worldRect);
   for(const p of panels)p.permissionReason=denied.get(p.id);
   for(const v of sources)byOwner.set(a.surfaceId(v.el),v.el);

@@ -1,7 +1,6 @@
 // A simple bed is a small support above its home floor, not an airborne jump.
 Object.assign(window.pixelCatSetupV1,{
  surfaces(a){
-  window.pixelCatCardClimbV1?.extendFloor(a);
   window.pixelCatHomePostsV1?.sync(a);
   window.pixelCatTreeV1?.surfaces(a);
   a.bedSurface=null;if(a.home&&a.config.show_home!==false)a.home.bedOwner=a;

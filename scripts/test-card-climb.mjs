@@ -48,7 +48,7 @@ console.log('PASS: manual wall jumps use nearest checked faces, support same-flo
 {const a=native(),r={left:90,right:650,top:80,bottom:490,width:560,height:410},owner={localName:'pixel-cat-home',active:true,getRootNode:()=>({}),config:{name:'Neighbour',shared_home_surfaces:false}},el={localName:'ha-card',isConnected:true,getAttribute:k=>k==='data-cat-climb'?'on':null,querySelectorAll:()=>[],getRootNode:()=>({host:owner}),getBoundingClientRect:()=>r};owner.shadowRoot={querySelector:()=>el};const inner={...el,localName:'div'};a.cardPanelElements=[el,inner];a.verticalCardRects=[];a.surfaceId=n=>n===el?'home-panel':'other';const supports=a.surfaces,api=b.window.pixelCatSurfaceWorldV1,oldRect=api.rect;api.rect=()=>r;
  b.getComputedStyle=()=>({backgroundColor:'rgb(220,220,220)',backgroundImage:'none',visibility:'visible',display:'block',opacity:'1',transform:'none'});
  let g=N.reconcile(a);assert.equal(g.panels.length,1,'Only the outer home card is added, never nested furniture');assert.equal(g.faces.length,0,'Recognition cannot grant climbing');assert.equal(g.tops.length,0,'Recognition cannot grant a roof');assert.equal(a.surfaces,supports,'Walking catalogue stays untouched');assert.ok(g.rejected[0].reason.includes('Sharing off'));
- const drawn=[];a.debug={surfaces:true};N.debug(a,(tag,attrs,text)=>drawn.push({tag,attrs,text}));assert.equal(drawn.filter(n=>n.attrs['data-card-outline']).length,1);assert.ok(drawn.some(n=>n.text?.includes('both homes must opt in')),'Horizontal diagnostics explain the exclusion too');
+ const drawn=[];a.debug={surfaces:true};N.debug(a,(tag,attrs,text)=>drawn.push({tag,attrs,text}));assert.equal(drawn.filter(n=>n.attrs['data-card-outline']).length,1);assert.ok(drawn.some(n=>n.text?.includes('Sharing off on one home')),'Horizontal diagnostics explain the exclusion too');
  // Permission continues to come from existing discovery, not the outline or explicit grip attribute.
  for(const reason of ['inactive','hidden']){a.verticalCardRects=[];owner.active=reason!=='inactive';owner.config.show_home=reason!=='hidden';g=N.reconcile(a);assert.equal(g.faces.length,0);assert.ok(g.rejected[0].reason.includes(reason));}
  owner.active=true;owner.config.show_home=true;owner.config.shared_home_surfaces=true;a.config.shared_home_surfaces=true;a.verticalCardRects=[{el,r}];a.surfaces=[...supports,{id:'roof',el,left:90,right:650,min:90,max:626,top:80}];g=N.reconcile(a);assert.equal(g.panels.length,1);assert.ok(g.faces.length);assert.ok(g.tops.length);assert.equal(g.rejected.length,0);const before=g.panels[0].rect.top;N.shift(a,0,-120);assert.equal(g.panels[0].rect.top,before-120,'Outline follows the same uniform scroll translation');api.rect=oldRect;
@@ -132,20 +132,4 @@ for(const [age,scale] of [['adult',2],['kitten',1]]){
   while(a.climb&&t<end)C.tick(a,t+=16,art);
   assert.equal(a.support,target);
  }finally{b.window.pixelCatSurfaceWorldV1.route=ordinary;}
-}
-
-// The testing flag extends just the horizontal home floor and can be removed.
-{
- const a=native(),dock={style:{removeProperty(name){assert.equal(name,'border-image');delete this.borderImage;}}};
- a.home={left:66,right:334,top:500,rectNode:dock,rectSnapshot:{left:62,width:276}};
- a.shadowRoot={querySelector:()=>({getBoundingClientRect:()=>({left:49,right:351,width:302})})};
- N.extendFloor(a);
- assert.deepEqual([a.home.left,a.home.right],[66,334]);
- a.config.test_border_floor=true;
- N.extendFloor(a);
- assert.deepEqual([a.home.left,a.home.right,a.home.top],[49,351,500]);
- assert.match(dock.style.borderImage,/13px 0 13px$/);
- delete a.config.test_border_floor;
- N.extendFloor(a);
- assert.equal(dock.style.borderImage,undefined);
 }

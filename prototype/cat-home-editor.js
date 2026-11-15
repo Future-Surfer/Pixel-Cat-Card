@@ -53,7 +53,7 @@ const catEditorGroups=[
   ['use_surface_candidates','Try interior and bottom-border candidates','checkbox',true,'Let your cat try extra spots inside cards and along their lower edges.'],
   ['card_climbing','Climb visible card faces','checkbox',true,'Let your cat climb a card when they can’t reach a spot by walking or jumping.'],
   ['native_vertical_surfaces','Scratch card edges','checkbox',true,'Let your cat scratch a card edge if they can reach it safely.'],
-  ['shared_home_surfaces','Share visible home-card roofs','checkbox',false,'Both home cards must enable this; hidden homes never provide a roof.'],
+  ['shared_home_surfaces','Share visible home-card roofs','checkbox',true,'Cats can use visible home roofs when both homes allow it.'],
   ['click_attention','Follow dashboard clicks','checkbox',true,'The nearest eligible cat can investigate the clicked surface.']
  ]},
  {title:'Labels & diagnostics',fields:[
