@@ -2,6 +2,8 @@
 
 Finite-face discovery and checked transfers are enabled by default. Ordinary routes remain preferred for requested destinations. A cat with card climbing enabled can occasionally choose to climb an exposed face and leap to a higher support.
 
+During ordinary roaming, a cat can also favour a quick wall jump to its chosen destination. The planner considers this on leisure decisions, with a 20% chance per check and a 12-second cooldown. It requires an ordinary one-hop route to the same destination and a way home. The cat grips its current card briefly, then leaps away without an ascent. Behaviour Lab offers **Wall jump** for this quick transfer and **Climb and leap** for an ascent before release.
+
 ## Shared opportunity model
 
 - A finite **visible face**, a **grip region** and a **standing top edge** are distinct capabilities. A face need not have a walkable base: a cat can leap onto a grip. A top need not offer enough front-face space for climbing.

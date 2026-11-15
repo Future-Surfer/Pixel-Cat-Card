@@ -111,5 +111,17 @@ for(const [age,scale] of [['adult',2],['kitten',1]]){
   let t=100;while(a.climb&&t<20000)C.tick(a,t+=16,art);
   assert.equal(a.support,target);
   assert.deepEqual(events,['Attempted','Completed']);
+  a.support=origin;a.x=310;a.y=origin.top;
+  a.ensureMood=()=>({random:()=>0,values:{playfulness:.7,sleepiness:.2}});
+  b.window.pixelCatSurfaceWorldV1.route=(_a,to)=>[to];
+  const jump=N.prefer(a,target);
+  assert.ok(jump,'An ordinary one-jump destination may be reached via the current face');
+  assert.equal(jump[0].choice.result.route.distanceCells,0,'Quick grip followed by a leap');
+  assert.equal(N.prefer(a,target),null,'Repeated autonomous probes respect the cooldown');
+  a.route=jump;N.start(a,jump[0],t);
+  assert.equal(a.climb.nativeTransfer.kind,'wall-jump');
+  const end=t+12000;
+  while(a.climb&&t<end)C.tick(a,t+=16,art);
+  assert.equal(a.support,target);
  }finally{b.window.pixelCatSurfaceWorldV1.route=ordinary;}
 }

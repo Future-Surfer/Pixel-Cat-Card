@@ -5,10 +5,10 @@
       label: 'Climb and leap',
       counters: ['No usable wall','No safe route','Current card has no usable face','No destination card','No way home','Attempted','Completed'],
       enabled: a => !!a.config.card_climbing,
-      offer(a, t, report) {
+      offer(a, t, report, mode='card-ascent') {
         const climb = window.pixelCatCardClimbV1;
         if (!climb?.reconcile(a)?.faces.length) return report('No usable wall');
-        return climb.ascent(a, t, false, null, report, 'card-ascent');
+        return climb.ascent(a, t, false, null, report, mode);
       }
     },
     yawn: {
@@ -24,6 +24,10 @@
         return true;
       }
     }
+  };
+  scenarios.wallJump = {
+    ...scenarios.climb, label: 'Wall jump',
+    offer(a,t,report) { return scenarios.climb.offer(a,t,report,'card-wall-jump'); }
   };
   window.pixelCatBehaviourLabV1 = {
     tick(a,t,art) {
