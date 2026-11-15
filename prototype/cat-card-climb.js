@@ -108,14 +108,17 @@ window.pixelCatCardClimbV1={
   const s=a.scale,w=a.worldRect,m=window.pixelCatClimbModelV1,assets=window.pixelCatClimbAssetsV1;
   const probe=m.runtimeProbe(a.constructor,cardClimbArt(),{...a.config,grip_max_rise:30,climbWorld:w},s);
   const clear=(f,x)=>a.social?.clear(f,x)!==false,fit=f=>flightFits(f,w,s,m.framePlacement);
-  const quick=mode.endsWith('wall-jump'),min=quick?0:4,direction=mode.endsWith('ascent')||target.top<from.top?1:-1;
+  const quick=mode.endsWith('wall-jump'),min=quick?0:4,direction=mode.endsWith('ascent')||target.top<=from.top?1:-1;
   const speed=Math.max(.25,Math.min(3,Number(a.config.climb_speed)||2));
   const draft={...assets,config:{...m.defaults,entryPose:'side',entry:'jump-up',exitPose:'none',tempo:Math.min(6,2*speed),decisionHold:160,maxCycles:24}};
-  const grips=face.grips,box=face.rect,stats={checks:0},frames=assets.frames;
+  const box=face.rect,stats={checks:0},down=assets.descent?.frames,frames=down?[...assets.frames,...down]:assets.frames;
+  const downBounds=down&&{top:box.top+s*Math.max(...down.map(f=>f.anchor.y-frameBounds(f).top)),bottom:box.bottom-s*Math.max(...down.map(f=>frameBounds(f).bottom-f.anchor.y))};
+  const grips=direction<0&&downBounds||face.grips;
+  if(grips.top>=grips.bottom)return {ok:false,stats};
   const width=Math.max(...frames.map(f=>f.anchor.x-frameBounds(f).left)),reach=Math.max(...frames.map(f=>frameBounds(f).right-f.anchor.x));
   let best;
   for(const side of sides){
-   const edge=box[side];
+   const edge=box[side]+(side==='left'?-1:1)*(face.radius||0)-s/2;
    if(edge-(side==='left'?width:reach)*s<w.left||edge+(side==='left'?reach:width)*s>w.right)continue;
    const stance=Math.max(from.min,Math.min(from.max,edge-(side==='left'?30:-6)*s));
    if(!clear(from,stance))continue;
@@ -127,11 +130,13 @@ window.pixelCatCardClimbV1={
     stats.checks++;const f=probe.release(root,frame,to,options);
     return fit(f)&&clear(target,f.landingX)?f:null;
    };
-   const scene={scale:s,floor:from,target,face:{id:face.id,x:box.left,right:box.right,top:grips.top-4*s,bottom:box.bottom,grippy:true},startX:stance,gripCeilingY:grips.top,gripFloorY:grips.bottom};
+   const scene={scale:s,floor:from,target,face:{id:face.id,x:side==='left'?edge:box.left,right:side==='right'?edge:box.right,top:grips.top-4*s,bottom:box.bottom,grippy:true},startX:stance,gripCeilingY:grips.top,gripFloorY:grips.bottom};
    const ys=new Set([from.top-20*s,target.top+12*s,from.top+24*s,from.top-52*s,grips.bottom].map(y=>Math.max(grips.top,Math.min(grips.bottom,y))));
    for(const entryY of ys){
     if(stats.checks>=limit)break;
-    scene.transfer={entryY,side,quick,min,direction};
+    const entryDown=direction<0||entryY>from.top;
+    if(entryDown&&downBounds&&(entryY<downBounds.top||entryY>downBounds.bottom))continue;
+    scene.transfer={entryY,side,quick,min,direction,entryDown};
     const plan=m.planClimb(draft,{ground:()=>null,attach,release},null,{scene:{...scene}});
     if(!plan.goalReached)continue;
     const duration=approach?.duration||0;

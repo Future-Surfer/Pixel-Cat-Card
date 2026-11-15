@@ -2,11 +2,11 @@
   "schema": 1,
   "name": "Pixel Cat Card",
   "version": "1.0.0",
-  "sourceHash": "4fbb563ab89c6d2993b545ad129da26b1eb468272fc7b44e34226787f1e1c019",
+  "sourceHash": "626a3ecf3821836228fc1a7a4487d79a0e1a77d63c79e8a4e04ce12fd6ad0017",
   "artifact": {
     "file": "pixel-cat-card.js",
-    "bytes": 1764762,
-    "sha256": "827397538bb2e12afd9c59f36be485de6bfe1bde35d52997b27451610faa4dd4"
+    "bytes": 1767890,
+    "sha256": "a562646b921a44e1f8ab438adc1542d8d5d92715e49c73e236e9fd4a2bdaf9cb"
   },
   "modules": [
     {
@@ -39,7 +39,7 @@
     },
     {
       "file": "pixel-cat-climbing.js",
-      "sha256": "acdfc01379a18aeed138b948dd5d4c6f936f4ac839cbc1322329a60ac004425e"
+      "sha256": "fb8ee2cdeca28779a5006b404d51f57699956988c8505640dc9feb07b205b00b"
     }
   ],
   "decodedArtworkSha256": "d55cc78620f069f632b2c36d0c63aa430921dcc41bfa8776c910e6b9bd088077",

@@ -41,7 +41,7 @@ export function discoverVerticalSurfaces({panels,supports,world,scale=1,frame,fr
   for(const r of patches){
    const grips={left:r.left+reach.left*scale,right:r.right-reach.right*scale,top:r.top+reach.top*scale,bottom:r.bottom-reach.bottom*scale};
    if(grips.right<grips.left||grips.bottom<=grips.top)continue;
-   faces.push({id:p.id+':face:'+count++,panelId:p.id,label:p.label,rect:r,grips,edges:[...(Math.abs(r.left-p.rect.left-radius)<.5?['left']:[]),...(Math.abs(r.right-p.rect.right+radius)<.5?['right']:[])],colour:p.colour,kind:p.kind||'plane',passThrough:true,topId,generation,confidence:p.climb==='on'?'declared':'visible panel'});
+   faces.push({id:p.id+':face:'+count++,panelId:p.id,label:p.label,rect:r,grips,radius,edges:[...(Math.abs(r.left-p.rect.left-radius)<.5?['left']:[]),...(Math.abs(r.right-p.rect.right+radius)<.5?['right']:[])],colour:p.colour,kind:p.kind||'plane',passThrough:true,topId,generation,confidence:p.climb==='on'?'declared':'visible panel'});
   }
   if(!count)reject('No exposed patch fits this cat and grip pose');
   stats.patches+=count;
