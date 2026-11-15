@@ -69,14 +69,14 @@ export function planVerticalTransfer({face,from,target,startX,world,scale,frame,
  if(!clear(from,stance)||!clear(target,Math.max(target.min,Math.min(target.max,x-12*scale))))return reject('Entry stance or landing is occupied');
  const walkStart=Math.max(from.min,Math.min(from.max,startX)),approach=Math.abs(walkStart-stance)>scale?probe.approach?.('meander',walkStart,from,stance,1):null;
  if(Math.abs(walkStart-stance)>scale&&!approach)return reject('No grounded approach to entry stance');
- const clamp=y=>Math.max(g.top,Math.min(g.bottom,y)),entries=[target.top-12*scale,from.top-64*scale,from.top-32*scale,from.top-16*scale,g.bottom].map(clamp),exits=[target.top-12*scale,target.top-24*scale,target.top-36*scale,g.top,g.bottom].map(clamp),seen=new Set(),routes=[];
+ const clamp=y=>Math.max(g.top,Math.min(g.bottom,y)),entries=[target.top-12*scale,from.top-64*scale,from.top-32*scale,from.top-16*scale,...mode==='card-ascent'?[from.top+24*scale,from.top+40*scale]:[],g.bottom].map(clamp),exits=[target.top-12*scale,target.top-24*scale,target.top-36*scale,g.top,g.bottom].map(clamp),seen=new Set(),routes=[];
  const check=fn=>{if(stats.checks>=maxChecks)return null;stats.checks++;return fn();};
  for(const entryY of entries){
   const root={x,y:entryY},key=String(entryY);if(seen.has(key))continue;seen.add(key);
-  const enter=check(()=>probe.attach(stance,from,root,frame,'jump-up'));stats.entries++;
+  const enter=check(()=>probe.attach(stance,from,root,frame,mode==='card-ascent'?'jump':'jump-up'));stats.entries++;
   if(!flightFits(enter,world,scale,framePlacement))continue;
   for(const exitY of new Set([entryY,...exits])){
-   if(mode==='wall-jump'&&Math.abs(exitY-entryY)>.01||mode==='climb'&&Math.abs(exitY-entryY)<=.01||mode==='ascent'&&entryY-exitY<4*scale)continue;
+   if(mode==='wall-jump'&&Math.abs(exitY-entryY)>.01||mode==='climb'&&Math.abs(exitY-entryY)<=.01||mode.endsWith('ascent')&&entryY-exitY<4*scale)continue;
    // One exposed patch owns the whole grip path; never climb across a visual gap.
    if(!contains(g,x,exitY))continue;
    const releaseRoot={x,y:exitY},exit=check(()=>probe.release(releaseRoot,frame,{...target,source:target},{side}));stats.releases++;

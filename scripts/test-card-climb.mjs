@@ -91,3 +91,25 @@ for(const [age,scale] of [['adult',2],['kitten',1]]){
  assert.equal(sleeper.idle.poseUntil,100);
  assert.equal(outsider.idle.poseUntil,5000);
 }
+
+{
+ const a=native(), [origin,target]=a.surfaces, g=a.cardGeometry;
+ Object.assign(origin,{right:350,max:326});Object.assign(target,{left:362,min:362,top:525});
+ const face=g.faces[0];
+ Object.assign(face,{rect:{left:50,right:350,top:500,bottom:680},grips:{left:62,right:338,top:510,bottom:662}});
+ g.tops=[{...target,sourceId:target.id}];
+ a.x=310;
+ const ordinary=b.window.pixelCatSurfaceWorldV1.route;
+ b.window.pixelCatSurfaceWorldV1.route=()=>[];
+ const events=[];
+ try{
+  const result=N.ascent(a,100,false,()=>true,x=>events.push(x),'card-ascent');
+  assert.equal(result,true,JSON.stringify({events,route:N.route(a,target,origin,true,'card-ascent')?.[0]?.choice?.result?.stats}));
+  assert.equal(a.climb.nativeTransfer.faceId,face.id);
+  assert.equal(a.climb.goalSurface,target);
+  assert.ok(a.climb.plan.grips.at(-1).root.y<a.climb.plan.grips[0].root.y);
+  let t=100;while(a.climb&&t<20000)C.tick(a,t+=16,art);
+  assert.equal(a.support,target);
+  assert.deepEqual(events,['Attempted','Completed']);
+ }finally{b.window.pixelCatSurfaceWorldV1.route=ordinary;}
+}

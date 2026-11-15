@@ -3,7 +3,7 @@
   const scenarios = {
     climb: {
       label: 'Climb and leap',
-      counters: ['No usable wall','No safe route','No higher landing','No way home','Declined','Attempted','Completed'],
+      counters: ['No usable wall','No safe route','Current card has no usable face','No destination card','No way home','Declined','Attempted','Completed'],
       enabled: a => !!a.config.card_climbing,
       offer(a, t, report) {
         const climb = window.pixelCatCardClimbV1;
@@ -11,7 +11,7 @@
         return climb.ascent(a, t, false, () => {
           if (a.ensureMood().random() < .75) return true;
           report('Declined'); return false;
-        }, report);
+        }, report, 'card-ascent');
       }
     },
     yawn: {

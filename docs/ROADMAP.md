@@ -17,7 +17,7 @@ Updated 10 November 2026. **Sole forward plan.** [Current state](CURRENT_STATE.m
 
 - First slice: use each cat's ordinary leisure decisions, with an independent 6–12 second minimum between focus checks. Once the climb planner finds a valid route and an ordinary way back home, the cat has a 75% chance of taking it. Pause, sleep, ongoing actions and the card climbing setting still apply.
 - The card shows the current busy count and running totals for missing walls, missing safe routes, declines, attempts and completed landings. A safe route includes the approach, grip, landing and way home. The first HA Testing run recorded a completed climb and separate declines and route skips. Automated checks cover view isolation and resetting the focus.
-- Behaviour Lab is available under **Card purpose** alongside Companion and Performance. **Yawn** checks that eligible cats receive the focus without needing a wall route. The climb counters distinguish a missing higher landing, a missing way home, and a route that fails the climb checks. **Scratch card edges** is the next scenario candidate.
+- Behaviour Lab is available under **Card purpose** alongside Companion and Performance. **Yawn** checks that eligible cats receive the focus without needing a wall route. **Climb and leap** uses the face of the cat’s current card or its own visible home and aims for a different card’s top. Counters distinguish a missing face on the current card, a missing destination, a missing way home, and a route that fails the climb checks. **Scratch card edges** is the next scenario candidate.
 
 The desktop stability/calibration batch is delivered. Evidence, measured limits and device checklist (development reference retained privately).
 
