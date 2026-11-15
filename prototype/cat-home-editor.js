@@ -20,6 +20,7 @@ const catEditorGroups=[
   ['bed_secondary_color','Bed secondary colour','text',null,'Pick a colour for the inside, or leave it blank for the original colour.'],
   ['show_home','Show bed home','checkbox',true,'Hide the bed and let your cat find another spot.'],
   ['show_scratching_post','Show scratching post','checkbox',true,'Put a scratching post beside the bed if there’s room.'],
+  ['full_pixel_scratch_debris','Full-pixel scratching debris','checkbox',false,'Keep bits from scratching and climbing at least one sprite pixel wide and tall as they fade.'],
   ['test_cat_tree','Test cat tree','checkbox',false,'Try a fixed climbing tree and hanging ball. On narrow cards, use the post.']
  ]},
  {title:'Home & appearance',fields:[

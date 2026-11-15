@@ -26,3 +26,18 @@ const ear=box.art.idleSequences.scratch,contactFrame=ear.frames[4];
 for(const scale of [1,2,3,4,5,6])for(const facing of [-1,1]){const floor={id:'ear-floor',el:{isConnected:true},left:0,top:20+24*scale},actor={root:{},scale,facing,ownerKey:'ear-test',active:true,config:{color:'#2147b3'},support:floor,surfaces:[floor],idle:{pose:'scratch',start:0}},place={x:100,top:20};fx.recipes.fur.probability=1;fx.groom(actor,{frame:4,rows:contactFrame},place,500);const born=fx.inspect(actor.root)[0];assert.ok(born);const canonicalX=facing<0?24-(born.x-place.x)/scale:(born.x-place.x)/scale,y=Math.floor((born.y-place.top)/scale);assert.equal(contactFrame[y][Math.floor(canonicalX)],'.','Fur must start outside the opaque authored silhouette, not inside the head');fx.tick(actor,0);for(let t=20;t<=240;t+=20){fx.tick(actor,t);const p=fx.inspect(actor.root)[0],cellX=Math.floor((p.x-place.x)/scale),px=facing<0?23-cellX:cellX,py=Math.floor((p.y-place.top)/scale);assert.equal(contactFrame[py]?.[px],'.','Fur stays outside the contact silhouette during its initial outward drift');}const moved=fx.inspect(actor.root)[0];assert.ok((moved.x-born.x)*facing<0,'Fur moves outward behind the ear in either facing');assert.equal(moved.colour,actor.config.color);fx.leave(actor);}
 
 console.log('PASS: actual ear-contact silhouette stays clear at scales 1�6 in both facings, with outward actor-colour fur.');
+
+const draws=[];
+const context={clearRect(){},fillRect(...rect){draws.push({rect,alpha:this.globalAlpha});}};
+const canvas={dataset:{},style:{},getContext:()=>context,remove(){}};
+Object.assign(box,{innerWidth:1920,innerHeight:1080,document:{hidden:false,createElement:()=>canvas,body:{append(){}}}});
+for(const enabled of [false,true]){
+ const actor={...a,root:{},scale:1,config:{full_pixel_scratch_debris:enabled}};
+ draws.length=0;
+ assert.equal(fx.emit(actor,'rope',{x:50,y:surface.top},surface,'pixel-size',4),2);
+ for(let t=0;t<=250;t+=50)fx.tick(actor,t);
+ const {rect,alpha}=draws.at(-1);
+ assert.ok(alpha>0&&alpha<.5);
+ assert.deepEqual(rect.slice(2),enabled?[5,5]:[2,1]);
+ fx.leave(actor);
+}
