@@ -117,10 +117,12 @@ window.pixelCatCardClimbV1={
   if(grips.top>=grips.bottom)return {ok:false,stats};
   const width=Math.max(...frames.map(f=>f.anchor.x-frameBounds(f).left)),reach=Math.max(...frames.map(f=>frameBounds(f).right-f.anchor.x));
   let best;
-  for(const side of sides){
-   const edge=box[side]+(side==='left'?-1:1)*(face.radius||0)-s/2;
+  for(const border of sides){
+   const edge=box[border]+(border==='left'?-1:1)*(face.radius||0)-s/2;
+   const clamp=v=>Math.max(from.min,Math.min(from.max,v));
+   const side=face.panelId?(clamp(x)+12*s<=edge?'left':'right'):border;
+   const stance=clamp(edge-(side==='left'?30:-6)*s);
    if(edge-(side==='left'?width:reach)*s<w.left||edge+(side==='left'?reach:width)*s>w.right)continue;
-   const stance=Math.max(from.min,Math.min(from.max,edge-(side==='left'?30:-6)*s));
    if(!clear(from,stance))continue;
    const approach=Math.abs(x-stance)>s?probe.approach('meander',x,from,stance):null;
    if(Math.abs(x-stance)>s&&!fit(approach))continue;
@@ -130,13 +132,14 @@ window.pixelCatCardClimbV1={
     stats.checks++;const f=probe.release(root,frame,to,options);
     return fit(f)&&clear(target,f.landingX)?f:null;
    };
-   const scene={scale:s,floor:from,target,face:{id:face.id,x:side==='left'?edge:box.left,right:side==='right'?edge:box.right,top:grips.top-4*s,bottom:box.bottom,grippy:true},startX:stance,gripCeilingY:grips.top,gripFloorY:grips.bottom};
+   const scene={scale:s,floor:from,target,face:{id:face.id,x:box.left,right:box.right,top:grips.top-4*s,bottom:box.bottom,grippy:true},startX:stance,gripCeilingY:grips.top,gripFloorY:grips.bottom};
    const ys=new Set([from.top-20*s,target.top+12*s,from.top+24*s,from.top-52*s,grips.bottom].map(y=>Math.max(grips.top,Math.min(grips.bottom,y))));
    for(const entryY of ys){
     if(stats.checks>=limit)break;
-    const entryDown=direction<0||entryY>from.top;
-    if(entryDown&&downBounds&&(entryY<downBounds.top||entryY>downBounds.bottom))continue;
-    scene.transfer={entryY,side,quick,min,direction,entryDown};
+    const entryDown=entryY>from.top;
+    const bounds=entryDown&&downBounds||face.grips;
+    if(entryY<bounds.top||entryY>bounds.bottom)continue;
+    scene.transfer={x:edge,entryY,side,quick,min,direction,entryDown};
     const plan=m.planClimb(draft,{ground:()=>null,attach,release},null,{scene:{...scene}});
     if(!plan.goalReached)continue;
     const duration=approach?.duration||0;

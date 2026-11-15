@@ -1,6 +1,6 @@
 # Card-edge climbing and transfers
 
-The live card and the [Climb workshop](http://127.0.0.1:8769/prototype/climb-lab.html) share the climb planner, authored side grip and catch frames, and runtime jump probes. Dashboard geometry supplies the exposed edge, reachable starting support, available grip height and landing. The cat can approach, leap to the edge, climb using planted paw contacts and release from the first checked height in that climb. A quick **Wall jump** uses the same edge and flight checks with a brief grip and no ascent. Cat-tree routes use the same planner with their authored post edge.
+The live card and the [Climb workshop](http://127.0.0.1:8769/prototype/climb-lab.html) share the climb planner, authored side grip and catch frames, and runtime jump probes. Dashboard geometry supplies the exposed edge, reachable starting support, available grip height and landing. The cat can approach, leap to the edge, climb using planted paw contacts and release from the first checked height in that climb. The takeoff side sets which way the cat faces at contact, so the same border can be gripped from the inside or outside. Entry artwork depends on the grip height relative to takeoff. The later climb direction independently selects its cycle. A quick **Wall jump** uses the same edge and flight checks with a brief grip and no ascent. Cat-tree routes use the same planner with their authored post edge.
 
 ## Surface discovery and safety
 

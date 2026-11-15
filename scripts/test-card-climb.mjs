@@ -5,7 +5,7 @@ const N=b.window.pixelCatCardClimbV1;
 b.getComputedStyle=()=>({});b.window.pixelCatSurfaceWorldV1.route=()=>null;b.window.pixelCatHomePostsV1.entries=()=>[];
 function native(){const a=actor();a.config.card_climbing=true;a.config.climb_slips=false;a.worldRect={left:0,top:0,right:800,bottom:800};a.surfaceId=el=>el===a.support.el?'base':'target';const records=[];a.verticalCardRects=records;
  const frame=b.window.pixelCatClimbAssetsV1.centred.front.frames[0];a.cardGeometry={records,surfaces:a.surfaces,scale:1,generation:1,cache:new Map(),panels:[],byOwner:new Map([['face',a.support.el]]),faces:[{id:'face:face:0',panelId:'face',label:'painted panel',rect:{left:90,right:650,top:80,bottom:490},grips:{left:110,right:630,top:105,bottom:470},generation:1}],tops:[]};return a;}
-for(const to of [180,680]){const a=native();a.surfaces[1].top=to;if(to>500){a.cardGeometry.faces[0].rect.bottom=690;a.cardGeometry.faces[0].grips.bottom=670;}const path=N.route(a,a.surfaces[1],a.support);assert.ok(path,'finite face route '+to);assert.equal(N.route(a,a.surfaces[1],a.support),path,'cached snapshot');a.route=path;N.start(a,path[0],0);assert.ok(a.climb?.nativeTransfer,'live native plan');assert.ok(a.climb.plan.segments.some(s=>s.kind==='attach'));if(to>500){const frames=b.window.pixelCatClimbAssetsV1.descent.frames;assert.ok(a.climb.plan.segments.filter(s=>s.kind==='climb').every(s=>frames.some(f=>f.id===s.frame.id)),'Downward transfer plays separately authored descent frames');}let t=0;while(a.climb&&t<60000){t+=16;C.tick(a,t,art);}assert.equal(a.climb,null);assert.equal(a.support.id,'target');assert.equal(a.y,to);}
+for(const to of [180,680]){const a=native();a.surfaces[1].top=to;if(to>500){a.cardGeometry.faces[0].rect.bottom=690;a.cardGeometry.faces[0].grips.bottom=670;}const path=N.route(a,a.surfaces[1],a.support);assert.ok(path,'finite face route '+to);assert.equal(N.route(a,a.surfaces[1],a.support),path,'cached snapshot');a.route=path;N.start(a,path[0],0);assert.ok(a.climb?.nativeTransfer,'live native plan');assert.ok(a.climb.plan.segments.some(s=>s.kind==='attach'));if(to>500){const frames=b.window.pixelCatClimbAssetsV1.descent.frames;assert.ok(a.climb.plan.segments.filter(s=>s.kind==='climb'&&s.cycle>0).every(s=>frames.some(f=>f.id===s.frame.id)),'Downward transfer plays separately authored descent frames');}let t=0;while(a.climb&&t<60000){t+=16;C.tick(a,t,art);}assert.equal(a.climb,null);assert.equal(a.support.id,'target');assert.equal(a.y,to);}
 {const a=native();a.config.card_climbing=false;assert.equal(N.route(a,a.surfaces[1],a.support),null);}
 {const a=native(),path=N.route(a,a.surfaces[1],a.support);a.route=path;b.window.pixelCatSurfaceWorldV1.route=()=>[{kind:'ordinary'}];N.start(a,path[0],0);assert.equal(a.climb,undefined);assert.equal(a.route[0].kind,'ordinary');b.window.pixelCatSurfaceWorldV1.route=()=>null;}
 for(const change of ['removed','moved','occupied','scroll']){const a=native(),path=N.route(a,a.surfaces[1],a.support);a.route=path;N.start(a,path[0],0);C.tick(a,16,art);assert.ok(N.audit(a));if(change==='removed')a.climb.nativeTransfer.node.isConnected=false;if(change==='moved')a.cardGeometry.faces[0].rect.right-=30;if(change==='occupied'){a.climb.elapsed=a.climb.nativeTransfer.releaseAt-10;a.social.clear=()=>false;}if(change==='scroll'){const dx=12,dy=-45;a.surfaces=a.surfaces.map(s=>({...s,left:s.left+dx,right:s.right+dx,min:s.min+dx,max:s.max+dx,top:s.top+dy}));a.cardGeometry.panels=[];N.shift(a,dx,dy);assert.equal(N.audit(a),true,'uniform translation stays valid');}else assert.equal(N.audit(a),false,change+' invalidates checked release');}
@@ -142,4 +142,16 @@ for(const [age,scale] of [['adult',2],['kitten',1]]){
  const grip=plan.grips[0],outside=face.rect.left-face.radius;
  const paw=grip.frame.paws[0],placement=b.window.pixelCatClimbModelV1.framePlacement(grip.frame,grip.root,a.scale);
  assert.equal(placement.x+(paw.x+.5)*a.scale,outside,'Paw centre meets the visible border instead of the corner inset');
+}
+
+for(const [x,side] of [[50,'left'],[200,'right']]){
+ const a=native(),face=a.cardGeometry.faces[0],target=a.surfaces[1];
+ a.x=x;face.edges=['left'];
+ const plan=N.route(a,target,a.support)?.[0].choice.result.route.plan;
+ assert.ok(plan);
+ const grip=plan.grips[0];
+ assert.equal(grip.side,side,'The same border accepts takeoff from either side');
+ assert.equal(grip.root.x,face.rect.left-a.scale/2);
+ const entry=plan.segments.find(s=>s.kind==='climb');
+ assert.ok(!entry.frame.id.startsWith('descent-'),'An entry higher than takeoff uses the upright pose despite terminal downward speed');
 }
