@@ -621,7 +621,7 @@ class PixelCatHome extends HTMLElement {
   pathTo(target,origin=this.support){return window.pixelCatSurfaceWorldV1.route(this,target,origin)??window.pixelCatClimbV1?.fallback(this,target,origin)??null;}
   plan() {
     const requested=!!this.command||!!this.goal;this.casualWander=false;
-    const now=performance.now();if(!requested&&(window.pixelCatBehaviourLabV1?.offer(this,now)||window.pixelCatClimbV1?.offer(this,now)))return;this.visits||=new Map();if(window.pixelCatPostRestV1?.beforePlan(this,now,requested))return;
+    const now=performance.now();if(!requested&&window.pixelCatClimbV1?.offer(this,now))return;this.visits||=new Map();if(window.pixelCatPostRestV1?.beforePlan(this,now,requested))return;
     if(!requested&&(this.config.mood_behaviour||this.config.social_behaviour)&&this.decisionLayer()?.decide(now))return;
     const leisure={points:restingPoints,weight:visitWeight,pick:weightedPick};if(!requested&&window.pixelCatExplorationV1?.plan(this,now,leisure))return;
     const [goalSurface,goalPoint]=String(this.goal||'').split('::');
@@ -764,7 +764,8 @@ class PixelCatHome extends HTMLElement {
     window.pixelCatSetupV1?.clearRestMask(this);
     if(window.pixelCatSetupV1?.arrival(this,t,CAT_ART,walkSample,walkAppearance,idleSample,frameContact,idleContact))return;
     window.pixelCatCommandsV1?.tick(this,t);
-    if(!window.pixelCatSettlingV1?.holding(this,t)){
+    const focus=window.pixelCatBehaviourLabV1?.tick(this,t,CAT_ART);if(focus===2)return;
+    if(!focus&&!window.pixelCatSettlingV1?.holding(this,t)){
     const decisionAt=this.config.debug_performance?performance.now():0;this.decisionLayer()?.step(gap>1000?0:gap,t);if(this.config.debug_performance)this.decisionCost=performance.now()-decisionAt;
     if(window.pixelCatClimbV1?.tick(this,t,CAT_ART))return;
     window.pixelCatMouthV1?.step?.(this,t,CAT_ART);window.pixelCatHomeLifeV1?.tick(this,t);

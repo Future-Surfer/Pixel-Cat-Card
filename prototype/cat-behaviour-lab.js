@@ -3,27 +3,20 @@
   const scenarios = {
     climb: {
       label: 'Climb and leap',
-      counters: ['No usable wall','No safe route','Current card has no usable face','No destination card','No way home','Declined','Attempted','Completed'],
+      counters: ['No usable wall','No safe route','Current card has no usable face','No destination card','No way home','Attempted','Completed'],
       enabled: a => !!a.config.card_climbing,
       offer(a, t, report) {
         const climb = window.pixelCatCardClimbV1;
         if (!climb?.reconcile(a)?.faces.length) return report('No usable wall');
-        return climb.ascent(a, t, false, () => {
-          if (a.ensureMood().random() < .75) return true;
-          report('Declined'); return false;
-        }, report, 'card-ascent');
+        return climb.ascent(a, t, false, null, report, 'card-ascent');
       }
     },
     yawn: {
       label: 'Yawn',
-      counters: ['Declined','Yawns chosen'],
+      counters: ['Yawns chosen'],
       offer(a, t, report) {
         if (a.idle?.pose === 'yawn' || a.support.narrow ||
             a.support.poses?.length && !a.support.poses.includes('yawn')) return false;
-        if (a.ensureMood().random() >= .75) {
-          report('Declined');
-          return false;
-        }
         a.labPose = 'yawn';
         a.deadline = t + 4000;
         if (a.idle) a.idle.poseUntil = t;
@@ -33,12 +26,37 @@
     }
   };
   window.pixelCatBehaviourLabV1 = {
+    tick(a,t,art) {
+      const v=views.get(a.root), focus=v&&v.path===location.pathname?v.focus:'';
+      if (!focus) {
+        if(a.labFocus){a.labFocus='';a.labPose=null;a.deadline=t;}
+        return 0;
+      }
+      if(a.command||a.goal||a.previewPose)return 0;
+      if(a.climb)return window.pixelCatClimbV1.tick(a,t,art)?2:1;
+      if(a.motion||a.mouthAction)return a.mouthAction?0:1;
+      if(a.labFocus!==focus){
+        a.labFocus=focus;
+        window.pixelCatSettlingV1?.wake(a,t);
+        if(a.idle)a.idle.poseUntil=t;
+      }
+      if(a.route?.length)a.route=[];
+      if(a.play||a.toyHunt)a.cancelPlay(t);
+      if(a.social?.episode)a.social.finish('behaviour focus');
+      a.labPose='stand';
+      a.deadline=t+4000;
+      if(!a.bedInside&&!a.support?.bed)this.offer(a,t);
+      a.propScene?.tick(t,a);
+      return a.climb?2:1;
+    },
     offer(a, t) {
       const view = views.get(a.root), scenario = scenarios[view?.focus];
       if (!scenario || view.path !== location.pathname || !a.support || scenario.enabled?.(a) === false ||
           !window.pixelCatClimbV1.ready(a) || a.idle?.pose === 'sleep' && t < a.idle.poseUntil) return false;
       if (t < (view.next.get(a) || 0)) return false;
-      view.next.set(a, t + 6000 + a.ensureMood().random() * 6000);
+      if(t<(view.probeAt||0))return false;
+      view.probeAt=t+100;
+      view.next.set(a, t + 2000 + a.ensureMood().random() * 2000);
       const counts = view.counts;
       const report = label => { counts[label] = (counts[label] || 0) + 1; };
       return scenario.offer(a, t, report) === true;
@@ -69,6 +87,7 @@
         view.focus = select.value;
         view.counts = {};
         view.next = new WeakMap();
+        view.probeAt = 0;
         refresh();
       };
       const refresh = () => {
