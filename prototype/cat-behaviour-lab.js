@@ -8,7 +8,7 @@
       offer(a, t, report, mode='card-ascent') {
         const climb = window.pixelCatCardClimbV1;
         if (!climb?.reconcile(a)?.faces.length) return report('No usable wall');
-        return climb.ascent(a, t, false, null, report, mode) || window.pixelCatLabApproachV1(climb, a, report, mode);
+        return climb.ascent(a, t, false, report, mode) || window.pixelCatLabApproachV1(climb, a, report, mode);
       }
     },
     yawn: {

@@ -7,7 +7,7 @@ window.pixelCatCardClimbV1={
   const button=document.createElement('button');button.textContent='Try climbing a card';button.disabled=!a.config.card_climbing;button.setAttribute('data-card-climb-preview','');button.title='Climb an exposed card face, then leap to a checked landing.';
   button.onclick=()=>{if(a.climb||a.motion||a.carriedToy||a.goal||a.command||a.previewPose||!a.config.card_climbing){a.status('Enable card climbing and try again when this cat is resting');return;}if(!this.ascent(a,performance.now(),true))a.status('No reachable wall with room to climb and land higher');};box.append(button);
  },
- ascent(a,t,preview=false,accept,report,mode='ascent'){
+ ascent(a,t,preview=false,report,mode='ascent'){
   const from=a.support;
   if(!a.config.card_climbing||!from)return false;
   const world=window.pixelCatSurfaceWorldV1, across=mode.startsWith('card-');
@@ -24,7 +24,6 @@ window.pixelCatCardClimbV1={
    hasReturn=true;
    const next=this.route(a,target,from,true,mode)?.[0];
    if(!next)continue;
-   if(accept&&!accept())return false;
    a.route=[next];this.start(a,next,t);
    if(a.climb){if(report){report('Attempted');a.climb.labReport=report;}a.paused=false;const pause=a.shadowRoot?.querySelector('[data-action="pause"]');if(pause)pause.textContent='Pause';return true;}
   }
@@ -56,19 +55,28 @@ window.pixelCatCardClimbV1={
   const key=origin.id+'>'+target.id+':'+Math.round(startX/a.scale)+':'+mode,cached=g.cache.get(key);if(!fresh&&cached!==undefined)return cached;
   const owner=g.panels.find(p=>g.byOwner.get(p.id)===target.el&&Math.abs(target.top-p.rect.top)<.5);
   let landing=target;if(owner){landing=g.tops.find(t=>t.sourceId===target.id||t.id===target.id);if(!landing){g.cache.set(key,null);return null;}}
-  const candidates=g.faces.filter(f=>mode.startsWith('card-')?g.byOwner.get(f.panelId)===this.sourceCard(a,origin):g.byOwner.get(f.panelId)!==g.ownHome).sort((f,h)=>Math.abs(f.grips.left-a.x)+Math.abs(f.grips.top-target.top)-Math.abs(h.grips.left-a.x)-Math.abs(h.grips.top-target.top)).slice(0,3);let best;
+  const candidates=g.faces.filter(f=>!mode.startsWith('card-')?g.byOwner.get(f.panelId)!==g.ownHome:mode==='card-rise'||mode==='card-drop'||g.byOwner.get(f.panelId)===this.sourceCard(a,origin)).sort((f,h)=>Math.abs(f.grips.left-a.x)+Math.abs(f.grips.top-target.top)-Math.abs(h.grips.left-a.x)-Math.abs(h.grips.top-target.top)).slice(0,3);let best;
   for(const face of candidates){const result=this.edge(a,face,origin,landing,startX,mode);if(result.ok&&(!best||result.route.cost<best.result.route.cost))best={face,result,landing};}
   const path=best?[{climbRoute:true,nativeTransfer:true,fromId:origin.id,surface:target,kind:best.result.route.kind,mode,choice:best}]:null;
   if(g.cache.size>=64)g.cache.delete(g.cache.keys().next().value);g.cache.set(key,path);return path;
  },
+ destinationWeight(a,target){
+  const rise=(a.support.top-target.top)/a.scale;
+  return rise>48?.25:rise>16?.55:1;
+ },
  prefer(a,target){
   const t=performance.now(),from=a.support;
-  if(!a.config.card_climbing||!from||!target||target.tree||target.el===this.sourceCard(a,from)||t<(a.wallRetry||0))return null;
+  if(!a.config.card_climbing||!from||!target||target.tree||target.home||t<(a.wallRetry||0))return null;
+  const rise=(from.top-target.top)/a.scale;
+  if(rise<24&&rise>-32)return null;
   a.wallRetry=t+12000;
-  const roll=a.ensureMood().random();if(roll>=.20)return null;
   const world=window.pixelCatSurfaceWorldV1;
-  if(world.route(a,target,from)?.length!==1||!world.route(a,a.home,target))return null;
-  return roll>=.08&&this.route(a,target,from,true,'card-ascent')||this.route(a,target,from,true,'card-wall-jump');
+  if(!world.route(a,a.home,target))return null;
+  const roll=a.ensureMood().random();
+  if(rise<=-32)return roll<.65?this.route(a,target,from,false,'card-drop'):null;
+  if(roll>=.75)return null;
+  const quick=roll<.15&&this.route(a,target,from,false,'card-wall-jump');
+  return quick||this.route(a,target,from,false,'card-rise');
  },
  treeRoute(a,target,origin){
   if(!origin||(!origin.home&&!origin.tree)||origin.id!==a.support?.id||a.config.climbing===false||a.carriedToy||target.narrow)return null;
@@ -128,7 +136,7 @@ window.pixelCatCardClimbV1={
    if(Math.abs(x-stance)>s&&!fit(approach))continue;
    const attach=(...args)=>{if(stats.checks>=limit)return null;stats.checks++;const f=probe.attach(...args);return fit(f)?f:null;};
    const release=(root,frame,to,options)=>{
-    if(to!==target||stats.checks>=limit)return null;
+    if(to!==target||stats.checks>=limit||mode==='card-drop'&&root.y>target.top-6*s)return null;
     stats.checks++;const f=probe.release(root,frame,to,options);
     return fit(f)&&clear(target,f.landingX)?f:null;
    };
@@ -138,7 +146,7 @@ window.pixelCatCardClimbV1={
     if(stats.checks>=limit)break;
     const entryDown=entryY>from.top;
     const bounds=entryDown&&downBounds||face.grips;
-    if(entryY<bounds.top||entryY>bounds.bottom)continue;
+    if(entryY<bounds.top||entryY>bounds.bottom||mode==='card-drop'&&(entryY<from.top+6*s||entryY>target.top-6*s))continue;
     scene.transfer={x:edge,entryY,side,quick,min,direction,entryDown};
     const plan=m.planClimb(draft,{ground:()=>null,attach,release},null,{scene:{...scene}});
     if(!plan.goalReached)continue;
@@ -158,7 +166,7 @@ window.pixelCatCardClimbV1={
   return {ok:!!best,route:best,stats};
  },
  start(a,next,t){
-  const C=window.pixelCatClimbV1,target=a.surfaces.find(s=>s.id===next.surface.id),ordinary=target&&!next.mode?.endsWith('ascent')&&next.mode!=='card-wall-jump'&&window.pixelCatSurfaceWorldV1.route(a,target,a.support),last=a.route.at(-1);
+  const C=window.pixelCatClimbV1,target=a.surfaces.find(s=>s.id===next.surface.id),ordinary=target&&!next.mode?.startsWith('card-')&&next.mode!=='ascent'&&window.pixelCatSurfaceWorldV1.route(a,target,a.support),last=a.route.at(-1);
   if(ordinary&&!next.preview&&!next.tree){a.route=[...ordinary,...last?.settle?[last]:[]];return true;}
   const current=next.manualWallJump?this.wallRoute(a,next)?.at(-1):this.route(a,target,a.support,true,next.mode)?.[0];if(!current||a.support.id!==next.fromId){a.route=[];a.deadline=t+1000;if(next.manualWallJump){a.setAttribute('data-wall-jump-command','landing changed');a.status('Wall jump cancelled: entry or landing changed');}return true;}
   const choice=current.choice,remaining=a.route.slice(1),prop={id:'card-grip-'+a.ownerKey,virtual:true,claimedBy:a.ownerKey,scale:a.scale,node:{isConnected:true}},assets=window.pixelCatClimbAssetsV1,below=Math.max(...assets.centred.front.frames.map(f=>f.rows.findLastIndex(r=>r.includes('#')||r.includes('R'))+1-f.anchor.y));

@@ -10,9 +10,8 @@ let wallAvailable = true;
 let attempted = 0;
 window.pixelCatCardClimbV1 = {
   reconcile:()=>({faces:wallAvailable?[{}]:[],tops:[]}),
-  ascent(a,t,preview,accept,report) {
+  ascent(a,t,preview,report) {
     if (!planAvailable) { report('No safe route'); return false; }
-    if (accept && !accept()) return false;
     attempted++;
     report('Attempted');
     a.complete = ()=>report('Completed');

@@ -53,7 +53,6 @@ Use task-relevant labs on 8769:
 
 - `prototype/tree-lab.html`: seeded component assembly, rectangular shared drawing tools, socket/support/grip/depth metadata and exact versioned tree workspaces. `?draft=qa-<name>` isolates test saves. Tree geometry is not yet wired into HA cat traversal or default cards; [contract](design/CAT_TREE_GENERATOR.md).
 
-- `prototype/vertical-surfaces-lab.html`: finite face/top discovery, exposure/fit rejection and actual-art wall-jump/climb transfers; foundation plus an opt-in HA finite-face transfer pilot; see its integration contract.
 - `prototype/settling-lab.html`: three ages, before/after-five-minute eligibility, real prolonged sleep/loaf, startle and timer expiry; eligibility advancement is diagnostic only.
 - `prototype/command-controls-lab.html`: real Startle all / Wall jump handlers, three settled residents, finite walls and explicit route replay with autonomous/social behaviour disabled.
 - `prototype/refinement-lab.html`: beds, depth, surface counts, scratching, tracks/particles and controlled mixed-age movement cadence/preferred-pace comparisons.

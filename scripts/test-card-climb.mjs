@@ -22,7 +22,12 @@ console.log('PASS: native finite-face transfers land up/down, preserve ordinary 
   assert.equal(C.offer(a,100),false,'Optional offer retains its cooldown');
   a.social.clear=()=>false;
   assert.equal(N.ascent(a,100,true),false,'Manual ascent still requires a clear landing');
-  a.social.clear=()=>true;assert.equal(C.offer(a,40000),true);
+  a.social.clear=()=>true;
+  assert.equal(C.offer(a,40000),false,'Post opportunities no longer choose a card destination separately');
+  a.ensureMood=()=>({random:()=>.4,values:{playfulness:.7,sleepiness:.2}});
+  const path=N.prefer(a,target);
+  assert.equal(path?.[0].mode,'card-rise','A tall upward destination prefers a checked wall despite a direct route');
+  a.route=path;N.start(a,path[0],40000);
   assert.equal(a.climb.nativeTransfer.kind,'climb-and-leap');
   const grips=a.climb.plan.grips;
   assert.ok(grips.at(-1).root.y<=grips[0].root.y-4*a.scale,'Climb travels visibly upward');
@@ -103,7 +108,7 @@ for(const [age,scale] of [['adult',2],['kitten',1]]){
  b.window.pixelCatSurfaceWorldV1.route=()=>[];
  const events=[];
  try{
-  const result=N.ascent(a,100,false,()=>true,x=>events.push(x),'card-ascent');
+  const result=N.ascent(a,100,false,x=>events.push(x),'card-ascent');
   assert.equal(result,true,JSON.stringify({events,route:N.route(a,target,origin,true,'card-ascent')?.[0]?.choice?.result?.stats}));
   assert.equal(a.climb.nativeTransfer.faceId,face.id);
   assert.equal(a.climb.goalSurface,target);
@@ -112,20 +117,13 @@ for(const [age,scale] of [['adult',2],['kitten',1]]){
   assert.equal(a.support,target);
   assert.deepEqual(events,['Attempted','Completed']);
   a.support=origin;a.x=310;a.y=origin.top;
-  a.ensureMood=()=>({random:()=>0,values:{playfulness:.7,sleepiness:.2}});
   b.window.pixelCatSurfaceWorldV1.route=(_a,to)=>[to];
-  a.ensureMood=()=>({random:()=>.12,values:{playfulness:.7,sleepiness:.2}});
-  const preferred=N.prefer(a,target);
-  assert.equal(preferred?.[0].mode,'card-ascent','The workshop ascent can compete with an ordinary direct leap');
-  const workshopPlan=preferred[0].choice.result.route.plan;
-  assert.equal(workshopPlan.route,'edge climb');
-  assert.ok(workshopPlan.segments.some(s=>s.kind==='climb'&&s.cycle>0&&b.window.pixelCatClimbAssetsV1.frames.some(f=>f.id===s.frame.id)));
-  assert.ok(workshopPlan.grips.every(g=>g.side==='left'||g.side==='right'));
-  a.wallRetry=0;a.ensureMood=()=>({random:()=>0,values:{playfulness:.7,sleepiness:.2}});
-  const jump=N.prefer(a,target);
-  assert.ok(jump,'An ordinary one-jump destination may be reached via the current face');
-  assert.equal(jump[0].choice.result.route.distanceCells,0,'Quick grip followed by a leap');
-  assert.equal(N.prefer(a,target),null,'Repeated autonomous probes respect the cooldown');
+  assert.equal(N.prefer(a,target),null,'A short drop stays on ordinary routing');
+  const jump=N.route(a,target,origin,true,'card-wall-jump');
+  assert.ok(jump);
+  const rebound=jump[0].choice.result.route;
+  assert.equal(rebound.distanceCells,0,'No climb loop between contact and push-off');
+  assert.deepEqual(Array.from(rebound.plan.segments.filter(s=>s.kind==='grip'),s=>s.ms),[24]);
   a.route=jump;N.start(a,jump[0],t);
   assert.equal(a.climb.nativeTransfer.kind,'wall-jump');
   const end=t+12000;
@@ -154,4 +152,30 @@ for(const [x,side] of [[50,'left'],[200,'right']]){
  assert.equal(grip.root.x,face.rect.left-a.scale/2);
  const entry=plan.segments.find(s=>s.kind==='climb');
  assert.ok(!entry.frame.id.startsWith('descent-'),'An entry higher than takeoff uses the upright pose despite terminal downward speed');
+}
+
+{
+ const a=native(),api=b.window.pixelCatSurfaceWorldV1,oldWorld=api.route,oldRoute=N.route;
+ a.ensureMood=()=>({random:()=>.4});
+ try {
+  api.route=()=>[];
+  N.route=(_a,_target,_origin,_fresh,mode)=>mode;
+  const from=a.support;
+  assert.equal(N.destinationWeight(a,{top:from.top-60}),.25);
+  assert.equal(N.destinationWeight(a,{top:from.top-24}),.55);
+  assert.equal(N.prefer(a,{top:from.top-10}),null);
+  assert.equal(N.prefer(a,{top:from.top+45}),'card-drop');
+  assert.equal(N.prefer(a,{top:from.top+45}),null,'Repeated autonomous probes respect the cooldown');
+  a.wallRetry=0;api.route=()=>null;
+  assert.equal(N.prefer(a,{top:from.top+45}),null,'No wall preference without a way home');
+ }finally{api.route=oldWorld;N.route=oldRoute;}
+}
+
+{
+ const a=native(),from=a.support,target=a.surfaces[1],face=a.cardGeometry.faces[0];
+ target.top=640;face.rect.bottom=655;face.grips.bottom=620;
+ const candidate=N.route(a,target,from,true,'card-drop');
+ assert.ok(candidate,'The production planner can split a long drop across an intermediate wall grip');
+ const plan=candidate[0].choice.result.route.plan;
+ assert.ok(plan.grips.every(g=>g.root.y>from.top&&g.root.y<target.top));
 }
