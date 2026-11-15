@@ -9,7 +9,7 @@ let planAvailable = true;
 let wallAvailable = true;
 let attempted = 0;
 window.pixelCatCardClimbV1 = {
-  reconcile:()=>({faces:wallAvailable?[{}]:[]}),
+  reconcile:()=>({faces:wallAvailable?[{}]:[],tops:[]}),
   ascent(a,t,preview,accept,report) {
     if (!planAvailable) { report('No safe route'); return false; }
     if (accept && !accept()) return false;
@@ -23,7 +23,7 @@ const context = {
   window,location,customElements:{get:k=>elements.get(k),define:(k,v)=>elements.set(k,v)},
   HTMLElement:class {},Option:class {},setInterval:()=>1,clearInterval(){}
 };
-vm.runInNewContext(fs.readFileSync('prototype/cat-behaviour-lab.js','utf8'),context);
+for(const file of ['cat-lab-approach','cat-behaviour-lab']) vm.runInNewContext(fs.readFileSync('prototype/'+file+'.js','utf8'),context);
 const Lab = elements.get('pixel-cat-behaviour-lab');
 const mount = root => {
   const card = new Lab();
@@ -87,8 +87,26 @@ assert.equal(tick(eating,2016),1);
 assert.equal(finished,1);
 assert.equal(eating.route.length,0);
 assert.equal(eating.idle.poseUntil,2016);
-assert.equal(eating.labPose,'stand');
+assert.equal(eating.labPose,null);
+planAvailable=false;wallAvailable=true;
+const faceOwner={}, landingOwner={};
+const starter={id:'start',min:0,max:200,top:100,el:faceOwner};
+const landing={id:'landing',min:160,max:260,top:125,el:landingOwner};
+Object.assign(eating,{support:starter,home:starter,surfaces:[starter,landing],scale:2,x:0});
+Object.assign(window.pixelCatCardClimbV1,{
+  reconcile:()=>({faces:[{panelId:'start'}],tops:[{...landing,panelId:'landing',sourceId:'landing'}],
+    byOwner:new Map([['start',faceOwner],['landing',landingOwner]])}),
+  sourceCard:(_a,s)=>s.el,
+  route:(_a,to,from,_fresh,mode,x)=>to===landing&&from===starter&&mode==='card-ascent'&&x===200?[{}]:null
+});
+window.pixelCatSurfaceWorldV1={route:()=>[]};
+window.pixelCatPointRoutesV1={plan:(_a,to,x)=>to===starter&&x===200?[{pointRoute:true}]:null};
+assert.equal(tick(eating,5000),1);
+const approach=eating.route;
+assert.equal(approach.length,1);
+assert.equal(tick(eating,5016),1);
+assert.equal(eating.route,approach);
 priority.select.value='';priority.select.onchange();
-assert.equal(tick(eating,2100),0);
-assert.equal(eating.deadline,2100);
+assert.equal(tick(eating,5100),0);
+assert.equal(eating.deadline,5100);
 console.log('PASS: view scope, staggered retries, focus interrupts grounded activities, and Natural restores ordinary planning.');

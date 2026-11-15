@@ -3,12 +3,12 @@
   const scenarios = {
     climb: {
       label: 'Climb and leap',
-      counters: ['No usable wall','No safe route','Current card has no usable face','No destination card','No way home','Attempted','Completed'],
+      counters: ['No usable wall','No safe route','Current card has no usable face','No destination card','No way home','Repositioning','Attempted','Completed'],
       enabled: a => !!a.config.card_climbing,
       offer(a, t, report, mode='card-ascent') {
         const climb = window.pixelCatCardClimbV1;
         if (!climb?.reconcile(a)?.faces.length) return report('No usable wall');
-        return climb.ascent(a, t, false, null, report, mode);
+        return climb.ascent(a, t, false, null, report, mode) || window.pixelCatLabApproachV1(climb, a, report, mode);
       }
     },
     yawn: {
@@ -33,23 +33,30 @@
     tick(a,t,art) {
       const v=views.get(a.root), focus=v&&v.path===location.pathname?v.focus:'';
       if (!focus) {
-        if(a.labFocus){a.labFocus='';a.labPose=null;a.deadline=t;}
+        if(a.labFocus){if(a.route===a.labRoute)a.route=[];a.labRoute=null;a.labFocus='';a.labPose=null;a.deadline=t;}
         return 0;
       }
       if(a.command||a.goal||a.previewPose)return 0;
       if(a.climb)return window.pixelCatClimbV1.tick(a,t,art)?2:1;
       if(a.motion||a.mouthAction)return a.mouthAction?0:1;
       if(a.labFocus!==focus){
+        if(a.route===a.labRoute)a.route=[];
+        a.labRoute=null;
         a.labFocus=focus;
         window.pixelCatSettlingV1?.wake(a,t);
         if(a.idle)a.idle.poseUntil=t;
       }
+      if(a.route?.length && a.labRoute===a.route)return 1;
       if(a.route?.length)a.route=[];
       if(a.play||a.toyHunt)a.cancelPlay(t);
       if(a.social?.episode)a.social.finish('behaviour focus');
-      a.labPose='stand';
+      a.labPose=focus==='yawn'?'stand':null;
       a.deadline=t+4000;
-      if(!a.bedInside&&!a.support?.bed)this.offer(a,t);
+      if(scenarios[focus].enabled?.(a)!==false && a.bedInside && a.bedInside.config.bed_style!=='simple'){
+        window.pixelCatBedEntryV1?.exit(a,'stand',t,art);
+      } else {
+        this.offer(a,t);
+      }
       a.propScene?.tick(t,a);
       return a.climb?2:1;
     },

@@ -775,8 +775,8 @@ class PixelCatHome extends HTMLElement {
     if(this.play)this.advancePlay(t);
     else if(!this.social?.episode&&!this.previewPose&&this.config.playful_pounces!==false&&!this.motion&&!this.route?.length&&!this.goal&&!this.command&&this.idle&&t-this.idle.start>1000&&t>(this.nextPlayAt||Infinity)){this.nextPlayAt=t+60000+Math.random()*60000;if(Math.random()<(window.pixelCatPostRestV1?.choiceWeight(this,'ambush')??1)*(this.config.mood_behaviour?.025+.12*this.ensureMood().values.playfulness*(1-.7*this.ensureMood().values.sleepiness):.08))this.startPlay(t);}
     window.pixelCatSetupV1?.restSupport?.(this,t);
-    if(window.pixelCatPolishV1?.departure(this,t,frameContact,idleContact))return;
     }
+    if(window.pixelCatPolishV1?.departure(this,t,frameContact,idleContact))return;
     let rows=this.idle?.rows||(this.support?.home?CAT_ART.loaf:CAT_ART.sit), placement=this.motion?null:this.idle?.placement||null;
     if(this.motion) {
       const m=this.motion, p=m.duration?Math.min(1,(t-m.start)/m.duration):1;

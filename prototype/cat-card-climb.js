@@ -12,12 +12,12 @@ window.pixelCatCardClimbV1={
   if(!a.config.card_climbing||!from)return false;
   const world=window.pixelCatSurfaceWorldV1, across=mode.startsWith('card-');
   const geometry=across&&this.reconcile(a), origin=this.sourceCard(a,from);
-  if(across&&!geometry?.faces.some(f=>geometry.byOwner.get(f.panelId)===origin)){
+  if(across&&(from.bed||!geometry?.faces.some(f=>geometry.byOwner.get(f.panelId)===origin))){
    report?.('Current card has no usable face');return false;
   }
   const tops=across&&new Set(geometry.tops.map(s=>s.sourceId));
   const distance=s=>Math.hypot(Math.max(s.min-a.x,0,a.x-s.max),from.top-s.top);
-  const targets=a.surfaces.filter(s=>!s.tree&&!s.home&&!s.bed&&!s.narrow&&(across?s.el!==origin&&tops.has(s.id):from.top-s.top>=8*a.scale)).sort((x,y)=>distance(x)-distance(y)).slice(0,3);
+  const targets=a.surfaces.filter(s=>!s.tree&&!s.home&&!s.bed&&!s.narrow&&(across?s.el!==origin&&tops.has(s.id):from.top-s.top>=8*a.scale)).sort((x,y)=>distance(x)-distance(y)).slice(0,across?6:3);
   let hasReturn=false;
   for(const target of targets){
    if(!preview&&!world.route(a,a.home,target))continue;
@@ -49,15 +49,15 @@ window.pixelCatCardClimbV1={
   return a.cardGeometry={...found,ownHome,panels,byOwner,records,surfaces:a.surfaces,scale:a.scale,generation,cache:new Map()};
  },
  shift(a,dx,dy){if(a.verticalCardRects)a.verticalCardRects=a.verticalCardRects.map(v=>({...v,r:{...moveRect(v.r,dx,dy),width:v.r.width,height:v.r.height}}));const g=a.cardGeometry;if(!g)return;g.panels=g.panels.map(p=>({...p,rect:moveRect(p.rect,dx,dy),clip:moveRect(p.clip,dx,dy),blockers:p.blockers.map(r=>moveRect(r,dx,dy))}));g.faces=g.faces.map(f=>({...f,rect:moveRect(f.rect,dx,dy),grips:moveRect(f.grips,dx,dy)}));g.tops=g.tops.map(t=>({...t,left:t.left+dx,right:t.right+dx,min:t.min+dx,max:t.max+dx,top:t.top+dy}));g.records=a.verticalCardRects;g.surfaces=a.surfaces;g.cache.clear();},
- route(a,target,origin,fresh=false,mode='either'){
+ route(a,target,origin,fresh=false,mode='either',startX=a.x){
   if(target?.tree)return this.treeRoute(a,target,origin);
   if(a.config?.card_climbing!==true||!origin||!target||a.carriedToy||target.bed||target.narrow||!mode.startsWith('card-')&&Math.abs(origin.top-target.top)<8*a.scale)return null;
   const g=this.reconcile(a);if(!g)return null;
-  const key=origin.id+'>'+target.id+':'+Math.round(a.x/a.scale)+':'+mode,cached=g.cache.get(key);if(!fresh&&cached!==undefined)return cached;
+  const key=origin.id+'>'+target.id+':'+Math.round(startX/a.scale)+':'+mode,cached=g.cache.get(key);if(!fresh&&cached!==undefined)return cached;
   const model=window.pixelCatClimbModelV1,art=cardClimbArt(),frame=window.pixelCatClimbAssetsV1.centred.front.frames[0],probe=model.runtimeProbe(a.constructor,art,{...a.config,grip_max_rise:30,climbWorld:a.worldRect},a.scale),owner=g.panels.find(p=>g.byOwner.get(p.id)===target.el&&Math.abs(target.top-p.rect.top)<.5);
   let landing=target;if(owner){landing=g.tops.find(t=>t.sourceId===target.id||t.id===target.id);if(!landing){g.cache.set(key,null);return null;}}
   const candidates=g.faces.filter(f=>mode.startsWith('card-')?g.byOwner.get(f.panelId)===this.sourceCard(a,origin):g.byOwner.get(f.panelId)!==g.ownHome).sort((f,h)=>Math.abs(f.grips.left-a.x)+Math.abs(f.grips.top-target.top)-Math.abs(h.grips.left-a.x)-Math.abs(h.grips.top-target.top)).slice(0,3);let best;
-  for(const face of candidates){const result=planVerticalTransfer({face,from:origin,target:landing,startX:a.x,world:a.worldRect,scale:a.scale,frame,probe,framePlacement:model.framePlacement,generation:g.generation,maxChecks:32,mode,clear:(s,x)=>a.social?.clear(s,x)!==false});if(result.ok&&(!best||result.route.cost<best.result.route.cost))best={face,result,landing};}
+  for(const face of candidates){const result=planVerticalTransfer({face,from:origin,target:landing,startX,world:a.worldRect,scale:a.scale,frame,probe,framePlacement:model.framePlacement,generation:g.generation,maxChecks:32,mode,clear:(s,x)=>a.social?.clear(s,x)!==false});if(result.ok&&(!best||result.route.cost<best.result.route.cost))best={face,result,landing};}
   const path=best?[{climbRoute:true,nativeTransfer:true,fromId:origin.id,surface:target,kind:best.result.route.kind,mode,choice:best}]:null;
   if(g.cache.size>=64)g.cache.delete(g.cache.keys().next().value);g.cache.set(key,path);return path;
  },
