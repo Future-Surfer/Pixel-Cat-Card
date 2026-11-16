@@ -269,7 +269,9 @@ class PixelCatHome extends HTMLElement {
     const report=document.createElement('details');report.innerHTML='<summary>Surface report</summary><pre class="surface-report" style="font-size:10px;white-space:pre-wrap;max-height:220px;overflow:auto"></pre>';this.shadowRoot.querySelector('details').append(report);
     this.installPropControls();this.installMoodControls();
     const card=this.shadowRoot.querySelector('ha-card');
-    if(card?.style){card.style.backgroundColor=this.config.card_color||'';card.style.borderColor=this.config.card_border_color||'';if(Number.isFinite(this.config.card_radius))card.style.borderRadius=Math.max(0,Math.min(40,this.config.card_radius))+'px';}
+    if(card?.style){const transparency=Math.min(100,Math.max(0,Number(this.config.card_background_transparency)||0));
+      const background=this.config.card_color||'var(--ha-card-background,var(--card-background-color,#fff))';
+      card.style.backgroundColor=transparency?'color-mix(in srgb, '+background+' '+(100-transparency)+'%, transparent)':this.config.card_color||'';card.style.borderColor=this.config.card_border_color||'';if(Number.isFinite(this.config.card_radius))card.style.borderRadius=Math.max(0,Math.min(40,this.config.card_radius))+'px';}
     this.renderHomeProp();
     this.shadowRoot.querySelectorAll('[data-debug]').forEach(input=>{input.checked=this.debug[input.dataset.debug];input.onchange=()=>{this.debug[input.dataset.debug]=input.checked;if(input.dataset.debug==='verticalSurfaces')this.invalidate();this.renderDebug();};});
     this.shadowRoot.querySelector('[data-action="explore"]').onclick = () => this.requestVisit(null,'prompted');

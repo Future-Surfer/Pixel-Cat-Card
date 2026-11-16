@@ -35,6 +35,7 @@ const catEditorGroups=[
  {title:'Home & appearance',fields:[
   ['cell_size','Pixel scale','number',2,'Higher numbers make cats, toys, and furniture bigger.',1,6],
   ['card_color','Card colour','color','#ffffff','Choose the card background.'],
+  ['card_background_transparency','Background transparency','percent',0,'From solid (0%) to clear (100%).',0,100],
   ['card_border_color','Border colour','color','#dddddd','Choose the card border.'],
   ['card_radius','Corner rounding','number',12,'The corner radius in pixels.',0,40],
   ['floor_shadow','Floor shadow','checkbox',true,'Show a soft shadow underneath your cat.'],
@@ -84,7 +85,7 @@ const catEditorChange=(config,key,raw)=>{
  const next={...config},kind=field[2];
  if(kind==='checkbox')next[key]=!!raw;
  else if(raw==='')delete next[key];
- else if(kind==='number'){
+ else if(kind==='number'||kind==='percent'){
   const value=Number(raw);if(!Number.isFinite(value)||value<field[5]||value>field[6]||!Number.isInteger(value))throw Error('Invalid numeric value');next[key]=value;
  }else {if(kind==='select'&&!catEditorOptions[key]?.some(([v])=>v===raw))throw Error('Invalid selection');next[key]=String(raw);}
  // The legacy preview override otherwise wins over the editor's freefall field.
@@ -164,14 +165,14 @@ class PixelCatHomeEditor extends HTMLElement{
     if(['settle_after_minutes','settled_rest_min_minutes','settled_rest_max_minutes'].includes(key)&&catEditorValue(this.config,'settling_mode')!=='custom')continue;
     const label=document.createElement('label');label.className='field';const copy=document.createElement('span');copy.textContent=title;
     const hint=document.createElement('small');hint.id='hint-'+key;hint.textContent=help;copy.append(hint);
-    const input=document.createElement(kind==='select'?'select':'input');if(kind!=='select')input.type=kind;else for(const [value,text]of catEditorOptions[key]){const option=document.createElement('option');option.value=value;option.textContent=text;input.append(option);}input.dataset.key=key;input.setAttribute('aria-label',title);input.setAttribute('aria-describedby',hint.id);
-    const value=key==='title'?(this.config.title??'Cat performance'):catEditorValue(this.config,key);if(kind==='checkbox'){input.checked=!!value;if(key==='primary_home'&&this.config.primary_home===undefined)input.indeterminate=true;}else input.value=kind==='color'&&/^#[0-9a-f]{3}$/i.test(value)?'#'+[...value.slice(1)].map(x=>x+x).join(''):kind==='color'&&!/^#[0-9a-f]{6}$/i.test(value)?catEditorFields.get(key)[3]:value??'';
+    const input=document.createElement(kind==='select'?'select':'input');if(kind!=='select')input.type=kind==='percent'?'range':kind;else for(const [value,text]of catEditorOptions[key]){const option=document.createElement('option');option.value=value;option.textContent=text;input.append(option);}input.dataset.key=key;input.setAttribute('aria-label',title);input.setAttribute('aria-describedby',hint.id);
+    const value=key==='title'?(this.config.title??'Cat performance'):catEditorValue(this.config,key);if(kind==='checkbox'){input.checked=!!value;}else input.value=kind==='color'&&/^#[0-9a-f]{3}$/i.test(value)?'#'+[...value.slice(1)].map(x=>x+x).join(''):kind==='color'&&!/^#[0-9a-f]{6}$/i.test(value)?catEditorFields.get(key)[3]:value??'';
     if(kind==='range'){input.min=1;input.max=5;input.step=1;}
-    if(kind==='number'){input.min=min;input.max=max;input.step=1;}
+    if(kind==='number'||kind==='percent'){input.min=min;input.max=max;input.step=1;}
     const commit=(reset=false)=>{
      clearTimeout(this.timers.get(key));this.timers.delete(key);
      input.setCustomValidity?.('');
-     if(kind==='number'&&!input.checkValidity())return;
+     if((kind==='number'||kind==='percent')&&!input.checkValidity())return;
      if(key==='settling_mode')for(const pending of this.shadowRoot.querySelectorAll('input'))if(this.timers.has(pending.dataset.key))pending.dispatchEvent(new Event('change'));
      if(key==='settled_rest_min_minutes'||key==='settled_rest_max_minutes'){
       const other=key==='settled_rest_min_minutes'?'settled_rest_max_minutes':'settled_rest_min_minutes',value=input.value===''?catEditorFields.get(key)[3]:Number(input.value),bound=Number(catEditorValue(this.config,other)),invalid=key==='settled_rest_min_minutes'?value>bound:value<bound;

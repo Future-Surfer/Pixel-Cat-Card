@@ -25939,6 +25939,7 @@ const catEditorGroups=[
 {title:'Home & appearance',fields:[
 ['cell_size','Pixel scale','number',2,'Higher numbers make cats, toys, and furniture bigger.',1,6],
 ['card_color','Card colour','color','#ffffff','Choose the card background.'],
+['card_background_transparency','Background transparency','percent',0,'From solid (0%) to clear (100%).',0,100],
 ['card_border_color','Border colour','color','#dddddd','Choose the card border.'],
 ['card_radius','Corner rounding','number',12,'The corner radius in pixels.',0,40],
 ['floor_shadow','Floor shadow','checkbox',true,'Show a soft shadow underneath your cat.'],
@@ -25988,7 +25989,7 @@ const field=catEditorFields.get(key);if(!field)throw Error('Unknown editor field
 const next={...config},kind=field[2];
 if(kind==='checkbox')next[key]=!!raw;
 else if(raw==='')delete next[key];
-else if(kind==='number'){
+else if(kind==='number'||kind==='percent'){
 const value=Number(raw);if(!Number.isFinite(value)||value<field[5]||value>field[6]||!Number.isInteger(value))throw Error('Invalid numeric value');next[key]=value;
 }else {if(kind==='select'&&!catEditorOptions[key]?.some(([v])=>v===raw))throw Error('Invalid selection');next[key]=String(raw);}
 if(kind==='range'){delete next[key];next.temperament={...config.temperament,[key]:(Number(raw)-1)/4};}
@@ -26067,14 +26068,14 @@ if(key.startsWith('bed_')&&(this.config.include_bed===false||this.config.show_ho
 if(['settle_after_minutes','settled_rest_min_minutes','settled_rest_max_minutes'].includes(key)&&catEditorValue(this.config,'settling_mode')!=='custom')continue;
 const label=document.createElement('label');label.className='field';const copy=document.createElement('span');copy.textContent=title;
 const hint=document.createElement('small');hint.id='hint-'+key;hint.textContent=help;copy.append(hint);
-const input=document.createElement(kind==='select'?'select':'input');if(kind!=='select')input.type=kind;else for(const [value,text]of catEditorOptions[key]){const option=document.createElement('option');option.value=value;option.textContent=text;input.append(option);}input.dataset.key=key;input.setAttribute('aria-label',title);input.setAttribute('aria-describedby',hint.id);
-const value=key==='title'?(this.config.title??'Cat performance'):catEditorValue(this.config,key);if(kind==='checkbox'){input.checked=!!value;if(key==='primary_home'&&this.config.primary_home===undefined)input.indeterminate=true;}else input.value=kind==='color'&&/^#[0-9a-f]{3}$/i.test(value)?'#'+[...value.slice(1)].map(x=>x+x).join(''):kind==='color'&&!/^#[0-9a-f]{6}$/i.test(value)?catEditorFields.get(key)[3]:value??'';
+const input=document.createElement(kind==='select'?'select':'input');if(kind!=='select')input.type=kind==='percent'?'range':kind;else for(const [value,text]of catEditorOptions[key]){const option=document.createElement('option');option.value=value;option.textContent=text;input.append(option);}input.dataset.key=key;input.setAttribute('aria-label',title);input.setAttribute('aria-describedby',hint.id);
+const value=key==='title'?(this.config.title??'Cat performance'):catEditorValue(this.config,key);if(kind==='checkbox'){input.checked=!!value;}else input.value=kind==='color'&&/^#[0-9a-f]{3}$/i.test(value)?'#'+[...value.slice(1)].map(x=>x+x).join(''):kind==='color'&&!/^#[0-9a-f]{6}$/i.test(value)?catEditorFields.get(key)[3]:value??'';
 if(kind==='range'){input.min=1;input.max=5;input.step=1;}
-if(kind==='number'){input.min=min;input.max=max;input.step=1;}
+if(kind==='number'||kind==='percent'){input.min=min;input.max=max;input.step=1;}
 const commit=(reset=false)=>{
 clearTimeout(this.timers.get(key));this.timers.delete(key);
 input.setCustomValidity?.('');
-if(kind==='number'&&!input.checkValidity())return;
+if((kind==='number'||kind==='percent')&&!input.checkValidity())return;
 if(key==='settling_mode')for(const pending of this.shadowRoot.querySelectorAll('input'))if(this.timers.has(pending.dataset.key))pending.dispatchEvent(new Event('change'));
 if(key==='settled_rest_min_minutes'||key==='settled_rest_max_minutes'){
 const other=key==='settled_rest_min_minutes'?'settled_rest_max_minutes':'settled_rest_min_minutes',value=input.value===''?catEditorFields.get(key)[3]:Number(input.value),bound=Number(catEditorValue(this.config,other)),invalid=key==='settled_rest_min_minutes'?value>bound:value<bound;
@@ -28890,7 +28891,9 @@ const actions=document.createElement('select');actions.setAttribute('aria-label'
 const report=document.createElement('details');report.innerHTML='<summary>Surface report</summary><pre class="surface-report" style="font-size:10px;white-space:pre-wrap;max-height:220px;overflow:auto"></pre>';this.shadowRoot.querySelector('details').append(report);
 this.installPropControls();this.installMoodControls();
 const card=this.shadowRoot.querySelector('ha-card');
-if(card?.style){card.style.backgroundColor=this.config.card_color||'';card.style.borderColor=this.config.card_border_color||'';if(Number.isFinite(this.config.card_radius))card.style.borderRadius=Math.max(0,Math.min(40,this.config.card_radius))+'px';}
+if(card?.style){const transparency=Math.min(100,Math.max(0,Number(this.config.card_background_transparency)||0));
+const background=this.config.card_color||'var(--ha-card-background,var(--card-background-color,#fff))';
+card.style.backgroundColor=transparency?'color-mix(in srgb, '+background+' '+(100-transparency)+'%, transparent)':this.config.card_color||'';card.style.borderColor=this.config.card_border_color||'';if(Number.isFinite(this.config.card_radius))card.style.borderRadius=Math.max(0,Math.min(40,this.config.card_radius))+'px';}
 this.renderHomeProp();
 this.shadowRoot.querySelectorAll('[data-debug]').forEach(input=>{input.checked=this.debug[input.dataset.debug];input.onchange=()=>{this.debug[input.dataset.debug]=input.checked;if(input.dataset.debug==='verticalSurfaces')this.invalidate();this.renderDebug();};});
 this.shadowRoot.querySelector('[data-action="explore"]').onclick = () => this.requestVisit(null,'prompted');
@@ -30251,7 +30254,7 @@ cancel(a,reason,ground=true){if(reason==='removed')window.pixelCatClimbMarksV1?.
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"fe82d6d5578f52877128edca3dcb680fec9e440f608abfedcb03e808d6a6e1b5"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"427285758e1f08434ec43448fe1e0e90e03dffab94ca51cf1ae73bee8983af37"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0");
 })();

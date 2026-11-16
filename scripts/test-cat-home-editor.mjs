@@ -36,6 +36,17 @@ const change=(key,value)=>{const n=input(key);if(n.type==='checkbox')n.checked=v
 change('include_bed',false);assert.equal(editor.event.type,'config-changed');assert.equal(editor.event.bubbles,true);assert.equal(editor.event.composed,true);assert.equal(editor.event.detail.config.include_bed,false);assert.equal(editor.event.detail.config.show_home,undefined,'Bed control leaves the habitat visible');assert.equal(input('bed_primary_color'),undefined);assert.equal(editor.event.detail.config.surface_rules,advanced.surface_rules);assert.equal(editor.event.detail.config.mood,advanced.mood);
 change('include_bowl',false);assert.equal(input('bowl_primary_color'),undefined);
 change('boldness','5');assert.equal(editor.event.detail.config.temperament.boldness,1);
+const transparency=input('card_background_transparency');
+assert.equal(transparency.type,'range');
+assert.equal(transparency.min,0);
+assert.equal(transparency.max,100);
+change('card_background_transparency','65');
+assert.equal(editor.config.card_background_transparency,65);
+assert.equal(editor.config.temperament.boldness,1);
+const transparencyEvent=editor.event;
+change('card_background_transparency','101');
+assert.equal(editor.event,transparencyEvent);
+
 const valid=editor.event;change('cell_size','7');assert.equal(editor.event,valid,'Invalid size cannot emit a configuration update');change('name','');assert.equal('name' in editor.event.detail.config,false);
 editor.setConfig({...initial,show_home:false,walk_speed:12,test_freefall_pose:false});assert.equal(input('bed_primary_color'),undefined);assert.equal(input('relaxed_speed'),undefined);assert.equal(input('freefall_enabled'),undefined);
 const advancedGroup=editor.shadowRoot.querySelectorAll('details').find(n=>n.dataset.group==='Advanced settings');advancedGroup.open=true;editor.setConfig(editor.config);assert.equal(editor.shadowRoot.querySelectorAll('details').find(n=>n.dataset.group==='Advanced settings').open,true);
