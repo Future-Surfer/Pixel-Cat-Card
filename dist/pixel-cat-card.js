@@ -28913,7 +28913,7 @@ return;
 this.bedEntryManaged=true;this.waitingForSurface=false;this.surfaceRetryAt=0;
 this.home=null;this.scale ||= 2; this.paintHome();this.style.display=this.config.show_home===false&&!this.config.show_controls&&!editorPreviewFor(this)?'none':''; this.root=this.worldRoot();
 this.href = location.pathname;
-if(!this.root||editorPreviewFor(this)){this.active=false;this.status('Dashboard preview');for(const button of this.shadowRoot.querySelectorAll('button'))button.disabled=true;return;}
+if(!this.root||editorPreviewFor(this)){this.active=false;this.observePreviewProps();this.status('Dashboard preview');for(const button of this.shadowRoot.querySelectorAll('button'))button.disabled=true;return;}
 if(!window.pixelCatWorldV1&&['world_id','world_owner','world_settings'].some(k=>this.config[k]!==undefined)){this.active=false;this.worldReadyHandler??=()=>{this.worldReadyHandler=null;if(this.isConnected)this.connectedCallback();};window.addEventListener('pixel-cat-world-ready',this.worldReadyHandler,{once:true});return;}
 if(window.pixelCatWorldV1&&!window.pixelCatWorldV1.attach(this)){this.active=false;return;}this.active=true;
 window.pixelCatLayoutV1?.join(this);this.ownerKey=claimCatOwner(this,this.config.cat_id,this.root);this.setAttribute('data-cat-id',this.ownerKey);window.pixelCatPrimaryV1?.join(this);
@@ -28935,13 +28935,26 @@ this.invalidAt = performance.now(); this.needsMeasure = true; this.deadline = 0;
 this.checkAt = 0;
 this.raf = requestAnimationFrame(t => {this.href=location.pathname;this.tick(t);});
 }
+observePreviewProps(){
+const dock=this.shadowRoot.querySelector('.dock');
+const layout=()=>{
+window.pixelCatTreeV1?.mount(this);
+const ball=dock.querySelector('[data-cat-tree-ball]');
+if(ball)ball.disabled=true;
+window.pixelCatHomePostsV1?.sync(this,dock.clientWidth);
+};
+layout();
+this.observer=new ResizeObserver(layout);
+this.observer.observe(dock);
+}
 disconnectedCallback() {
+this.observer?.disconnect();
 if(this.worldReadyHandler){window.removeEventListener('pixel-cat-world-ready',this.worldReadyHandler);this.worldReadyHandler=null;}
 window.pixelCatClimbV1?.cancel(this,'removed',false);window.pixelCatWorldV1?.leave(this);
 window.pixelCatLayoutV1?.leave(this);window.pixelCatPrimaryV1?.leave(this);window.pixelCatDragV1?.uninstall(this);window.pixelCatSetupV1?.disconnect(this);
 if(!this.active) return;
 this.social?.dispose();this.social=null;
-this.active = false;window.pixelCatScrollOverlayV1?.unmount(this.layer);this.scrollCamera=null; cancelAnimationFrame(this.raf); this.layer?.remove();this.moodHalo=null;this.moodDebugAt=0;this.moodAccumulator=0; this.observer?.disconnect();
+this.active = false;window.pixelCatScrollOverlayV1?.unmount(this.layer);this.scrollCamera=null; cancelAnimationFrame(this.raf); this.layer?.remove();this.moodHalo=null;this.moodDebugAt=0;this.moodAccumulator=0;
 document.removeEventListener('scroll',this.onLayout,true); window.removeEventListener('resize',this.onLayout);
 document.removeEventListener('visibilitychange',this.onLayout); window.removeEventListener('popstate',this.onLayout);
 document.removeEventListener('click',this.onCardClick,true);
@@ -30236,7 +30249,7 @@ cancel(a,reason,ground=true){if(reason==='removed')window.pixelCatClimbMarksV1?.
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"b5110a43c41cd74de7a8601bf9cc5fa1ee4d6e5d80ec72bdd06a9dee15ba8645"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"8f4295884c852439237ccf3ee421b7b8698618b8dd3de5329a441f366e241cd9"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0");
 })();
