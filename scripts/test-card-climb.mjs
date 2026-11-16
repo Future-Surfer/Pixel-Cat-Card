@@ -1,7 +1,7 @@
 import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';import {runtimeFiles} from './build-release.mjs';
 const b={window:{},HTMLElement:class{},customElements:{get:()=>true},performance};vm.runInNewContext(runtimeFiles.map(f=>fs.readFileSync(f,'utf8')).join('\n')+'\nglobalThis.api={Home:PixelCatHome,art:CAT_ART};',b);const {Home,art}=b.api,C=b.window.pixelCatClimbV1;
 function actor(from=500,to=180){const base={id:'base',left:50,right:700,min:50,max:676,top:from,el:{isConnected:true}},target={id:'target',left:50,right:700,min:50,max:676,top:to,el:{isConnected:true}};return Object.assign(Object.create(Home.prototype),{active:true,config:{life_stage:'kitten',interaction_behaviour:true},scale:1,size:24,x:200,y:from,support:base,home:base,surfaces:[base,target],ownerKey:'test',social:{clear:()=>true,capture(){}},setAttribute(){},decisionLayer(){return{}},ensureMood(){return{random:()=>.3,values:{playfulness:.7,sleepiness:.2}}},pathTo(){return []},draw(rows){this.rows=rows},svg:{style:{}},status(){},renderMoodDebug(){}});}
-const N=b.window.pixelCatCardClimbV1;
+const N=b.window.pixelCatCardClimbV1,P=b.window.pixelCatCardTravelV1;
 b.getComputedStyle=()=>({});b.window.pixelCatSurfaceWorldV1.route=()=>null;b.window.pixelCatHomePostsV1.entries=()=>[];
 function native(){const a=actor();a.config.card_climbing=true;a.config.climb_slips=false;a.worldRect={left:0,top:0,right:800,bottom:800};a.surfaceId=el=>el===a.support.el?'base':'target';const records=[];a.verticalCardRects=records;
  const frame=b.window.pixelCatClimbAssetsV1.centred.front.frames[0];a.cardGeometry={records,surfaces:a.surfaces,scale:1,generation:1,cache:new Map(),panels:[],byOwner:new Map([['face',a.support.el]]),faces:[{id:'face:face:0',panelId:'face',label:'painted panel',rect:{left:90,right:650,top:80,bottom:490},grips:{left:110,right:630,top:105,bottom:470},generation:1}],tops:[]};return a;}
@@ -25,7 +25,7 @@ console.log('PASS: native finite-face transfers land up/down, preserve ordinary 
   a.social.clear=()=>true;
   assert.equal(C.offer(a,40000),false,'Post opportunities no longer choose a card destination separately');
   a.ensureMood=()=>({random:()=>.4,values:{playfulness:.7,sleepiness:.2}});
-  const path=N.prefer(a,target);
+  const path=P.prefer(a,target);
   assert.equal(path?.[0].mode,'card-rise','A tall upward destination prefers a checked wall despite a direct route');
   a.route=path;N.start(a,path[0],40000);
   assert.equal(a.climb.nativeTransfer.kind,'climb-and-leap');
@@ -118,12 +118,13 @@ for(const [age,scale] of [['adult',2],['kitten',1]]){
   assert.deepEqual(events,['Attempted','Completed']);
   a.support=origin;a.x=310;a.y=origin.top;
   b.window.pixelCatSurfaceWorldV1.route=(_a,to)=>[to];
-  assert.equal(N.prefer(a,target),null,'A short drop stays on ordinary routing');
-  const jump=N.route(a,target,origin,true,'card-wall-jump');
+  assert.equal(P.prefer(a,target),null,'A short drop stays on ordinary routing');
+  assert.equal(N.route(a,target,origin,true,'card-wall-jump'),null,'A normal rebound refuses a target across the edge');
+  const jump=N.route(a,target,origin,true,'card-cross-wall-jump');
   assert.ok(jump);
   const rebound=jump[0].choice.result.route;
   assert.equal(rebound.distanceCells,0,'No climb loop between contact and push-off');
-  assert.deepEqual(Array.from(rebound.plan.segments.filter(s=>s.kind==='grip'),s=>s.ms),[24]);
+  assert.deepEqual(Array.from(rebound.plan.segments.filter(s=>s.kind==='grip'),s=>s.ms),[60]);
   a.route=jump;N.start(a,jump[0],t);
   assert.equal(a.climb.nativeTransfer.kind,'wall-jump');
   const end=t+12000;
@@ -161,13 +162,13 @@ for(const [x,side] of [[50,'left'],[200,'right']]){
   api.route=()=>[];
   N.route=(_a,_target,_origin,_fresh,mode)=>mode;
   const from=a.support;
-  assert.equal(N.destinationWeight(a,{top:from.top-60}),.25);
-  assert.equal(N.destinationWeight(a,{top:from.top-24}),.55);
-  assert.equal(N.prefer(a,{top:from.top-10}),null);
-  assert.equal(N.prefer(a,{top:from.top+45}),'card-drop');
-  assert.equal(N.prefer(a,{top:from.top+45}),null,'Repeated autonomous probes respect the cooldown');
+  assert.equal(P.destinationWeight(a,{top:from.top-60}),.25);
+  assert.equal(P.destinationWeight(a,{top:from.top-24}),.55);
+  assert.equal(P.prefer(a,{top:from.top-10}),null);
+  assert.equal(P.prefer(a,{top:from.top+45}),'card-drop');
+  assert.equal(P.prefer(a,{top:from.top+45}),null,'Repeated autonomous probes respect the cooldown');
   a.wallRetry=0;api.route=()=>null;
-  assert.equal(N.prefer(a,{top:from.top+45}),null,'No wall preference without a way home');
+  assert.equal(P.prefer(a,{top:from.top+45}),null,'No wall preference without a way home');
  }finally{api.route=oldWorld;N.route=oldRoute;}
 }
 
@@ -178,4 +179,14 @@ for(const [x,side] of [[50,'left'],[200,'right']]){
  assert.ok(candidate,'The production planner can split a long drop across an intermediate wall grip');
  const plan=candidate[0].choice.result.route.plan;
  assert.ok(plan.grips.every(g=>g.root.y>from.top&&g.root.y<target.top));
+}
+
+{
+ const a=native(),from=a.support,face=a.cardGeometry.faces[0];
+ a.x=200;face.edges=['left'];
+ const route=N.route(a,from,from,true,'card-wall-jump');
+ assert.ok(route,'A cat starting inside can rebound to a support on that side');
+ const plan=route[0].choice.result.route.plan;
+ assert.equal(plan.grips[0].side,'right');
+ assert.ok(plan.segments.at(-1).jump.landingX+12*a.scale>face.rect.left);
 }

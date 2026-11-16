@@ -17,7 +17,7 @@ window.pixelCatCardClimbV1={
   }
   const tops=across&&new Set(geometry.tops.map(s=>s.sourceId));
   const distance=s=>Math.hypot(Math.max(s.min-a.x,0,a.x-s.max),from.top-s.top);
-  const targets=a.surfaces.filter(s=>!s.tree&&!s.home&&!s.bed&&!s.narrow&&(across?s.el!==origin&&tops.has(s.id):from.top-s.top>=8*a.scale)).sort((x,y)=>distance(x)-distance(y)).slice(0,across?6:3);
+  const targets=a.surfaces.filter(s=>!s.tree&&!s.home&&!s.bed&&!s.narrow&&(across?(s.el!==origin||mode==='card-wall-jump')&&tops.has(s.id):from.top-s.top>=8*a.scale)).sort((x,y)=>distance(x)-distance(y)).slice(0,across?6:3);
   let hasReturn=false;
   for(const target of targets){
    if(!preview&&!world.route(a,a.home,target))continue;
@@ -59,24 +59,6 @@ window.pixelCatCardClimbV1={
   for(const face of candidates){const result=this.edge(a,face,origin,landing,startX,mode);if(result.ok&&(!best||result.route.cost<best.result.route.cost))best={face,result,landing};}
   const path=best?[{climbRoute:true,nativeTransfer:true,fromId:origin.id,surface:target,kind:best.result.route.kind,mode,choice:best}]:null;
   if(g.cache.size>=64)g.cache.delete(g.cache.keys().next().value);g.cache.set(key,path);return path;
- },
- destinationWeight(a,target){
-  const rise=(a.support.top-target.top)/a.scale;
-  return rise>48?.25:rise>16?.55:1;
- },
- prefer(a,target){
-  const t=performance.now(),from=a.support;
-  if(!a.config.card_climbing||!from||!target||target.tree||target.home||t<(a.wallRetry||0))return null;
-  const rise=(from.top-target.top)/a.scale;
-  if(rise<24&&rise>-32)return null;
-  a.wallRetry=t+12000;
-  const world=window.pixelCatSurfaceWorldV1;
-  if(!world.route(a,a.home,target))return null;
-  const roll=a.ensureMood().random();
-  if(rise<=-32)return roll<.65?this.route(a,target,from,false,'card-drop'):null;
-  if(roll>=.75)return null;
-  const quick=roll<.15&&this.route(a,target,from,false,'card-wall-jump');
-  return quick||this.route(a,target,from,false,'card-rise');
  },
  treeRoute(a,target,origin){
   if(!origin||(!origin.home&&!origin.tree)||origin.id!==a.support?.id||a.config.climbing===false||a.carriedToy||target.narrow)return null;
@@ -132,12 +114,16 @@ window.pixelCatCardClimbV1={
    const stance=clamp(edge-(side==='left'?30:-6)*s);
    if(edge-(side==='left'?width:reach)*s<w.left||edge+(side==='left'?reach:width)*s>w.right)continue;
    if(!clear(from,stance))continue;
+   const line=edge+(.5-12)*s, rebound=mode==='card-wall-jump';
+   const minX=rebound&&side==='right'?Math.max(target.min,line):target.min;
+   const maxX=rebound&&side==='left'?Math.min(target.max,line):target.max;
+   if(minX>maxX)continue;
    const approach=Math.abs(x-stance)>s?probe.approach('meander',x,from,stance):null;
    if(Math.abs(x-stance)>s&&!fit(approach))continue;
    const attach=(...args)=>{if(stats.checks>=limit)return null;stats.checks++;const f=probe.attach(...args);return fit(f)?f:null;};
    const release=(root,frame,to,options)=>{
     if(to!==target||stats.checks>=limit||mode==='card-drop'&&root.y>target.top-6*s)return null;
-    stats.checks++;const f=probe.release(root,frame,to,options);
+    stats.checks++;const f=probe.release(root,frame,rebound?{...to,min:minX,max:maxX}:to,options);
     return fit(f)&&clear(target,f.landingX)?f:null;
    };
    const scene={scale:s,floor:from,target,face:{id:face.id,x:box.left,right:box.right,top:grips.top-4*s,bottom:box.bottom,grippy:true},startX:stance,gripCeilingY:grips.top,gripFloorY:grips.bottom};
@@ -159,7 +145,8 @@ window.pixelCatCardClimbV1={
     const entry=plan.grips[0].root,last=plan.grips.at(-1).root;
     plan.releaseAt=plan.segments.at(-1).start;
     plan.segments.at(-1).phase=quick?'Wall jump to landing':'Leaping off card';
-    if(!best||plan.duration<best.cost)best={plan,cost:plan.duration,kind:quick?'wall-jump':'climb-and-leap',distanceCells:Math.abs(entry.y-last.y)/s};
+    const x=plan.segments.at(-1).jump.landingX,cost=plan.duration+(quick&&(side==='left'?x>line:x<line)?5000:0);
+    if(!best||cost<best.cost)best={plan,cost,kind:quick?'wall-jump':'climb-and-leap',distanceCells:Math.abs(entry.y-last.y)/s};
     break;
    }
   }

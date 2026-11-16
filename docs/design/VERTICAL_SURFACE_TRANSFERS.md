@@ -10,7 +10,7 @@ The live card and the [Climb workshop](http://127.0.0.1:8769/prototype/climb-lab
 - Cats choose whether to leave a familiar perch before scoring destinations. Upward destinations more than 16 body cells away vertically get 55% of their ordinary weight. Beyond 48 cells they get 25%.
 - For a selected destination, small hops use ordinary routing. For rises of at least 24 cells, cats usually consider a wall route first. A quick push-off gets the first try on 15% of checks; 75% of checks can try a sustained climb if needed. A direct leap remains available when the wall route fails or the cat chooses the ordinary route.
 - Drops of at least 32 cells get a 65% chance to check for an intermediate wall grip. Both legs must pass the existing flight checks, with the grip between the takeoff and landing heights. Smaller drops use ordinary routing. Wall preferences have a 12-second cooldown and preserve a checked way home.
-- A quick wall jump uses a 24 ms contact beat between the checked attach and release flights. A sustained climb retains its brief grip pauses.
+- A quick wall jump uses a 60 ms contact beat between the checked attach and release flights. Most quick jumps land on the takeoff side of the edge. A small share of autonomous checks can consider a crossing. A sustained climb retains its brief grip pauses.
 - Behaviour Lab offers **Climb and leap** and **Wall jump**. Cats can reposition on a checked approach when the current spot fails. **Completed** counts actual landings. Diagnostics also expose exclusions and missing return routes.
 
 ## Testing and rollback

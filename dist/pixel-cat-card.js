@@ -28608,6 +28608,27 @@ for(const member of this.members){const own=propSurfaceFor(member,p);if(!own||p.
 }
 }
 
+window.pixelCatCardTravelV1={
+destinationWeight(a,target){
+const rise=(a.support.top-target.top)/a.scale;
+return rise>48?.25:rise>16?.55:1;
+},
+prefer(a,target){
+const t=performance.now(),from=a.support,climb=window.pixelCatCardClimbV1;
+if(!climb||!a.config.card_climbing||!from||!target||target.tree||target.home||t<(a.wallRetry||0))return null;
+const rise=(from.top-target.top)/a.scale;
+if(rise<24&&rise>-32)return null;
+a.wallRetry=t+12000;
+const world=window.pixelCatSurfaceWorldV1;
+if(!world.route(a,a.home,target))return null;
+const roll=a.ensureMood().random();
+if(rise<=-32)return roll<.65?climb.route(a,target,from,false,'card-drop'):null;
+if(roll>=.75)return null;
+const quick=roll<.15&&climb.route(a,target,from,false,roll<.025?'card-cross-wall-jump':'card-wall-jump');
+return quick||climb.route(a,target,from,false,'card-rise');
+},
+};
+
 const catSequenceSources=()=>[window.pixelCatRoamingArtV2?.idleSequences,window.pixelCatRoamingExtrasV1?.idleSequences,window.pixelCatRoamingExtensionsV1?.idleSequences];
 const catSequenceDescriptor=key=>{const sources=catSequenceSources();for(let i=sources.length-1;i>=0;i--){const d=sources[i]&&Object.getOwnPropertyDescriptor(sources[i],key);if(d?.enumerable)return {...d,configurable:true};}};
 const catSequences=new Proxy({},{has:(target,key)=>!!catSequenceDescriptor(key)||Reflect.has(target,key),get:(target,key)=>{const d=catSequenceDescriptor(key);return d?'value'in d?d.value:d.get?.call(catSequenceSources().findLast(s=>s&&Object.prototype.propertyIsEnumerable.call(s,key))):Reflect.get(target,key);},ownKeys:()=>[...new Set(catSequenceSources().flatMap(s=>s?Reflect.ownKeys(s).filter(k=>Object.prototype.propertyIsEnumerable.call(s,k)):[]))],getOwnPropertyDescriptor:(_,key)=>catSequenceDescriptor(key)});
@@ -29214,9 +29235,9 @@ if(this.command==='home'||this.goal==='home') target=this.home;
 else if(this.goal)target=this.surfaces.find(s=>s.id===goalSurface);
 else {
 const options=this.surfaces.filter(s=>!s.iglooRoof&&s.id!==this.support.id && this.pathTo(s) && this.pathTo(this.home,s));
-target=weightedPick(options,s=>visitWeight(this.visits,s.id,now)*(s.interest?1.2:1)*(this.social?.surfaceWeight?.(s)||1)*(window.pixelCatCardClimbV1?.destinationWeight(this,s)??1));if(!target&&window.pixelCatExplorationV1?.plan(this,now,leisure,true))return;if(!requested){this.urgency=target?.interest?'interested':'relaxed';if(this.config.mood_behaviour){const v=this.ensureMood().values;this.urgency=this.ensureMood().random()<(.15+.5*v.playfulness+.15*v.alertness)*(1-.8*v.sleepiness)?'interested':'relaxed';}}
+target=weightedPick(options,s=>visitWeight(this.visits,s.id,now)*(s.interest?1.2:1)*(this.social?.surfaceWeight?.(s)||1)*(window.pixelCatCardTravelV1?.destinationWeight(this,s)??1));if(!target&&window.pixelCatExplorationV1?.plan(this,now,leisure,true))return;if(!requested){this.urgency=target?.interest?'interested':'relaxed';if(this.config.mood_behaviour){const v=this.ensureMood().values;this.urgency=this.ensureMood().random()<(.15+.5*v.playfulness+.15*v.alertness)*(1-.8*v.sleepiness)?'interested':'relaxed';}}
 }
-if(target?.id==='home')target=this.bedSurface||target;const points=target&&restingPoints(target),point=points&&(points.find(p=>p.id===goalPoint)||(goalPoint==='click'?this.requestedPoint:null)||weightedPick(points,p=>p.weight*visitWeight(this.visits,target.id+'/'+p.id,now)));const path=target&&((!requested&&window.pixelCatCardClimbV1?.prefer(this,target))||(window.pixelCatPointRoutesV1?.plan(this,target,point.x)??this.pathTo(target)));if(!path){this.route=[];this.noPathMessage=target?'No route to '+target.label:'Chilling · no reachable destination';this.deadline=performance.now()+30000;this.renderDebug();return;}
+if(target?.id==='home')target=this.bedSurface||target;const points=target&&restingPoints(target),point=points&&(points.find(p=>p.id===goalPoint)||(goalPoint==='click'?this.requestedPoint:null)||weightedPick(points,p=>p.weight*visitWeight(this.visits,target.id+'/'+p.id,now)));const path=target&&((!requested&&window.pixelCatCardTravelV1?.prefer(this,target))||(window.pixelCatPointRoutesV1?.plan(this,target,point.x)??this.pathTo(target)));if(!path){this.route=[];this.noPathMessage=target?'No route to '+target.label:'Chilling · no reachable destination';this.deadline=performance.now()+30000;this.renderDebug();return;}
 this.command=null;this.goal=null;this.destinationId=target.id;this.noPathMessage=''; this.route=path;
 this.destinationPoint=point.id;this.requestedPoint=null;
 this.route.push({settle:true,surface:target,x:point.x});window.pixelCatReactionsV1?.wander(this,requested);
@@ -29480,7 +29501,7 @@ const grip=(frame=currentCatch())=>{const upper=release(root,frame,target),down=
 {id:'side-front',label:'Around post / in front',enabled:face.grippy&&!!rotationFrames('front')&&(!side.startsWith('centre-')||side==='centre-front'),reason:rotationFrames('front')?'Rough rotation draft; review contact and depth handoffs.':'Needs rotation draft frames.'},
 {id:'side-back',label:'Around post / behind',enabled:face.grippy&&!!rotationFrames('back')&&(!side.startsWith('centre-')||side==='centre-back'),reason:rotationFrames('back')?'Rough rotation draft; review contact and depth handoffs.':'Needs rotation draft frames.'}
 ,...['front','back'].flatMap(path=>[{id:'centre-'+path,label:'Rotate to centre / '+path,enabled:face.grippy&&!!d.centred?.[path]&&!!rotationFrames(path)&&!side.startsWith('centre-')},...['left','right'].map(to=>({id:'to-'+to+'-'+path,label:'Rotate to '+to+' / '+path,enabled:face.grippy&&!!d.centred&&!!rotationFrames(path)&&side!==to&&(!side.startsWith('centre-')||side.slice(7)===path)}))])
-],flights:{upper,floor:down}};grips.push(node);add({kind:'grip',phase:'Grip idle / reassess',frame,from:{...root},to:{...root},cycle:cycles,node},transfer?.quick?24:face.grippy?c.decisionHold:40);return node;};
+],flights:{upper,floor:down}};grips.push(node);add({kind:'grip',phase:'Grip idle / reassess',frame,from:{...root},to:{...root},cycle:cycles,node},transfer?.quick?60:face.grippy?c.decisionHold:40);return node;};
 const moveCycle=(direction=1,distanceCells=Infinity)=>{descending=direction<0&&!!d.descent&& !side.startsWith('centre-');const active=side.startsWith('centre-')?d.centred[side.slice(7)].frames.filter(f=>f.role==='cycle'):((descending&&d.descent.frames)||d.frames).filter(f=>f.role==='cycle'),list=direction>0||descending?active:[...active].reverse(),gain=active.reduce((n,f)=>n+f.gain,0)*c.hop*c.gainBasis,portion=Math.max(0,Math.min(1,distanceCells/gain));for(const source of list){const frame=sideFrame(source),from={...root};root={x:sideX(side),y:Math.min(gripFloorY,Math.max(gripCeilingY,root.y-direction*frame.gain*c.hop*c.gainBasis*s*portion))};let ms=(frame.rest?frame.ms*c.hold/260:frame.ms)/c.tempo;if(!face.grippy&&['front','both'].includes(frame.contact))ms=Math.min(40,ms);add({kind:'climb',phase:direction<0?'Climb down / '+frame.name:frame.name,frame,from,to:{...root},cycle:cycles,draftDescent:direction<0},ms);}};
 if(resume){
 if(resume.state.surfaceId!==face.id)return {ok:false,reason:'The gripped support no longer exists.',scene,checks,attempts};
@@ -29681,7 +29702,7 @@ report?.('Current card has no usable face');return false;
 }
 const tops=across&&new Set(geometry.tops.map(s=>s.sourceId));
 const distance=s=>Math.hypot(Math.max(s.min-a.x,0,a.x-s.max),from.top-s.top);
-const targets=a.surfaces.filter(s=>!s.tree&&!s.home&&!s.bed&&!s.narrow&&(across?s.el!==origin&&tops.has(s.id):from.top-s.top>=8*a.scale)).sort((x,y)=>distance(x)-distance(y)).slice(0,across?6:3);
+const targets=a.surfaces.filter(s=>!s.tree&&!s.home&&!s.bed&&!s.narrow&&(across?(s.el!==origin||mode==='card-wall-jump')&&tops.has(s.id):from.top-s.top>=8*a.scale)).sort((x,y)=>distance(x)-distance(y)).slice(0,across?6:3);
 let hasReturn=false;
 for(const target of targets){
 if(!preview&&!world.route(a,a.home,target))continue;
@@ -29722,24 +29743,6 @@ const candidates=g.faces.filter(f=>!mode.startsWith('card-')?g.byOwner.get(f.pan
 for(const face of candidates){const result=this.edge(a,face,origin,landing,startX,mode);if(result.ok&&(!best||result.route.cost<best.result.route.cost))best={face,result,landing};}
 const path=best?[{climbRoute:true,nativeTransfer:true,fromId:origin.id,surface:target,kind:best.result.route.kind,mode,choice:best}]:null;
 if(g.cache.size>=64)g.cache.delete(g.cache.keys().next().value);g.cache.set(key,path);return path;
-},
-destinationWeight(a,target){
-const rise=(a.support.top-target.top)/a.scale;
-return rise>48?.25:rise>16?.55:1;
-},
-prefer(a,target){
-const t=performance.now(),from=a.support;
-if(!a.config.card_climbing||!from||!target||target.tree||target.home||t<(a.wallRetry||0))return null;
-const rise=(from.top-target.top)/a.scale;
-if(rise<24&&rise>-32)return null;
-a.wallRetry=t+12000;
-const world=window.pixelCatSurfaceWorldV1;
-if(!world.route(a,a.home,target))return null;
-const roll=a.ensureMood().random();
-if(rise<=-32)return roll<.65?this.route(a,target,from,false,'card-drop'):null;
-if(roll>=.75)return null;
-const quick=roll<.15&&this.route(a,target,from,false,'card-wall-jump');
-return quick||this.route(a,target,from,false,'card-rise');
 },
 treeRoute(a,target,origin){
 if(!origin||(!origin.home&&!origin.tree)||origin.id!==a.support?.id||a.config.climbing===false||a.carriedToy||target.narrow)return null;
@@ -29795,12 +29798,16 @@ const side=face.panelId?(clamp(x)+12*s<=edge?'left':'right'):border;
 const stance=clamp(edge-(side==='left'?30:-6)*s);
 if(edge-(side==='left'?width:reach)*s<w.left||edge+(side==='left'?reach:width)*s>w.right)continue;
 if(!clear(from,stance))continue;
+const line=edge+(.5-12)*s, rebound=mode==='card-wall-jump';
+const minX=rebound&&side==='right'?Math.max(target.min,line):target.min;
+const maxX=rebound&&side==='left'?Math.min(target.max,line):target.max;
+if(minX>maxX)continue;
 const approach=Math.abs(x-stance)>s?probe.approach('meander',x,from,stance):null;
 if(Math.abs(x-stance)>s&&!fit(approach))continue;
 const attach=(...args)=>{if(stats.checks>=limit)return null;stats.checks++;const f=probe.attach(...args);return fit(f)?f:null;};
 const release=(root,frame,to,options)=>{
 if(to!==target||stats.checks>=limit||mode==='card-drop'&&root.y>target.top-6*s)return null;
-stats.checks++;const f=probe.release(root,frame,to,options);
+stats.checks++;const f=probe.release(root,frame,rebound?{...to,min:minX,max:maxX}:to,options);
 return fit(f)&&clear(target,f.landingX)?f:null;
 };
 const scene={scale:s,floor:from,target,face:{id:face.id,x:box.left,right:box.right,top:grips.top-4*s,bottom:box.bottom,grippy:true},startX:stance,gripCeilingY:grips.top,gripFloorY:grips.bottom};
@@ -29822,7 +29829,8 @@ plan.duration+=duration;
 const entry=plan.grips[0].root,last=plan.grips.at(-1).root;
 plan.releaseAt=plan.segments.at(-1).start;
 plan.segments.at(-1).phase=quick?'Wall jump to landing':'Leaping off card';
-if(!best||plan.duration<best.cost)best={plan,cost:plan.duration,kind:quick?'wall-jump':'climb-and-leap',distanceCells:Math.abs(entry.y-last.y)/s};
+const x=plan.segments.at(-1).jump.landingX,cost=plan.duration+(quick&&(side==='left'?x>line:x<line)?5000:0);
+if(!best||cost<best.cost)best={plan,cost,kind:quick?'wall-jump':'climb-and-leap',distanceCells:Math.abs(entry.y-last.y)/s};
 break;
 }
 }
@@ -30214,7 +30222,7 @@ cancel(a,reason,ground=true){if(reason==='removed')window.pixelCatClimbMarksV1?.
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"dbfae525c1271429e9641b17806a29831bd1829c8ff6fbc5ba9b2201df880786"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"875bf44670e838fce586d93be5c0a762e51209588501f10b3032e6338d3c3eb4"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0");
 })();
