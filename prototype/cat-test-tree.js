@@ -16,54 +16,56 @@ window.pixelCatTreeV1={
  mount(a){
   const dock=a.shadowRoot?.querySelector('.dock'),s=a.worldScale||a.scale;
   if(!dock)return;
-  const fits=a.config.test_cat_tree===true&&a.config.show_home!==false&&(a.config.show_scratching_post??a.config.scratching_posts??true)!==false&&dock.clientWidth>=(52+testTree.width)*s;
+  const useTree=(a.config.post_type??(a.config.test_cat_tree===true?'tree':'post'))==='tree';
+  const fits=useTree&&a.config.show_home!==false&&(a.config.show_scratching_post??a.config.scratching_posts??true)!==false&&dock.clientWidth>=(52+testTree.width)*s;
   if(!fits){if(a.catTree){a.catTree.node.remove();delete a.catTree;}if(dock.style?.getPropertyValue('--test-tree-height'))dock.style.removeProperty('--test-tree-height');return;}
   if(a.catTree?.node.parentNode===dock&&a.catTree.scale===s)return;
   a.catTree?.node.remove();
+  const model=String(a.config.tree_levels)==='1'?{...testTree,height:36,platforms:testTree.platforms.slice(0,1).map(p=>({...p,top:p.top-34})),ropes:testTree.ropes.slice(0,1).map(r=>({...r,top:r.top-34,bottom:r.bottom-34})),pivot:{...testTree.pivot,y:testTree.pivot.y-34}}:testTree;
   const node=document.createElement('div'),canvas=document.createElement('canvas'),toy=document.createElement('canvas');
   node.setAttribute('role','group');node.setAttribute('aria-label','Cat tree with hanging ball');
-  node.style.cssText='position:absolute;bottom:0;right:0;pointer-events:none;width:'+testTree.width*s+'px;height:'+testTree.height*s+'px';
-  canvas.width=testTree.width;canvas.height=testTree.height;
+  node.style.cssText='position:absolute;bottom:0;right:0;pointer-events:none;width:'+model.width*s+'px;height:'+model.height*s+'px';
+  canvas.width=model.width;canvas.height=model.height;
   canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated';
   const c=canvas.getContext('2d');
   const paint=(x,y,w,h,colour)=>{c.fillStyle=colour;c.fillRect(x,y,w,h);};
-  paint(9,67,52,2,'#ab7135');paint(11,69,48,1,'#754726');
-  for(const r of testTree.ropes){
+  paint(9,model.height-3,52,2,'#ab7135');paint(11,model.height-1,48,1,'#754726');
+  for(const r of model.ropes){
    paint(r.left,r.top,r.right-r.left,r.bottom-r.top,'#ad9969');
    paint(r.left+1,r.top,r.right-r.left-2,r.bottom-r.top,'#d7c490');
    for(let y=r.top+1;y<r.bottom;y+=3)paint(r.left+1,y,r.right-r.left-2,1,'#e5d6ab');
   }
-  for(const p of testTree.platforms){
+  for(const p of model.platforms){
    paint(p.left,p.top,p.right-p.left,1,'#c58d4b');
    paint(p.left-1,p.top+1,p.right-p.left+2,3,'#ab7135');
    paint(p.left,p.top+4,p.right-p.left,1,'#754726');
   }
-  toy.width=7;toy.height=15;toy.style.cssText='position:absolute;image-rendering:pixelated;transform-origin:50% 0;left:'+(testTree.pivot.x-3.5)*s+'px;top:'+testTree.pivot.y*s+'px;width:'+7*s+'px;height:'+15*s+'px';
+  toy.width=7;toy.height=15;toy.style.cssText='position:absolute;image-rendering:pixelated;transform-origin:50% 0;left:'+(model.pivot.x-3.5)*s+'px;top:'+model.pivot.y*s+'px;width:'+7*s+'px;height:'+15*s+'px';
   const b=toy.getContext('2d');b.fillStyle='#754726';b.fillRect(3,0,1,10);b.fillStyle='#ab7135';b.fillRect(1,10,5,4);b.fillStyle='#c58d4b';b.fillRect(2,9,3,4);
-  const ropeHosts=testTree.ropes.map(r=>{
+  const ropeHosts=model.ropes.map(r=>{
    const host=document.createElement('div');
    host.style.cssText='position:absolute;pointer-events:none;left:'+r.left*s+'px;top:'+r.top*s+'px;width:'+(r.right-r.left)*s+'px;height:'+(r.bottom-r.top)*s+'px';
    return host;
   });
   const ball=document.createElement('button');ball.type='button';ball.dataset.catTreeBall='';ball.setAttribute('aria-label','Sway the hanging ball');
-  ball.style.cssText='position:absolute;pointer-events:auto;touch-action:manipulation;margin:0;padding:0;border:0;background:transparent;left:'+(testTree.pivot.x-12)*s+'px;top:'+(testTree.pivot.y+testTree.length-8)*s+'px;width:'+24*s+'px;height:'+24*s+'px';
+  ball.style.cssText='position:absolute;pointer-events:auto;touch-action:manipulation;margin:0;padding:0;border:0;background:transparent;left:'+(model.pivot.x-12)*s+'px;top:'+(model.pivot.y+model.length-8)*s+'px;width:'+24*s+'px;height:'+24*s+'px';
   ball.onclick=event=>{event.stopPropagation();this.tap(a);};
-  node.append(canvas,...ropeHosts,toy,ball);dock.append(node);dock.style.setProperty('--test-tree-height',(testTree.height+24)*s+'px');
-  a.catTree={node,canvas,toy,ropeHosts,scale:s,pass:new WeakMap(),clock:0,impulses:[]};
+  node.append(canvas,...ropeHosts,toy,ball);dock.append(node);dock.style.setProperty('--test-tree-height',(model.height+24)*s+'px');
+  a.catTree={node,canvas,toy,ropeHosts,scale:s,model,pass:new WeakMap(),clock:0,impulses:[]};
  },
  geometry(a){
   const tree=a.catTree,h=a.home;if(!tree||!h||tree.node.isConnected===false)return null;
-  return {tree,s:tree.scale,x:h.right+4-testTree.width*tree.scale,y:h.top-testTree.height*tree.scale};
+  const model=tree.model||testTree;return {tree,model,s:tree.scale,x:h.right+4-model.width*tree.scale,y:h.top-model.height*tree.scale};
  },
  surfaces(a){
   const g=this.geometry(a);if(!g)return;
-  const {tree,s,x,y}=g,r=a.home.rectSnapshot;
-  for(const [level,p] of testTree.platforms.entries()){
+  const {tree,s,x,y,model}=g,r=a.home.rectSnapshot;
+  for(const [level,p] of model.platforms.entries()){
    a.surfaces.push({id:p.id,el:tree.node,rectNode:a.home.rectNode,rectSnapshot:r,left:x+p.left*s,right:x+p.right*s,top:y+p.top*s,label:p.label,source:'authored tree',tree:level+1});
   }
  },
  face(a,level=1){
-  const g=this.geometry(a),r=testTree.ropes[level-1];if(!g||!r)return null;
+  const g=this.geometry(a),r=g?.model.ropes[level-1];if(!g||!r)return null;
   const {s,x,y}=g,centre=x+(r.left+r.right)*s/2;
   const rect={left:x+r.left*s,right:x+r.right*s,top:y+r.top*s,bottom:y+r.bottom*s};
   return {id:'home:test-tree:rope:'+level,rect,grips:{left:centre,right:centre,top:rect.top+2*s,bottom:rect.bottom-2*s},generation:0};
@@ -75,7 +77,7 @@ window.pixelCatTreeV1={
  tap(a,t=performance.now()){
   const tree=a.catTree;if(!tree)return;
   this.impact(tree,.85);
-  const g=this.geometry(a),ballX=g&&g.x+testTree.pivot.x*g.s,ballY=g&&g.y+(testTree.pivot.y+testTree.length)*g.s;
+  const g=this.geometry(a),ballX=g&&g.x+g.model.pivot.x*g.s,ballY=g&&g.y+(g.model.pivot.y+g.model.length)*g.s;
   for(const [cat,entry] of a.decisionLayer()?.owners?.()||[[a,{root:a.root}]]){
    if(entry.root!==a.root||!cat.active||cat.paused||cat.suspended||cat.layoutPaused||cat.stranded||cat.userHeld||cat.motion||cat.climb||cat.previewPose)continue;
    const idle=cat.idle;if(!idle)continue;
@@ -105,7 +107,7 @@ window.pixelCatTreeV1={
   const {tree,s,x,y}=g,raw=t-(tree.last??t);tree.last=t;
   if(a.paused||a.layoutPaused||a.suspended||a.stranded||raw>1000)return;
   tree.clock+=Math.max(0,Math.min(50,raw));
-  const bx=x+testTree.pivot.x*s,by=y+(testTree.pivot.y+testTree.length)*s;
+  const bx=x+g.model.pivot.x*s,by=y+(g.model.pivot.y+g.model.length)*s;
   for(const [cat,entry] of a.decisionLayer()?.owners?.()||[[a,{root:a.root}]]){
    if(entry.root!==a.root||!cat.active||cat.paused||cat.suspended||cat.userHeld||cat.layoutPaused)continue;
    const placement=cat.social?.frame?.placement,cx=(placement?.x??cat.x)+12*cat.scale,cy=(placement?.top??cat.y-24*cat.scale)+14*cat.scale;

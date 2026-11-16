@@ -2,11 +2,11 @@
   "schema": 1,
   "name": "Pixel Cat Card",
   "version": "1.0.0",
-  "sourceHash": "875bf44670e838fce586d93be5c0a762e51209588501f10b3032e6338d3c3eb4",
+  "sourceHash": "b5110a43c41cd74de7a8601bf9cc5fa1ee4d6e5d80ec72bdd06a9dee15ba8645",
   "artifact": {
     "file": "pixel-cat-card.js",
-    "bytes": 1765750,
-    "sha256": "ad04f5d17165cbc8f8150f86ae28a8d969d6d3503fce62d3b16540c9b8674c4d"
+    "bytes": 1768242,
+    "sha256": "c3b558f9b8aafbafd5a3652f6c6b8c8169f82261381b04b133353db891478236"
   },
   "modules": [
     {
@@ -19,27 +19,27 @@
     },
     {
       "file": "pixel-cat-roaming-art.js",
-      "sha256": "54b8dc964bc633949167b917a4e95ecf6566c0e424aeb0cd95ba60162d322264"
+      "sha256": "a27bca9a386d18f4f7f8f7ba52217d5ba5be83175df890b9d83296572171a2cc"
     },
     {
       "file": "pixel-cat-roaming-extras.js",
-      "sha256": "e63ab6d1035f2d3c28c83bde165bfe8728593a511a31de166fd76bf56755cc01"
+      "sha256": "e926ffd42f3f0d1c696cdb944771ada8628b758938d3bc757cfd1cc9a15f2c36"
     },
     {
       "file": "pixel-cat-affordances.js",
-      "sha256": "19ee0b160a6624ed9f2ff4285ef53779d9ce9dc5e63aa4cea354fca3a3c5a1af"
+      "sha256": "39b612cbec62c5280a5cee18464a742145bf3ab7fbb4d6c024c92bacd68cb930"
     },
     {
       "file": "pixel-cat-behaviours.js",
-      "sha256": "93a4b8c1a8b913523b3622f41000bfc1a9654efe8b2354d275d8c4e233003ebe"
+      "sha256": "02f13385af26130641c266d2558987521e3a381b587a83be3dc397c028dceb98"
     },
     {
       "file": "pixel-cat-roaming.js",
-      "sha256": "422b26ed774bf15a11520264b4189d6ab48c6ac39db029175dd79edbefc10f2d"
+      "sha256": "34f09103a359949701e38bfdf6237ace40ed4d935d6c1eb14cd7d413cf1ef78a"
     },
     {
       "file": "pixel-cat-climbing.js",
-      "sha256": "2fb83c2232179cd1413bb99f0641f93a8e318d9d9ef9a9237bf006652a471b60"
+      "sha256": "1c6e3eb6664d062b12046368a7bf4613bd25d937da85a75e2b987f5b3bd11583"
     }
   ],
   "decodedArtworkSha256": "d55cc78620f069f632b2c36d0c63aa430921dcc41bfa8776c910e6b9bd088077",

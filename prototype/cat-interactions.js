@@ -17,6 +17,7 @@ const kitten=a=>window.pixelCatBehaviourV1?.stage(a)==='kitten';
 const sleeping=(a,t)=>a.idle?.pose==='sleep'&&!a.motion&&t<a.idle.poseUntil;
 const nearbyPlayLanding=(a,b)=>sameSupport(a.support,b.support)&&socialGap(a,b)<=14*Math.max(a.scale,b.scale);
 const predictRolling=(p,seconds,scale)=>{const friction=60*scale,time=Math.min(Math.max(0,seconds),Math.abs(p.vx)/friction);return p.x+p.vx*time-.5*Math.sign(p.vx)*friction*time*time;};
+window.pixelCatTemperamentV1=temperament;
 class CatInteractions extends CatDecisions{
  constructor(...args){super(...args);this.world=interactionWorld(this.actor.root);this.traits=temperament(this.actor.ownerKey,this.actor.config.temperament||{});this.propAwareness=new Awareness();this.propMemory=new Map();this.handled=new Set();this.nextProp=0;}
  enabled(){return !!this.actor.config.interaction_behaviour;}

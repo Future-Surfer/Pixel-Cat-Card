@@ -2,7 +2,7 @@
 window.pixelCatBedEntryV1={
  beforeIdle(a,pose,t,art,front){
   a.bedEntryManaged=true;if(a.motion||a.route?.length||a.previewPose||a.play||a.mouthAction||a.goal||a.command)return false;if(this.exit(a,pose,t,art))return true;if(!['loaf','sleep'].includes(pose))return false;
-  const owner=a.support?.bedOwner||a;if(owner.config.show_home===false||!owner.home||!a.support||a.support!==a.home&&!a.support.bedOwner)return false;
+  const owner=a.support?.bedOwner||a;if(owner.config.show_home===false||owner.config.include_bed===false||!owner.home||!a.support||a.support!==a.home&&!a.support.bedOwner)return false;
   const bed=window.pixelCatSetupV1.bed(owner,art),left=owner.home.left-4+22*(owner.worldScale||owner.scale),center=left+bed.width*(owner.worldScale||owner.scale)/2;if(Math.abs(a.x+12*a.scale-center)>24*a.scale)return false;
   if(a.bedInside===owner)return false;
   const clip=art.idleSequences[pose],reference=clip.frames[Math.max(0,clip.roles?.indexOf('cycle')??0)],xs=reference.flatMap(r=>[...r].flatMap((v,x)=>v==='.'?[]:[a.facing<0?23-x:x])),desired=left+Math.round((bed.width*(owner.worldScale||owner.scale)/2-(Math.min(...xs)+Math.max(...xs)+1)*a.scale/2)/a.scale)*a.scale;

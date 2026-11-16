@@ -25812,174 +25812,175 @@ window.pixelCatRoamingArtV2.integratedSnapshots=window.pixelCatRoamingArtV2.asse
 (()=>{window.pixelCatHomeMarkupV1=a=>`<style>:host{display:block}ha-card{position:relative;display:block;min-height:112px;box-sizing:border-box;padding:10px 12px;background:var(--ha-card-background,var(--card-background-color,#fff));border-radius:12px;border:1px solid var(--divider-color,#ddd);font:12px system-ui;color:var(--primary-text-color,#222)}.dock{position:relative;min-height:var(--test-tree-height,0px);height:${28*(a.worldScale||a.scale)}px;border-bottom:1px solid #bbb}.bowl{position:absolute;bottom:0;left:14px;width:22px;height:8px;background:#d68d50;border-top:4px solid #aa4f30;box-sizing:border-box}.mat{position:absolute;bottom:0;left:44px;width:52px;height:4px;background:#b7a391}button,select{font:inherit;border:1px solid #aaa;border-radius:5px;background:transparent;color:inherit;padding:3px 7px;margin:6px 3px 0 0;cursor:pointer}select{max-width:100%}.status{display:block;font-size:10px;opacity:.75;margin-top:6px;height:28px;min-width:0}.status>span{display:block;height:14px;line-height:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}details{margin-top:8px}label{display:inline-block;margin:4px}summary{cursor:pointer}:is(button,select,input,summary):focus-visible{outline:2px solid var(--primary-color,#006b78);outline-offset:2px}.cat-debug-panel summary:focus-visible{outline-offset:-2px}@media(pointer:coarse){ha-card>button{min-height:44px}}.diagnostics{font-size:10px;white-space:pre-wrap}.cat-debug-host{position:relative;height:26px;z-index:0}.cat-debug-host>details{position:absolute;left:0;right:0;top:0;margin:0}${a.config.show_controls===false?'ha-card button:not([data-cat-tree-ball]),ha-card .status,ha-card details,.cat-debug-host{display:none!important}ha-card{min-height:0}':''}${a.config.show_home===false?'.dock{display:none!important}ha-card{min-height:0}':''}</style><ha-card><div class="dock" aria-label="Cat home and food bowl"><div class="bowl"></div><div class="mat"></div></div><button data-action="pause">Pause</button><button data-action="spawn-toy" title="Place a toy mouse for the cats to discover">Spawn toy</button><button data-action="home">Come home</button><span class="status" role="status"><span class="status-action">Settling</span><span class="status-surfaces">â€” surfaces</span></span><div class="cat-debug-host"><details><summary>Playground & debug</summary><label><input type="checkbox" data-debug="surfaces"> Horizontal surfaces</label><label><input type="checkbox" data-debug="verticalSurfaces"> Vertical surfaces</label><label><input type="checkbox" data-debug="paths"> Paths</label><label><input type="checkbox" data-debug="pois"> POIs</label><div><select aria-label="Visit a point of interest" class="visit"></select><button data-action="visit">Visit</button><button data-action="reset">Reset home</button><button data-action="explore">Explore</button><button data-action="startle-all" title="Wake and startle all cats in this view; paused cats stay paused">Startle all</button><button data-action="wall-jump" title="Ask this cat to approach the nearest checked wall, grip it and leap off">Wall jump</button></div><div class="diagnostics"></div></details></div></ha-card>`;
 
 window.pixelCatCommandsV1={
- bind(a,owners){
-  a.shadowRoot.querySelector('[data-action="spawn-toy"]').onclick=()=>a.spawnDashboardProp('toy_mouse');
-  a.shadowRoot.querySelector('[data-action="startle-all"]').onclick=()=>this.startleAll(a,owners,performance.now());
-  a.shadowRoot.querySelector('[data-action="wall-jump"]').onclick=()=>this.wallJump(a,performance.now());
- },
- wake(a,t){window.pixelCatSettlingV1?.wake(a,t);},
- startleAll(source,owners,t){
-  for(const [a,entry]of owners())if(entry.root===source.root&&a.active){
-   this.wake(a,t);a.manualWallJump=null;
-   if(a.paused){a.setAttribute('data-manual-startle','woken · paused');continue;}
-   a.manualStartle={expires:t+120000};this.tick(a,t);
-  }
- },
- wallJump(a,t){
-  if(a.paused){a.status('Resume this cat before asking for a wall jump');return;}
-  if(!window.pixelCatCardClimbV1){a.status('Wall-jump module is not available');return;}
-  this.wake(a,t);a.manualStartle=null;a.manualWallJump={expires:t+120000};
-  a.setAttribute('data-wall-jump-command','queued');a.status('Wall jump queued after the current movement');this.tick(a,t);
- },
- tick(a,t){
-  const startle=a.manualStartle,wall=a.manualWallJump,pending=startle||wall;if(!pending)return;
-  if(t>pending.expires||!a.active){a.manualStartle=a.manualWallJump=null;return;}
-  if(a.paused||a.suspended||a.stranded||a.layoutPaused||a.userHeld||!a.support||a.climb)return;
-  if(startle){
-   if(a.motion&&a.motion.kind!=='walk'||window.pixelCatReactionsV1?.airborne(a,t))return;
-   a.manualStartle=null;const cue={x:a.x+(a.facing<0?0:24)*a.scale,y:a.y};
-   const hopped=a.requestStartle(cue,t);a.setAttribute('data-manual-startle',hopped?'hop':'woken · no safe hop');return;
-  }
-  if(a.motion||a.mouthAction)return;
-  a.manualWallJump=null;
-  const path=window.pixelCatCardClimbV1.wallRoute(a);
-  if(!path){a.setAttribute('data-wall-jump-command','no checked wall');a.status('No reachable wall with a checked entry and landing');return;}
-  window.pixelCatPostRestV1?.interrupt(a);a.social?.finish('manual wall jump');a.cancelPlay(t);
-  a.previewPose=null;a.toyHuntRequested=false;a.recallPending=false;a.requestedPoint=null;a.goal=a.command=null;a.idle=null;
-  a.route=path;a.deadline=t;a.setAttribute('data-wall-jump-command','approaching');a.advance(t);
- }
+bind(a,owners){
+a.shadowRoot.querySelector('[data-action="spawn-toy"]').onclick=()=>a.spawnDashboardProp('toy_mouse');
+a.shadowRoot.querySelector('[data-action="startle-all"]').onclick=()=>this.startleAll(a,owners,performance.now());
+a.shadowRoot.querySelector('[data-action="wall-jump"]').onclick=()=>this.wallJump(a,performance.now());
+},
+wake(a,t){window.pixelCatSettlingV1?.wake(a,t);},
+startleAll(source,owners,t){
+for(const [a,entry]of owners())if(entry.root===source.root&&a.active){
+this.wake(a,t);a.manualWallJump=null;
+if(a.paused){a.setAttribute('data-manual-startle','woken · paused');continue;}
+a.manualStartle={expires:t+120000};this.tick(a,t);
+}
+},
+wallJump(a,t){
+if(a.paused){a.status('Resume this cat before asking for a wall jump');return;}
+if(!window.pixelCatCardClimbV1){a.status('Wall-jump module is not available');return;}
+this.wake(a,t);a.manualStartle=null;a.manualWallJump={expires:t+120000};
+a.setAttribute('data-wall-jump-command','queued');a.status('Wall jump queued after the current movement');this.tick(a,t);
+},
+tick(a,t){
+const startle=a.manualStartle,wall=a.manualWallJump,pending=startle||wall;if(!pending)return;
+if(t>pending.expires||!a.active){a.manualStartle=a.manualWallJump=null;return;}
+if(a.paused||a.suspended||a.stranded||a.layoutPaused||a.userHeld||!a.support||a.climb)return;
+if(startle){
+if(a.motion&&a.motion.kind!=='walk'||window.pixelCatReactionsV1?.airborne(a,t))return;
+a.manualStartle=null;const cue={x:a.x+(a.facing<0?0:24)*a.scale,y:a.y};
+const hopped=a.requestStartle(cue,t);a.setAttribute('data-manual-startle',hopped?'hop':'woken · no safe hop');return;
+}
+if(a.motion||a.mouthAction)return;
+a.manualWallJump=null;
+const path=window.pixelCatCardClimbV1.wallRoute(a);
+if(!path){a.setAttribute('data-wall-jump-command','no checked wall');a.status('No reachable wall with a checked entry and landing');return;}
+window.pixelCatPostRestV1?.interrupt(a);a.social?.finish('manual wall jump');a.cancelPlay(t);
+a.previewPose=null;a.toyHuntRequested=false;a.recallPending=false;a.requestedPoint=null;a.goal=a.command=null;a.idle=null;
+a.route=path;a.deadline=t;a.setAttribute('data-wall-jump-command','approaching');a.advance(t);
+}
 };
 
 const catOutlineByConfig=new WeakMap();
 window.pixelCatOutlineV1={
- width:.30,
- luminance([r,g,b]){
-  const linear=byte=>{const c=byte/255;return c<=.04045?c/12.92:((c+.055)/1.055)**2.4;};
-  return .2126*linear(r)+.7152*linear(g)+.0722*linear(b);
- },
- rgb(value){
-  const hex=/^#([\da-f]{3}|[\da-f]{6})$/i.exec(value||'')?.[1];
-  if(hex)return (hex.length===3?[...hex].map(c=>c+c):hex.match(/../g)).map(c=>parseInt(c,16));
-  const canvas=typeof document==='undefined'?null:document.createElement('canvas'),ctx=canvas?.getContext?.('2d');
-  if(!ctx)return null;
-  ctx.fillStyle='transparent';ctx.fillStyle=value||'transparent';ctx.fillRect(0,0,1,1);
-  const [r,g,b,a]=ctx.getImageData(0,0,1,1).data;
-  return a===255?[r,g,b]:null;
- },
- darkTheme(){
-  const doc=typeof document==='undefined'?null:document,app=doc?.querySelector?.('home-assistant');
-  if(typeof app?.hass?.themes?.darkMode==='boolean')return app.hass.themes.darkMode;
-  if(doc?.documentElement&&typeof getComputedStyle==='function'){
-   const style=getComputedStyle(app||doc.body||doc.documentElement);
-   const rgb=this.rgb(style.getPropertyValue('--primary-background-color').trim()||style.getPropertyValue('--ha-card-background').trim());
-   if(rgb)return this.luminance(rgb)<.18;
-  }
-  return typeof matchMedia==='function'&&matchMedia('(prefers-color-scheme: dark)').matches;
- },
- colour(config){
-  if(['black','white','none'].includes(config.outline))return config.outline;
-  if(catOutlineByConfig.has(config))return catOutlineByConfig.get(config);
-  const rgb=this.rgb(config.color||'#222'),light=rgb?this.luminance(rgb):.5;
-  const outline=light<=.03?'white':light>=.8&&!this.darkTheme()?'black':'none';
-  catOutlineByConfig.set(config,outline);
-  return outline;
- },
- path(rows,facing=1){
-  const solid=(x,y)=>x>=0&&x<24&&!!rows[y]?.[x]&&rows[y][x]!=='.';
-  let path='';
-  for(let y=0;y<rows.length;y++)for(let x=0;x<24;x++){
-   if(!solid(x,y))continue;
-   const left=facing<0?23-x:x;
-   if(!solid(x,y-1))path+=`M${left} ${y}h1`;
-   if(!solid(x,y+1))path+=`M${left} ${y+1}h1`;
-   if(!solid(x-1,y))path+=`M${left+(facing<0?1:0)} ${y}v1`;
-   if(!solid(x+1,y))path+=`M${left+(facing<0?0:1)} ${y}v1`;
-  }
-  return path;
- },
- markup(rows,facing,config){
-  const stroke=this.colour(config);
-  return stroke==='none'?'':`<path d="${this.path(rows,facing)}" fill="none" stroke="${stroke}" stroke-width="${this.width}" stroke-linecap="round" shape-rendering="geometricPrecision"/>`;
- }
+width:.30,
+luminance([r,g,b]){
+const linear=byte=>{const c=byte/255;return c<=.04045?c/12.92:((c+.055)/1.055)**2.4;};
+return .2126*linear(r)+.7152*linear(g)+.0722*linear(b);
+},
+rgb(value){
+const hex=/^#([\da-f]{3}|[\da-f]{6})$/i.exec(value||'')?.[1];
+if(hex)return (hex.length===3?[...hex].map(c=>c+c):hex.match(/../g)).map(c=>parseInt(c,16));
+const canvas=typeof document==='undefined'?null:document.createElement('canvas'),ctx=canvas?.getContext?.('2d');
+if(!ctx)return null;
+ctx.fillStyle='transparent';ctx.fillStyle=value||'transparent';ctx.fillRect(0,0,1,1);
+const [r,g,b,a]=ctx.getImageData(0,0,1,1).data;
+return a===255?[r,g,b]:null;
+},
+darkTheme(){
+const doc=typeof document==='undefined'?null:document,app=doc?.querySelector?.('home-assistant');
+if(typeof app?.hass?.themes?.darkMode==='boolean')return app.hass.themes.darkMode;
+if(doc?.documentElement&&typeof getComputedStyle==='function'){
+const style=getComputedStyle(app||doc.body||doc.documentElement);
+const rgb=this.rgb(style.getPropertyValue('--primary-background-color').trim()||style.getPropertyValue('--ha-card-background').trim());
+if(rgb)return this.luminance(rgb)<.18;
+}
+return typeof matchMedia==='function'&&matchMedia('(prefers-color-scheme: dark)').matches;
+},
+colour(config){
+if(['black','white','none'].includes(config.outline))return config.outline;
+if(catOutlineByConfig.has(config))return catOutlineByConfig.get(config);
+const rgb=this.rgb(config.color||'#222'),light=rgb?this.luminance(rgb):.5;
+const outline=light<=.03?'white':light>=.8&&!this.darkTheme()?'black':'none';
+catOutlineByConfig.set(config,outline);
+return outline;
+},
+path(rows,facing=1){
+const solid=(x,y)=>x>=0&&x<24&&!!rows[y]?.[x]&&rows[y][x]!=='.';
+let path='';
+for(let y=0;y<rows.length;y++)for(let x=0;x<24;x++){
+if(!solid(x,y))continue;
+const left=facing<0?23-x:x;
+if(!solid(x,y-1))path+=`M${left} ${y}h1`;
+if(!solid(x,y+1))path+=`M${left} ${y+1}h1`;
+if(!solid(x-1,y))path+=`M${left+(facing<0?1:0)} ${y}v1`;
+if(!solid(x+1,y))path+=`M${left+(facing<0?0:1)} ${y}v1`;
+}
+return path;
+},
+markup(rows,facing,config){
+const stroke=this.colour(config);
+return stroke==='none'?'':`<path d="${this.path(rows,facing)}" fill="none" stroke="${stroke}" stroke-width="${this.width}" stroke-linecap="round" shape-rendering="geometricPrecision"/>`;
+}
 };
 
 if(typeof HTMLElement!=="undefined"){// Dependency-free Lovelace editor. Unknown YAML settings are retained, and
 const catEditorGroups=[
 {title:'Your cat',open:true,fields:[
 ['name','Name','text',null,'What would you like to call them?'],
-['color','Fur colour','text','#222','Pick a swatch or enter a colour of your own.'],
-['outline','Fur outline','select','auto','Automatic helps black fur stand out and gives white fur an edge on light themes.'],
-['floor_shadow','Floor shadow','checkbox',true,'Show a soft shadow underneath your cat.'],
+['color','Fur colour','color','#222222','Pick a colour or try a swatch.'],
+['outline','Fur outline','select','auto','Automatic outlines help very light or dark fur stand out.'],
 ['life_stage','Age','select','adult','Kittens are smaller and tend to move and play a little more.'],
+['mood_preset','Mood','select','natural','Give their changing mood a nudge.']
+]},
+{title:'Personality',fields:[
+['boldness','Boldness','range',3,'Bolder cats are less easily startled.'],
+['sociability','Sociability','range',3,'How much they seek out other cats.'],
+['curiosity','Curiosity','range',3,'How readily they investigate nearby activity.'],
+['patience','Patience','range',3,'How long they give an interaction to play out.']
 ]},
 {title:'Daily rhythm',fields:[
-['settling_mode','Activity & settling','select','default','Choose how long your cat settles in for a nap. They still take short rests when set to Always active.'],
-['settle_after_minutes','Settle after (minutes)','number',5,'How long your cat spends on the open dashboard before they may take a longer nap.',0,1440],
+['settling_mode','Activity & settling','select','default','Choose how long your cat settles in for a nap.'],
+['settle_after_minutes','Settle after (minutes)','number',5,'How long before they may take a longer nap.',0,1440],
 ['settled_rest_min_minutes','Minimum settled rest (minutes)','number',5,'The shortest a long nap can be.',1,1440],
-['settled_rest_max_minutes','Maximum settled rest (minutes)','number',10,'The longest a long nap can be.',1,1440],
+['settled_rest_max_minutes','Maximum settled rest (minutes)','number',10,'The longest a long nap can be.',1,1440]
 ]},
 {title:'Make them at home',fields:[
-['bed_style','Bed style','select','igloo','Choose an igloo or open simple bed.'],
-['bed_primary_color','Bed primary colour','text','#aa6627','Pick a colour for the outside of the bed.'],
-['bed_secondary_color','Bed secondary colour','text',null,'Pick a colour for the inside, or leave it blank for the original colour.'],
-['show_home','Show bed home','checkbox',true,'Hide the bed and let your cat find another spot.'],
-['show_scratching_post','Show scratching post','checkbox',true,'Put a scratching post beside the bed if there’s room.'],
-['full_pixel_scratch_debris','Full-pixel scratching debris','checkbox',false,'Keep bits from scratching and climbing at least one sprite pixel wide and tall as they fade.'],
-['test_cat_tree','Test cat tree','checkbox',false,'Try a fixed climbing tree and hanging ball. On narrow cards, use the post.']
+['include_bed','Include a bed','checkbox',true,'Give your cat a place to curl up.'],
+['bed_style','Bed style','select','igloo','Choose an igloo or an open bed.'],
+['bed_primary_color','Bed primary colour','color','#aa6627','Pick a colour for the outside of the bed.'],
+['bed_secondary_color','Bed secondary colour','color','#55312a','Pick a colour for the inside of the bed.'],
+['include_bowl','Include a food bowl','checkbox',true,'Let cats stop by for a bite.'],
+['bowl_primary_color','Bowl primary colour','color','#f5ad68','Pick a colour for the bowl.'],
+['bowl_secondary_color','Bowl secondary colour','color','#c95e4b','Pick a colour for the rim.'],
+['show_scratching_post','Include a scratching post','checkbox',true,'Give your cat somewhere to scratch.'],
+['post_type','Post type','select','post','A tree gives your cat extra places to climb.'],
+['tree_levels','Tree levels','select','2','Choose the height of the climbing tree.']
 ]},
 {title:'Home & appearance',fields:[
-['primary_home','Primary home','checkbox',false,'Mark this card as the main home in the editor.'],
 ['cell_size','Pixel scale','number',2,'Higher numbers make cats, toys, and furniture bigger.',1,6],
-['start_paused','Start paused','checkbox',false,'Let this cat wait until you press Resume or Come home.']
+['card_color','Card colour','color','#ffffff','Choose the card background.'],
+['card_border_color','Border colour','color','#dddddd','Choose the card border.'],
+['card_radius','Corner rounding','number',12,'The corner radius in pixels.',0,40],
+['floor_shadow','Floor shadow','checkbox',true,'Show a soft shadow underneath your cat.'],
+['scratch_debris','Debris size','select','small','Choose the bits that appear when scratching and climbing.']
 ]},
 {title:'Behaviour & toys',fields:[
-['post_rest_behaviour','Gentle waking after rest','checkbox',true,'After a long nap, your cat may yawn, stretch, or take a slow walk.'],
-['mood_behaviour','Mood-driven exploration','checkbox',false,'Softly varies resting, pace and playful interest.'],
-['social_behaviour','Nearby company & chasing','checkbox',false,'Allows independent cats to invite one another to rest or play.'],
-['interaction_behaviour','Notice other cats','checkbox',false,'Cats can notice, greet, or play with each other. Works with moods and nearby company.'],
-['dashboard_props','Shared dashboard toys','checkbox',false,'Put mice and balls on the dashboard for cats to share.'],
-['toy_carrying','Pick up & carry toys','checkbox',true,'Nibble or catch a toy, carry it, then nose down to release it.'],
-['bowl_eating','Eat at food bowls','checkbox',true,'Occasional meals; a bowl click offers food. Recently fed cats can ignore it.'],
-['prop_reactions','React when a toy brushes past','checkbox',false,'Can watch, ignore or startle after a toy brushes past.'],
-['landing_reactions','React to nearby landings','checkbox',false,'A landing nearby can surprise your cat.'],
-['startle_followups','Different reactions after a scare','checkbox',false,'A startled cat may settle down, back away, or pounce.']
-]},
-{title:'Advanced settings',fields:[
-['show_controls','Show controls','checkbox',false,'Show Pause, Spawn toy, Come home, and the debug menu.'],
-['draggable','Pick up and drag cats','checkbox',true,'Pick up your cat and set them down somewhere clear. Press Escape to cancel.'],
-['cat_id','Stable cat ID','text',null,'Give each cat a unique ID. Keep it the same when editing their home.']
-]},
-{title:'Movement & surfaces',fields:[
-['casual_wander','Occasional meandering','checkbox',true,'Adds a slower casual pace to uncommitted exploration.'],
-['casual_speed','Meandering speed','number',6,'Higher numbers make this gentle walk faster.',1,60],
-['relaxed_speed','Strolling speed','number',9,'Higher numbers make an ordinary stroll faster.',1,60],
-['freefall_enabled','Long-drop freefall pose','checkbox',true,'Let your cat stretch out during a long fall.'],
-['use_surface_candidates','Try interior and bottom-border candidates','checkbox',true,'Let your cat try extra spots inside cards and along their lower edges.'],
-['card_climbing','Climb visible card faces','checkbox',true,'Let your cat climb a card when they can’t reach a spot by walking or jumping.'],
-['native_vertical_surfaces','Scratch card edges','checkbox',true,'Let your cat scratch a card edge if they can reach it safely.'],
-['shared_home_surfaces','Share visible home-card roofs','checkbox',true,'Cats can use visible home roofs when both homes allow it.'],
+['quiet_company','Quiet company','checkbox',true,'A cat may settle beside a resting cat without waking it.'],
+['chasing','Chasing','checkbox',true,'Cats may invite each other to a short chase on the same surface.'],
+['dashboard_props','Shared dashboard toys','checkbox',false,'Put toys on the dashboard for cats to share.'],
+['toy_mice','Add mice','number',1,'How many shared mice to put out.',0,6],
+['toy_balls','Add balls','number',1,'How many shared balls to put out.',0,6],
 ['click_attention','Follow dashboard clicks','checkbox',true,'The nearest eligible cat can investigate the clicked surface.']
 ]},
+{title:'Advanced settings',fields:[
+['show_controls','Show on-card controls','checkbox',false,'Show Pause, Spawn toy, Come home, and diagnostics.'],
+['draggable','Pick up and drag cats','checkbox',true,'Pick up your cat and set them down somewhere clear. Press Escape to cancel.']
+]},
 {title:'Labels & diagnostics',fields:[
-['debug_labels','Name & action below cat','checkbox',true,'Cat name and current activity; colour indicates mood.'],
-['debug_names','Extra name above cat','checkbox',false,'Optional second name label above the cat.'],
-['debug_mood','Mood glow','checkbox',false,'Optional coloured halo around the cat.'],
-['debug_vertical_surfaces','Show card outlines & climbing faces','checkbox',false,'Cyan card borders, purple grip areas and green usable tops; labels explain rejected faces.'],
+['debug_names','Above cat: name','checkbox',false,'Show the cat’s name above them.'],
+['debug_action_above','Above cat: activity','checkbox',false,'Show their current activity above them.'],
+['debug_name_below','Below cat: name','checkbox',true,'Show the cat’s name below them.'],
+['debug_action_below','Below cat: activity','checkbox',true,'Show their current activity below them.'],
+['debug_mood','Mood glow','checkbox',false,'Show a coloured glow around the cat.'],
+['debug_vertical_surfaces','Show card outlines & climbing faces','checkbox',false,'Show card borders, grip areas, usable tops and rejection reasons.'],
 ['debug_surfaces','Show walking surfaces','checkbox',false,'Draw discovered supports on the dashboard.'],
 ['debug_paths','Show routes & jump arcs','checkbox',false,'Draw where your cat plans to walk and jump.'],
 ['debug_pois','Show points of interest','checkbox',false,'Mark potential destinations and resting points.']
 ]}
 ];
 const catEditorFields=new Map(catEditorGroups.flatMap(g=>g.fields.map(f=>[f[0],f])));
-const catEditorOptions={outline:[['auto','Automatic'],['none','None'],['black','Black'],['white','White']],life_stage:[['kitten','Kitten'],['adult','Adult'],['senior','Senior']],bed_style:[['igloo','Igloo'],['simple','Simple bed']],settling_mode:[['active','Always active'],['default','Default settle periods (5–10 min)'],['extended','Extended settle periods (15–30 min)'],['custom','Custom']]};
+const catEditorOptions={mood_preset:[['natural','Natural'],['playful','Playful'],['relaxed','Relaxed'],['alert','Alert']],post_type:[['post','Post'],['tree','Tree']],tree_levels:[['1','One level'],['2','Two levels']],scratch_debris:[['small','Small bits'],['pixel','Pixel-sized bits'],['none','No bits']],outline:[['auto','Automatic'],['none','None'],['black','Black'],['white','White']],life_stage:[['kitten','Kitten'],['adult','Adult'],['senior','Senior']],bed_style:[['igloo','Igloo'],['simple','Simple bed']],settling_mode:[['active','Always active'],['default','Default settle periods (5–10 min)'],['extended','Extended settle periods (15–30 min)'],['custom','Custom']]};
 const catEditorValue=(config,key)=>{
 if(key==='settling_mode')return catEditorOptions.settling_mode.some(([v])=>v===config[key])?config[key]:'default';
 if(config[key]!==undefined)return config[key];
 if(key==='bed_primary_color')return config.igloo_color||'#aa6627';
 if(key==='show_scratching_post')return config.scratching_posts!==false;
 if(key==='show_controls')return config.show_home!==false;
-if(key==='relaxed_speed'&&config.walk_speed!==undefined)return config.walk_speed;
-if(key==='freefall_enabled'&&config.test_freefall_pose!==undefined)return config.test_freefall_pose;
+if(catEditorFields.get(key)?.[2]==='range')return 1+Math.round(4*(window.pixelCatTemperamentV1?.(config.cat_id||'cat',config.temperament)[key]??.5));
+if(key==='post_type')return config.test_cat_tree?'tree':'post';
+if(key==='scratch_debris')return config.full_pixel_scratch_debris?'pixel':'small';
+if(key==='quiet_company'||key==='chasing')return !!config.social_behaviour;
+if(key==='debug_name_below'||key==='debug_action_below')return config.debug_labels!==false;
 return catEditorFields.get(key)?.[3];
 };
 const catEditorChange=(config,key,raw)=>{
@@ -25990,8 +25991,9 @@ else if(raw==='')delete next[key];
 else if(kind==='number'){
 const value=Number(raw);if(!Number.isFinite(value)||value<field[5]||value>field[6]||!Number.isInteger(value))throw Error('Invalid numeric value');next[key]=value;
 }else {if(kind==='select'&&!catEditorOptions[key]?.some(([v])=>v===raw))throw Error('Invalid selection');next[key]=String(raw);}
-if(key==='freefall_enabled')delete next.test_freefall_pose;
-if(key==='show_home'&&config.show_controls===undefined)next.show_controls=catEditorValue(config,'show_controls');
+if(kind==='range'){delete next[key];next.temperament={...config.temperament,[key]:(Number(raw)-1)/4};}
+if((key==='quiet_company'||key==='chasing')&&next[key]){const other=key==='chasing'?'quiet_company':'chasing';next[other]??=!!config.social_behaviour;next.social_behaviour=true;}
+if(key==='mood_preset')next.mood_behaviour=true;
 return next;
 };
 class PixelCatHomeEditor extends HTMLElement{
@@ -26017,7 +26019,7 @@ edge.setAttribute('fill','none');edge.setAttribute('stroke-width',outline.width)
 ink.setAttribute('fill','currentColor');cat.append(edge,ink);this.catPreview=cat;this.updatePreview();
 const seat=art.sit.frames[0],clip=(sequence,name)=>sequence?.frames.map((rows,i)=>[rows,window.pixelCatPolishV1.hold(name,sequence,i)])||[];
 const actions=[clip(art.clean,'clean'),clip(extras?.scratch||art.scratch,'scratch'),clip(extras?.yawn,'yawn')].filter(action=>action.length);
-let pending=[],last=null;
+let last=actions[Math.floor(Math.random()*actions.length)],pending=[...last||[]];
 const reduced=typeof matchMedia==='function'?matchMedia('(prefers-reduced-motion: reduce)'):null;
 const draw=()=>{
 if(this.catPreview!==cat)return;
@@ -26050,7 +26052,7 @@ p{color:var(--secondary-text-color,#64717d);line-height:1.5;margin:0 0 16px}deta
 summary:focus-visible{outline-offset:-3px}
 @media(pointer:coarse){.swatches button{width:44px;height:44px}}
 </style>`;
-const lab=this.config.mode==='behaviour-lab',monitor=this.config.mode==='monitor',utility=lab||monitor,purpose=document.createElement('label');purpose.className='purpose';purpose.textContent='Card purpose';
+const lab=this.config.mode==='behaviour-lab',monitor=this.config.mode==='monitor',utility=lab||monitor,purpose=document.createElement('label');purpose.className='purpose';purpose.textContent='Card purpose';purpose.title='Choose a companion, performance monitor or Behaviour Lab.';
 const select=document.createElement('select');select.setAttribute('aria-label','Card purpose');select.dataset.key='mode';
 for(const [value,label]of [['companion','Cat companion'],['monitor','Performance monitor · no cat'],['behaviour-lab','Behaviour Lab · no cat']]){const option=document.createElement('option');option.value=value;option.textContent=label;select.append(option);}select.value=utility?this.config.mode:'companion';
 select.addEventListener('change',()=>{for(const input of this.shadowRoot.querySelectorAll('input'))if(this.timers.has(input.dataset.key))input.dispatchEvent(new Event('change'));this.config={...this.config,mode:select.value};this.dispatchEvent(new CustomEvent('config-changed',{detail:{config:{...this.config}},bubbles:true,composed:true}));this.render();});purpose.append(select);
@@ -26061,13 +26063,15 @@ const section=document.createElement('details');section.dataset.group=group.titl
 const summary=document.createElement('summary');summary.textContent=group.title;section.append(summary);
 const fields=document.createElement('div');fields.className='fields';
 for(const [key,title,kind,,help,min,max]of group.fields){
+if(key.startsWith('bed_')&&(this.config.include_bed===false||this.config.show_home===false)||key.startsWith('bowl_')&&this.config.include_bowl===false||key==='post_type'&&!catEditorValue(this.config,'show_scratching_post')||key==='tree_levels'&&(!catEditorValue(this.config,'show_scratching_post')||catEditorValue(this.config,'post_type')!=='tree')||key.startsWith('toy_')&&!this.config.dashboard_props)continue;
 if(['settle_after_minutes','settled_rest_min_minutes','settled_rest_max_minutes'].includes(key)&&catEditorValue(this.config,'settling_mode')!=='custom')continue;
 const label=document.createElement('label');label.className='field';const copy=document.createElement('span');copy.textContent=title;
 const hint=document.createElement('small');hint.id='hint-'+key;hint.textContent=help;copy.append(hint);
 const input=document.createElement(kind==='select'?'select':'input');if(kind!=='select')input.type=kind;else for(const [value,text]of catEditorOptions[key]){const option=document.createElement('option');option.value=value;option.textContent=text;input.append(option);}input.dataset.key=key;input.setAttribute('aria-label',title);input.setAttribute('aria-describedby',hint.id);
-const value=key==='title'?(this.config.title??'Cat performance'):catEditorValue(this.config,key);if(kind==='checkbox'){input.checked=!!value;if(key==='primary_home'&&this.config.primary_home===undefined)input.indeterminate=true;}else input.value=value??'';
+const value=key==='title'?(this.config.title??'Cat performance'):catEditorValue(this.config,key);if(kind==='checkbox'){input.checked=!!value;if(key==='primary_home'&&this.config.primary_home===undefined)input.indeterminate=true;}else input.value=kind==='color'&&/^#[0-9a-f]{3}$/i.test(value)?'#'+[...value.slice(1)].map(x=>x+x).join(''):kind==='color'&&!/^#[0-9a-f]{6}$/i.test(value)?catEditorFields.get(key)[3]:value??'';
+if(kind==='range'){input.min=1;input.max=5;input.step=1;}
 if(kind==='number'){input.min=min;input.max=max;input.step=1;}
-const commit=()=>{
+const commit=(reset=false)=>{
 clearTimeout(this.timers.get(key));this.timers.delete(key);
 input.setCustomValidity?.('');
 if(kind==='number'&&!input.checkValidity())return;
@@ -26076,16 +26080,17 @@ if(key==='settled_rest_min_minutes'||key==='settled_rest_max_minutes'){
 const other=key==='settled_rest_min_minutes'?'settled_rest_max_minutes':'settled_rest_min_minutes',value=input.value===''?catEditorFields.get(key)[3]:Number(input.value),bound=Number(catEditorValue(this.config,other)),invalid=key==='settled_rest_min_minutes'?value>bound:value<bound;
 input.setCustomValidity?.(invalid?'Maximum rest must be at least the minimum.':'');if(invalid){input.reportValidity();return;}
 }
-const next=key==='title'?{...this.config,title:input.value}:catEditorChange(this.config,key,kind==='checkbox'?input.checked:input.value);
+const next=key==='title'?{...this.config,title:input.value}:catEditorChange(this.config,key,reset===true?'':kind==='checkbox'?input.checked:input.value);
 if(JSON.stringify(next)===JSON.stringify(this.config))return;
 this.config=next;
 this.updatePreview();
 this.dispatchEvent(new CustomEvent('config-changed',{detail:{config:{...this.config}},bubbles:true,composed:true}));
-if(key==='settling_mode')this.render();
+if(['settling_mode','include_bed','include_bowl','show_scratching_post','post_type','dashboard_props'].includes(key))this.render();
 };
 input.addEventListener('change',commit);
 if(kind!=='checkbox'&&kind!=='select')input.addEventListener('input',()=>{input.setCustomValidity?.('');clearTimeout(this.timers.get(key));this.timers.set(key,setTimeout(commit,200));});
 label.append(copy,input);fields.append(label);
+if(kind==='color'&&key!=='color'&&this.config[key]!==undefined){const reset=document.createElement('button');reset.type='button';reset.textContent='Reset '+title.toLowerCase();reset.onclick=()=>{commit(true);this.render();};fields.append(reset);}
 if(key==='color'||key==='bed_primary_color'||key==='bed_secondary_color'){
 const cat=key==='color',swatches=document.createElement('div');swatches.className='swatches';swatches.setAttribute('aria-label',cat?'Cat colour presets':title+' presets');
 const palette=cat?[['Charcoal','#222222'],['Ginger','#ad6c2d'],['Cream','#e7cf9c'],['Grey','#70818d'],['White','#eeeeee']]:[['Brown','#aa6627'],['Slate','#70818d'],['Blue','#4e86ae'],['Green','#518d70'],['Rose','#b77f91']];
@@ -26096,7 +26101,7 @@ if(hasPurpose)fields.append(purpose);
 section.append(fields);this.shadowRoot.append(section);
 
 }
-if(!utility)window.pixelCatWorldV1?.editor(this,expanded);
+
 if(focusedKey)[...this.shadowRoot.querySelectorAll('[data-key]')].find(control=>control.dataset.key===focusedKey)?.focus();
 const note=document.createElement('p');note.className='note';note.textContent=lab?'Save to add Behaviour Lab.':monitor?'Save to add your monitor.':'When you’re ready, save to welcome your cat to the dashboard.';this.shadowRoot.append(note);this.rendered=true;
 }
@@ -26104,33 +26109,33 @@ const note=document.createElement('p');note.className='note';note.textContent=la
 if(!customElements.get('pixel-cat-home-editor'))customElements.define('pixel-cat-home-editor',PixelCatHomeEditor);
 }
 const catSettling={
- settings(config={}){
-  const mode=['active','extended','custom'].includes(config.settling_mode)?config.settling_mode:'default';
-  const minutes=(key,fallback,min)=>{const n=config[key];return typeof n==='number'&&Number.isInteger(n)&&n>=min&&n<=1440?n:fallback;};
-  const after=mode==='custom'?minutes('settle_after_minutes',5,0):5,min=mode==='custom'?minutes('settled_rest_min_minutes',5,1):mode==='extended'?15:5,max=mode==='custom'?minutes('settled_rest_max_minutes',10,1):mode==='extended'?30:10;
-  return {enabled:mode!=='active',afterMs:after*60000,minMs:Math.min(min,max)*60000,maxMs:Math.max(min,max)*60000};
- },
- wake(a,t){const q=a.settling;if(q){if(q.idle===a.idle&&a.idle){a.idle.poseUntil=t;a.deadline=t;}q.idle=null;q.activeMs=0;}a.removeAttribute('data-settling');},
- step(a,ms){
-  if(a.active===false||a.paused||a.layoutPaused||a.suspended||a.stranded||a.userHeld||typeof document!=='undefined'&&document.hidden)return;
-  const q=a.settling||={activeMs:0,idle:null};
-  if(ms>0&&ms<=1000)q.activeMs+=ms;
- },
- begin(a,idle,art){
-  const q=a.settling,p=this.settings(a.config);
-  if(!p.enabled||!q||q.activeMs<p.afterMs||!art.idleSequences?.[idle.pose]?.behaviourPolicy?.tags?.includes('rest')||this.busy(a))return;
-  if(this.restEpisode(a))a.social.finish('settled rest');
-  idle.poseUntil=idle.start+(idle.bridgeMs||0)+p.minMs+(p.maxMs-p.minMs)*(a.ensureMood?.().random?.()??Math.random());
-  q.idle=idle;a.deadline=Math.max(a.deadline||0,idle.poseUntil);
-  a.setAttribute?.('data-settling','resting');
- },
- restEpisode(a){const e=a.social?.episode;return e?.stage==='rest'&&['bed','company'].includes(e.kind);},
- busy(a){return a.motion||a.route?.length||a.climb||a.userHeld||a.command||a.goal||a.previewPose||a.play||a.playRequested||a.toyHunt||a.toyHuntRequested||a.mouthAction||a.recallPending||a.social?.episode&&!this.restEpisode(a);},
- holding(a,t){
-  const q=a.settling;if(!q?.idle)return false;
-  if(q.idle!==a.idle||this.busy(a)||a.idle.support!==a.support?.id||t>=a.idle.poseUntil){q.idle=null;a.removeAttribute?.('data-settling');return false;}
-  a.deadline=Math.max(a.deadline||0,a.idle.poseUntil);a.propScene?.tick(t,a);return true;
- }
+settings(config={}){
+const mode=['active','extended','custom'].includes(config.settling_mode)?config.settling_mode:'default';
+const minutes=(key,fallback,min)=>{const n=config[key];return typeof n==='number'&&Number.isInteger(n)&&n>=min&&n<=1440?n:fallback;};
+const after=mode==='custom'?minutes('settle_after_minutes',5,0):5,min=mode==='custom'?minutes('settled_rest_min_minutes',5,1):mode==='extended'?15:5,max=mode==='custom'?minutes('settled_rest_max_minutes',10,1):mode==='extended'?30:10;
+return {enabled:mode!=='active',afterMs:after*60000,minMs:Math.min(min,max)*60000,maxMs:Math.max(min,max)*60000};
+},
+wake(a,t){const q=a.settling;if(q){if(q.idle===a.idle&&a.idle){a.idle.poseUntil=t;a.deadline=t;}q.idle=null;q.activeMs=0;}a.removeAttribute('data-settling');},
+step(a,ms){
+if(a.active===false||a.paused||a.layoutPaused||a.suspended||a.stranded||a.userHeld||typeof document!=='undefined'&&document.hidden)return;
+const q=a.settling||={activeMs:0,idle:null};
+if(ms>0&&ms<=1000)q.activeMs+=ms;
+},
+begin(a,idle,art){
+const q=a.settling,p=this.settings(a.config);
+if(!p.enabled||!q||q.activeMs<p.afterMs||!art.idleSequences?.[idle.pose]?.behaviourPolicy?.tags?.includes('rest')||this.busy(a))return;
+if(this.restEpisode(a))a.social.finish('settled rest');
+idle.poseUntil=idle.start+(idle.bridgeMs||0)+p.minMs+(p.maxMs-p.minMs)*(a.ensureMood?.().random?.()??Math.random());
+q.idle=idle;a.deadline=Math.max(a.deadline||0,idle.poseUntil);
+a.setAttribute?.('data-settling','resting');
+},
+restEpisode(a){const e=a.social?.episode;return e?.stage==='rest'&&['bed','company'].includes(e.kind);},
+busy(a){return a.motion||a.route?.length||a.climb||a.userHeld||a.command||a.goal||a.previewPose||a.play||a.playRequested||a.toyHunt||a.toyHuntRequested||a.mouthAction||a.recallPending||a.social?.episode&&!this.restEpisode(a);},
+holding(a,t){
+const q=a.settling;if(!q?.idle)return false;
+if(q.idle!==a.idle||this.busy(a)||a.idle.support!==a.support?.id||t>=a.idle.poseUntil){q.idle=null;a.removeAttribute?.('data-settling');return false;}
+a.deadline=Math.max(a.deadline||0,a.idle.poseUntil);a.propScene?.tick(t,a);return true;
+}
 };
 window.pixelCatSettlingV1=catSettling;
 
@@ -26141,147 +26146,147 @@ const catWorldResidentId=value=>typeof value==='string'&&value.trim()===value&&v
 const catWorldSettings=value=>value&&value.version===1&&value.scale_mode==='legacy'&&Object.keys(value).every(k=>['version','scale_mode'].includes(k));
 const catWorldLinked=config=>['world_id','world_owner','world_settings'].some(k=>config[k]!==undefined);
 window.pixelCatWorldV1={
- attach(a){
-  if(!catWorldLinked(a.config)){a.worldState=null;a.removeAttribute?.('data-world-state');this.paint(a);return true;}
-  let record=catWorldMembers.get(a);
-  if(!record){let worlds=catWorldViews.get(a.root);if(!worlds){worlds=new Map();catWorldViews.set(a.root,worlds);}const key=String(a.config.world_id||'');record=worlds.get(key);if(!record){record={members:new Set(),root:a.root,key,worlds,last:null};worlds.set(key,record);}record.members.add(a);catWorldMembers.set(a,record);}
-  for(const entry of record.worlds.values())this.reconcile(entry);return a.worldState.ready;
- },
- leave(a){const record=catWorldMembers.get(a);if(!record)return;catWorldMembers.delete(a);record.members.delete(a);a.worldState=null;if(!record.members.size){record.worlds.delete(record.key);if(!record.worlds.size)catWorldViews.delete(record.root);}for(const entry of record.worlds.values())this.reconcile(entry);},
- reconcile(record){
-  const members=[...record.members],owners=new Set(members.map(a=>a.config.world_owner));let phase='ready',message='',owner;
-  if(record.worlds.size>1){phase='conflict';message='This view references different world IDs. Choose one world per view.';}
-  else if(!catWorldId(record.key)||members.some(a=>!catWorldResidentId(a.config.cat_id)||!catWorldResidentId(a.config.world_owner))){phase='invalid';message='World needs a valid world ID, owner ID and stable cat IDs.';}
-  else if(owners.size!==1){phase='conflict';message='World members reference different owners.';}
-  else{const id=[...owners][0],candidates=members.filter(a=>a.config.cat_id===id);owner=candidates[0];
-   if(candidates.length>1){phase='conflict';message='More than one home claims the world owner ID.';}
-   else if(members.some(a=>a!==owner&&a.config.world_settings!==undefined)){phase='conflict';message='Only the referenced owner may save world settings.';}
-   else if(!owner){phase='waiting';message='Waiting for world owner '+id+'.';}
-   else if(!catWorldSettings(owner.config.world_settings)){phase='invalid';message='World owner needs version 1 settings with legacy scaling. Other scale modes are not enabled yet.';}
-  }
-  if(phase==='ready')record.last=Object.freeze({ownerId:owner.config.cat_id,settings:Object.freeze(catWorldCopy(owner.config.world_settings))});
-  for(const a of members){const wasReady=!!a.worldState?.ready,usingLastKnown=phase!=='ready'&&!!record.last&&!!a.active;
-   a.worldState={worldId:record.key,ownerId:a.config.world_owner,phase,ready:phase==='ready',issue:phase!=='ready',usingLastKnown,settings:phase==='ready'||usingLastKnown?record.last.settings:null,message};
-   a.setAttribute?.('data-world-state',phase);this.paint(a);
-   if(phase==='ready'&&!wasReady&&!a.active&&a.isConnected!==false)queueMicrotask(()=>{if(catWorldMembers.get(a)===record&&a.worldState?.ready&&!a.active&&a.isConnected!==false)a.connectedCallback();});
-  }
- },
- paint(a){
-  const issue=a.worldState?.issue;if(!issue){a.worldNotice?.remove();a.worldNotice=null;return;}
-  const card=a.shadowRoot?.querySelector?.('ha-card');if(!card||typeof document==='undefined')return;
-  if(!a.worldNotice?.isConnected){const node=document.createElement('span');node.dataset.catWorldStatus='';node.setAttribute('role','status');node.style.cssText='position:absolute;inset:4px 6px auto;z-index:3;padding:3px 5px;background:var(--card-background-color,#fff);color:var(--error-color,#a33);font:11px/1.3 system-ui;overflow-wrap:anywhere';card.append(node);a.worldNotice=node;}
-  a.worldNotice.textContent=a.worldState.message+(a.worldState.usingLastKnown?' Existing cats retain the last valid settings.':' No new cat will spawn.');if(a.style)a.style.display='';
- },
- homes(view){const out=[];const visit=(value,path)=>{if(!value||typeof value!=='object')return;if(!Array.isArray(value)&&value.type==='custom:pixel-cat-home'){if(value.mode!=='monitor')out.push({path,config:value});return;}for(const [key,child]of Object.entries(value))if(Array.isArray(value)||['card','cards','sections','views'].includes(key))visit(child,path+'/'+key.replaceAll('~','~0').replaceAll('/','~1'));};visit(view,'');return out;},
- migration(view,{worldId,ownerIndex=0,createId=()=>crypto.randomUUID(),name=()=>window.pixelCatPolishV1.name(),colour=()=>window.pixelCatPolishV1.colour()}={}){
-  if(!catWorldId(worldId))throw Error('Choose a world ID using 1–64 letters, digits, dots, colons, underscores or hyphens.');
-  const before=catWorldCopy(view),after=catWorldCopy(view),homes=this.homes(after),originals=this.homes(before);if(!homes.length||!homes[ownerIndex])throw Error('Choose one companion home as authority.');
-  if(homes.some(h=>catWorldLinked(h.config)))throw Error('Migration accepts unlinked legacy cards only. Use the saved rollback before planning a different migration.');
-  const ids=new Set();for(const {config:c}of homes){if(c.cat_id!==undefined&&!catWorldResidentId(c.cat_id))throw Error('Invalid existing cat ID; correct it explicitly first.');c.cat_id??=createId();if(!catWorldResidentId(c.cat_id)||ids.has(c.cat_id))throw Error('Duplicate or invalid cat ID; resolve identities before migration.');ids.add(c.cat_id);}
-  const ownerId=homes[ownerIndex].config.cat_id,changes=[];
-  for(const [i,{path,config:c}]of homes.entries()){
-   if(!c.name)c.name=name();if(!c.color)c.color=colour();c.world_id=worldId;c.world_owner=ownerId;if(i===ownerIndex)c.world_settings={version:1,scale_mode:'legacy'};
-   changes.push({path,catId:c.cat_id,name:c.name,owner:i===ownerIndex,cellSize:c.cell_size??2,scaleChange:false,before:catWorldCopy(originals[i].config),after:catWorldCopy(c)});
-  }
-  return {version:1,worldId,ownerId,scaleMode:'legacy',before,after,changes};
- },
- apply(plan,current,reverse=false){if(plan?.version!==1)throw Error('Unsupported migration plan.');const expected=reverse?plan.after:plan.before;if(JSON.stringify(current)!==JSON.stringify(expected))throw Error('Configuration changed after preview. Create a fresh migration or rollback preview.');return catWorldCopy(reverse?plan.before:plan.after);},
- editor(editor,expanded=new Map()){
-  const section=document.createElement('details'),title=document.createElement('summary'),note=document.createElement('p');title.textContent='World authority · opt-in';section.dataset.group=title.textContent;section.open=expanded.get(title.textContent)??false;note.textContent='One saved owner per world/view. Primary home is separate. Current linkage preserves every legacy pixel scale; it does not enable rosters or shared prop sizing.';section.append(title,note);
-  const field=(label,value)=>{const row=document.createElement('label'),input=document.createElement('input');row.className='field';row.textContent=label;input.value=value||'';input.setAttribute('aria-label',label);row.append(input);section.append(row);return input;};
-  const id=field('World ID',editor.config.world_id),owner=field('World owner cat ID',editor.config.world_owner),status=document.createElement('p');status.setAttribute('role','status');
-  const stage=kind=>{try{const c={...editor.config};if(kind==='unlink'){delete c.world_id;delete c.world_owner;delete c.world_settings;}else{if(!catWorldId(id.value))throw Error('Enter a valid world ID first.');c.world_id=id.value;c.cat_id??=crypto.randomUUID();if(!c.name)c.name=window.pixelCatPolishV1.name();if(!c.color)c.color=window.pixelCatPolishV1.colour();if(kind==='owner'){c.world_owner=c.cat_id;c.world_settings={version:1,scale_mode:'legacy'};}else{if(!catWorldResidentId(owner.value))throw Error('Enter the saved owner cat ID.');if(owner.value===c.cat_id)throw Error('Use “Stage as owner” for this cat’s ID.');c.world_owner=owner.value;delete c.world_settings;}}editor.config=c;editor.dispatchEvent(new CustomEvent('config-changed',{detail:{config:{...c}},bubbles:true,composed:true}));editor.render();}catch(error){status.textContent=error.message;}};
-  for(const [text,kind]of [['Stage as owner','owner'],['Stage as follower','follower'],['Remove world linkage','unlink']]){const b=document.createElement('button');b.type='button';b.textContent=text;b.onclick=()=>stage(kind);section.append(b);}section.append(status);editor.shadowRoot.append(section);
- }
+attach(a){
+if(!catWorldLinked(a.config)){a.worldState=null;a.removeAttribute?.('data-world-state');this.paint(a);return true;}
+let record=catWorldMembers.get(a);
+if(!record){let worlds=catWorldViews.get(a.root);if(!worlds){worlds=new Map();catWorldViews.set(a.root,worlds);}const key=String(a.config.world_id||'');record=worlds.get(key);if(!record){record={members:new Set(),root:a.root,key,worlds,last:null};worlds.set(key,record);}record.members.add(a);catWorldMembers.set(a,record);}
+for(const entry of record.worlds.values())this.reconcile(entry);return a.worldState.ready;
+},
+leave(a){const record=catWorldMembers.get(a);if(!record)return;catWorldMembers.delete(a);record.members.delete(a);a.worldState=null;if(!record.members.size){record.worlds.delete(record.key);if(!record.worlds.size)catWorldViews.delete(record.root);}for(const entry of record.worlds.values())this.reconcile(entry);},
+reconcile(record){
+const members=[...record.members],owners=new Set(members.map(a=>a.config.world_owner));let phase='ready',message='',owner;
+if(record.worlds.size>1){phase='conflict';message='This view references different world IDs. Choose one world per view.';}
+else if(!catWorldId(record.key)||members.some(a=>!catWorldResidentId(a.config.cat_id)||!catWorldResidentId(a.config.world_owner))){phase='invalid';message='World needs a valid world ID, owner ID and stable cat IDs.';}
+else if(owners.size!==1){phase='conflict';message='World members reference different owners.';}
+else{const id=[...owners][0],candidates=members.filter(a=>a.config.cat_id===id);owner=candidates[0];
+if(candidates.length>1){phase='conflict';message='More than one home claims the world owner ID.';}
+else if(members.some(a=>a!==owner&&a.config.world_settings!==undefined)){phase='conflict';message='Only the referenced owner may save world settings.';}
+else if(!owner){phase='waiting';message='Waiting for world owner '+id+'.';}
+else if(!catWorldSettings(owner.config.world_settings)){phase='invalid';message='World owner needs version 1 settings with legacy scaling. Other scale modes are not enabled yet.';}
+}
+if(phase==='ready')record.last=Object.freeze({ownerId:owner.config.cat_id,settings:Object.freeze(catWorldCopy(owner.config.world_settings))});
+for(const a of members){const wasReady=!!a.worldState?.ready,usingLastKnown=phase!=='ready'&&!!record.last&&!!a.active;
+a.worldState={worldId:record.key,ownerId:a.config.world_owner,phase,ready:phase==='ready',issue:phase!=='ready',usingLastKnown,settings:phase==='ready'||usingLastKnown?record.last.settings:null,message};
+a.setAttribute?.('data-world-state',phase);this.paint(a);
+if(phase==='ready'&&!wasReady&&!a.active&&a.isConnected!==false)queueMicrotask(()=>{if(catWorldMembers.get(a)===record&&a.worldState?.ready&&!a.active&&a.isConnected!==false)a.connectedCallback();});
+}
+},
+paint(a){
+const issue=a.worldState?.issue;if(!issue){a.worldNotice?.remove();a.worldNotice=null;return;}
+const card=a.shadowRoot?.querySelector?.('ha-card');if(!card||typeof document==='undefined')return;
+if(!a.worldNotice?.isConnected){const node=document.createElement('span');node.dataset.catWorldStatus='';node.setAttribute('role','status');node.style.cssText='position:absolute;inset:4px 6px auto;z-index:3;padding:3px 5px;background:var(--card-background-color,#fff);color:var(--error-color,#a33);font:11px/1.3 system-ui;overflow-wrap:anywhere';card.append(node);a.worldNotice=node;}
+a.worldNotice.textContent=a.worldState.message+(a.worldState.usingLastKnown?' Existing cats retain the last valid settings.':' No new cat will spawn.');if(a.style)a.style.display='';
+},
+homes(view){const out=[];const visit=(value,path)=>{if(!value||typeof value!=='object')return;if(!Array.isArray(value)&&value.type==='custom:pixel-cat-home'){if(value.mode!=='monitor')out.push({path,config:value});return;}for(const [key,child]of Object.entries(value))if(Array.isArray(value)||['card','cards','sections','views'].includes(key))visit(child,path+'/'+key.replaceAll('~','~0').replaceAll('/','~1'));};visit(view,'');return out;},
+migration(view,{worldId,ownerIndex=0,createId=()=>crypto.randomUUID(),name=()=>window.pixelCatPolishV1.name(),colour=()=>window.pixelCatPolishV1.colour()}={}){
+if(!catWorldId(worldId))throw Error('Choose a world ID using 1–64 letters, digits, dots, colons, underscores or hyphens.');
+const before=catWorldCopy(view),after=catWorldCopy(view),homes=this.homes(after),originals=this.homes(before);if(!homes.length||!homes[ownerIndex])throw Error('Choose one companion home as authority.');
+if(homes.some(h=>catWorldLinked(h.config)))throw Error('Migration accepts unlinked legacy cards only. Use the saved rollback before planning a different migration.');
+const ids=new Set();for(const {config:c}of homes){if(c.cat_id!==undefined&&!catWorldResidentId(c.cat_id))throw Error('Invalid existing cat ID; correct it explicitly first.');c.cat_id??=createId();if(!catWorldResidentId(c.cat_id)||ids.has(c.cat_id))throw Error('Duplicate or invalid cat ID; resolve identities before migration.');ids.add(c.cat_id);}
+const ownerId=homes[ownerIndex].config.cat_id,changes=[];
+for(const [i,{path,config:c}]of homes.entries()){
+if(!c.name)c.name=name();if(!c.color)c.color=colour();c.world_id=worldId;c.world_owner=ownerId;if(i===ownerIndex)c.world_settings={version:1,scale_mode:'legacy'};
+changes.push({path,catId:c.cat_id,name:c.name,owner:i===ownerIndex,cellSize:c.cell_size??2,scaleChange:false,before:catWorldCopy(originals[i].config),after:catWorldCopy(c)});
+}
+return {version:1,worldId,ownerId,scaleMode:'legacy',before,after,changes};
+},
+apply(plan,current,reverse=false){if(plan?.version!==1)throw Error('Unsupported migration plan.');const expected=reverse?plan.after:plan.before;if(JSON.stringify(current)!==JSON.stringify(expected))throw Error('Configuration changed after preview. Create a fresh migration or rollback preview.');return catWorldCopy(reverse?plan.before:plan.after);},
+editor(editor,expanded=new Map()){
+const section=document.createElement('details'),title=document.createElement('summary'),note=document.createElement('p');title.textContent='World authority · opt-in';section.dataset.group=title.textContent;section.open=expanded.get(title.textContent)??false;note.textContent='One saved owner per world/view. Primary home is separate. Current linkage preserves every legacy pixel scale; it does not enable rosters or shared prop sizing.';section.append(title,note);
+const field=(label,value)=>{const row=document.createElement('label'),input=document.createElement('input');row.className='field';row.textContent=label;input.value=value||'';input.setAttribute('aria-label',label);row.append(input);section.append(row);return input;};
+const id=field('World ID',editor.config.world_id),owner=field('World owner cat ID',editor.config.world_owner),status=document.createElement('p');status.setAttribute('role','status');
+const stage=kind=>{try{const c={...editor.config};if(kind==='unlink'){delete c.world_id;delete c.world_owner;delete c.world_settings;}else{if(!catWorldId(id.value))throw Error('Enter a valid world ID first.');c.world_id=id.value;c.cat_id??=crypto.randomUUID();if(!c.name)c.name=window.pixelCatPolishV1.name();if(!c.color)c.color=window.pixelCatPolishV1.colour();if(kind==='owner'){c.world_owner=c.cat_id;c.world_settings={version:1,scale_mode:'legacy'};}else{if(!catWorldResidentId(owner.value))throw Error('Enter the saved owner cat ID.');if(owner.value===c.cat_id)throw Error('Use “Stage as owner” for this cat’s ID.');c.world_owner=owner.value;delete c.world_settings;}}editor.config=c;editor.dispatchEvent(new CustomEvent('config-changed',{detail:{config:{...c}},bubbles:true,composed:true}));editor.render();}catch(error){status.textContent=error.message;}};
+for(const [text,kind]of [['Stage as owner','owner'],['Stage as follower','follower'],['Remove world linkage','unlink']]){const b=document.createElement('button');b.type='button';b.textContent=text;b.onclick=()=>stage(kind);section.append(b);}section.append(status);editor.shadowRoot.append(section);
+}
 };
 if(typeof Event==='function')window.dispatchEvent?.(new Event('pixel-cat-world-ready'));
 
 const catLayoutViews=new WeakMap();
 window.pixelCatLayoutV1={
- changed(a){return a.surfaces?.some(s=>{const node=s.rectNode||(s.home?a.shadowRoot.querySelector('.dock'):s.el),old=s.rectSnapshot,removed=s.el.isConnected===false||node?.isConnected===false;if(!old&&!removed)return false;const r=removed?null:window.pixelCatSurfaceWorldV1.rect(a.root,node),keys=removed?['removed']:['left','top','width','height'].filter(k=>Math.abs(r[k]-old[k])>1);if(!keys.length)return false;a.setAttribute?.('data-layout-difference',JSON.stringify({id:s.id,keys,old,next:r&&Object.fromEntries(['left','top','width','height'].map(k=>[k,r[k]]))}));return true;});},
- join(a){if(!a.root)return;window.pixelCatEffectsV1?.join(a);let s=catLayoutViews.get(a.root);if(!s){s={members:new Set(),phase:'idle',generation:0,scans:0};catLayoutViews.set(a.root,s);}const added=!s.members.has(a);s.members.add(a);if(added&&s.phase==='settling'){s.changed=performance.now();s.probeAt=s.changed+260;s.stable=0;a.layoutPaused=true;a.layoutPauseStarted=s.changed;a.setAttribute?.('data-layout-state','settling');}else if(added&&s.phase!=='idle')this.notify(a,{type:'resize',source:'companion joined during recovery'});return s;},
- leave(a){window.pixelCatEffectsV1?.leave(a);const s=catLayoutViews.get(a.root);s?.members.delete(a);if(s&&!s.members.size)catLayoutViews.delete(a.root);delete a.layoutRecovery;a.layoutPaused=false;delete a.layoutRelocated;if(a.layer)a.layer.style.opacity='';if(a.postRenderLayer)a.postRenderLayer.style.opacity='';},
- repair(a,old,t){
-  if(a.climb?.stage==='grip'){a.stranded=false;return true;}
-  if(!old)return false;const live=s=>s&&s.el?.isConnected!==false,next=a.surfaces.find(s=>s.id===old.id&&live(s)),m=a.motion,target=m&&a.surfaces.find(s=>s.id===m.target?.id&&live(s));
-  const resized=target&&['min','max'].some(k=>Math.abs((target[k]-target.left)-(m.target[k]-m.target.left))>1),shifted=next&&target&&m.kind==='walk'&&(Math.abs((target.left-m.target.left)-(next.left-old.left))>1||Math.abs((target.top-m.target.top)-(next.top-old.top))>1||resized&&(m.x+target.left-m.target.left<target.min||m.x+target.left-m.target.left>target.max));
-  if(next&&(!m||target)&&!shifted)return false;
-  const from=a.svg?.style.transform?.match(/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/)?.slice(1).map(Number);
-  a.setAttribute?.('data-layout-repair',JSON.stringify({support:old.id,next:next?.id,motion:m?.kind,target:m?.target?.id,found:target?.id,shifted,endpoint:m?.x,bounds:target&&[target.min,target.max]}));
-  a.social?.finish?.('support changed');a.cancelPlay?.(t);window.pixelCatMouthV1?.cancel(a);window.pixelCatBedEntryV1?.moving(a);a.motion=null;a.route=[];a.idle=null;a.previewBedPose=null;a.finishing=false;a.recallPending=false;
-  const safe=next||(live(a.home)&&a.surfaces.includes(a.home)?a.home:null)||a.surfaces.filter(s=>live(s)&&!s.narrow&&s.max>=s.min).sort((x,y)=>Math.abs(x.top-a.y)-Math.abs(y.top-a.y))[0];
-  if(!safe){a.stranded=true;return false;}a.support=safe;a.x=Math.max(safe.min,Math.min(safe.max,a.x+(next?next.left-old.left:0)));a.y=safe.top;a.stranded=false;a.noPathMessage='';a.deadline=t+500;a.layoutRelocated=true;a.draw?.(window.pixelCatRoamingArtV2.stand);
-  if(!a.layoutPaused){delete a.layoutRelocated;if(from){a.layoutPaused=true;a.layoutRecovery={local:true,start:t,ready:t+180,from,dx:a.x-from[0],dy:a.y-24*a.scale-from[1]};a.setAttribute?.('data-layout-state','local recovery');}}return true;
- },
- geometry(root){const s=catLayoutViews.get(root);return s?.phase==='reconcile'?s.capture:null;},
- notify(a,event){const s=this.join(a);if(!s)return;const t=performance.now();if(Array.isArray(event)){s.boxes||=new WeakMap();let changed=false;for(const e of event){if(!e.target||!e.contentRect)continue;const n=[e.contentRect.width,e.contentRect.height],old=s.boxes.get(e.target);if(old&&n.some((v,i)=>Math.abs(v-old[i])>1)){changed=true;s.boxDifference={from:old,to:n};}s.boxes.set(e.target,n);}if(changed&&s.phase!=='settling')event={type:'resize',source:'card geometry'};}if(event?.type==='resize'){
-   if(![...s.members].some(b=>b.support))return;
-   if(s.event===event)return;s.event=event;s.phase='settling';s.changed=t;s.probeAt=t+260;s.stable=0;s.signature=null;s.capture=null;s.generation++;s.queue=[];
-   for(const b of s.members){delete b.layoutRecovery;b.layoutPaused=true;b.layoutPauseStarted=t;b.layer?.style&&(b.layer.style.opacity='.4');if(b.postRenderLayer)b.postRenderLayer.style.opacity='.4';b.setAttribute?.('data-layout-state','settling');b.setAttribute?.('data-layout-cause',JSON.stringify({generation:s.generation,source:event.source||'resize',actor:a.ownerKey,box:s.boxDifference}));}window.pixelCatEffectsV1?.clear(a.root);
-  }else if(s.phase==='settling'&&Array.isArray(event)&&event.length){s.changed=t;s.probeAt=t+260;s.stable=0;}
- },
- freeze(a,t,s){const dt=Math.max(0,t-(a.lastTick??t));a.freezeClocks?.(dt);a.lastTick=t;if(s.phase!=='running'){if(a.social?.world)a.social.world.last=t;if(a.propScene)a.propScene.lastAt=t;}},
- gate(a,t){const s=catLayoutViews.get(a.root);if(a.layoutRecovery?.local){this.freeze(a,t,{phase:'running'});a.status?.('Recovering changed support');return this.recover(a,t,a.layoutRecovery,s);}if(!s||s.phase==='idle'||!a.layoutPaused)return false;
-  this.freeze(a,t,s);a.status?.(s.phase==='settling'?'Waiting for dashboard resize':'Recovering dashboard layout');
-  if(a.userHeld){window.pixelCatDragV1?.restore(a);return true;}
-  if(s.phase==='settling'){
-   if(t<s.probeAt)return true;s.probeAt=t+70;const r=a.root.getBoundingClientRect(),sig=[r.left,r.top,r.width,r.height].map(v=>Math.round(v*2)).join(',');
-   s.stable=s.signature===sig?s.stable+1:0;s.signature=sig;if(t-s.changed<260||s.stable<2)return true;
-   s.phase='reconcile';s.capture={rects:new Map()};s.queue=[...s.members].filter(b=>b.active&&b.isConnected!==false);s.reconciledAt=null;s.scans++;s.index=0;
-  }
-  if(s.phase==='reconcile'){
-   while(s.queue.length&&(!s.queue[0].active||s.queue[0].isConnected===false))s.queue.shift();
-   if(s.reconciledAt!==t){s.reconciledAt=t;const started=performance.now();do{const b=s.queue.shift();if(b?.active&&b.isConnected!==false)this.place(b,t,s);}while(s.queue.length&&performance.now()-started<4);}
-   if(s.queue.length)return true;s.phase='running';s.capture=null;
-  }
-  return this.recover(a,t,a.layoutRecovery,s);
- },
- place(a,t,s){
-    const old=a.support,from=a.svg?.style.transform?.match(/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/),wasAir=a.motion&&['jump','startle'].includes(a.motion.kind);
-    a.scrollTranslation=null;a.needsMeasure=true;a.measure();let target=a.support;
-    if(a.climb?.stage==='grip'){a.stranded=false;a.layoutRecovery={start:t,ready:t+180};a.checkAt=t+700;return;}
-    if(!a.waitingForPlacement&&(a.stranded||!target||target.el?.isConnected===false)){target=a.surfaces?.find(f=>f.id===old?.id&&f.el?.isConnected!==false)||a.home||a.surfaces?.find(f=>!f.narrow&&f.el?.isConnected!==false);if(target){a.support=target;a.stranded=false;a.motion=null;a.route=[];a.idle=null;a.x=Math.max(target.min,Math.min(target.max,a.x));a.y=target.top;}}
-    if(wasAir&&target){a.social?.finish?.('layout recovery');a.motion=null;a.idle=null;a.route=[];a.x=Math.max(target.min,Math.min(target.max,a.x));a.y=target.top;a.draw?.(window.pixelCatRoamingArtV2.stand);}
-    const dx=a.layoutRelocated&&from?a.x-Number(from[1]):target&&old?target.left-old.left:0,dy=a.layoutRelocated&&from?a.y-24*a.scale-Number(from[2]):target&&old?target.top-old.top:0;delete a.layoutRelocated;
-    a.layoutRecovery={start:null,delay:(s.index++%7)*37,from:from?.slice(1).map(Number),dx,dy};a.checkAt=t+700;a.setAttribute?.('data-layout-state','reconcile');
- },
- recover(a,t,p,s){if(!p)return true;if(p.start===null){p.start=t+p.delay;p.ready=p.start+180;}
-  if(p.from&&a.svg?.style&&!a.stranded){const u=Math.max(0,Math.min(1,(t-p.start)/180)),ease=u*u*(3-2*u),snap=v=>u===1?v:Math.round(v*ease/a.scale)*a.scale;a.svg.style.transform=`translate(${p.from[0]+snap(p.dx)}px,${p.from[1]+snap(p.dy)}px)`;if(a.carriedToy&&a.drawnRows)window.pixelCatMouthV1?.frame?.(a,a.drawnRows,[null,p.from[0]+snap(p.dx),p.from[1]+snap(p.dy)],t,a.carryArt||window.pixelCatRoamingArtV2);}
-  if(t<p.ready)return true;a.layoutPaused=false;delete a.layoutRecovery;if(a.layer)a.layer.style.opacity='';if(a.postRenderLayer)a.postRenderLayer.style.opacity='';a.setAttribute?.('data-layout-state','running');if(!p.local&&[...s.members].every(b=>!b.layoutPaused||!b.active))s.phase='idle';return false;
- },
- report(root){const s=catLayoutViews.get(root);return s?{phase:s.phase,generation:s.generation,settledScans:s.scans,waiting:s.queue?.length||0}:null;}
+changed(a){return a.surfaces?.some(s=>{const node=s.rectNode||(s.home?a.shadowRoot.querySelector('.dock'):s.el),old=s.rectSnapshot,removed=s.el.isConnected===false||node?.isConnected===false;if(!old&&!removed)return false;const r=removed?null:window.pixelCatSurfaceWorldV1.rect(a.root,node),keys=removed?['removed']:['left','top','width','height'].filter(k=>Math.abs(r[k]-old[k])>1);if(!keys.length)return false;a.setAttribute?.('data-layout-difference',JSON.stringify({id:s.id,keys,old,next:r&&Object.fromEntries(['left','top','width','height'].map(k=>[k,r[k]]))}));return true;});},
+join(a){if(!a.root)return;window.pixelCatEffectsV1?.join(a);let s=catLayoutViews.get(a.root);if(!s){s={members:new Set(),phase:'idle',generation:0,scans:0};catLayoutViews.set(a.root,s);}const added=!s.members.has(a);s.members.add(a);if(added&&s.phase==='settling'){s.changed=performance.now();s.probeAt=s.changed+260;s.stable=0;a.layoutPaused=true;a.layoutPauseStarted=s.changed;a.setAttribute?.('data-layout-state','settling');}else if(added&&s.phase!=='idle')this.notify(a,{type:'resize',source:'companion joined during recovery'});return s;},
+leave(a){window.pixelCatEffectsV1?.leave(a);const s=catLayoutViews.get(a.root);s?.members.delete(a);if(s&&!s.members.size)catLayoutViews.delete(a.root);delete a.layoutRecovery;a.layoutPaused=false;delete a.layoutRelocated;if(a.layer)a.layer.style.opacity='';if(a.postRenderLayer)a.postRenderLayer.style.opacity='';},
+repair(a,old,t){
+if(a.climb?.stage==='grip'){a.stranded=false;return true;}
+if(!old)return false;const live=s=>s&&s.el?.isConnected!==false,next=a.surfaces.find(s=>s.id===old.id&&live(s)),m=a.motion,target=m&&a.surfaces.find(s=>s.id===m.target?.id&&live(s));
+const resized=target&&['min','max'].some(k=>Math.abs((target[k]-target.left)-(m.target[k]-m.target.left))>1),shifted=next&&target&&m.kind==='walk'&&(Math.abs((target.left-m.target.left)-(next.left-old.left))>1||Math.abs((target.top-m.target.top)-(next.top-old.top))>1||resized&&(m.x+target.left-m.target.left<target.min||m.x+target.left-m.target.left>target.max));
+if(next&&(!m||target)&&!shifted)return false;
+const from=a.svg?.style.transform?.match(/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/)?.slice(1).map(Number);
+a.setAttribute?.('data-layout-repair',JSON.stringify({support:old.id,next:next?.id,motion:m?.kind,target:m?.target?.id,found:target?.id,shifted,endpoint:m?.x,bounds:target&&[target.min,target.max]}));
+a.social?.finish?.('support changed');a.cancelPlay?.(t);window.pixelCatMouthV1?.cancel(a);window.pixelCatBedEntryV1?.moving(a);a.motion=null;a.route=[];a.idle=null;a.previewBedPose=null;a.finishing=false;a.recallPending=false;
+const safe=next||(live(a.home)&&a.surfaces.includes(a.home)?a.home:null)||a.surfaces.filter(s=>live(s)&&!s.narrow&&s.max>=s.min).sort((x,y)=>Math.abs(x.top-a.y)-Math.abs(y.top-a.y))[0];
+if(!safe){a.stranded=true;return false;}a.support=safe;a.x=Math.max(safe.min,Math.min(safe.max,a.x+(next?next.left-old.left:0)));a.y=safe.top;a.stranded=false;a.noPathMessage='';a.deadline=t+500;a.layoutRelocated=true;a.draw?.(window.pixelCatRoamingArtV2.stand);
+if(!a.layoutPaused){delete a.layoutRelocated;if(from){a.layoutPaused=true;a.layoutRecovery={local:true,start:t,ready:t+180,from,dx:a.x-from[0],dy:a.y-24*a.scale-from[1]};a.setAttribute?.('data-layout-state','local recovery');}}return true;
+},
+geometry(root){const s=catLayoutViews.get(root);return s?.phase==='reconcile'?s.capture:null;},
+notify(a,event){const s=this.join(a);if(!s)return;const t=performance.now();if(Array.isArray(event)){s.boxes||=new WeakMap();let changed=false;for(const e of event){if(!e.target||!e.contentRect)continue;const n=[e.contentRect.width,e.contentRect.height],old=s.boxes.get(e.target);if(old&&n.some((v,i)=>Math.abs(v-old[i])>1)){changed=true;s.boxDifference={from:old,to:n};}s.boxes.set(e.target,n);}if(changed&&s.phase!=='settling')event={type:'resize',source:'card geometry'};}if(event?.type==='resize'){
+if(![...s.members].some(b=>b.support))return;
+if(s.event===event)return;s.event=event;s.phase='settling';s.changed=t;s.probeAt=t+260;s.stable=0;s.signature=null;s.capture=null;s.generation++;s.queue=[];
+for(const b of s.members){delete b.layoutRecovery;b.layoutPaused=true;b.layoutPauseStarted=t;b.layer?.style&&(b.layer.style.opacity='.4');if(b.postRenderLayer)b.postRenderLayer.style.opacity='.4';b.setAttribute?.('data-layout-state','settling');b.setAttribute?.('data-layout-cause',JSON.stringify({generation:s.generation,source:event.source||'resize',actor:a.ownerKey,box:s.boxDifference}));}window.pixelCatEffectsV1?.clear(a.root);
+}else if(s.phase==='settling'&&Array.isArray(event)&&event.length){s.changed=t;s.probeAt=t+260;s.stable=0;}
+},
+freeze(a,t,s){const dt=Math.max(0,t-(a.lastTick??t));a.freezeClocks?.(dt);a.lastTick=t;if(s.phase!=='running'){if(a.social?.world)a.social.world.last=t;if(a.propScene)a.propScene.lastAt=t;}},
+gate(a,t){const s=catLayoutViews.get(a.root);if(a.layoutRecovery?.local){this.freeze(a,t,{phase:'running'});a.status?.('Recovering changed support');return this.recover(a,t,a.layoutRecovery,s);}if(!s||s.phase==='idle'||!a.layoutPaused)return false;
+this.freeze(a,t,s);a.status?.(s.phase==='settling'?'Waiting for dashboard resize':'Recovering dashboard layout');
+if(a.userHeld){window.pixelCatDragV1?.restore(a);return true;}
+if(s.phase==='settling'){
+if(t<s.probeAt)return true;s.probeAt=t+70;const r=a.root.getBoundingClientRect(),sig=[r.left,r.top,r.width,r.height].map(v=>Math.round(v*2)).join(',');
+s.stable=s.signature===sig?s.stable+1:0;s.signature=sig;if(t-s.changed<260||s.stable<2)return true;
+s.phase='reconcile';s.capture={rects:new Map()};s.queue=[...s.members].filter(b=>b.active&&b.isConnected!==false);s.reconciledAt=null;s.scans++;s.index=0;
+}
+if(s.phase==='reconcile'){
+while(s.queue.length&&(!s.queue[0].active||s.queue[0].isConnected===false))s.queue.shift();
+if(s.reconciledAt!==t){s.reconciledAt=t;const started=performance.now();do{const b=s.queue.shift();if(b?.active&&b.isConnected!==false)this.place(b,t,s);}while(s.queue.length&&performance.now()-started<4);}
+if(s.queue.length)return true;s.phase='running';s.capture=null;
+}
+return this.recover(a,t,a.layoutRecovery,s);
+},
+place(a,t,s){
+const old=a.support,from=a.svg?.style.transform?.match(/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/),wasAir=a.motion&&['jump','startle'].includes(a.motion.kind);
+a.scrollTranslation=null;a.needsMeasure=true;a.measure();let target=a.support;
+if(a.climb?.stage==='grip'){a.stranded=false;a.layoutRecovery={start:t,ready:t+180};a.checkAt=t+700;return;}
+if(!a.waitingForPlacement&&(a.stranded||!target||target.el?.isConnected===false)){target=a.surfaces?.find(f=>f.id===old?.id&&f.el?.isConnected!==false)||a.home||a.surfaces?.find(f=>!f.narrow&&f.el?.isConnected!==false);if(target){a.support=target;a.stranded=false;a.motion=null;a.route=[];a.idle=null;a.x=Math.max(target.min,Math.min(target.max,a.x));a.y=target.top;}}
+if(wasAir&&target){a.social?.finish?.('layout recovery');a.motion=null;a.idle=null;a.route=[];a.x=Math.max(target.min,Math.min(target.max,a.x));a.y=target.top;a.draw?.(window.pixelCatRoamingArtV2.stand);}
+const dx=a.layoutRelocated&&from?a.x-Number(from[1]):target&&old?target.left-old.left:0,dy=a.layoutRelocated&&from?a.y-24*a.scale-Number(from[2]):target&&old?target.top-old.top:0;delete a.layoutRelocated;
+a.layoutRecovery={start:null,delay:(s.index++%7)*37,from:from?.slice(1).map(Number),dx,dy};a.checkAt=t+700;a.setAttribute?.('data-layout-state','reconcile');
+},
+recover(a,t,p,s){if(!p)return true;if(p.start===null){p.start=t+p.delay;p.ready=p.start+180;}
+if(p.from&&a.svg?.style&&!a.stranded){const u=Math.max(0,Math.min(1,(t-p.start)/180)),ease=u*u*(3-2*u),snap=v=>u===1?v:Math.round(v*ease/a.scale)*a.scale;a.svg.style.transform=`translate(${p.from[0]+snap(p.dx)}px,${p.from[1]+snap(p.dy)}px)`;if(a.carriedToy&&a.drawnRows)window.pixelCatMouthV1?.frame?.(a,a.drawnRows,[null,p.from[0]+snap(p.dx),p.from[1]+snap(p.dy)],t,a.carryArt||window.pixelCatRoamingArtV2);}
+if(t<p.ready)return true;a.layoutPaused=false;delete a.layoutRecovery;if(a.layer)a.layer.style.opacity='';if(a.postRenderLayer)a.postRenderLayer.style.opacity='';a.setAttribute?.('data-layout-state','running');if(!p.local&&[...s.members].every(b=>!b.layoutPaused||!b.active))s.phase='idle';return false;
+},
+report(root){const s=catLayoutViews.get(root);return s?{phase:s.phase,generation:s.generation,settledScans:s.scans,waiting:s.queue?.length||0}:null;}
 };
 
 window.pixelCatDepthV1={
- key(y,tie=0){return Math.max(0,Math.min(2000000000,Math.round((Number(y)||0)*16)+1000000))*4+tie;},
- set(node,y,tie=0){if(!node?.style)return;const z=String(this.key(y,tie));if(node.style.zIndex!==z)node.style.zIndex=z;},
- cat(a,t){if(!a.layer)return;const m=a.motion,u=m?Math.max(0,Math.min(1,(t-m.start)/(m.duration||1))):0,y=m?m.fromY+(m.y-m.fromY)*u:a.support?.top??a.y;const ep=a.social?.episode,cuddled=ep?.kind==='cuddle'&&ep.stage==='cuddled'&&!m;this.set(a.layer,cuddled?Math.max(y,ep.target.support?.top??y):y,cuddled?3:2);if(a.userHeld)a.layer.style.zIndex='2147483647';this.home(a);window.pixelCatTreeV1?.tick(a,t);window.pixelCatFloorShadowV1?.sync(a);},
- prop(scene,p,s,visible=true,source){if(!p.node||!scene.root)return;window.pixelCatScrollOverlayV1?.mount(p.node,scene.root);window.pixelCatScrollOverlayV1?.follow(p.node,source?.layer);p.node.style.visibility=visible?'visible':'hidden';this.set(p.node,s.top);},
- home(a){const p=a.homePost;if(!p?.node||!a.active||!a.home||!a.root||typeof document==='undefined')return;
-  if(!a.postRenderLayer){const n=document.createElement('div');n.style.cssText='position:fixed;inset:0;pointer-events:none';n.dataset.catHomeFurniture='';document.body?.append?.(n);a.postRenderLayer=n;}
-  const mounted=window.pixelCatScrollOverlayV1?.mount(a.postRenderLayer,a.root);if(!mounted)return;
-  if(p.node.parentElement!==a.postRenderLayer)a.postRenderLayer.append(p.node);p.node.style.bottom='auto';p.node.style.left='0px';p.node.style.top='0px';const transform=`translate(${a.home.left-4+(p.offset||0)*p.scale}px,${a.home.top-p.asset.height*p.scale}px)`;if(p.node.style.transform!==transform)p.node.style.transform=transform;
-  window.pixelCatEffectsV1?.paintPost(p);this.set(a.postRenderLayer,a.home.top);a.postRenderLayer.style.visibility=a.layer?.style.visibility!=='hidden'&&!a.suspended&&!a.stranded&&a.active&&a.config.show_home!==false?'visible':'hidden';
- },
- remove(a){window.pixelCatFloorShadowV1?.remove(a);if(a.postRenderLayer){window.pixelCatScrollOverlayV1?.unmount(a.postRenderLayer);a.postRenderLayer.remove();a.postRenderLayer=null;}a.homePost=null;},
- removeProp(p){window.pixelCatScrollOverlayV1?.unmount(p.node);}
+key(y,tie=0){return Math.max(0,Math.min(2000000000,Math.round((Number(y)||0)*16)+1000000))*4+tie;},
+set(node,y,tie=0){if(!node?.style)return;const z=String(this.key(y,tie));if(node.style.zIndex!==z)node.style.zIndex=z;},
+cat(a,t){if(!a.layer)return;const m=a.motion,u=m?Math.max(0,Math.min(1,(t-m.start)/(m.duration||1))):0,y=m?m.fromY+(m.y-m.fromY)*u:a.support?.top??a.y;const ep=a.social?.episode,cuddled=ep?.kind==='cuddle'&&ep.stage==='cuddled'&&!m;this.set(a.layer,cuddled?Math.max(y,ep.target.support?.top??y):y,cuddled?3:2);if(a.userHeld)a.layer.style.zIndex='2147483647';this.home(a);window.pixelCatTreeV1?.tick(a,t);window.pixelCatFloorShadowV1?.sync(a);},
+prop(scene,p,s,visible=true,source){if(!p.node||!scene.root)return;window.pixelCatScrollOverlayV1?.mount(p.node,scene.root);window.pixelCatScrollOverlayV1?.follow(p.node,source?.layer);p.node.style.visibility=visible?'visible':'hidden';this.set(p.node,s.top);},
+home(a){const p=a.homePost;if(!p?.node||!a.active||!a.home||!a.root||typeof document==='undefined')return;
+if(!a.postRenderLayer){const n=document.createElement('div');n.style.cssText='position:fixed;inset:0;pointer-events:none';n.dataset.catHomeFurniture='';document.body?.append?.(n);a.postRenderLayer=n;}
+const mounted=window.pixelCatScrollOverlayV1?.mount(a.postRenderLayer,a.root);if(!mounted)return;
+if(p.node.parentElement!==a.postRenderLayer)a.postRenderLayer.append(p.node);p.node.style.bottom='auto';p.node.style.left='0px';p.node.style.top='0px';const transform=`translate(${a.home.left-4+(p.offset||0)*p.scale}px,${a.home.top-p.asset.height*p.scale}px)`;if(p.node.style.transform!==transform)p.node.style.transform=transform;
+window.pixelCatEffectsV1?.paintPost(p);this.set(a.postRenderLayer,a.home.top);a.postRenderLayer.style.visibility=a.layer?.style.visibility!=='hidden'&&!a.suspended&&!a.stranded&&a.active&&a.config.show_home!==false?'visible':'hidden';
+},
+remove(a){window.pixelCatFloorShadowV1?.remove(a);if(a.postRenderLayer){window.pixelCatScrollOverlayV1?.unmount(a.postRenderLayer);a.postRenderLayer.remove();a.postRenderLayer=null;}a.homePost=null;},
+removeProp(p){window.pixelCatScrollOverlayV1?.unmount(p.node);}
 };
 
 window.pixelCatSurfaceDebugV1={render({restingPoints,flightPoint,propSurfaceFor,propPosition,travelSpeed}){
-    if(!this.debugSvg||!this.surfaces)return;const enabled=this.debug.surfaces||this.debug.verticalSurfaces||this.debug.paths||this.debug.pois;if(enabled||this.surfaceDebugDrawn)this.debugSvg.replaceChildren();this.surfaceDebugDrawn=!!enabled;if(!enabled&&!window.pixelCatLabelsV1?.visible(this.shadowRoot.querySelector('.diagnostics')))return;
-    const add=(tag,attrs,text)=>{const node=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [key,value]of Object.entries(attrs))node.setAttribute(key,String(value));if(text)node.textContent=text;this.debugSvg.append(node);};
-    if(this.debug.verticalSurfaces||this.debug.surfaces)window.pixelCatCardClimbV1?.debug(this,add);
-    if(this.debug.surfaces)for(const surface of [...this.surfaces,...this.surfaceCandidates||[],...this.rejected||[]]){const rejected=surface.min===undefined&&!surface.candidate,color=surface.candidate?'#c18517':rejected?'#e45159':surface.internal?'#d697ff':'#21bc91';add('line',{x1:surface.left,y1:surface.top,x2:surface.right,y2:surface.top,stroke:color,'stroke-width':3,'stroke-dasharray':rejected||surface.candidate?'4 4':'none'});add('text',{x:surface.left+3,y:surface.top-6,fill:color,'font-size':11,stroke:'#fff','stroke-width':2,'paint-order':'stroke'},surface.label);}
-    if(this.debug.verticalSurfaces){const layer=this.decisionLayer?.()||{actor:this,owners:()=>[[this,{root:this.root}]],world:{clock:0}},api=window.pixelCatVerticalScratchV1,faces=[...api?.faces(layer,false,true)||[],...(window.pixelCatCardClimbV1||this.config.native_vertical_surfaces?[]:this.verticalFaces||[])];for(const f of faces){add('line',{x1:f.x,y1:f.top,x2:f.x,y2:f.bottom,stroke:'#bb49ce','stroke-width':3});add('line',{x1:f.x,y1:(f.top+f.bottom)/2,x2:f.x-f.direction*12,y2:(f.top+f.bottom)/2,stroke:'#bb49ce','stroke-width':2});add('rect',{x:f.origin,y:f.surface.top-24*this.scale,width:24*this.scale,height:24*this.scale,fill:'none',stroke:'#bb49ce','stroke-dasharray':'3 3'});add('text',{x:f.x+4,y:f.top-4,fill:'#902ba1','font-size':10},f.source+' → '+f.surface.label+(f.prop.claimedBy?' · reserved':''));}for(const f of window.pixelCatCardClimbV1?[]:this.verticalRejected||[]){add('line',{x1:f.x,y1:f.top,x2:f.x,y2:f.bottom,stroke:'#d66945','stroke-dasharray':'3 5'});add('text',{x:f.x+3,y:f.bottom,fill:'#b34c2a','font-size':10},f.reason);}}
-    if(this.debug.paths){for(const {a,b}of window.pixelCatSurfaceWorldV1.links(this)){add('line',{x1:(a.left+a.right)/2,y1:a.top,x2:(b.left+b.right)/2,y2:b.top,stroke:'#6187b7','stroke-opacity':.3,'stroke-dasharray':'3 6'});}
-      let previous={x:this.x+this.size/2,y:this.y};for(const stop of [this.motion?.target,...this.route||[]].filter(Boolean)){const s=stop.settle?stop.surface:stop,point={x:stop.settle?stop.x+this.size/2:(s.left+s.right)/2,y:s.top};add('line',{x1:previous.x,y1:previous.y,x2:point.x,y2:point.y,stroke:'#ff9d2c','stroke-width':3});previous=point;}}
-    if(this.debug.paths&&this.motion?.jumpProfile){const flight=this.motion.jumpProfile.flight,points=Array.from({length:25},(_,i)=>{const p=flightPoint(flight,i/24);return `${p.x},${p.y}`;}).join(' ');add('polyline',{points,fill:'none',stroke:'#00a9c6','stroke-width':2});add('text',{x:flight.start.x,y:flight.start.y-10,fill:'#008a9d','font-size':11},`${flight.seconds.toFixed(2)} s · ${(Math.abs(flight.vx)/this.scale).toFixed(0)} cells/s`);}
-    if(this.debug.pois){const drawnTargets=new Set();for(const s of this.surfaces)for(const p of restingPoints(s)){const x=p.x+this.size/2,recent=this.visits?.has(s.id+'/'+p.id),color=p.lookAt?'#008a91':'#547cec';add('circle',{cx:x,cy:s.top,r:5,fill:recent?'#aaa':p.lookAt?color:s.interest?'#ff9d2c':'#547cec',stroke:'#fff','stroke-width':2});add('text',{x:x+8,y:s.top+14,fill:color,'font-size':10,stroke:'#fff','stroke-width':2,'paint-order':'stroke'},s.home?'home':p.lookAt?'look ↑':p.id);if(p.lookAt){const target=p.lookAt;add('line',{x1:x,y1:s.top-5,x2:target.x,y2:target.y,stroke:color,'stroke-opacity':.6,'stroke-dasharray':'2 4'});const key=[target.x,target.y].join(':');if(!drawnTargets.has(key)){drawnTargets.add(key);add('circle',{cx:target.x,cy:target.y,r:6,fill:'none',stroke:color,'stroke-width':2});add('text',{x:target.x+9,y:target.y,fill:color,'font-size':10,stroke:'#fff','stroke-width':2,'paint-order':'stroke'},target.label);}}}}
-    if(this.debug.pois&&this.propScene?.enabled)for(const p of this.propScene.props){const s=propSurfaceFor(this,p);if(!s)continue;const point=propPosition(p,s);add('circle',{cx:point.x,cy:point.y,r:6,fill:'none',stroke:'#e35c99','stroke-width':2});add('text',{x:point.x+8,y:point.y-10,fill:'#b43573','font-size':10},p.asset.name+(p.claimedBy?' · stalking':''));}
-    if(this.debug.pois&&this.actionTarget){const p=this.actionTarget;add('circle',{cx:p.x,cy:p.y,r:4,fill:'none',stroke:'#e15b40','stroke-width':2});add('text',{x:p.x+7,y:p.y-4,fill:'#b53c24','font-size':10},'Preview contact');}
-    const report=this.shadowRoot.querySelector('.diagnostics');if(!window.pixelCatLabelsV1?.visible(report))return;if(report)report.textContent=`${this.surfaces.length} surfaces · ${this.matchedRules||0} matched rules · ${(this.rejected||[]).length} rejected\n${this.urgency||'relaxed'} · ${travelSpeed(this.config,this.urgency)} cells/s · ${this.noPathMessage||'route available'}`;
-    const audit=this.shadowRoot.querySelector('.surface-report');if(audit)audit.textContent=JSON.stringify({foregroundContentBlocksMovement:false,counts:this.surfaceCounts,routes:this.surfaceRouteStats,verticalFaces:this.verticalFaces?.map(f=>({id:f.id,support:f.surface.id,source:f.source})),scratch:this.social?.scratchStats,cards:this.surfaceAudit||[],unverifiedCandidates:(this.surfaceCandidates||[]).length,props:this.propScene?.props.map(p=>({id:p.id,asset:p.asset.id,origin:p.asset.origin,moving:p.moving,claimedBy:p.claimedBy}))||[],inspectionPoints:this.surfaces.flatMap(s=>(s.inspectionPoints||[]).map(p=>({surface:s.id,id:p.id,label:p.label,source:p.lookAt.source})))},null,2);
-  }};
+if(!this.debugSvg||!this.surfaces)return;const enabled=this.debug.surfaces||this.debug.verticalSurfaces||this.debug.paths||this.debug.pois;if(enabled||this.surfaceDebugDrawn)this.debugSvg.replaceChildren();this.surfaceDebugDrawn=!!enabled;if(!enabled&&!window.pixelCatLabelsV1?.visible(this.shadowRoot.querySelector('.diagnostics')))return;
+const add=(tag,attrs,text)=>{const node=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [key,value]of Object.entries(attrs))node.setAttribute(key,String(value));if(text)node.textContent=text;this.debugSvg.append(node);};
+if(this.debug.verticalSurfaces||this.debug.surfaces)window.pixelCatCardClimbV1?.debug(this,add);
+if(this.debug.surfaces)for(const surface of [...this.surfaces,...this.surfaceCandidates||[],...this.rejected||[]]){const rejected=surface.min===undefined&&!surface.candidate,color=surface.candidate?'#c18517':rejected?'#e45159':surface.internal?'#d697ff':'#21bc91';add('line',{x1:surface.left,y1:surface.top,x2:surface.right,y2:surface.top,stroke:color,'stroke-width':3,'stroke-dasharray':rejected||surface.candidate?'4 4':'none'});add('text',{x:surface.left+3,y:surface.top-6,fill:color,'font-size':11,stroke:'#fff','stroke-width':2,'paint-order':'stroke'},surface.label);}
+if(this.debug.verticalSurfaces){const layer=this.decisionLayer?.()||{actor:this,owners:()=>[[this,{root:this.root}]],world:{clock:0}},api=window.pixelCatVerticalScratchV1,faces=[...api?.faces(layer,false,true)||[],...(window.pixelCatCardClimbV1||this.config.native_vertical_surfaces?[]:this.verticalFaces||[])];for(const f of faces){add('line',{x1:f.x,y1:f.top,x2:f.x,y2:f.bottom,stroke:'#bb49ce','stroke-width':3});add('line',{x1:f.x,y1:(f.top+f.bottom)/2,x2:f.x-f.direction*12,y2:(f.top+f.bottom)/2,stroke:'#bb49ce','stroke-width':2});add('rect',{x:f.origin,y:f.surface.top-24*this.scale,width:24*this.scale,height:24*this.scale,fill:'none',stroke:'#bb49ce','stroke-dasharray':'3 3'});add('text',{x:f.x+4,y:f.top-4,fill:'#902ba1','font-size':10},f.source+' → '+f.surface.label+(f.prop.claimedBy?' · reserved':''));}for(const f of window.pixelCatCardClimbV1?[]:this.verticalRejected||[]){add('line',{x1:f.x,y1:f.top,x2:f.x,y2:f.bottom,stroke:'#d66945','stroke-dasharray':'3 5'});add('text',{x:f.x+3,y:f.bottom,fill:'#b34c2a','font-size':10},f.reason);}}
+if(this.debug.paths){for(const {a,b}of window.pixelCatSurfaceWorldV1.links(this)){add('line',{x1:(a.left+a.right)/2,y1:a.top,x2:(b.left+b.right)/2,y2:b.top,stroke:'#6187b7','stroke-opacity':.3,'stroke-dasharray':'3 6'});}
+let previous={x:this.x+this.size/2,y:this.y};for(const stop of [this.motion?.target,...this.route||[]].filter(Boolean)){const s=stop.settle?stop.surface:stop,point={x:stop.settle?stop.x+this.size/2:(s.left+s.right)/2,y:s.top};add('line',{x1:previous.x,y1:previous.y,x2:point.x,y2:point.y,stroke:'#ff9d2c','stroke-width':3});previous=point;}}
+if(this.debug.paths&&this.motion?.jumpProfile){const flight=this.motion.jumpProfile.flight,points=Array.from({length:25},(_,i)=>{const p=flightPoint(flight,i/24);return `${p.x},${p.y}`;}).join(' ');add('polyline',{points,fill:'none',stroke:'#00a9c6','stroke-width':2});add('text',{x:flight.start.x,y:flight.start.y-10,fill:'#008a9d','font-size':11},`${flight.seconds.toFixed(2)} s · ${(Math.abs(flight.vx)/this.scale).toFixed(0)} cells/s`);}
+if(this.debug.pois){const drawnTargets=new Set();for(const s of this.surfaces)for(const p of restingPoints(s)){const x=p.x+this.size/2,recent=this.visits?.has(s.id+'/'+p.id),color=p.lookAt?'#008a91':'#547cec';add('circle',{cx:x,cy:s.top,r:5,fill:recent?'#aaa':p.lookAt?color:s.interest?'#ff9d2c':'#547cec',stroke:'#fff','stroke-width':2});add('text',{x:x+8,y:s.top+14,fill:color,'font-size':10,stroke:'#fff','stroke-width':2,'paint-order':'stroke'},s.home?'home':p.lookAt?'look ↑':p.id);if(p.lookAt){const target=p.lookAt;add('line',{x1:x,y1:s.top-5,x2:target.x,y2:target.y,stroke:color,'stroke-opacity':.6,'stroke-dasharray':'2 4'});const key=[target.x,target.y].join(':');if(!drawnTargets.has(key)){drawnTargets.add(key);add('circle',{cx:target.x,cy:target.y,r:6,fill:'none',stroke:color,'stroke-width':2});add('text',{x:target.x+9,y:target.y,fill:color,'font-size':10,stroke:'#fff','stroke-width':2,'paint-order':'stroke'},target.label);}}}}
+if(this.debug.pois&&this.propScene?.enabled)for(const p of this.propScene.props){const s=propSurfaceFor(this,p);if(!s)continue;const point=propPosition(p,s);add('circle',{cx:point.x,cy:point.y,r:6,fill:'none',stroke:'#e35c99','stroke-width':2});add('text',{x:point.x+8,y:point.y-10,fill:'#b43573','font-size':10},p.asset.name+(p.claimedBy?' · stalking':''));}
+if(this.debug.pois&&this.actionTarget){const p=this.actionTarget;add('circle',{cx:p.x,cy:p.y,r:4,fill:'none',stroke:'#e15b40','stroke-width':2});add('text',{x:p.x+7,y:p.y-4,fill:'#b53c24','font-size':10},'Preview contact');}
+const report=this.shadowRoot.querySelector('.diagnostics');if(!window.pixelCatLabelsV1?.visible(report))return;if(report)report.textContent=`${this.surfaces.length} surfaces · ${this.matchedRules||0} matched rules · ${(this.rejected||[]).length} rejected\n${this.urgency||'relaxed'} · ${travelSpeed(this.config,this.urgency)} cells/s · ${this.noPathMessage||'route available'}`;
+const audit=this.shadowRoot.querySelector('.surface-report');if(audit)audit.textContent=JSON.stringify({foregroundContentBlocksMovement:false,counts:this.surfaceCounts,routes:this.surfaceRouteStats,verticalFaces:this.verticalFaces?.map(f=>({id:f.id,support:f.surface.id,source:f.source})),scratch:this.social?.scratchStats,cards:this.surfaceAudit||[],unverifiedCandidates:(this.surfaceCandidates||[]).length,props:this.propScene?.props.map(p=>({id:p.id,asset:p.asset.id,origin:p.asset.origin,moving:p.moving,claimedBy:p.claimedBy}))||[],inspectionPoints:this.surfaces.flatMap(s=>(s.inspectionPoints||[]).map(p=>({surface:s.id,id:p.id,label:p.label,source:p.lookAt.source})))},null,2);
+}};
 })();
 
 })();
@@ -26368,9 +26373,9 @@ window.pixelCatEffectsV1={
   // same-colour fur remains visible, then drift outward rather than through the body.
   for(let y=0;y<16;y++){let x=sample.rows[y]?.indexOf('R');if(x>=0){while(x>0&&sample.rows[y][x-1]!=='.')x--;const cell=x-.75;this.emit(a,'fur',{x:placement.x+(a.facing<0?24-cell:cell)*a.scale,y:placement.top+(y+.5)*a.scale},a.support,a.idle.start+':'+t,a.scale,{outward:a.facing<0?1:-1});break;}}
  },
- emit(a,name,point,surface,seed=1,sourceScale=a.scale,source={}){const s=this.join(a),r=this.recipes[name];if(!s||!r||a.config.effects===false||a.config.particles===false||this.reduced()||a.layoutPaused||a.paused||a.suspended)return 0;
+ emit(a,name,point,surface,seed=1,sourceScale=a.scale,source={}){const s=this.join(a),r=this.recipes[name];if(!s||!r||name==='rope'&&a.config.scratch_debris==='none'||a.config.effects===false||a.config.particles===false||this.reduced()||a.layoutPaused||a.paused||a.suspended)return 0;
   let n=2166136261;for(const c of String(a.ownerKey)+seed)n=Math.imul(n^c.charCodeAt(0),16777619)>>>0;const random=()=>((n=(Math.imul(n,1664525)+1013904223)>>>0)/4294967296);if(random()>=r.probability)return 0;
-  const fullPixel=name==='rope'&&a.config.full_pixel_scratch_debris===true;
+  const fullPixel=name==='rope'&&(a.config.scratch_debris??(a.config.full_pixel_scratch_debris?'pixel':'small'))==='pixel';
   if(s.time-s.windowAt>=1000){s.windowAt=s.time;s.windowCount=0;}let count=0;for(let i=0;i<Math.max(0,Math.min(4,r.count));i++){if(s.windowCount>=12||s.live>=32){s.dropped++;continue;}let ownerCount=0;for(const p of s.pool)if(p.active&&p.owner===a)ownerCount++;if(ownerCount>=6){s.dropped++;continue;}const p=s.pool.find(p=>!p.active),scale=sourceScale;Object.assign(p,{active:true,owner:a,surfaceId:surface.id,surfaceEl:surface.el,left:surface.left,top:surface.top,x:point.x,y:point.y,ground:surface.top,vx:(source.outward&&(r.launch||0)?source.outward*(r.launch+random()*r.drift):(random()-.5)*2*r.drift)*scale,vy:-(1+random()*3)*scale,gravity:r.gravity*scale,age:0,life:Math.max(200,Math.min(2500,r.life)),fullPixel,size:(fullPixel?1:Math.min(.49,Math.max(.15,r.size)))*scale,colour:this.colour(a,r,source),recipe:name,colourSource:source.colour?'explicit':r.colourSource||'recipe',landed:-1});s.live++;s.windowCount++;s.emitted++;count++;}if(count)s.lastEmission={recipe:name,colour:this.colour(a,r,source),colourSource:source.colour?'explicit':r.colourSource||'recipe',x:point.x,y:point.y,count};return count;
  },
  stroke(layer,face,point,frame,t){const a=layer.actor,ep=layer.episode,clip=layer.art?.().idleSequences?.postScratch;if(!ep||!clip||!a.idle||Math.abs(point.x-face.x)>2*a.scale||point.y<face.top-2*a.scale||point.y>face.bottom+2*a.scale)return;const definition=clip.animationTracks,driver=definition?.tracks.find(x=>x.id===definition.driver),events=driver?.events?.filter(e=>e.frameId===clip.frameIds?.[frame])||[];if(!events.length)return;
@@ -26701,7 +26706,7 @@ publish(layer){window.pixelCatVerticalScratchV1?.publish(layer);for(const {prop:
 };
 
 window.pixelCatSetupV1={
-bed(a,art){return art.homeBeds?.[a.config.bed_style==='simple'?'simple':'igloo']||art.propCatalogue?.find(p=>p.id==='dd2bda18-62a3-4f52-972e-e6abe3b7df83');},
+bed(a,art){if(a.config.include_bed===false)return null;return art.homeBeds?.[a.config.bed_style==='simple'?'simple':'igloo']||art.propCatalogue?.find(p=>p.id==='dd2bda18-62a3-4f52-972e-e6abe3b7df83');},
 shade(colour,factor){const hex=/^#([a-f\d]{3}|[a-f\d]{6})$/i.exec(colour||'');if(!hex)return `color-mix(in srgb, ${colour} ${factor*100}%, black)`;const value=hex[1].length===3?[...hex[1]].map(v=>v+v).join(''):hex[1];return '#'+[0,2,4].map(i=>Math.round(parseInt(value.slice(i,i+2),16)*factor).toString(16).padStart(2,'0')).join('');},
 bedColour(a,colour){
 const simple=a.config.bed_style==='simple',primary=a.config.bed_primary_color||a.config.igloo_color,secondary=a.config.bed_secondary_color,c=colour.toLowerCase();
@@ -26726,7 +26731,7 @@ clearRestMask(a){if(a.svg?.style)a.svg.style.clipPath='';a.svg?.firstElementChil
 restPlacement(a,placement,rows,art,t){
 this.clearRestMask(a);if(window.pixelCatBedEntryV1?.rest(a,placement))return placement;
 const owner=a.support?.bedOwner||a,simple=owner.config.bed_style==='simple',eligible=simple?['sit','sithead','loaf','sleep','clean','scratch','yawn','meow','chatter']:['loaf','sleep'];
-if((!a.support?.home&&!a.support?.bedOwner)||owner.config.show_home===false||!eligible.includes(a.idle?.pose))return placement;
+if((!a.support?.home&&!a.support?.bedOwner)||owner.config.show_home===false||owner.config.include_bed===false||!eligible.includes(a.idle?.pose))return placement;
 const bed=this.bed(owner,art),s=a.scale,bs=(owner.worldScale||owner.scale);if(!bed)return placement;
 const raised=!!a.support.bed,left=raised?a.support.left:a.support.left-4+22*bs,bottom=a.support.top+(raised?3*bs:0),center=left+bed.width*bs/2;
 if(Math.abs(a.x+12*s-center)>24*s)return placement;
@@ -26747,12 +26752,13 @@ window.pixelCatHomePostsV1?.render(a,art);
 const dock=a.shadowRoot?.querySelector?.('.dock');if(!dock?.style||a.homeArtReady||!art.homeBeds)return;
 const s=a.worldScale||a.scale;dock.style.height=28*s+'px';
 const bowl=art.homeProps?.bowl,bed=this.bed(a,art);
-if(!bowl||!bed)return;
+if(!bowl)return;
 for(const [asset,selector,left,tag]of [[bowl,'.bowl',7,'catBowl'],[bed,'.mat',22,'catBed']]){
-const placeholder=dock.querySelector(selector);if(!placeholder)return;
+const placeholder=dock.querySelector(selector);if(!placeholder)continue;
+if(!asset||tag==='catBowl'&&a.config.include_bowl===false){placeholder.remove();continue;}
 const canvas=document.createElement('canvas');canvas.width=asset.width;canvas.height=asset.height;canvas.dataset[tag]='';canvas.setAttribute('aria-label',asset.name||'Food bowl');
 canvas.style.cssText=`position:absolute;bottom:${tag==='catBed'&&a.config.bed_style==='simple'?-s:0}px;left:${left*s}px;image-rendering:pixelated;width:${asset.width*s}px;height:${asset.height*s}px`;
-const c=canvas.getContext('2d');asset.pixels.forEach((row,y)=>row.forEach((colour,x)=>{if(!colour)return;c.fillStyle=tag==='catBed'?this.bedColour(a,colour):colour;c.fillRect(x,y,1,1);}));placeholder.replaceWith(canvas);if(tag==='catBowl')window.pixelCatMouthV1?.bowl?.(a,canvas);
+const c=canvas.getContext('2d');asset.pixels.forEach((row,y)=>row.forEach((colour,x)=>{if(!colour)return;c.fillStyle=tag==='catBed'?this.bedColour(a,colour):(y===0?a.config.bowl_secondary_color:a.config.bowl_primary_color)||colour;c.fillRect(x,y,1,1);}));placeholder.replaceWith(canvas);if(tag==='catBowl')window.pixelCatMouthV1?.bowl?.(a,canvas);
 }
 a.homeArtReady=true;
 },
@@ -26765,7 +26771,7 @@ return true;
 disconnect(a){window.pixelCatAlertV1?.leave(a);window.pixelCatDepthV1?.remove(a);window.pixelCatMouthV1?.disconnect?.(a);a.monitorCard?.remove();a.monitorCard=null;if(a.svg)a.svg.style.clipPath='';a.arriving=null;a.bedInside=null;a.bedEntry=null;a.previewBedPose=null;},
 arrival(a,t,art,sample,appearance,idle,contact,bearing){
 if(a.config.bed_style==='simple'){a.arrived=true;return false;}
-if(a.config.arrival!=='igloo'||a.config.show_home===false||a.arrived)return false;
+if(a.config.arrival!=='igloo'||a.config.show_home===false||a.config.include_bed===false||a.arrived)return false;
 if(!a.arriving){
 if(a.motion||a.idle||a.goal||a.command||a.previewPose||!a.support?.home){a.arrived=true;return false;}
 const bed=a.shadowRoot.querySelector('[data-cat-bed]');if(!bed)return true;
@@ -26844,7 +26850,7 @@ return m.fromY+Math.sign(delta)*Math.min(Math.abs(delta),Math.round(Math.abs(del
 window.pixelCatBedEntryV1={
 beforeIdle(a,pose,t,art,front){
 a.bedEntryManaged=true;if(a.motion||a.route?.length||a.previewPose||a.play||a.mouthAction||a.goal||a.command)return false;if(this.exit(a,pose,t,art))return true;if(!['loaf','sleep'].includes(pose))return false;
-const owner=a.support?.bedOwner||a;if(owner.config.show_home===false||!owner.home||!a.support||a.support!==a.home&&!a.support.bedOwner)return false;
+const owner=a.support?.bedOwner||a;if(owner.config.show_home===false||owner.config.include_bed===false||!owner.home||!a.support||a.support!==a.home&&!a.support.bedOwner)return false;
 const bed=window.pixelCatSetupV1.bed(owner,art),left=owner.home.left-4+22*(owner.worldScale||owner.scale),center=left+bed.width*(owner.worldScale||owner.scale)/2;if(Math.abs(a.x+12*a.scale-center)>24*a.scale)return false;
 if(a.bedInside===owner)return false;
 const clip=art.idleSequences[pose],reference=clip.frames[Math.max(0,clip.roles?.indexOf('cycle')??0)],xs=reference.flatMap(r=>[...r].flatMap((v,x)=>v==='.'?[]:[a.facing<0?23-x:x])),desired=left+Math.round((bed.width*(owner.worldScale||owner.scale)/2-(Math.min(...xs)+Math.max(...xs)+1)*a.scale/2)/a.scale)*a.scale;
@@ -26946,7 +26952,7 @@ this.homes.add(a);a.foodBowl=node;node.setAttribute('role','button');node.setAtt
 const offer=e=>{e?.stopPropagation?.();this.offer(a,performance.now());};node.addEventListener?.('click',offer);node.addEventListener?.('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();offer(e);}});
 },
 appetite(a,t){const q=this.state(a,t);return Math.max(0,Math.min(1,(q.clock-(q.lastMeal??-180000)-90000)/180000));},
-surfaces(a){if(a.config.bowl_eating===false)return;for(const owner of this.homes||[]){const h=owner.home,el=owner.shadowRoot?.querySelector?.('.dock');if(!owner.active||owner.root!==a.root||owner.config.show_home===false||!h||!el?.isConnected)continue;a.surfaces.push({...h,id:'food-'+owner.ownerKey,el,home:false,internal:true,foodOwner:owner,label:(owner.config.name||'Cat')+' · bowl floor',source:'known home bowl'});}},
+surfaces(a){if(a.config.bowl_eating===false)return;for(const owner of this.homes||[]){const h=owner.home,el=owner.shadowRoot?.querySelector?.('.dock');if(!owner.active||owner.root!==a.root||owner.config.show_home===false||owner.config.include_bowl===false||!h||!el?.isConnected)continue;a.surfaces.push({...h,id:'food-'+owner.ownerKey,el,home:false,internal:true,foodOwner:owner,label:(owner.config.name||'Cat')+' · bowl floor',source:'known home bowl'});}},
 bowlTarget(a,owner){
 if(!owner?.active||owner.root!==a.root||owner.config.show_home===false||!owner.foodBowl?.isConnected||owner.bowlClaim&&owner.bowlClaim!==a.ownerKey)return null;
 const r=owner.foodBowl.getBoundingClientRect(),s=a===owner?a.home:a.surfaces?.find(s=>!s.narrow&&Math.abs(s.top-r.bottom)<2*a.scale&&r.left>=s.left&&r.right<=s.right);
@@ -27535,14 +27541,14 @@ class CatDecisions {
  companyOptions(){const a=this.actor,options=[];for(const m of this.memory.values()){if(!['loaf','sleep'].includes(m.pose))continue;const b=this.peers().find(b=>b.ownerKey===m.id);if(!b||this.scene.has(b)||this.scene.has(a))continue;const surface=a.surfaces.find(s=>s.el===m.surface&&Math.abs(s.top-m.surfaceTop)<2&&!s.narrow&&!s.home&&(!s.poses?.length||s.poses.includes('loaf')));if(!surface||!a.pathTo(surface)||!a.pathTo(a.home,surface))continue;
    const gap=6*Math.max(a.scale,m.scale);for(const x of [m.x-24*a.scale-gap,m.x+24*m.scale+gap]){const snapped=Math.round(x/a.scale)*a.scale;if(this.clear(surface,snapped)&&(!sameSupport(surface,a.support)||this.corridor(surface,snapped)))options.push({kind:'company',target:b,surface,x:snapped,observed:{...m}});}
   }return options;}
- chaseOptions(){const a=this.actor;if(a.support?.narrow||a.support?.home||a.support.max-a.support.min<100*a.scale)return [];const options=[];
-  for(const m of this.memory.values()){const b=this.peers().find(b=>b.ownerKey===m.id);if(!b||!this.visible?.has(m.id)||!b.config.social_behaviour||!b.social.available(b)||!this.available(a)||this.scene.has(a)||this.scene.has(b)||b.social.clock<b.social.nextSocial||['loaf','sleep'].includes(m.pose)||!sameSupport(a.support,b.support))continue;
+ chaseOptions(){const a=this.actor;if(a.config.chasing===false||a.support?.narrow||a.support?.home||a.support.max-a.support.min<100*a.scale)return [];const options=[];
+  for(const m of this.memory.values()){const b=this.peers().find(b=>b.ownerKey===m.id);if(!b||!this.visible?.has(m.id)||!b.config.social_behaviour||b.config.chasing===false||!b.social.available(b)||!this.available(a)||this.scene.has(a)||this.scene.has(b)||b.social.clock<b.social.nextSocial||['loaf','sleep'].includes(m.pose)||!sameSupport(a.support,b.support))continue;
    if(!b.social.visible?.has(a.ownerKey))continue;const away=Math.sign(m.x-a.x);if(!away)continue;const s=b.support,x=Math.round(Math.max(s.min,Math.min(s.max,b.x+away*36*b.scale))/b.scale)*b.scale;
    if(away*(x-b.x)<12*b.scale||!b.social.corridor(s,x,[a]))continue;options.push({kind:'chase',target:b,surface:a.support,away,runnerX:x});
   }return options;
  }
  decide(t){const a=this.actor;if(!this.available(a)||this.episode)return false;const v=a.ensureMood().values,weights=decisionWeights(v),options=[{kind:'explore',weight:weights.explore},{kind:'settle',weight:weights.settle}];
-  if(a.config.social_behaviour&&this.clock>=this.nextSocial){const company=this.companyOptions(),chase=this.chaseOptions();if(company.length)options.push({...company[Math.floor(a.ensureMood().random()*company.length)],weight:weights.company});if(chase.length)options.push({...chase[Math.floor(a.ensureMood().random()*chase.length)],weight:weights.chase});}
+  if(a.config.social_behaviour&&this.clock>=this.nextSocial){const company=a.config.quiet_company===false?[]:this.companyOptions(),chase=this.chaseOptions();if(company.length)options.push({...company[Math.floor(a.ensureMood().random()*company.length)],weight:weights.company*(.5+(this.traits?.sociability??.5))});if(chase.length)options.push({...chase[Math.floor(a.ensureMood().random()*chase.length)],weight:weights.chase});}
   for(const option of options)option.weight*=window.pixelCatPostRestV1?.choiceWeight(a,option.kind)??1;
   const chosen=sampleDecision(options,()=>a.ensureMood().random(),a);this.log(chosen.kind,{weights:options.map(p=>({kind:p.kind,weight:p.weight})),target:chosen.target?.ownerKey});
   if(chosen.kind==='explore')return false;
@@ -27605,6 +27611,7 @@ const kitten=a=>window.pixelCatBehaviourV1?.stage(a)==='kitten';
 const sleeping=(a,t)=>a.idle?.pose==='sleep'&&!a.motion&&t<a.idle.poseUntil;
 const nearbyPlayLanding=(a,b)=>sameSupport(a.support,b.support)&&socialGap(a,b)<=14*Math.max(a.scale,b.scale);
 const predictRolling=(p,seconds,scale)=>{const friction=60*scale,time=Math.min(Math.max(0,seconds),Math.abs(p.vx)/friction);return p.x+p.vx*time-.5*Math.sign(p.vx)*friction*time*time;};
+window.pixelCatTemperamentV1=temperament;
 class CatInteractions extends CatDecisions{
  constructor(...args){super(...args);this.world=interactionWorld(this.actor.root);this.traits=temperament(this.actor.ownerKey,this.actor.config.temperament||{});this.propAwareness=new Awareness();this.propMemory=new Map();this.handled=new Set();this.nextProp=0;}
  enabled(){return !!this.actor.config.interaction_behaviour;}
@@ -27793,98 +27800,98 @@ window.pixelCatInteractionsV1={propTick:propInteractionTick,world:interactionWor
 window.pixelCatDecisionsV1=CatInteractions;
 
 class CatBedVisits extends window.pixelCatDecisionsV1{
- clear(surface,x,exclude=[]){if(!super.clear(surface,x,exclude))return false;const a=this.actor,owner=surface.bedOwner;if(!owner)return true;
-  for(const [b,e]of this.owners())if(b!==a&&!exclude.includes(b)&&e.root===a.root&&b.active&&!b.userHeld&&b.support?.bedOwner===owner&&Math.abs(b.y-surface.top)<=4*Math.max(a.scale,b.scale)&&x+24*a.scale>b.x&&x<b.x+24*b.scale)return false;
-  return true;
- }
- bedTargets(){
-  const a=this.actor,targets=[];
-  for(const s of a.surfaces||[]){const owner=s.bedOwner;if(!owner?.active||owner.root!==a.root||owner.config.show_home===false||s.foodOwner||s.bedFloor)continue;
-   if(owner!==a&&!a.config.social_behaviour||!s.bed&&owner.config.bed_style==='simple')continue;
-   const asset=window.pixelCatSetupV1?.bed(owner,this.art());if(!asset)continue;
-   const center=s.bed?(s.left+s.right)/2:s.left-4+(22+asset.width/2)*(owner.worldScale||owner.scale);
-   const x=Math.round((center-12*a.scale)/a.scale)*a.scale;
-   if(x<s.min||x>s.max||!this.clear(s,x)||!a.pathTo(s)||!a.pathTo(a.home,s))continue;
-   const booked=[...this.owners()].some(([b,e])=>b!==a&&e.root===a.root&&b.social?.episode?.kind==='bed'&&b.social.episode.owner===owner);
-   if(!booked)targets.push({kind:'bed',owner,surface:s,x});
-  }return targets;
- }
- decide(t){
-  const a=this.actor,r=()=>a.ensureMood().random(),v=a.ensureMood().values;
-  if(this.available(a)&&!this.episode&&this.clock>=(this.nextBed||0)&&a.config.mood_behaviour){
-   this.nextBed=this.clock+18000+22000*r();
-   const options=this.bedTargets();if(options.length&&r()<(.08+.48*v.sleepiness)*(1-.8*v.alertness)){
-    const foreign=options.filter(o=>o.owner!==a).length;
-    if(!options.some(o=>o.owner===a)&&r()>.25)return super.decide(t);
-    const chosen=sampleDecision(options.map(o=>({...o,weight:o.owner===a?1:.12/Math.max(1,foreign)})),r);
-    if(this.startBed(chosen,t))return true;
-   }
-  }
-  if(window.pixelCatShelfAmbushV1?.decide(this,t,this.art()))return true;
-  if(window.pixelCatVerticalScratchV1?.decide(this,t,this.art()))return true;
-  return super.decide(t);
- }
- startBed(o,t){const a=this.actor,path=a.pathTo(o.surface);if(!this.available(a)||this.episode||!path||!this.clear(o.surface,o.x))return false;
-  this.episode={...o,stage:'approach',expires:this.clock+45000};this.scene.set(a,this.episode);a.route=[...path,{settle:true,surface:o.surface,x:o.x}];a.destinationId=o.surface.id;a.destinationPoint='bed-rest';a.urgency='relaxed';a.deadline=0;this.log('bed approach',{owner:o.owner.ownerKey});return true;
- }
- step(ms,t){super.step(ms,t);const a=this.actor;
-  if(!this.enabled()||!a.config.social_behaviour||!this.available(a)||this.episode||this.clock<(this.nextBedClaim||0))return;
-  this.nextBedClaim=this.clock+6000;
-  for(const m of this.memory.values()){
-   const guest=this.peers().find(b=>b.ownerKey===m.id),visit=guest?.social?.episode;
-   if(!guest||visit?.kind!=='bed'||visit.stage!=='rest'||visit.owner!==a||!this.visible?.has(m.id)||this.clock-m.at>500||!['sleep','loaf'].includes(m.pose)||!this.world.ready(a,guest))continue;
-   this.nextBedClaim=this.clock+45000;const v=a.ensureMood().values;
-   if(a.ensureMood().random()<.12+.2*v.playfulness+.16*v.alertness)this.startBedClaim(guest,t);
-   else this.log('bed guest tolerated',{target:guest.ownerKey});
-   break;
-  }
- }
- startBedClaim(b,t){const a=this.actor,s=a.surfaces.find(s=>s.bedOwner===a&&!s.bed),path=s&&a.pathTo(s);
-  if(!path||!this.available(a)||!this.available(b)||b.social.episode?.owner!==a||this.scene.has(a)||!this.art().interactionContacts?.bat)return false;
-  const side=a.x>=b.x?1:-1,x=Math.round(Math.max(s.min,Math.min(s.max,b.x+side*28*a.scale))/a.scale)*a.scale;
-  if(!this.clear(s,x,[b]))return false;
-  b.social.finish('owner approaches bed');
-  const ep={kind:'bed-claim',interaction:true,registry:this.scene,initiator:a,target:b,participants:[a,b],surface:s,stage:'approach',expires:this.clock+30000,offset:x-s.left};
-  this.episode=b.social.episode=ep;this.scene.set(a,ep);this.scene.set(b,ep);this.world.cool(a,b);
-  a.route=[...path,{settle:true,surface:s,x}];a.destinationId=s.id;a.urgency='relaxed';a.deadline=t+30000;this.log('bed owner approach',{target:b.ownerKey});return true;
- }
- advance(t){const ep=this.episode,a=this.actor;if(ep?.kind==='shelf-ambush')return window.pixelCatShelfAmbushV1.advance(this,t,this.art());if(ep?.kind==='vertical-scratch')return window.pixelCatVerticalScratchV1.advance(this,t,this.art());if(ep?.kind==='bed'){
-   if(!a.config.mood_behaviour||ep.owner!==a&&!a.config.social_behaviour||!ep.owner.active||ep.owner.root!==a.root||ep.owner.config.show_home===false||a.paused||a.suspended||a.userHeld||a.goal||a.command||a.previewPose||a.play||a.mouthAction||this.clock>=ep.expires){this.finish('bed visit ended');return;}
-   const s=a.surfaces.find(s=>s.id===ep.surface.id&&s.bedOwner===ep.owner);if(!s){this.finish('bed removed');return;}
-   ep.surface=s;ep.x=s.bed?s.min:Math.round((s.left-4+(22+window.pixelCatSetupV1.bed(ep.owner,this.art()).width/2)*(ep.owner.worldScale||ep.owner.scale)-12*a.scale)/a.scale)*a.scale;
-   if(ep.stage==='approach'&&!this.clear(s,ep.x)){this.finish('bed occupied');return;}
-   if(!a.motion&&!a.route?.length){if(!sameSupport(a.support,s)||Math.abs(a.x-ep.x)>6*a.scale){this.finish('bed route ended elsewhere');return;}
-    if(ep.stage==='approach'){ep.stage='rest';ep.expires=this.clock+25000+25000*a.ensureMood().random();a.deadline=t+ep.expires-this.clock;if(a.idle)a.idle.poseUntil=t;this.log('bed resting',{owner:ep.owner.ownerKey});}
-   }return;
-  }
-  if(ep?.kind!=='bed-claim')return super.advance(t);
-  if(ep.initiator!==a){if(!this.available(a))this.finish('bed guest interrupted');return;}
-  const b=ep.target,s=a.surfaces.find(s=>s.bedOwner===a&&!s.bed),m=this.memory.get(b.ownerKey);
-  if(!s||!this.available(a,true)&&!a.route?.length||!this.peers().includes(b)||!this.available(b)||b.support?.bedOwner!==a||!['sleep','loaf','sit'].includes(b.idle?.pose)||this.clock>=ep.expires){this.finish('bed invitation interrupted');return;}
-  if(a.motion||a.route?.length)return;
-  if(!sameSupport(a.support,s)||!m?.frame||this.clock-m.at>700||!this.visible?.has(b.ownerKey)){this.finish('bed guest no longer noticed');return;}
-  if(ep.stage==='approach'){
-   const c=this.art().interactionContacts.bat,y=s.top-(24-c.point[1]-.5)*a.scale,row=Math.floor((y-m.frame.placement.top)/m.scale),pixels=m.frame.rows[row];if(!pixels){this.finish('bed guest out of paw reach');return;}
-   const xs=[...pixels].flatMap((v,i)=>v==='.'?[]:[m.frame.facing<0?23-i:i]);if(!xs.length){this.finish('no safe bed contact');return;}
-   const direction=Math.sign(m.x-a.x)||a.facing,edge=direction>0?Math.min(...xs):Math.max(...xs),contact=m.frame.placement.x+(edge+.5)*m.scale,x=Math.round((contact-(direction>0?c.point[0]+.5:23-c.point[0]+.5)*a.scale)/a.scale)*a.scale;
-   const o={surface:s,x,direction,observed:m};if(!this.corridor(s,x,[b])||!this.patClear(o)){this.finish('no safe bed pat');return;}
-   ep.stage='align';ep.direction=direction;if(Math.abs(x-a.x)>a.scale)a.moveTo(x,s.top,0,'walk',s,t);
-  }else if(ep.stage==='align'){ep.stage='stroke';ep.wait=this.clock+5000;a.facing=ep.direction;a.idle=null;this.log('bed pat ready',{target:b.ownerKey});}
-  else if(ep.stage==='stroke'&&this.clock>=ep.wait)this.finish('bed pat missed');
- }
- prepareIdle(idle,t){window.pixelCatVerticalScratchV1?.prepare(this,idle,t);return super.prepareIdle(idle,t);}
- restPose(){const ep=this.episode;if(ep?.kind==='shelf-ambush')return ep.stage==='wiggle'?'wiggle':'look';if(ep?.kind==='vertical-scratch')return ep.stage==='stroke'?'postScratch':'stand';if(ep?.kind==='bed'&&ep.stage==='rest')return this.actor.ensureMood().values.alertness<.55?'sleep':'loaf';return super.restPose();}
- idleDuration(pose,normal,base){if(pose==='postScratch'&&this.episode?.kind==='vertical-scratch')return 6000;if(this.episode?.kind==='bed'&&this.episode.stage==='rest'&&['loaf','sleep'].includes(pose))return Math.min(30000,Math.max(8000,this.episode.expires-this.clock));return super.idleDuration(pose,normal,base);}
- contactFrame(sample,placement,bridging,t){const ep=this.episode,a=this.actor;if(ep?.kind!=='bed-claim')return super.contactFrame(sample,placement,bridging,t);
-  const c=this.art().interactionContacts?.bat;if(ep.initiator!==a||ep.stage!=='stroke'||ep.struck||bridging||a.idle?.pose!=='bat'||sample.frame!==c?.frame)return;
-  ep.struck=true;const b=ep.target,point={x:placement.x+((a.facing>0?c.point[0]:23-c.point[0])+.5)*a.scale,y:placement.top+(c.point[1]+.5)*a.scale},hit=b.support?.bedOwner===a&&bodyHit(b.social.frame,b.scale,point,a.scale/2);
-  this.log('bed pat '+(hit?'contact':'miss'),{target:b.ownerKey});this.finish(hit?'bed pat delivered':'bed pat missed');a.deadline=t+2500;
-  if(!hit)return;
-  const v=b.ensureMood().values,leave=b.ensureMood().random()<.45+.25*v.alertness-.2*v.sleepiness;b.social.log(leave?'bed guest yields':'bed guest stays',{source:a.ownerKey});
-  if(leave){const s=b.home,paths=b.pathTo(s);if(paths&&s.bedOwner!==a){b.route=[...paths,{settle:true,surface:s,x:Math.max(s.min,Math.min(s.max,b.x))}];b.destinationId=s.id;b.urgency='relaxed';b.deadline=0;if(b.idle)b.idle.poseUntil=t;}}
-  else b.deadline=t+5000+5000*b.ensureMood().random();
- }
- finish(reason){const ep=this.episode;if(ep?.kind==='shelf-ambush')window.pixelCatShelfAmbushV1?.release(this);if(ep?.kind==='vertical-scratch')window.pixelCatVerticalScratchV1?.release(this);if(ep?.kind==='bed'){if(ep.stage==='approach'){this.actor.route=[];this.actor.finishing=false;}this.nextBed=this.clock+45000;}return super.finish(reason);}
+clear(surface,x,exclude=[]){if(!super.clear(surface,x,exclude))return false;const a=this.actor,owner=surface.bedOwner;if(!owner)return true;
+for(const [b,e]of this.owners())if(b!==a&&!exclude.includes(b)&&e.root===a.root&&b.active&&!b.userHeld&&b.support?.bedOwner===owner&&Math.abs(b.y-surface.top)<=4*Math.max(a.scale,b.scale)&&x+24*a.scale>b.x&&x<b.x+24*b.scale)return false;
+return true;
+}
+bedTargets(){
+const a=this.actor,targets=[];
+for(const s of a.surfaces||[]){const owner=s.bedOwner;if(!owner?.active||owner.root!==a.root||owner.config.show_home===false||s.foodOwner||s.bedFloor)continue;
+if(owner!==a&&!a.config.social_behaviour||!s.bed&&owner.config.bed_style==='simple')continue;
+const asset=window.pixelCatSetupV1?.bed(owner,this.art());if(!asset)continue;
+const center=s.bed?(s.left+s.right)/2:s.left-4+(22+asset.width/2)*(owner.worldScale||owner.scale);
+const x=Math.round((center-12*a.scale)/a.scale)*a.scale;
+if(x<s.min||x>s.max||!this.clear(s,x)||!a.pathTo(s)||!a.pathTo(a.home,s))continue;
+const booked=[...this.owners()].some(([b,e])=>b!==a&&e.root===a.root&&b.social?.episode?.kind==='bed'&&b.social.episode.owner===owner);
+if(!booked)targets.push({kind:'bed',owner,surface:s,x});
+}return targets;
+}
+decide(t){
+const a=this.actor,r=()=>a.ensureMood().random(),v=a.ensureMood().values;
+if(this.available(a)&&!this.episode&&this.clock>=(this.nextBed||0)&&a.config.mood_behaviour){
+this.nextBed=this.clock+18000+22000*r();
+const options=this.bedTargets();if(options.length&&r()<(.08+.48*v.sleepiness)*(1-.8*v.alertness)){
+const foreign=options.filter(o=>o.owner!==a).length;
+if(!options.some(o=>o.owner===a)&&r()>.25)return super.decide(t);
+const chosen=sampleDecision(options.map(o=>({...o,weight:o.owner===a?1:.12/Math.max(1,foreign)})),r);
+if(this.startBed(chosen,t))return true;
+}
+}
+if(window.pixelCatShelfAmbushV1?.decide(this,t,this.art()))return true;
+if(window.pixelCatVerticalScratchV1?.decide(this,t,this.art()))return true;
+return super.decide(t);
+}
+startBed(o,t){const a=this.actor,path=a.pathTo(o.surface);if(!this.available(a)||this.episode||!path||!this.clear(o.surface,o.x))return false;
+this.episode={...o,stage:'approach',expires:this.clock+45000};this.scene.set(a,this.episode);a.route=[...path,{settle:true,surface:o.surface,x:o.x}];a.destinationId=o.surface.id;a.destinationPoint='bed-rest';a.urgency='relaxed';a.deadline=0;this.log('bed approach',{owner:o.owner.ownerKey});return true;
+}
+step(ms,t){super.step(ms,t);const a=this.actor;
+if(!this.enabled()||!a.config.social_behaviour||!this.available(a)||this.episode||this.clock<(this.nextBedClaim||0))return;
+this.nextBedClaim=this.clock+6000;
+for(const m of this.memory.values()){
+const guest=this.peers().find(b=>b.ownerKey===m.id),visit=guest?.social?.episode;
+if(!guest||visit?.kind!=='bed'||visit.stage!=='rest'||visit.owner!==a||!this.visible?.has(m.id)||this.clock-m.at>500||!['sleep','loaf'].includes(m.pose)||!this.world.ready(a,guest))continue;
+this.nextBedClaim=this.clock+45000;const v=a.ensureMood().values;
+if(a.ensureMood().random()<.12+.2*v.playfulness+.16*v.alertness)this.startBedClaim(guest,t);
+else this.log('bed guest tolerated',{target:guest.ownerKey});
+break;
+}
+}
+startBedClaim(b,t){const a=this.actor,s=a.surfaces.find(s=>s.bedOwner===a&&!s.bed),path=s&&a.pathTo(s);
+if(!path||!this.available(a)||!this.available(b)||b.social.episode?.owner!==a||this.scene.has(a)||!this.art().interactionContacts?.bat)return false;
+const side=a.x>=b.x?1:-1,x=Math.round(Math.max(s.min,Math.min(s.max,b.x+side*28*a.scale))/a.scale)*a.scale;
+if(!this.clear(s,x,[b]))return false;
+b.social.finish('owner approaches bed');
+const ep={kind:'bed-claim',interaction:true,registry:this.scene,initiator:a,target:b,participants:[a,b],surface:s,stage:'approach',expires:this.clock+30000,offset:x-s.left};
+this.episode=b.social.episode=ep;this.scene.set(a,ep);this.scene.set(b,ep);this.world.cool(a,b);
+a.route=[...path,{settle:true,surface:s,x}];a.destinationId=s.id;a.urgency='relaxed';a.deadline=t+30000;this.log('bed owner approach',{target:b.ownerKey});return true;
+}
+advance(t){const ep=this.episode,a=this.actor;if(ep?.kind==='shelf-ambush')return window.pixelCatShelfAmbushV1.advance(this,t,this.art());if(ep?.kind==='vertical-scratch')return window.pixelCatVerticalScratchV1.advance(this,t,this.art());if(ep?.kind==='bed'){
+if(!a.config.mood_behaviour||ep.owner!==a&&!a.config.social_behaviour||!ep.owner.active||ep.owner.root!==a.root||ep.owner.config.show_home===false||a.paused||a.suspended||a.userHeld||a.goal||a.command||a.previewPose||a.play||a.mouthAction||this.clock>=ep.expires){this.finish('bed visit ended');return;}
+const s=a.surfaces.find(s=>s.id===ep.surface.id&&s.bedOwner===ep.owner);if(!s){this.finish('bed removed');return;}
+const asset=window.pixelCatSetupV1.bed(ep.owner,this.art());if(!asset)return this.finish('bed removed');ep.surface=s;ep.x=s.bed?s.min:Math.round((s.left-4+(22+asset.width/2)*(ep.owner.worldScale||ep.owner.scale)-12*a.scale)/a.scale)*a.scale;
+if(ep.stage==='approach'&&!this.clear(s,ep.x)){this.finish('bed occupied');return;}
+if(!a.motion&&!a.route?.length){if(!sameSupport(a.support,s)||Math.abs(a.x-ep.x)>6*a.scale){this.finish('bed route ended elsewhere');return;}
+if(ep.stage==='approach'){ep.stage='rest';ep.expires=this.clock+25000+25000*a.ensureMood().random();a.deadline=t+ep.expires-this.clock;if(a.idle)a.idle.poseUntil=t;this.log('bed resting',{owner:ep.owner.ownerKey});}
+}return;
+}
+if(ep?.kind!=='bed-claim')return super.advance(t);
+if(ep.initiator!==a){if(!this.available(a))this.finish('bed guest interrupted');return;}
+const b=ep.target,s=a.surfaces.find(s=>s.bedOwner===a&&!s.bed),m=this.memory.get(b.ownerKey);
+if(!s||!this.available(a,true)&&!a.route?.length||!this.peers().includes(b)||!this.available(b)||b.support?.bedOwner!==a||!['sleep','loaf','sit'].includes(b.idle?.pose)||this.clock>=ep.expires){this.finish('bed invitation interrupted');return;}
+if(a.motion||a.route?.length)return;
+if(!sameSupport(a.support,s)||!m?.frame||this.clock-m.at>700||!this.visible?.has(b.ownerKey)){this.finish('bed guest no longer noticed');return;}
+if(ep.stage==='approach'){
+const c=this.art().interactionContacts.bat,y=s.top-(24-c.point[1]-.5)*a.scale,row=Math.floor((y-m.frame.placement.top)/m.scale),pixels=m.frame.rows[row];if(!pixels){this.finish('bed guest out of paw reach');return;}
+const xs=[...pixels].flatMap((v,i)=>v==='.'?[]:[m.frame.facing<0?23-i:i]);if(!xs.length){this.finish('no safe bed contact');return;}
+const direction=Math.sign(m.x-a.x)||a.facing,edge=direction>0?Math.min(...xs):Math.max(...xs),contact=m.frame.placement.x+(edge+.5)*m.scale,x=Math.round((contact-(direction>0?c.point[0]+.5:23-c.point[0]+.5)*a.scale)/a.scale)*a.scale;
+const o={surface:s,x,direction,observed:m};if(!this.corridor(s,x,[b])||!this.patClear(o)){this.finish('no safe bed pat');return;}
+ep.stage='align';ep.direction=direction;if(Math.abs(x-a.x)>a.scale)a.moveTo(x,s.top,0,'walk',s,t);
+}else if(ep.stage==='align'){ep.stage='stroke';ep.wait=this.clock+5000;a.facing=ep.direction;a.idle=null;this.log('bed pat ready',{target:b.ownerKey});}
+else if(ep.stage==='stroke'&&this.clock>=ep.wait)this.finish('bed pat missed');
+}
+prepareIdle(idle,t){window.pixelCatVerticalScratchV1?.prepare(this,idle,t);return super.prepareIdle(idle,t);}
+restPose(){const ep=this.episode;if(ep?.kind==='shelf-ambush')return ep.stage==='wiggle'?'wiggle':'look';if(ep?.kind==='vertical-scratch')return ep.stage==='stroke'?'postScratch':'stand';if(ep?.kind==='bed'&&ep.stage==='rest')return this.actor.ensureMood().values.alertness<.55?'sleep':'loaf';return super.restPose();}
+idleDuration(pose,normal,base){if(pose==='postScratch'&&this.episode?.kind==='vertical-scratch')return 6000;if(this.episode?.kind==='bed'&&this.episode.stage==='rest'&&['loaf','sleep'].includes(pose))return Math.min(30000,Math.max(8000,this.episode.expires-this.clock));return super.idleDuration(pose,normal,base);}
+contactFrame(sample,placement,bridging,t){const ep=this.episode,a=this.actor;if(ep?.kind!=='bed-claim')return super.contactFrame(sample,placement,bridging,t);
+const c=this.art().interactionContacts?.bat;if(ep.initiator!==a||ep.stage!=='stroke'||ep.struck||bridging||a.idle?.pose!=='bat'||sample.frame!==c?.frame)return;
+ep.struck=true;const b=ep.target,point={x:placement.x+((a.facing>0?c.point[0]:23-c.point[0])+.5)*a.scale,y:placement.top+(c.point[1]+.5)*a.scale},hit=b.support?.bedOwner===a&&bodyHit(b.social.frame,b.scale,point,a.scale/2);
+this.log('bed pat '+(hit?'contact':'miss'),{target:b.ownerKey});this.finish(hit?'bed pat delivered':'bed pat missed');a.deadline=t+2500;
+if(!hit)return;
+const v=b.ensureMood().values,leave=b.ensureMood().random()<.45+.25*v.alertness-.2*v.sleepiness;b.social.log(leave?'bed guest yields':'bed guest stays',{source:a.ownerKey});
+if(leave){const s=b.home,paths=b.pathTo(s);if(paths&&s.bedOwner!==a){b.route=[...paths,{settle:true,surface:s,x:Math.max(s.min,Math.min(s.max,b.x))}];b.destinationId=s.id;b.urgency='relaxed';b.deadline=0;if(b.idle)b.idle.poseUntil=t;}}
+else b.deadline=t+5000+5000*b.ensureMood().random();
+}
+finish(reason){const ep=this.episode;if(ep?.kind==='shelf-ambush')window.pixelCatShelfAmbushV1?.release(this);if(ep?.kind==='vertical-scratch')window.pixelCatVerticalScratchV1?.release(this);if(ep?.kind==='bed'){if(ep.stage==='approach'){this.actor.route=[];this.actor.finishing=false;}this.nextBed=this.clock+45000;}return super.finish(reason);}
 }
 window.pixelCatDecisionsV1=CatBedVisits;
 
@@ -27985,7 +27992,7 @@ window.pixelCatFloorShadowV1={
   entry.furnitureKey=key;entry.holes='';entry.view.dirty=true;
   if(!key)return;
   const art=window.pixelCatRoamingExtrasV1;
-  const bed=window.pixelCatSetupV1?.bed(a,art||{}),bowl=art?.homeProps?.bowl;
+  const bed=window.pixelCatSetupV1?.bed(a,art||{}),bowl=a.config.include_bowl!==false&&art?.homeProps?.bowl;
   for(const [asset,offset,bottom]of [[bed,22,h.top+(style==='simple'?s:0)],[bowl,7,h.top]]){
    if(asset)entry.holes+=`M${h.left-4+offset*s} ${bottom-asset.height*s}h${asset.width*s}v${asset.height*s}h-${asset.width*s}Z`;
   }
@@ -28253,26 +28260,26 @@ const catReactions={
 window.pixelCatReactionsV1=catReactions;
 
 const catBaseAction=a=>{
- if(a.userHeld)return a.dragState?.phase==='held'?'Picked up':'Landing after pickup';
- if(a.paused)return 'Paused';if(a.climb)return a.climb.sample?.kind==='grip'&&a.climb.waitReason?a.climb.waitReason:a.climb.sample?.phase||'Approaching a climb';if(a.suspended)return 'Waiting for dashboard';if(a.stranded)return 'Waiting for a safe route';
- const m=a.motion,ep=a.social?.episode,peer=b=>String(b?.config?.name||b?.ownerKey||'another cat');
- if(m?.kind==='startle')return 'Startled · hopping away';
- if(a.mouthAction)return (a.mouthAction.phase==='approach'?'Approaching · ':'')+({food:'Eating at the bowl',pickup:'Nibbling to pick up a toy',nose:'Nosing a toy',drop:'Putting down a toy',bat:'Preparing to bat'}[a.mouthAction.kind]||'Investigating');
- const poses={backRoll:'Resting on back',alertLying:'Lying alert',sit:'Sitting',sithead:'Looking around',perch:'Perching',stand:'Standing',loaf:'Loafing',sleep:'Sleeping',clean:'Grooming',scratch:'Scratching an ear',look:'Looking up',lookdown:'Looking down',glance:'Glancing around',stretch:'Stretching',sniff:'Sniffing',yawn:'Yawning',meow:'Meowing',chatter:'Chattering',rub:'Rubbing a cheek',bat:'Patting / batting',eat:'Eating',nose:'Nosing'};
- if(a.previewPose)return poses[a.previewPose]||a.previewPose;
- if(ep?.kind==='chase'){const runner=a===ep.runner;return (runner?'Running from ':ep.stage==='catch'?'Pouncing toward ':'Chasing ')+peer(runner?ep.chaser:ep.runner);}
- if(ep?.kind==='company')return (ep.stage==='rest'?'Resting near ':'Going to rest near ')+peer(ep.target);
- if(ep?.kind==='bed')return (ep.stage==='rest'?'Sleeping in ':'Going to ')+(ep.owner===a?'own bed':peer(ep.owner)+'’s bed');
- if(ep?.kind==='bed-claim')return ep.initiator===a?(ep.stage==='stroke'?'Patting a bed guest':'Approaching own bed'):'Resting in a borrowed bed';
- if(ep?.kind==='vertical-scratch')return ep.stage==='stroke'?(ep.prop?.igloo?'Scratching the igloo':'Scratching the post'):'Approaching a scratch surface';
- if(ep?.kind==='shelf-ambush')return ep.stage==='land'?'Pouncing down':ep.stage==='wiggle'?'Wiggling before pouncing':'Stalking from above';
- if(ep?.initiator===a){if(ep.kind==='pat')return (ep.stage==='stroke'?'Patting ':'Approaching to pat ')+peer(ep.target);if(ep.kind==='ambush')return ({sneak:'Stalking ',check:'Watching ',land:'Pouncing toward '}[ep.stage]||'Approaching ')+peer(ep.target);if(ep.kind==='prop')return ep.stage==='land'?'Pouncing on the ball':'Tracking the ball';}
- const p=a.play,toy=p?.toyId&&a.propScene?.props.find(t=>t.id===p.toyId),target=toy?.asset?.id==='ball'?'the ball':toy?'the mouse toy':'an imaginary target';
- if(p){if(p.stage==='bat')return (p.strokes?.[p.strokeIndex]==='bat'?'Batting ':'Patting ')+target;return {sit:'Preparing to play',notice:'Inspecting '+target,watch:'Watching '+target,sneak:'Stalking '+target,wiggle:'Wiggling before pouncing',pounce:'Pouncing on '+target,'bat-pause':'Pausing between pats',settle:'Settling after play',groom:'Grooming after play'}[p.stage]||'Playing';}
- if(a.toyHunt?.stage==='approach')return 'Approaching a toy';
- if(m?.kind==='jump')return m.jumpKind==='descend'?'Jumping down':m.jumpKind==='ascend'?'Jumping up':'Leaping across';
- if(m?.kind==='walk')return m.gallopTimeline?'Galloping':m.sneakTimeline?'Sneaking':m.fastClip?'Trotting':a.urgency==='casual'?'Meandering':a.urgency==='relaxed'?'Strolling':'Walking';
- return poses[a.idle?.pose]||'Resting';
+if(a.userHeld)return a.dragState?.phase==='held'?'Picked up':'Landing after pickup';
+if(a.paused)return 'Paused';if(a.climb)return a.climb.sample?.kind==='grip'&&a.climb.waitReason?a.climb.waitReason:a.climb.sample?.phase||'Approaching a climb';if(a.suspended)return 'Waiting for dashboard';if(a.stranded)return 'Waiting for a safe route';
+const m=a.motion,ep=a.social?.episode,peer=b=>String(b?.config?.name||b?.ownerKey||'another cat');
+if(m?.kind==='startle')return 'Startled · hopping away';
+if(a.mouthAction)return (a.mouthAction.phase==='approach'?'Approaching · ':'')+({food:'Eating at the bowl',pickup:'Nibbling to pick up a toy',nose:'Nosing a toy',drop:'Putting down a toy',bat:'Preparing to bat'}[a.mouthAction.kind]||'Investigating');
+const poses={backRoll:'Resting on back',alertLying:'Lying alert',sit:'Sitting',sithead:'Looking around',perch:'Perching',stand:'Standing',loaf:'Loafing',sleep:'Sleeping',clean:'Grooming',scratch:'Scratching an ear',look:'Looking up',lookdown:'Looking down',glance:'Glancing around',stretch:'Stretching',sniff:'Sniffing',yawn:'Yawning',meow:'Meowing',chatter:'Chattering',rub:'Rubbing a cheek',bat:'Patting / batting',eat:'Eating',nose:'Nosing'};
+if(a.previewPose)return poses[a.previewPose]||a.previewPose;
+if(ep?.kind==='chase'){const runner=a===ep.runner;return (runner?'Running from ':ep.stage==='catch'?'Pouncing toward ':'Chasing ')+peer(runner?ep.chaser:ep.runner);}
+if(ep?.kind==='company')return (ep.stage==='rest'?'Resting near ':'Going to rest near ')+peer(ep.target);
+if(ep?.kind==='bed')return (ep.stage==='rest'?'Sleeping in ':'Going to ')+(ep.owner===a?'own bed':peer(ep.owner)+'’s bed');
+if(ep?.kind==='bed-claim')return ep.initiator===a?(ep.stage==='stroke'?'Patting a bed guest':'Approaching own bed'):'Resting in a borrowed bed';
+if(ep?.kind==='vertical-scratch')return ep.stage==='stroke'?(ep.prop?.igloo?'Scratching the igloo':'Scratching the post'):'Approaching a scratch surface';
+if(ep?.kind==='shelf-ambush')return ep.stage==='land'?'Pouncing down':ep.stage==='wiggle'?'Wiggling before pouncing':'Stalking from above';
+if(ep?.initiator===a){if(ep.kind==='pat')return (ep.stage==='stroke'?'Patting ':'Approaching to pat ')+peer(ep.target);if(ep.kind==='ambush')return ({sneak:'Stalking ',check:'Watching ',land:'Pouncing toward '}[ep.stage]||'Approaching ')+peer(ep.target);if(ep.kind==='prop')return ep.stage==='land'?'Pouncing on the ball':'Tracking the ball';}
+const p=a.play,toy=p?.toyId&&a.propScene?.props.find(t=>t.id===p.toyId),target=toy?.asset?.id==='ball'?'the ball':toy?'the mouse toy':'an imaginary target';
+if(p){if(p.stage==='bat')return (p.strokes?.[p.strokeIndex]==='bat'?'Batting ':'Patting ')+target;return {sit:'Preparing to play',notice:'Inspecting '+target,watch:'Watching '+target,sneak:'Stalking '+target,wiggle:'Wiggling before pouncing',pounce:'Pouncing on '+target,'bat-pause':'Pausing between pats',settle:'Settling after play',groom:'Grooming after play'}[p.stage]||'Playing';}
+if(a.toyHunt?.stage==='approach')return 'Approaching a toy';
+if(m?.kind==='jump')return m.jumpKind==='descend'?'Jumping down':m.jumpKind==='ascend'?'Jumping up':'Leaping across';
+if(m?.kind==='walk')return m.gallopTimeline?'Galloping':m.sneakTimeline?'Sneaking':m.fastClip?'Trotting':a.urgency==='casual'?'Meandering':a.urgency==='relaxed'?'Strolling':'Walking';
+return poses[a.idle?.pose]||'Resting';
 };
 const catActorAction=a=>catBaseAction(a)+(a.carriedToy?' · carrying a toy':'');
 const catMoodTextColors={balanced:{text:'#111111',rgb:'17,17,17'},alertness:{text:'#c62828',rgb:'198,40,40'},playfulness:{text:'#188038',rgb:'24,128,56'},sleepiness:{text:'#7e47a7',rgb:'126,71,167'}};
@@ -28281,78 +28288,78 @@ const catLabelNodes=new WeakMap();
 const debugVisible=node=>{if(!node)return false;for(let el=node;el;el=el.parentElement)if(el.tagName==='DETAILS'&&!el.open)return false;return true;};
 const catLabelPlace=a=>{const halo=a.moodHalo,nodes=halo&&catLabelNodes.get(halo);if(!nodes)return;const {name,state}=nodes,rows=a.social?.frame?.rows||a.idle?.rows;let bounds=rows&&catLabelBounds.get(rows);if(!bounds){let top=24,bottom=0;rows?.forEach((row,y)=>{if([...row].some(v=>v!=='.')){top=Math.min(top,y);bottom=y+1;}});bounds=bottom?{top,bottom}:{top:0,bottom:24};if(rows)catLabelBounds.set(rows,bounds);}const above=(36*a.scale-(6+bounds.top)*a.scale+3)+'px',below=((6+bounds.bottom)*a.scale+3)+'px';if(nodes.above!==above){name.style.bottom=above;nodes.above=above;}if(nodes.below!==below){state.style.top=below;nodes.below=below;}};
 const catActorLabels=(a,mood)=>{
- const halo=a.moodHalo;if(!halo)return;let nodes=catLabelNodes.get(halo);
- if(!nodes){halo.replaceChildren();const style='position:absolute;left:50%;transform:translateX(-50%);text-align:center;font:11px/1.25 system-ui;color:var(--primary-text-color,#263238);text-shadow:0 0 2px #fff,0 0 3px #fff;border-radius:3px;padding:1px 4px;width:max-content;max-width:190px;pointer-events:none;',name=document.createElement('span'),state=document.createElement('span'),moodText=document.createTextNode(''),actionText=document.createTextNode('');name.dataset.catName='';name.style.cssText=style+'font-weight:600;white-space:nowrap;';state.dataset.catState='';state.style.cssText=style;state.append(moodText,document.createElement('br'),actionText);halo.append(name,state);nodes={name,state,moodText,actionText};catLabelNodes.set(halo,nodes);}
- const {name,state,moodText,actionText}=nodes;
- catLabelPlace(a);
- const labels=a.config.debug_labels!==false,hidden=!labels||a.config.debug_names!==true;if(name.hidden!==hidden)name.hidden=hidden;if(state.hidden===labels)state.hidden=!labels;const color=catMoodTextColors[mood.label]||catMoodTextColors.balanced;if(nodes.color!==color.text){name.style.color=state.style.color=color.text;name.style.backgroundColor=state.style.backgroundColor=`rgba(${color.rgb},0.12)`;nodes.color=color.text;}const title=a.config.name||a.ownerKey||'Cat';if(name.textContent!==title)name.textContent=title;const action=catActorAction(a),m=title;if(moodText.nodeValue!==m)moodText.nodeValue=m;if(actionText.nodeValue!==action){actionText.nodeValue=action;a.setAttribute('data-action-label',action);}
+const halo=a.moodHalo;if(!halo)return;let nodes=catLabelNodes.get(halo);
+if(!nodes){halo.replaceChildren();const style='position:absolute;left:50%;transform:translateX(-50%);text-align:center;font:11px/1.25 system-ui;color:var(--primary-text-color,#263238);text-shadow:0 0 2px #fff,0 0 3px #fff;border-radius:3px;padding:1px 4px;width:max-content;max-width:190px;pointer-events:none;',name=document.createElement('span'),state=document.createElement('span'),moodText=document.createTextNode(''),actionText=document.createTextNode('');name.dataset.catName='';name.style.cssText=style+'font-weight:600;white-space:pre;';state.dataset.catState='';state.style.cssText=style;const lineBreak=document.createElement('br');state.append(moodText,lineBreak,actionText);halo.append(name,state);nodes={name,state,moodText,actionText,lineBreak};catLabelNodes.set(halo,nodes);}
+const {name,state,moodText,actionText}=nodes;
+catLabelPlace(a);
+const belowName=a.config.debug_name_below??a.config.debug_labels!==false,belowAction=a.config.debug_action_below??a.config.debug_labels!==false,labels=belowName||belowAction,hidden=!a.config.debug_names&&!a.config.debug_action_above;if(nodes.lineBreak.hidden===!!(belowName&&belowAction))nodes.lineBreak.hidden=!(belowName&&belowAction);if(name.hidden!==hidden)name.hidden=hidden;if(state.hidden===labels)state.hidden=!labels;const color=catMoodTextColors[mood.label]||catMoodTextColors.balanced;if(nodes.color!==color.text){name.style.color=state.style.color=color.text;name.style.backgroundColor=state.style.backgroundColor=`rgba(${color.rgb},0.12)`;nodes.color=color.text;}const title=a.config.name||a.ownerKey||'Cat';const activity=catActorAction(a),above=[a.config.debug_names&&title,a.config.debug_action_above&&activity].filter(Boolean).join('\n');if(name.textContent!==above)name.textContent=above;const action=belowAction?activity:'',m=belowName?title:'';if(moodText.nodeValue!==m)moodText.nodeValue=m;if(actionText.nodeValue!==action){actionText.nodeValue=action;a.setAttribute('data-action-label',action);}
 };
 window.pixelCatLabelsV1={action:catActorAction,update:catActorLabels,place:catLabelPlace,visible:debugVisible,colors:catMoodTextColors};
 const debugStats=values=>{if(!values.length)return {mean:0,p95:0};const sorted=[...values].sort((a,b)=>a-b);return {mean:values.reduce((a,b)=>a+b,0)/values.length,p95:sorted[Math.ceil(sorted.length*.95)-1]};};
 const catDebugSetup=(a,owners)=>{
- window.pixelCatScrollV1?.attach(a);
- if(window.pixelCatMonitorV1){window.pixelCatMonitorV1.owners=owners;window.pixelCatMonitorV1.diagnostics?.attach(a);}
- const root=a.shadowRoot,outer=root?.querySelector?.('details');if(outer?.tagName!=='DETAILS')return false;
- const section=(title,open=false)=>{const d=document.createElement('details'),s=document.createElement('summary');s.textContent=title;d.append(s);d.open=open;d.setAttribute('name','cat-menu');outer.append(d);return d;};
- const title=outer.querySelector('summary');title.textContent='Cat controls & diagnostics';
- outer.addEventListener('keydown',event=>{
-  if(event.key!=='Escape'||event.defaultPrevented||!outer.open||event.target.matches?.('input, select, textarea'))return;
-  event.stopPropagation();outer.open=false;title.focus();
- });
- const host=root.querySelector('.cat-debug-host')||document.createElement('div');host.hidden=a.config.show_controls===false;host.style.cssText='position:relative;height:26px;z-index:0';if(outer.parentElement!==host){outer.before(host);host.append(outer);}outer.style.cssText='position:absolute;left:0;right:0;top:0;margin:0;max-height:min(70vh,600px);overflow:auto;scrollbar-gutter:stable';outer.classList.add('cat-debug-panel');const card=root.querySelector('ha-card');if(card)card.style.overflow='visible';
- outer.addEventListener('toggle',e=>{if(e.target!==outer)return;host.style.zIndex=outer.open?'100':'0';if(outer.open)for(const [b,entry]of owners())if(b!==a&&entry.root===a.root){const other=b.shadowRoot?.querySelector('details');if(other)other.open=false;}});
- const labels=[...outer.querySelectorAll(':scope > label')],visit=outer.querySelector('.visit')?.parentElement,report=outer.querySelector('.surface-report')?.parentElement,mood=outer.querySelector('.mood-controls'),props=outer.querySelector('.dashboard-prop-controls'),diagnostics=outer.querySelector('.diagnostics'),preview=outer.querySelector('[aria-label="Preview refined action"]'),previewButton=preview?.nextElementSibling,canvas=outer.querySelector('.gallop-preview');
- const help=(parent,text)=>{const p=document.createElement('p');p.className='cat-menu-help';p.textContent=text;parent.append(p);return p;};
- const rename=(label,text)=>{if(!label)return;const input=label.querySelector('input');if(input)label.replaceChildren(input,document.createTextNode(text));};
- const hidden=document.createElement('div');hidden.hidden=true;outer.append(hidden);
- const combine=(parent,label,buttons,buttonText)=>{const row=document.createElement('div'),select=document.createElement('select'),button=document.createElement('button');row.className='cat-menu-row';select.setAttribute('aria-label',label);for(const [i,b]of buttons.entries()){const option=document.createElement('option');option.value=i;option.textContent=b.textContent;select.append(option);hidden.append(b);}button.textContent=buttonText;button.onclick=()=>buttons[Number(select.value)]?.click();row.append(select,button);parent.append(row);};
- help(outer,'Session controls. Use Edit card to save defaults.');
- const display=section('Display & overlays');
- for(const [key,text,value]of [['debug_labels','Name & action below cat',a.config.debug_labels!==false],['debug_names','Extra name above cat',a.config.debug_names===true]]){const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.checked=value;input.setAttribute('aria-label',text);input.onchange=()=>{a.config[key]=input.checked;a.moodDebugAt=0;a.renderMoodDebug(performance.now());};label.append(input,document.createTextNode(text));display.append(label);}
- const glow=mood?.querySelector('[data-mood-glow]')?.parentElement;if(glow)display.append(glow);
- const overlayNames={surfaces:'Walking supports',verticalSurfaces:'Card outlines & grip areas',paths:'Routes & leap arcs',pois:'Destination points'};
- for(const label of labels){const input=label.querySelector('[data-debug]');if(input){rename(label,overlayNames[input.dataset.debug]||label.textContent);display.append(label);}}
- help(display,'Cyan outlines follow card borders; walking supports can be inset. Purple areas fit a grip; green tops fit a landing.');
- const geometry=section('Travel & climbing');geometry.dataset.catUi='travel';if(visit)geometry.append(visit);
- const homeReset=visit?.querySelector('[data-action="reset"]');
- const climb=document.createElement('div');climb.dataset.catUi='climbing';geometry.append(climb);
- for(const [key,text]of [['card_climbing','Climb visible cards (experimental)'],['native_vertical_surfaces','Scratch card borders (experimental)']]){const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.checked=a.config[key]===true;input.setAttribute('aria-label',text);input.onchange=()=>{a.config[key]=input.checked;window.pixelCatCardClimbV1?.controls(a);a.invalidate();};label.append(input,document.createTextNode(text));climb.append(label);}
- window.pixelCatCardClimbV1?.controls(a);
- help(climb,'Enable card climbing to try a wall transfer while this cat is resting. Normal routes remain preferred; overlays show usable grips and landing tops.');
- const drop=outer.querySelector('[data-action="drop"]');if(drop)geometry.append(drop);
- for(const label of labels.filter(l=>!display.contains(l)&&!l.querySelector('select')))geometry.append(label);
- const play=section('Play & props'),playButtons=[outer.querySelector('[data-action="play"]'),...[...props?.querySelectorAll('button')||[]].filter(b=>['Bat a ball','Hunt a toy'].includes(b.textContent))].filter(Boolean);
- if(playButtons.length)combine(play,'Play invitation',playButtons,'Invite play');
- if(props){play.append(props);const buttons=[...props.querySelectorAll('button')].filter(b=>b.textContent.startsWith('Spawn '));if(buttons.length)combine(props,'Prop to spawn',buttons,'Spawn prop');const clear=[...props.querySelectorAll('button')].find(b=>b.textContent==='Clear props');if(clear)clear.textContent='Clear shared props';help(play,'Shared props and moving-mouse settings affect this dashboard. Cats choose whether to join play.');}
- const actions=section('Animation preview');if(preview)actions.append(preview,previewButton,canvas);
- for(const label of labels.filter(l=>l.querySelector('select')&&!display.contains(l)))actions.append(label);
- help(actions,'Preview a pose or contact sequence on this cat. Walking options change playback, not its personality.');
- if(mood){mood.setAttribute('name','cat-menu');mood.querySelector('summary').textContent='Behaviour & mood';outer.append(mood);const oldHelp=mood.querySelector('p');if(oldHelp)oldHelp.textContent='Sliders hold this cat’s mood. Resume natural drift to release them. Landing tests offer a cue, not a forced hop.';}
- if(mood&&a.config.interaction_behaviour){const layer=a.decisionLayer(),traits=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Temperament';traits.append(summary);for(const key of ['boldness','sociability','curiosity','patience']){const label=document.createElement('label'),input=document.createElement('input');label.textContent=key+' ';input.type='range';input.min=0;input.max=1;input.step=.05;input.value=layer.traits[key];input.setAttribute('aria-label','Temperament '+key);input.oninput=()=>{layer.traits[key]=Number(input.value);a.config.temperament={...layer.traits};};label.append(input);traits.append(label);}mood.append(traits);}
- const evidence=section('Diagnostics');a.debugPanelRefs={outer,evidence};if(diagnostics)evidence.append(diagnostics);if(report){report.querySelector('summary').textContent='Detailed surface report';evidence.append(report);}const decisions=mood?.querySelector('.decision-readout');if(decisions){const group=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Recent decisions';group.append(summary,decisions);evidence.append(group);}if(homeReset){homeReset.textContent='Reset this cat to home';evidence.append(homeReset);}
- const label=document.createElement('label'),toggle=document.createElement('input');toggle.type='checkbox';toggle.checked=!!a.config.debug_performance;toggle.dataset.performance='';toggle.onchange=()=>{a.config.debug_performance=toggle.checked;a.performanceSamples=[];a.performanceLast=null;a.performanceReadAt=0;};label.append(toggle,document.createTextNode('Live performance'));const readout=document.createElement('pre');readout.className='performance-readout';readout.setAttribute('aria-live','off');readout.style.cssText='font-size:10px;white-space:pre-wrap';const reset=document.createElement('button');reset.textContent='Reset performance sample';reset.onclick=()=>{a.performanceSamples=[];a.performanceLast=null;a.performanceReadAt=0;};evidence.prepend(label,reset,readout);
- const style=document.createElement('style');style.textContent='.cat-debug-panel>summary{position:sticky;top:0;background:var(--ha-card-background,var(--card-background-color,#fff));z-index:1}.cat-debug-panel button:disabled{opacity:.5;cursor:default}.cat-debug-panel summary{padding:7px 0;cursor:pointer}.cat-debug-panel label{display:flex;align-items:center;gap:7px;margin:8px 0}.cat-debug-panel input[type=checkbox]{width:17px;height:17px;flex:none}.cat-debug-panel button,.cat-debug-panel select{min-height:32px;box-sizing:border-box}.cat-menu-row{display:flex;gap:5px;flex-wrap:wrap}.cat-menu-row select{flex:1;min-width:0}.cat-menu-help{font-size:11px;line-height:1.4;opacity:.75;margin:7px 0}.cat-debug-panel[open]{padding:8px;background:var(--ha-card-background,var(--card-background-color,#fff));border:1px solid var(--divider-color,#bbb);border-radius:7px;box-shadow:0 5px 18px #0004}.cat-debug-panel details{padding:7px 0;border-top:1px solid var(--divider-color,#ddd)}.cat-debug-panel select{max-width:100%}.cat-debug-panel pre{overflow:auto;max-height:180px}.decision-readout{background:var(--secondary-background-color,#eee);padding:6px;border-radius:5px}';root.append(style);
- const view=document.createElement('details'),viewTitle=document.createElement('summary');viewTitle.textContent='Whole-dashboard test controls';view.append(viewTitle);const count=document.createElement('select');count.setAttribute('aria-label','Running cats in this view');const sizes=[...new Set([1,2,5,10,20,[...owners()].filter(([b,e])=>e.root===a.root&&b.active).length])].filter(n=>n>0);for(const n of sizes){const option=document.createElement('option');option.value=n;option.textContent=n+' running cats';count.append(option);}const running=[...owners()].filter(([b,e])=>e.root===a.root&&b.active&&!b.paused&&!b.suspended&&!b.stranded).length;if(running>0&&!sizes.includes(running)){const o=document.createElement('option');o.value=running;o.textContent=running+' running cats';count.append(o);}count.value=String(running||1);const apply=document.createElement('button');apply.textContent='Set running count';apply.onclick=()=>{const peers=[...owners()].filter(([b,e])=>e.root===a.root&&b.active);for(const [i,[b]]of peers.entries()){b.social?.finish('view test control');b.paused=i>=Number(count.value);b.performanceSamples=[];b.performanceLast=null;b.performanceReadAt=0;const button=b.shadowRoot.querySelector('[data-action="pause"]');if(button)button.textContent=b.paused?'Resume':'Pause';}};const sampleAll=document.createElement('button');sampleAll.textContent='Sample all cats in view';sampleAll.onclick=()=>{for(const [b,e]of owners())if(e.root===a.root&&b.active){b.config.debug_performance=true;b.performanceSamples=[];b.performanceLast=null;b.performanceReadAt=0;const input=b.shadowRoot.querySelector('[data-performance]');if(input)input.checked=true;}};view.append(count,apply,sampleAll);evidence.append(view);const note=document.createElement('small');note.textContent='View test controls affect every cat on this page. Paused cats remain mounted; FPS includes their idle overhead.';view.append(note);
- if(!a.debugTickOriginal){a.debugTickOriginal=a.tick.bind(a);a.tick=t=>{const enabled=a.config.debug_performance,start=enabled?performance.now():0;try{return a.debugTickOriginal(t);}finally{if(enabled&&a.active&&!a.paused&&!a.suspended&&!a.stranded&&!document.hidden){const frame=a.performanceLast===null||a.performanceLast===undefined?0:t-a.performanceLast;a.performanceLast=t;if(frame>0&&frame<1000){const sample={frame,cost:performance.now()-start,decision:a.decisionCost||0};a.performanceSamples||=[];a.performanceSamples.push(sample);if(a.performanceSamples.length>600)a.performanceSamples.shift();}}else a.performanceLast=null;
-   if(a.debugPanelRefs?.outer.open&&a.debugPanelRefs?.evidence.open&&t>=(a.performanceReadAt||0)){a.performanceReadAt=t+1000;const node=a.shadowRoot.querySelector('.performance-readout');if(node){if(!enabled)node.textContent='Off · enable to collect foreground frames.';else{const samples=a.performanceSamples||[],frame=debugStats(samples.map(s=>s.frame)),cost=debugStats(samples.map(s=>s.cost)),decision=debugStats(samples.map(s=>s.decision)),peers=[...owners()].filter(([b,e])=>e.root===a.root&&b.active),running=peers.filter(([b])=>!b.paused&&!b.suspended&&!b.stranded),measured=running.filter(([b])=>b.config.debug_performance&&b.performanceSamples?.length),total=measured.reduce((n,[b])=>n+b.performanceSamples.reduce((sum,s)=>sum+s.cost,0)/b.performanceSamples.length,0);node.textContent=`${samples.length}/600 foreground samples · ${frame.mean?(1000/frame.mean).toFixed(1):'—'} FPS\nFrame mean / p95: ${frame.mean.toFixed(2)} / ${frame.p95.toFixed(2)} ms\nThis controller: ${cost.mean.toFixed(3)} / ${cost.p95.toFixed(3)} ms\nDecision + perception: ${decision.mean.toFixed(3)} / ${decision.p95.toFixed(3)} ms\n${running.length}/${peers.length} cats running · ${measured.length} sampled\nSum of sampled controller means: ${total.toFixed(3)} ms\nPaused/hidden frames excluded. FPS includes browser scheduling.`;}}}
-  }};}
- return true;
+window.pixelCatScrollV1?.attach(a);
+if(window.pixelCatMonitorV1){window.pixelCatMonitorV1.owners=owners;window.pixelCatMonitorV1.diagnostics?.attach(a);}
+const root=a.shadowRoot,outer=root?.querySelector?.('details');if(outer?.tagName!=='DETAILS')return false;
+const section=(title,open=false)=>{const d=document.createElement('details'),s=document.createElement('summary');s.textContent=title;d.append(s);d.open=open;d.setAttribute('name','cat-menu');outer.append(d);return d;};
+const title=outer.querySelector('summary');title.textContent='Cat controls & diagnostics';
+outer.addEventListener('keydown',event=>{
+if(event.key!=='Escape'||event.defaultPrevented||!outer.open||event.target.matches?.('input, select, textarea'))return;
+event.stopPropagation();outer.open=false;title.focus();
+});
+const host=root.querySelector('.cat-debug-host')||document.createElement('div');host.hidden=a.config.show_controls===false;host.style.cssText='position:relative;height:26px;z-index:0';if(outer.parentElement!==host){outer.before(host);host.append(outer);}outer.style.cssText='position:absolute;left:0;right:0;top:0;margin:0;max-height:min(70vh,600px);overflow:auto;scrollbar-gutter:stable';outer.classList.add('cat-debug-panel');const card=root.querySelector('ha-card');if(card)card.style.overflow='visible';
+outer.addEventListener('toggle',e=>{if(e.target!==outer)return;host.style.zIndex=outer.open?'100':'0';if(outer.open)for(const [b,entry]of owners())if(b!==a&&entry.root===a.root){const other=b.shadowRoot?.querySelector('details');if(other)other.open=false;}});
+const labels=[...outer.querySelectorAll(':scope > label')],visit=outer.querySelector('.visit')?.parentElement,report=outer.querySelector('.surface-report')?.parentElement,mood=outer.querySelector('.mood-controls'),props=outer.querySelector('.dashboard-prop-controls'),diagnostics=outer.querySelector('.diagnostics'),preview=outer.querySelector('[aria-label="Preview refined action"]'),previewButton=preview?.nextElementSibling,canvas=outer.querySelector('.gallop-preview');
+const help=(parent,text)=>{const p=document.createElement('p');p.className='cat-menu-help';p.textContent=text;parent.append(p);return p;};
+const rename=(label,text)=>{if(!label)return;const input=label.querySelector('input');if(input)label.replaceChildren(input,document.createTextNode(text));};
+const hidden=document.createElement('div');hidden.hidden=true;outer.append(hidden);
+const combine=(parent,label,buttons,buttonText)=>{const row=document.createElement('div'),select=document.createElement('select'),button=document.createElement('button');row.className='cat-menu-row';select.setAttribute('aria-label',label);for(const [i,b]of buttons.entries()){const option=document.createElement('option');option.value=i;option.textContent=b.textContent;select.append(option);hidden.append(b);}button.textContent=buttonText;button.onclick=()=>buttons[Number(select.value)]?.click();row.append(select,button);parent.append(row);};
+help(outer,'Session controls. Use Edit card to save defaults.');
+const display=section('Display & overlays');
+for(const [key,text,value]of [['debug_labels','Name & action below cat',a.config.debug_labels!==false],['debug_names','Extra name above cat',a.config.debug_names===true]]){const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.checked=value;input.setAttribute('aria-label',text);input.onchange=()=>{a.config[key]=input.checked;a.moodDebugAt=0;a.renderMoodDebug(performance.now());};label.append(input,document.createTextNode(text));display.append(label);}
+const glow=mood?.querySelector('[data-mood-glow]')?.parentElement;if(glow)display.append(glow);
+const overlayNames={surfaces:'Walking supports',verticalSurfaces:'Card outlines & grip areas',paths:'Routes & leap arcs',pois:'Destination points'};
+for(const label of labels){const input=label.querySelector('[data-debug]');if(input){rename(label,overlayNames[input.dataset.debug]||label.textContent);display.append(label);}}
+help(display,'Cyan outlines follow card borders; walking supports can be inset. Purple areas fit a grip; green tops fit a landing.');
+const geometry=section('Travel & climbing');geometry.dataset.catUi='travel';if(visit)geometry.append(visit);
+const homeReset=visit?.querySelector('[data-action="reset"]');
+const climb=document.createElement('div');climb.dataset.catUi='climbing';geometry.append(climb);
+for(const [key,text]of [['card_climbing','Climb visible cards (experimental)'],['native_vertical_surfaces','Scratch card borders (experimental)']]){const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.checked=a.config[key]===true;input.setAttribute('aria-label',text);input.onchange=()=>{a.config[key]=input.checked;window.pixelCatCardClimbV1?.controls(a);a.invalidate();};label.append(input,document.createTextNode(text));climb.append(label);}
+window.pixelCatCardClimbV1?.controls(a);
+help(climb,'Enable card climbing to try a wall transfer while this cat is resting. Normal routes remain preferred; overlays show usable grips and landing tops.');
+const drop=outer.querySelector('[data-action="drop"]');if(drop)geometry.append(drop);
+for(const label of labels.filter(l=>!display.contains(l)&&!l.querySelector('select')))geometry.append(label);
+const play=section('Play & props'),playButtons=[outer.querySelector('[data-action="play"]'),...[...props?.querySelectorAll('button')||[]].filter(b=>['Bat a ball','Hunt a toy'].includes(b.textContent))].filter(Boolean);
+if(playButtons.length)combine(play,'Play invitation',playButtons,'Invite play');
+if(props){play.append(props);const buttons=[...props.querySelectorAll('button')].filter(b=>b.textContent.startsWith('Spawn '));if(buttons.length)combine(props,'Prop to spawn',buttons,'Spawn prop');const clear=[...props.querySelectorAll('button')].find(b=>b.textContent==='Clear props');if(clear)clear.textContent='Clear shared props';help(play,'Shared props and moving-mouse settings affect this dashboard. Cats choose whether to join play.');}
+const actions=section('Animation preview');if(preview)actions.append(preview,previewButton,canvas);
+for(const label of labels.filter(l=>l.querySelector('select')&&!display.contains(l)))actions.append(label);
+help(actions,'Preview a pose or contact sequence on this cat. Walking options change playback, not its personality.');
+if(mood){mood.setAttribute('name','cat-menu');mood.querySelector('summary').textContent='Behaviour & mood';outer.append(mood);const oldHelp=mood.querySelector('p');if(oldHelp)oldHelp.textContent='Sliders hold this cat’s mood. Resume natural drift to release them. Landing tests offer a cue, not a forced hop.';}
+if(mood&&a.config.interaction_behaviour){const layer=a.decisionLayer(),traits=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Temperament';traits.append(summary);for(const key of ['boldness','sociability','curiosity','patience']){const label=document.createElement('label'),input=document.createElement('input');label.textContent=key+' ';input.type='range';input.min=0;input.max=1;input.step=.05;input.value=layer.traits[key];input.setAttribute('aria-label','Temperament '+key);input.oninput=()=>{layer.traits[key]=Number(input.value);a.config.temperament={...layer.traits};};label.append(input);traits.append(label);}mood.append(traits);}
+const evidence=section('Diagnostics');a.debugPanelRefs={outer,evidence};if(diagnostics)evidence.append(diagnostics);if(report){report.querySelector('summary').textContent='Detailed surface report';evidence.append(report);}const decisions=mood?.querySelector('.decision-readout');if(decisions){const group=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Recent decisions';group.append(summary,decisions);evidence.append(group);}if(homeReset){homeReset.textContent='Reset this cat to home';evidence.append(homeReset);}
+const label=document.createElement('label'),toggle=document.createElement('input');toggle.type='checkbox';toggle.checked=!!a.config.debug_performance;toggle.dataset.performance='';toggle.onchange=()=>{a.config.debug_performance=toggle.checked;a.performanceSamples=[];a.performanceLast=null;a.performanceReadAt=0;};label.append(toggle,document.createTextNode('Live performance'));const readout=document.createElement('pre');readout.className='performance-readout';readout.setAttribute('aria-live','off');readout.style.cssText='font-size:10px;white-space:pre-wrap';const reset=document.createElement('button');reset.textContent='Reset performance sample';reset.onclick=()=>{a.performanceSamples=[];a.performanceLast=null;a.performanceReadAt=0;};evidence.prepend(label,reset,readout);
+const style=document.createElement('style');style.textContent='.cat-debug-panel>summary{position:sticky;top:0;background:var(--ha-card-background,var(--card-background-color,#fff));z-index:1}.cat-debug-panel button:disabled{opacity:.5;cursor:default}.cat-debug-panel summary{padding:7px 0;cursor:pointer}.cat-debug-panel label{display:flex;align-items:center;gap:7px;margin:8px 0}.cat-debug-panel input[type=checkbox]{width:17px;height:17px;flex:none}.cat-debug-panel button,.cat-debug-panel select{min-height:32px;box-sizing:border-box}.cat-menu-row{display:flex;gap:5px;flex-wrap:wrap}.cat-menu-row select{flex:1;min-width:0}.cat-menu-help{font-size:11px;line-height:1.4;opacity:.75;margin:7px 0}.cat-debug-panel[open]{padding:8px;background:var(--ha-card-background,var(--card-background-color,#fff));border:1px solid var(--divider-color,#bbb);border-radius:7px;box-shadow:0 5px 18px #0004}.cat-debug-panel details{padding:7px 0;border-top:1px solid var(--divider-color,#ddd)}.cat-debug-panel select{max-width:100%}.cat-debug-panel pre{overflow:auto;max-height:180px}.decision-readout{background:var(--secondary-background-color,#eee);padding:6px;border-radius:5px}';root.append(style);
+const view=document.createElement('details'),viewTitle=document.createElement('summary');viewTitle.textContent='Whole-dashboard test controls';view.append(viewTitle);const count=document.createElement('select');count.setAttribute('aria-label','Running cats in this view');const sizes=[...new Set([1,2,5,10,20,[...owners()].filter(([b,e])=>e.root===a.root&&b.active).length])].filter(n=>n>0);for(const n of sizes){const option=document.createElement('option');option.value=n;option.textContent=n+' running cats';count.append(option);}const running=[...owners()].filter(([b,e])=>e.root===a.root&&b.active&&!b.paused&&!b.suspended&&!b.stranded).length;if(running>0&&!sizes.includes(running)){const o=document.createElement('option');o.value=running;o.textContent=running+' running cats';count.append(o);}count.value=String(running||1);const apply=document.createElement('button');apply.textContent='Set running count';apply.onclick=()=>{const peers=[...owners()].filter(([b,e])=>e.root===a.root&&b.active);for(const [i,[b]]of peers.entries()){b.social?.finish('view test control');b.paused=i>=Number(count.value);b.performanceSamples=[];b.performanceLast=null;b.performanceReadAt=0;const button=b.shadowRoot.querySelector('[data-action="pause"]');if(button)button.textContent=b.paused?'Resume':'Pause';}};const sampleAll=document.createElement('button');sampleAll.textContent='Sample all cats in view';sampleAll.onclick=()=>{for(const [b,e]of owners())if(e.root===a.root&&b.active){b.config.debug_performance=true;b.performanceSamples=[];b.performanceLast=null;b.performanceReadAt=0;const input=b.shadowRoot.querySelector('[data-performance]');if(input)input.checked=true;}};view.append(count,apply,sampleAll);evidence.append(view);const note=document.createElement('small');note.textContent='View test controls affect every cat on this page. Paused cats remain mounted; FPS includes their idle overhead.';view.append(note);
+if(!a.debugTickOriginal){a.debugTickOriginal=a.tick.bind(a);a.tick=t=>{const enabled=a.config.debug_performance,start=enabled?performance.now():0;try{return a.debugTickOriginal(t);}finally{if(enabled&&a.active&&!a.paused&&!a.suspended&&!a.stranded&&!document.hidden){const frame=a.performanceLast===null||a.performanceLast===undefined?0:t-a.performanceLast;a.performanceLast=t;if(frame>0&&frame<1000){const sample={frame,cost:performance.now()-start,decision:a.decisionCost||0};a.performanceSamples||=[];a.performanceSamples.push(sample);if(a.performanceSamples.length>600)a.performanceSamples.shift();}}else a.performanceLast=null;
+if(a.debugPanelRefs?.outer.open&&a.debugPanelRefs?.evidence.open&&t>=(a.performanceReadAt||0)){a.performanceReadAt=t+1000;const node=a.shadowRoot.querySelector('.performance-readout');if(node){if(!enabled)node.textContent='Off · enable to collect foreground frames.';else{const samples=a.performanceSamples||[],frame=debugStats(samples.map(s=>s.frame)),cost=debugStats(samples.map(s=>s.cost)),decision=debugStats(samples.map(s=>s.decision)),peers=[...owners()].filter(([b,e])=>e.root===a.root&&b.active),running=peers.filter(([b])=>!b.paused&&!b.suspended&&!b.stranded),measured=running.filter(([b])=>b.config.debug_performance&&b.performanceSamples?.length),total=measured.reduce((n,[b])=>n+b.performanceSamples.reduce((sum,s)=>sum+s.cost,0)/b.performanceSamples.length,0);node.textContent=`${samples.length}/600 foreground samples · ${frame.mean?(1000/frame.mean).toFixed(1):'—'} FPS\nFrame mean / p95: ${frame.mean.toFixed(2)} / ${frame.p95.toFixed(2)} ms\nThis controller: ${cost.mean.toFixed(3)} / ${cost.p95.toFixed(3)} ms\nDecision + perception: ${decision.mean.toFixed(3)} / ${decision.p95.toFixed(3)} ms\n${running.length}/${peers.length} cats running · ${measured.length} sampled\nSum of sampled controller means: ${total.toFixed(3)} ms\nPaused/hidden frames excluded. FPS includes browser scheduling.`;}}}
+}};}
+return true;
 };
 window.pixelCatDebugV1=catDebugSetup;
 
 window.pixelCatLabelsV1.render=function(t){
- if(typeof document==='undefined')return;
-    if(!this.config.debug_mood&&this.config.debug_labels===false){this.moodHalo?.remove();this.moodHalo=null;}else if(this.svg&&this.layer){
-      if(!this.moodHalo){const halo=document.createElement('div');halo.dataset.moodActor=this.ownerKey;halo.style.cssText=`position:absolute;left:0;top:0;width:${36*this.scale}px;height:${36*this.scale}px;pointer-events:none;border-radius:50%;`;this.layer.insertBefore(halo,this.svg);this.moodHalo=halo;}
-      this.moodHalo.style.transform=this.svg.style.transform+` translate(${-6*this.scale}px,${-6*this.scale}px)`;
-      window.pixelCatLabelsV1?.place(this);
-    }
-    if(!this.mood&&!this.config.debug_mood&&this.config.debug_labels===false)return;if(t<(this.moodDebugAt||0))return;this.moodDebugAt=t+200;
-    const m=this.ensureMood().view(),text=`${m.label} · P ${m.values.playfulness.toFixed(2)} S ${m.values.sleepiness.toFixed(2)} A ${m.values.alertness.toFixed(2)} · ${m.held?'held':'drifting'}`;
-    if(this.moodHalo){const background=this.config.debug_mood?`radial-gradient(ellipse,rgba(${m.color},${m.strength}) 0%,rgba(${m.color},0) 70%)`:'none';if(this.moodHalo.style.background!==background)this.moodHalo.style.background=background;window.pixelCatLabelsV1?.update(this,m);}
-    this.setAttribute('data-mood',JSON.stringify(m));const readout=this.shadowRoot?.querySelector('.mood-readout');if(readout&&window.pixelCatLabelsV1?.visible(readout)){readout.textContent=text+' · seed '+m.seed+' · '+m.lastEvent;for(const input of this.shadowRoot.querySelectorAll('[data-mood]'))if(input!==document.activeElement)input.value=m.values[input.dataset.mood];}
-    const decisions=this.shadowRoot?.querySelector('.decision-readout');if(decisions&&window.pixelCatLabelsV1?.visible(decisions))decisions.textContent=(this.getAttribute('data-encounters')||'')+'\n'+(this.social?.trace||[]).slice(0,5).map(e=>JSON.stringify(e)).join('\n');
-  };
+if(typeof document==='undefined')return;
+if(!this.config.debug_mood&&!this.config.debug_names&&!this.config.debug_action_above&&!this.config.debug_name_below&&!this.config.debug_action_below&&this.config.debug_labels===false){this.moodHalo?.remove();this.moodHalo=null;}else if(this.svg&&this.layer){
+if(!this.moodHalo){const halo=document.createElement('div');halo.dataset.moodActor=this.ownerKey;halo.style.cssText=`position:absolute;left:0;top:0;width:${36*this.scale}px;height:${36*this.scale}px;pointer-events:none;border-radius:50%;`;this.layer.insertBefore(halo,this.svg);this.moodHalo=halo;}
+this.moodHalo.style.transform=this.svg.style.transform+` translate(${-6*this.scale}px,${-6*this.scale}px)`;
+window.pixelCatLabelsV1?.place(this);
+}
+if(!this.mood&&!this.config.debug_mood&&!this.config.debug_names&&!this.config.debug_action_above&&!this.config.debug_name_below&&!this.config.debug_action_below&&this.config.debug_labels===false)return;if(t<(this.moodDebugAt||0))return;this.moodDebugAt=t+200;
+const m=this.ensureMood().view(),text=`${m.label} · P ${m.values.playfulness.toFixed(2)} S ${m.values.sleepiness.toFixed(2)} A ${m.values.alertness.toFixed(2)} · ${m.held?'held':'drifting'}`;
+if(this.moodHalo){const background=this.config.debug_mood?`radial-gradient(ellipse,rgba(${m.color},${Math.min(.85,m.strength+.22)}) 0%,rgba(${m.color},0) 82%)`:'none';if(this.moodHalo.style.background!==background)this.moodHalo.style.background=background;window.pixelCatLabelsV1?.update(this,m);}
+this.setAttribute('data-mood',JSON.stringify(m));const readout=this.shadowRoot?.querySelector('.mood-readout');if(readout&&window.pixelCatLabelsV1?.visible(readout)){readout.textContent=text+' · seed '+m.seed+' · '+m.lastEvent;for(const input of this.shadowRoot.querySelectorAll('[data-mood]'))if(input!==document.activeElement)input.value=m.values[input.dataset.mood];}
+const decisions=this.shadowRoot?.querySelector('.decision-readout');if(decisions&&window.pixelCatLabelsV1?.visible(decisions))decisions.textContent=(this.getAttribute('data-encounters')||'')+'\n'+(this.social?.trace||[]).slice(0,5).map(e=>JSON.stringify(e)).join('\n');
+};
 
 })();
 (() => {
@@ -28594,7 +28601,10 @@ window.pixelCatScrollOverlayV1?.mount(this.layer,this.root);
 const visible=[...this.members].filter(m=>!document.hidden&&m.active&&!m.suspended&&!m.stranded&&m.isConnected&&m.href===location.pathname),active=visible.filter(m=>!m.paused&&!m.layoutPaused);this.layer.style.visibility=this.enabled&&visible.length?'visible':'hidden';
 this.controls(t);
 const dt=this.lastAt===undefined?0:Math.min(100,Math.max(0,t-this.lastAt));this.lastAt=t;if(!this.enabled||!visible.length){for(const p of this.props)if(p.node?.style)p.node.style.visibility='hidden';return;}if(active.length)this.time+=dt;
-if(!this.seeded&&active.length){if(!active.some(a=>a.config.dashboard_props&&a.config.show_home!==false&&a.config.home_mouse!==false))this.spawn(cat,'toy_mouse');this.spawn(cat,'ball');}window.pixelCatHomeLifeV1?.seedMice(this,active);
+if(!this.seeded&&active.length){const c=active.find(a=>a.config.dashboard_props)?.config||{};
+const mice=c.toy_mice??Number(!active.some(a=>a.config.dashboard_props&&a.config.show_home!==false&&a.config.home_mouse!==false));
+for(const [id,count] of [['toy_mouse',mice],['ball',c.toy_balls??1]])for(let i=0;i<Math.min(6,Math.floor(count));i++)this.spawn(cat,id);this.seeded=true;
+}window.pixelCatHomeLifeV1?.seedMice(this,active);
 for(const member of this.members)for(const s of member.surfaces||[])s.propPoints=[];
 for(const p of [...this.props]){
 if(window.pixelCatMouthV1?.carried?.(this,p,t,visible))continue;
@@ -28855,11 +28865,11 @@ rows.forEach((row,y)=>{for(let x=0;x<row.length;x++)if(row[x]!=='.'){left=Math.m
 const bounds={left,right,top,bottom};CAT_BOUNDS.set(rows,bounds);return bounds;
 };
 class PixelCatHome extends HTMLElement {
-static getStubConfig(){return {type:'custom:pixel-cat-home',life_stage:'adult',name:window.pixelCatPolishV1?.name(),color:window.pixelCatPolishV1?.colour(),primary_home:window.pixelCatPrimaryV1?.defaultPrimary()??true,bed_style:Math.random()<.5?'igloo':'simple',arrival:'igloo',show_controls:false,debug_labels:false,mood_behaviour:true,social_behaviour:true,interaction_behaviour:true,dashboard_props:true,prop_reactions:true,landing_reactions:true,startle_followups:true};}
+static getStubConfig(){return {type:'custom:pixel-cat-home',life_stage:'adult',cat_id:globalThis.crypto?.randomUUID?.()||Math.random().toString(36).slice(2),name:window.pixelCatPolishV1?.name(),color:window.pixelCatPolishV1?.colour(),primary_home:window.pixelCatPrimaryV1?.defaultPrimary()??true,bed_style:Math.random()<.5?'igloo':'simple',arrival:'igloo',show_controls:false,debug_labels:false,mood_behaviour:true,social_behaviour:true,interaction_behaviour:true,dashboard_props:true,prop_reactions:true,landing_reactions:true,startle_followups:true};}
 static async getConfigElement(){await customElements.whenDefined('pixel-cat-home-editor');return document.createElement('pixel-cat-home-editor');}
 constructor() { super(); this.attachShadow({mode:'open'}); this.config = {}; this.facing=1;this.onLayout = e => {window.pixelCatLayoutV1?.notify(this,e);window.pixelCatScrollV1?.mark(this,e);this.invalidate();}; this.onCardClick=event=>this.attractToClick(event); }
 setConfig(config) {
-this.creationColour||=window.pixelCatPolishV1?.colour()||'#222';this.config = {...config,color:config.color||this.creationColour,show_controls:config.show_controls??config.show_home!==false,use_surface_candidates:config.use_surface_candidates!==false,card_climbing:config.card_climbing!==false,native_vertical_surfaces:config.native_vertical_surfaces!==false}; this.worldScale = Math.max(1,Math.min(6,Math.round(config.cell_size || 2)));this.lifeStage=['kitten','adult','senior'].includes(config.life_stage)?config.life_stage:'adult';this.scale=this.worldScale*(this.lifeStage==='kitten'?.5:1);
+this.creationColour||=window.pixelCatPolishV1?.colour()||'#222';this.config = {interaction_behaviour:true,prop_reactions:true,landing_reactions:true,startle_followups:true,...config,color:config.color||this.creationColour,show_controls:config.show_controls??config.show_home!==false,use_surface_candidates:config.use_surface_candidates!==false,card_climbing:config.card_climbing!==false,native_vertical_surfaces:config.native_vertical_surfaces!==false}; this.worldScale = Math.max(1,Math.min(6,Math.round(config.cell_size || 2)));this.lifeStage=['kitten','adult','senior'].includes(config.life_stage)?config.life_stage:'adult';this.scale=this.worldScale*(this.lifeStage==='kitten'?.5:1);
 if (this.isConnected) { this.disconnectedCallback(); this.connectedCallback(); }
 }
 set hass(value) { this._hass = value;if(this.monitorCard)this.monitorCard.hass=value; }
@@ -28879,6 +28889,8 @@ const dropButton=document.createElement('button');dropButton.textContent='Try lo
 const actions=document.createElement('select');actions.setAttribute('aria-label','Preview refined action');for(const [value,label]of [['alertLying','Lying alert'],['lookdown','Sit and look down'],['sniff','Ground sniff'],['scratch','Ear scratch'],['yawn','Held yawn'],['meow','Meow'],['chatter','Chatter'],['sleep','Curled sleep'],['rub','Cheek rub - contact preview'],['bat','Bat - contact preview'],['wiggle','Pre-pounce butt wiggle'],['postScratch','Scratching post - contact preview'],['gallop','Gallop - stationary asset review'],['startle-front','Startle from in front'],['startle-behind','Startle from behind']]){const o=document.createElement('option');o.value=value;o.textContent=label;actions.append(o);}const preview=document.createElement('button');preview.textContent='Preview action';preview.onclick=()=>this.requestAction(actions.value);this.shadowRoot.querySelector('details').append(actions,preview);const reviewCanvas=document.createElement('canvas');reviewCanvas.className='gallop-preview';reviewCanvas.width=reviewCanvas.height=96;reviewCanvas.hidden=true;reviewCanvas.setAttribute('aria-label','Refined gallop asset preview');reviewCanvas.style.imageRendering='pixelated';this.shadowRoot.querySelector('details').append(reviewCanvas);
 const report=document.createElement('details');report.innerHTML='<summary>Surface report</summary><pre class="surface-report" style="font-size:10px;white-space:pre-wrap;max-height:220px;overflow:auto"></pre>';this.shadowRoot.querySelector('details').append(report);
 this.installPropControls();this.installMoodControls();
+const card=this.shadowRoot.querySelector('ha-card');
+if(card?.style){card.style.backgroundColor=this.config.card_color||'';card.style.borderColor=this.config.card_border_color||'';if(Number.isFinite(this.config.card_radius))card.style.borderRadius=Math.max(0,Math.min(40,this.config.card_radius))+'px';}
 this.renderHomeProp();
 this.shadowRoot.querySelectorAll('[data-debug]').forEach(input=>{input.checked=this.debug[input.dataset.debug];input.onchange=()=>{this.debug[input.dataset.debug]=input.checked;if(input.dataset.debug==='verticalSurfaces')this.invalidate();this.renderDebug();};});
 this.shadowRoot.querySelector('[data-action="explore"]').onclick = () => this.requestVisit(null,'prompted');
@@ -28980,7 +28992,7 @@ this.nextToyAt??=t+12000;if(!this.toyHuntRequested&&t<this.nextToyAt)return;this
 if(this.toyHuntRequested||Math.random()<(this.config.mood_behaviour?.15+.7*this.ensureMood().values.playfulness*(1-.6*this.ensureMood().values.sleepiness):.6)){if(t<(this.nextToyAttemptAt||0))return;this.nextToyAttemptAt=t+2000;this.beginToyHunt(t,this.toyHuntRequested);}
 }
 decisionLayer(){if(!this.config.mood_behaviour&&!this.config.social_behaviour&&!this.config.interaction_behaviour)return this.social;if(!this.social&&window.pixelCatDecisionsV1)this.social=new window.pixelCatDecisionsV1(this,()=>CAT_OWNERS,()=>CAT_ART);return this.social;}
-ensureMood(){return this.mood ||= new CatMood(this.ownerKey||this.config.cat_id||'cat',{...this.config.mood,seed:this.config.mood_seed});}
+ensureMood(){return this.mood ||= new CatMood(this.ownerKey||this.config.cat_id||'cat',{...this.config.mood,baseline:{...({playful:{playfulness:.7},relaxed:{sleepiness:.6},alert:{alertness:.65}})[this.config.mood_preset],...this.config.mood?.baseline},seed:this.config.mood_seed});}
 installMoodControls(){
 const box=document.createElement('details');box.className='mood-controls';box.innerHTML='<summary>Mood & landing debug</summary><label><input type="checkbox" data-mood-glow> Mood glow</label><label><input type="checkbox" data-landing-reactions> React to nearby high landings</label><div class="mood-readout"></div>';
 const glow=box.querySelector('[data-mood-glow]'),reactions=box.querySelector('[data-landing-reactions]');glow.checked=!!this.config.debug_mood;reactions.checked=!!this.config.landing_reactions;
@@ -29267,7 +29279,7 @@ this.motion={fromX:this.x,fromY:this.y,x,y,duration,kind,target,start:t,directio
 window.pixelCatExertionV1?.launch(this,this.motion);
 if(kind==='walk') {
 const cells=Math.round(Math.abs(x-this.x)/this.scale);
-const speed=travelSpeed(this.config,this.urgency); // same cell clock controls stride and displacement
+const speed=travelSpeed(this.config,this.urgency)*(this.urgency==='casual'&&this.config.casual_speed==null||this.urgency==='relaxed'&&this.config.relaxed_speed==null&&this.config.walk_speed==null?.9+.2*(this.social?.traits?.curiosity??.5):1); // same cell clock controls stride and displacement
 Object.assign(this.motion,{cells,stepMs:1000/speed,...walkTimings(cells,this.config,this.urgency),gaitStart:this.walkSteps,headStart:this.walkHeadPhase??this.walkSteps,headSeed:this.headSeed??=Math.floor(Math.random()*12)});
 if(fast){const rate=Math.max(15,Math.min(30,Number(this.config.fast_walk_fps)||fast.fps||21));this.motion.fastClip=fast;this.motion.stepMs=1000/rate;this.motion.cumulativeMs=Array.from({length:cells},(_,i)=>(i+1)*1000/rate);this.motion.duration=cells*1000/rate;}
 if(gallop){this.motion.gallopTimeline=gallopTimeline(cells,CAT_ART,this.config,gallop);this.motion.duration=this.motion.gallopTimeline.at(-1).until;this.setAttribute?.('data-gait','gallop');}else this.setAttribute?.('data-gait',fast?'trot':gait==='sneak'?'sneak':this.urgency==='casual'?'casual':'walk');
@@ -29878,54 +29890,56 @@ window.pixelCatTreeV1={
 mount(a){
 const dock=a.shadowRoot?.querySelector('.dock'),s=a.worldScale||a.scale;
 if(!dock)return;
-const fits=a.config.test_cat_tree===true&&a.config.show_home!==false&&(a.config.show_scratching_post??a.config.scratching_posts??true)!==false&&dock.clientWidth>=(52+testTree.width)*s;
+const useTree=(a.config.post_type??(a.config.test_cat_tree===true?'tree':'post'))==='tree';
+const fits=useTree&&a.config.show_home!==false&&(a.config.show_scratching_post??a.config.scratching_posts??true)!==false&&dock.clientWidth>=(52+testTree.width)*s;
 if(!fits){if(a.catTree){a.catTree.node.remove();delete a.catTree;}if(dock.style?.getPropertyValue('--test-tree-height'))dock.style.removeProperty('--test-tree-height');return;}
 if(a.catTree?.node.parentNode===dock&&a.catTree.scale===s)return;
 a.catTree?.node.remove();
+const model=String(a.config.tree_levels)==='1'?{...testTree,height:36,platforms:testTree.platforms.slice(0,1).map(p=>({...p,top:p.top-34})),ropes:testTree.ropes.slice(0,1).map(r=>({...r,top:r.top-34,bottom:r.bottom-34})),pivot:{...testTree.pivot,y:testTree.pivot.y-34}}:testTree;
 const node=document.createElement('div'),canvas=document.createElement('canvas'),toy=document.createElement('canvas');
 node.setAttribute('role','group');node.setAttribute('aria-label','Cat tree with hanging ball');
-node.style.cssText='position:absolute;bottom:0;right:0;pointer-events:none;width:'+testTree.width*s+'px;height:'+testTree.height*s+'px';
-canvas.width=testTree.width;canvas.height=testTree.height;
+node.style.cssText='position:absolute;bottom:0;right:0;pointer-events:none;width:'+model.width*s+'px;height:'+model.height*s+'px';
+canvas.width=model.width;canvas.height=model.height;
 canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated';
 const c=canvas.getContext('2d');
 const paint=(x,y,w,h,colour)=>{c.fillStyle=colour;c.fillRect(x,y,w,h);};
-paint(9,67,52,2,'#ab7135');paint(11,69,48,1,'#754726');
-for(const r of testTree.ropes){
+paint(9,model.height-3,52,2,'#ab7135');paint(11,model.height-1,48,1,'#754726');
+for(const r of model.ropes){
 paint(r.left,r.top,r.right-r.left,r.bottom-r.top,'#ad9969');
 paint(r.left+1,r.top,r.right-r.left-2,r.bottom-r.top,'#d7c490');
 for(let y=r.top+1;y<r.bottom;y+=3)paint(r.left+1,y,r.right-r.left-2,1,'#e5d6ab');
 }
-for(const p of testTree.platforms){
+for(const p of model.platforms){
 paint(p.left,p.top,p.right-p.left,1,'#c58d4b');
 paint(p.left-1,p.top+1,p.right-p.left+2,3,'#ab7135');
 paint(p.left,p.top+4,p.right-p.left,1,'#754726');
 }
-toy.width=7;toy.height=15;toy.style.cssText='position:absolute;image-rendering:pixelated;transform-origin:50% 0;left:'+(testTree.pivot.x-3.5)*s+'px;top:'+testTree.pivot.y*s+'px;width:'+7*s+'px;height:'+15*s+'px';
+toy.width=7;toy.height=15;toy.style.cssText='position:absolute;image-rendering:pixelated;transform-origin:50% 0;left:'+(model.pivot.x-3.5)*s+'px;top:'+model.pivot.y*s+'px;width:'+7*s+'px;height:'+15*s+'px';
 const b=toy.getContext('2d');b.fillStyle='#754726';b.fillRect(3,0,1,10);b.fillStyle='#ab7135';b.fillRect(1,10,5,4);b.fillStyle='#c58d4b';b.fillRect(2,9,3,4);
-const ropeHosts=testTree.ropes.map(r=>{
+const ropeHosts=model.ropes.map(r=>{
 const host=document.createElement('div');
 host.style.cssText='position:absolute;pointer-events:none;left:'+r.left*s+'px;top:'+r.top*s+'px;width:'+(r.right-r.left)*s+'px;height:'+(r.bottom-r.top)*s+'px';
 return host;
 });
 const ball=document.createElement('button');ball.type='button';ball.dataset.catTreeBall='';ball.setAttribute('aria-label','Sway the hanging ball');
-ball.style.cssText='position:absolute;pointer-events:auto;touch-action:manipulation;margin:0;padding:0;border:0;background:transparent;left:'+(testTree.pivot.x-12)*s+'px;top:'+(testTree.pivot.y+testTree.length-8)*s+'px;width:'+24*s+'px;height:'+24*s+'px';
+ball.style.cssText='position:absolute;pointer-events:auto;touch-action:manipulation;margin:0;padding:0;border:0;background:transparent;left:'+(model.pivot.x-12)*s+'px;top:'+(model.pivot.y+model.length-8)*s+'px;width:'+24*s+'px;height:'+24*s+'px';
 ball.onclick=event=>{event.stopPropagation();this.tap(a);};
-node.append(canvas,...ropeHosts,toy,ball);dock.append(node);dock.style.setProperty('--test-tree-height',(testTree.height+24)*s+'px');
-a.catTree={node,canvas,toy,ropeHosts,scale:s,pass:new WeakMap(),clock:0,impulses:[]};
+node.append(canvas,...ropeHosts,toy,ball);dock.append(node);dock.style.setProperty('--test-tree-height',(model.height+24)*s+'px');
+a.catTree={node,canvas,toy,ropeHosts,scale:s,model,pass:new WeakMap(),clock:0,impulses:[]};
 },
 geometry(a){
 const tree=a.catTree,h=a.home;if(!tree||!h||tree.node.isConnected===false)return null;
-return {tree,s:tree.scale,x:h.right+4-testTree.width*tree.scale,y:h.top-testTree.height*tree.scale};
+const model=tree.model||testTree;return {tree,model,s:tree.scale,x:h.right+4-model.width*tree.scale,y:h.top-model.height*tree.scale};
 },
 surfaces(a){
 const g=this.geometry(a);if(!g)return;
-const {tree,s,x,y}=g,r=a.home.rectSnapshot;
-for(const [level,p] of testTree.platforms.entries()){
+const {tree,s,x,y,model}=g,r=a.home.rectSnapshot;
+for(const [level,p] of model.platforms.entries()){
 a.surfaces.push({id:p.id,el:tree.node,rectNode:a.home.rectNode,rectSnapshot:r,left:x+p.left*s,right:x+p.right*s,top:y+p.top*s,label:p.label,source:'authored tree',tree:level+1});
 }
 },
 face(a,level=1){
-const g=this.geometry(a),r=testTree.ropes[level-1];if(!g||!r)return null;
+const g=this.geometry(a),r=g?.model.ropes[level-1];if(!g||!r)return null;
 const {s,x,y}=g,centre=x+(r.left+r.right)*s/2;
 const rect={left:x+r.left*s,right:x+r.right*s,top:y+r.top*s,bottom:y+r.bottom*s};
 return {id:'home:test-tree:rope:'+level,rect,grips:{left:centre,right:centre,top:rect.top+2*s,bottom:rect.bottom-2*s},generation:0};
@@ -29937,7 +29951,7 @@ return window.pixelCatCardClimbV1?.treeRoute(a,target,origin);
 tap(a,t=performance.now()){
 const tree=a.catTree;if(!tree)return;
 this.impact(tree,.85);
-const g=this.geometry(a),ballX=g&&g.x+testTree.pivot.x*g.s,ballY=g&&g.y+(testTree.pivot.y+testTree.length)*g.s;
+const g=this.geometry(a),ballX=g&&g.x+g.model.pivot.x*g.s,ballY=g&&g.y+(g.model.pivot.y+g.model.length)*g.s;
 for(const [cat,entry] of a.decisionLayer()?.owners?.()||[[a,{root:a.root}]]){
 if(entry.root!==a.root||!cat.active||cat.paused||cat.suspended||cat.layoutPaused||cat.stranded||cat.userHeld||cat.motion||cat.climb||cat.previewPose)continue;
 const idle=cat.idle;if(!idle)continue;
@@ -29967,7 +29981,7 @@ const g=this.geometry(a);if(!g)return;
 const {tree,s,x,y}=g,raw=t-(tree.last??t);tree.last=t;
 if(a.paused||a.layoutPaused||a.suspended||a.stranded||raw>1000)return;
 tree.clock+=Math.max(0,Math.min(50,raw));
-const bx=x+testTree.pivot.x*s,by=y+(testTree.pivot.y+testTree.length)*s;
+const bx=x+g.model.pivot.x*s,by=y+(g.model.pivot.y+g.model.length)*s;
 for(const [cat,entry] of a.decisionLayer()?.owners?.()||[[a,{root:a.root}]]){
 if(entry.root!==a.root||!cat.active||cat.paused||cat.suspended||cat.userHeld||cat.layoutPaused)continue;
 const placement=cat.social?.frame?.placement,cx=(placement?.x??cat.x)+12*cat.scale,cy=(placement?.top??cat.y-24*cat.scale)+14*cat.scale;
@@ -30222,7 +30236,7 @@ cancel(a,reason,ground=true){if(reason==='removed')window.pixelCatClimbMarksV1?.
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"875bf44670e838fce586d93be5c0a762e51209588501f10b3032e6338d3c3eb4"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"b5110a43c41cd74de7a8601bf9cc5fa1ee4d6e5d80ec72bdd06a9dee15ba8645"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0");
 })();

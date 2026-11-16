@@ -26,7 +26,7 @@ window.pixelCatFloorShadowV1={
   entry.furnitureKey=key;entry.holes='';entry.view.dirty=true;
   if(!key)return;
   const art=window.pixelCatRoamingExtrasV1;
-  const bed=window.pixelCatSetupV1?.bed(a,art||{}),bowl=art?.homeProps?.bowl;
+  const bed=window.pixelCatSetupV1?.bed(a,art||{}),bowl=a.config.include_bowl!==false&&art?.homeProps?.bowl;
   for(const [asset,offset,bottom]of [[bed,22,h.top+(style==='simple'?s:0)],[bowl,7,h.top]]){
    if(asset)entry.holes+=`M${h.left-4+offset*s} ${bottom-asset.height*s}h${asset.width*s}v${asset.height*s}h-${asset.width*s}Z`;
   }

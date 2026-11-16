@@ -48,15 +48,15 @@ class CatDecisions {
  companyOptions(){const a=this.actor,options=[];for(const m of this.memory.values()){if(!['loaf','sleep'].includes(m.pose))continue;const b=this.peers().find(b=>b.ownerKey===m.id);if(!b||this.scene.has(b)||this.scene.has(a))continue;const surface=a.surfaces.find(s=>s.el===m.surface&&Math.abs(s.top-m.surfaceTop)<2&&!s.narrow&&!s.home&&(!s.poses?.length||s.poses.includes('loaf')));if(!surface||!a.pathTo(surface)||!a.pathTo(a.home,surface))continue;
    const gap=6*Math.max(a.scale,m.scale);for(const x of [m.x-24*a.scale-gap,m.x+24*m.scale+gap]){const snapped=Math.round(x/a.scale)*a.scale;if(this.clear(surface,snapped)&&(!sameSupport(surface,a.support)||this.corridor(surface,snapped)))options.push({kind:'company',target:b,surface,x:snapped,observed:{...m}});}
   }return options;}
- chaseOptions(){const a=this.actor;if(a.support?.narrow||a.support?.home||a.support.max-a.support.min<100*a.scale)return [];const options=[];
-  for(const m of this.memory.values()){const b=this.peers().find(b=>b.ownerKey===m.id);if(!b||!this.visible?.has(m.id)||!b.config.social_behaviour||!b.social.available(b)||!this.available(a)||this.scene.has(a)||this.scene.has(b)||b.social.clock<b.social.nextSocial||['loaf','sleep'].includes(m.pose)||!sameSupport(a.support,b.support))continue;
+ chaseOptions(){const a=this.actor;if(a.config.chasing===false||a.support?.narrow||a.support?.home||a.support.max-a.support.min<100*a.scale)return [];const options=[];
+  for(const m of this.memory.values()){const b=this.peers().find(b=>b.ownerKey===m.id);if(!b||!this.visible?.has(m.id)||!b.config.social_behaviour||b.config.chasing===false||!b.social.available(b)||!this.available(a)||this.scene.has(a)||this.scene.has(b)||b.social.clock<b.social.nextSocial||['loaf','sleep'].includes(m.pose)||!sameSupport(a.support,b.support))continue;
    // Both must have actually noticed the other. This is an invitation, not a rear ambush.
    if(!b.social.visible?.has(a.ownerKey))continue;const away=Math.sign(m.x-a.x);if(!away)continue;const s=b.support,x=Math.round(Math.max(s.min,Math.min(s.max,b.x+away*36*b.scale))/b.scale)*b.scale;
    if(away*(x-b.x)<12*b.scale||!b.social.corridor(s,x,[a]))continue;options.push({kind:'chase',target:b,surface:a.support,away,runnerX:x});
   }return options;
  }
  decide(t){const a=this.actor;if(!this.available(a)||this.episode)return false;const v=a.ensureMood().values,weights=decisionWeights(v),options=[{kind:'explore',weight:weights.explore},{kind:'settle',weight:weights.settle}];
-  if(a.config.social_behaviour&&this.clock>=this.nextSocial){const company=this.companyOptions(),chase=this.chaseOptions();if(company.length)options.push({...company[Math.floor(a.ensureMood().random()*company.length)],weight:weights.company});if(chase.length)options.push({...chase[Math.floor(a.ensureMood().random()*chase.length)],weight:weights.chase});}
+  if(a.config.social_behaviour&&this.clock>=this.nextSocial){const company=a.config.quiet_company===false?[]:this.companyOptions(),chase=this.chaseOptions();if(company.length)options.push({...company[Math.floor(a.ensureMood().random()*company.length)],weight:weights.company*(.5+(this.traits?.sociability??.5))});if(chase.length)options.push({...chase[Math.floor(a.ensureMood().random()*chase.length)],weight:weights.chase});}
   for(const option of options)option.weight*=window.pixelCatPostRestV1?.choiceWeight(a,option.kind)??1;
   const chosen=sampleDecision(options,()=>a.ensureMood().random(),a);this.log(chosen.kind,{weights:options.map(p=>({kind:p.kind,weight:p.weight})),target:chosen.target?.ownerKey});
   if(chosen.kind==='explore')return false;
