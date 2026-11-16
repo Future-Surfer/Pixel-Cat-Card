@@ -67,8 +67,8 @@ class CatDecisions {
  startCompany(option,t){const a=this.actor;if(this.scene.has(a)||this.scene.has(option.target)||!this.clear(option.surface,option.x))return false;const path=a.pathTo(option.surface);if(!path)return false;
   this.episode={...option,started:this.clock,stage:'approach',expires:this.clock+22000};this.scene.set(a,this.episode);a.route=[...path,{settle:true,surface:option.surface,x:option.x}];a.destinationId=option.surface.id;a.destinationPoint='quiet-company';a.urgency='relaxed';a.deadline=0;this.log('company approach',{target:option.target.ownerKey});return true;
  }
- startChase(option,t){const a=this.actor,b=option.target;if(!this.available(a)||!b.social.available(b)||this.scene.has(a)||this.scene.has(b))return false;
-  const v=b.ensureMood().values,response=sampleDecision([{kind:'ignore',weight:.8+2*v.sleepiness},{kind:'watch',weight:.4+v.alertness},{kind:'run',weight:(.25+2*v.playfulness*(1-.8*v.sleepiness))*(window.pixelCatPostRestV1?.choiceWeight(b,'chase')??1)}],()=>b.ensureMood().random(),b).kind;
+ startChase(option,t,reply){const a=this.actor,b=option.target;if(!this.available(a)||!b.social.available(b)||this.scene.has(a)||this.scene.has(b))return false;
+  const v=b.ensureMood().values,response=reply||sampleDecision([{kind:'ignore',weight:.8+2*v.sleepiness},{kind:'watch',weight:.4+v.alertness},{kind:'run',weight:(.25+2*v.playfulness*(1-.8*v.sleepiness))*(window.pixelCatPostRestV1?.choiceWeight(b,'chase')??1)}],()=>b.ensureMood().random(),b).kind;
   b.social.log('chase invitation '+response,{source:a.ownerKey});this.nextSocial=this.clock+25000;b.social.nextSocial=b.social.clock+25000;
   if(response!=='run'){if(response==='watch'){const known=b.social.memory.get(a.ownerKey);if(known)b.facing=known.x>b.x?1:-1;b.previewPose='glance';b.forcedIdleUntil=t+1600;b.deadline=b.forcedIdleUntil;if(b.idle)b.idle.poseUntil=t;}a.deadline=t+2000;return true;}
   if(!b.social.corridor(b.support,option.runnerX,[a]))return false;

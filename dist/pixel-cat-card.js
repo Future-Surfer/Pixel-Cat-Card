@@ -27562,8 +27562,8 @@ class CatDecisions {
  startCompany(option,t){const a=this.actor;if(this.scene.has(a)||this.scene.has(option.target)||!this.clear(option.surface,option.x))return false;const path=a.pathTo(option.surface);if(!path)return false;
   this.episode={...option,started:this.clock,stage:'approach',expires:this.clock+22000};this.scene.set(a,this.episode);a.route=[...path,{settle:true,surface:option.surface,x:option.x}];a.destinationId=option.surface.id;a.destinationPoint='quiet-company';a.urgency='relaxed';a.deadline=0;this.log('company approach',{target:option.target.ownerKey});return true;
  }
- startChase(option,t){const a=this.actor,b=option.target;if(!this.available(a)||!b.social.available(b)||this.scene.has(a)||this.scene.has(b))return false;
-  const v=b.ensureMood().values,response=sampleDecision([{kind:'ignore',weight:.8+2*v.sleepiness},{kind:'watch',weight:.4+v.alertness},{kind:'run',weight:(.25+2*v.playfulness*(1-.8*v.sleepiness))*(window.pixelCatPostRestV1?.choiceWeight(b,'chase')??1)}],()=>b.ensureMood().random(),b).kind;
+ startChase(option,t,reply){const a=this.actor,b=option.target;if(!this.available(a)||!b.social.available(b)||this.scene.has(a)||this.scene.has(b))return false;
+  const v=b.ensureMood().values,response=reply||sampleDecision([{kind:'ignore',weight:.8+2*v.sleepiness},{kind:'watch',weight:.4+v.alertness},{kind:'run',weight:(.25+2*v.playfulness*(1-.8*v.sleepiness))*(window.pixelCatPostRestV1?.choiceWeight(b,'chase')??1)}],()=>b.ensureMood().random(),b).kind;
   b.social.log('chase invitation '+response,{source:a.ownerKey});this.nextSocial=this.clock+25000;b.social.nextSocial=b.social.clock+25000;
   if(response!=='run'){if(response==='watch'){const known=b.social.memory.get(a.ownerKey);if(known)b.facing=known.x>b.x?1:-1;b.previewPose='glance';b.forcedIdleUntil=t+1600;b.deadline=b.forcedIdleUntil;if(b.idle)b.idle.poseUntil=t;}a.deadline=t+2000;return true;}
   if(!b.social.corridor(b.support,option.runnerX,[a]))return false;
@@ -27746,7 +27746,7 @@ class CatInteractions extends CatDecisions{
    const seconds=a.motion.duration/1000;x=Math.round((predictRolling(m,seconds,p.scale)-a.toyPaw(direction)*a.scale)/a.scale)*a.scale;const motion=a.motion,refined={...motion,x},profile=this.corridor(a.support,x)&&a.planJump(refined);if(profile)Object.assign(motion,{x,jumpProfile:profile,duration:profile.duration});else{x=motion.x;this.log('prediction refinement unavailable');}ep.stage='land';ep.x=x;ep.offset=x-a.support.left;this.log('intercept committed',{target:p.id,x,observedAt:m.observedAt});
   }else if(ep.stage==='land'){const frame=this.frame,anchor=this.art().leapAnchors.across.at(-1).point,point={x:(frame?.placement.x??a.x)+(a.toyPaw(a.facing)+.5)*a.scale,y:(frame?.placement.top??a.support.top-24*a.scale)+(anchor[1]+.5)*a.scale},hit=a.propScene.strikeBall(p.id,a.ownerKey,point,a.facing,.5,true);this.log('prop intercept '+(hit?'contact':'miss'),{target:p.id,point});p.lastInteractor=a.ownerKey;this.finish(hit?'intercept contact':'intercept missed');a.deadline=t+1800;}
  }
- startChase(option,t){const ok=super.startChase(option,t),ep=this.episode;if(ok&&this.enabled()&&ep?.kind==='chase'){ep.interaction=true;ep.worldExpires=this.world.clock+10000;ep.runnerInterest=this.clock+1500+2500*option.target.ensureMood().random();ep.rolesSwapped=false;}return ok;}
+ startChase(option,t,reply){const ok=super.startChase(option,t,reply),ep=this.episode;if(ok&&this.enabled()&&ep?.kind==='chase'){ep.interaction=true;ep.worldExpires=this.world.clock+10000;ep.runnerInterest=this.clock+1500+2500*option.target.ensureMood().random();ep.rolesSwapped=false;}return ok;}
  advanceChase(t){const a=this.actor,ep=this.episode;if(!ep||a!==ep.chaser)return super.advance(t);const b=ep.runner;if(this.world.clock>=ep.worldExpires){this.finish('shared chase horizon');return;}
   if(window.pixelCatDashboardChaseV1?.advance(this,t))return;
   if(!this.available(a,true)||!b.social.available(b,true)||!b.config.interaction_behaviour||!sameSupport(a.support,b.support)){this.finish('chase interrupted');return;}
@@ -30608,7 +30608,7 @@ window.pixelCatDashboardChaseV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"d17ed287a7680a6d90599f2df81e3bb4a29d7c7b83ecbc97b0b55dc318ee27e5"});
+window.pixelCatCardRelease=Object.freeze({version:"1.0.0",sourceHash:"e998eb0ca35e030d04a41cb0f59f0cbd72ddec839179b3358f36e0be90992a27"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.0.0");
 })();

@@ -1,12 +1,32 @@
 import '../pixel-cat-roaming-art.js';import '../pixel-cat-roaming-extras.js';import '../pixel-cat-affordances.js';import '../pixel-cat-behaviours.js';import '../pixel-cat-roaming.js';
 import '../pixel-cat-dashboard-chase.js';
-import {LabMetrics} from './gaze-perception.js';
+import {LabMetrics,worldGaze,targetVisibility} from './gaze-perception.js';
 const $=s=>document.querySelector(s),cats=[$('#cat-one'),$('#cat-two')],metrics=new LabMetrics();let cost=0,last=null,ui=0,paused=false,chaseTrial=null,resetTimer;
 for(const [i,a]of cats.entries()){
  a.setConfig({cat_id:'social-lab-'+i,name:i?'Juniper':'Miso',color:i?'#d9a261':'#d6e0e8',cell_size:2,mood_behaviour:true,social_behaviour:true,interaction_behaviour:true,mood_enabled:true,debug_mood:true,playful_pounces:false,toy_hunting:false,dashboard_props:false,prop_reactions:true,startle_followups:true,standard_surfaces:false,click_attention:false,mood_seed:7+i});
  instrument(a);
 }
-function instrument(a){const tick=a.tick.bind(a);a.tick=t=>{if(a.labHold?.until>t&&a.idle?.pose===a.labHold.pose&&!a.social?.episode){a.idle.poseUntil=a.labHold.until;a.deadline=a.labHold.until;}const start=performance.now();tick(t);cost+=performance.now()-start;};}
+function instrument(a){
+ const tick=a.tick.bind(a);
+ a.tick=t=>{
+  const held=a.labHold?.until>t&&!a.social?.episode;
+  if(held&&chaseTrial?.waiting&&(a===cats[0]||a===cats[1])){
+   // Keep the two test actors staged through a dashboard geometry refresh.
+   const peer=a===cats[0]?cats[1]:cats[0];
+   a.facing=Math.sign(peer.x-a.x)||a.facing;
+   a.deadline=a.labHold.until;
+   a.route=[];
+   a.motion=null;
+  }
+  if(held&&a.idle?.pose===a.labHold.pose){
+   a.idle.poseUntil=a.labHold.until;
+   a.deadline=a.labHold.until;
+  }
+  const start=performance.now();
+  tick(t);
+  cost+=performance.now()-start;
+ };
+}
 function reset(kind,ready){
  clearTimeout(resetTimer);
  chaseTrial=null;
@@ -18,7 +38,7 @@ function reset(kind,ready){
  if(ready){say('Setting up the chase…');resetTimer=setTimeout(()=>{reset(kind);ready();},350);return;}
  for(const a of cats)a.labHold=null;for(const a of cats)a.propScene?.clear();const now=performance.now(),seed=Number($('#seed').value)>>>0;paused=false;$('#pause-all').textContent='Pause all cats';
  for(const [i,a]of cats.entries()){
-  a.social?.dispose();a.social=null;a.mood=null;a.config.mood_seed=seed+i;a.config.dashboard_chasing=cross;a.cancelPlay();a.goal=a.command=null;a.route=[];a.motion=null;a.recallPending=false;a.finishing=false;a.previewPose=null;a.paused=false;a.nextLandingReactionAt=a.nextStartleAt=0;a.measure();a.config.mood_behaviour=a.config.social_behaviour=a.config.interaction_behaviour=$('#features').checked;a.config.debug_mood=$('#glow').checked;
+  a.social?.dispose();a.social=null;a.mood=null;a.config.mood_seed=seed+i;a.config.dashboard_chasing=cross;a.cancelPlay();a.goal=a.command=null;a.route=[];a.motion=null;a.recallPending=false;a.finishing=false;a.inspectionPending=null;a.previewBedPose=null;a.labPose=null;a.pendingStartle=null;a.startleAfter=null;a.previewPose=null;a.paused=false;a.nextLandingReactionAt=a.nextStartleAt=0;a.measure();a.config.mood_behaviour=a.config.social_behaviour=a.config.interaction_behaviour=$('#features').checked;a.config.debug_mood=$('#glow').checked;
   const s=a.surfaces.find(s=>s.el===$('#shared'));if(!s){$('#instruction').textContent='Waiting for shared surface measurement';return;}
   a.support=s;const position=chase&&i<2?Math.max(s.min,Math.min(s.max,s.max-(i?23:58)*a.scale)):s.min+(s.max-s.min)*(i===2?.12:i?.57:.28);a.x=Math.round(position/a.scale)*a.scale;a.y=s.top;a.facing=i?-1:1;a.idle=null;a.deadline=now+(kind==='explore'?0:i?18000:1800);a.urgency='relaxed';a.nextPlayAt=Infinity;a.decisionLayer();a.ensureMood();if(chase&&i<2){a.social.nextEncounter=a.social.clock+10000;a.social.observerProbeAt=a.social.clock+10000;}a.social.world.pairs.clear();a.social.world.events=[];
   const v=kind==='company'?(i?{playfulness:.1,sleepiness:.95,alertness:.1}:{playfulness:.15,sleepiness:.85,alertness:.2}):{playfulness:.95,sleepiness:.05,alertness:.35};for(const key of Object.keys(v))a.mood.set(key,v[key]);
@@ -37,11 +57,15 @@ for(const kind of ['chase','cross','blocked-chase'])$('#'+kind).onclick=()=>{
  $('#opportunity').value='chase';
  reset(kind,queueChase);
 };
+$('#replay-chase').onclick=()=>{
+ $('#opportunity').value='chase';
+ reset('chase',()=>queueChase(true));
+};
 const say=message=>{const status=$('#instruction');if(status.textContent!==message)status.textContent=message;};
-function queueChase(){
+function queueChase(scripted=false){
  if(!$('#features').checked){say('Turn on Mood & social decisions to try a chase.');return;}
- chaseTrial={until:(cats[0].social?.clock||0)+4500,waiting:true};
- say('Waiting for both cats to notice each other…');
+ chaseTrial={until:(cats[0].social?.clock||0)+4500,waiting:true,scripted};
+ say(scripted?'Replay: waiting for both cats to notice each other…':'Waiting for both cats to notice each other…');
 }
 function updateChase(t){
  const trial=chaseTrial;
@@ -61,20 +85,29 @@ function updateChase(t){
   return;
  }
  const option=layer.chaseOptions()[0];
- if(option&&layer.startChase(option,t)){
+ if(option&&layer.startChase(option,t,trial.scripted?'run':undefined)){
   const reply=option.target.social.trace.find(event=>event.kind.startsWith('chase invitation '))?.kind;
   if(layer.episode?.kind==='chase'){
    trial.waiting=false;trial.episode=layer.episode;
-   say('Juniper accepted. Watch the dash!');
+   say(trial.scripted?'Replay: Juniper accepted. Watch the dash!':'Juniper accepted. Watch the dash!');
   }else{
    say(reply==='chase invitation watch'?'Juniper chose to watch. Try a different seed for another response.':'Juniper ignored the invitation. Try a different seed for another response.');
    chaseTrial=null;
   }
  }else if(layer.clock>=trial.until){
   const mutual=layer.visible?.has(b.ownerKey)&&b.social.visible?.has(a.ownerKey);
-  say(mutual?'The cats noticed each other, but there wasn’t room for a chase or one was busy. Reset the scene and try again.':'The cats didn’t both notice each other. Reset a chase scene to try again.');
+  say(mutual?'The cats noticed each other, but there wasn’t room for a chase or one was busy.':`Miso → Juniper: ${sight(a,b)}. Juniper → Miso: ${sight(b,a)}.`);
   chaseTrial=null;
  }
+}
+function sight(a,b){
+ if(a.social.visible?.has(b.ownerKey))return 'noticed';
+ const frame=a.social.frame;
+ if(!frame)return 'no visible pose yet';
+ const range=Math.max(24,Math.min(240,Number(a.config.social_sight_cells)||110))*a.scale;
+ const eye=worldGaze(frame.gaze,frame.placement,a.scale,frame.facing,range);
+ const result=targetVisibility(eye,{x:b.x+12*b.scale,y:b.y-12*b.scale,width:20*b.scale,height:22*b.scale});
+ return result.visible?'in view, still noticing':result.reason;
 }
 // Explicit lab placement can put props on the reset surface even when the home route is absent.
 function fixtureProp(a,id){const scene=a.ensurePropScene(),asset=window.pixelCatRoamingExtrasV1.dashboardProps.find(p=>p.id===id),s=a.support;if(!asset||!s)return null;const node=document.createElement('canvas');node.width=asset.width;node.height=asset.height;node.style.cssText='position:absolute;image-rendering:pixelated;pointer-events:none';node.style.width=asset.width*a.scale+'px';node.style.height=asset.height*a.scale+'px';const p={id:'fixture-'+(++scene.serial),asset,node,surfaceEl:s.el,surfaceSuffix:s.id.slice(s.id.indexOf(':')),scale:a.scale,u:.5,low:.1,high:.9,direction:1,moving:id==='toy_mouse',mouseSeed:7,cooldownUntil:0,claimedBy:null};node.dataset.propId=p.id;node.dataset.assetId=id;node.dataset.origin=asset.origin;scene.props.push(p);scene.layer.append(node);scene.enabled=scene.seeded=true;return p;}
