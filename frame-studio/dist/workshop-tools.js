@@ -9,6 +9,7 @@ export const workshopGroups=[
 const entries=[
  ['sequences','create','Sequences','Draw pixels, timing, gaze, contacts and independent tracks.','studio','sequences','animation frames editor export json png sprite sheet spritesheet'],
  ['props','create','Props','Draw furniture and toys; inspect colours, families and variants.','studio','props','post bed mouse catalogue export json'],
+ ['editor-workbench','create','Editor Workbench','Rearrange the live card editor, edit descriptions and leave contextual notes for review.','lab','prototype/editor-workbench.html','ui editor settings copy layout design notes'],
  ['climb','create','Climb workshop','Edit upright poses, grip contacts and per-frame height gain.','lab','prototype/climb-lab.html','wall jump motion climbing ai draft'],
  ['trees','create','Cat-tree workshop','Generate seeded trees and edit component pixels, sockets, standing spans and depth guides.','lab','prototype/tree-lab.html','cat tree generator furniture components props editor platforms houses beds'],
  ['test-cat-tree','simulate','Cat tree testing','Try the fixed tree in the real card and replay climbs, leaps and hanging-ball motion.','lab','prototype/test-cat-tree-lab.html','tree rope ball pendulum adult'],
