@@ -24,7 +24,9 @@ const geometry=(a,owner,floor=a.support)=>{
  const node=owner.shadowRoot?.querySelector('[data-cat-bed]');
  if(!floor||!owner.home||!node||node.isConnected===false||owner.config.show_home===false||owner.config.include_bed===false||owner.config.bed_style!=='box')return null;
  const s=a.scale,cell=owner.worldScale||owner.scale,left=owner.home.left-4+22*cell,right=left+asset.width*cell;
- return {floor,node,s,cell,left,right,rim:floor.top-6*cell,centre:(left+right)/2};
+ // The furniture canvas sits one CSS pixel above the dock's floor border.
+ const bottom=floor.top-1;
+ return {floor,node,s,cell,left,right,rim:bottom-6*cell,upperEdge:bottom-asset.height*cell,centre:(left+right)/2};
 };
 const anchor=(g,column,facing)=>facing>0?g.left-column*g.s:g.right-(24-column)*g.s;
 const clear=(a,g,x)=>x>=g.floor.min&&x<=g.floor.max&&a.social?.clear?.(g.floor,x)!==false;
@@ -40,7 +42,7 @@ const escape=(a,g,facing)=>{
  return null;
 };
 
-function foreground(a,g,x,top) {
+function foreground(a,g,x,top,tucked) {
  const svg=a.svg,ns='http://www.w3.org/2000/svg';
  if(a.boxMask?.svg!==svg){
   const defs=document.createElementNS(ns,'defs'),clip=document.createElementNS(ns,'clipPath'),path=document.createElementNS(ns,'path');
@@ -49,7 +51,7 @@ function foreground(a,g,x,top) {
  }
  const l=(g.left-x)/g.s,r=(g.right-x)/g.s,y=(g.rim-top)/g.s;
  // Everything above the rim and on either side can show through.
- a.boxMask.path.setAttribute('d',`M-100 -100H100V${y}H-100Z M-100 ${y}H${l}V100H-100Z M${r} ${y}H100V100H${r}Z`);
+ a.boxMask.path.setAttribute('d',tucked?'M0 0Z':`M-100 -100H100V${y}H-100Z M-100 ${y}H${l}V100H-100Z M${r} ${y}H100V100H${r}Z`);
  svg.firstElementChild.setAttribute('clip-path',`url(#${a.boxMask.clip.id})`);
 }
 
@@ -152,16 +154,20 @@ window.pixelCatBoxV1={
   return true;
  },
  render(a,g,state,t){
-  const phase=state.phase,clip=motion[phase],{index,progress}=sample(
-   phase==='peek'?state.elapsed%time(peekHolds):state.elapsed,clip?.holds||peekHolds);
+  const phase=state.phase,kitten=a.lifeStage==='kitten',tucked=kitten&&phase==='peek';
+  const clip=motion[phase],{index,progress}=sample(
+   tucked?0:phase==='peek'?state.elapsed%time(peekHolds):state.elapsed,clip?.holds||peekHolds);
   const rows=(clip?.frames||peek)[index],inside=g.centre-12*g.s;
   const facing=state.facing;
-  let x=inside,top=g.rim-15*g.s;
+  // The shallowest authored ear tips are on row 13. Put that full cell
+  // above the upper edge while the lower front lip still masks the body.
+  const restTop=kitten?g.rim-15*g.s:g.upperEdge-14*g.s;
+  let x=inside,top=restTop;
   if(phase==='entry'){
    x=fit(anchor(g,clip.columns[index],facing),g);
    const blend=Math.max(0,(index+progress-3)/2);
    x+=(inside-x)*blend;
-   top=g.floor.top-24*g.s+(g.rim-15*g.s-(g.floor.top-24*g.s))*blend;
+   top=g.floor.top-24*g.s+(restTop-(g.floor.top-24*g.s))*blend;
   }else if(phase==='exit'){
    const landing=escape(a,g,facing);
    const blend=Math.min(1,(index+progress)/3);
@@ -171,10 +177,11 @@ window.pixelCatBoxV1={
   a.x=x;a.y=g.floor.top;a.facing=facing;
   a.idle={pose:phase==='peek'?'loaf':'stand',start:t,poseUntil:t,rows,placement:{x,top},support:g.floor.id};
   a.draw(rows);a.svg.style.transform=`translate(${x}px,${top}px)`;
-  foreground(a,g,x,top);
-  a.setAttribute('data-pose','box-'+phase);
-  a.setAttribute('data-frame',`box-${phase}-${index+1}`);
-  a.setAttribute('data-sequence-id',`box-${phase}`);
+  foreground(a,g,x,top,tucked);
+  const shown=tucked?'rest':phase;
+  a.setAttribute('data-pose','box-'+shown);
+  a.setAttribute('data-frame',`box-${shown}-${index+1}`);
+  a.setAttribute('data-sequence-id',`box-${shown}`);
   a.setAttribute('data-frame-origin','human');
   a.status(poseFor[phase]);
  }

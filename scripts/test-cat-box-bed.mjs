@@ -16,7 +16,8 @@ assert.equal(box.asset.width,24);
 for(const scale of [1,2])for(const direction of [1,-1]){
  const svg=element(),bed=element(),floor={id:'home',left:4,right:250,top:150,min:0,max:200};
  svg.firstElementChild=element();
- const a={config:{bed_style:'box'},active:true,ownerKey:'box-test',scale,worldScale:2,
+ const kitten=scale===1,resting=kitten?'box-rest':'box-peek';
+ const a={config:{bed_style:'box'},lifeStage:kitten?'kitten':'adult',active:true,ownerKey:'box-test',scale,worldScale:2,
   support:floor,home:floor,facing:direction,x:direction>0?44-21*scale:92-3*scale,y:150,
   shadowRoot:{querySelector:()=>bed},svg,ensureMood:()=>({random:()=>0}),
   draw(rows){this.rows=rows;},status(){},setAttribute(key,value){this[key]=value;}};
@@ -30,12 +31,25 @@ for(const scale of [1,2])for(const direction of [1,-1]){
  const tick=()=>{t+=25;box.tick(a,t,25);poses.add(a['data-pose']);};
  while(t<1000)tick();
  assert.equal(a.bedInside,a);
- assert.equal(a['data-pose'],'box-peek');
+ assert.equal(a['data-pose'],resting);
  assert.ok(svg.firstElementChild.attrs['clip-path']);
- assert.ok(a.boxMask.path.attrs.d.includes('Z'));
+ if(kitten)assert.equal(a.boxMask.path.attrs.d,'M0 0Z','Kitten stays hidden while resting');
+ else {
+  let elapsed=0;
+  const upperEdge=floor.top-box.asset.height*a.worldScale-1;
+  for(const beat of art.beats){
+   a.boxBed.elapsed=elapsed;
+   box.tick(a,t,0);
+   const earRow=art.parts.head[beat.head].findIndex(row=>row.includes('#'));
+   assert.ok(a.idle.placement.top+(earRow+1)*scale<=upperEdge,'Each adult peek exposes at least one complete ear cell above the upper edge');
+   assert.notEqual(a.boxMask.path.attrs.d,'M0 0Z');
+   elapsed+=beat.hold*260;
+  }
+ }
+ a.boxBed.elapsed=0;
  a.command='explore';
  while(a.boxBed&&t<2100)tick();
- assert.deepEqual([...poses],['box-entry','box-peek','box-exit']);
+ assert.deepEqual([...poses],['box-entry',resting,'box-exit']);
  assert.equal(a.boxBed,null);
  assert.equal(a.boxClaim,null);
  assert.equal(a.bedInside,null);
@@ -51,7 +65,7 @@ for(const scale of [1,2])for(const direction of [1,-1]){
  delete a.config.arrival;
  box.arrive(a,t);
  assert.equal(a.bedInside,a);
- assert.equal(a['data-pose'],'box-peek','Startup begins inside without jumping in');
+ assert.equal(a['data-pose'],resting,'Startup begins inside without jumping in');
  box.cancel(a);
  box.arrive(a,t);
  assert.equal(a.boxBed,null,'Remeasuring an active cat cannot restart the arrival');
