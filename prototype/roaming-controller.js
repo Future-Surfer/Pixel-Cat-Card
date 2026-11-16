@@ -318,7 +318,7 @@ class PixelCatHome extends HTMLElement {
   observePreviewProps(){
     const dock=this.shadowRoot.querySelector('.dock');
     const layout=()=>{
-      window.pixelCatTreeV1?.mount(this);
+      window.pixelCatTreeV1?.mount(this,true);
       const ball=dock.querySelector('[data-cat-tree-ball]');
       if(ball)ball.disabled=true;
       window.pixelCatHomePostsV1?.sync(this,dock.clientWidth);

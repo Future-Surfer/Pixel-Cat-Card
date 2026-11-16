@@ -13,11 +13,13 @@ const testTree={
  pivot:{x:52,y:43},length:11
 };
 window.pixelCatTreeV1={
- mount(a){
-  const dock=a.shadowRoot?.querySelector('.dock'),s=a.worldScale||a.scale;
+ mount(a,preview){
+  const dock=a.shadowRoot?.querySelector('.dock');
   if(!dock)return;
   const useTree=(a.config.post_type??(a.config.test_cat_tree===true?'tree':'post'))==='tree';
-  const fits=useTree&&a.config.show_home!==false&&(a.config.show_scratching_post??a.config.scratching_posts??true)!==false&&dock.clientWidth>=(52+testTree.width)*s;
+  const available=dock.clientWidth/(52+testTree.width),scale=a.worldScale||a.scale;
+  const s=preview?Math.min(scale,available):scale;
+  const fits=useTree&&window.pixelCatHomePostsV1.visible(a)&&s>=1&&s<=available;
   if(!fits){if(a.catTree){a.catTree.node.remove();delete a.catTree;}if(dock.style?.getPropertyValue('--test-tree-height'))dock.style.removeProperty('--test-tree-height');return;}
   if(a.catTree?.node.parentNode===dock&&a.catTree.scale===s)return;
   a.catTree?.node.remove();
