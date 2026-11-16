@@ -1,13 +1,42 @@
-# Pixel Cat Card 1.0.0
+# Pixel Cat Card release notes
+
+## Unreleased
+
+*Working draft. Changes since v1.0.0.*
+
+### A home for your cat
+
+- **Cardboard box bed.** Cats start inside and can hop back in for a break. Adults peek over the rim. Kittens stay tucked inside until they hop out. You can also pick up a cat and drop them into an empty box.
+- Choose whether to include a bed, food bowl, and scratching post. Pick a plain post or a one- or two-level tree. The card preview shows the furniture as you change it.
+- Set the card background from solid to fully transparent, adjust the border and corners, and choose small scratching debris, full-pixel debris, or none.
+
+### A clearer editor
+
+- Set your cat's **Mood** to Natural, Playful, Relaxed, or Alert. Four **Personality** sliders separately set boldness, sociability, curiosity, and patience.
+- Choose quiet company and short chases independently. You can also set how many mice and balls to share and place the name and activity labels above or below your cat.
+- The optional on-card controls focus on **Pause / Resume**, **Spawn toy**, and **Come home**.
+
+### Roaming and animation
+
+- Cats can climb exposed card edges and leap onto a reachable card. Short wall jumps usually rebound back toward the side they came from. Descending grips use their own pose, and quiet rest poses transition more smoothly into walking.
+
+### Testing and tools
+
+- The dashboard-wide **Behaviour Lab** can focus cats on climbing and leaping, wall jumps, or yawning. It reports when walls or safe routes are unavailable.
+- The [Editor Workbench](guides/EDITOR_WORKBENCH.md) lets you rearrange settings and leave notes for review. The [MP4 demo](images/pixel-cat-routine.mp4) is available to share.
+
+<!-- Before publishing, revisit dashboard-wide chasing and procedural trees. Write up any changes that are ready and verify the upgrade from v1.0.0. -->
+
+## Pixel Cat Card 1.0.0
 
 First stable release for Home Assistant 2026.11 and later. Pixel Cat Card gives your dashboard a cat that can roam between cards, nap, scratch and play.
 
-## Before updating
+### Before updating
 
 - Add the repository through the Marketplace link in the README.
 - If you installed manually, follow the [migration guide](https://github.com/Future-Surfer/Pixel-Cat-Card/blob/main/docs/guides/PIXEL_CAT_INSTALL.md) before installing the Marketplace copy. Keep your card YAML and cat IDs.
 
-## Included
+### Included
 
 - One JavaScript bundle with the cat, props and editor.
 - Longer head-down holds and brief lifts when eating.
@@ -23,6 +52,6 @@ First stable release for Home Assistant 2026.11 and later. Pixel Cat Card gives 
 - Optional two-level cat tree with side climbing and a hanging ball you can tap.
 - Kittens can curl up beside a sleeping cat or try a playful pounce.
 
-## Verification
+### Verification
 
 The release assets include SHA-256 checksums. The release candidate was installed through Marketplace and verified with existing dashboards and the card editor. The upgrade to 1.0.0 will be checked on the same instance. Uninstall and reinstall are untested.
