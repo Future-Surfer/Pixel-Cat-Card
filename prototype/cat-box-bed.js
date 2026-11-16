@@ -77,14 +77,18 @@ window.pixelCatBoxV1={
  },
  restDuration(a){return 9000+7000*a.ensureMood().random();},
  dropTarget(a,x,y){
+  let best=null;
   for(const surface of a.surfaces||[]){
    const owner=surface.bedOwner||(surface===a.home?a:null);
    if(!owner||surface.bed||surface.foodOwner||surface.toyHomeOwner||owner!==a&&(!owner.active||owner.root!==a.root))continue;
    const g=geometry(a,owner,surface);
-   if(!g||x<g.left+2*g.cell||x>g.right-2*g.cell||y<g.rim-7*g.cell||y>g.rim+3*g.cell)continue;
-   if(this.canSettle(a,owner,g))return {surface,x:g.centre-12*g.s,box:owner,markerX:g.left+2*g.cell,markerY:g.rim,markerWidth:asset.width*g.cell-4*g.cell};
+   if(!g||x<g.left-2*g.cell||x>g.right+2*g.cell||y<g.rim-22*g.cell||y>g.rim+3*g.cell)continue;
+   const distance=Math.hypot(x-g.centre,y-g.rim);
+   if((!best||distance<best.distance)&&this.canSettle(a,owner,g)){
+    best={surface,x:g.centre-12*g.s,box:owner,markerX:g.left+2*g.cell,markerY:g.rim,markerWidth:(asset.width-4)*g.cell,distance};
+   }
   }
-  return null;
+  return best;
  },
  finishDrop(a,s,x,t,drag,owner){
   const g=geometry(a,owner,s);

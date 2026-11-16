@@ -64,8 +64,13 @@ const direction=actor();direction.svg.handlers.pointerdown(event('pointerdown',2
  a.ensureMood=()=>({random:()=>0});
  a.shadowRoot={querySelector:()=>bed};
  a.svg.firstElementChild=new Node();
+ const boxBed=box.window.pixelCatBoxV1;
+ assert.ok(!boxBed.dropTarget(a,66,342),'Far above the box keeps the ordinary drop target');
+ assert.ok(!boxBed.dropTarget(a,66,397),'Below the rim tolerance keeps the ordinary drop target');
+ assert.ok(!boxBed.dropTarget(a,95,354),'Adjacent floor beyond the side tolerance stays selectable');
+ assert.ok(boxBed.dropTarget(a,91,354)?.box===a,'A few pixels outside the artwork can still select the opening');
  a.svg.handlers.pointerdown(event('pointerdown',150,120));
- a.svg.handlers.pointerup(event('pointerup',66,388));
+ a.svg.handlers.pointerup(event('pointerup',66,354));
  assert.equal(a.dragState.box,a,'Releasing at the opening selects the box');
  for(let t=1016;t<4000&&a.userHeld;t+=16)drag.tick(a,t,art);
  assert.equal(a.userHeld,false);
