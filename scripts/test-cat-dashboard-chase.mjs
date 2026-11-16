@@ -81,4 +81,30 @@ for(const interruption of ['occupied','command','removed']){
  assert.equal(ep.dashboard.legs.size,0);
  if(interruption==='command'){assert.equal(chaser.command,'home');assert.equal(chaser.motion.kind,'jump');}
 }
+{
+ const {chaser,runner,ep}=fixture(),layer=chaser.social,view={counts:{}};
+ chaser.config.dashboard_chasing=runner.config.dashboard_chasing=false;
+ chaser.support.max=300;
+ chaser.x=64;
+ layer.episode=runner.social.episode=null;
+ chaser.decisionLayer=()=>layer;
+ layer.peers=()=>[runner];
+ layer.chaseOptions=()=>[];
+ assert.equal(chase.focus(chaser,10,view),0,'The focus leaves the normal decision clock running');
+ assert.equal(view.counts['Pairs staged'],1);
+ chase.focus(chaser,20,view);
+ assert.equal(view.counts.Invitations,undefined,'Staging alone cannot bypass mutual notice');
+ layer.chaseOptions=()=>[{target:runner}];
+ layer.startChase=(option,t,reply)=>{
+  assert.equal(reply,'run');
+  layer.episode=runner.social.episode=ep;
+  return true;
+ };
+ chase.focus(chaser,40,view);
+ assert.equal(view.counts.Invitations,1);
+ assert.equal(ep.labChase,view);
+ chase.resetFocus(view);
+ assert.equal(layer.episode,null);
+ assert.equal(view.chasePair,null);
+}
 console.log('PASS: optional transfers, reservations, observed landing only, two-transfer cap, lost gaze, unavailable return, occupancy and command cleanup.');

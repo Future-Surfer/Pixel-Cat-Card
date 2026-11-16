@@ -29,9 +29,11 @@
     ...scenarios.climb, label: 'Wall jump',
     offer(a,t,report) { return scenarios.climb.offer(a,t,report,'card-wall-jump'); }
   };
+  scenarios.chase={label:'Chase across cards',counters:['Pairs staged','Invitations','Crossings','Waiting for a shared runway','Lost sight']};
   window.pixelCatBehaviourLabV1 = {
     tick(a,t,art) {
       const v=views.get(a.root), focus=v&&v.path===location.pathname?v.focus:'';
+      if(focus==='chase')return window.pixelCatDashboardChaseV1?.focus(a,t,v)||0;
       if (!focus) {
         if(a.labFocus){if(a.route===a.labRoute)a.route=[];a.labRoute=null;a.labFocus='';a.labPose=null;a.deadline=t;}
         return 0;
@@ -89,12 +91,13 @@
         views.set(root, view);
       }
       view.cards++;
-      this.cleanup = () => { if (!--view.cards && views.get(root) === view) views.delete(root); };
+      this.cleanup = () => { if (!--view.cards && views.get(root) === view) {window.pixelCatDashboardChaseV1?.resetFocus(view);views.delete(root);} };
       const shadow = this.shadowRoot || this.attachShadow({mode:'open'});
       shadow.innerHTML = '<ha-card header="Behaviour Lab"><div class="card-content"><label>Focus <select><option value="">Natural behaviour</option></select></label><p></p></div></ha-card>';
       const select = shadow.querySelector('select'), status = shadow.querySelector('p');
       for (const [id, scenario] of Object.entries(scenarios)) select.add(new Option(scenario.label,id));
       select.onchange = () => {
+        window.pixelCatDashboardChaseV1?.resetFocus(view);
         view.focus = select.value;
         view.counts = {};
         view.next = new WeakMap();

@@ -67,7 +67,116 @@ function groundedRouteValid(a) {
  return a.social.clear(surface,next.x);
 }
 
+const report=(view,key)=>view.counts[key]=(view.counts[key]||0)+1;
+const open=a=>active(a)&&settled(a)&&!a.bedInside&&!a.social?.episode;
+
+function stagePair(a,b,view,t){
+ const layer=a.social,scale=Math.max(a.scale,b.scale),source=a.support;
+ const surface=a.surfaces.find(s=>same(s,b.support));
+ if(!broad(surface)||surface.home||surface.max-surface.min<100*a.scale)return false;
+ const direction=b.support.max-b.x>=b.x-b.support.min?1:-1;
+ if(direction*((direction>0?b.support.max:b.support.min)-b.x)<14*b.scale)return false;
+ const x=snapped(surface,b.x-direction*38*scale,a.scale);
+ if(Math.abs(x-b.x)<32*scale||!layer.clear(surface,x)||!b.social.clear(b.support,b.x))return false;
+ if(same(source,surface)&&Math.abs(a.x-x)<=6*scale){
+  view.chasePair={a,b,until:t+4200};
+ }else if(same(source,surface)){
+  if(!layer.corridor(surface,x)||Math.abs(a.x-x)>65*a.scale)return false;
+  a.route=[{settle:true,surface,x,chaseSetup:true}];
+  view.chasePair={a,b,until:t+7500};
+ }else{
+  if(Math.hypot(x-a.x,surface.top-source.top)>140*a.scale)return false;
+  const choice=plan(a,surface,x);
+  if(!choice)return false;
+  a.route=choice.steps.map(step=>({...step,chaseSetup:true}));
+  view.chasePair={a,b,until:t+9000};
+ }
+ report(view,'Pairs staged');
+ return true;
+}
+
+function gatherPair(a,b,view,t){
+ const scale=Math.max(a.scale,b.scale);
+ const nearby=a.surfaces.filter(s=>broad(s)&&!s.home&&!s.internal&&s.max-s.min>=100*scale)
+  .sort((s,r)=>Math.hypot(s.min-a.x,s.top-a.y)-Math.hypot(r.min-a.x,r.top-a.y));
+ for(const surface of nearby.slice(0,3)){
+  const other=b.surfaces.find(s=>same(s,surface));
+  if(!broad(other))continue;
+  const x=snapped(surface,(surface.min+surface.max)/2-26*scale,a.scale);
+  const y=snapped(other,x+38*scale,b.scale);
+  if(other.max-y<14*b.scale||!a.social.clear(surface,x)||!b.social.clear(other,y))continue;
+  if(Math.hypot(x-a.x,surface.top-a.y)>140*a.scale||Math.hypot(y-b.x,other.top-b.y)>140*b.scale)continue;
+  const first=same(a.support,surface)?a.social.corridor(surface,x)&&[{settle:true,surface,x}]:plan(a,surface,x)?.steps;
+  if(!first)continue;
+  const second=same(b.support,other)?b.social.corridor(other,y)&&[{settle:true,surface:other,x:y}]:plan(b,other,y)?.steps;
+  if(!second)continue;
+  a.route=first.map(step=>({...step,chaseSetup:true}));
+  b.route=second.map(step=>({...step,chaseSetup:true}));
+  view.chasePair={a,b,until:t+12000};
+  report(view,'Pairs staged');
+  return true;
+ }
+ return false;
+}
+
+function releaseSetup(view){
+ for(const a of [view.chasePair?.a,view.chasePair?.b]){
+  if(!a)continue;
+  a.route=a.route?.filter(step=>!step.chaseSetup)||[];
+  a.labPose=null;
+  if(a.social?.episode?.labChase===view)a.social.finish('chase focus ended');
+ }
+ view.chasePair=null;
+}
+
 window.pixelCatDashboardChaseV1={
+ resetFocus(view){releaseSetup(view);view.chaseProbeAt=0;view.chaseNext=new WeakMap();},
+ focus(a,t,view){
+  const pair=view.chasePair;
+  if(pair){
+   if(a!==pair.a&&a!==pair.b)return 0;
+   const {a:chaser,b:runner}=pair;
+   if(pair.episode){
+    if(chaser.social?.episode!==pair.episode){releaseSetup(view);view.chaseProbeAt=t+2600;}
+    return 0;
+   }
+   if(!active(chaser)||!active(runner)||chaser.social?.episode||runner.social?.episode||t>=pair.until){
+    if(t>=pair.until)report(view,'Lost sight');
+    releaseSetup(view);view.chaseProbeAt=t+1200;
+    return 0;
+   }
+   if(settled(a)){
+    const other=a===chaser?runner:chaser;
+    window.pixelCatSettlingV1?.wake(a,t);
+    a.deadline=t+1800;
+    if(a.labPose!=='stand'){a.labPose='stand';if(a.idle)a.idle.poseUntil=t;}
+    const facing=Math.sign(other.x-a.x);
+    if(facing&&a.facing!==facing){a.facing=facing;if(a.idle)a.idle.poseUntil=t;}
+    a.social.nextEncounter=a.social.clock+500;
+   }
+   if(a!==chaser||!settled(chaser)||!settled(runner))return 0;
+   const option=chaser.social.chaseOptions().find(o=>o.target===runner);
+   if(option&&chaser.social.startChase(option,t,'run')&&chaser.social.episode){
+    pair.episode=chaser.social.episode;
+    pair.episode.labChase=view;
+    chaser.labPose=runner.labPose=null;
+    report(view,'Invitations');
+   }
+   return 0;
+  }
+  const next=view.chaseNext??=new WeakMap();
+  if(t<(view.chaseProbeAt||0)||t<(next.get(a)||0)||!open(a)||!broad(a.support))return 0;
+  const layer=a.decisionLayer?.();
+  if(!layer)return 0;
+  view.chaseProbeAt=t+650;
+  next.set(a,t+5000);
+  const peers=layer.peers().filter(b=>open(b)&&broad(b.support));
+  peers.sort((b,c)=>Number(same(a.support,c.support))-Number(same(a.support,b.support))||
+   Math.hypot(b.x-a.x,b.y-a.y)-Math.hypot(c.x-a.x,c.y-a.y));
+  const nearby=peers.slice(0,6);
+  if(!nearby.some(b=>stagePair(a,b,view,t))&&!nearby.slice(0,2).some(b=>gatherPair(a,b,view,t)))report(view,'Waiting for a shared runway');
+  return 0; // The normal tick supplies perception, phase advancement and gait playback.
+ },
  reserved(other,surface,overlap) {
   const leg=other.social?.episode?.dashboard?.legs.get(other);
   if(!leg)return false;
@@ -84,7 +193,7 @@ window.pixelCatDashboardChaseV1={
  },
  advance(layer,t) {
   const ep=layer.episode,a=layer.actor,b=ep.runner;
-  if(a.config.dashboard_chasing!==true||b.config.dashboard_chasing!==true){
+  if(!ep.labChase&&(a.config.dashboard_chasing!==true||b.config.dashboard_chasing!==true)){
    if(!ep.dashboard||ep.dashboard.stage==='local')return false;
    layer.finish('dashboard chasing disabled');
    return true;
@@ -95,7 +204,7 @@ window.pixelCatDashboardChaseV1={
       a.climb||a.route?.length||!settled(b)||!active(a)||!active(b)||!broad(a.support)||!same(a.support,b.support))return false;
    state.tryAt=Infinity;
    const mood=b.ensureMood();
-   if(mood.random()>=.25+.55*mood.values.playfulness*(1-mood.values.sleepiness))return false;
+   if(!ep.labChase&&mood.random()>=.25+.55*mood.values.playfulness*(1-mood.values.sleepiness))return false;
    const choice=runnerPlan(b,a,b.social.memory.get(a.ownerKey));
    if(!choice){layer.log('chase card route unavailable');return false;}
    state.stage='runner';
@@ -123,7 +232,7 @@ window.pixelCatDashboardChaseV1={
    const candidates=seen?a.surfaces.filter(s=>s.el===sight.surface&&Math.abs(s.top-sight.surfaceTop)<2):[];
    const destination=candidates.find(s=>s.id===sight.supportId)||candidates[0];
    if(!destination||same(destination,a.support)){
-    if(layer.clock>=state.lookUntil)layer.finish('lost sight at the card edge');
+    if(layer.clock>=state.lookUntil){if(ep.labChase)report(ep.labChase,'Lost sight');layer.finish('lost sight at the card edge');}
     return true;
    }
    const gap=30*Math.max(a.scale,b.scale),direction=Math.sign(sight.x-a.x)||a.facing;
@@ -137,6 +246,7 @@ window.pixelCatDashboardChaseV1={
    const leg=state.legs.get(a);
    state.legs.delete(a);
    if(a.support?.id!==leg?.surface.id){layer.finish('chaser did not reach the next card');return true;}
+   if(ep.labChase)report(ep.labChase,'Crossings');
    layer.log('chase card transfer completed',{surface:a.support.id});
    state.stage='local';
    state.tryAt=layer.clock+650;
