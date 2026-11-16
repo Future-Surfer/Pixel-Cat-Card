@@ -8,7 +8,7 @@ Two cats notice each other. One might sneak a few steps and crouch, then pounce 
 
 ## Dev preview
 
-Set `dashboard_chasing: true` on both companion cards to allow voluntary cross-card chase legs. The [social lab](../../prototype/social-lab.html) has a reachable crossing and an out-of-reach scenario. Select **Eligible chase invitation** and evaluate after the cats have noticed each other. Add a third watcher to try the existing observation behaviour.
+Set `dashboard_chasing: true` on both companion cards to allow voluntary cross-card chase legs. The [social lab](../../prototype/social-lab.html) has a reachable crossing and an out-of-reach scenario. Choose **Try a cross-card chase**. The lab waits for both cats to notice each other before inviting Juniper to run. Add a third watcher to try the existing observation behaviour.
 
 The first pass shares the current chase episode and resumes its ordinary play endings after both cats land. It uses checked point routes and allows up to two transfers under the same chase timeout. Expanded sneak and pounce pacing, optional bystander participation, dedicated wall-chase routes, and natural-frequency testing in Home Assistant are follow-ups.
 
