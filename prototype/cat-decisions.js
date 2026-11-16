@@ -28,7 +28,7 @@ class CatDecisions {
  sense(){const a=this.actor,f=this.frame;if(!f)return;const eye=worldGaze(f.gaze,f.placement,a.scale,f.facing,Math.max(24,Math.min(240,Number(a.config.social_sight_cells)||110))*a.scale),peers=this.peers();
   const targets=peers.map(b=>({id:b.ownerKey,label:b.config.name||b.ownerKey,x:b.x+12*b.scale,y:b.y-12*b.scale,width:20*b.scale,height:22*b.scale,moving:!!b.motion}));
   const result=this.awareness.update(eye,targets,this.clock,{dwell:250,motionDwell:120,memory:2500});
-  for(const state of result.states){const b=peers.find(p=>p.ownerKey===state.id);if(state.visible&&state.aware){this.memory.set(b.ownerKey,{id:b.ownerKey,x:b.x,y:b.y,scale:b.scale,pose:b.motion?'moving':b.idle?.pose,surface:b.support?.el,surfaceTop:b.support?.top,at:this.clock});}}
+  for(const state of result.states){const b=peers.find(p=>p.ownerKey===state.id);if(state.visible&&state.aware){this.memory.set(b.ownerKey,{id:b.ownerKey,x:b.x,y:b.y,scale:b.scale,pose:b.motion?'moving':b.idle?.pose,surface:b.support?.el,supportId:b.support?.id,surfaceTop:b.support?.top,at:this.clock});}}
   for(const [id,m]of this.memory)if(this.clock-m.at>2500||!peers.some(b=>b.ownerKey===id))this.memory.delete(id);
   this.visible=new Set(result.states.filter(s=>s.visible&&s.aware).map(s=>s.id));
  }
@@ -41,7 +41,7 @@ class CatDecisions {
   for(const [b,e]of this.owners()){if(b===a||exclude.includes(b)||e.root!==a.root||!b.active||b.userHeld)continue;const pad=4*Math.max(a.scale,b.scale),overlap=(left,right)=>x+w+pad>left&&x-pad<right;
    if(sameSupport(surface,b.support)&&overlap(b.x,b.x+24*b.scale))return false;
    if(b.motion&&sameSupport(surface,b.motion.target)&&overlap(Math.min(b.motion.fromX,b.motion.x),Math.max(b.motion.fromX,b.motion.x)+24*b.scale))return false;
-   const ep=b.social?.episode;if(ep?.kind==='company'&&sameSupport(surface,ep.surface)&&overlap(ep.x,ep.x+24*b.scale))return false;
+   const ep=b.social?.episode;if(ep?.kind==='company'&&sameSupport(surface,ep.surface)&&overlap(ep.x,ep.x+24*b.scale)||window.pixelCatDashboardChaseV1?.reserved(b,surface,overlap))return false;
   }return true;
  }
  corridor(surface,x,exclude=[]){const a=this.actor,lo=Math.min(a.x,x),hi=Math.max(a.x,x);if(!this.clear(surface,x,exclude))return false;for(const [b,e]of this.owners()){if(b===a||exclude.includes(b)||e.root!==a.root||!b.active||b.userHeld)continue;const pad=4*Math.max(a.scale,b.scale),hits=(left,right)=>hi+24*a.scale+pad>left&&lo-pad<right;if(sameSupport(surface,b.support)&&hits(b.x,b.x+24*b.scale))return false;if(b.motion&&sameSupport(surface,b.motion.target)&&hits(Math.min(b.motion.fromX,b.motion.x),Math.max(b.motion.fromX,b.motion.x)+24*b.scale))return false;const ep=b.social?.episode;if(ep?.kind==='company'&&sameSupport(surface,ep.surface)&&hits(ep.x,ep.x+24*b.scale))return false;}return true;}
@@ -75,7 +75,7 @@ class CatDecisions {
   const episode={kind:'chase',chaser:a,runner:b,started:this.clock,expires:this.clock+8000,stage:'run',runs:0};this.scene.set(a,episode);this.scene.set(b,episode);this.episode=episode;b.social.episode=episode;
   b.urgency='interested';b.moveTo(option.runnerX,b.support.top,0,'walk',b.support,t);b.deadline=t+10000;a.deadline=t+10000;this.log('chase accepted',{target:b.ownerKey});return true;
  }
- finish(reason){const ep=this.episode;if(!ep)return;const participants=ep.kind==='chase'?[ep.chaser,ep.runner]:[this.actor];for(const a of participants){const layer=a.social;if(!layer||layer.episode!==ep)continue;layer.episode=null;layer.scene.delete(a);layer.nextSocial=layer.clock+25000;layer.log('end '+ep.kind,{reason});a.deadline=0;if(ep.kind==='company'&&ep.stage==='approach'){a.route=[];a.finishing=false;}}
+ finish(reason){const ep=this.episode;if(!ep)return;const participants=ep.kind==='chase'?[ep.chaser,ep.runner]:[this.actor];for(const a of participants){const layer=a.social;if(!layer||layer.episode!==ep)continue;window.pixelCatDashboardChaseV1?.release(a,ep);layer.episode=null;layer.scene.delete(a);layer.nextSocial=layer.clock+25000;layer.log('end '+ep.kind,{reason});a.deadline=0;if(ep.kind==='company'&&ep.stage==='approach'){a.route=[];a.finishing=false;}}
  }
  advance(t){const a=this.actor,ep=this.episode;if(a.paused||a.suspended||a.stranded||a.goal||a.command||a.previewPose||a.play||a.toyHunt||a.playRequested||a.toyHuntRequested||!ep.target?.active&&ep.kind==='company'){this.finish('interrupted or actor removed');return;}
   if(ep.kind==='company'){

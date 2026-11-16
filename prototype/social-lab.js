@@ -1,4 +1,5 @@
 import '../pixel-cat-roaming-art.js';import '../pixel-cat-roaming-extras.js';import '../pixel-cat-affordances.js';import '../pixel-cat-behaviours.js';import '../pixel-cat-roaming.js';
+import '../pixel-cat-dashboard-chase.js';
 import {LabMetrics} from './gaze-perception.js';
 const $=s=>document.querySelector(s),cats=[$('#cat-one'),$('#cat-two')],metrics=new LabMetrics();let cost=0,last=null,ui=0,paused=false;
 for(const [i,a]of cats.entries()){
@@ -6,11 +7,17 @@ for(const [i,a]of cats.entries()){
  instrument(a);
 }
 function instrument(a){const tick=a.tick.bind(a);a.tick=t=>{if(a.labHold?.until>t&&a.idle?.pose===a.labHold.pose&&!a.social?.episode){a.idle.poseUntil=a.labHold.until;a.deadline=a.labHold.until;}const start=performance.now();tick(t);cost+=performance.now()-start;};}
-function reset(kind){for(const a of cats)a.labHold=null;for(const a of cats)a.propScene?.clear();const now=performance.now(),seed=Number($('#seed').value)>>>0;paused=false;$('#pause-all').textContent='Pause all cats';
+function reset(kind){
+ const cross=kind==='cross'||kind==='blocked-chase',next=$('#next-card');
+ $('#world').classList.toggle('cross',cross);
+ next.hidden=!cross;
+ next.toggleAttribute('data-cat-surface',cross);
+ next.style.top=kind==='blocked-chase'?'570px':'332px';
+ for(const a of cats)a.labHold=null;for(const a of cats)a.propScene?.clear();const now=performance.now(),seed=Number($('#seed').value)>>>0;paused=false;$('#pause-all').textContent='Pause all cats';
  for(const [i,a]of cats.entries()){
-  a.social?.dispose();a.social=null;a.mood=null;a.config.mood_seed=seed+i;a.cancelPlay();a.goal=a.command=null;a.route=[];a.motion=null;a.recallPending=false;a.finishing=false;a.previewPose=null;a.paused=false;a.nextLandingReactionAt=a.nextStartleAt=0;a.measure();a.config.mood_behaviour=a.config.social_behaviour=a.config.interaction_behaviour=$('#features').checked;a.config.debug_mood=$('#glow').checked;
+  a.social?.dispose();a.social=null;a.mood=null;a.config.mood_seed=seed+i;a.config.dashboard_chasing=cross;a.cancelPlay();a.goal=a.command=null;a.route=[];a.motion=null;a.recallPending=false;a.finishing=false;a.previewPose=null;a.paused=false;a.nextLandingReactionAt=a.nextStartleAt=0;a.measure();a.config.mood_behaviour=a.config.social_behaviour=a.config.interaction_behaviour=$('#features').checked;a.config.debug_mood=$('#glow').checked;
   const s=a.surfaces.find(s=>s.el===$('#shared'));if(!s){$('#instruction').textContent='Waiting for shared surface measurement';return;}
-  a.support=s;a.x=Math.round((i===1&&cats[0].lifeStage==='kitten'?Math.min(s.max,cats[0].x+70*Math.min(cats[0].scale,a.scale)):s.min+(s.max-s.min)*(i===2?.82:i?.57:.28))/a.scale)*a.scale;a.y=s.top;a.facing=i?-1:1;a.idle=null;a.deadline=now+(kind==='explore'?0:i?18000:1800);a.urgency='relaxed';a.nextPlayAt=Infinity;a.decisionLayer();a.ensureMood();a.social.world.pairs.clear();a.social.world.events=[];
+  a.support=s;a.x=Math.round((i===1&&cats[0].lifeStage==='kitten'?Math.min(s.max,cats[0].x+70*Math.min(cats[0].scale,a.scale)):s.min+(s.max-s.min)*(cross?(i===2?.07:i?.80:.57):i===2?.82:i?.57:.28))/a.scale)*a.scale;a.y=s.top;a.facing=i?-1:1;a.idle=null;a.deadline=now+(kind==='explore'?0:i?18000:1800);a.urgency='relaxed';a.nextPlayAt=Infinity;a.decisionLayer();a.ensureMood();if(cross)a.social.nextEncounter=a.social.clock+10000;a.social.world.pairs.clear();a.social.world.events=[];
   const v=kind==='company'?(i?{playfulness:.1,sleepiness:.95,alertness:.1}:{playfulness:.15,sleepiness:.85,alertness:.2}):{playfulness:.95,sleepiness:.05,alertness:.35};for(const key of Object.keys(v))a.mood.set(key,v[key]);
   if(kind!=='explore'){a.previewPose=kind==='company'&&i?'sleep':'sit';a.forcedIdleUntil=now+1000;if(kind==='unaware'&&i)a.facing=1;}
   a.shadowRoot.querySelector('[data-action="pause"]').textContent='Pause';
@@ -18,11 +25,11 @@ function reset(kind){for(const a of cats)a.labHold=null;for(const a of cats)a.pr
  // Holding the sleeper is a controlled scenario fixture, not a social decision.
  if(kind==='unaware'){cats[1].previewPose='look';cats[1].forcedIdleUntil=now+15000;}
  if(kind==='company'){cats[1].previewPose='sleep';cats[1].forcedIdleUntil=now+15000;}
- if(['pat','ambush','ball'].includes(kind)){cats[0].deadline=now+20000;if(kind==='pat')cats[1].facing=1;for(const a of cats){a.previewPose=null;a.idle=null;const original=a.social.restPose.bind(a.social);a.social.restPose=()=>a.labHold?.until>performance.now()&&!a.social?.episode?a.labHold.pose:original();}cats[0].labHold={pose:'sit',until:now+20000};cats[1].labHold={pose:kind==='ambush'?'sleep':'sit',until:now+20000};cats[1].deadline=now+20000;}
+ if(cross||['pat','ambush','ball'].includes(kind)){cats[0].deadline=now+20000;if(kind==='pat')cats[1].facing=1;for(const a of cats){a.previewPose=null;a.idle=null;const original=a.social.restPose.bind(a.social);a.social.restPose=()=>a.labHold?.until>performance.now()&&!a.social?.episode?a.labHold.pose:original();}cats[0].labHold={pose:'sit',until:now+20000};cats[1].labHold={pose:kind==='ambush'?'sleep':'sit',until:now+20000};cats[1].deadline=now+20000;if(cross&&cats[2]){cats[2].deadline=now+20000;cats[2].facing=1;}}
  metrics.reset();last=null;$('#instruction').textContent=kind+' · seed '+seed+' · choices remain weighted';
 }
 $('#first-age').onchange=()=>{const a=cats[0];a.setConfig({...a.config,life_stage:$('#first-age').value});requestAnimationFrame(()=>reset('chase'));};
-for(const kind of ['company','chase','unaware','explore','pat','ambush'])$('#'+kind).onclick=()=>reset(kind);
+for(const kind of ['company','chase','cross','blocked-chase','unaware','explore','pat','ambush'])$('#'+kind).onclick=()=>reset(kind);
 // Explicit lab placement can put props on the reset surface even when the home route is absent.
 function fixtureProp(a,id){const scene=a.ensurePropScene(),asset=window.pixelCatRoamingExtrasV1.dashboardProps.find(p=>p.id===id),s=a.support;if(!asset||!s)return null;const node=document.createElement('canvas');node.width=asset.width;node.height=asset.height;node.style.cssText='position:absolute;image-rendering:pixelated;pointer-events:none';node.style.width=asset.width*a.scale+'px';node.style.height=asset.height*a.scale+'px';const p={id:'fixture-'+(++scene.serial),asset,node,surfaceEl:s.el,surfaceSuffix:s.id.slice(s.id.indexOf(':')),scale:a.scale,u:.5,low:.1,high:.9,direction:1,moving:id==='toy_mouse',mouseSeed:7,cooldownUntil:0,claimedBy:null};node.dataset.propId=p.id;node.dataset.assetId=id;node.dataset.origin=asset.origin;scene.props.push(p);scene.layer.append(node);scene.enabled=scene.seeded=true;return p;}
 $('#brush').onclick=()=>{reset('brush');const a=cats[0],s=a.support,scene=a.ensurePropScene();scene.clear();const p=fixtureProp(a,'toy_mouse');if(!p)return;const padding=4*a.scale,span=s.right-s.left-2*padding;p.surfaceEl=s.el;p.surfaceSuffix=s.id.slice(s.id.indexOf(':'));p.u=(a.x-8*a.scale-s.left-padding)/span;p.low=p.u;p.high=Math.min(.96,p.u+36*a.scale/span);p.direction=1;p.mouseMotion={phase:'move',remaining:8000};a.deadline=performance.now()+18000;$('#instruction').textContent='Moving mouse brush · physical contact can be felt with closed eyes · ignore/watch/hop and recovery stay weighted';};
