@@ -4,12 +4,12 @@ class Node {
  constructor(){this.style={};this.dataset={};this.handlers={};}
  addEventListener(k,fn){this.handlers[k]=fn;}
  removeEventListener(k){delete this.handlers[k];}
- append(){} remove(){this.removed=true;}
+ append(){} setAttribute(){} removeAttribute(){} remove(){this.removed=true;}
  setPointerCapture(id){this.capture=id;}hasPointerCapture(id){return this.capture===id;}
  releasePointerCapture(id){this.capture=null;this.handlers.lostpointercapture?.({type:'lostpointercapture',pointerId:id});}
 }
-const box={window:{addEventListener:(k,f)=>listeners.set(k,f),removeEventListener:k=>listeners.delete(k)},document:{createElement:()=>new Node()},performance:{now:()=>1000}};
-for(const f of ['pixel-cat-roaming-art.js','pixel-cat-roaming-extras.js','prototype/cat-drag.js'])vm.runInNewContext(fs.readFileSync(f,'utf8'),box);
+const box={window:{addEventListener:(k,f)=>listeners.set(k,f),removeEventListener:k=>listeners.delete(k)},document:{createElement:()=>new Node(),createElementNS:()=>new Node()},performance:{now:()=>1000}};
+for(const f of ['pixel-cat-roaming-art.js','pixel-cat-roaming-extras.js','prototype/cat-drag.js','pixel-cat-box.js'])vm.runInNewContext(fs.readFileSync(f,'utf8'),box);
 const drag=box.window.pixelCatDragV1,art={...box.window.pixelCatRoamingArtV2,...box.window.pixelCatRoamingExtrasV1};
 assert.equal(art.lifted.origin,'mixed');assert.equal(art.lifted.review,'accepted');assert.equal(art.lifted.rows.length,24);assert.ok(art.lifted.rows.every(r=>r.length===24));
 let dropped=0;box.window.pixelCatMouthV1={startled:a=>{dropped++;a.carriedToy=null;}};
@@ -55,3 +55,22 @@ for(const type of ['pointercancel','lostpointercapture']){
 console.log('PASS: scruff pointer anchors at six scales/both facings, shadow, exclusive hold, released claims, gravity landing, preserved pause, Escape/capture cancellation, disabled input, invalid/occupied/removed supports and listener cleanup.');
 
 const direction=actor();direction.svg.handlers.pointerdown(event('pointerdown',200,100));direction.svg.handlers.pointermove(event('pointermove',180,100));assert.equal(direction.facing,-1);direction.svg.handlers.pointermove(event('pointermove',220,100));assert.equal(direction.facing,1);direction.svg.handlers.pointerup(event('pointerup',220,100));for(let t=1016;t<4000&&direction.userHeld;t+=16)drag.tick(direction,t,art);assert.equal(direction.facing,1,'Last horizontal drag direction survives landing');drag.uninstall(direction);
+
+{
+ const a=actor(),floor=a.support,bed=new Node();
+ a.config.bed_style='box';
+ a.home=floor;
+ a.ownerKey='drop-box';
+ a.ensureMood=()=>({random:()=>0});
+ a.shadowRoot={querySelector:()=>bed};
+ a.svg.firstElementChild=new Node();
+ a.svg.handlers.pointerdown(event('pointerdown',150,120));
+ a.svg.handlers.pointerup(event('pointerup',66,388));
+ assert.equal(a.dragState.box,a,'Releasing at the opening selects the box');
+ for(let t=1016;t<4000&&a.userHeld;t+=16)drag.tick(a,t,art);
+ assert.equal(a.userHeld,false);
+ assert.equal(a.bedInside,a);
+ assert.equal(a.attrs['data-pose'],'box-peek');
+ assert.equal(a.support,floor);
+ drag.uninstall(a);
+}

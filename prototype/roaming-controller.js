@@ -291,7 +291,7 @@ class PixelCatHome extends HTMLElement {
       });
       return;
     }
-    window.pixelCatBoxV1?.cancel(this);this.bedEntryManaged=true;this.waitingForSurface=false;this.surfaceRetryAt=0;
+    this.boxArrivalChecked=false;window.pixelCatBoxV1?.cancel(this);this.bedEntryManaged=true;this.waitingForSurface=false;this.surfaceRetryAt=0;
     this.home=null;this.scale ||= 2; this.paintHome();this.style.display=this.config.show_home===false&&!this.config.show_controls&&!editorPreviewFor(this)?'none':''; this.root=this.worldRoot();
     this.href = location.pathname;
     if(!this.root||editorPreviewFor(this)){this.active=false;this.observePreviewProps();this.status('Dashboard preview');for(const button of this.shadowRoot.querySelectorAll('button'))button.disabled=true;return;}
@@ -769,6 +769,7 @@ class PixelCatHome extends HTMLElement {
     window.pixelCatDepthV1?.cat(this,t);if(this.userHeld)window.pixelCatBoxV1?.cancel(this);if(window.pixelCatDragV1?.tick(this,t,CAT_ART))return;
     if(this.waitingForSurface){this.layer.style.visibility='hidden';this.freezeClocks(gap);this.status(this.noPathMessage);return;}
     if(!this.homeArtReady)this.renderHomeProp();
+    window.pixelCatBoxV1?.arrive(this,t);
     if(this.paused) {this.layer.style.visibility='visible';if(!this.signature)this.draw(CAT_ART.stand);this.propScene?.tick(t,this);this.freezeClocks(gap);if(this.motion?.departure?.facings&&window.pixelCatPolishV1.departure(this,t,frameContact,idleContact)){this.status('Paused');return;}if(this.motion){const m=this.motion;if(m.kind==='jump'||m.kind==='startle'){const p=this.jumpSample(m,Math.min(1,(t-m.start)/m.duration));this.draw(p.rows);this.svg.style.transform=`translate(${p.x}px,${p.top}px)`;}else{const p=walkSample(m,t-m.start,this.scale,CAT_ART.walk);this.x=p.x;this.y=window.pixelCatSetupV1?.walkHeight?.(this,m,p)??m.fromY;this.draw(walkAppearance(CAT_ART,m,p,this.config).rows);if(m.gallopTimeline)this.svg.style.transform=`translate(${p.x}px,${m.fromY-24*this.scale}px)`;}}else if(this.idle?.placement)this.svg.style.transform=`translate(${this.idle.placement.x}px,${this.idle.placement.top}px)`;this.renderMoodDebug(t);this.status('Paused');return;}
     if(t>this.checkAt) {
       const wasSuspended=this.suspended;this.suspended=this.blocked(t);

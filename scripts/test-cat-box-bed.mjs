@@ -43,5 +43,17 @@ for(const scale of [1,2])for(const direction of [1,-1]){
  assert.equal(a.y,floor.top);
  assert.equal(a.command,'explore','Queued travel survives the box exit');
  assert.ok(a.x>=floor.min&&a.x<=floor.max);
+ a.command=null;
+ a.config.arrival='none';
+ box.arrive(a,t);
+ assert.equal(a.boxBed,null);
+ a.boxArrivalChecked=false;
+ delete a.config.arrival;
+ box.arrive(a,t);
+ assert.equal(a.bedInside,a);
+ assert.equal(a['data-pose'],'box-peek','Startup begins inside without jumping in');
+ box.cancel(a);
+ box.arrive(a,t);
+ assert.equal(a.boxBed,null,'Remeasuring an active cat cannot restart the arrival');
 }
 console.log('PASS: box art at adult and kitten scales, both approach sides, foreground mask, optional rest, command exit, and restored floor support.');

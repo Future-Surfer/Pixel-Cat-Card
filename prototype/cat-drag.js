@@ -41,7 +41,7 @@ const catDrag={
  preview(a,target){
   if(!a.dragMarker){const p=document.createElement('div');p.dataset.catDropMarker='';p.style.cssText='position:absolute;pointer-events:none;border-top:2px dashed #67ac86;opacity:.7';a.layer.append(p);a.dragMarker=p;}
   a.dragMarker.style.display=target?'':'none';
-  if(target){a.dragMarker.style.width=24*a.scale+'px';a.dragMarker.style.transform=`translate(${target.x}px,${target.surface.top}px)`;}
+  if(target){a.dragMarker.style.width=(target.markerWidth??24*a.scale)+'px';a.dragMarker.style.transform=`translate(${target.markerX??target.x}px,${target.markerY??target.surface.top}px)`;}
  },
  paint(a,art){
   const d=a.dragState,clip=art.lifted,anchor=this.grip(clip,a.facing),s=a.scale;
@@ -49,11 +49,11 @@ const catDrag={
   a.x=d.x;a.y=d.top+23*s;a.draw(clip.rows);a.svg.style.transform=`translate(${d.x}px,${d.top}px)`;
   a.svg.style.filter=`drop-shadow(${3*s}px ${4*s}px ${1.5*s}px rgba(0,0,0,.24))`;
   a.setAttribute('data-activity','held');a.setAttribute('data-pose','lifted');a.setAttribute('data-frame','lifted-1');a.setAttribute('data-sequence-id',clip.sequenceId);
-  d.target=this.target(a,d.x,d.top);this.preview(a,d.target);a.renderMoodDebug?.(performance.now());a.status('Picked up · release above a surface; Escape cancels');
+  d.target=window.pixelCatBoxV1?.dropTarget(a,d.clientX,d.clientY)||this.target(a,d.x,d.top);this.preview(a,d.target);a.renderMoodDebug?.(performance.now());a.status('Picked up · release above a surface; Escape cancels');
  },
  release(a,t,art){
   const d=a.dragState;if(!d?.target){this.restore(a);return false;}
-  const target=d.target;d.phase='fall';d.targetId=target.surface.id;d.offset=target.x-target.surface.left;d.surfaceLeft=target.surface.left;d.surfaceTop=target.surface.top;d.fromX=d.x;d.fromTop=d.top;d.elapsed=0;d.last=t;
+  const target=d.target;d.box=target.box;d.phase='fall';d.targetId=target.surface.id;d.offset=target.x-target.surface.left;d.surfaceLeft=target.surface.left;d.surfaceTop=target.surface.top;d.fromX=d.x;d.fromTop=d.box?Math.min(d.top,target.surface.top-this.bottom(art.lifted.rows)*a.scale):d.top;d.elapsed=0;d.last=t;
   const bottom=this.bottom(art.across.at(-1));d.height=Math.max(0,target.surface.top-bottom*a.scale-d.top);d.duration=Math.max(100,Math.min(1800,1000*Math.sqrt(2*d.height/(900*a.scale))));
   a.svg.style.filter='';a.svg.style.cursor='grab';a.dragMarker?.remove();a.dragMarker=null;a.setAttribute('data-drag-state','fall');
   if(a.svg.hasPointerCapture?.(d.pointer))a.svg.releasePointerCapture(d.pointer);
@@ -81,8 +81,10 @@ const catDrag={
   if(!s){this.restore(a);return true;}
   d.fromX+=s.left-d.surfaceLeft;d.fromTop+=s.top-d.surfaceTop;d.surfaceLeft=s.left;d.surfaceTop=s.top;
   d.elapsed+=Math.min(50,Math.max(0,t-d.last));d.last=t;
-  const u=Math.min(1,d.elapsed/d.duration),x=Math.max(s.min,Math.min(s.max,s.left+d.offset)),rows=u<.85?(art.freefallSequence?.frames?.[0]||art.across[2]):art.across.at(-1),end=s.top-this.bottom(rows)*a.scale;
-  a.x=d.fromX+(x-d.fromX)*u;a.y=d.fromTop+(end-d.fromTop)*u*u+this.bottom(rows)*a.scale;a.draw(rows);a.setAttribute('data-activity','drop');a.setAttribute('data-pose','drop');a.setAttribute('data-frame-origin',u<.85?(art.freefallSequence?.origins?.[0]||'mixed'):art.frameProvenance?.across?.at(-1)||'human');a.renderMoodDebug?.(t);a.status('Landing after pickup');
+  const u=Math.min(1,d.elapsed/d.duration),x=Math.max(s.min,Math.min(s.max,s.left+d.offset)),rows=u<.85?(art.freefallSequence?.frames?.[0]||art.across[2]):art.across.at(-1);
+  const feet=d.fromTop+this.bottom(d.box?art.lifted.rows:rows)*a.scale;
+  a.x=d.fromX+(x-d.fromX)*u;a.y=feet+(s.top-feet)*u*u;a.draw(rows);a.setAttribute('data-activity','drop');a.setAttribute('data-pose','drop');a.setAttribute('data-frame-origin',u<.85?(art.freefallSequence?.origins?.[0]||'mixed'):art.frameProvenance?.across?.at(-1)||'human');a.renderMoodDebug?.(t);a.status('Landing after pickup');
+  if(u===1&&d.box){window.pixelCatBoxV1.finishDrop(a,s,x,t,this,d.box);return true;}
   if(u===1){a.publishLanding?.({kind:'jump',fromY:d.fromTop+23*a.scale,y:s.top,target:s,x},t);this.finish(a,s,x,t);}
   return true;
  },

@@ -20,14 +20,15 @@ const time=holds=>holds.reduce((sum,hold)=>sum+hold,0);
 const peekHolds=art.beats.map(beat=>beat.hold*260);
 const poseFor={entry:'Jumping into the box',peek:'Resting in the box',exit:'Jumping out of the box'};
 
-const geometry=(a,owner)=>{
- const floor=a.support,node=owner.shadowRoot?.querySelector('[data-cat-bed]');
- if(!floor||!owner.home||!node||owner.config.include_bed===false||owner.config.bed_style!=='box')return null;
+const geometry=(a,owner,floor=a.support)=>{
+ const node=owner.shadowRoot?.querySelector('[data-cat-bed]');
+ if(!floor||!owner.home||!node||node.isConnected===false||owner.config.show_home===false||owner.config.include_bed===false||owner.config.bed_style!=='box')return null;
  const s=a.scale,cell=owner.worldScale||owner.scale,left=owner.home.left-4+22*cell,right=left+asset.width*cell;
  return {floor,node,s,cell,left,right,rim:floor.top-6*cell,centre:(left+right)/2};
 };
 const anchor=(g,column,facing)=>facing>0?g.left-column*g.s:g.right-(24-column)*g.s;
 const clear=(a,g,x)=>x>=g.floor.min&&x<=g.floor.max&&a.social?.clear?.(g.floor,x)!==false;
+const claimed=(a,owner)=>owner.boxClaim!==a&&owner.boxClaim?.active&&owner.boxClaim.boxBed?.owner===owner;
 const close=(x,y,s)=>Math.abs(x-y)<=2*s;
 const fit=(x,g)=>Math.max(g.floor.min,Math.min(g.floor.max,Math.round(x/g.s)*g.s));
 const blocked=a=>a.userHeld||a.motion||a.climb||a.previewPose||a.play||a.mouthAction||a.command||a.goal||a.route?.length;
@@ -54,6 +55,41 @@ function foreground(a,g,x,top) {
 
 window.pixelCatBoxV1={
  asset,
+ arrive(a,t){
+  if(a.boxArrivalChecked||a.config.bed_style!=='box'||!a.home||a.support!==a.home)return;
+  a.boxArrivalChecked=true;
+  if(a.config.arrival===false||a.config.arrival==='none'||blocked(a))return;
+  const g=geometry(a,a);
+  if(this.canSettle(a,a,g))this.settle(a,a,g,t);
+ },
+ canSettle(a,owner,g){
+  return !!g&&!claimed(a,owner)&&!!escape(a,g,a.facing)&&clear(a,g,g.centre-12*g.s);
+ },
+ settle(a,owner,g,t){
+  this.cancel(a);
+  a.boxArrivalChecked=true;
+  owner.boxClaim=a;
+  a.bedInside=owner;
+  a.boxBed={owner,node:g.node,support:g.floor.id,phase:'peek',facing:a.facing,elapsed:0,rest:this.restDuration(a)};
+  this.render(a,g,a.boxBed,t);
+ },
+ restDuration(a){return 9000+7000*a.ensureMood().random();},
+ dropTarget(a,x,y){
+  for(const surface of a.surfaces||[]){
+   const owner=surface.bedOwner||(surface===a.home?a:null);
+   if(!owner||surface.bed||surface.foodOwner||surface.toyHomeOwner||owner!==a&&(!owner.active||owner.root!==a.root))continue;
+   const g=geometry(a,owner,surface);
+   if(!g||x<g.left+2*g.cell||x>g.right-2*g.cell||y<g.rim-7*g.cell||y>g.rim+3*g.cell)continue;
+   if(this.canSettle(a,owner,g))return {surface,x:g.centre-12*g.s,box:owner,markerX:g.left+2*g.cell,markerY:g.rim,markerWidth:asset.width*g.cell-4*g.cell};
+  }
+  return null;
+ },
+ finishDrop(a,s,x,t,drag,owner){
+  const g=geometry(a,owner,s);
+  if(!this.canSettle(a,owner,g)){drag.restore(a);return;}
+  drag.finish(a,s,x,t);
+  this.settle(a,owner,g,t);
+ },
  cancel(a){
   if(!a.boxBed)return;
   const {owner}=a.boxBed;
@@ -66,12 +102,12 @@ window.pixelCatBoxV1={
   if(!['loaf','sleep'].includes(pose)||blocked(a)||a.support!==a.home&&!a.support?.bedOwner)return false;
   const owner=a.support.bedOwner||a,g=geometry(a,owner);
   if(!g||Math.abs(a.x+12*g.s-g.centre)>24*g.cell||!escape(a,g,a.facing))return false;
-  if(owner.boxClaim?.active&&owner.boxClaim.boxBed?.owner===owner)return false;
+  if(claimed(a,owner))return false;
   const directions=a.x+12*g.s<=g.centre?[1,-1]:[-1,1];
   const facing=directions.find(direction=>clear(a,g,fit(anchor(g,21,direction),g)));
   if(!facing)return false;
   const launch=fit(anchor(g,21,facing),g);
-  const state={owner,node:g.node,support:g.floor.id,phase:'entry',facing,elapsed:0,rest:9000+7000*a.ensureMood().random()};
+  const state={owner,node:g.node,support:g.floor.id,phase:'entry',facing,elapsed:0,rest:this.restDuration(a)};
   if(!close(a.x,launch,g.s)){
    a.moveTo(launch,g.floor.top,0,'walk',g.floor,t);
    if(!a.motion)return false;
