@@ -29,7 +29,7 @@
     ...scenarios.climb, label: 'Wall jump',
     offer(a,t,report) { return scenarios.climb.offer(a,t,report,'card-wall-jump'); }
   };
-  scenarios.chase={label:'Chase across cards',counters:['Pairs staged','Invitations','Crossings','Waiting for a shared runway','Lost sight']};
+  scenarios.chase={label:'Chase across cards',counters:['Running on','Following','Pounced','Turned to watch','Crossings','No safe route']};
   window.pixelCatBehaviourLabV1 = {
     tick(a,t,art) {
       const v=views.get(a.root), focus=v&&v.path===location.pathname?v.focus:'';

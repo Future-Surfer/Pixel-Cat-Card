@@ -82,29 +82,31 @@ for(const interruption of ['occupied','command','removed']){
  if(interruption==='command'){assert.equal(chaser.command,'home');assert.equal(chaser.motion.kind,'jump');}
 }
 {
- const {chaser,runner,ep}=fixture(),layer=chaser.social,view={counts:{}};
- chaser.config.dashboard_chasing=runner.config.dashboard_chasing=false;
- chaser.support.max=300;
- chaser.x=64;
+ const {chaser,runner,target}=fixture(),layer=chaser.social,view={counts:{}};
  layer.episode=runner.social.episode=null;
  chaser.decisionLayer=()=>layer;
- layer.peers=()=>[runner];
- layer.chaseOptions=()=>[];
- assert.equal(chase.focus(chaser,10,view),0,'The focus leaves the normal decision clock running');
- assert.equal(view.counts['Pairs staged'],1);
- chase.focus(chaser,20,view);
- assert.equal(view.counts.Invitations,undefined,'Staging alone cannot bypass mutual notice');
- layer.chaseOptions=()=>[{target:runner}];
- layer.startChase=(option,t,reply)=>{
-  assert.equal(reply,'run');
-  layer.episode=runner.social.episode=ep;
-  return true;
+ chaser.config.dashboard_chasing=runner.config.dashboard_chasing=false;
+ let roll=.9;
+ chaser.ensureMood=()=>({random:()=>roll});
+ const see=(surface,x,at)=>{
+  layer.clock=at;
+  layer.visible.add('b');
+  layer.memory.set('b',{id:'b',surface:surface.el,surfaceTop:surface.top,scale:2,x,at});
  };
- chase.focus(chaser,40,view);
- assert.equal(view.counts.Invitations,1);
- assert.equal(ep.labChase,view);
+ see(chaser.support,140,0);
+ assert.equal(chase.focus(chaser,0,view),0,'The focus leaves the normal decision clock running');
+ roll=.6;
+ layer.clock=700;
+ chase.focus(chaser,700,view);
+ assert.equal(chaser.route.length,0,'An unchanged sighting cannot trigger pursuit');
+ see(target,280,1000);
+ chase.focus(chaser,1200,view);
+ assert.equal(view.counts.Following,1);
+ assert.equal(chaser.route[0].surface,target);
+ assert.equal(runner.route.length,0,'Following commits only the observer');
+ assert.equal(layer.episode,null,'The focus does not create a shared episode');
  chase.resetFocus(view);
- assert.equal(layer.episode,null);
- assert.equal(view.chasePair,null);
+ assert.equal(chaser.route.length,0);
+ assert.equal(chase.reserved(chaser,target,()=>true),false);
 }
 console.log('PASS: optional transfers, reservations, observed landing only, two-transfer cap, lost gaze, unavailable return, occupancy and command cleanup.');
