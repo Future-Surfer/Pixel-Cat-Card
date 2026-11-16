@@ -22,7 +22,7 @@ const catEditorGroups=[
  ]},
  {title:'Make them at home',fields:[
   ['include_bed','Include a bed','checkbox',true,'Give your cat a place to curl up.'],
-  ['bed_style','Bed style','select','igloo','Choose an igloo or an open bed.'],
+  ['bed_style','Bed style','select','igloo','Choose a place to curl up.'],
   ['bed_primary_color','Bed primary colour','color','#aa6627','Pick a colour for the outside of the bed.'],
   ['bed_secondary_color','Bed secondary colour','color','#55312a','Pick a colour for the inside of the bed.'],
   ['include_bowl','Include a food bowl','checkbox',true,'Let cats stop by for a bite.'],
@@ -35,7 +35,7 @@ const catEditorGroups=[
  {title:'Home & appearance',fields:[
   ['cell_size','Pixel scale','number',2,'Higher numbers make cats, toys, and furniture bigger.',1,6],
   ['card_color','Card colour','color','#ffffff','Choose the card background.'],
-  ['card_background_transparency','Background transparency','percent',0,'From solid (0%) to clear (100%).',0,100],
+  ['card_background_transparency','Background transparency','percent',0,'Solid at 0%, clear at 100%.',0,100],
   ['card_border_color','Border colour','color','#dddddd','Choose the card border.'],
   ['card_radius','Corner rounding','number',12,'The corner radius in pixels.',0,40],
   ['floor_shadow','Floor shadow','checkbox',true,'Show a soft shadow underneath your cat.'],
@@ -66,7 +66,7 @@ const catEditorGroups=[
  ]}
 ];
 const catEditorFields=new Map(catEditorGroups.flatMap(g=>g.fields.map(f=>[f[0],f])));
-const catEditorOptions={mood_preset:[['natural','Natural'],['playful','Playful'],['relaxed','Relaxed'],['alert','Alert']],post_type:[['post','Post'],['tree','Tree']],tree_levels:[['1','One level'],['2','Two levels']],scratch_debris:[['small','Small bits'],['pixel','Pixel-sized bits'],['none','No bits']],outline:[['auto','Automatic'],['none','None'],['black','Black'],['white','White']],life_stage:[['kitten','Kitten'],['adult','Adult'],['senior','Senior']],bed_style:[['igloo','Igloo'],['simple','Simple bed']],settling_mode:[['active','Always active'],['default','Default settle periods (5–10 min)'],['extended','Extended settle periods (15–30 min)'],['custom','Custom']]};
+const catEditorOptions={mood_preset:[['natural','Natural'],['playful','Playful'],['relaxed','Relaxed'],['alert','Alert']],post_type:[['post','Post'],['tree','Tree']],tree_levels:[['1','One level'],['2','Two levels']],scratch_debris:[['small','Small bits'],['pixel','Pixel-sized bits'],['none','No bits']],outline:[['auto','Automatic'],['none','None'],['black','Black'],['white','White']],life_stage:[['kitten','Kitten'],['adult','Adult'],['senior','Senior']],bed_style:[['igloo','Igloo'],['simple','Simple bed'],['box','Cardboard box']],settling_mode:[['active','Always active'],['default','Default settle periods (5–10 min)'],['extended','Extended settle periods (15–30 min)'],['custom','Custom']]};
 const catEditorValue=(config,key)=>{
  if(key==='settling_mode')return catEditorOptions.settling_mode.some(([v])=>v===config[key])?config[key]:'default';
  if(config[key]!==undefined)return config[key];

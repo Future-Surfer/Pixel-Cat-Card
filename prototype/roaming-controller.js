@@ -291,7 +291,7 @@ class PixelCatHome extends HTMLElement {
       });
       return;
     }
-    this.bedEntryManaged=true;this.waitingForSurface=false;this.surfaceRetryAt=0;
+    window.pixelCatBoxV1?.cancel(this);this.bedEntryManaged=true;this.waitingForSurface=false;this.surfaceRetryAt=0;
     this.home=null;this.scale ||= 2; this.paintHome();this.style.display=this.config.show_home===false&&!this.config.show_controls&&!editorPreviewFor(this)?'none':''; this.root=this.worldRoot();
     this.href = location.pathname;
     if(!this.root||editorPreviewFor(this)){this.active=false;this.observePreviewProps();this.status('Dashboard preview');for(const button of this.shadowRoot.querySelectorAll('button'))button.disabled=true;return;}
@@ -330,7 +330,7 @@ class PixelCatHome extends HTMLElement {
     this.observer.observe(dock);
   }
   disconnectedCallback() {
-    this.observer?.disconnect();
+    this.observer?.disconnect();window.pixelCatBoxV1?.cancel(this);
     if(this.worldReadyHandler){window.removeEventListener('pixel-cat-world-ready',this.worldReadyHandler);this.worldReadyHandler=null;}
     window.pixelCatClimbV1?.cancel(this,'removed',false);window.pixelCatWorldV1?.leave(this);
     window.pixelCatLayoutV1?.leave(this);window.pixelCatPrimaryV1?.leave(this);window.pixelCatDragV1?.uninstall(this);window.pixelCatSetupV1?.disconnect(this);
@@ -766,7 +766,7 @@ class PixelCatHome extends HTMLElement {
     if(gap>1000) {if(!this.paused)this.freezeClocks(gap);this.invalidate();}
     if(this.waitingForSurface&&t>=(this.surfaceRetryAt||0)){this.surfaceRetryAt=t+1000;this.needsMeasure=true;}
     if(this.needsMeasure){this.measure();if(this.waitingForPlacement)return;if(this.layoutRecovery?.local&&window.pixelCatLayoutV1.gate(this,t))return;}
-    window.pixelCatDepthV1?.cat(this,t);if(window.pixelCatDragV1?.tick(this,t,CAT_ART))return;
+    window.pixelCatDepthV1?.cat(this,t);if(this.userHeld)window.pixelCatBoxV1?.cancel(this);if(window.pixelCatDragV1?.tick(this,t,CAT_ART))return;
     if(this.waitingForSurface){this.layer.style.visibility='hidden';this.freezeClocks(gap);this.status(this.noPathMessage);return;}
     if(!this.homeArtReady)this.renderHomeProp();
     if(this.paused) {this.layer.style.visibility='visible';if(!this.signature)this.draw(CAT_ART.stand);this.propScene?.tick(t,this);this.freezeClocks(gap);if(this.motion?.departure?.facings&&window.pixelCatPolishV1.departure(this,t,frameContact,idleContact)){this.status('Paused');return;}if(this.motion){const m=this.motion;if(m.kind==='jump'||m.kind==='startle'){const p=this.jumpSample(m,Math.min(1,(t-m.start)/m.duration));this.draw(p.rows);this.svg.style.transform=`translate(${p.x}px,${p.top}px)`;}else{const p=walkSample(m,t-m.start,this.scale,CAT_ART.walk);this.x=p.x;this.y=window.pixelCatSetupV1?.walkHeight?.(this,m,p)??m.fromY;this.draw(walkAppearance(CAT_ART,m,p,this.config).rows);if(m.gallopTimeline)this.svg.style.transform=`translate(${p.x}px,${m.fromY-24*this.scale}px)`;}}else if(this.idle?.placement)this.svg.style.transform=`translate(${this.idle.placement.x}px,${this.idle.placement.top}px)`;this.renderMoodDebug(t);this.status('Paused');return;}
@@ -781,6 +781,7 @@ class PixelCatHome extends HTMLElement {
     window.pixelCatSetupV1?.clearRestMask(this);
     if(window.pixelCatSetupV1?.arrival(this,t,CAT_ART,walkSample,walkAppearance,idleSample,frameContact,idleContact))return;
     window.pixelCatCommandsV1?.tick(this,t);
+    if(window.pixelCatBoxV1?.tick(this,t,gap))return;
     const focus=window.pixelCatBehaviourLabV1?.tick(this,t,CAT_ART);if(focus===2)return;
     if(!focus&&!window.pixelCatSettlingV1?.holding(this,t)){
     const decisionAt=this.config.debug_performance?performance.now():0;this.decisionLayer()?.step(gap>1000?0:gap,t);if(this.config.debug_performance)this.decisionCost=performance.now()-decisionAt;
@@ -832,7 +833,7 @@ class PixelCatHome extends HTMLElement {
         const oldIdle=this.idle,previousFacing=this.facing,oldPose=this.idle?.pose||'walk';
         const base=this.support.poses?.length?this.support.poses:this.support.home||this.support.internal?['alertLying','loaf','sit','sithead','clean','look','stretch','stand','sniff','scratch','yawn','sleep','meow']:['backRoll','alertLying','perch','sit','sithead','glance','clean','loaf','look','lookdown','stand','scratch','yawn','meow','chatter'];const peek=lookDownFacing(this.support,this.x,this.scale,this.facing),choices=base.filter(p=>(window.pixelCatBehaviourV1?.allowed(this,CAT_ART.idleSequences?.[p])!==false)&&(p!=='backRoll'||['loaf','alertLying'].includes(oldPose))&&(p!=='lookdown'||peek!==null)&&(!['sniff','scratch','yawn','sleep','meow','chatter'].includes(p)||CAT_ART.idleSequences?.[p]));
         if(!this.support.narrow&&!this.support.poses?.length&&this.config.mood_behaviour&&CAT_ART.idleSequences?.sleep&&window.pixelCatBehaviourV1?.allowed(this,CAT_ART.idleSequences.sleep)!==false&&!choices.includes('sleep'))choices.push('sleep');const inspection=this.inspectionPending;let pose=this.previewPose||this.play?.pose||this.previewBedPose||this.social?.restPose()||this.labPose||(inspection?'look':weightedPick(choices,p=>idlePoseWeight(p,this.recentPoses,peek)*(window.pixelCatBehaviourV1?.weight(this,CAT_ART.idleSequences?.[p])??1)*(this.social?.poseWeight(p)||1)*(window.pixelCatPostRestV1?.poseWeight(this,p)||1),this.config.mood_behaviour?()=>this.ensureMood().random():Math.random));if(!pose||window.pixelCatBehaviourV1?.allowed(this,CAT_ART.idleSequences?.[pose])===false)pose='stand';this.recentPoses||=[];this.recentPoses.push({pose});if(this.recentPoses.length>3)this.recentPoses.shift();if(['glance','lookdown'].includes(pose)&&!CAT_ART.idleSequences?.[pose])pose='sit';if(pose==='lookdown'&&peek!==null)this.facing=peek;this.inspectionPending=null;if(inspection)this.facing=inspection.lookAt.x>=this.x+12*this.scale?1:-1;this.idleSequence=(this.idleSequence||0)+1;
-        this.labPose=this.previewBedPose=null;if(window.pixelCatBedEntryV1?.beforeIdle(this,pose,t,CAT_ART,groundedFront))return;
+        this.labPose=this.previewBedPose=null;if((this.support?.bedOwner||this).config.bed_style==='box'?window.pixelCatBoxV1?.begin(this,pose,t):window.pixelCatBedEntryV1?.beforeIdle(this,pose,t,CAT_ART,groundedFront))return;
         const poseConfig=pose==='bat'?{...this.config,bat_stroke:this.play?.strokes?.[this.play.strokeIndex]}:this.config,first=idleSample(CAT_ART,pose,0,poseConfig);
         const duration={backRoll:16000,alertLying:12000,loaf:20000,sit:12000,sithead:12000,perch:12000,clean:3000,look:4000,lookdown:3000,glance:3000,stretch:1250,stand:6000,sniff:2200,scratch:2200,yawn:2300,sleep:8500,meow:950,chatter:850,rub:1900,bat:2600}[pose];
         const bridge=this.previewPose||this.play||this.social?.episode?[]:loafBridge(CAT_ART,oldPose==='sleep'?'loaf':oldPose,pose==='sleep'?'loaf':pose,oldIdle,this.config,t),bridgeMs=window.pixelCatPolishV1.bridgeDuration(bridge,this.config);

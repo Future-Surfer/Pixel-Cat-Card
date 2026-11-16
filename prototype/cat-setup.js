@@ -1,6 +1,6 @@
 // Shared public-card setup. Legacy card types stay usable without picker entries.
 window.pixelCatSetupV1={
- bed(a,art){if(a.config.include_bed===false)return null;return art.homeBeds?.[a.config.bed_style==='simple'?'simple':'igloo']||art.propCatalogue?.find(p=>p.id==='dd2bda18-62a3-4f52-972e-e6abe3b7df83');},
+ bed(a,art){if(a.config.include_bed===false)return null;if(a.config.bed_style==='box')return window.pixelCatBoxV1?.asset;return art.homeBeds?.[a.config.bed_style==='simple'?'simple':'igloo']||art.propCatalogue?.find(p=>p.id==='dd2bda18-62a3-4f52-972e-e6abe3b7df83');},
  shade(colour,factor){const hex=/^#([a-f\d]{3}|[a-f\d]{6})$/i.exec(colour||'');if(!hex)return `color-mix(in srgb, ${colour} ${factor*100}%, black)`;const value=hex[1].length===3?[...hex[1]].map(v=>v+v).join(''):hex[1];return '#'+[0,2,4].map(i=>Math.round(parseInt(value.slice(i,i+2),16)*factor).toString(16).padStart(2,'0')).join('');},
  bedColour(a,colour){
   const simple=a.config.bed_style==='simple',primary=a.config.bed_primary_color||a.config.igloo_color,secondary=a.config.bed_secondary_color,c=colour.toLowerCase();
@@ -71,7 +71,7 @@ window.pixelCatSetupV1={
  },
  disconnect(a){window.pixelCatAlertV1?.leave(a);window.pixelCatDepthV1?.remove(a);window.pixelCatMouthV1?.disconnect?.(a);a.monitorCard?.remove();a.monitorCard=null;if(a.svg)a.svg.style.clipPath='';a.arriving=null;a.bedInside=null;a.bedEntry=null;a.previewBedPose=null;},
  arrival(a,t,art,sample,appearance,idle,contact,bearing){
-  if(a.config.bed_style==='simple'){a.arrived=true;return false;}
+  if(a.config.bed_style==='simple'||a.config.bed_style==='box'){a.arrived=true;return false;}
   if(a.config.arrival!=='igloo'||a.config.show_home===false||a.config.include_bed===false||a.arrived)return false;
   if(!a.arriving){
    // A command or preview always takes precedence. Never move an existing actor
