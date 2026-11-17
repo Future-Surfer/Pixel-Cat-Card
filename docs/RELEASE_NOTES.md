@@ -27,9 +27,9 @@ This release candidate includes changes since v1.0.0.
 ### Testing and tools
 
 - The dashboard-wide **Behaviour Lab** can focus cats on climbing and leaping, wall jumps, or yawning. It reports when walls or safe routes are unavailable.
-- The [MP4 demo](images/pixel-cat-routine.mp4) is available to share.
+- The [MP4 demo](https://github.com/Future-Surfer/Pixel-Cat-Card/blob/main/docs/images/pixel-cat-routine.mp4) is available to share.
 - Behaviour Lab can focus cross-card chasing. Each cat still makes its own decision about joining.
-- The [Editor Workbench](guides/EDITOR_WORKBENCH.md) and local chase replay fixtures remain available in the development tools.
+- The [Editor Workbench](https://github.com/Future-Surfer/Pixel-Cat-Card/blob/main/docs/guides/EDITOR_WORKBENCH.md) and local chase replay fixtures remain available in the development tools.
 
 ## Pixel Cat Card 1.0.0
 
