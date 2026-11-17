@@ -31,11 +31,11 @@ frame-studio/user-sequences/**/props-before-browser-recovery.json
 Notes and resources captured between Codex Sessions/
 
 # Intermediate build files; the distributed entrypoint is dist/pixel-cat-card.js.
-/stick-pet-card.js
-/pixel-pet-card.js
 /pixel-cat-roaming.js
 /pixel-cat-roaming-art.js
 /pixel-cat-roaming-extras.js
 /pixel-cat-affordances.js
 /pixel-cat-behaviours.js
 /pixel-cat-climbing.js
+/pixel-cat-box.js
+/pixel-cat-dashboard-chase.js

@@ -5,7 +5,7 @@ Object.assign(window.pixelCatMouthV1||={}, {
   const offer=e=>{e?.stopPropagation?.();this.offer(a,performance.now());};node.addEventListener?.('click',offer);node.addEventListener?.('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();offer(e);}});
  },
  appetite(a,t){const q=this.state(a,t);return Math.max(0,Math.min(1,(q.clock-(q.lastMeal??-180000)-90000)/180000));},
- surfaces(a){if(a.config.bowl_eating===false)return;for(const owner of this.homes||[]){const h=owner.home,el=owner.shadowRoot?.querySelector?.('.dock');if(!owner.active||owner.root!==a.root||owner.config.show_home===false||!h||!el?.isConnected)continue;a.surfaces.push({...h,id:'food-'+owner.ownerKey,el,home:false,internal:true,foodOwner:owner,label:(owner.config.name||'Cat')+' · bowl floor',source:'known home bowl'});}},
+ surfaces(a){if(a.config.bowl_eating===false)return;for(const owner of this.homes||[]){const h=owner.home,el=owner.shadowRoot?.querySelector?.('.dock');if(!owner.active||owner.root!==a.root||owner.config.show_home===false||owner.config.include_bowl===false||!h||!el?.isConnected)continue;a.surfaces.push({...h,id:'food-'+owner.ownerKey,el,home:false,internal:true,foodOwner:owner,label:(owner.config.name||'Cat')+' · bowl floor',source:'known home bowl'});}},
  bowlTarget(a,owner){
   if(!owner?.active||owner.root!==a.root||owner.config.show_home===false||!owner.foodBowl?.isConnected||owner.bowlClaim&&owner.bowlClaim!==a.ownerKey)return null;
   const r=owner.foodBowl.getBoundingClientRect(),s=a===owner?a.home:a.surfaces?.find(s=>!s.narrow&&Math.abs(s.top-r.bottom)<2*a.scale&&r.left>=s.left&&r.right<=s.right);

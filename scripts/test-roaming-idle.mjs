@@ -1,10 +1,10 @@
+import cat from '../src/artwork/pixel-pet-artwork.json' with {type:'json'};
 import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';
 const box={window:{},HTMLElement:class {},customElements:{get(){return true}},performance:{now:()=>0}};
 vm.runInNewContext(fs.readFileSync('pixel-cat-roaming-art.js','utf8')+'\n'+['prototype/cat-polish.js','prototype/cat-surface-world.js','prototype/cat-card-attention.js','pixel-cat-roaming.js'].map(f=>fs.readFileSync(f,'utf8')).join('\n')+'\nglobalThis.api={idleSample,idleContact,frameContact,Home:PixelCatHome};',box);
 const art=box.window.pixelCatRoamingArtV2,{idleSample,idleContact,frameContact,Home}=box.api;
-const original={window:{},HTMLElement:class {},customElements:{get(){return true}}};vm.runInNewContext(fs.readFileSync('pixel-pet-card.js','utf8')+'\nglobalThis.cat=PixelPetCard;',original);
-for(const [key,symbol] of Object.entries({sit:'SIT_IDLE_FRAMES',stand:'STAND_PAUSE_FRAMES',loaf:'LOAF_IDLE_FRAMES',look:'LOOK_UP_FRAMES',clean:'CLEANING_FRAMES',perch:'ELEVATED_SIT_FRAMES'}))assert.equal(JSON.stringify(art.idle[key]),JSON.stringify(original.cat[symbol]),'Idle grids must exactly match authored source');
-assert.equal(JSON.stringify(art.idle.stretch),JSON.stringify(original.cat.TRANSITIONS.loaf_to_walk));assert.ok(art.idleCatalogue.every(p=>p.origin==='human'));
+for(const [key,symbol] of Object.entries({sit:'SIT_IDLE_FRAMES',stand:'STAND_PAUSE_FRAMES',loaf:'LOAF_IDLE_FRAMES',look:'LOOK_UP_FRAMES',clean:'CLEANING_FRAMES',perch:'ELEVATED_SIT_FRAMES'}))assert.equal(JSON.stringify(art.idle[key]),JSON.stringify(cat[symbol]),'Idle grids must exactly match authored source');
+assert.equal(JSON.stringify(art.idle.stretch),JSON.stringify(cat.TRANSITIONS.loaf_to_walk));assert.ok(art.idleCatalogue.every(p=>p.origin==='human'));
 assert.equal(idleSample({...art,idleSequences:undefined},'loaf',2999).frame,0);assert.equal(idleSample({...art,idleSequences:undefined},'loaf',3000).frame,1);assert.equal(idleSample({...art,idleSequences:undefined},'loaf',3250).frame,0);
 const legacy={...art,idleSequences:undefined};assert.equal(idleSample(legacy,'sit',750).frame,1);assert.equal(idleSample(legacy,'sit',1000).frame,3);assert.equal(idleSample(art,'sit',750).frame,3);assert.equal(idleSample(art,'sit',2500).frame,10);
 assert.equal(idleSample({...art,idleSequences:undefined},'stretch',250).frame,0);assert.equal(idleSample({...art,idleSequences:undefined},'stretch',500).frame,1);assert.equal(JSON.stringify(idleSample({...art,idleSequences:undefined},'stretch',2000).rows),JSON.stringify(idleSample(art,'stand',750).rows));

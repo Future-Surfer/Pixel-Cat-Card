@@ -1,16 +1,46 @@
 import '../pixel-cat-roaming-art.js';import '../pixel-cat-roaming-extras.js';import '../pixel-cat-affordances.js';import '../pixel-cat-behaviours.js';import '../pixel-cat-roaming.js';
-import {LabMetrics} from './gaze-perception.js';
-const $=s=>document.querySelector(s),cats=[$('#cat-one'),$('#cat-two')],metrics=new LabMetrics();let cost=0,last=null,ui=0,paused=false;
+import '../pixel-cat-dashboard-chase.js';
+import {LabMetrics,worldGaze,targetVisibility} from './gaze-perception.js';
+const $=s=>document.querySelector(s),cats=[$('#cat-one'),$('#cat-two')],metrics=new LabMetrics();let cost=0,last=null,ui=0,paused=false,chaseTrial=null,resetTimer;
 for(const [i,a]of cats.entries()){
  a.setConfig({cat_id:'social-lab-'+i,name:i?'Juniper':'Miso',color:i?'#d9a261':'#d6e0e8',cell_size:2,mood_behaviour:true,social_behaviour:true,interaction_behaviour:true,mood_enabled:true,debug_mood:true,playful_pounces:false,toy_hunting:false,dashboard_props:false,prop_reactions:true,startle_followups:true,standard_surfaces:false,click_attention:false,mood_seed:7+i});
  instrument(a);
 }
-function instrument(a){const tick=a.tick.bind(a);a.tick=t=>{if(a.labHold?.until>t&&a.idle?.pose===a.labHold.pose&&!a.social?.episode){a.idle.poseUntil=a.labHold.until;a.deadline=a.labHold.until;}const start=performance.now();tick(t);cost+=performance.now()-start;};}
-function reset(kind){for(const a of cats)a.labHold=null;for(const a of cats)a.propScene?.clear();const now=performance.now(),seed=Number($('#seed').value)>>>0;paused=false;$('#pause-all').textContent='Pause all cats';
+function instrument(a){
+ const tick=a.tick.bind(a);
+ a.tick=t=>{
+  const held=a.labHold?.until>t&&!a.social?.episode;
+  if(held&&chaseTrial?.waiting&&(a===cats[0]||a===cats[1])){
+   // Keep the two test actors staged through a dashboard geometry refresh.
+   const peer=a===cats[0]?cats[1]:cats[0];
+   a.facing=Math.sign(peer.x-a.x)||a.facing;
+   a.deadline=a.labHold.until;
+   a.route=[];
+   a.motion=null;
+  }
+  if(held&&a.idle?.pose===a.labHold.pose){
+   a.idle.poseUntil=a.labHold.until;
+   a.deadline=a.labHold.until;
+  }
+  const start=performance.now();
+  tick(t);
+  cost+=performance.now()-start;
+ };
+}
+function reset(kind,ready){
+ clearTimeout(resetTimer);
+ chaseTrial=null;
+ const cross=kind==='cross'||kind==='blocked-chase',chase=cross||kind==='chase',next=$('#next-card');
+ $('#world').classList.toggle('cross',cross);
+ next.hidden=!cross;
+ next.toggleAttribute('data-cat-surface',cross);
+ next.style.top=kind==='blocked-chase'?'570px':'332px';
+ if(ready){say('Setting up the chase…');resetTimer=setTimeout(()=>{reset(kind);ready();},350);return;}
+ for(const a of cats)a.labHold=null;for(const a of cats)a.propScene?.clear();const now=performance.now(),seed=Number($('#seed').value)>>>0;paused=false;$('#pause-all').textContent='Pause all cats';
  for(const [i,a]of cats.entries()){
-  a.social?.dispose();a.social=null;a.mood=null;a.config.mood_seed=seed+i;a.cancelPlay();a.goal=a.command=null;a.route=[];a.motion=null;a.recallPending=false;a.finishing=false;a.previewPose=null;a.paused=false;a.nextLandingReactionAt=a.nextStartleAt=0;a.measure();a.config.mood_behaviour=a.config.social_behaviour=a.config.interaction_behaviour=$('#features').checked;a.config.debug_mood=$('#glow').checked;
+  a.social?.dispose();a.social=null;a.mood=null;a.config.mood_seed=seed+i;a.config.dashboard_chasing=cross;a.cancelPlay();a.goal=a.command=null;a.route=[];a.motion=null;a.recallPending=false;a.finishing=false;a.inspectionPending=null;a.previewBedPose=null;a.labPose=null;a.pendingStartle=null;a.startleAfter=null;a.previewPose=null;a.paused=false;a.nextLandingReactionAt=a.nextStartleAt=0;a.measure();a.config.mood_behaviour=a.config.social_behaviour=a.config.interaction_behaviour=$('#features').checked;a.config.debug_mood=$('#glow').checked;
   const s=a.surfaces.find(s=>s.el===$('#shared'));if(!s){$('#instruction').textContent='Waiting for shared surface measurement';return;}
-  a.support=s;a.x=Math.round((i===1&&cats[0].lifeStage==='kitten'?Math.min(s.max,cats[0].x+70*Math.min(cats[0].scale,a.scale)):s.min+(s.max-s.min)*(i===2?.82:i?.57:.28))/a.scale)*a.scale;a.y=s.top;a.facing=i?-1:1;a.idle=null;a.deadline=now+(kind==='explore'?0:i?18000:1800);a.urgency='relaxed';a.nextPlayAt=Infinity;a.decisionLayer();a.ensureMood();a.social.world.pairs.clear();a.social.world.events=[];
+  a.support=s;const position=chase&&i<2?Math.max(s.min,Math.min(s.max,s.max-(i?23:58)*a.scale)):s.min+(s.max-s.min)*(i===2?.12:i?.57:.28);a.x=Math.round(position/a.scale)*a.scale;a.y=s.top;a.facing=i?-1:1;a.idle=null;a.deadline=now+(kind==='explore'?0:i?18000:1800);a.urgency='relaxed';a.nextPlayAt=Infinity;a.decisionLayer();a.ensureMood();if(chase&&i<2){a.social.nextEncounter=a.social.clock+10000;a.social.observerProbeAt=a.social.clock+10000;}a.social.world.pairs.clear();a.social.world.events=[];
   const v=kind==='company'?(i?{playfulness:.1,sleepiness:.95,alertness:.1}:{playfulness:.15,sleepiness:.85,alertness:.2}):{playfulness:.95,sleepiness:.05,alertness:.35};for(const key of Object.keys(v))a.mood.set(key,v[key]);
   if(kind!=='explore'){a.previewPose=kind==='company'&&i?'sleep':'sit';a.forcedIdleUntil=now+1000;if(kind==='unaware'&&i)a.facing=1;}
   a.shadowRoot.querySelector('[data-action="pause"]').textContent='Pause';
@@ -18,23 +48,79 @@ function reset(kind){for(const a of cats)a.labHold=null;for(const a of cats)a.pr
  // Holding the sleeper is a controlled scenario fixture, not a social decision.
  if(kind==='unaware'){cats[1].previewPose='look';cats[1].forcedIdleUntil=now+15000;}
  if(kind==='company'){cats[1].previewPose='sleep';cats[1].forcedIdleUntil=now+15000;}
- if(['pat','ambush','ball'].includes(kind)){cats[0].deadline=now+20000;if(kind==='pat')cats[1].facing=1;for(const a of cats){a.previewPose=null;a.idle=null;const original=a.social.restPose.bind(a.social);a.social.restPose=()=>a.labHold?.until>performance.now()&&!a.social?.episode?a.labHold.pose:original();}cats[0].labHold={pose:'sit',until:now+20000};cats[1].labHold={pose:kind==='ambush'?'sleep':'sit',until:now+20000};cats[1].deadline=now+20000;}
+ if(chase||['pat','ambush','ball'].includes(kind)){cats[0].deadline=now+20000;if(kind==='pat')cats[1].facing=1;for(const a of cats){a.previewPose=null;a.idle=null;const original=a.social.restPose.bind(a.social);a.social.restPose=()=>a.labHold?.until>performance.now()&&!a.social?.episode?a.labHold.pose:original();}cats[0].labHold={pose:'sit',until:now+20000};cats[1].labHold={pose:kind==='ambush'?'sleep':'sit',until:now+20000};cats[1].deadline=now+20000;if(cross&&cats[2]){cats[2].deadline=now+20000;cats[2].facing=1;}}
  metrics.reset();last=null;$('#instruction').textContent=kind+' · seed '+seed+' · choices remain weighted';
 }
 $('#first-age').onchange=()=>{const a=cats[0];a.setConfig({...a.config,life_stage:$('#first-age').value});requestAnimationFrame(()=>reset('chase'));};
-for(const kind of ['company','chase','unaware','explore','pat','ambush'])$('#'+kind).onclick=()=>reset(kind);
+for(const kind of ['company','unaware','explore','pat','ambush'])$('#'+kind).onclick=()=>reset(kind);
+for(const kind of ['chase','cross','blocked-chase'])$('#'+kind).onclick=()=>{
+ $('#opportunity').value='chase';
+ reset(kind,queueChase);
+};
+$('#replay-chase').onclick=()=>{
+ $('#opportunity').value='chase';
+ reset('chase',()=>queueChase(true));
+};
+const say=message=>{const status=$('#instruction');if(status.textContent!==message)status.textContent=message;};
+function queueChase(scripted=false){
+ if(!$('#features').checked){say('Turn on Mood & social decisions to try a chase.');return;}
+ chaseTrial={until:(cats[0].social?.clock||0)+4500,waiting:true,scripted};
+ say(scripted?'Replay: waiting for both cats to notice each other…':'Waiting for both cats to notice each other…');
+}
+function updateChase(t){
+ const trial=chaseTrial;
+ if(!trial||paused)return;
+ const [a,b]=cats,layer=a.social;
+ if(!layer||!b.social)return;
+ if(!trial.waiting){
+  if(layer.episode===trial.episode){
+   if(trial.episode.dashboard?.stage==='runner')say('Juniper is taking a route to the next card.');
+   if(trial.episode.dashboard?.stage==='observe')say('Miso is looking for Juniper’s landing.');
+   if(trial.episode.dashboard?.stage==='follow')say('Miso is following across the gap.');
+   return;
+  }
+  const end=layer.trace.find(event=>event.kind==='end chase'),crossed=layer.trace.some(event=>event.kind==='chase card transfer completed');
+  say(crossed?'Cross-card chase completed.':end?.reason==='lost sight at the card edge'?'Miso lost sight of Juniper at the card edge.':'Chase ended on the starting card. See Recent decisions for details.');
+  chaseTrial=null;
+  return;
+ }
+ const option=layer.chaseOptions()[0];
+ if(option&&layer.startChase(option,t,trial.scripted?'run':undefined)){
+  const reply=option.target.social.trace.find(event=>event.kind.startsWith('chase invitation '))?.kind;
+  if(layer.episode?.kind==='chase'){
+   trial.waiting=false;trial.episode=layer.episode;
+   say(trial.scripted?'Replay: Juniper accepted. Watch the dash!':'Juniper accepted. Watch the dash!');
+  }else{
+   say(reply==='chase invitation watch'?'Juniper chose to watch. Try a different seed for another response.':'Juniper ignored the invitation. Try a different seed for another response.');
+   chaseTrial=null;
+  }
+ }else if(layer.clock>=trial.until){
+  const mutual=layer.visible?.has(b.ownerKey)&&b.social.visible?.has(a.ownerKey);
+  say(mutual?'The cats noticed each other, but there wasn’t room for a chase or one was busy.':`Miso → Juniper: ${sight(a,b)}. Juniper → Miso: ${sight(b,a)}.`);
+  chaseTrial=null;
+ }
+}
+function sight(a,b){
+ if(a.social.visible?.has(b.ownerKey))return 'noticed';
+ const frame=a.social.frame;
+ if(!frame)return 'no visible pose yet';
+ const range=Math.max(24,Math.min(240,Number(a.config.social_sight_cells)||110))*a.scale;
+ const eye=worldGaze(frame.gaze,frame.placement,a.scale,frame.facing,range);
+ const result=targetVisibility(eye,{x:b.x+12*b.scale,y:b.y-12*b.scale,width:20*b.scale,height:22*b.scale});
+ return result.visible?'in view, still noticing':result.reason;
+}
 // Explicit lab placement can put props on the reset surface even when the home route is absent.
 function fixtureProp(a,id){const scene=a.ensurePropScene(),asset=window.pixelCatRoamingExtrasV1.dashboardProps.find(p=>p.id===id),s=a.support;if(!asset||!s)return null;const node=document.createElement('canvas');node.width=asset.width;node.height=asset.height;node.style.cssText='position:absolute;image-rendering:pixelated;pointer-events:none';node.style.width=asset.width*a.scale+'px';node.style.height=asset.height*a.scale+'px';const p={id:'fixture-'+(++scene.serial),asset,node,surfaceEl:s.el,surfaceSuffix:s.id.slice(s.id.indexOf(':')),scale:a.scale,u:.5,low:.1,high:.9,direction:1,moving:id==='toy_mouse',mouseSeed:7,cooldownUntil:0,claimedBy:null};node.dataset.propId=p.id;node.dataset.assetId=id;node.dataset.origin=asset.origin;scene.props.push(p);scene.layer.append(node);scene.enabled=scene.seeded=true;return p;}
 $('#brush').onclick=()=>{reset('brush');const a=cats[0],s=a.support,scene=a.ensurePropScene();scene.clear();const p=fixtureProp(a,'toy_mouse');if(!p)return;const padding=4*a.scale,span=s.right-s.left-2*padding;p.surfaceEl=s.el;p.surfaceSuffix=s.id.slice(s.id.indexOf(':'));p.u=(a.x-8*a.scale-s.left-padding)/span;p.low=p.u;p.high=Math.min(.96,p.u+36*a.scale/span);p.direction=1;p.mouseMotion={phase:'move',remaining:8000};a.deadline=performance.now()+18000;$('#instruction').textContent='Moving mouse brush · physical contact can be felt with closed eyes · ignore/watch/hop and recovery stay weighted';};
-$('#decide').onclick=()=>{const a=cats[0],kind=$('#opportunity').value;if(paused)return;if(a.previewPose){a.previewPose=null;if(a.idle)a.idle.poseUntil=performance.now();}const layer=a.decisionLayer(),now=performance.now();let ok=false;if(kind==='weighted')ok=layer.decide(now);else {const options=kind==='prop'?layer.propOptions():kind==='chase'?layer.chaseOptions():layer.socialOptions(kind);if(options.length){const o=options[Math.floor(a.ensureMood().random()*options.length)];ok=kind==='prop'?layer.startProp(o,now):kind==='chase'?layer.startChase(o,now):layer.startSocial(o,now);}}$('#instruction').textContent=ok?'Eligible '+kind+' opportunity started · physical hits and recipient responses remain independent':'No eligible '+kind+' opportunity now · inspect gaze, room, busy state and cooldowns';};
+$('#decide').onclick=()=>{const a=cats[0],kind=$('#opportunity').value;if(paused)return;if(kind==='chase'){queueChase();return;}chaseTrial=null;if(a.previewPose){a.previewPose=null;if(a.idle)a.idle.poseUntil=performance.now();}const layer=a.decisionLayer(),now=performance.now();let ok=false;if(kind==='weighted')ok=layer.decide(now);else {const options=kind==='prop'?layer.propOptions():kind==='chase'?layer.chaseOptions():layer.socialOptions(kind);if(options.length){const o=options[Math.floor(a.ensureMood().random()*options.length)];ok=kind==='prop'?layer.startProp(o,now):kind==='chase'?layer.startChase(o,now):layer.startSocial(o,now);}}$('#instruction').textContent=ok?'Eligible '+kind+' opportunity started · physical hits and recipient responses remain independent':'No eligible '+kind+' opportunity now · inspect gaze, room, busy state and cooldowns';};
 $('#ball').onclick=()=>{reset('ball');const a=cats[0],scene=a.ensurePropScene();scene.clear();const p=fixtureProp(a,'ball');if(!p)return;const s=a.support,padding=2*a.scale,span=s.right-s.left-2*padding;p.surfaceEl=s.el;p.surfaceSuffix=s.id.slice(s.id.indexOf(':'));p.u=Math.max(.05,Math.min(.95,(a.x+30*a.scale-s.left-padding)/span));$('#instruction').textContent='Shared ball · let it rest, then roll it or use Cat controls → Bat a ball. Watchers need real gaze; a claim transfers only after the paw stroke.';};
 $('#roll').onclick=()=>{const scene=cats[0].propScene,p=scene?.props.find(p=>p.asset.id==='ball'&&!p.claimedBy);if(p){p.ballMotion={vx:60*p.scale,vy:0,fall:null};$('#instruction').textContent='Scripted physical ball roll · no source cat strike claimed by this control';}};
 $('#observer').onclick=()=>{if(cats.length===3)return;const a=document.createElement('pixel-cat-home');a.id='cat-three';$('#world').append(a);a.setConfig({...cats[1].config,cat_id:'social-lab-2',name:'Pip',color:'#94ba82',mood_seed:19});instrument(a);cats.push(a);$('#world').classList.add('three');$('#observer').disabled=true;$('#instruction').textContent='Third real actor added · reset a scenario to place all three.';};
-$('#features').onchange=()=>{for(const a of cats){a.config.mood_behaviour=a.config.social_behaviour=a.config.interaction_behaviour=$('#features').checked;if(!$('#features').checked)a.social?.finish('disabled');a.decisionLayer();}};
+$('#features').onchange=()=>{if(!$('#features').checked)chaseTrial=null;for(const a of cats){a.config.mood_behaviour=a.config.social_behaviour=a.config.interaction_behaviour=$('#features').checked;if(!$('#features').checked)a.social?.finish('disabled');a.decisionLayer();}};
 $('#glow').onchange=()=>{for(const a of cats){a.config.debug_mood=$('#glow').checked;a.moodDebugAt=0;}};
 $('#pause-all').onclick=()=>{paused=!paused;for(const a of cats)a.paused=paused;$('#pause-all').textContent=paused?'Resume all cats':'Pause all cats';};
 $('#reset-metrics').onclick=()=>{metrics.reset();last=null;};
 function state(){return cats.map(a=>({id:a.ownerKey,pose:a.idle?.pose,motion:a.motion?.kind,mood:a.mood?.view(),temperament:a.social?.traits,noticedProps:[...a.social?.propMemory?.values()||[]].map(p=>({id:p.id,moving:p.moving,age:Math.round(a.social.clock-p.observedAt)})),episode:a.social?.episode?.kind,observed:[...a.social?.memory?.values()||[]].map(m=>({id:m.id,x:Math.round(m.x),pose:m.pose,age:Math.round(a.social.clock-m.at)})),trace:a.social?.trace||[]}));}
-function frame(t){requestAnimationFrame(frame);const gap=last===null?0:t-last;last=t;if(!paused&&!document.hidden&&gap>0&&gap<1000)metrics.add({frame:gap,controller:cost});cost=0;if(t-ui<250)return;ui=t;const s=state();$('#social-state').textContent=s.map(a=>`${a.id}: ${a.pose||a.motion||'waiting'} · ${a.episode||'independent'}\nObserved: ${JSON.stringify(a.observed)}\nProps: ${JSON.stringify(a.noticedProps)}\nLast: ${a.trace[0]?.kind||'none'}`).join('\n\n');const m=metrics.summary();$('#metrics').textContent=`${m.fps.toFixed(1)} FPS · ${m.samples} samples\nFrame mean / p95: ${m.frame.mean.toFixed(2)} / ${m.frame.p95.toFixed(2)} ms\nMounted controllers mean / p95: ${m.controller.mean.toFixed(3)} / ${m.controller.p95.toFixed(3)} ms\nFrames over 33 ms: ${m.over33}`;const list=$('#events');list.replaceChildren(...s.flatMap(a=>a.trace.slice(0,8).map(e=>{const li=document.createElement('li');li.textContent=a.id+' '+JSON.stringify(e);return li;})));}
+function frame(t){requestAnimationFrame(frame);const gap=last===null?0:t-last;last=t;if(!paused&&!document.hidden&&gap>0&&gap<1000)metrics.add({frame:gap,controller:cost});cost=0;if(t-ui<250)return;ui=t;updateChase(t);const s=state();$('#social-state').textContent=s.map(a=>`${a.id}: ${a.pose||a.motion||'waiting'} · ${a.episode||'independent'}\nObserved: ${JSON.stringify(a.observed)}\nProps: ${JSON.stringify(a.noticedProps)}\nLast: ${a.trace[0]?.kind||'none'}`).join('\n\n');const m=metrics.summary();$('#metrics').textContent=`${m.fps.toFixed(1)} FPS · ${m.samples} samples\nFrame mean / p95: ${m.frame.mean.toFixed(2)} / ${m.frame.p95.toFixed(2)} ms\nMounted controllers mean / p95: ${m.controller.mean.toFixed(3)} / ${m.controller.p95.toFixed(3)} ms\nFrames over 33 ms: ${m.over33}`;const list=$('#events');list.replaceChildren(...s.flatMap(a=>a.trace.slice(0,8).map(e=>{const li=document.createElement('li');li.textContent=a.id+' '+JSON.stringify(e);return li;})));}
 $('#export').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({at:new Date().toISOString(),seed:$('#seed').value,features:$('#features').checked,glow:$('#glow').checked,metrics:metrics.summary(),cats:state()},null,2)],{type:'application/json'}));const link=document.createElement('a');link.href=url;link.download='cat-social-lab-results.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 requestAnimationFrame(frame);

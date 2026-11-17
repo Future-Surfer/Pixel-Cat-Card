@@ -1,6 +1,6 @@
 // Shared public-card setup. Legacy card types stay usable without picker entries.
 window.pixelCatSetupV1={
- bed(a,art){return art.homeBeds?.[a.config.bed_style==='simple'?'simple':'igloo']||art.propCatalogue?.find(p=>p.id==='dd2bda18-62a3-4f52-972e-e6abe3b7df83');},
+ bed(a,art){if(a.config.include_bed===false)return null;if(a.config.bed_style==='box')return window.pixelCatBoxV1?.asset;return art.homeBeds?.[a.config.bed_style==='simple'?'simple':'igloo']||art.propCatalogue?.find(p=>p.id==='dd2bda18-62a3-4f52-972e-e6abe3b7df83');},
  shade(colour,factor){const hex=/^#([a-f\d]{3}|[a-f\d]{6})$/i.exec(colour||'');if(!hex)return `color-mix(in srgb, ${colour} ${factor*100}%, black)`;const value=hex[1].length===3?[...hex[1]].map(v=>v+v).join(''):hex[1];return '#'+[0,2,4].map(i=>Math.round(parseInt(value.slice(i,i+2),16)*factor).toString(16).padStart(2,'0')).join('');},
  bedColour(a,colour){
   const simple=a.config.bed_style==='simple',primary=a.config.bed_primary_color||a.config.igloo_color,secondary=a.config.bed_secondary_color,c=colour.toLowerCase();
@@ -28,7 +28,7 @@ window.pixelCatSetupV1={
  restPlacement(a,placement,rows,art,t){
   this.clearRestMask(a);if(window.pixelCatBedEntryV1?.rest(a,placement))return placement;
   const owner=a.support?.bedOwner||a,simple=owner.config.bed_style==='simple',eligible=simple?['sit','sithead','loaf','sleep','clean','scratch','yawn','meow','chatter']:['loaf','sleep'];
-  if((!a.support?.home&&!a.support?.bedOwner)||owner.config.show_home===false||!eligible.includes(a.idle?.pose))return placement;
+  if((!a.support?.home&&!a.support?.bedOwner)||owner.config.show_home===false||owner.config.include_bed===false||!eligible.includes(a.idle?.pose))return placement;
   const bed=this.bed(owner,art),s=a.scale,bs=(owner.worldScale||owner.scale);if(!bed)return placement;
   const raised=!!a.support.bed,left=raised?a.support.left:a.support.left-4+22*bs,bottom=a.support.top+(raised?3*bs:0),center=left+bed.width*bs/2;
   if(Math.abs(a.x+12*s-center)>24*s)return placement;
@@ -53,25 +53,26 @@ window.pixelCatSetupV1={
   const dock=a.shadowRoot?.querySelector?.('.dock');if(!dock?.style||a.homeArtReady||!art.homeBeds)return;
   const s=a.worldScale||a.scale;dock.style.height=28*s+'px';
   const bowl=art.homeProps?.bowl,bed=this.bed(a,art);
-  if(!bowl||!bed)return;
+  if(!bowl)return;
   for(const [asset,selector,left,tag]of [[bowl,'.bowl',7,'catBowl'],[bed,'.mat',22,'catBed']]){
-   const placeholder=dock.querySelector(selector);if(!placeholder)return;
+   const placeholder=dock.querySelector(selector);if(!placeholder)continue;
+   if(!asset||tag==='catBowl'&&a.config.include_bowl===false){placeholder.remove();continue;}
    const canvas=document.createElement('canvas');canvas.width=asset.width;canvas.height=asset.height;canvas.dataset[tag]='';canvas.setAttribute('aria-label',asset.name||'Food bowl');
    canvas.style.cssText=`position:absolute;bottom:${tag==='catBed'&&a.config.bed_style==='simple'?-s:0}px;left:${left*s}px;image-rendering:pixelated;width:${asset.width*s}px;height:${asset.height*s}px`;
-   const c=canvas.getContext('2d');asset.pixels.forEach((row,y)=>row.forEach((colour,x)=>{if(!colour)return;c.fillStyle=tag==='catBed'?this.bedColour(a,colour):colour;c.fillRect(x,y,1,1);}));placeholder.replaceWith(canvas);if(tag==='catBowl')window.pixelCatMouthV1?.bowl?.(a,canvas);
+   const c=canvas.getContext('2d');asset.pixels.forEach((row,y)=>row.forEach((colour,x)=>{if(!colour)return;c.fillStyle=tag==='catBed'?this.bedColour(a,colour):(y===0?a.config.bowl_secondary_color:a.config.bowl_primary_color)||colour;c.fillRect(x,y,1,1);}));placeholder.replaceWith(canvas);if(tag==='catBowl')window.pixelCatMouthV1?.bowl?.(a,canvas);
   }
   a.homeArtReady=true;
  },
  connect(a){
-  if(a.config.mode!=='monitor')return false;
+  if(!['monitor','behaviour-lab'].includes(a.config.mode))return false;
   a.style.display='';a.shadowRoot.innerHTML='';
-  const monitor=document.createElement('pixel-cat-monitor');monitor.setConfig(a.config);monitor.hass=a._hass;a.monitorCard=monitor;a.shadowRoot.append(monitor);
+  const monitor=document.createElement('pixel-cat-'+a.config.mode);monitor.setConfig(a.config);monitor.hass=a._hass;a.monitorCard=monitor;a.shadowRoot.append(monitor);
   return true;
  },
  disconnect(a){window.pixelCatAlertV1?.leave(a);window.pixelCatDepthV1?.remove(a);window.pixelCatMouthV1?.disconnect?.(a);a.monitorCard?.remove();a.monitorCard=null;if(a.svg)a.svg.style.clipPath='';a.arriving=null;a.bedInside=null;a.bedEntry=null;a.previewBedPose=null;},
  arrival(a,t,art,sample,appearance,idle,contact,bearing){
-  if(a.config.bed_style==='simple'){a.arrived=true;return false;}
-  if(a.config.arrival!=='igloo'||a.config.show_home===false||a.arrived)return false;
+  if(a.config.bed_style==='simple'||a.config.bed_style==='box'){a.arrived=true;return false;}
+  if(a.config.arrival!=='igloo'||a.config.show_home===false||a.config.include_bed===false||a.arrived)return false;
   if(!a.arriving){
    // A command or preview always takes precedence. Never move an existing actor
    // back to its bed, nor manufacture a home if it is absent or obstructed.
@@ -102,8 +103,7 @@ window.pixelCatSetupV1={
   return true;
  }
 };
-// Old /local/ resources may still register these entries. Hide discovery only;
-// their custom elements and saved YAML continue to load, in either import order.
-const catLegacyPickerTypes=new Set(['stick-pet-card','pixel-pet-card','pixel-cat-monitor','pixel-cat-playground']);
-const catCleanPicker=()=>{const cards=window.customCards;if(!cards)return;for(let i=cards.length-1;i>=0;i--)if(catLegacyPickerTypes.has(cards[i].type))cards.splice(i,1);};
-catCleanPicker();for(const type of catLegacyPickerTypes)customElements.whenDefined?.(type)?.then(catCleanPicker);
+// Keep internal diagnostic and playground types out of the companion picker.
+const catHiddenPickerTypes=new Set(['pixel-cat-monitor','pixel-cat-playground']);
+const catCleanPicker=()=>{const cards=window.customCards;if(!cards)return;for(let i=cards.length-1;i>=0;i--)if(catHiddenPickerTypes.has(cards[i].type))cards.splice(i,1);};
+catCleanPicker();for(const type of catHiddenPickerTypes)customElements.whenDefined?.(type)?.then(catCleanPicker);

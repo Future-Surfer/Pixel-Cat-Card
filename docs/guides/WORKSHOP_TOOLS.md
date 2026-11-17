@@ -4,7 +4,7 @@ The Studio and local labs share one inventory and navigation component. Use **Al
 
 | Group | Existing tools |
 | --- | --- |
-| Create | Sequences, Props, Climb workshop |
+| Create | Sequences, Props, Climb workshop, [Editor Workbench](EDITOR_WORKBENCH.md) |
 | Behaviours | Behaviour map, Gaze & awareness, Mood & social, Independent waking, Exploring & gaits |
 | Simulate | Live climbing, Movement & jumps, Route quality, Carrying & handoffs, Props & refinements, Scratching & actions, Bed visits, Life-stage preview, Roaming playground, Standard card surfaces, Multiple cats |
 | Diagnose | Kitten climbing stress, Endurance & stress, Initial load, Layout & lifecycle, World authority |

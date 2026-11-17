@@ -141,3 +141,9 @@ flowchart LR
 - Recovery can scrape/slide down toward that support; slipping may be disabled with the existing climb setting. World/ink bounds, actual landing membership, occupied landing checks and full flight checks remain mandatory.
 - After two recovery seconds, downward fall comfort increases from the ordinary 110-cell limit by 25 cells per active second, bounded by remaining dashboard depth. Flight time is allowed to grow for that checked downward release; upward reach and ordinary voluntary jump limits stay unchanged.
 - If every real landing is blocked or absent, preserve visible contact and retry. Never fabricate a floor, teleport to stale ground or fall outside the dashboard.
+
+## Climb down artwork
+
+Choose **Climb down** under **Workbench sequence** to edit its own 24×24 frames and contacts. The starter is a vertically reflected copy of the reviewed side-climb frames. Its IDs and saved artwork are independent. The preview plays one descent cycle on the post.
+
+To build a reviewed edit into the card, export the exact version from draft history and run `node scripts/runtime-climb-source.mjs <version-export.json> <saved-version-sha256>` from the repository root, then rebuild. The command checks the exact saved version and imports only its validated descent clip. Older drafts without a descent clip remain editable.

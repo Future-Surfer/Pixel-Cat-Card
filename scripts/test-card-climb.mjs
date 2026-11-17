@@ -1,15 +1,41 @@
 import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';import {runtimeFiles} from './build-release.mjs';
 const b={window:{},HTMLElement:class{},customElements:{get:()=>true},performance};vm.runInNewContext(runtimeFiles.map(f=>fs.readFileSync(f,'utf8')).join('\n')+'\nglobalThis.api={Home:PixelCatHome,art:CAT_ART};',b);const {Home,art}=b.api,C=b.window.pixelCatClimbV1;
 function actor(from=500,to=180){const base={id:'base',left:50,right:700,min:50,max:676,top:from,el:{isConnected:true}},target={id:'target',left:50,right:700,min:50,max:676,top:to,el:{isConnected:true}};return Object.assign(Object.create(Home.prototype),{active:true,config:{life_stage:'kitten',interaction_behaviour:true},scale:1,size:24,x:200,y:from,support:base,home:base,surfaces:[base,target],ownerKey:'test',social:{clear:()=>true,capture(){}},setAttribute(){},decisionLayer(){return{}},ensureMood(){return{random:()=>.3,values:{playfulness:.7,sleepiness:.2}}},pathTo(){return []},draw(rows){this.rows=rows},svg:{style:{}},status(){},renderMoodDebug(){}});}
-const N=b.window.pixelCatCardClimbV1;
+const N=b.window.pixelCatCardClimbV1,P=b.window.pixelCatCardTravelV1;
 b.getComputedStyle=()=>({});b.window.pixelCatSurfaceWorldV1.route=()=>null;b.window.pixelCatHomePostsV1.entries=()=>[];
 function native(){const a=actor();a.config.card_climbing=true;a.config.climb_slips=false;a.worldRect={left:0,top:0,right:800,bottom:800};a.surfaceId=el=>el===a.support.el?'base':'target';const records=[];a.verticalCardRects=records;
  const frame=b.window.pixelCatClimbAssetsV1.centred.front.frames[0];a.cardGeometry={records,surfaces:a.surfaces,scale:1,generation:1,cache:new Map(),panels:[],byOwner:new Map([['face',a.support.el]]),faces:[{id:'face:face:0',panelId:'face',label:'painted panel',rect:{left:90,right:650,top:80,bottom:490},grips:{left:110,right:630,top:105,bottom:470},generation:1}],tops:[]};return a;}
-for(const to of [180,680]){const a=native();a.surfaces[1].top=to;if(to>500){a.cardGeometry.faces[0].rect.bottom=690;a.cardGeometry.faces[0].grips.bottom=670;}const path=N.route(a,a.surfaces[1],a.support);assert.ok(path,'finite face route '+to);assert.equal(N.route(a,a.surfaces[1],a.support),path,'cached snapshot');a.route=path;N.start(a,path[0],0);assert.ok(a.climb?.nativeTransfer,'live native plan');assert.ok(a.climb.plan.segments.some(s=>s.kind==='attach'));let t=0;while(a.climb&&t<60000){t+=16;C.tick(a,t,art);}assert.equal(a.climb,null);assert.equal(a.support.id,'target');assert.equal(a.y,to);}
+for(const to of [180,680]){const a=native();a.surfaces[1].top=to;if(to>500){a.cardGeometry.faces[0].rect.bottom=690;a.cardGeometry.faces[0].grips.bottom=670;}const path=N.route(a,a.surfaces[1],a.support);assert.ok(path,'finite face route '+to);assert.equal(N.route(a,a.surfaces[1],a.support),path,'cached snapshot');a.route=path;N.start(a,path[0],0);assert.ok(a.climb?.nativeTransfer,'live native plan');assert.ok(a.climb.plan.segments.some(s=>s.kind==='attach'));if(to>500){const frames=b.window.pixelCatClimbAssetsV1.descent.frames;assert.ok(a.climb.plan.segments.filter(s=>s.kind==='climb'&&s.cycle>0).every(s=>frames.some(f=>f.id===s.frame.id)),'Downward transfer plays separately authored descent frames');}let t=0;while(a.climb&&t<60000){t+=16;C.tick(a,t,art);}assert.equal(a.climb,null);assert.equal(a.support.id,'target');assert.equal(a.y,to);}
 {const a=native();a.config.card_climbing=false;assert.equal(N.route(a,a.surfaces[1],a.support),null);}
 {const a=native(),path=N.route(a,a.surfaces[1],a.support);a.route=path;b.window.pixelCatSurfaceWorldV1.route=()=>[{kind:'ordinary'}];N.start(a,path[0],0);assert.equal(a.climb,undefined);assert.equal(a.route[0].kind,'ordinary');b.window.pixelCatSurfaceWorldV1.route=()=>null;}
 for(const change of ['removed','moved','occupied','scroll']){const a=native(),path=N.route(a,a.surfaces[1],a.support);a.route=path;N.start(a,path[0],0);C.tick(a,16,art);assert.ok(N.audit(a));if(change==='removed')a.climb.nativeTransfer.node.isConnected=false;if(change==='moved')a.cardGeometry.faces[0].rect.right-=30;if(change==='occupied'){a.climb.elapsed=a.climb.nativeTransfer.releaseAt-10;a.social.clear=()=>false;}if(change==='scroll'){const dx=12,dy=-45;a.surfaces=a.surfaces.map(s=>({...s,left:s.left+dx,right:s.right+dx,min:s.min+dx,max:s.max+dx,top:s.top+dy}));a.cardGeometry.panels=[];N.shift(a,dx,dy);assert.equal(N.audit(a),true,'uniform translation stays valid');}else assert.equal(N.audit(a),false,change+' invalidates checked release');}
 console.log('PASS: native finite-face transfers land up/down, preserve ordinary priority, cache geometry, reject lifecycle/occupied changes and follow scrolling.');
+
+// An opted-in leisure choice can climb even when an ordinary route exists.
+{
+ const a=native(),target=a.surfaces[1],ordinary=b.window.pixelCatSurfaceWorldV1.route,faces=C.faces;
+ a.ensureMood=()=>({random:()=>0,values:{playfulness:.7,sleepiness:.2}});
+ b.window.pixelCatSurfaceWorldV1.route=()=>[{kind:'ordinary'}];C.faces=()=>[];
+ try{
+  a.config.card_climbing=false;assert.equal(C.offer(a,0),false);assert.equal(a.climb,undefined);
+  a.config.card_climbing=true;
+  assert.equal(C.offer(a,100),false,'Optional offer retains its cooldown');
+  a.social.clear=()=>false;
+  assert.equal(N.ascent(a,100,true),false,'Manual ascent still requires a clear landing');
+  a.social.clear=()=>true;
+  assert.equal(C.offer(a,40000),false,'Post opportunities no longer choose a card destination separately');
+  a.ensureMood=()=>({random:()=>.4,values:{playfulness:.7,sleepiness:.2}});
+  const path=P.prefer(a,target);
+  assert.equal(path?.[0].mode,'card-rise','A tall upward destination prefers a checked wall despite a direct route');
+  a.route=path;N.start(a,path[0],40000);
+  assert.equal(a.climb.nativeTransfer.kind,'climb-and-leap');
+  const grips=a.climb.plan.grips;
+  assert.ok(grips.at(-1).root.y<=grips[0].root.y-4*a.scale,'Climb travels visibly upward');
+  assert.equal(a.climb.plan.segments.at(-1).phase,'Leaping off card');
+  let t=40000;while(a.climb&&t<70000){t+=16;C.tick(a,t,art);}
+  assert.equal(a.support,target,'The flight ends on the real support');
+ }finally{b.window.pixelCatSurfaceWorldV1.route=ordinary;C.faces=faces;}
+}
 
 // Explicit wall invitations are independent of autonomous climbing permission.
 {const a=native();a.config.card_climbing=false;a.social=undefined;a.decisionLayer=()=>undefined;a.surfaces=[a.support];a.cardGeometry.surfaces=a.surfaces;
@@ -27,7 +53,7 @@ console.log('PASS: manual wall jumps use nearest checked faces, support same-flo
 {const a=native(),r={left:90,right:650,top:80,bottom:490,width:560,height:410},owner={localName:'pixel-cat-home',active:true,getRootNode:()=>({}),config:{name:'Neighbour',shared_home_surfaces:false}},el={localName:'ha-card',isConnected:true,getAttribute:k=>k==='data-cat-climb'?'on':null,querySelectorAll:()=>[],getRootNode:()=>({host:owner}),getBoundingClientRect:()=>r};owner.shadowRoot={querySelector:()=>el};const inner={...el,localName:'div'};a.cardPanelElements=[el,inner];a.verticalCardRects=[];a.surfaceId=n=>n===el?'home-panel':'other';const supports=a.surfaces,api=b.window.pixelCatSurfaceWorldV1,oldRect=api.rect;api.rect=()=>r;
  b.getComputedStyle=()=>({backgroundColor:'rgb(220,220,220)',backgroundImage:'none',visibility:'visible',display:'block',opacity:'1',transform:'none'});
  let g=N.reconcile(a);assert.equal(g.panels.length,1,'Only the outer home card is added, never nested furniture');assert.equal(g.faces.length,0,'Recognition cannot grant climbing');assert.equal(g.tops.length,0,'Recognition cannot grant a roof');assert.equal(a.surfaces,supports,'Walking catalogue stays untouched');assert.ok(g.rejected[0].reason.includes('Sharing off'));
- const drawn=[];a.debug={surfaces:true};N.debug(a,(tag,attrs,text)=>drawn.push({tag,attrs,text}));assert.equal(drawn.filter(n=>n.attrs['data-card-outline']).length,1);assert.ok(drawn.some(n=>n.text?.includes('both homes must opt in')),'Horizontal diagnostics explain the exclusion too');
+ const drawn=[];a.debug={surfaces:true};N.debug(a,(tag,attrs,text)=>drawn.push({tag,attrs,text}));assert.equal(drawn.filter(n=>n.attrs['data-card-outline']).length,1);assert.ok(drawn.some(n=>n.text?.includes('Sharing off on one home')),'Horizontal diagnostics explain the exclusion too');
  // Permission continues to come from existing discovery, not the outline or explicit grip attribute.
  for(const reason of ['inactive','hidden']){a.verticalCardRects=[];owner.active=reason!=='inactive';owner.config.show_home=reason!=='hidden';g=N.reconcile(a);assert.equal(g.faces.length,0);assert.ok(g.rejected[0].reason.includes(reason));}
  owner.active=true;owner.config.show_home=true;owner.config.shared_home_surfaces=true;a.config.shared_home_surfaces=true;a.verticalCardRects=[{el,r}];a.surfaces=[...supports,{id:'roof',el,left:90,right:650,min:90,max:626,top:80}];g=N.reconcile(a);assert.equal(g.panels.length,1);assert.ok(g.faces.length);assert.ok(g.tops.length);assert.equal(g.rejected.length,0);const before=g.panels[0].rect.top;N.shift(a,0,-120);assert.equal(g.panels[0].rect.top,before-120,'Outline follows the same uniform scroll translation');api.rect=oldRect;
@@ -69,4 +95,98 @@ for(const [age,scale] of [['adult',2],['kitten',1]]){
  assert.equal(owner.catTree.impulses.length,1);
  assert.equal(sleeper.idle.poseUntil,100);
  assert.equal(outsider.idle.poseUntil,5000);
+}
+
+{
+ const a=native(), [origin,target]=a.surfaces, g=a.cardGeometry;
+ Object.assign(origin,{right:350,max:326});Object.assign(target,{left:362,min:362,top:525});
+ const face=g.faces[0];
+ Object.assign(face,{rect:{left:50,right:350,top:500,bottom:680},grips:{left:62,right:338,top:510,bottom:662}});
+ g.tops=[{...target,sourceId:target.id}];
+ a.x=310;
+ const ordinary=b.window.pixelCatSurfaceWorldV1.route;
+ b.window.pixelCatSurfaceWorldV1.route=()=>[];
+ const events=[];
+ try{
+  const result=N.ascent(a,100,false,x=>events.push(x),'card-ascent');
+  assert.equal(result,true,JSON.stringify({events,route:N.route(a,target,origin,true,'card-ascent')?.[0]?.choice?.result?.stats}));
+  assert.equal(a.climb.nativeTransfer.faceId,face.id);
+  assert.equal(a.climb.goalSurface,target);
+  assert.ok(a.climb.plan.grips.at(-1).root.y<a.climb.plan.grips[0].root.y);
+  let t=100;while(a.climb&&t<20000)C.tick(a,t+=16,art);
+  assert.equal(a.support,target);
+  assert.deepEqual(events,['Attempted','Completed']);
+  a.support=origin;a.x=310;a.y=origin.top;
+  b.window.pixelCatSurfaceWorldV1.route=(_a,to)=>[to];
+  assert.equal(P.prefer(a,target),null,'A short drop stays on ordinary routing');
+  assert.equal(N.route(a,target,origin,true,'card-wall-jump'),null,'A normal rebound refuses a target across the edge');
+  const jump=N.route(a,target,origin,true,'card-cross-wall-jump');
+  assert.ok(jump);
+  const rebound=jump[0].choice.result.route;
+  assert.equal(rebound.distanceCells,0,'No climb loop between contact and push-off');
+  assert.deepEqual(Array.from(rebound.plan.segments.filter(s=>s.kind==='grip'),s=>s.ms),[60]);
+  a.route=jump;N.start(a,jump[0],t);
+  assert.equal(a.climb.nativeTransfer.kind,'wall-jump');
+  const end=t+12000;
+  while(a.climb&&t<end)C.tick(a,t+=16,art);
+  assert.equal(a.support,target);
+ }finally{b.window.pixelCatSurfaceWorldV1.route=ordinary;}
+}
+
+{
+ const a=native(),face=a.cardGeometry.faces[0];
+ face.radius=12;face.edges=['left'];
+ const path=N.route(a,a.surfaces[1],a.support),plan=path?.[0].choice.result.route.plan;
+ assert.ok(plan);
+ const grip=plan.grips[0],outside=face.rect.left-face.radius;
+ const paw=grip.frame.paws[0],placement=b.window.pixelCatClimbModelV1.framePlacement(grip.frame,grip.root,a.scale);
+ assert.equal(placement.x+(paw.x+.5)*a.scale,outside,'Paw centre meets the visible border instead of the corner inset');
+}
+
+for(const [x,side] of [[50,'left'],[200,'right']]){
+ const a=native(),face=a.cardGeometry.faces[0],target=a.surfaces[1];
+ a.x=x;face.edges=['left'];
+ const plan=N.route(a,target,a.support)?.[0].choice.result.route.plan;
+ assert.ok(plan);
+ const grip=plan.grips[0];
+ assert.equal(grip.side,side,'The same border accepts takeoff from either side');
+ assert.equal(grip.root.x,face.rect.left-a.scale/2);
+ const entry=plan.segments.find(s=>s.kind==='climb');
+ assert.ok(!entry.frame.id.startsWith('descent-'),'An entry higher than takeoff uses the upright pose despite terminal downward speed');
+}
+
+{
+ const a=native(),api=b.window.pixelCatSurfaceWorldV1,oldWorld=api.route,oldRoute=N.route;
+ a.ensureMood=()=>({random:()=>.4});
+ try {
+  api.route=()=>[];
+  N.route=(_a,_target,_origin,_fresh,mode)=>mode;
+  const from=a.support;
+  assert.equal(P.destinationWeight(a,{top:from.top-60}),.25);
+  assert.equal(P.destinationWeight(a,{top:from.top-24}),.55);
+  assert.equal(P.prefer(a,{top:from.top-10}),null);
+  assert.equal(P.prefer(a,{top:from.top+45}),'card-drop');
+  assert.equal(P.prefer(a,{top:from.top+45}),null,'Repeated autonomous probes respect the cooldown');
+  a.wallRetry=0;api.route=()=>null;
+  assert.equal(P.prefer(a,{top:from.top+45}),null,'No wall preference without a way home');
+ }finally{api.route=oldWorld;N.route=oldRoute;}
+}
+
+{
+ const a=native(),from=a.support,target=a.surfaces[1],face=a.cardGeometry.faces[0];
+ target.top=640;face.rect.bottom=655;face.grips.bottom=620;
+ const candidate=N.route(a,target,from,true,'card-drop');
+ assert.ok(candidate,'The production planner can split a long drop across an intermediate wall grip');
+ const plan=candidate[0].choice.result.route.plan;
+ assert.ok(plan.grips.every(g=>g.root.y>from.top&&g.root.y<target.top));
+}
+
+{
+ const a=native(),from=a.support,face=a.cardGeometry.faces[0];
+ a.x=200;face.edges=['left'];
+ const route=N.route(a,from,from,true,'card-wall-jump');
+ assert.ok(route,'A cat starting inside can rebound to a support on that side');
+ const plan=route[0].choice.result.route.plan;
+ assert.equal(plan.grips[0].side,'right');
+ assert.ok(plan.segments.at(-1).jump.landingX+12*a.scale>face.rect.left);
 }

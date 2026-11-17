@@ -12,6 +12,7 @@ Node.js 22.20+, no npm dependencies.
 | `npm test` | Discover/run `scripts/test-*.mjs`; nonzero exit on failure |
 | `npm run verify:build` | Two full builds; reject non-reproducible generated outputs |
 | `npm run release:build` | Versioned normal-file loader, source digests and integrity manifest |
+| `node scripts/build-dev-card.mjs` | Build the separately namespaced HA dev bundle after building the runtime |
 | `npm run studio:review` | Read-only local change-journal review; distinguish stores and exact versions |
 | `npm run studio` | Studio at loopback 8767; local data in `.studio-data/` |
 | `npm run gaze:lab` | Runtime labs at loopback 8769; scoped durable climb/tree saves only |
@@ -21,6 +22,8 @@ Node.js 22.20+, no npm dependencies.
 - CI repeats runtime/package checks and rejects generated-file drift. Verify the actual remote result before calling it green.
 - Studio reads generated assets at startup. Restart deliberately after a rebuild only when safe for user work; never restart it merely to edit docs.
 - [Release guide](guides/ROAMING_RELEASE.md) owns install/upgrade/rollback instructions. Keep the 128000-byte inline guard.
+
+For a dev install alongside Marketplace, serve the dev bundle from a versioned path under Home Assistant's `www` folder and register it as a module. Use `custom:pixel-cat-dev-home` and `custom:pixel-cat-dev-monitor` on development views. Keep a separate view using `custom:pixel-cat-home` to test the Marketplace version. For each dev update, point the existing dev resource to the new hash directory and reload the frontend. To roll back a dev update, point the dev resource back to its previous URL.
 
 ## Source map
 
@@ -38,9 +41,9 @@ Node.js 22.20+, no npm dependencies.
 | `frame-studio/dist/frame-canvas.js` | Shared sequence/climb canvas strokes and onion layers; adapters own metadata, undo/provenance and persistence. Extend this core rather than adding editor-specific painting loops. |
 | `frame-studio/` | Editor, catalogue sources, curated snapshots and receipt evidence |
 | Root `pixel-cat-*.js` (ignored) | Generated intermediates for tests/labs; install `dist/pixel-cat-card.js` |
-| `src/legacy/` | Earlier card sources; build prepares ignored root copies for compatibility tooling |
+| `src/artwork/` | Original Pixel Pet artwork preserved as data for roaming and Studio builds |
 
-Runtime loading order: art → extras → affordances → behaviours → controller → climbing. The optional editor and self-contained world-authority/layout/depth/debug hooks ship in the spacious art module; editor registration is guarded for DOM-free consumers; effects/home-life helpers ship in extras and other affordances load afterward. Hooks defer DOM/cross-module work until called. Packing must preserve decoded grids and provenance exactly.
+Runtime loading order: art → extras → affordances → behaviours → controller → climbing → box → dashboard chase. The optional editor and self-contained world-authority/layout/depth/debug hooks ship in the spacious art module; editor registration is guarded for DOM-free consumers; effects/home-life helpers ship in extras and other affordances load afterward. Hooks defer DOM/cross-module work until called. Packing must preserve decoded grids and provenance exactly.
 
 ## Browser evidence
 
@@ -50,7 +53,6 @@ Use task-relevant labs on 8769:
 
 - `prototype/tree-lab.html`: seeded component assembly, rectangular shared drawing tools, socket/support/grip/depth metadata and exact versioned tree workspaces. `?draft=qa-<name>` isolates test saves. Tree geometry is not yet wired into HA cat traversal or default cards; [contract](design/CAT_TREE_GENERATOR.md).
 
-- `prototype/vertical-surfaces-lab.html`: finite face/top discovery, exposure/fit rejection and actual-art wall-jump/climb transfers; foundation plus an opt-in HA finite-face transfer pilot; see its integration contract.
 - `prototype/settling-lab.html`: three ages, before/after-five-minute eligibility, real prolonged sleep/loaf, startle and timer expiry; eligibility advancement is diagnostic only.
 - `prototype/command-controls-lab.html`: real Startle all / Wall jump handlers, three settled residents, finite walls and explicit route replay with autonomous/social behaviour disabled.
 - `prototype/refinement-lab.html`: beds, depth, surface counts, scratching, tracks/particles and controlled mixed-age movement cadence/preferred-pace comparisons.

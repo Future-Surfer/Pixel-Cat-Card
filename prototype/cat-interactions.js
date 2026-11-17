@@ -17,6 +17,7 @@ const kitten=a=>window.pixelCatBehaviourV1?.stage(a)==='kitten';
 const sleeping=(a,t)=>a.idle?.pose==='sleep'&&!a.motion&&t<a.idle.poseUntil;
 const nearbyPlayLanding=(a,b)=>sameSupport(a.support,b.support)&&socialGap(a,b)<=14*Math.max(a.scale,b.scale);
 const predictRolling=(p,seconds,scale)=>{const friction=60*scale,time=Math.min(Math.max(0,seconds),Math.abs(p.vx)/friction);return p.x+p.vx*time-.5*Math.sign(p.vx)*friction*time*time;};
+window.pixelCatTemperamentV1=temperament;
 class CatInteractions extends CatDecisions{
  constructor(...args){super(...args);this.world=interactionWorld(this.actor.root);this.traits=temperament(this.actor.ownerKey,this.actor.config.temperament||{});this.propAwareness=new Awareness();this.propMemory=new Map();this.handled=new Set();this.nextProp=0;}
  enabled(){return !!this.actor.config.interaction_behaviour;}
@@ -152,8 +153,9 @@ class CatInteractions extends CatDecisions{
    const seconds=a.motion.duration/1000;x=Math.round((predictRolling(m,seconds,p.scale)-a.toyPaw(direction)*a.scale)/a.scale)*a.scale;const motion=a.motion,refined={...motion,x},profile=this.corridor(a.support,x)&&a.planJump(refined);if(profile)Object.assign(motion,{x,jumpProfile:profile,duration:profile.duration});else{x=motion.x;this.log('prediction refinement unavailable');}ep.stage='land';ep.x=x;ep.offset=x-a.support.left;this.log('intercept committed',{target:p.id,x,observedAt:m.observedAt});
   }else if(ep.stage==='land'){const frame=this.frame,anchor=this.art().leapAnchors.across.at(-1).point,point={x:(frame?.placement.x??a.x)+(a.toyPaw(a.facing)+.5)*a.scale,y:(frame?.placement.top??a.support.top-24*a.scale)+(anchor[1]+.5)*a.scale},hit=a.propScene.strikeBall(p.id,a.ownerKey,point,a.facing,.5,true);this.log('prop intercept '+(hit?'contact':'miss'),{target:p.id,point});p.lastInteractor=a.ownerKey;this.finish(hit?'intercept contact':'intercept missed');a.deadline=t+1800;}
  }
- startChase(option,t){const ok=super.startChase(option,t),ep=this.episode;if(ok&&this.enabled()&&ep?.kind==='chase'){ep.interaction=true;ep.worldExpires=this.world.clock+10000;ep.runnerInterest=this.clock+1500+2500*option.target.ensureMood().random();ep.rolesSwapped=false;}return ok;}
+ startChase(option,t,reply){const ok=super.startChase(option,t,reply),ep=this.episode;if(ok&&this.enabled()&&ep?.kind==='chase'){ep.interaction=true;ep.worldExpires=this.world.clock+10000;ep.runnerInterest=this.clock+1500+2500*option.target.ensureMood().random();ep.rolesSwapped=false;}return ok;}
  advanceChase(t){const a=this.actor,ep=this.episode;if(!ep||a!==ep.chaser)return super.advance(t);const b=ep.runner;if(this.world.clock>=ep.worldExpires){this.finish('shared chase horizon');return;}
+  if(window.pixelCatDashboardChaseV1?.advance(this,t))return;
   if(!this.available(a,true)||!b.social.available(b,true)||!b.config.interaction_behaviour||!sameSupport(a.support,b.support)){this.finish('chase interrupted');return;}
   if(ep.stage==='catch'){
    if(a.motion)return;const near=nearbyPlayLanding(a,b);this.log(near?'chase nearby landing':'chase catch miss',{target:b.ownerKey});if(near)this.socialCue(ep,b,{x:a.x+12*a.scale,y:a.support.top},t,'Nearby play landing');else this.finish('catch missed');return;

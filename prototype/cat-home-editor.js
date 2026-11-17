@@ -3,78 +3,81 @@
 const catEditorGroups=[
  {title:'Your cat',open:true,fields:[
   ['name','Name','text',null,'What would you like to call them?'],
-  ['color','Fur colour','text','#222','Pick a swatch or enter a colour of your own.'],
-  ['outline','Fur outline','select','auto','Automatic helps black fur stand out and gives white fur an edge on light themes.'],
-  ['floor_shadow','Floor shadow','checkbox',true,'Show a soft shadow underneath your cat.'],
+  ['color','Fur colour','color','#222222','Pick a colour or try a swatch.'],
+  ['outline','Fur outline','select','auto','Automatic outlines help very light or dark fur stand out.'],
   ['life_stage','Age','select','adult','Kittens are smaller and tend to move and play a little more.'],
+  ['mood_preset','Mood','select','natural','Give their changing mood a nudge.']
+ ]},
+ {title:'Personality',fields:[
+  ['boldness','Boldness','range',3,'Bolder cats are less easily startled.'],
+  ['sociability','Sociability','range',3,'How much they seek out other cats.'],
+  ['curiosity','Curiosity','range',3,'How readily they investigate nearby activity.'],
+  ['patience','Patience','range',3,'How long they give an interaction to play out.']
  ]},
  {title:'Daily rhythm',fields:[
-  ['settling_mode','Activity & settling','select','default','Choose how long your cat settles in for a nap. They still take short rests when set to Always active.'],
-  ['settle_after_minutes','Settle after (minutes)','number',5,'How long your cat spends on the open dashboard before they may take a longer nap.',0,1440],
+  ['settling_mode','Activity & settling','select','default','Choose how long your cat settles in for a nap.'],
+  ['settle_after_minutes','Settle after (minutes)','number',5,'How long before they may take a longer nap.',0,1440],
   ['settled_rest_min_minutes','Minimum settled rest (minutes)','number',5,'The shortest a long nap can be.',1,1440],
-  ['settled_rest_max_minutes','Maximum settled rest (minutes)','number',10,'The longest a long nap can be.',1,1440],
+  ['settled_rest_max_minutes','Maximum settled rest (minutes)','number',10,'The longest a long nap can be.',1,1440]
  ]},
  {title:'Make them at home',fields:[
-  ['bed_style','Bed style','select','igloo','Choose an igloo or open simple bed.'],
-  ['bed_primary_color','Bed primary colour','text','#aa6627','Pick a colour for the outside of the bed.'],
-  ['bed_secondary_color','Bed secondary colour','text',null,'Pick a colour for the inside, or leave it blank for the original colour.'],
-  ['show_home','Show bed home','checkbox',true,'Hide the bed and let your cat find another spot.'],
-  ['show_scratching_post','Show scratching post','checkbox',true,'Put a scratching post beside the bed if there’s room.'],
-  ['test_cat_tree','Test cat tree','checkbox',false,'Try a fixed climbing tree and hanging ball. On narrow cards, use the post.']
+  ['include_bed','Include a bed','checkbox',true,'Give your cat a place to curl up.'],
+  ['bed_style','Bed style','select','igloo','Choose a place to curl up.'],
+  ['bed_primary_color','Bed primary colour','color','#aa6627','Pick a colour for the outside of the bed.'],
+  ['bed_secondary_color','Bed secondary colour','color','#55312a','Pick a colour for the inside of the bed.'],
+  ['include_bowl','Include a food bowl','checkbox',true,'Let cats stop by for a bite.'],
+  ['bowl_primary_color','Bowl primary colour','color','#f5ad68','Pick a colour for the bowl.'],
+  ['bowl_secondary_color','Bowl secondary colour','color','#c95e4b','Pick a colour for the rim.'],
+  ['show_scratching_post','Include a scratching post','checkbox',true,'Give your cat somewhere to scratch.'],
+  ['post_type','Post type','select','post','A tree gives your cat extra places to climb.'],
+  ['tree_levels','Tree levels','select','2','Choose the height of the climbing tree.']
  ]},
  {title:'Home & appearance',fields:[
-  ['primary_home','Primary home','checkbox',false,'Mark this card as the main home in the editor.'],
   ['cell_size','Pixel scale','number',2,'Higher numbers make cats, toys, and furniture bigger.',1,6],
-  ['start_paused','Start paused','checkbox',false,'Pause this cat until Explore or Home is requested.']
+  ['card_color','Card colour','color','#ffffff','Choose the card background.'],
+  ['card_background_transparency','Background transparency','percent',0,'Solid at 0%, clear at 100%.',0,100],
+  ['card_border_color','Border colour','color','#dddddd','Choose the card border.'],
+  ['card_radius','Corner rounding','number',12,'The corner radius in pixels.',0,40],
+  ['floor_shadow','Floor shadow','checkbox',true,'Show a soft shadow underneath your cat.'],
+  ['scratch_debris','Debris size','select','small','Choose the bits that appear when scratching and climbing.']
  ]},
  {title:'Behaviour & toys',fields:[
-  ['post_rest_behaviour','Gentle waking after rest','checkbox',true,'After a long nap, your cat may yawn, stretch, or take a slow walk.'],
-  ['mood_behaviour','Mood-driven exploration','checkbox',false,'Softly varies resting, pace and playful interest.'],
-  ['social_behaviour','Nearby company & chasing','checkbox',false,'Allows independent cats to invite one another to rest or play.'],
-  ['interaction_behaviour','Notice other cats','checkbox',false,'Cats can notice, greet, or play with each other. Works with moods and nearby company.'],
-  ['dashboard_props','Shared dashboard toys','checkbox',false,'Put mice and balls on the dashboard for cats to share.'],
-  ['toy_carrying','Pick up & carry toys','checkbox',true,'Nibble or catch a toy, carry it, then nose down to release it.'],
-  ['bowl_eating','Eat at food bowls','checkbox',true,'Occasional meals; a bowl click offers food. Recently fed cats can ignore it.'],
-  ['prop_reactions','React when a toy brushes past','checkbox',false,'Can watch, ignore or startle after a toy brushes past.'],
-  ['landing_reactions','React to nearby landings','checkbox',false,'A landing nearby can surprise your cat.'],
-  ['startle_followups','Different reactions after a scare','checkbox',false,'A startled cat may settle down, back away, or pounce.']
- ]},
- {title:'Advanced settings',fields:[
-  ['show_controls','Show controls','checkbox',false,'Show shortcuts such as Explore, Home, and Pause.'],
-  ['draggable','Pick up and drag cats','checkbox',true,'Pick up your cat and set them down somewhere clear. Press Escape to cancel.'],
-  ['cat_id','Stable cat ID','text',null,'Give each cat a unique ID. Keep it the same when editing their home.']
- ]},
- {title:'Movement & surfaces',fields:[
-  ['casual_wander','Occasional meandering','checkbox',true,'Adds a slower casual pace to uncommitted exploration.'],
-  ['casual_speed','Meandering speed','number',6,'Higher numbers make this gentle walk faster.',1,60],
-  ['relaxed_speed','Strolling speed','number',9,'Higher numbers make an ordinary stroll faster.',1,60],
-  ['freefall_enabled','Long-drop freefall pose','checkbox',true,'Let your cat stretch out during a long fall.'],
-  ['use_surface_candidates','Try interior and bottom-border candidates','checkbox',true,'Let your cat try extra spots inside cards and along their lower edges.'],
-  ['card_climbing','Climb visible card faces (experimental)','checkbox',false,'Let your cat climb a card when they can’t reach a spot by walking or jumping.'],
-  ['native_vertical_surfaces','Scratch native card edges (experimental)','checkbox',false,'Let your cat scratch a card edge if they can reach it safely.'],
-  ['shared_home_surfaces','Share visible home-card roofs','checkbox',false,'Both home cards must enable this; hidden homes never provide a roof.'],
+  ['quiet_company','Quiet company','checkbox',true,'A cat may settle beside a resting cat without waking it.'],
+  ['chasing','Chasing','checkbox',true,'Cats may invite each other to a short chase on the same surface.'],
+  ['dashboard_props','Shared dashboard toys','checkbox',false,'Put toys on the dashboard for cats to share.'],
+  ['toy_mice','Add mice','number',1,'How many shared mice to put out.',0,6],
+  ['toy_balls','Add balls','number',1,'How many shared balls to put out.',0,6],
   ['click_attention','Follow dashboard clicks','checkbox',true,'The nearest eligible cat can investigate the clicked surface.']
  ]},
+ {title:'Advanced settings',fields:[
+  ['show_controls','Show on-card controls','checkbox',false,'Show Pause, Spawn toy, Come home, and diagnostics.'],
+  ['draggable','Pick up and drag cats','checkbox',true,'Pick up your cat and set them down somewhere clear. Press Escape to cancel.']
+ ]},
  {title:'Labels & diagnostics',fields:[
-  ['debug_labels','Name & action below cat','checkbox',true,'Cat name and current activity; colour indicates mood.'],
-  ['debug_names','Extra name above cat','checkbox',false,'Optional second name label above the cat.'],
-  ['debug_mood','Mood glow','checkbox',false,'Optional coloured halo around the cat.'],
-  ['debug_vertical_surfaces','Show card outlines & climbing faces','checkbox',false,'Cyan card borders, purple grip areas and green usable tops; labels explain rejected faces.'],
+  ['debug_names','Above cat: name','checkbox',false,'Show the cat’s name above them.'],
+  ['debug_action_above','Above cat: activity','checkbox',false,'Show their current activity above them.'],
+  ['debug_name_below','Below cat: name','checkbox',true,'Show the cat’s name below them.'],
+  ['debug_action_below','Below cat: activity','checkbox',true,'Show their current activity below them.'],
+  ['debug_mood','Mood glow','checkbox',false,'Show a coloured glow around the cat.'],
+  ['debug_vertical_surfaces','Show card outlines & climbing faces','checkbox',false,'Show card borders, grip areas, usable tops and rejection reasons.'],
   ['debug_surfaces','Show walking surfaces','checkbox',false,'Draw discovered supports on the dashboard.'],
   ['debug_paths','Show routes & jump arcs','checkbox',false,'Draw where your cat plans to walk and jump.'],
   ['debug_pois','Show points of interest','checkbox',false,'Mark potential destinations and resting points.']
  ]}
 ];
 const catEditorFields=new Map(catEditorGroups.flatMap(g=>g.fields.map(f=>[f[0],f])));
-const catEditorOptions={outline:[['auto','Automatic'],['none','None'],['black','Black'],['white','White']],life_stage:[['kitten','Kitten'],['adult','Adult'],['senior','Senior']],bed_style:[['igloo','Igloo'],['simple','Simple bed']],settling_mode:[['active','Always active'],['default','Default settle periods (5–10 min)'],['extended','Extended settle periods (15–30 min)'],['custom','Custom']]};
+const catEditorOptions={mood_preset:[['natural','Natural'],['playful','Playful'],['relaxed','Relaxed'],['alert','Alert']],post_type:[['post','Post'],['tree','Tree']],tree_levels:[['1','One level'],['2','Two levels']],scratch_debris:[['small','Small bits'],['pixel','Pixel-sized bits'],['none','No bits']],outline:[['auto','Automatic'],['none','None'],['black','Black'],['white','White']],life_stage:[['kitten','Kitten'],['adult','Adult'],['senior','Senior']],bed_style:[['igloo','Igloo'],['simple','Simple bed'],['box','Cardboard box']],settling_mode:[['active','Always active'],['default','Default settle periods (5–10 min)'],['extended','Extended settle periods (15–30 min)'],['custom','Custom']]};
 const catEditorValue=(config,key)=>{
  if(key==='settling_mode')return catEditorOptions.settling_mode.some(([v])=>v===config[key])?config[key]:'default';
  if(config[key]!==undefined)return config[key];
  if(key==='bed_primary_color')return config.igloo_color||'#aa6627';
  if(key==='show_scratching_post')return config.scratching_posts!==false;
  if(key==='show_controls')return config.show_home!==false;
- if(key==='relaxed_speed'&&config.walk_speed!==undefined)return config.walk_speed;
- if(key==='freefall_enabled'&&config.test_freefall_pose!==undefined)return config.test_freefall_pose;
+ if(catEditorFields.get(key)?.[2]==='range')return 1+Math.round(4*(window.pixelCatTemperamentV1?.(config.cat_id||'cat',config.temperament)[key]??.5));
+ if(key==='post_type')return config.test_cat_tree?'tree':'post';
+ if(key==='scratch_debris')return config.full_pixel_scratch_debris?'pixel':'small';
+ if(key==='quiet_company'||key==='chasing')return !!config.social_behaviour;
+ if(key==='debug_name_below'||key==='debug_action_below')return config.debug_labels!==false;
  return catEditorFields.get(key)?.[3];
 };
 const catEditorChange=(config,key,raw)=>{
@@ -82,12 +85,13 @@ const catEditorChange=(config,key,raw)=>{
  const next={...config},kind=field[2];
  if(kind==='checkbox')next[key]=!!raw;
  else if(raw==='')delete next[key];
- else if(kind==='number'){
+ else if(kind==='number'||kind==='percent'){
   const value=Number(raw);if(!Number.isFinite(value)||value<field[5]||value>field[6]||!Number.isInteger(value))throw Error('Invalid numeric value');next[key]=value;
  }else {if(kind==='select'&&!catEditorOptions[key]?.some(([v])=>v===raw))throw Error('Invalid selection');next[key]=String(raw);}
  // The legacy preview override otherwise wins over the editor's freefall field.
- if(key==='freefall_enabled')delete next.test_freefall_pose;
- if(key==='show_home'&&config.show_controls===undefined)next.show_controls=catEditorValue(config,'show_controls');
+ if(kind==='range'){delete next[key];next.temperament={...config.temperament,[key]:(Number(raw)-1)/4};}
+ if((key==='quiet_company'||key==='chasing')&&next[key]){const other=key==='chasing'?'quiet_company':'chasing';next[other]??=!!config.social_behaviour;next.social_behaviour=true;}
+ if(key==='mood_preset')next.mood_behaviour=true;
  return next;
 };
 class PixelCatHomeEditor extends HTMLElement{
@@ -95,7 +99,7 @@ class PixelCatHomeEditor extends HTMLElement{
  set hass(value){this._hass=value;}
  setConfig(config){if(this.rendered&&JSON.stringify(config)===JSON.stringify(this.config))return;this.clearPending();this.config={...config};this.render();}
  clearPending(){for(const timer of this.timers.values())clearTimeout(timer);this.timers.clear();}
- connectedCallback(){if(this.rendered&&!this.catPreview&&this.config.mode!=='monitor')this.render();}
+ connectedCallback(){if(this.rendered&&!this.catPreview&&!['monitor','behaviour-lab'].includes(this.config.mode))this.render();}
  disconnectedCallback(){this.clearPending();clearTimeout(this.previewTimer);this.catPreview=null;}
  updatePreview(){
   if(!this.catPreview)return;
@@ -113,7 +117,7 @@ class PixelCatHomeEditor extends HTMLElement{
   ink.setAttribute('fill','currentColor');cat.append(edge,ink);this.catPreview=cat;this.updatePreview();
   const seat=art.sit.frames[0],clip=(sequence,name)=>sequence?.frames.map((rows,i)=>[rows,window.pixelCatPolishV1.hold(name,sequence,i)])||[];
   const actions=[clip(art.clean,'clean'),clip(extras?.scratch||art.scratch,'scratch'),clip(extras?.yawn,'yawn')].filter(action=>action.length);
-  let pending=[],last=null;
+  let last=actions[Math.floor(Math.random()*actions.length)],pending=[...last||[]];
   const reduced=typeof matchMedia==='function'?matchMedia('(prefers-reduced-motion: reduce)'):null;
   const draw=()=>{
    if(this.catPreview!==cat)return;
@@ -146,42 +150,45 @@ class PixelCatHomeEditor extends HTMLElement{
    summary:focus-visible{outline-offset:-3px}
    @media(pointer:coarse){.swatches button{width:44px;height:44px}}
    </style>`;
-  const monitor=this.config.mode==='monitor',purpose=document.createElement('label');purpose.className='purpose';purpose.textContent='Card purpose';
+  const lab=this.config.mode==='behaviour-lab',monitor=this.config.mode==='monitor',utility=lab||monitor,purpose=document.createElement('label');purpose.className='purpose';purpose.textContent='Card purpose';purpose.title='Choose a companion, performance monitor or Behaviour Lab.';
   const select=document.createElement('select');select.setAttribute('aria-label','Card purpose');select.dataset.key='mode';
-  for(const [value,label]of [['companion','Cat companion'],['monitor','Performance monitor · no cat']]){const option=document.createElement('option');option.value=value;option.textContent=label;select.append(option);}select.value=monitor?'monitor':'companion';
+  for(const [value,label]of [['companion','Cat companion'],['monitor','Performance monitor · no cat'],['behaviour-lab','Behaviour Lab · no cat']]){const option=document.createElement('option');option.value=value;option.textContent=label;select.append(option);}select.value=utility?this.config.mode:'companion';
   select.addEventListener('change',()=>{for(const input of this.shadowRoot.querySelectorAll('input'))if(this.timers.has(input.dataset.key))input.dispatchEvent(new Event('change'));this.config={...this.config,mode:select.value};this.dispatchEvent(new CustomEvent('config-changed',{detail:{config:{...this.config}},bubbles:true,composed:true}));this.render();});purpose.append(select);
-  const welcome=document.createElement('div'),intro=document.createElement('p');welcome.className='welcome';intro.textContent=monitor?'Give your monitor a name. It tracks how this dashboard is running.':'It’s time to meet your new friend. Give them a name, choose their fur colour and age, and make them feel at home.';welcome.append(intro);const cat=monitor?null:this.makePreview();if(cat)welcome.append(cat);this.shadowRoot.append(welcome);
-  const groups=monitor?[{title:'Performance monitor',open:true,fields:[['title','Monitor title','text','Cat performance','Saved title for this page’s shared performance monitor.']]}]:catEditorGroups;
+  const welcome=document.createElement('div'),intro=document.createElement('p');welcome.className='welcome';intro.textContent=lab?'Temporarily favour a behaviour for cats on this view.':monitor?'Give your monitor a name. It tracks how this dashboard is running.':'It’s time to meet your new friend. Give them a name, choose their fur colour and age, and make them feel at home.';welcome.append(intro);const cat=utility?null:this.makePreview();if(cat)welcome.append(cat);this.shadowRoot.append(welcome);
+  const groups=lab?[{title:'Behaviour Lab',open:true,fields:[]}]:monitor?[{title:'Performance monitor',open:true,fields:[['title','Monitor title','text','Cat performance','Saved title for this page’s shared performance monitor.']]}]:catEditorGroups;
   for(const group of groups){
-   const section=document.createElement('details');section.dataset.group=group.title;const hasPurpose=monitor||group.title==='Advanced settings';section.open=(hasPurpose&&focusedKey==='mode')||(expanded.get(group.title)??!!group.open);
+   const section=document.createElement('details');section.dataset.group=group.title;const hasPurpose=utility||group.title==='Advanced settings';section.open=(hasPurpose&&focusedKey==='mode')||(expanded.get(group.title)??!!group.open);
    const summary=document.createElement('summary');summary.textContent=group.title;section.append(summary);
    const fields=document.createElement('div');fields.className='fields';
    for(const [key,title,kind,,help,min,max]of group.fields){
+    if(key.startsWith('bed_')&&(this.config.include_bed===false||this.config.show_home===false)||key.startsWith('bowl_')&&this.config.include_bowl===false||key==='post_type'&&!catEditorValue(this.config,'show_scratching_post')||key==='tree_levels'&&(!catEditorValue(this.config,'show_scratching_post')||catEditorValue(this.config,'post_type')!=='tree')||key.startsWith('toy_')&&!this.config.dashboard_props)continue;
     if(['settle_after_minutes','settled_rest_min_minutes','settled_rest_max_minutes'].includes(key)&&catEditorValue(this.config,'settling_mode')!=='custom')continue;
     const label=document.createElement('label');label.className='field';const copy=document.createElement('span');copy.textContent=title;
     const hint=document.createElement('small');hint.id='hint-'+key;hint.textContent=help;copy.append(hint);
-    const input=document.createElement(kind==='select'?'select':'input');if(kind!=='select')input.type=kind;else for(const [value,text]of catEditorOptions[key]){const option=document.createElement('option');option.value=value;option.textContent=text;input.append(option);}input.dataset.key=key;input.setAttribute('aria-label',title);input.setAttribute('aria-describedby',hint.id);
-    const value=key==='title'?(this.config.title??'Cat performance'):catEditorValue(this.config,key);if(kind==='checkbox'){input.checked=!!value;if(key==='primary_home'&&this.config.primary_home===undefined)input.indeterminate=true;}else input.value=value??'';
-    if(kind==='number'){input.min=min;input.max=max;input.step=1;}
-    const commit=()=>{
+    const input=document.createElement(kind==='select'?'select':'input');if(kind!=='select')input.type=kind==='percent'?'range':kind;else for(const [value,text]of catEditorOptions[key]){const option=document.createElement('option');option.value=value;option.textContent=text;input.append(option);}input.dataset.key=key;input.setAttribute('aria-label',title);input.setAttribute('aria-describedby',hint.id);
+    const value=key==='title'?(this.config.title??'Cat performance'):catEditorValue(this.config,key);if(kind==='checkbox'){input.checked=!!value;}else input.value=kind==='color'&&/^#[0-9a-f]{3}$/i.test(value)?'#'+[...value.slice(1)].map(x=>x+x).join(''):kind==='color'&&!/^#[0-9a-f]{6}$/i.test(value)?catEditorFields.get(key)[3]:value??'';
+    if(kind==='range'){input.min=1;input.max=5;input.step=1;}
+    if(kind==='number'||kind==='percent'){input.min=min;input.max=max;input.step=1;}
+    const commit=(reset=false)=>{
      clearTimeout(this.timers.get(key));this.timers.delete(key);
      input.setCustomValidity?.('');
-     if(kind==='number'&&!input.checkValidity())return;
+     if((kind==='number'||kind==='percent')&&!input.checkValidity())return;
      if(key==='settling_mode')for(const pending of this.shadowRoot.querySelectorAll('input'))if(this.timers.has(pending.dataset.key))pending.dispatchEvent(new Event('change'));
      if(key==='settled_rest_min_minutes'||key==='settled_rest_max_minutes'){
       const other=key==='settled_rest_min_minutes'?'settled_rest_max_minutes':'settled_rest_min_minutes',value=input.value===''?catEditorFields.get(key)[3]:Number(input.value),bound=Number(catEditorValue(this.config,other)),invalid=key==='settled_rest_min_minutes'?value>bound:value<bound;
       input.setCustomValidity?.(invalid?'Maximum rest must be at least the minimum.':'');if(invalid){input.reportValidity();return;}
      }
-     const next=key==='title'?{...this.config,title:input.value}:catEditorChange(this.config,key,kind==='checkbox'?input.checked:input.value);
+     const next=key==='title'?{...this.config,title:input.value}:catEditorChange(this.config,key,reset===true?'':kind==='checkbox'?input.checked:input.value);
      if(JSON.stringify(next)===JSON.stringify(this.config))return;
      this.config=next;
      this.updatePreview();
      this.dispatchEvent(new CustomEvent('config-changed',{detail:{config:{...this.config}},bubbles:true,composed:true}));
-     if(key==='settling_mode')this.render();
+     if(['settling_mode','include_bed','include_bowl','show_scratching_post','post_type','dashboard_props'].includes(key))this.render();
     };
     input.addEventListener('change',commit);
     if(kind!=='checkbox'&&kind!=='select')input.addEventListener('input',()=>{input.setCustomValidity?.('');clearTimeout(this.timers.get(key));this.timers.set(key,setTimeout(commit,200));});
     label.append(copy,input);fields.append(label);
+    if(kind==='color'&&key!=='color'&&this.config[key]!==undefined){const reset=document.createElement('button');reset.type='button';reset.textContent='Reset '+title.toLowerCase();reset.onclick=()=>{commit(true);this.render();};fields.append(reset);}
     if(key==='color'||key==='bed_primary_color'||key==='bed_secondary_color'){
      const cat=key==='color',swatches=document.createElement('div');swatches.className='swatches';swatches.setAttribute('aria-label',cat?'Cat colour presets':title+' presets');
      const palette=cat?[['Charcoal','#222222'],['Ginger','#ad6c2d'],['Cream','#e7cf9c'],['Grey','#70818d'],['White','#eeeeee']]:[['Brown','#aa6627'],['Slate','#70818d'],['Blue','#4e86ae'],['Green','#518d70'],['Rose','#b77f91']];
@@ -192,9 +199,9 @@ class PixelCatHomeEditor extends HTMLElement{
    section.append(fields);this.shadowRoot.append(section);
 
   }
-  if(!monitor)window.pixelCatWorldV1?.editor(this,expanded);
+
   if(focusedKey)[...this.shadowRoot.querySelectorAll('[data-key]')].find(control=>control.dataset.key===focusedKey)?.focus();
-  const note=document.createElement('p');note.className='note';note.textContent=monitor?'Save to add your monitor.':'When you’re ready, save to welcome your cat to the dashboard.';this.shadowRoot.append(note);this.rendered=true;
+  const note=document.createElement('p');note.className='note';note.textContent=lab?'Save to add Behaviour Lab.':monitor?'Save to add your monitor.':'When you’re ready, save to welcome your cat to the dashboard.';this.shadowRoot.append(note);this.rendered=true;
  }
 }
 if(!customElements.get('pixel-cat-home-editor'))customElements.define('pixel-cat-home-editor',PixelCatHomeEditor);

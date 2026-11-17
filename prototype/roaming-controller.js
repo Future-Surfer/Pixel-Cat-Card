@@ -186,7 +186,7 @@ const CAT_OWNERS = new Map();
 const CAT_KEYS = new WeakMap();
 const claimCatOwner = (cat,requested,root) => {const base=String(requested||'cat').replace(/[^a-zA-Z0-9_-]/g,'-').slice(0,80)||'cat',previous=CAT_KEYS.get(cat),used=new Set([...CAT_OWNERS.values()].map(v=>v.key));let key=previous?.base===base&&!used.has(previous.key)?previous.key:base;let suffix=2;while(used.has(key))key=base+'-'+suffix++;CAT_KEYS.set(cat,{base,key});CAT_OWNERS.set(cat,{key,root});return key;};
 const homeCardFor = el => {while(el){if(el.localName==='pixel-cat-home')return el;el=el.parentElement||el.getRootNode?.()?.host;}return null;};
-const sharedHomeSurfaceAllowed=(el,config)=>{for(let p=el;p;p=p.parentElement||p.getRootNode?.()?.host)if(p.localName==='pixel-cat-monitor')return false;const owner=homeCardFor(el);return !owner||!!(config.shared_home_surfaces&&owner.config?.shared_home_surfaces&&owner.config?.show_home!==false&&owner.active&&el===owner.shadowRoot?.querySelector('ha-card'));};
+const sharedHomeSurfaceAllowed=(el,config)=>{for(let p=el;p;p=p.parentElement||p.getRootNode?.()?.host)if(p.localName==='pixel-cat-monitor')return false;const owner=homeCardFor(el);return !owner||(config.shared_home_surfaces!==false&&owner.config?.shared_home_surfaces!==false&&owner.config?.show_home!==false&&owner.active&&el===owner.shadowRoot?.querySelector('ha-card'));};
 const editorPreviewFor = el => {while(el){if(['hui-card-preview','hui-card-picker','hui-dialog-edit-card','hui-dialog-edit-dashboard','hui-card-element-editor'].includes(el.localName))return true;el=el.parentElement||el.getRootNode?.()?.host;}return false;};
 const attentionWinner = (candidates,x,y) => candidates.filter(c=>c.active&&!c.userHeld&&!c.paused&&c.config.click_attention!==false).map(cat=>({cat,distance:Math.hypot(x-cat.x-12*cat.scale,y-cat.y)})).sort((a,b)=>a.distance-b.distance)[0]?.cat;
 // Visits affect leisure destinations only; the routing graph remains available for Home.
@@ -196,7 +196,7 @@ const weightedPick = (items,weight,random=Math.random) => {const weights=items.m
 const lookDownFacing=(surface,x,scale,facing=1)=>{if(!surface||surface.home||surface.internal&&!surface.poses?.includes('lookdown'))return null;const left=Math.abs(x-surface.left),right=Math.abs(surface.right-(x+24*scale));if(!surface.narrow&&Math.min(left,right)>8*scale)return null;return Math.abs(left-right)<scale?facing:left<right?-1:1;};
 const idlePoseWeight=(pose,history,peek)=>{const recent=Array.isArray(history)?history:history?[history]:[],distance=[...recent].reverse().findIndex(p=>p.pose===pose);return (distance===0?.05:distance===1?.35:distance===2?.65:1)*(pose==='lookdown'?(peek===null?0:3):({backRoll:.15,alertLying:.6,sleep:.5,yawn:.5,meow:.12,chatter:.08,scratch:.85}[pose]||1));};
 const restingPoints = surface => {const {min,max}=surface;if(surface.home)return [{id:'bed',x:Math.min(max,min+20*(surface.scale||2)),weight:1}];const base=max-min<12?[{id:'perch',x:(min+max)/2,weight:1}]:[{id:'left',x:min,weight:2},{id:'right',x:max,weight:2},{id:'middle',x:(min+max)/2,weight:1}];return [...base,...surface.roamPoints||[],...surface.propPoints||[],...surface.inspectionPoints||[]];};
-const loafBridge = (art,from,to,...context) => window.pixelCatPolishV1?.restBridge?.(art,from,to,...context)??(to==='loaf'&&from!=='loaf'?(['sit','sithead','clean','scratch','yawn','meow','chatter'].includes(from)?[...art.bridges.sitToLoaf]:[...art.bridges.walkToSit,art.sit,...art.bridges.sitToLoaf]):from==='loaf'&&to!=='loaf'?(to==='alertLying'?[art.idleSequences.loaf.frames.at(-1)]:[...art.bridges.sitToLoaf].reverse()):[]);
+const loafBridge = (...args) => window.pixelCatPolishV1.restBridge(...args);
 const deepElements = (root, predicate) => {
   const result = [];
   const visit = node => {
@@ -244,16 +244,16 @@ const catBounds = rows => {
   const bounds={left,right,top,bottom};CAT_BOUNDS.set(rows,bounds);return bounds;
 };
 class PixelCatHome extends HTMLElement {
-  static getStubConfig(){return {type:'custom:pixel-cat-home',life_stage:'adult',name:window.pixelCatPolishV1?.name(),color:window.pixelCatPolishV1?.colour(),primary_home:window.pixelCatPrimaryV1?.defaultPrimary()??true,bed_style:Math.random()<.5?'igloo':'simple',arrival:'igloo',show_controls:false,debug_labels:false,mood_behaviour:true,social_behaviour:true,interaction_behaviour:true,dashboard_props:true,prop_reactions:true,landing_reactions:true,startle_followups:true};}
+  static getStubConfig(){return {type:'custom:pixel-cat-home',life_stage:'adult',cat_id:globalThis.crypto?.randomUUID?.()||Math.random().toString(36).slice(2),name:window.pixelCatPolishV1?.name(),color:window.pixelCatPolishV1?.colour(),primary_home:window.pixelCatPrimaryV1?.defaultPrimary()??true,bed_style:Math.random()<.5?'igloo':'simple',arrival:'igloo',show_controls:false,debug_labels:false,mood_behaviour:true,social_behaviour:true,interaction_behaviour:true,dashboard_props:true,prop_reactions:true,landing_reactions:true,startle_followups:true};}
   static async getConfigElement(){await customElements.whenDefined('pixel-cat-home-editor');return document.createElement('pixel-cat-home-editor');}
   constructor() { super(); this.attachShadow({mode:'open'}); this.config = {}; this.facing=1;this.onLayout = e => {window.pixelCatLayoutV1?.notify(this,e);window.pixelCatScrollV1?.mark(this,e);this.invalidate();}; this.onCardClick=event=>this.attractToClick(event); }
   setConfig(config) {
-    this.creationColour||=window.pixelCatPolishV1?.colour()||'#222';this.config = {...config,color:config.color||this.creationColour,show_controls:config.show_controls??config.show_home!==false,use_surface_candidates:config.use_surface_candidates!==false}; this.worldScale = Math.max(1,Math.min(6,Math.round(config.cell_size || 2)));this.lifeStage=['kitten','adult','senior'].includes(config.life_stage)?config.life_stage:'adult';this.scale=this.worldScale*(this.lifeStage==='kitten'?.5:1);
+    this.creationColour||=window.pixelCatPolishV1?.colour()||'#222';this.config = {interaction_behaviour:true,prop_reactions:true,landing_reactions:true,startle_followups:true,...config,color:config.color||this.creationColour,show_controls:config.show_controls??config.show_home!==false,use_surface_candidates:config.use_surface_candidates!==false,card_climbing:config.card_climbing!==false,native_vertical_surfaces:config.native_vertical_surfaces!==false}; this.worldScale = Math.max(1,Math.min(6,Math.round(config.cell_size || 2)));this.lifeStage=['kitten','adult','senior'].includes(config.life_stage)?config.life_stage:'adult';this.scale=this.worldScale*(this.lifeStage==='kitten'?.5:1);
     if (this.isConnected) { this.disconnectedCallback(); this.connectedCallback(); }
   }
   set hass(value) { this._hass = value;if(this.monitorCard)this.monitorCard.hass=value; }
   getCardSize() { return this.config.mode==='monitor'?4:this.config.show_home===false&&this.config.show_controls!==true?0:2; }
-  getGridOptions() { return {columns:this.config.mode==='monitor'||(this.worldScale||this.scale)>3?12:6,rows:'auto',min_columns:3}; }
+  getGridOptions() { return {columns:['monitor','behaviour-lab'].includes(this.config.mode)||(this.worldScale||this.scale)>3?12:6,rows:'auto',min_columns:3}; }
   paintHome() {
     this.primaryFlag=null;this.primaryAt=0;this.debugOrganized=false;this.homeArtReady=false;
     this.shadowRoot.innerHTML = window.pixelCatHomeMarkupV1(this);
@@ -268,6 +268,10 @@ class PixelCatHome extends HTMLElement {
     const actions=document.createElement('select');actions.setAttribute('aria-label','Preview refined action');for(const [value,label]of [['alertLying','Lying alert'],['lookdown','Sit and look down'],['sniff','Ground sniff'],['scratch','Ear scratch'],['yawn','Held yawn'],['meow','Meow'],['chatter','Chatter'],['sleep','Curled sleep'],['rub','Cheek rub - contact preview'],['bat','Bat - contact preview'],['wiggle','Pre-pounce butt wiggle'],['postScratch','Scratching post - contact preview'],['gallop','Gallop - stationary asset review'],['startle-front','Startle from in front'],['startle-behind','Startle from behind']]){const o=document.createElement('option');o.value=value;o.textContent=label;actions.append(o);}const preview=document.createElement('button');preview.textContent='Preview action';preview.onclick=()=>this.requestAction(actions.value);this.shadowRoot.querySelector('details').append(actions,preview);const reviewCanvas=document.createElement('canvas');reviewCanvas.className='gallop-preview';reviewCanvas.width=reviewCanvas.height=96;reviewCanvas.hidden=true;reviewCanvas.setAttribute('aria-label','Refined gallop asset preview');reviewCanvas.style.imageRendering='pixelated';this.shadowRoot.querySelector('details').append(reviewCanvas);
     const report=document.createElement('details');report.innerHTML='<summary>Surface report</summary><pre class="surface-report" style="font-size:10px;white-space:pre-wrap;max-height:220px;overflow:auto"></pre>';this.shadowRoot.querySelector('details').append(report);
     this.installPropControls();this.installMoodControls();
+    const card=this.shadowRoot.querySelector('ha-card');
+    if(card?.style){const transparency=Math.min(100,Math.max(0,Number(this.config.card_background_transparency)||0));
+      const background=this.config.card_color||'var(--ha-card-background,var(--card-background-color,#fff))';
+      card.style.backgroundColor=transparency?'color-mix(in srgb, '+background+' '+(100-transparency)+'%, transparent)':this.config.card_color||'';card.style.borderColor=this.config.card_border_color||'';if(Number.isFinite(this.config.card_radius))card.style.borderRadius=Math.max(0,Math.min(40,this.config.card_radius))+'px';}
     this.renderHomeProp();
     this.shadowRoot.querySelectorAll('[data-debug]').forEach(input=>{input.checked=this.debug[input.dataset.debug];input.onchange=()=>{this.debug[input.dataset.debug]=input.checked;if(input.dataset.debug==='verticalSurfaces')this.invalidate();this.renderDebug();};});
     this.shadowRoot.querySelector('[data-action="explore"]').onclick = () => this.requestVisit(null,'prompted');
@@ -280,11 +284,17 @@ class PixelCatHome extends HTMLElement {
   }
   connectedCallback() {
     if(this.active) return;
-    if(this.config.mode==='monitor'){customElements.whenDefined('pixel-cat-monitor').then(()=>{if(this.isConnected&&this.config.mode==='monitor'&&!this.monitorCard)window.pixelCatSetupV1?.connect(this);});return;}
-    this.bedEntryManaged=true;this.waitingForSurface=false;this.surfaceRetryAt=0;
+    const mode=this.config.mode;
+    if(mode==='monitor'||mode==='behaviour-lab'){
+      customElements.whenDefined('pixel-cat-'+mode).then(()=>{
+        if(this.isConnected&&this.config.mode===mode&&!this.monitorCard)window.pixelCatSetupV1?.connect(this);
+      });
+      return;
+    }
+    this.boxArrivalChecked=false;window.pixelCatBoxV1?.cancel(this);this.bedEntryManaged=true;this.waitingForSurface=false;this.surfaceRetryAt=0;
     this.home=null;this.scale ||= 2; this.paintHome();this.style.display=this.config.show_home===false&&!this.config.show_controls&&!editorPreviewFor(this)?'none':''; this.root=this.worldRoot();
     this.href = location.pathname;
-    if(!this.root||editorPreviewFor(this)){this.active=false;this.status('Dashboard preview');for(const button of this.shadowRoot.querySelectorAll('button'))button.disabled=true;return;}
+    if(!this.root||editorPreviewFor(this)){this.active=false;this.observePreviewProps();this.status('Dashboard preview');for(const button of this.shadowRoot.querySelectorAll('button'))button.disabled=true;return;}
     if(!window.pixelCatWorldV1&&['world_id','world_owner','world_settings'].some(k=>this.config[k]!==undefined)){this.active=false;this.worldReadyHandler??=()=>{this.worldReadyHandler=null;if(this.isConnected)this.connectedCallback();};window.addEventListener('pixel-cat-world-ready',this.worldReadyHandler,{once:true});return;}
     if(window.pixelCatWorldV1&&!window.pixelCatWorldV1.attach(this)){this.active=false;return;}this.active=true;
     window.pixelCatLayoutV1?.join(this);this.ownerKey=claimCatOwner(this,this.config.cat_id,this.root);this.setAttribute('data-cat-id',this.ownerKey);window.pixelCatPrimaryV1?.join(this);
@@ -307,13 +317,26 @@ class PixelCatHome extends HTMLElement {
     // Cached HA views may reconnect before the router commits the new pathname.
     this.raf = requestAnimationFrame(t => {this.href=location.pathname;this.tick(t);});
   }
+  observePreviewProps(){
+    const dock=this.shadowRoot.querySelector('.dock');
+    const layout=()=>{
+      window.pixelCatTreeV1?.mount(this,true);
+      const ball=dock.querySelector('[data-cat-tree-ball]');
+      if(ball)ball.disabled=true;
+      window.pixelCatHomePostsV1?.sync(this,dock.clientWidth);
+    };
+    layout();
+    this.observer=new ResizeObserver(layout);
+    this.observer.observe(dock);
+  }
   disconnectedCallback() {
+    this.observer?.disconnect();window.pixelCatBoxV1?.cancel(this);
     if(this.worldReadyHandler){window.removeEventListener('pixel-cat-world-ready',this.worldReadyHandler);this.worldReadyHandler=null;}
     window.pixelCatClimbV1?.cancel(this,'removed',false);window.pixelCatWorldV1?.leave(this);
     window.pixelCatLayoutV1?.leave(this);window.pixelCatPrimaryV1?.leave(this);window.pixelCatDragV1?.uninstall(this);window.pixelCatSetupV1?.disconnect(this);
     if(!this.active) return;
     this.social?.dispose();this.social=null;
-    this.active = false;window.pixelCatScrollOverlayV1?.unmount(this.layer);this.scrollCamera=null; cancelAnimationFrame(this.raf); this.layer?.remove();this.moodHalo=null;this.moodDebugAt=0;this.moodAccumulator=0; this.observer?.disconnect();
+    this.active = false;window.pixelCatScrollOverlayV1?.unmount(this.layer);this.scrollCamera=null; cancelAnimationFrame(this.raf); this.layer?.remove();this.moodHalo=null;this.moodDebugAt=0;this.moodAccumulator=0;
     document.removeEventListener('scroll',this.onLayout,true); window.removeEventListener('resize',this.onLayout);
     document.removeEventListener('visibilitychange',this.onLayout); window.removeEventListener('popstate',this.onLayout);
     document.removeEventListener('click',this.onCardClick,true);
@@ -367,7 +390,7 @@ class PixelCatHome extends HTMLElement {
     if(this.toyHuntRequested||Math.random()<(this.config.mood_behaviour?.15+.7*this.ensureMood().values.playfulness*(1-.6*this.ensureMood().values.sleepiness):.6)){if(t<(this.nextToyAttemptAt||0))return;this.nextToyAttemptAt=t+2000;this.beginToyHunt(t,this.toyHuntRequested);}
   }
   decisionLayer(){if(!this.config.mood_behaviour&&!this.config.social_behaviour&&!this.config.interaction_behaviour)return this.social;if(!this.social&&window.pixelCatDecisionsV1)this.social=new window.pixelCatDecisionsV1(this,()=>CAT_OWNERS,()=>CAT_ART);return this.social;}
-  ensureMood(){return this.mood ||= new CatMood(this.ownerKey||this.config.cat_id||'cat',{...this.config.mood,seed:this.config.mood_seed});}
+  ensureMood(){return this.mood ||= new CatMood(this.ownerKey||this.config.cat_id||'cat',{...this.config.mood,baseline:{...({playful:{playfulness:.7},relaxed:{sleepiness:.6},alert:{alertness:.65}})[this.config.mood_preset],...this.config.mood?.baseline},seed:this.config.mood_seed});}
   installMoodControls(){
     const box=document.createElement('details');box.className='mood-controls';box.innerHTML='<summary>Mood & landing debug</summary><label><input type="checkbox" data-mood-glow> Mood glow</label><label><input type="checkbox" data-landing-reactions> React to nearby high landings</label><div class="mood-readout"></div>';
     const glow=box.querySelector('[data-mood-glow]'),reactions=box.querySelector('[data-landing-reactions]');glow.checked=!!this.config.debug_mood;reactions.checked=!!this.config.landing_reactions;
@@ -624,9 +647,9 @@ class PixelCatHome extends HTMLElement {
     else if(this.goal)target=this.surfaces.find(s=>s.id===goalSurface);
     else {
       const options=this.surfaces.filter(s=>!s.iglooRoof&&s.id!==this.support.id && this.pathTo(s) && this.pathTo(this.home,s));
-      target=weightedPick(options,s=>visitWeight(this.visits,s.id,now)*(s.interest?1.2:1)*(this.social?.surfaceWeight?.(s)||1));if(!target&&window.pixelCatExplorationV1?.plan(this,now,leisure,true))return;if(!requested){this.urgency=target?.interest?'interested':'relaxed';if(this.config.mood_behaviour){const v=this.ensureMood().values;this.urgency=this.ensureMood().random()<(.15+.5*v.playfulness+.15*v.alertness)*(1-.8*v.sleepiness)?'interested':'relaxed';}}
+      target=weightedPick(options,s=>visitWeight(this.visits,s.id,now)*(s.interest?1.2:1)*(this.social?.surfaceWeight?.(s)||1)*(window.pixelCatCardTravelV1?.destinationWeight(this,s)??1));if(!target&&window.pixelCatExplorationV1?.plan(this,now,leisure,true))return;if(!requested){this.urgency=target?.interest?'interested':'relaxed';if(this.config.mood_behaviour){const v=this.ensureMood().values;this.urgency=this.ensureMood().random()<(.15+.5*v.playfulness+.15*v.alertness)*(1-.8*v.sleepiness)?'interested':'relaxed';}}
     }
-    if(target?.id==='home')target=this.bedSurface||target;const points=target&&restingPoints(target),point=points&&(points.find(p=>p.id===goalPoint)||(goalPoint==='click'?this.requestedPoint:null)||weightedPick(points,p=>p.weight*visitWeight(this.visits,target.id+'/'+p.id,now)));const path=target&&(window.pixelCatPointRoutesV1?.plan(this,target,point.x)??this.pathTo(target));if(!path){this.route=[];this.noPathMessage=target?'No route to '+target.label:'Chilling · no reachable destination';this.deadline=performance.now()+30000;this.renderDebug();return;}
+    if(target?.id==='home')target=this.bedSurface||target;const points=target&&restingPoints(target),point=points&&(points.find(p=>p.id===goalPoint)||(goalPoint==='click'?this.requestedPoint:null)||weightedPick(points,p=>p.weight*visitWeight(this.visits,target.id+'/'+p.id,now)));const path=target&&((!requested&&window.pixelCatCardTravelV1?.prefer(this,target))||(window.pixelCatPointRoutesV1?.plan(this,target,point.x)??this.pathTo(target)));if(!path){this.route=[];this.noPathMessage=target?'No route to '+target.label:'Chilling · no reachable destination';this.deadline=performance.now()+30000;this.renderDebug();return;}
     this.command=null;this.goal=null;this.destinationId=target.id;this.noPathMessage=''; this.route=path;
     this.destinationPoint=point.id;this.requestedPoint=null;
     this.route.push({settle:true,surface:target,x:point.x});window.pixelCatReactionsV1?.wander(this,requested);
@@ -656,7 +679,7 @@ class PixelCatHome extends HTMLElement {
     window.pixelCatExertionV1?.launch(this,this.motion);
     if(kind==='walk') {
       const cells=Math.round(Math.abs(x-this.x)/this.scale);
-      const speed=travelSpeed(this.config,this.urgency); // same cell clock controls stride and displacement
+      const speed=travelSpeed(this.config,this.urgency)*(this.urgency==='casual'&&this.config.casual_speed==null||this.urgency==='relaxed'&&this.config.relaxed_speed==null&&this.config.walk_speed==null?.9+.2*(this.social?.traits?.curiosity??.5):1); // same cell clock controls stride and displacement
       Object.assign(this.motion,{cells,stepMs:1000/speed,...walkTimings(cells,this.config,this.urgency),gaitStart:this.walkSteps,headStart:this.walkHeadPhase??this.walkSteps,headSeed:this.headSeed??=Math.floor(Math.random()*12)});
       if(fast){const rate=Math.max(15,Math.min(30,Number(this.config.fast_walk_fps)||fast.fps||21));this.motion.fastClip=fast;this.motion.stepMs=1000/rate;this.motion.cumulativeMs=Array.from({length:cells},(_,i)=>(i+1)*1000/rate);this.motion.duration=cells*1000/rate;}
       if(gallop){this.motion.gallopTimeline=gallopTimeline(cells,CAT_ART,this.config,gallop);this.motion.duration=this.motion.gallopTimeline.at(-1).until;this.setAttribute?.('data-gait','gallop');}else this.setAttribute?.('data-gait',fast?'trot':gait==='sneak'?'sneak':this.urgency==='casual'?'casual':'walk');
@@ -743,9 +766,10 @@ class PixelCatHome extends HTMLElement {
     if(gap>1000) {if(!this.paused)this.freezeClocks(gap);this.invalidate();}
     if(this.waitingForSurface&&t>=(this.surfaceRetryAt||0)){this.surfaceRetryAt=t+1000;this.needsMeasure=true;}
     if(this.needsMeasure){this.measure();if(this.waitingForPlacement)return;if(this.layoutRecovery?.local&&window.pixelCatLayoutV1.gate(this,t))return;}
-    window.pixelCatDepthV1?.cat(this,t);if(window.pixelCatDragV1?.tick(this,t,CAT_ART))return;
+    window.pixelCatDepthV1?.cat(this,t);if(this.userHeld)window.pixelCatBoxV1?.cancel(this);if(window.pixelCatDragV1?.tick(this,t,CAT_ART))return;
     if(this.waitingForSurface){this.layer.style.visibility='hidden';this.freezeClocks(gap);this.status(this.noPathMessage);return;}
     if(!this.homeArtReady)this.renderHomeProp();
+    window.pixelCatBoxV1?.arrive(this,t);
     if(this.paused) {this.layer.style.visibility='visible';if(!this.signature)this.draw(CAT_ART.stand);this.propScene?.tick(t,this);this.freezeClocks(gap);if(this.motion?.departure?.facings&&window.pixelCatPolishV1.departure(this,t,frameContact,idleContact)){this.status('Paused');return;}if(this.motion){const m=this.motion;if(m.kind==='jump'||m.kind==='startle'){const p=this.jumpSample(m,Math.min(1,(t-m.start)/m.duration));this.draw(p.rows);this.svg.style.transform=`translate(${p.x}px,${p.top}px)`;}else{const p=walkSample(m,t-m.start,this.scale,CAT_ART.walk);this.x=p.x;this.y=window.pixelCatSetupV1?.walkHeight?.(this,m,p)??m.fromY;this.draw(walkAppearance(CAT_ART,m,p,this.config).rows);if(m.gallopTimeline)this.svg.style.transform=`translate(${p.x}px,${m.fromY-24*this.scale}px)`;}}else if(this.idle?.placement)this.svg.style.transform=`translate(${this.idle.placement.x}px,${this.idle.placement.top}px)`;this.renderMoodDebug(t);this.status('Paused');return;}
     if(t>this.checkAt) {
       const wasSuspended=this.suspended;this.suspended=this.blocked(t);
@@ -758,7 +782,9 @@ class PixelCatHome extends HTMLElement {
     window.pixelCatSetupV1?.clearRestMask(this);
     if(window.pixelCatSetupV1?.arrival(this,t,CAT_ART,walkSample,walkAppearance,idleSample,frameContact,idleContact))return;
     window.pixelCatCommandsV1?.tick(this,t);
-    if(!window.pixelCatSettlingV1?.holding(this,t)){
+    if(window.pixelCatBoxV1?.tick(this,t,gap))return;
+    const focus=window.pixelCatBehaviourLabV1?.tick(this,t,CAT_ART);if(focus===2)return;
+    if(!focus&&!window.pixelCatSettlingV1?.holding(this,t)){
     const decisionAt=this.config.debug_performance?performance.now():0;this.decisionLayer()?.step(gap>1000?0:gap,t);if(this.config.debug_performance)this.decisionCost=performance.now()-decisionAt;
     if(window.pixelCatClimbV1?.tick(this,t,CAT_ART))return;
     window.pixelCatMouthV1?.step?.(this,t,CAT_ART);window.pixelCatHomeLifeV1?.tick(this,t);
@@ -768,8 +794,8 @@ class PixelCatHome extends HTMLElement {
     if(this.play)this.advancePlay(t);
     else if(!this.social?.episode&&!this.previewPose&&this.config.playful_pounces!==false&&!this.motion&&!this.route?.length&&!this.goal&&!this.command&&this.idle&&t-this.idle.start>1000&&t>(this.nextPlayAt||Infinity)){this.nextPlayAt=t+60000+Math.random()*60000;if(Math.random()<(window.pixelCatPostRestV1?.choiceWeight(this,'ambush')??1)*(this.config.mood_behaviour?.025+.12*this.ensureMood().values.playfulness*(1-.7*this.ensureMood().values.sleepiness):.08))this.startPlay(t);}
     window.pixelCatSetupV1?.restSupport?.(this,t);
-    if(window.pixelCatPolishV1?.departure(this,t,frameContact,idleContact))return;
     }
+    if(window.pixelCatPolishV1?.departure(this,t,frameContact,idleContact))return;
     let rows=this.idle?.rows||(this.support?.home?CAT_ART.loaf:CAT_ART.sit), placement=this.motion?null:this.idle?.placement||null;
     if(this.motion) {
       const m=this.motion, p=m.duration?Math.min(1,(t-m.start)/m.duration):1;
@@ -807,11 +833,11 @@ class PixelCatHome extends HTMLElement {
       if(!this.idle||this.idle.support!==this.support.id||t>=this.idle.poseUntil||this.inspectionPending){
         const oldIdle=this.idle,previousFacing=this.facing,oldPose=this.idle?.pose||'walk';
         const base=this.support.poses?.length?this.support.poses:this.support.home||this.support.internal?['alertLying','loaf','sit','sithead','clean','look','stretch','stand','sniff','scratch','yawn','sleep','meow']:['backRoll','alertLying','perch','sit','sithead','glance','clean','loaf','look','lookdown','stand','scratch','yawn','meow','chatter'];const peek=lookDownFacing(this.support,this.x,this.scale,this.facing),choices=base.filter(p=>(window.pixelCatBehaviourV1?.allowed(this,CAT_ART.idleSequences?.[p])!==false)&&(p!=='backRoll'||['loaf','alertLying'].includes(oldPose))&&(p!=='lookdown'||peek!==null)&&(!['sniff','scratch','yawn','sleep','meow','chatter'].includes(p)||CAT_ART.idleSequences?.[p]));
-        if(!this.support.narrow&&!this.support.poses?.length&&this.config.mood_behaviour&&CAT_ART.idleSequences?.sleep&&window.pixelCatBehaviourV1?.allowed(this,CAT_ART.idleSequences.sleep)!==false&&!choices.includes('sleep'))choices.push('sleep');const inspection=this.inspectionPending;let pose=this.previewPose||this.play?.pose||this.previewBedPose||this.social?.restPose()||(inspection?'look':weightedPick(choices,p=>idlePoseWeight(p,this.recentPoses,peek)*(window.pixelCatBehaviourV1?.weight(this,CAT_ART.idleSequences?.[p])??1)*(this.social?.poseWeight(p)||1)*(window.pixelCatPostRestV1?.poseWeight(this,p)||1),this.config.mood_behaviour?()=>this.ensureMood().random():Math.random));if(!pose||window.pixelCatBehaviourV1?.allowed(this,CAT_ART.idleSequences?.[pose])===false)pose='stand';this.recentPoses||=[];this.recentPoses.push({pose});if(this.recentPoses.length>3)this.recentPoses.shift();if(['glance','lookdown'].includes(pose)&&!CAT_ART.idleSequences?.[pose])pose='sit';if(pose==='lookdown'&&peek!==null)this.facing=peek;this.inspectionPending=null;if(inspection)this.facing=inspection.lookAt.x>=this.x+12*this.scale?1:-1;this.idleSequence=(this.idleSequence||0)+1;
-        this.previewBedPose=null;if(window.pixelCatBedEntryV1?.beforeIdle(this,pose,t,CAT_ART,groundedFront))return;
+        if(!this.support.narrow&&!this.support.poses?.length&&this.config.mood_behaviour&&CAT_ART.idleSequences?.sleep&&window.pixelCatBehaviourV1?.allowed(this,CAT_ART.idleSequences.sleep)!==false&&!choices.includes('sleep'))choices.push('sleep');const inspection=this.inspectionPending;let pose=this.previewPose||this.play?.pose||this.previewBedPose||this.social?.restPose()||this.labPose||(inspection?'look':weightedPick(choices,p=>idlePoseWeight(p,this.recentPoses,peek)*(window.pixelCatBehaviourV1?.weight(this,CAT_ART.idleSequences?.[p])??1)*(this.social?.poseWeight(p)||1)*(window.pixelCatPostRestV1?.poseWeight(this,p)||1),this.config.mood_behaviour?()=>this.ensureMood().random():Math.random));if(!pose||window.pixelCatBehaviourV1?.allowed(this,CAT_ART.idleSequences?.[pose])===false)pose='stand';this.recentPoses||=[];this.recentPoses.push({pose});if(this.recentPoses.length>3)this.recentPoses.shift();if(['glance','lookdown'].includes(pose)&&!CAT_ART.idleSequences?.[pose])pose='sit';if(pose==='lookdown'&&peek!==null)this.facing=peek;this.inspectionPending=null;if(inspection)this.facing=inspection.lookAt.x>=this.x+12*this.scale?1:-1;this.idleSequence=(this.idleSequence||0)+1;
+        this.labPose=this.previewBedPose=null;if((this.support?.bedOwner||this).config.bed_style==='box'?window.pixelCatBoxV1?.begin(this,pose,t):window.pixelCatBedEntryV1?.beforeIdle(this,pose,t,CAT_ART,groundedFront))return;
         const poseConfig=pose==='bat'?{...this.config,bat_stroke:this.play?.strokes?.[this.play.strokeIndex]}:this.config,first=idleSample(CAT_ART,pose,0,poseConfig);
         const duration={backRoll:16000,alertLying:12000,loaf:20000,sit:12000,sithead:12000,perch:12000,clean:3000,look:4000,lookdown:3000,glance:3000,stretch:1250,stand:6000,sniff:2200,scratch:2200,yawn:2300,sleep:8500,meow:950,chatter:850,rub:1900,bat:2600}[pose];
-        const bridge=this.previewPose?[]:loafBridge(CAT_ART,oldPose==='sleep'?'loaf':oldPose,pose==='sleep'?'loaf':pose,oldIdle,this.config,t),bridgeMs=window.pixelCatPolishV1.bridgeDuration(bridge,this.config);
+        const bridge=this.previewPose||this.play||this.social?.episode?[]:loafBridge(CAT_ART,oldPose==='sleep'?'loaf':oldPose,pose==='sleep'?'loaf':pose,oldIdle,this.config,t),bridgeMs=window.pixelCatPolishV1.bridgeDuration(bridge,this.config);
         this.idle={pose,bridge,bridgeMs,inspectionId:inspection?.id,start:t,poseUntil:t+bridgeMs+(this.social?.idleDuration(pose,duration,restDuration(this.config,this.support.home))??Math.min(duration,restDuration(this.config,this.support.home)/(pose==='sleep'?1.1:3))),support:this.support.id,contactX:idleTransitionContact(oldIdle,pose,bridge.length?{rows:bridge[0]}:first,this.facing,this.scale,this.x,previousFacing)};this.social?.prepareIdle?.(this.idle,t);if(this.previewPose)this.idle.poseUntil=this.forcedIdleUntil;if(this.play?.stage==='bat'&&pose==='bat'){this.idle.poseUntil=t+bridgeMs+batClipFor(CAT_ART,poseConfig).durations.reduce((a,b)=>a+b,0)*Math.max(80,Number(this.config.idle_frame_ms)||250)/250;this.play.waitUntil=this.idle.poseUntil;}window.pixelCatReactionsV1?.prepareIdle(this,this.idle,t,CAT_ART);window.pixelCatPostRestV1?.idleStarted(this,this.idle,CAT_ART);
       }
       const elapsed=t-this.idle.start,bridging=elapsed<(this.idle.bridgeMs||0),sample=bridging?window.pixelCatPolishV1.bridgeSample(this.idle.bridge,elapsed,Math.max(80,Number(this.config.idle_frame_ms)||250)):idleSample(CAT_ART,this.idle.pose,elapsed-(this.idle.bridgeMs||0),{...this.config,track_seed:this.ownerKey,bat_stroke:this.play?.strokes?.[this.play.strokeIndex],clip_exit_at_ms:this.idle.poseUntil-this.idle.start-(this.idle.bridgeMs||0)}),point=frameContact(sample.rows,this.facing,sample.anchor||idleContact(sample.rows));rows=sample.rows;this.setAttribute('data-frame-origin',sample.origin||'human');

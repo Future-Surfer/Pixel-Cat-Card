@@ -9,10 +9,10 @@ export const workshopGroups=[
 const entries=[
  ['sequences','create','Sequences','Draw pixels, timing, gaze, contacts and independent tracks.','studio','sequences','animation frames editor export json png sprite sheet spritesheet'],
  ['props','create','Props','Draw furniture and toys; inspect colours, families and variants.','studio','props','post bed mouse catalogue export json'],
+ ['editor-workbench','create','Editor Workbench','Rearrange the live card editor, edit descriptions and leave contextual notes for review.','lab','prototype/editor-workbench.html','ui editor settings copy layout design notes'],
  ['climb','create','Climb workshop','Edit upright poses, grip contacts and per-frame height gain.','lab','prototype/climb-lab.html','wall jump motion climbing ai draft'],
  ['trees','create','Cat-tree workshop','Generate seeded trees and edit component pixels, sockets, standing spans and depth guides.','lab','prototype/tree-lab.html','cat tree generator furniture components props editor platforms houses beds'],
  ['test-cat-tree','simulate','Cat tree testing','Try the fixed tree in the real card and replay climbs, leaps and hanging-ball motion.','lab','prototype/test-cat-tree-lab.html','tree rope ball pendulum adult'],
- ['vertical-surfaces','simulate','Vertical surfaces & transfers','Inspect visible face confidence, grip room and checked wall-jump or climbing transfers.','lab','prototype/vertical-surfaces-lab.html','wall jump climb grip face geometry detection'],
  ['commands','diagnose','On-card commands','Wake settled cats and check nearest-wall invitations with safe landings.','lab','prototype/command-controls-lab.html','startle all wall jump buttons settled pause'],
  ['climb-runtime','simulate','Live climbing','Real post fit, kitten fallback routes, interruptions and landings.','lab','prototype/climb-runtime-lab.html','wall climb background kitten runtime grips landing'],
  ['kitten-climb-stress','diagnose','Kitten climbing stress','Observe grip waits, route outcomes, decal eviction and contact scale with two clocks.','lab','prototype/kitten-climb-stress-lab.html','kitten climb wall marks decals stress grip idle'],

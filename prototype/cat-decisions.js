@@ -28,7 +28,7 @@ class CatDecisions {
  sense(){const a=this.actor,f=this.frame;if(!f)return;const eye=worldGaze(f.gaze,f.placement,a.scale,f.facing,Math.max(24,Math.min(240,Number(a.config.social_sight_cells)||110))*a.scale),peers=this.peers();
   const targets=peers.map(b=>({id:b.ownerKey,label:b.config.name||b.ownerKey,x:b.x+12*b.scale,y:b.y-12*b.scale,width:20*b.scale,height:22*b.scale,moving:!!b.motion}));
   const result=this.awareness.update(eye,targets,this.clock,{dwell:250,motionDwell:120,memory:2500});
-  for(const state of result.states){const b=peers.find(p=>p.ownerKey===state.id);if(state.visible&&state.aware){this.memory.set(b.ownerKey,{id:b.ownerKey,x:b.x,y:b.y,scale:b.scale,pose:b.motion?'moving':b.idle?.pose,surface:b.support?.el,surfaceTop:b.support?.top,at:this.clock});}}
+  for(const state of result.states){const b=peers.find(p=>p.ownerKey===state.id);if(state.visible&&state.aware){this.memory.set(b.ownerKey,{id:b.ownerKey,x:b.x,y:b.y,scale:b.scale,pose:b.motion?'moving':b.idle?.pose,surface:b.support?.el,supportId:b.support?.id,surfaceTop:b.support?.top,at:this.clock});}}
   for(const [id,m]of this.memory)if(this.clock-m.at>2500||!peers.some(b=>b.ownerKey===id))this.memory.delete(id);
   this.visible=new Set(result.states.filter(s=>s.visible&&s.aware).map(s=>s.id));
  }
@@ -41,22 +41,22 @@ class CatDecisions {
   for(const [b,e]of this.owners()){if(b===a||exclude.includes(b)||e.root!==a.root||!b.active||b.userHeld)continue;const pad=4*Math.max(a.scale,b.scale),overlap=(left,right)=>x+w+pad>left&&x-pad<right;
    if(sameSupport(surface,b.support)&&overlap(b.x,b.x+24*b.scale))return false;
    if(b.motion&&sameSupport(surface,b.motion.target)&&overlap(Math.min(b.motion.fromX,b.motion.x),Math.max(b.motion.fromX,b.motion.x)+24*b.scale))return false;
-   const ep=b.social?.episode;if(ep?.kind==='company'&&sameSupport(surface,ep.surface)&&overlap(ep.x,ep.x+24*b.scale))return false;
+   const ep=b.social?.episode;if(ep?.kind==='company'&&sameSupport(surface,ep.surface)&&overlap(ep.x,ep.x+24*b.scale)||window.pixelCatDashboardChaseV1?.reserved(b,surface,overlap))return false;
   }return true;
  }
  corridor(surface,x,exclude=[]){const a=this.actor,lo=Math.min(a.x,x),hi=Math.max(a.x,x);if(!this.clear(surface,x,exclude))return false;for(const [b,e]of this.owners()){if(b===a||exclude.includes(b)||e.root!==a.root||!b.active||b.userHeld)continue;const pad=4*Math.max(a.scale,b.scale),hits=(left,right)=>hi+24*a.scale+pad>left&&lo-pad<right;if(sameSupport(surface,b.support)&&hits(b.x,b.x+24*b.scale))return false;if(b.motion&&sameSupport(surface,b.motion.target)&&hits(Math.min(b.motion.fromX,b.motion.x),Math.max(b.motion.fromX,b.motion.x)+24*b.scale))return false;const ep=b.social?.episode;if(ep?.kind==='company'&&sameSupport(surface,ep.surface)&&hits(ep.x,ep.x+24*b.scale))return false;}return true;}
  companyOptions(){const a=this.actor,options=[];for(const m of this.memory.values()){if(!['loaf','sleep'].includes(m.pose))continue;const b=this.peers().find(b=>b.ownerKey===m.id);if(!b||this.scene.has(b)||this.scene.has(a))continue;const surface=a.surfaces.find(s=>s.el===m.surface&&Math.abs(s.top-m.surfaceTop)<2&&!s.narrow&&!s.home&&(!s.poses?.length||s.poses.includes('loaf')));if(!surface||!a.pathTo(surface)||!a.pathTo(a.home,surface))continue;
    const gap=6*Math.max(a.scale,m.scale);for(const x of [m.x-24*a.scale-gap,m.x+24*m.scale+gap]){const snapped=Math.round(x/a.scale)*a.scale;if(this.clear(surface,snapped)&&(!sameSupport(surface,a.support)||this.corridor(surface,snapped)))options.push({kind:'company',target:b,surface,x:snapped,observed:{...m}});}
   }return options;}
- chaseOptions(){const a=this.actor;if(a.support?.narrow||a.support?.home||a.support.max-a.support.min<100*a.scale)return [];const options=[];
-  for(const m of this.memory.values()){const b=this.peers().find(b=>b.ownerKey===m.id);if(!b||!this.visible?.has(m.id)||!b.config.social_behaviour||!b.social.available(b)||!this.available(a)||this.scene.has(a)||this.scene.has(b)||b.social.clock<b.social.nextSocial||['loaf','sleep'].includes(m.pose)||!sameSupport(a.support,b.support))continue;
+ chaseOptions(){const a=this.actor;if(a.config.chasing===false||a.support?.narrow||a.support?.home||a.support.max-a.support.min<100*a.scale)return [];const options=[];
+  for(const m of this.memory.values()){const b=this.peers().find(b=>b.ownerKey===m.id);if(!b||!this.visible?.has(m.id)||!b.config.social_behaviour||b.config.chasing===false||!b.social.available(b)||!this.available(a)||this.scene.has(a)||this.scene.has(b)||b.social.clock<b.social.nextSocial||['loaf','sleep'].includes(m.pose)||!sameSupport(a.support,b.support))continue;
    // Both must have actually noticed the other. This is an invitation, not a rear ambush.
    if(!b.social.visible?.has(a.ownerKey))continue;const away=Math.sign(m.x-a.x);if(!away)continue;const s=b.support,x=Math.round(Math.max(s.min,Math.min(s.max,b.x+away*36*b.scale))/b.scale)*b.scale;
    if(away*(x-b.x)<12*b.scale||!b.social.corridor(s,x,[a]))continue;options.push({kind:'chase',target:b,surface:a.support,away,runnerX:x});
   }return options;
  }
  decide(t){const a=this.actor;if(!this.available(a)||this.episode)return false;const v=a.ensureMood().values,weights=decisionWeights(v),options=[{kind:'explore',weight:weights.explore},{kind:'settle',weight:weights.settle}];
-  if(a.config.social_behaviour&&this.clock>=this.nextSocial){const company=this.companyOptions(),chase=this.chaseOptions();if(company.length)options.push({...company[Math.floor(a.ensureMood().random()*company.length)],weight:weights.company});if(chase.length)options.push({...chase[Math.floor(a.ensureMood().random()*chase.length)],weight:weights.chase});}
+  if(a.config.social_behaviour&&this.clock>=this.nextSocial){const company=a.config.quiet_company===false?[]:this.companyOptions(),chase=this.chaseOptions();if(company.length)options.push({...company[Math.floor(a.ensureMood().random()*company.length)],weight:weights.company*(.5+(this.traits?.sociability??.5))});if(chase.length)options.push({...chase[Math.floor(a.ensureMood().random()*chase.length)],weight:weights.chase});}
   for(const option of options)option.weight*=window.pixelCatPostRestV1?.choiceWeight(a,option.kind)??1;
   const chosen=sampleDecision(options,()=>a.ensureMood().random(),a);this.log(chosen.kind,{weights:options.map(p=>({kind:p.kind,weight:p.weight})),target:chosen.target?.ownerKey});
   if(chosen.kind==='explore')return false;
@@ -67,15 +67,15 @@ class CatDecisions {
  startCompany(option,t){const a=this.actor;if(this.scene.has(a)||this.scene.has(option.target)||!this.clear(option.surface,option.x))return false;const path=a.pathTo(option.surface);if(!path)return false;
   this.episode={...option,started:this.clock,stage:'approach',expires:this.clock+22000};this.scene.set(a,this.episode);a.route=[...path,{settle:true,surface:option.surface,x:option.x}];a.destinationId=option.surface.id;a.destinationPoint='quiet-company';a.urgency='relaxed';a.deadline=0;this.log('company approach',{target:option.target.ownerKey});return true;
  }
- startChase(option,t){const a=this.actor,b=option.target;if(!this.available(a)||!b.social.available(b)||this.scene.has(a)||this.scene.has(b))return false;
-  const v=b.ensureMood().values,response=sampleDecision([{kind:'ignore',weight:.8+2*v.sleepiness},{kind:'watch',weight:.4+v.alertness},{kind:'run',weight:(.25+2*v.playfulness*(1-.8*v.sleepiness))*(window.pixelCatPostRestV1?.choiceWeight(b,'chase')??1)}],()=>b.ensureMood().random(),b).kind;
+ startChase(option,t,reply){const a=this.actor,b=option.target;if(!this.available(a)||!b.social.available(b)||this.scene.has(a)||this.scene.has(b))return false;
+  const v=b.ensureMood().values,response=reply||sampleDecision([{kind:'ignore',weight:.8+2*v.sleepiness},{kind:'watch',weight:.4+v.alertness},{kind:'run',weight:(.25+2*v.playfulness*(1-.8*v.sleepiness))*(window.pixelCatPostRestV1?.choiceWeight(b,'chase')??1)}],()=>b.ensureMood().random(),b).kind;
   b.social.log('chase invitation '+response,{source:a.ownerKey});this.nextSocial=this.clock+25000;b.social.nextSocial=b.social.clock+25000;
   if(response!=='run'){if(response==='watch'){const known=b.social.memory.get(a.ownerKey);if(known)b.facing=known.x>b.x?1:-1;b.previewPose='glance';b.forcedIdleUntil=t+1600;b.deadline=b.forcedIdleUntil;if(b.idle)b.idle.poseUntil=t;}a.deadline=t+2000;return true;}
   if(!b.social.corridor(b.support,option.runnerX,[a]))return false;
   const episode={kind:'chase',chaser:a,runner:b,started:this.clock,expires:this.clock+8000,stage:'run',runs:0};this.scene.set(a,episode);this.scene.set(b,episode);this.episode=episode;b.social.episode=episode;
   b.urgency='interested';b.moveTo(option.runnerX,b.support.top,0,'walk',b.support,t);b.deadline=t+10000;a.deadline=t+10000;this.log('chase accepted',{target:b.ownerKey});return true;
  }
- finish(reason){const ep=this.episode;if(!ep)return;const participants=ep.kind==='chase'?[ep.chaser,ep.runner]:[this.actor];for(const a of participants){const layer=a.social;if(!layer||layer.episode!==ep)continue;layer.episode=null;layer.scene.delete(a);layer.nextSocial=layer.clock+25000;layer.log('end '+ep.kind,{reason});a.deadline=0;if(ep.kind==='company'&&ep.stage==='approach'){a.route=[];a.finishing=false;}}
+ finish(reason){const ep=this.episode;if(!ep)return;const participants=ep.kind==='chase'?[ep.chaser,ep.runner]:[this.actor];for(const a of participants){const layer=a.social;if(!layer||layer.episode!==ep)continue;window.pixelCatDashboardChaseV1?.release(a,ep);layer.episode=null;layer.scene.delete(a);layer.nextSocial=layer.clock+25000;layer.log('end '+ep.kind,{reason});a.deadline=0;if(ep.kind==='company'&&ep.stage==='approach'){a.route=[];a.finishing=false;}}
  }
  advance(t){const a=this.actor,ep=this.episode;if(a.paused||a.suspended||a.stranded||a.goal||a.command||a.previewPose||a.play||a.toyHunt||a.playRequested||a.toyHuntRequested||!ep.target?.active&&ep.kind==='company'){this.finish('interrupted or actor removed');return;}
   if(ep.kind==='company'){

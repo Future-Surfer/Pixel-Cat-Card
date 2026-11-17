@@ -100,7 +100,10 @@ class DashboardPropScene{
   const visible=[...this.members].filter(m=>!document.hidden&&m.active&&!m.suspended&&!m.stranded&&m.isConnected&&m.href===location.pathname),active=visible.filter(m=>!m.paused&&!m.layoutPaused);this.layer.style.visibility=this.enabled&&visible.length?'visible':'hidden';
   this.controls(t);
   const dt=this.lastAt===undefined?0:Math.min(100,Math.max(0,t-this.lastAt));this.lastAt=t;if(!this.enabled||!visible.length){for(const p of this.props)if(p.node?.style)p.node.style.visibility='hidden';return;}if(active.length)this.time+=dt;
-  if(!this.seeded&&active.length){if(!active.some(a=>a.config.dashboard_props&&a.config.show_home!==false&&a.config.home_mouse!==false))this.spawn(cat,'toy_mouse');this.spawn(cat,'ball');}window.pixelCatHomeLifeV1?.seedMice(this,active);
+  if(!this.seeded&&active.length){const c=active.find(a=>a.config.dashboard_props)?.config||{};
+   const mice=c.toy_mice??Number(!active.some(a=>a.config.dashboard_props&&a.config.show_home!==false&&a.config.home_mouse!==false));
+   for(const [id,count] of [['toy_mouse',mice],['ball',c.toy_balls??1]])for(let i=0;i<Math.min(6,Math.floor(count));i++)this.spawn(cat,id);this.seeded=true;
+  }window.pixelCatHomeLifeV1?.seedMice(this,active);
   for(const member of this.members)for(const s of member.surfaces||[])s.propPoints=[];
   for(const p of [...this.props]){
    if(window.pixelCatMouthV1?.carried?.(this,p,t,visible))continue;

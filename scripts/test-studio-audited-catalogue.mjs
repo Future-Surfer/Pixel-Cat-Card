@@ -1,7 +1,8 @@
+import cat from '../src/artwork/pixel-pet-artwork.json' with {type:'json'};
 import {latestProjects} from './latest-studio-assets.mjs';
 import {savedProject} from './saved-user-refinements.mjs';
 import {draftPoses} from './draft-cat-poses.mjs';
-import assert from 'node:assert/strict';import fs from 'node:fs';import vm from 'node:vm';
+import assert from 'node:assert/strict';import fs from 'node:fs';
 import {pixelVolume,frameRole,validateProject,projectFromGroup} from '../frame-studio/dist/model.js';
 import {reconcileCatalogue,starterSequences,duplicateSequence,rememberSequence} from '../frame-studio/dist/sequences.js';
 import {phaseFrames} from '../frame-studio/dist/playback.js';
@@ -21,9 +22,8 @@ const archived=Object.values(book).find(e=>e.project.archivedFrom==='sequence-ac
 book['sequence-across'].project.frames[2].name='My subsequent edit';reconcileCatalogue(book,library);assert.equal(book['sequence-across'].project.frames[2].name,'My subsequent edit');
 const original=book['sequence-walk-high'].project,copy=duplicateSequence(original);equal(copy.frames.map(f=>f.rows),original.frames.map(f=>f.rows));equal(copy.frames.map(f=>f.origin),original.frames.map(f=>f.origin));assert.notEqual(copy.projectId,original.projectId);assert.equal(copy.variantOf.projectId,original.projectId);assert.ok(copy.frames.every((f,i)=>f.id!==original.frames[i].id&&f.parentId===original.frames[i].id&&!f.locked&&f.review==='candidate'));
 copy.frames[0].rows[0]='#'+copy.frames[0].rows[0].slice(1);assert.notEqual(copy.frames[0].rows[0],original.frames[0].rows[0]);
-const sandbox={HTMLElement:class{},customElements:{get(){},define(){}},window:{}};vm.runInNewContext(fs.readFileSync('pixel-pet-card.js','utf8')+';globalThis.cat=PixelPetCard',sandbox);
-for(const p of library.props){equal(p.rows,sandbox.cat.PROPS[p.id].rows);equal(p.palette,sandbox.cat.PROPS[p.id].palette);assert.equal(p.width,sandbox.cat.PROPS[p.id].width);assert.equal(p.height,sandbox.cat.PROPS[p.id].height);}
-assert.equal(library.props.length,Object.keys(sandbox.cat.PROPS).length);assert.equal(library.audit.excluded.length,1);
+for(const p of library.props){equal(p.rows,cat.PROPS[p.id].rows);equal(p.palette,cat.PROPS[p.id].palette);assert.equal(p.width,cat.PROPS[p.id].width);assert.equal(p.height,cat.PROPS[p.id].height);}
+assert.equal(library.props.length,Object.keys(cat.PROPS).length);assert.equal(library.audit.excluded.length,1);
 const humanDraft={...projectFromGroup(groups.get('sit')),projectId:'pose-look-down',name:'My look-down draft'};const migrationBook={};rememberSequence(migrationBook,humanDraft);reconcileCatalogue(migrationBook,library);assert.ok(Object.values(migrationBook).some(e=>e.project.variantOf?.projectId==='pose-look-down'&&!e.project.archived));
 const restored={...projectFromGroup(groups.get('walk')),projectId:'sequence-walk-head-development',name:'Walk head variants · development',archiveOverride:false,archived:false};rememberSequence(migrationBook,restored);reconcileCatalogue(migrationBook,library);assert.equal(migrationBook[restored.projectId].project.archived,false);
 console.log('PASS: audited catalogue, exact refinements/props, AI provenance, phase roles, pixel mass, non-destructive refresh and independent variants.');

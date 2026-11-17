@@ -5,7 +5,9 @@
 
 Updated 23 October 2026. **Cat controls & diagnostics** has six task-based sections; one opens at a time. Controls retain their original handlers. Changes here apply to this browser session; use HA **Edit card** to save defaults.
 
-The main buttons are **Explore**, **Home**, **Pause**, **Startle all** and **Wall jump**:
+The main buttons are **Pause / Resume**, **Spawn toy** and **Come home**. Spawn toy places a mouse on a reachable surface for the cats to discover.
+
+Open **Cat controls & diagnostics → Travel & climbing** for **Explore**, **Startle all** and **Wall jump**:
 
 - **Startle all** wakes every active cat in this view and resets its five-minute settling clock. Each cat attempts its own safe hop. Flights/climbs finish before a queued reaction; manual Pause stays in force. A blocked hop still wakes the cat. Other views are unaffected.
 - **Wall jump** invites only this card's cat to approach the nearest checked finite wall, grip it and leap off onto another support or back onto the same one. It waits for current movement/handling, checks the route again on arrival and respects home-sharing permissions. It works without enabling autonomous card climbing. If no safe route exists, the status explains this; carrying cats must put their toy down first.
@@ -27,7 +29,7 @@ In **Display & overlays**, **Name & action below cat** controls the two-line lab
 
 The floating, bounded panel preserves the home card's height and walking surfaces. Its title stays visible during menu scrolling. Opening a section never enables a feature or forces an action. Normal play invitations retain existing eligibility/queueing; **Preview action** is the separate animation override.
 
-In **Travel & climbing**, enable **Climb visible cards (experimental)** before **Try visible wall transfer** becomes available. Ordinary routes remain preferred automatically; this explicit preview can use a checked wall transfer even when another route exists. Try it when the cat is resting. **Scratch card borders** controls the separate supported-edge scratching pilot. [Finite-face contract and limits](../design/VERTICAL_SURFACE_TRANSFERS.md).
+In **Travel & climbing**, enable **Climb visible cards (experimental)** before **Try climbing a card** becomes available. Ordinary routes remain preferred automatically; this explicit preview can use a checked wall transfer even when another route exists. Try it when the cat is resting. **Scratch card borders** controls the separate supported-edge scratching pilot. [Finite-face contract and limits](../design/VERTICAL_SURFACE_TRANSFERS.md).
 
 Shared prop controls affect this dashboard. Running-count and all-cat sampling controls are behind **Diagnostics → Whole-dashboard test controls**, away from ordinary single-cat actions.
 
@@ -86,7 +88,7 @@ The sum of means is **not** a measured whole-frame p95. GPU work, browser layout
 
 Open [Cat stress test](http://YOUR_HA_HOST:8123/dashboard-testing/cat-stress-test). The sections layout places two half-width cat cards per section, including on mobile. It contains exactly twenty cat cards, with unique IDs/colours, mood/social/landing pilots and one separate shared performance monitor. Individual actor profiling is off. All twenty start running (`start_paused: false`). Use Reports & performance on any cat to select 1, 2, 5, 10 or 20 running cats, then compare the shared monitor. A fresh page reload restores the saved twenty-running baseline.
 
-All twenty opt into `shared_home_surfaces: true`. Normally home cards are excluded from roaming surface discovery. This flag allows the outer roofs of participating, active cat cards to be measured as shared perches, so a cat-only view can actually exercise travel and social opportunities. Both observer and home must opt in. It does not expose nested furniture, editor previews or disconnected homes. Normal dashboards retain their previous exclusion. Tight header clearance or changing card geometry can still reject a jump; the flag does not bypass physics.
+Active, visible cat homes share their outer roofs by default. Set `shared_home_surfaces: false` on either home to opt out. Nested furniture, editor previews and disconnected homes are excluded. Tight header clearance or changing card geometry can still reject a jump; the flag does not bypass physics.
 
 The reproducible view configuration is `prototype/cat-stress-dashboard.json`. It has no sensor/device dependencies. The current twenty default homes enable props, include home mice and posts when space permits, vary bed styles and show name/action labels. For an actor-only comparison, disable props explicitly and record that difference.
 
@@ -102,7 +104,7 @@ With `interaction_behaviour: true`, Behaviour & mood exposes **Gaze, invitations
 
 Eligible supports are retained without a 64-entry cutoff. Discovery/rectangles share a frame cache; routing uses actor-local geometry/config caches and spatial reach candidates. Above 128 supports, destination options populate on focus rather than filling closed menus. Counts describe retained geometry, not guaranteed reachability or an unlimited device budget.
 
-Card outlines & grip areas show measured cyan boundaries, purple actor-fit grip areas, green standing tops, explicit post contacts and rejection reasons. Excluded cat-home cards have dashed cyan boundaries and a permission reason; they are recognised without becoming usable grips or roofs. Both homes still need `shared_home_surfaces` for shared use. Walking supports remain a separate overlay. The overlay is independent of behaviour. Enable experimental native-edge use with `native_vertical_surfaces: true` or the editor option; ordinary homes keep it off. Inference runs only when enabled or inspected. The refinement lab on 8769 compares depth, loaf departures, ear timing, saved lift grip and large catalogues. Forced contact previews and ordinary observation are separate controls.
+Card outlines & grip areas show measured cyan boundaries, purple actor-fit grip areas, green standing tops, explicit post contacts and rejection reasons. Excluded cat-home cards have dashed cyan boundaries and a permission reason; they are recognised without becoming usable grips or roofs. Either home can disable roof sharing. Walking supports remain a separate overlay. The overlay is independent of behaviour. Enable experimental native-edge use with `native_vertical_surfaces: true` or the editor option; ordinary homes keep it off. Inference runs only when enabled or inspected. The refinement lab on 8769 compares depth, loaf departures, ear timing, saved lift grip and large catalogues. Forced contact previews and ordinary observation are separate controls.
 
 ## Resize/contact refinement lab — 18 October 2026
 

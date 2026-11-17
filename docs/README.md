@@ -19,7 +19,7 @@
 | Toys / contact | [Dashboard props](guides/DASHBOARD_PROPS.md), relevant runtime source/lab |
 | Cat-tree construction lab | [Component, generation and save contracts](design/CAT_TREE_GENERATOR.md), [named assembly syntax](design/CAT_TREE_CODE.md); lab-only, default-card replacement remains gated |
 | Performance / gaze | Performance evidence (development reference retained privately), [gaze lab](guides/GAZE_LAB.md) |
-| Earlier cards / mock tooling | [Original card](guides/PIXEL_PET_CARD.md), [Card Lab](guides/CARD_LAB.md), [prototype notes](../prototype/README.md) |
+| Historical references / mock tooling | [Original card](guides/PIXEL_PET_CARD.md), [Card Lab](guides/CARD_LAB.md), [prototype notes](../prototype/README.md) |
 | Research / older decisions | [Gaits](research/CAT_GAITS.md), older planning index (development reference retained privately), pre-optimisation design (development reference retained privately) |
 
 ## Maintenance

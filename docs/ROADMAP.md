@@ -1,6 +1,6 @@
 # Pixel Cat roadmap
 
-Updated 8 November 2026. **Sole forward plan.** [Current state](CURRENT_STATE.md) records delivered facts; [feature contracts](FEATURE_DETAILS.md) describe current behaviour.
+Updated 10 November 2026. **Sole forward plan.** [Current state](CURRENT_STATE.md) records delivered facts; [feature contracts](FEATURE_DETAILS.md) describe current behaviour.
 
 ## Vision and principles
 
@@ -12,6 +12,12 @@ Updated 8 November 2026. **Sole forward plan.** [Current state](CURRENT_STATE.md
 - Measure before adding caches, routing complexity, probability tuning or device-performance claims.
 
 ## Recommended next sequence
+
+**LAB-01 — Behaviour Lab.** The first version is on the HA dev Testing view. One dropdown applies a temporary focus to every eligible cat on the current dashboard view, including cats that join after selection. **Natural behaviour** is the default. **Climb and leap** resets on reload or when the last lab card is removed. Saved cat settings and everyday behaviour weights are independent of the lab.
+
+- Selecting a focus interrupts grounded activities and wakes resting cats. A cat in flight finishes its move. The lab checks again every 2–4 seconds per cat, spreading route checks across the view. Cats take viable routes and wait when blocked. Manual pause, the card climbing setting and safe landings and return routes still apply.
+- The card shows the current busy count and running totals for missing walls, missing safe routes, declines, attempts and completed landings. A safe route includes the approach, grip, landing and way home. The first HA Testing run recorded a completed climb and separate declines and route skips. Automated checks cover view isolation and resetting the focus.
+- Behaviour Lab is available under **Card purpose** alongside Companion and Performance. **Yawn** checks that eligible cats receive the focus without needing a wall route. **Climb and leap** uses the face of the cat’s current card or its own visible home and aims for a different card’s top. Counters distinguish a missing face on the current card, a missing destination, a missing way home, and a route that fails the climb checks. **Scratch card edges** is the next scenario candidate.
 
 The desktop stability/calibration batch is delivered. Evidence, measured limits and device checklist (development reference retained privately).
 
@@ -80,7 +86,7 @@ Delivered refinements: [feature index](FEATURES.md); dated evidence (development
 - **MOTION-05:** actual departure/landing points plus walking/jump effort; retain shallow preference and legacy fallback for special/budget-limited cases. Current caps: 128 expanded states, 96 physical checks, 16 neighbours, seven points/support, twelve new checks/expanded state. Prefer walking to a nearer takeoff and a short safe leap where that reduces airborne effort. Tune the existing route cost/candidate system directly; do not add a post-route override. Compare actual leap-distance distributions, total travel, route failure and work on unchanged layouts before accepting new tuning. No inserted shuffle/jump staircase to exploit cost; geometry cache stays separate from preferences.
 - **INT-05:** each cat reacts to observable evidence, not another actor's private intention/target. Reuse bounded sampling, memory and cooldowns. Watch/ignore/avoid first; later shared curiosity, brief influences/clusters and natural dispersal. Across unreachable supports watching remains possible. Validate repeated five-cat/ten-minute sessions and twenty-cat cost without requiring a group event every run.
 - **INT-03:** later ball passing, missed-pat reorientation, delayed replies/familiarity only where useful; finite reply chains, quiet exits, no punitive relationship score.
-- **INT-04:** later cross-surface pursuit/interception requires observed trajectory, both stopping/return routes and reservations. No airborne homing, hidden tracking or forced catch.
+- **INT-04 · Next:** [Whole-dashboard chasing](design/DASHBOARD_CHASING.md). Prove one observed, checked card transfer in a two-cat chase, then layer in existing play animations and optional bystander reactions.
 
 ## Next product phase
 

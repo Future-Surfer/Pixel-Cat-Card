@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor Workbench · Pixel Cat</title>
+<link rel="stylesheet" href="editor-workbench.css">
+<main>
+ <header><h1>Editor Workbench</h1><p>Rearrange the live editor and leave notes on anything you’d like changed.</p></header>
+ <div class="toolbar">
+  <label>Card purpose <select id="purpose"><option value="companion">Cat companion</option><option value="monitor">Performance monitor</option><option value="behaviour-lab">Behaviour Lab</option></select></label>
+  <label><input type="checkbox" id="preview"> Preview</label>
+  <label><input type="checkbox" id="narrow"> Narrow</label>
+  <button id="undo" disabled>Undo</button>
+  <button id="save" disabled>Save for review</button>
+ </div>
+ <p id="status" role="status">Opening the draft…</p>
+ <div class="desk">
+  <div id="canvas"><pixel-cat-home-editor></pixel-cat-home-editor></div>
+  <aside id="inspector" aria-label="Selected item">
+   <label>Jump to item <select id="jump"></select></label>
+   <h2 id="selected">Select an item</h2>
+   <form id="inspector-form" hidden>
+    <label id="title-row">Label <input id="title" maxlength="150"></label>
+    <label id="help-row">Description <textarea id="help" maxlength="2000" rows="3"></textarea></label>
+    <label>Notes or feature ideas <textarea id="notes" maxlength="4000" rows="5" placeholder="Describe what you’d like to change here."></textarea></label>
+    <div id="move-controls" hidden><label>Move relative to <select id="target"></select></label><div class="buttons"><button type="button" data-move="before">Before</button><button type="button" data-move="after">After</button><button type="button" data-move="inside">Into section</button></div></div>
+   </form>
+   <details><summary>Draft changes <span id="count"></span></summary><ul id="changes"></ul></details>
+   <p><a id="review" hidden>Open saved review</a> <button id="export">Export draft</button></p>
+  </aside>
+ </div>
+ <section id="saved-review" hidden><h2>Saved review</h2><p id="version"></p><ul id="review-items"></ul></section>
+</main>
+<script src="../dist/pixel-cat-card.js"></script><script type="module" src="editor-workbench.mjs"></script><script src="../frame-studio/dist/lab-nav.js" defer></script>
+</html>

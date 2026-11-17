@@ -51,14 +51,46 @@ window.pixelCatPolishV1={
   const frames=poses.map(([rows])=>rows);frames.holds=poses.map(([, ,hold])=>hold);
   return {start,frames,bearing,facings:poses.map(([,direction])=>direction),total:frames.holds.reduce((sum,hold)=>sum+hold,0)};
  },
- restBridge(art,from,to,old,config,now){
-  if(to==='backRoll'&&from==='loaf')return [];
-  if(from!=='alertLying'||to===from)return null;
-  const frames=this.alertExit(art,old,config,now),extra=to==='backRoll'?[art.idleSequences.loaf.frames[1]]:['loaf','sleep'].includes(to)?[]:[...(['sit','sithead','clean','scratch','yawn','meow','chatter'].includes(to)?art.bridges.sitToLoaf:art.bridges.walkToSit)].reverse();
-  frames.push(...extra);frames.holds.push(...extra.map(()=>Math.max(80,Number(config?.idle_frame_ms)||250)));return frames;
+ seated(pose){return ['sit','sithead','glance','clean','scratch','yawn','meow','chatter','bat'].includes(pose);},
+ interruptedRise(art,old){
+  if(!old?.bridge?.includes(old.rows)||old.bridgeDone)return null;
+  const {walkToSit,sitToLoaf}=art.bridges,step=walkToSit.indexOf(old.rows),low=sitToLoaf.indexOf(old.rows);
+  if(step>=0)return walkToSit.slice(0,step+1).reverse();
+  if(low>=0)return [...sitToLoaf.slice(0,low+1).reverse(),art.sit,...[...walkToSit].reverse()];
+  return old.rows===art.sit?[...walkToSit].reverse():null;
  },
- prelude(a,m,old,art,front){if(m.kind!=='walk'||!old||!['backRoll','alertLying','loaf','sleep','sit','sithead','clean','scratch','yawn','meow','chatter','look'].includes(old.pose)||a.previewPose||a.userHeld)return;const clip=art.idleSequences[old.pose],exit=old.pose==='alertLying'?this.alertExit(art,old,a.config,m.start):clip?.frames.filter((_,i)=>clip.roles?.[i]==='exit')||[],frames=(exit.length?exit:['loaf','sleep'].includes(old.pose)?[...art.bridges.sitToLoaf].reverse():[]).concat([...art.bridges.walkToSit].reverse());if(!frames.length)return;const anchors=old.pose==='backRoll'?exit.map((rows,i)=>this.departureAnchor({pose:old.pose,anchor:clip.anchors[clip.roles.flatMap((r,j)=>r==='exit'?[j]:[])[i]]},art)).concat(art.bridges.walkToSit.map(()=>null)):null,beat=Math.max(60,Math.min(120,Number(a.config.idle_frame_ms)||100));
-  if(exit.holds)frames.holds=exit.holds.concat(art.bridges.walkToSit.map(()=>beat));
+ restBridge(art,from,to,old,config,now){
+  const {walkToSit,sitToLoaf}=art.bridges;
+  const seated=this.seated(from),nextSeated=this.seated(to);
+  const up=[...walkToSit].reverse();
+  const standing=pose=>['walk','stand','look','sniff','perch','lookdown','rub','wiggle','postScratch'].includes(pose);
+  const timed=frames=>{frames.holds=frames.map(()=>100);return frames;};
+  if(to==='backRoll'&&from==='loaf')return [];
+  if(to===from)return [];
+  if(from==='alertLying'){
+   const frames=this.alertExit(art,old,config,now),rise=[...sitToLoaf].reverse();
+   const extra=to==='backRoll'?[art.idleSequences.loaf.frames[1]]:nextSeated?rise:standing(to)?[...rise,art.sit,...up]:[];
+   frames.push(...extra);frames.holds.push(...extra.map(()=>Math.max(80,Number(config?.idle_frame_ms)||250)));return frames;
+  }
+  if(to==='loaf')return seated?[...sitToLoaf]:[...walkToSit,art.sit,...sitToLoaf];
+  if(from==='loaf'){
+   if(to==='alertLying')return [art.idleSequences.loaf.frames.at(-1)];
+   const frames=[...sitToLoaf].reverse();
+   return standing(to)?timed([...frames,art.sit,...up]):frames;
+  }
+  if(standing(from)&&nextSeated)return timed([...walkToSit]);
+  if(seated&&standing(to))return timed(up);
+  return [];
+ },
+ prelude(a,m,old,art,front){
+  if(m.kind!=='walk'||!old||a.previewPose||a.userHeld)return;
+  const interrupted=this.interruptedRise(art,old),low=['alertLying','loaf','sleep'].includes(old.pose);
+  if(!interrupted&&!low&&!this.seated(old.pose)&&old.pose!=='backRoll')return;
+  const clip=art.idleSequences[old.pose],exit=interrupted?[]:old.pose==='alertLying'?this.alertExit(art,old,a.config,m.start):clip?.frames.filter((_,i)=>clip.roles?.[i]==='exit')||[];
+  const up=[...art.bridges.walkToSit].reverse(),rise=low?[...art.bridges.sitToLoaf].reverse().concat([art.sit],up):up;
+  const frames=interrupted||exit.concat(rise);
+  const anchors=!interrupted&&old.pose==='backRoll'?exit.map((rows,i)=>this.departureAnchor({pose:old.pose,anchor:clip.anchors[clip.roles.flatMap((r,j)=>r==='exit'?[j]:[])[i]]},art)).concat(up.map(()=>null)):null,beat=Math.max(60,Math.min(120,Number(a.config.idle_frame_ms)||100));
+  if(exit.holds)frames.holds=exit.holds.concat(rise.map(()=>beat));
   const total=frames.holds?.reduce((n,h)=>n+h,0)??frames.length*beat;m.departure={frames,anchors,beat,total,bearing:m.fromX+front*a.scale};m.start+=total;
  },
  departure(a,t,contact,idleContact){const m=a.motion,d=m?.departure;if(!d)return false;if(t>=m.start){if(d.facings)a.facing=m.direction;delete m.departure;return false;}const frame=this.bridgeSample(d.frames,Math.max(0,t-(m.start-d.total)),d.beat).frame,rows=d.frames[frame];if(d.facings)a.facing=d.facings[frame];const p=contact(rows,a.facing,d.anchors?.[frame]||idleContact(rows));a.draw(rows);a.svg.style.transform=`translate(${d.bearing-(d.facings?this.turnFeet(rows,a.facing):p[0])*a.scale}px,${m.fromY-(p[1]+1)*a.scale}px)`;const drawn=/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/.exec(a.svg.style.transform);window.pixelCatBedEntryV1?.mask?.(a,rows);if(a.carriedToy&&drawn)window.pixelCatMouthV1?.frame(a,rows,drawn,t,a.carryArt);a.setAttribute('data-pose',d.facings?'turning':'leaving-loaf');a.setAttribute('data-frame',(d.facings?'sit-turn-':'loaf-departure-')+frame);a.status(d.facings?'Turning around':'Getting up');return true;},

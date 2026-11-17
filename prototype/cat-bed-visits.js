@@ -59,7 +59,7 @@ class CatBedVisits extends window.pixelCatDecisionsV1{
  advance(t){const ep=this.episode,a=this.actor;if(ep?.kind==='shelf-ambush')return window.pixelCatShelfAmbushV1.advance(this,t,this.art());if(ep?.kind==='vertical-scratch')return window.pixelCatVerticalScratchV1.advance(this,t,this.art());if(ep?.kind==='bed'){
    if(!a.config.mood_behaviour||ep.owner!==a&&!a.config.social_behaviour||!ep.owner.active||ep.owner.root!==a.root||ep.owner.config.show_home===false||a.paused||a.suspended||a.userHeld||a.goal||a.command||a.previewPose||a.play||a.mouthAction||this.clock>=ep.expires){this.finish('bed visit ended');return;}
    const s=a.surfaces.find(s=>s.id===ep.surface.id&&s.bedOwner===ep.owner);if(!s){this.finish('bed removed');return;}
-   ep.surface=s;ep.x=s.bed?s.min:Math.round((s.left-4+(22+window.pixelCatSetupV1.bed(ep.owner,this.art()).width/2)*(ep.owner.worldScale||ep.owner.scale)-12*a.scale)/a.scale)*a.scale;
+   const asset=window.pixelCatSetupV1.bed(ep.owner,this.art());if(!asset)return this.finish('bed removed');ep.surface=s;ep.x=s.bed?s.min:Math.round((s.left-4+(22+asset.width/2)*(ep.owner.worldScale||ep.owner.scale)-12*a.scale)/a.scale)*a.scale;
    if(ep.stage==='approach'&&!this.clear(s,ep.x)){this.finish('bed occupied');return;}
    if(!a.motion&&!a.route?.length){if(!sameSupport(a.support,s)||Math.abs(a.x-ep.x)>6*a.scale){this.finish('bed route ended elsewhere');return;}
     if(ep.stage==='approach'){ep.stage='rest';ep.expires=this.clock+25000+25000*a.ensureMood().random();a.deadline=t+ep.expires-this.clock;if(a.idle)a.idle.poseUntil=t;this.log('bed resting',{owner:ep.owner.ownerKey});}

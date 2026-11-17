@@ -1,3 +1,4 @@
+import cat from '../src/artwork/pixel-pet-artwork.json' with {type:'json'};
 import {latestProjects} from './latest-studio-assets.mjs';
 import {savedProject} from './saved-user-refinements.mjs';
 import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';
@@ -5,7 +6,7 @@ const box={window:{},HTMLElement:class{},customElements:{get:()=>true},performan
 vm.runInNewContext(fs.readFileSync('pixel-cat-roaming-art.js','utf8')+'\n'+['prototype/cat-polish.js','prototype/cat-surface-world.js','prototype/cat-card-attention.js','pixel-cat-roaming.js'].map(f=>fs.readFileSync(f,'utf8')).join('\n')+'\nglobalThis.api={Home:PixelCatHome,movementFacing,walkTimings,walkSample,walkAppearance,clickDestination};',box);
 const {Home,movementFacing,walkTimings,walkSample,walkAppearance,clickDestination}=box.api,art=box.window.pixelCatRoamingArtV2;
 const approved=latestProjects.get('sequence-across').project.frames[2];assert.equal(JSON.stringify(art.across[2]),JSON.stringify(approved.rows));assert.equal(art.frameProvenance.across[2],approved.origin);
-const source={window:{},HTMLElement:class{},customElements:{get:()=>true}};vm.runInNewContext(fs.readFileSync('pixel-pet-card.js','utf8')+'\nglobalThis.original=PixelPetCard;',source);assert.equal(JSON.stringify(art.walk),JSON.stringify(source.original.WALK_FRAMES));assert.equal(JSON.stringify(art.ascend[2]),JSON.stringify(source.original.ELEVATE_FRAMES[2]));
+assert.equal(JSON.stringify(art.walk),JSON.stringify(cat.WALK_FRAMES));assert.equal(JSON.stringify(art.ascend[2]),JSON.stringify(cat.ELEVATE_FRAMES[2]));
 for(const scale of [1,2,3])for(const facing of [-1,1])for(const dx of [-5,-1,0,1,5]){assert.equal(movementFacing(200*scale,(200+dx)*scale,scale,facing,'jump'),facing);const h=Object.create(Home.prototype);Object.assign(h,{config:{},scale,size:24*scale,x:200*scale,y:300*scale,facing,walkSteps:0});h.moveTo((200+dx)*scale,350*scale,0,'jump',{min:0,max:1000*scale},0);assert.equal(h.motion.direction,facing);assert.ok(Math.abs(h.motion.jumpProfile.flight.vx)<scale,'Near-vertical descent should not drift backwards across its own head');}
 assert.equal(movementFacing(100,120,1,-1,'jump'),1);assert.equal(movementFacing(100,80,1,1,'jump'),-1);
 const jumper=Object.create(Home.prototype);jumper.scale=2;jumper.size=48;const jump={fromX:400,fromY:600,x:420,y:560,direction:1,jumpKind:'ascend'};jumper.config={jump_up_clearance:6};const old=jumper.planJump(jump);jumper.config={};const higher=jumper.planJump(jump);assert.ok(Math.abs(old.flight.apexY-higher.flight.apexY-4)<.00001);assert.ok(higher.flight.flightMs>old.flight.flightMs);assert.equal(old.flight.gravity,higher.flight.gravity);

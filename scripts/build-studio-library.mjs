@@ -2,14 +2,12 @@ import {writeGenerated} from './write-generated.mjs';
 import {savedRefinements,groundVariantId} from './saved-user-refinements.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
-import vm from 'node:vm';
+import cat from '../src/artwork/pixel-pet-artwork.json' with {type:'json'};
 import {fileURLToPath} from 'node:url';
 import {refinedLeap,highWalk,lowWalk} from './user-refined-art.mjs';
 import {draftPoses} from './draft-cat-poses.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const sandbox={HTMLElement:class{},customElements:{get(){},define(){}},window:{}};
-vm.runInNewContext(fs.readFileSync(path.join(root,'pixel-pet-card.js'),'utf8')+';globalThis.cat=PixelPetCard',sandbox);
-const cat=sandbox.cat,groups=[],excluded=[];
+const groups=[],excluded=[];
 const copy=value=>JSON.parse(JSON.stringify(value));
 function human(rows,symbol,index,name,role='cycle',durationMs=250){
  if(!Array.isArray(rows)||rows.length!==24||rows.some(r=>typeof r!=='string'||r.length!==24)){excluded.push({symbol,index,reason:'Invalid 24x24 source grid',widths:rows?.map?.(r=>r.length)});return null;}
@@ -53,7 +51,7 @@ for(const [projectId,saved] of savedRefinements){
  const current=groups.find(g=>g.id===groupId),entry={...(current||{}),id:groupId,projectId,name:p.name,category:p.category||p.frames[0].metadata?.category||'idle',description:p.description||'',frames:p.frames,savedProject:p,savedAt:saved.savedAt,wip:saved.status==='wip'};
  if(current)groups[groups.indexOf(current)]=entry;else groups.push(entry);
 }
-const props=Object.entries(cat.PROPS).map(([id,p])=>({id,name:cat.OBJECTS?.[id]?.label||id.replaceAll('_',' '),width:p.width,height:p.height,rows:copy(p.rows),palette:copy(p.palette),origin:'human',source:{file:'pixel-pet-card.js',symbol:'PROPS',key:id}}));
+const props=Object.entries(cat.PROPS).map(([id,p])=>({id,name:id.replaceAll('_',' '),width:p.width,height:p.height,rows:copy(p.rows),palette:copy(p.palette),origin:'human',source:{file:'pixel-pet-card.js',symbol:'PROPS',key:id}}));
 for(const p of props)if(p.rows.length!==p.height||p.rows.some(r=>r.length!==p.width||[...r].some(t=>t!=='.'&&!p.palette[t])))throw Error('Invalid prop '+p.id);
 const audit={version:4,groups:groups.map(g=>({id:g.id,name:g.name,frames:g.frames.length,enter:g.frames.filter(f=>f.role==='enter').length,cycle:g.frames.filter(f=>f.role==='cycle').length,exit:g.frames.filter(f=>f.role==='exit').length,description:g.description})),excluded,notes:['Ground and elevated sit separated.','Only OG/high/low walking retained in current catalogue.','Jump across now uses exact user refinement.','BOX_IDLE_SEQUENCE is a compositing recipe (head, tail and hold), not 24x24 cat frames; retained with props for future scene preview.']};
 writeGenerated(path.join(root,'frame-studio/dist/library.json'),JSON.stringify({schemaVersion:1,catalogueRevision:4,groups,props,boxIdleRecipe:copy(cat.BOX_IDLE_SEQUENCE),audit},null,2)+'\n');
