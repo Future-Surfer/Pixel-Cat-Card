@@ -21,9 +21,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-// Pixel Cat Card 1.1.0-rc.1 | MIT | https://github.com/Future-Surfer/Pixel-Cat-Card
+// Pixel Cat Card 1.1.0 | MIT | https://github.com/Future-Surfer/Pixel-Cat-Card
 (()=>{'use strict';
-if(window.pixelCatCardRelease){if(window.pixelCatCardRelease.version!=="1.1.0-rc.1")console.warn('Pixel Cat Card: multiple versions loaded; remove duplicate resources and reload.');return;}
+if(window.pixelCatCardRelease){if(window.pixelCatCardRelease.version!=="1.1.0")console.warn('Pixel Cat Card: multiple versions loaded; remove duplicate resources and reload.');return;}
 if(customElements.get('pixel-cat-home')){console.warn('Pixel Cat Card: a separate roaming runtime is already loaded; migrate its resources before loading this bundle.');return;}
 
 // Module: pixel-cat-roaming-art.js
@@ -289,7 +289,7 @@ const expanded=new Map([...this.shadowRoot.querySelectorAll('details')].map(el=>
 const focusedKey=this.shadowRoot.activeElement?.dataset.key;
 this.shadowRoot.innerHTML=`<style>
 :host{display:block;color:var(--primary-text-color,#202b33);font:14px var(--paper-font-body1_-_font-family,system-ui)}
-p{color:var(--secondary-text-color,#64717d);line-height:1.5;margin:0 0 16px}details{border:1px solid var(--divider-color,#dce3e8);border-radius:12px;margin:12px 0;overflow:hidden}summary{cursor:pointer;padding:16px;font-weight:650;background:var(--secondary-background-color,#f5f7f9)}.fields{padding:0 16px}.field{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,42%);align-items:center;gap:8px 16px;padding:13px 0;border-bottom:1px solid var(--divider-color,#e4e8ec)}.field:last-child{border:0}.field small{display:block;color:var(--secondary-text-color,#667482);font-size:12px;line-height:1.4;margin-top:5px}.field input{box-sizing:border-box;width:100%;padding:9px 10px;border:1px solid var(--divider-color,#bdcbd5);border-radius:7px;font:inherit;background:var(--card-background-color,#fff);color:inherit;min-width:0}.field input[type=checkbox]{width:20px;height:20px;justify-self:end;accent-color:var(--primary-color,#189b87);cursor:pointer}.note{font-size:12px;margin-top:14px}@media(max-width:360px){.field{gap:8px}.fields{padding:0 12px}}
+p{color:var(--secondary-text-color,#64717d);line-height:1.5;margin:0 0 16px}details{border:1px solid var(--divider-color,#dce3e8);border-radius:12px;margin:12px 0;overflow:hidden}summary{cursor:pointer;padding:16px;font-weight:650;background:var(--secondary-background-color,#f5f7f9)}.fields{padding:0 16px}.field{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,42%);align-items:center;gap:8px 16px;padding:13px 0}.row{border-bottom:1px solid var(--divider-color,#e4e8ec)}.row:last-child{border:0}.field small{display:block;color:var(--secondary-text-color,#667482);font-size:12px;line-height:1.4;margin-top:5px}.field input{box-sizing:border-box;width:100%;padding:9px 10px;border:1px solid var(--divider-color,#bdcbd5);border-radius:7px;font:inherit;background:var(--card-background-color,#fff);color:inherit;min-width:0}.field input[type=checkbox]{width:20px;height:20px;justify-self:end;accent-color:var(--primary-color,#189b87);cursor:pointer}.note{font-size:12px;margin-top:14px}@media(max-width:360px){.field{gap:8px}.fields{padding:0 12px}}
 .purpose{display:grid;gap:8px;margin:12px 0 16px}.purpose select{padding:12px;font:inherit;color:inherit;background:var(--card-background-color,#fff);border:1px solid var(--divider-color,#aaa);border-radius:8px}.swatches{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 16px}.swatches button{width:30px;height:30px;border:2px solid var(--divider-color,#aaa);border-radius:50%;cursor:pointer}
 .welcome{display:flex;align-items:center;gap:16px}.welcome p{margin:0}.patient-cat{width:72px;height:72px;flex:none;shape-rendering:crispEdges;overflow:visible;transform-origin:center bottom}.patient-cat[data-age=kitten]{transform:scale(.5)}
 .field select{box-sizing:border-box;width:100%;min-width:0;padding:9px 6px;font:inherit;color:inherit;background:var(--card-background-color,#fff);border:1px solid var(--divider-color,#bdcbd5);border-radius:7px}
@@ -335,12 +335,12 @@ if(['settling_mode','include_bed','include_bowl','show_scratching_post','post_ty
 };
 input.addEventListener('change',commit);
 if(kind!=='checkbox'&&kind!=='select')input.addEventListener('input',()=>{input.setCustomValidity?.('');clearTimeout(this.timers.get(key));this.timers.set(key,setTimeout(commit,200));});
-label.append(copy,input);fields.append(label);
-if(kind==='color'&&key!=='color'&&this.config[key]!==undefined){const reset=document.createElement('button');reset.type='button';reset.textContent='Reset '+title.toLowerCase();reset.onclick=()=>{commit(true);this.render();};fields.append(reset);}
+const row=document.createElement('div');row.className='row';label.append(copy,input);row.append(label);fields.append(row);
+if(kind==='color'&&key!=='color'&&this.config[key]!==undefined){const reset=document.createElement('button');reset.type='button';reset.textContent='Reset '+title.toLowerCase();reset.onclick=()=>{commit(true);this.render();};row.append(reset);}
 if(key==='color'||key==='bed_primary_color'||key==='bed_secondary_color'){
 const cat=key==='color',swatches=document.createElement('div');swatches.className='swatches';swatches.setAttribute('aria-label',cat?'Cat colour presets':title+' presets');
-const palette=cat?[['Charcoal','#222222'],['Ginger','#ad6c2d'],['Cream','#e7cf9c'],['Grey','#70818d'],['White','#eeeeee']]:[['Brown','#aa6627'],['Slate','#70818d'],['Blue','#4e86ae'],['Green','#518d70'],['Rose','#b77f91']];
-for(const [name,colour]of palette){const button=document.createElement('button');button.type='button';button.style.background=colour;button.setAttribute('aria-label',name+(cat?' cat':' '+title.toLowerCase()));button.title=name;button.addEventListener('click',()=>{input.value=colour;input.dispatchEvent(new Event('change'));});swatches.append(button);}fields.append(swatches);
+const palette=cat?[['Charcoal','#222222'],['Ginger','#ad6c2d'],['Cream','#e7cf9c'],['Grey','#70818d'],['Light grey','#c6cbd0'],['White','#eeeeee']]:[['Brown','#aa6627'],['Slate','#70818d'],['Blue','#4e86ae'],['Green','#518d70'],['Rose','#b77f91']];
+for(const [name,colour]of palette){const button=document.createElement('button');button.type='button';button.style.background=colour;button.setAttribute('aria-label',name+(cat?' cat':' '+title.toLowerCase()));button.title=name;button.addEventListener('click',()=>{input.value=colour;input.dispatchEvent(new Event('change'));});swatches.append(button);}row.append(swatches);
 }
 }
 if(hasPurpose)fields.append(purpose);
@@ -1014,7 +1014,7 @@ a.style.display='';a.shadowRoot.innerHTML='';
 const monitor=document.createElement('pixel-cat-'+a.config.mode);monitor.setConfig(a.config);monitor.hass=a._hass;a.monitorCard=monitor;a.shadowRoot.append(monitor);
 return true;
 },
-disconnect(a){window.pixelCatAlertV1?.leave(a);window.pixelCatDepthV1?.remove(a);window.pixelCatMouthV1?.disconnect?.(a);a.monitorCard?.remove();a.monitorCard=null;if(a.svg)a.svg.style.clipPath='';a.arriving=null;a.bedInside=null;a.bedEntry=null;a.previewBedPose=null;},
+disconnect(a){window.pixelCatDashboardChaseV1?.detach(a);window.pixelCatAlertV1?.leave(a);window.pixelCatDepthV1?.remove(a);window.pixelCatMouthV1?.disconnect?.(a);a.monitorCard?.remove();a.monitorCard=null;if(a.svg)a.svg.style.clipPath='';a.arriving=null;a.bedInside=null;a.bedEntry=null;a.previewBedPose=null;},
 arrival(a,t,art,sample,appearance,idle,contact,bearing){
 if(a.config.bed_style==='simple'||a.config.bed_style==='box'){a.arrived=true;return false;}
 if(a.config.arrival!=='igloo'||a.config.show_home===false||a.config.include_bed===false||a.arrived)return false;
@@ -4798,11 +4798,16 @@ function focusTravel(a,state,choice,t,kind){
 }
 
 window.pixelCatDashboardChaseV1={
+ detach(a){
+  const state=focusActors.get(a);
+  if(!state)return;
+  endFocusLeg(a,state);
+  if(state.looking&&a.labPose==='stand')a.labPose=null;
+  state.view.chaseActors.delete(a);
+  focusActors.delete(a);
+ },
  resetFocus(view){
-  for(const a of view.chaseActors||[]){
-   const state=focusActors.get(a);
-   if(state?.view===view){endFocusLeg(a,state);if(state.looking&&a.labPose==='stand')a.labPose=null;focusActors.delete(a);}
-  }
+  for(const a of view.chaseActors||[])if(focusActors.get(a)?.view===view)this.detach(a);
   view.chaseActors?.clear();
  },
  focus(a,t,view){
@@ -4815,6 +4820,7 @@ window.pixelCatDashboardChaseV1={
   if(!layer||layer.episode)return 0;
   let state=focusActors.get(a);
   if(state?.view!==view){
+   this.detach(a);
    state={view,seen:new Map(),next:t+a.ensureMood().random()*900};
    focusActors.set(a,state);
    (view.chaseActors??=new Set()).add(a);
@@ -4976,7 +4982,7 @@ window.pixelCatDashboardChaseV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.1.0-rc.1",sourceHash:"76da2263c82d89bdd5487aa42ce972949d898c65e852c604d0c1dc3fe14d3be5"});
+window.pixelCatCardRelease=Object.freeze({version:"1.1.0",sourceHash:"51b05d3b845a24ed9a6cc4c9027617c622b77e706ebe39426b144462309f6fb1"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
-console.info('Pixel Cat Card',"1.1.0-rc.1");
+console.info('Pixel Cat Card',"1.1.0");
 })();

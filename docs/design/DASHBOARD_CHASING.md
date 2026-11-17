@@ -6,9 +6,9 @@ Design for [INT-04](../ROADMAP.md), with the existing observation rules from [IN
 
 Two cats notice each other. One might sneak a few steps and crouch, then pounce beside the other cat. The other cat can watch, walk away, play back, or dash to a nearby card. If the first cat sees where they went and has a safe route, it can follow. A third cat might lift its head, watch from its perch, move aside, or later make its own invitation. Any of those choices can end the encounter. A quiet look or a missed pounce is a complete outcome.
 
-## Dev preview
+## Try the pilot
 
-On the Home Assistant dev build, choose **Behaviour Lab → Focus → Chase across cards**. The focus makes each cat more likely to run on, follow motion it actually saw, pounce beside it, or turn to watch. It keeps decisions and routes local to each cat. Choose **Natural behaviour** to clear the focus.
+In Home Assistant, choose **Behaviour Lab → Focus → Chase across cards**. The focus makes each cat more likely to run on, follow motion it actually saw, pounce beside it, or turn to watch. It keeps decisions and routes local to each cat. Choose **Natural behaviour** to clear the focus.
 
 For ordinary weighted invitations, set `dashboard_chasing: true` on both companion cards to allow voluntary cross-card chase legs. The [social lab](../../prototype/social-lab.html) has a reachable crossing and an out-of-reach scenario. Choose **Try a cross-card chase**. The lab waits for both cats to notice each other before inviting Juniper to run. Add a third watcher to try the existing observation behaviour.
 

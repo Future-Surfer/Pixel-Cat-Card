@@ -105,8 +105,11 @@ for(const interruption of ['occupied','command','removed']){
  assert.equal(chaser.route[0].surface,target);
  assert.equal(runner.route.length,0,'Following commits only the observer');
  assert.equal(layer.episode,null,'The focus does not create a shared episode');
- chase.resetFocus(view);
+ assert.equal(chase.reserved(chaser,target,()=>true),true);
+ chase.detach(chaser);
+ assert.equal(view.chaseActors.has(chaser),false);
  assert.equal(chaser.route.length,0);
+ chase.resetFocus(view);
  assert.equal(chase.reserved(chaser,target,()=>true),false);
 }
 console.log('PASS: optional transfers, reservations, observed landing only, two-transfer cap, lost gaze, unavailable return, occupancy and command cleanup.');

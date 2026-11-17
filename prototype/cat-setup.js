@@ -69,7 +69,7 @@ window.pixelCatSetupV1={
   const monitor=document.createElement('pixel-cat-'+a.config.mode);monitor.setConfig(a.config);monitor.hass=a._hass;a.monitorCard=monitor;a.shadowRoot.append(monitor);
   return true;
  },
- disconnect(a){window.pixelCatAlertV1?.leave(a);window.pixelCatDepthV1?.remove(a);window.pixelCatMouthV1?.disconnect?.(a);a.monitorCard?.remove();a.monitorCard=null;if(a.svg)a.svg.style.clipPath='';a.arriving=null;a.bedInside=null;a.bedEntry=null;a.previewBedPose=null;},
+ disconnect(a){window.pixelCatDashboardChaseV1?.detach(a);window.pixelCatAlertV1?.leave(a);window.pixelCatDepthV1?.remove(a);window.pixelCatMouthV1?.disconnect?.(a);a.monitorCard?.remove();a.monitorCard=null;if(a.svg)a.svg.style.clipPath='';a.arriving=null;a.bedInside=null;a.bedEntry=null;a.previewBedPose=null;},
  arrival(a,t,art,sample,appearance,idle,contact,bearing){
   if(a.config.bed_style==='simple'||a.config.bed_style==='box'){a.arrived=true;return false;}
   if(a.config.arrival!=='igloo'||a.config.show_home===false||a.config.include_bed===false||a.arrived)return false;
