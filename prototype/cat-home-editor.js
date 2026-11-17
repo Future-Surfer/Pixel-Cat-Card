@@ -43,7 +43,7 @@ const catEditorGroups=[
  ]},
  {title:'Behaviour & toys',fields:[
   ['quiet_company','Quiet company','checkbox',true,'A cat may settle beside a resting cat without waking it.'],
-  ['chasing','Chasing','checkbox',true,'Cats may invite each other to a short chase on the same surface.'],
+  ['chasing','Chasing','checkbox',true,'Cats may chase or follow motion they see.'],
   ['dashboard_props','Shared dashboard toys','checkbox',false,'Put toys on the dashboard for cats to share.'],
   ['toy_mice','Add mice','number',1,'How many shared mice to put out.',0,6],
   ['toy_balls','Add balls','number',1,'How many shared balls to put out.',0,6],

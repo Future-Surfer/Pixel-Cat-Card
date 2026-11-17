@@ -38,7 +38,7 @@ function reset(kind,ready){
  if(ready){say('Setting up the chase…');resetTimer=setTimeout(()=>{reset(kind);ready();},350);return;}
  for(const a of cats)a.labHold=null;for(const a of cats)a.propScene?.clear();const now=performance.now(),seed=Number($('#seed').value)>>>0;paused=false;$('#pause-all').textContent='Pause all cats';
  for(const [i,a]of cats.entries()){
-  a.social?.dispose();a.social=null;a.mood=null;a.config.mood_seed=seed+i;a.config.dashboard_chasing=cross;a.cancelPlay();a.goal=a.command=null;a.route=[];a.motion=null;a.recallPending=false;a.finishing=false;a.inspectionPending=null;a.previewBedPose=null;a.labPose=null;a.pendingStartle=null;a.startleAfter=null;a.previewPose=null;a.paused=false;a.nextLandingReactionAt=a.nextStartleAt=0;a.measure();a.config.mood_behaviour=a.config.social_behaviour=a.config.interaction_behaviour=$('#features').checked;a.config.debug_mood=$('#glow').checked;
+  a.social?.dispose();a.social=null;a.mood=null;a.config.mood_seed=seed+i;window.pixelCatDashboardChaseV1?.detach(a);a.cancelPlay();a.goal=a.command=null;a.route=[];a.motion=null;a.recallPending=false;a.finishing=false;a.inspectionPending=null;a.previewBedPose=null;a.labPose=null;a.pendingStartle=null;a.startleAfter=null;a.previewPose=null;a.paused=false;a.nextLandingReactionAt=a.nextStartleAt=0;a.measure();a.config.mood_behaviour=a.config.social_behaviour=a.config.interaction_behaviour=$('#features').checked;a.config.debug_mood=$('#glow').checked;
   const s=a.surfaces.find(s=>s.el===$('#shared'));if(!s){$('#instruction').textContent='Waiting for shared surface measurement';return;}
   a.support=s;const position=chase&&i<2?Math.max(s.min,Math.min(s.max,s.max-(i?23:58)*a.scale)):s.min+(s.max-s.min)*(i===2?.12:i?.57:.28);a.x=Math.round(position/a.scale)*a.scale;a.y=s.top;a.facing=i?-1:1;a.idle=null;a.deadline=now+(kind==='explore'?0:i?18000:1800);a.urgency='relaxed';a.nextPlayAt=Infinity;a.decisionLayer();a.ensureMood();if(chase&&i<2){a.social.nextEncounter=a.social.clock+10000;a.social.observerProbeAt=a.social.clock+10000;}a.social.world.pairs.clear();a.social.world.events=[];
   const v=kind==='company'?(i?{playfulness:.1,sleepiness:.95,alertness:.1}:{playfulness:.15,sleepiness:.85,alertness:.2}):{playfulness:.95,sleepiness:.05,alertness:.35};for(const key of Object.keys(v))a.mood.set(key,v[key]);
@@ -55,32 +55,42 @@ $('#first-age').onchange=()=>{const a=cats[0];a.setConfig({...a.config,life_stag
 for(const kind of ['company','unaware','explore','pat','ambush'])$('#'+kind).onclick=()=>reset(kind);
 for(const kind of ['chase','cross','blocked-chase'])$('#'+kind).onclick=()=>{
  $('#opportunity').value='chase';
- reset(kind,queueChase);
+ reset(kind,()=>queueChase(false,kind!=='chase'));
 };
 $('#replay-chase').onclick=()=>{
  $('#opportunity').value='chase';
  reset('chase',()=>queueChase(true));
 };
 const say=message=>{const status=$('#instruction');if(status.textContent!==message)status.textContent=message;};
-function queueChase(scripted=false){
+function queueChase(scripted=false,cross=false){
  if(!$('#features').checked){say('Turn on Mood & social decisions to try a chase.');return;}
- chaseTrial={until:(cats[0].social?.clock||0)+4500,waiting:true,scripted};
- say(scripted?'Replay: waiting for both cats to notice each other…':'Waiting for both cats to notice each other…');
+ chaseTrial={until:(cats[0].social?.clock||0)+4500,waiting:true,scripted,cross};
+ say(cross?'Waiting for Miso to notice Juniper…':scripted?'Replay: waiting for both cats to notice each other…':'Waiting for both cats to notice each other…');
 }
 function updateChase(t){
  const trial=chaseTrial;
  if(!trial||paused)return;
  const [a,b]=cats,layer=a.social;
  if(!layer||!b.social)return;
+ if(trial.cross){
+  if(trial.waiting&&layer.visible?.has(b.ownerKey)){
+   const target=b.surfaces.find(s=>s.el===$('#next-card'));
+   if(!target){say('No next card is available.');chaseTrial=null;return;}
+   trial.waiting=false;trial.until=layer.clock+12000;b.labHold=null;
+   b.requestVisit(target.id,'interested');
+   say('Juniper is trying to cross. Miso can choose whether to follow.');
+  }else if(!trial.waiting&&layer.trace.some(event=>event.kind==='chase card transfer completed')){
+   say('Miso chose to follow across the gap.');chaseTrial=null;
+  }else if(layer.clock>=trial.until){
+   say(trial.waiting?'Miso did not notice Juniper.':'Miso did not follow. Check the sightline, landing space and recent decisions.');chaseTrial=null;
+  }
+  return;
+ }
  if(!trial.waiting){
   if(layer.episode===trial.episode){
-   if(trial.episode.dashboard?.stage==='runner')say('Juniper is taking a route to the next card.');
-   if(trial.episode.dashboard?.stage==='observe')say('Miso is looking for Juniper’s landing.');
-   if(trial.episode.dashboard?.stage==='follow')say('Miso is following across the gap.');
    return;
   }
-  const end=layer.trace.find(event=>event.kind==='end chase'),crossed=layer.trace.some(event=>event.kind==='chase card transfer completed');
-  say(crossed?'Cross-card chase completed.':end?.reason==='lost sight at the card edge'?'Miso lost sight of Juniper at the card edge.':'Chase ended on the starting card. See Recent decisions for details.');
+  say('Chase ended on the starting card. See Recent decisions for details.');
   chaseTrial=null;
   return;
  }
