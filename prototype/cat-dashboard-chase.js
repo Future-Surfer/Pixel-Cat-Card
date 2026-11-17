@@ -88,11 +88,16 @@ function focusTravel(a,state,choice,t,kind){
 }
 
 window.pixelCatDashboardChaseV1={
+ detach(a){
+  const state=focusActors.get(a);
+  if(!state)return;
+  endFocusLeg(a,state);
+  if(state.looking&&a.labPose==='stand')a.labPose=null;
+  state.view.chaseActors.delete(a);
+  focusActors.delete(a);
+ },
  resetFocus(view){
-  for(const a of view.chaseActors||[]){
-   const state=focusActors.get(a);
-   if(state?.view===view){endFocusLeg(a,state);if(state.looking&&a.labPose==='stand')a.labPose=null;focusActors.delete(a);}
-  }
+  for(const a of view.chaseActors||[])if(focusActors.get(a)?.view===view)this.detach(a);
   view.chaseActors?.clear();
  },
  focus(a,t,view){
@@ -105,6 +110,7 @@ window.pixelCatDashboardChaseV1={
   if(!layer||layer.episode)return 0;
   let state=focusActors.get(a);
   if(state?.view!==view){
+   this.detach(a);
    state={view,seen:new Map(),next:t+a.ensureMood().random()*900};
    focusActors.set(a,state);
    (view.chaseActors??=new Set()).add(a);

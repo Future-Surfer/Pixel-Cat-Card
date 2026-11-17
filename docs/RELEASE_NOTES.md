@@ -1,35 +1,30 @@
 # Pixel Cat Card release notes
 
-## Pixel Cat Card 1.1.0-rc.1
+## Pixel Cat Card 1.1.0
 
-This release candidate includes changes since v1.0.0.
+Give your cat a cardboard box, a taller tree, or a quieter corner of the dashboard. This release adds more ways to set up their home and more ways to see them play.
 
-### Package security
+### A home of their own
 
-- The bundle removes Stick Pet Card, Pixel Pet Card, and the Pixel Pet editor. Pixel Cat Card keeps its original artwork and existing companion layouts. Remove any separate legacy JavaScript resources before reloading your dashboard.
+- **Cardboard box beds.** Adults can peek over the rim and kittens can tuck themselves inside. You can pick up a cat and drop them into an empty box.
+- Choose which furniture to include. Pick a plain scratching post or a one- or two-level cat tree, with a preview of the furniture in the editor.
+- Adjust the background transparency, border, corners, and scratching debris. The fur palette adds **Light grey**, and field dividers sit below the colour swatches.
 
-### A home for your cat
+### Play at their own pace
 
-- **Cardboard box bed.** Cats start inside and can hop back in for a break. Adults peek over the rim. Kittens stay tucked inside until they hop out. You can also pick up a cat and drop them into an empty box.
-- Choose whether to include a bed, food bowl, and scratching post. Pick a plain post or a one- or two-level tree. The card preview shows the furniture as you change it.
-- Set the card background from solid to fully transparent, adjust the border and corners, and choose small scratching debris, full-pixel debris, or none.
+- Choose a mood and adjust boldness, sociability, curiosity, and patience separately. Quiet company and short chases have their own switches.
+- **Optional cross-card chases.** A cat can follow a playmate it sees reach another card when there’s a clear route and room to land. Either cat can decline, and the chase can end when they lose sight. Enable the pilot on both cats using the [configuration guide](https://github.com/Future-Surfer/Pixel-Cat-Card/blob/main/docs/guides/ROAMING_CONFIGURATION.md#chasing-across-cards).
+- Cats can grip exposed card edges, climb and leap to a reachable card, or rebound to the same side on a short wall jump. Descents have their own grip poses, and cats transition more smoothly from rest to walking.
 
-### A clearer editor
+### Controls and Behaviour Lab
 
-- Set your cat's **Mood** to Natural, Playful, Relaxed, or Alert. Four **Personality** sliders separately set boldness, sociability, curiosity, and patience.
-- Choose quiet company and short chases independently. You can also set how many mice and balls to share and place the name and activity labels above or below your cat.
-- The optional on-card controls focus on **Pause / Resume**, **Spawn toy**, and **Come home**.
+- The optional on-card controls focus on **Pause / Resume**, **Spawn toy**, and **Come home**. Choose how many mice and balls to share and where name and activity labels appear.
+- In **Behaviour Lab**, you can favour climbing, wall jumps, yawning, or chase reactions on the current view. Choose **Natural behaviour** when you’re done.
+- [Watch the demo](https://github.com/Future-Surfer/Pixel-Cat-Card/blob/main/docs/images/pixel-cat-routine.mp4).
 
-### Roaming and animation
+### Before updating
 
-- Cats can climb exposed card edges and leap onto a reachable card. Short wall jumps usually rebound back toward the side they came from. Descending grips use their own pose, and quiet rest poses transition more smoothly into walking.
-
-### Testing and tools
-
-- The dashboard-wide **Behaviour Lab** can focus cats on climbing and leaping, wall jumps, or yawning. It reports when walls or safe routes are unavailable.
-- The [MP4 demo](https://github.com/Future-Surfer/Pixel-Cat-Card/blob/main/docs/images/pixel-cat-routine.mp4) is available to share.
-- Behaviour Lab can focus cross-card chasing. Each cat still makes its own decision about joining.
-- The [Editor Workbench](https://github.com/Future-Surfer/Pixel-Cat-Card/blob/main/docs/guides/EDITOR_WORKBENCH.md) and local chase replay fixtures remain available in the development tools.
+Existing `custom:pixel-cat-home` cards keep their settings and cat IDs. This release removes the older Stick Pet and Pixel Pet renderers and the Pixel Pet editor. If you still use those card types, replace them and remove any separately registered legacy resources. Follow the [installation and migration guide](https://github.com/Future-Surfer/Pixel-Cat-Card/blob/main/docs/guides/PIXEL_CAT_INSTALL.md), then reload the dashboard.
 
 ## Pixel Cat Card 1.0.0
 
