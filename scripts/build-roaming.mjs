@@ -1,6 +1,6 @@
 import {runtimeClimbSource} from './runtime-climb-source.mjs';
 import {compileBehaviour} from '../frame-studio/dist/behaviour-policy.js';
-import {writeGenerated} from './write-generated.mjs';
+import {writeGenerated as writeFile} from './write-generated.mjs';
 import {packedAssignment} from './pack-runtime-data.mjs';
 import {applyLatestStudioArt} from './apply-latest-studio-art.mjs';
 import {savedProject,savedRefinements,groundVariantId} from './saved-user-refinements.mjs';
@@ -10,6 +10,8 @@ import crypto from 'node:crypto';
 import {latestProjects,followupChanges} from './latest-studio-assets.mjs';
 import cat from '../src/artwork/pixel-pet-artwork.json' with {type:'json'};
 import {walkHeadVariants,walkHeadProvenance} from './walk-head-variants.mjs';
+// Keep generated modules and their size limits independent of checkout line endings.
+const writeGenerated = (file, body) => writeFile(file, body.replace(/\r\n/g, '\n'));
 const art = {stand: cat.POSES.stand, walk: cat.WALK_FRAMES, sit: cat.SIT_IDLE_FRAMES[0][0], loaf: cat.LOAF_IDLE_FRAMES[0], look: cat.LOOK_UP_FRAMES[0], ascend: cat.ELEVATE_FRAMES, descend: [...cat.DESCENT_FRAMES, cat.ELEVATE_FRAMES[1]], leapAnchors: cat.LEAP_FRAME_ANCHORS, descentEdges: cat.DESCENT_EDGE_ANCHORS};
 art.idle = {sit:cat.SIT_IDLE_FRAMES,stand:cat.STAND_PAUSE_FRAMES,loaf:cat.LOAF_IDLE_FRAMES,look:cat.LOOK_UP_FRAMES,clean:cat.CLEANING_FRAMES,perch:cat.ELEVATED_SIT_FRAMES,stretch:cat.TRANSITIONS.loaf_to_walk,stretchHolds:cat.TRANSITION_HOLD_TICKS.loaf_to_walk};
 art.bridges = {walkToSit:cat.TRANSITIONS.walk_to_sit,sitToLoaf:cat.TRANSITIONS.sit_to_loaf};
