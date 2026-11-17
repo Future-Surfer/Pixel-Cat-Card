@@ -8,16 +8,11 @@ import {refinedWalk,refinedLeap,highWalk,lowWalk,provenance,integration} from '.
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import {latestProjects,followupChanges} from './latest-studio-assets.mjs';
-import vm from 'node:vm';
+import cat from '../src/artwork/pixel-pet-artwork.json' with {type:'json'};
 import {walkHeadVariants,walkHeadProvenance} from './walk-head-variants.mjs';
-const source = fs.readFileSync('pixel-pet-card.js', 'utf8');
-const sandbox = { HTMLElement: class {}, customElements: { get() {}, define() {} }, window: {} };
-vm.runInNewContext(source + '\nglobalThis.art = {stand: PixelPetCard.POSES.stand, walk: PixelPetCard.WALK_FRAMES, sit: PixelPetCard.SIT_IDLE_FRAMES[0][0], loaf: PixelPetCard.LOAF_IDLE_FRAMES[0], look: PixelPetCard.LOOK_UP_FRAMES[0], ascend: PixelPetCard.ELEVATE_FRAMES, descend: [...PixelPetCard.DESCENT_FRAMES, PixelPetCard.ELEVATE_FRAMES[1]], leapAnchors: PixelPetCard.LEAP_FRAME_ANCHORS, descentEdges: PixelPetCard.DESCENT_EDGE_ANCHORS};', sandbox);
-const art = sandbox.art;
-vm.runInNewContext('globalThis.idle = {sit:PixelPetCard.SIT_IDLE_FRAMES,stand:PixelPetCard.STAND_PAUSE_FRAMES,loaf:PixelPetCard.LOAF_IDLE_FRAMES,look:PixelPetCard.LOOK_UP_FRAMES,clean:PixelPetCard.CLEANING_FRAMES,perch:PixelPetCard.ELEVATED_SIT_FRAMES,stretch:PixelPetCard.TRANSITIONS.loaf_to_walk,stretchHolds:PixelPetCard.TRANSITION_HOLD_TICKS.loaf_to_walk};', sandbox);
-art.idle=sandbox.idle;
-vm.runInNewContext('globalThis.bridges = {walkToSit:PixelPetCard.TRANSITIONS.walk_to_sit,sitToLoaf:PixelPetCard.TRANSITIONS.sit_to_loaf};', sandbox);
-art.bridges=sandbox.bridges;
+const art = {stand: cat.POSES.stand, walk: cat.WALK_FRAMES, sit: cat.SIT_IDLE_FRAMES[0][0], loaf: cat.LOAF_IDLE_FRAMES[0], look: cat.LOOK_UP_FRAMES[0], ascend: cat.ELEVATE_FRAMES, descend: [...cat.DESCENT_FRAMES, cat.ELEVATE_FRAMES[1]], leapAnchors: cat.LEAP_FRAME_ANCHORS, descentEdges: cat.DESCENT_EDGE_ANCHORS};
+art.idle = {sit:cat.SIT_IDLE_FRAMES,stand:cat.STAND_PAUSE_FRAMES,loaf:cat.LOAF_IDLE_FRAMES,look:cat.LOOK_UP_FRAMES,clean:cat.CLEANING_FRAMES,perch:cat.ELEVATED_SIT_FRAMES,stretch:cat.TRANSITIONS.loaf_to_walk,stretchHolds:cat.TRANSITION_HOLD_TICKS.loaf_to_walk};
+art.bridges = {walkToSit:cat.TRANSITIONS.walk_to_sit,sitToLoaf:cat.TRANSITIONS.sit_to_loaf};
 art.idleCatalogue=Object.keys(art.idle).filter(key=>key!=='stretchHolds').map(key=>({id:key,origin:'human',source:'pixel-pet-card.js'}));
 const idleRows=Object.entries(art.idle).filter(([key])=>key!=='stretchHolds').flatMap(([key,frames])=>key==='sit'||key==='stand'?frames.flat():frames);
 // A level hop reuses the authored take-off, airborne pose and level landing
@@ -117,8 +112,7 @@ writeGenerated('pixel-cat-roaming-art.js','// Exact source artwork and provenanc
 writeGenerated('pixel-cat-climbing.js','// Shared climb planner and assets.\n'+runtimeClimbSource().source+'\n(()=>{'+['prototype/vertical-surface-model.mjs','prototype/vertical-surface-dom.mjs','prototype/cat-card-climb.js','prototype/cat-test-tree.js'].map(f=>fs.readFileSync(f,'utf8').replace(/^export /gm,'').replace(/^[ \t]+/gm,'').replace(/^[ \t]*\/\/[^\r\n]*\r?\n/gm,'')).join('\n')+'})();\n'+fs.readFileSync('prototype/cat-climb-effects.js','utf8').replace(/^[ \t]+/gm,'').replace(/^\/\/[^\r\n]*\r?\n/gm,'')+'\n'+fs.readFileSync('prototype/cat-climb.js','utf8').replace(/^[ \t]+/gm,'').replace(/^[ \t]*\/\/[^\r\n]*\r?\n/gm,''));
 // Omit standalone source comments in the generated controller; the three reviewed source files retain documentation.
 writeGenerated('pixel-cat-roaming.js','class CatMood {static keys=["playfulness","sleepiness","alertness"];constructor(...args){return new window.pixelCatMoodV1.CatMood(...args);}}\nconst landingCue=(...args)=>window.pixelCatMoodV1.landingCue(...args);\n'+['prototype/cat-exertion.js','prototype/prop-scene.js','prototype/cat-card-travel.js','prototype/roaming-controller.js'].map(file=>fs.readFileSync(file,'utf8').replace(/^[ \t]+/gm,'').replace(/^[ \t]*\/\/[^\r\n]*\r?\n/gm, '')).join('\n').replace(/\r\n/g,'\n'));
-vm.runInNewContext('globalThis.boxArt = {asset:PixelPetCard.PROPS.cardboard_box,entry:PixelPetCard.BOX_ENTRY_FRAMES,exit:PixelPetCard.BOX_EXIT_FRAMES,parts:PixelPetCard.BOX_IDLE_PARTS,beats:PixelPetCard.BOX_IDLE_SEQUENCE,crouch:PixelPetCard.ELEVATE_FRAMES[1]};',sandbox);
-const boxArt=sandbox.boxArt;
+const boxArt = {asset:cat.PROPS.cardboard_box,entry:cat.BOX_ENTRY_FRAMES,exit:cat.BOX_EXIT_FRAMES,parts:cat.BOX_IDLE_PARTS,beats:cat.BOX_IDLE_SEQUENCE,crouch:cat.ELEVATE_FRAMES[1]};
 const boxGrid=rows=>rows.length===24&&rows.every(row=>row.length===24);
 boxArt.exit=boxArt.exit.filter(boxGrid); // The catalogue excludes the same malformed legacy exit grid.
 if(boxArt.exit.length!==3||!boxArt.entry.every(boxGrid)||!boxGrid(boxArt.crouch))throw Error('Invalid cardboard box motion artwork');

@@ -28,4 +28,4 @@ Registering both the bundle and a separate roaming runtime is unsupported. The b
 
 ## Legacy cards
 
-The candidate still registers `custom:stick-pet-card`, `custom:pixel-pet-card` and the latter's editor. They remain usable by existing YAML, while the picker promotes Pixel Cat Card. Unit checks verify legacy class identity when the old Pixel Pet resource loaded first. Test the store's real update/resource-path behaviour before changing an existing installed repository. Files merely retained in Git do not prove an installed upgrade is safe.
+The current package supports `custom:pixel-cat-home` and preserves its saved YAML and cat IDs. The older `custom:stick-pet-card` and `custom:pixel-pet-card` types and the Pixel Pet editor have been removed. If a dashboard still uses an old type, replace that card with a Pixel Cat Card companion. Remove any separately registered legacy JavaScript resources and reload the frontend.

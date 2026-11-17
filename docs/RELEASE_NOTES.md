@@ -1,8 +1,12 @@
 # Pixel Cat Card release notes
 
-## Unreleased
+## Pixel Cat Card 1.1.0-rc.1
 
-*Working draft. Changes since v1.0.0.*
+This release candidate includes changes since v1.0.0.
+
+### Package security
+
+- The bundle removes Stick Pet Card, Pixel Pet Card, and the Pixel Pet editor. Pixel Cat Card keeps its original artwork and existing companion layouts. Remove any separate legacy JavaScript resources before reloading your dashboard.
 
 ### A home for your cat
 
@@ -23,9 +27,9 @@
 ### Testing and tools
 
 - The dashboard-wide **Behaviour Lab** can focus cats on climbing and leaping, wall jumps, or yawning. It reports when walls or safe routes are unavailable.
-- The [Editor Workbench](guides/EDITOR_WORKBENCH.md) lets you rearrange settings and leave notes for review. The [MP4 demo](images/pixel-cat-routine.mp4) is available to share.
-
-<!-- Before publishing, revisit dashboard-wide chasing and procedural trees. Write up any changes that are ready and verify the upgrade from v1.0.0. -->
+- The [MP4 demo](images/pixel-cat-routine.mp4) is available to share.
+- Behaviour Lab can focus cross-card chasing. Each cat still makes its own decision about joining.
+- The [Editor Workbench](guides/EDITOR_WORKBENCH.md) and local chase replay fixtures remain available in the development tools.
 
 ## Pixel Cat Card 1.0.0
 
@@ -54,4 +58,4 @@ First stable release for Home Assistant 2026.11 and later. Pixel Cat Card gives 
 
 ### Verification
 
-The release assets include SHA-256 checksums. The release candidate was installed through Marketplace and verified with existing dashboards and the card editor. The upgrade to 1.0.0 will be checked on the same instance. Uninstall and reinstall are untested.
+The release assets include SHA-256 checksums. The release candidate was installed through Marketplace and verified with existing dashboards and the card editor. The Marketplace submission records an upgrade from v1.0.0-rc.3 to v1.0.0 with one registered module and the existing dashboard cards working after reload.

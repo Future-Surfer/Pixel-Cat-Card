@@ -6,7 +6,7 @@ import { runtimeFiles } from './build-release.mjs';
 import { writeGenerated } from './write-generated.mjs';
 
 // Keep the dev runtime's globals private and give browser-facing names a
-// separate prefix. The normal release build and legacy cards are untouched.
+// separate prefix. The normal release build is untouched.
 const modules = runtimeFiles.map(file => {
   const source = readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
   return `// Module: ${file}\n(() => {\n${source

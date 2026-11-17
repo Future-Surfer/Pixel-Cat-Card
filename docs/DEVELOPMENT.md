@@ -41,9 +41,9 @@ For a dev install alongside Marketplace, serve the dev bundle from a versioned p
 | `frame-studio/dist/frame-canvas.js` | Shared sequence/climb canvas strokes and onion layers; adapters own metadata, undo/provenance and persistence. Extend this core rather than adding editor-specific painting loops. |
 | `frame-studio/` | Editor, catalogue sources, curated snapshots and receipt evidence |
 | Root `pixel-cat-*.js` (ignored) | Generated intermediates for tests/labs; install `dist/pixel-cat-card.js` |
-| `src/legacy/` | Earlier card sources; build prepares ignored root copies for compatibility tooling |
+| `src/artwork/` | Original Pixel Pet artwork preserved as data for roaming and Studio builds |
 
-Runtime loading order: art → extras → affordances → behaviours → controller → climbing. The optional editor and self-contained world-authority/layout/depth/debug hooks ship in the spacious art module; editor registration is guarded for DOM-free consumers; effects/home-life helpers ship in extras and other affordances load afterward. Hooks defer DOM/cross-module work until called. Packing must preserve decoded grids and provenance exactly.
+Runtime loading order: art → extras → affordances → behaviours → controller → climbing → box → dashboard chase. The optional editor and self-contained world-authority/layout/depth/debug hooks ship in the spacious art module; editor registration is guarded for DOM-free consumers; effects/home-life helpers ship in extras and other affordances load afterward. Hooks defer DOM/cross-module work until called. Packing must preserve decoded grids and provenance exactly.
 
 ## Browser evidence
 

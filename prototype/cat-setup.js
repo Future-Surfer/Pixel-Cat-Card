@@ -103,8 +103,7 @@ window.pixelCatSetupV1={
   return true;
  }
 };
-// Old /local/ resources may still register these entries. Hide discovery only;
-// their custom elements and saved YAML continue to load, in either import order.
-const catLegacyPickerTypes=new Set(['stick-pet-card','pixel-pet-card','pixel-cat-monitor','pixel-cat-playground']);
-const catCleanPicker=()=>{const cards=window.customCards;if(!cards)return;for(let i=cards.length-1;i>=0;i--)if(catLegacyPickerTypes.has(cards[i].type))cards.splice(i,1);};
-catCleanPicker();for(const type of catLegacyPickerTypes)customElements.whenDefined?.(type)?.then(catCleanPicker);
+// Keep internal diagnostic and playground types out of the companion picker.
+const catHiddenPickerTypes=new Set(['pixel-cat-monitor','pixel-cat-playground']);
+const catCleanPicker=()=>{const cards=window.customCards;if(!cards)return;for(let i=cards.length-1;i>=0;i--)if(catHiddenPickerTypes.has(cards[i].type))cards.splice(i,1);};
+catCleanPicker();for(const type of catHiddenPickerTypes)customElements.whenDefined?.(type)?.then(catCleanPicker);

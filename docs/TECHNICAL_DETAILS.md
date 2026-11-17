@@ -8,7 +8,7 @@ The bundle preserves the existing `custom:pixel-cat-home` configuration and opti
 
 ## Installation and releases
 
-The repository is public. The first HACS/Marketplace prerelease and its installation acceptance checks are still being prepared. Catalog inclusion is separate from adding a custom repository.
+The repository is public. The card can be installed as a custom repository while catalog review is pending. Catalog inclusion is separate from adding a custom repository.
 
 The HACS manifest selects `pixel-cat-card.js` from `dist/` or a release asset. The download contains its own artwork and has no additional runtime files. The manifest and `SHA256SUMS` identify its exact bytes. See [installation, resource migration and rollback](guides/PIXEL_CAT_INSTALL.md).
 
@@ -18,12 +18,12 @@ The HACS manifest selects `pixel-cat-card.js` from `dist/` or a release asset. T
 | --- | --- |
 | `dist/` | The installable card, manifest and checksums |
 | `prototype/` | Runtime source, diagnostic fixtures and media routine |
-| `src/legacy/` | Older card sources retained inside the bundle for compatibility |
+| `src/artwork/` | Original artwork data with historical source identifiers |
 | `scripts/` | Build, tests and development servers |
 | `frame-studio/` | Optional artwork editor and curated source snapshots |
 | `docs/` | Configuration, implementation contracts and media |
 
-The six separate runtime modules and two root compatibility copies are ignored build intermediates. They are regenerated locally for existing test/lab tools; users install only the bundle. Generated outputs are checked through reproducible builds and bundle drift validation.
+The six separate runtime modules are ignored build intermediates. They are regenerated locally for existing test/lab tools; users install only the bundle. Generated outputs are checked through reproducible builds and bundle drift validation.
 
 ## Development
 

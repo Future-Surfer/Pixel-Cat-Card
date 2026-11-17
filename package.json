@@ -20,7 +20,7 @@
   "engines": {
     "node": ">=22.20.0"
   },
-  "version": "1.0.0",
+  "version": "1.1.0-rc.1",
   "description": "Independent pixel cats for Home Assistant dashboards",
   "license": "MIT",
   "repository": {
