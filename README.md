@@ -12,7 +12,9 @@ Requires **Home Assistant 2026.11+**.
 
 [![Open Pixel Cat Card in Home Assistant Marketplace](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=Future-Surfer&repository=Pixel-Cat-Card&category=plugin)
 
-Add Pixel Cat Card as a custom repository, then install it from **Settings → Marketplace**. [Release candidates, manual install and migration](docs/guides/PIXEL_CAT_INSTALL.md).
+In **Settings → Marketplace**, search for **Pixel Cat Card**. While the default catalog listing is pending, use the button above or **Add from link** to add `Future-Surfer/Pixel-Cat-Card`, then install it and reload your dashboard.
+
+Choose [v1.1.0-rc.1](https://github.com/Future-Surfer/Pixel-Cat-Card/releases/tag/v1.1.0-rc.1) or later for the package that removes the two legacy card types. [Enable prereleases, install manually, or migrate an existing setup](docs/guides/PIXEL_CAT_INSTALL.md).
 
 ## Add a cat
 
