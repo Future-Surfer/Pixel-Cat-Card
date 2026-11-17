@@ -75,7 +75,7 @@ class CatDecisions {
   const episode={kind:'chase',chaser:a,runner:b,started:this.clock,expires:this.clock+8000,stage:'run',runs:0};this.scene.set(a,episode);this.scene.set(b,episode);this.episode=episode;b.social.episode=episode;
   b.urgency='interested';b.moveTo(option.runnerX,b.support.top,0,'walk',b.support,t);b.deadline=t+10000;a.deadline=t+10000;this.log('chase accepted',{target:b.ownerKey});return true;
  }
- finish(reason){const ep=this.episode;if(!ep)return;const participants=ep.kind==='chase'?[ep.chaser,ep.runner]:[this.actor];for(const a of participants){const layer=a.social;if(!layer||layer.episode!==ep)continue;window.pixelCatDashboardChaseV1?.release(a,ep);layer.episode=null;layer.scene.delete(a);layer.nextSocial=layer.clock+25000;layer.log('end '+ep.kind,{reason});a.deadline=0;if(ep.kind==='company'&&ep.stage==='approach'){a.route=[];a.finishing=false;}}
+ finish(reason){const ep=this.episode;if(!ep)return;const participants=ep.kind==='chase'?[ep.chaser,ep.runner]:[this.actor];for(const a of participants){const layer=a.social;if(!layer||layer.episode!==ep)continue;layer.episode=null;layer.scene.delete(a);layer.nextSocial=layer.clock+25000;layer.log('end '+ep.kind,{reason});a.deadline=0;if(ep.kind==='company'&&ep.stage==='approach'){a.route=[];a.finishing=false;}}
  }
  advance(t){const a=this.actor,ep=this.episode;if(a.paused||a.suspended||a.stranded||a.goal||a.command||a.previewPose||a.play||a.toyHunt||a.playRequested||a.toyHuntRequested||!ep.target?.active&&ep.kind==='company'){this.finish('interrupted or actor removed');return;}
   if(ep.kind==='company'){

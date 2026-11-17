@@ -83,7 +83,7 @@ Other optional switches: `toy_carrying`, `bowl_eating`, `post_rest_behaviour`, `
 
 ## Chasing across cards
 
-The editor’s **Chasing** switch allows short social chases on the same surface. For the optional cross-card pilot, set `dashboard_chasing: true` on both companion cards and keep social and interaction behaviour enabled. Cats can decline a chase, follow only a cat they have seen, and stop when a safe route is unavailable. Use **Behaviour Lab → Chase across cards** to preview reactions without changing the saved settings.
+The editor’s **Chasing** switch allows short social chases and lets that cat choose to follow a crossing it sees. The observing cat needs social and interaction behaviour enabled. The cat being watched can carry on independently. A follow needs a clear landing and a way back. Use **Behaviour Lab → Chase across cards** to make chase reactions easier to see.
 
 ## Hide the home card
 

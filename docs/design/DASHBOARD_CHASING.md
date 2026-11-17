@@ -10,9 +10,9 @@ Two cats notice each other. One might sneak a few steps and crouch, then pounce 
 
 In Home Assistant, choose **Behaviour Lab → Focus → Chase across cards**. The focus makes each cat more likely to run on, follow motion it actually saw, pounce beside it, or turn to watch. It keeps decisions and routes local to each cat. Choose **Natural behaviour** to clear the focus.
 
-For ordinary weighted invitations, set `dashboard_chasing: true` on both companion cards to allow voluntary cross-card chase legs. The [social lab](../../prototype/social-lab.html) has a reachable crossing and an out-of-reach scenario. Choose **Try a cross-card chase**. The lab waits for both cats to notice each other before inviting Juniper to run. Add a third watcher to try the existing observation behaviour.
+In ordinary play, each cat can choose to follow a crossing it sees when its **Chasing** setting and social and interaction behaviour are enabled. It keeps space for a checked landing, has a way back, and makes a new choice after its own cooldown. The other cat keeps its own route and settings. The [social lab](../../prototype/social-lab.html) offers reachable and blocked scenarios. It prompts one cat to cross so you can observe the other cat’s choice.
 
-The weighted invitation pilot still shares the current chase episode. The dev focus now tests independent reactions before any change to that ordinary mode. It uses checked point routes and allows up to two transfers under the same chase timeout. Expanded sneak and pounce pacing, optional bystander participation, dedicated wall-chase routes, and natural-frequency testing in Home Assistant are follow-ups.
+Natural-frequency calibration and optional bystander participation remain follow-ups.
 
 ## Build order
 
@@ -24,10 +24,10 @@ The weighted invitation pilot still shares the current chase episode. The dev fo
 
 - A route needs a clear takeoff, landing, room to stop, and a way back to ordinary roaming. Check third-party movement and pending landings when reserving space. The runner and chaser can take different routes.
 - Bound chase duration, transfers, and replans. Do route searches at grounded decisions using the existing budgets. An interruption releases the chase's route and reservations without discarding a user's command. A cat already airborne finishes its checked landing, then stops pursuing.
-- Keep the current **Chasing** switch and the existing short same-surface chase. Develop cross-card pursuit behind a reversible dev flag and fold it into **Chasing** once it passes the live checks. Keep ordinary moods and interaction rates independent of lab settings.
+- Keep the current **Chasing** switch and the existing short same-surface chase. Use **Chasing** for both ordinary modes. Keep ordinary moods and interaction rates independent of lab settings.
 
 ## How to judge it
 
 - Extend the existing social lab with ordinary Home Assistant-style cards, a reachable transfer, a blocked or unreachable route, and a third cat who can see only part of the action. Allow seeded replay and log who saw what, invitations and replies, routes, reserved landings, and why each chase ended. Seed the setup while letting the cats choose their responses.
-- Test one- and two-transfer chases, lost sight, refusal, a pounce miss, a bystander crossing the landing, and interruption by Home, pause, pickup, navigation, and reflow. Compare the existing same-surface chase with pursuit switched off. Check that episodes and reservations clear after each case.
+- Test observed crossings, lost sight, refusal, a pounce miss, a bystander crossing the landing, and interruption by Home, pause, pickup, navigation, and reflow. Compare the existing same-surface chase with pursuit switched off. Check that episodes and reservations clear after each case.
 - Run a mixed-age session on the Home Assistant dev dashboard with the lab bias both on and off. Watch for readable pauses, safe spacing, occasional missed connections, and cats that carry on doing their own thing. Compare route work and frame time with pursuit off in the stress view before enabling it by default.

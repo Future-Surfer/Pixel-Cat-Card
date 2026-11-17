@@ -13,7 +13,7 @@ Give your cat a cardboard box, a taller tree, or a quieter corner of the dashboa
 ### Play at their own pace
 
 - Choose a mood and adjust boldness, sociability, curiosity, and patience separately. Quiet company and short chases have their own switches.
-- **Optional cross-card chases.** A cat can follow a playmate it sees reach another card when there’s a clear route and room to land. Either cat can decline, and the chase can end when they lose sight. Enable the pilot on both cats using the [configuration guide](https://github.com/Future-Surfer/Pixel-Cat-Card/blob/main/docs/guides/ROAMING_CONFIGURATION.md#chasing-across-cards).
+- **Independent cross-card chasing.** With **Chasing** enabled, a cat can choose to follow a playmate it sees reach another card when there’s a clear route and room to land. The other cat keeps making its own decisions.
 - Cats can grip exposed card edges, climb and leap to a reachable card, or rebound to the same side on a short wall jump. Descents have their own grip poses, and cats transition more smoothly from rest to walking.
 
 ### Controls and Behaviour Lab
