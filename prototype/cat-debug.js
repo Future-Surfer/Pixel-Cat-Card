@@ -7,7 +7,6 @@ const catBaseAction=a=>{
  if(a.mouthAction)return (a.mouthAction.phase==='approach'?'Approaching · ':'')+({food:'Eating at the bowl',pickup:'Nibbling to pick up a toy',nose:'Nosing a toy',drop:'Putting down a toy',bat:'Preparing to bat'}[a.mouthAction.kind]||'Investigating');
  const poses={backRoll:'Resting on back',alertLying:'Lying alert',sit:'Sitting',sithead:'Looking around',perch:'Perching',stand:'Standing',loaf:'Loafing',sleep:'Sleeping',clean:'Grooming',scratch:'Scratching an ear',look:'Looking up',lookdown:'Looking down',glance:'Glancing around',stretch:'Stretching',sniff:'Sniffing',yawn:'Yawning',meow:'Meowing',chatter:'Chattering',rub:'Rubbing a cheek',bat:'Patting / batting',eat:'Eating',nose:'Nosing'};
  if(a.previewPose)return poses[a.previewPose]||a.previewPose;
- if(ep?.kind==='chase'){const runner=a===ep.runner;return (runner?'Running from ':ep.stage==='catch'?'Pouncing toward ':'Chasing ')+peer(runner?ep.chaser:ep.runner);}
  if(ep?.kind==='company')return (ep.stage==='rest'?'Resting near ':'Going to rest near ')+peer(ep.target);
  if(ep?.kind==='bed')return (ep.stage==='rest'?'Sleeping in ':'Going to ')+(ep.owner===a?'own bed':peer(ep.owner)+'’s bed');
  if(ep?.kind==='bed-claim')return ep.initiator===a?(ep.stage==='stroke'?'Patting a bed guest':'Approaching own bed'):'Resting in a borrowed bed';

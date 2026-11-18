@@ -4,7 +4,8 @@ Updated 10 November 2026. **Sole forward plan.** [Current state](CURRENT_STATE.m
 
 ## Vision and principles
 
-- Quiet companionship: substantial rest, independent clocks/choices and optional varied social/play outcomes.
+- Quiet companionship with substantial rest and varied, optional social and play outcomes.
+- Give each cat its own clock, perception, mood and choices. Shared behaviour should emerge from what cats independently notice and do. Avoid scripted pairs, fixed roles and required replies.
 - Stable contacts, support geometry, safe return routes and crisp pixels before more behaviours.
 - Horizontal/vertical affordances stay pass-through; future solid obstacles require explicit metadata/policy.
 - Preserve user artwork, provenance, exact-version receipts and unrelated HA configuration.

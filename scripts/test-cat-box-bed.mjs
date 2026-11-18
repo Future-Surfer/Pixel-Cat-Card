@@ -71,3 +71,22 @@ for(const scale of [1,2])for(const direction of [1,-1]){
  assert.equal(a.boxBed,null,'Remeasuring an active cat cannot restart the arrival');
 }
 console.log('PASS: box art at adult and kitten scales, both approach sides, foreground mask, optional rest, command exit, and restored floor support.');
+for(const outcome of ['land','occupied','removed','wrong floor','miss','below','shifted','command']){
+ const svg=element(),bed=element(),floor={id:'home',el:{isConnected:true},left:4,right:300,top:450,min:0,max:250};
+ svg.firstElementChild=element();
+ const a={config:{bed_style:'box'},active:true,ownerKey:'landing',scale:2,worldScale:2,lifeStage:'adult',
+  facing:1,support:floor,home:floor,surfaces:[floor],x:44,y:450,svg,route:[],
+  shadowRoot:{querySelector:()=>bed},ensureMood:()=>({random:()=>0}),draw(){},status(){},setAttribute(){},
+  social:{clear:()=>true,finish(){}},cancelPlay(){}};
+ if(outcome==='miss')a.x=150;
+ box.land(a,{kind:'jump',fromY:outcome==='below'?500:50});
+ if(outcome==='occupied')a.boxClaim={active:true,boxBed:{owner:a}};
+ if(outcome==='removed')bed.isConnected=false;
+ if(outcome==='wrong floor')a.support={...floor,id:'another',top:400};
+ if(outcome==='shifted'){floor.left+=100;floor.right+=100;floor.min+=100;floor.max+=100;a.x+=100;}
+ if(outcome==='command'){a.command='home';a.route=[{id:'pending-command'}];}
+ box.tick(a,1000,0);
+ assert.equal(a.bedInside===a,['land','shifted','command'].includes(outcome),outcome);
+ if(outcome==='command'){assert.equal(a.command,'home');assert.equal(a.route.length,1);}
+}
+console.log('PASS: airborne landing resolution revalidates occupancy, artwork, support identity and scroll translation.');

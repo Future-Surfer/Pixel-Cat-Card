@@ -19,12 +19,12 @@ window.pixelCatMotionOptionsV1={
  canBound(a,clip,target,x){
   if(a.config.gallop===false||target?.narrow||a.support?.narrow)return false;let start=a.x;
   if(a.idle){const front=(rows,facing)=>{const y=rows.findLastIndex(r=>r.includes('R')),x=rows[y]?.lastIndexOf('R');return x>=0?(facing<0?23-x:x):null;};const facing=x>=a.x?1:-1,next=front(clip.frames[0],facing),old=a.idle.rows&&front(a.idle.rows,a.idle.facing??a.facing),bearing=old!=null&&a.idle.placement?a.idle.placement.x+old*a.scale:a.idle.contactX;if(next==null||!Number.isFinite(bearing))return false;start=Math.round((bearing-next*a.scale)/a.scale)*a.scale;}
-  const cells=Math.abs(Math.round(x/a.scale)*a.scale-start)/a.scale;return clip.strideCells>0&&cells>=clip.strideCells*(a.social?.episode?.kind==='chase'?1:2);
+  const cells=Math.abs(Math.round(x/a.scale)*a.scale-start)/a.scale;return clip.strideCells>0&&cells>=clip.strideCells*(window.pixelCatDashboardChaseV1?.pursuing(a)?1:2);
  },
  gallop(a,kind,gait,target,x,art,random=Math.random){
   if(kind!=='walk'||['sneak','trot'].includes(gait)||a.config.gallop===false||!art.gallop||target?.narrow||a.support?.narrow)return null;
   if(window.pixelCatBehaviourV1?.allowed(a,art.gallop)===false)return null;if(gait==='gallop')return art.gallop;
-  const chase=a.social?.episode?.kind==='chase',purposeful=a.urgency==='prompted';
+  const chase=window.pixelCatDashboardChaseV1?.pursuing(a),purposeful=a.urgency==='prompted';
   const policy=window.pixelCatBehaviourV1,bias=policy?.weight(a,art.gallop)??1;
   if(!chase&&!purposeful&&!(bias>1&&(a.mood?.values?.playfulness||0)>.45&&a.urgency!=='casual'))return null;
   if(!this.canBound(a,art.gallop,target,x))return null;

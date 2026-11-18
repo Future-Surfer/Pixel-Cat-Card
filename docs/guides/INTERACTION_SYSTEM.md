@@ -59,7 +59,7 @@ flowchart LR
 
 Each visible view has a weakly held interaction world: a bounded event journal (64), current prop observations, active-time clock and bounded pair cooldowns (128, 30 seconds). Displayed raw gaze still supplies visual knowledge. A cat separately owns last-seen snapshots, notice confidence, intention and one active episode. Live registry geometry is used for safety and availability, never as hidden target knowledge. Reservations include the initiating cat's destination and existing motion sweep; a recipient remains free to continue its own activity or leave. Leaving/busy recipients end the approach. Explicit commands and previews win over voluntary social invitations; an accepted physical startle is a separate immediate interruption. No forced relocation, homing jump or guaranteed hit is used.
 
-Event envelopes and debug cue fields contain scalars only; card elements stay in internal geometry registries so HA’s circular custom-element references cannot break logging. Events describe evidence, not a required reaction. Physical brushes, actual paw contact and nearby play landings can be felt without sight. Visual prop motion requires real finite-range gaze and notice dwell. Cue identities and the existing shared six-second recipient reaction cooldown prevent repeated rolls. Pair cooldowns, one role swap and bounded episode horizons prevent retaliation/chase chains. Startle recovery does not emit a new play-landing cue.
+Event envelopes and debug cue fields contain scalars only; card elements stay in internal geometry registries so HA’s circular custom-element references cannot break logging. Events describe evidence, not a required reaction. Physical brushes, actual paw contact and nearby play landings can be felt without sight. Visual prop motion requires real finite-range gaze and notice dwell. Cue identities and the existing shared six-second recipient reaction cooldown prevent repeated rolls. Contact cooldowns and bounded episode horizons prevent repeated reactions. Startle recovery does not emit a new play-landing cue.
 
 ## 1. Sudden motion through gaze
 
@@ -79,11 +79,9 @@ Observed idle companions, including sleepers, offer optional playful approaches.
 
 The committed jump is not retargeted. After real landing, a sufficiently nearby footprint (up to 14 source cells of silhouette gap at the larger scale) emits a localized play-landing disturbance. This is a nearby impact cue, not a claim that two bodies collided. A distant landing is a miss. Sleepers can ignore the cue; safe hop/retreat/counter-play remains optional. Counter jumps do not recursively publish play-landing events.
 
-## 4. Chase endings
+## 4. Independent chasing
 
-The existing mutually noticed invitation still has independent ignore/watch/run replies. The richer pilot permits a safe same-surface catch attempt, disengagement, runner distraction by an observed prop, or at most one role reversal. The initiator's willingness to pounce and the recipient's ending choice are sampled separately from their own moods. Reversal requires the runner to have noticed the chaser. Catching up does not guarantee contact, surprise or a response.
-
-Observed positions, full landing room, third-party corridors and normal ballistic plans constrain catch attempts. The shared episode has a ten-second ceiling as well as the ordinary local horizon. Lost observation, removed actors, commands and unavailable space terminate it. Ambushes and chase catches share the same nearby-impact geometry predicate. Cross-surface pursuit and a general pedestrian collision solver remain future work.
+A cat may follow observed movement on its current surface or across a checked card crossing. Pursuit uses the observer’s own setting, mood and cooldown. The former paired invitations and role swaps are [archived in the chase design](../design/DASHBOARD_CHASING.md#retired-paired-pilot).
 
 ## 5. Shared toys and temperament
 
@@ -95,7 +93,7 @@ An available watcher uses a recent observation and known rolling friction to pro
 
 ## Validation and reflection
 
-`scripts/test-cat-interactions.mjs` exercises actual pat/ambush tick progression, both facings and scales 1–3, physical hits/misses, independent recipients, onset/gaze/notice/blindness, event deduplication, original-view reservation cleanup, Home, exclusive claims, stroke-to-groom handoff, fixed interception endpoints, real ball impulses, chase endings, bounded clocks and temperament probability differences. Six seeded ten-actor schedules additionally exercise finite motion, bounded traces/events, episode ownership and cancellation cleanup. The full regression suite protects existing art, gait contacts, physics, Studio saves and previews.
+`scripts/test-cat-interactions.mjs` exercises actual pat/ambush tick progression, both facings and scales 1–3, physical hits/misses, independent recipients, onset/gaze/notice/blindness, event deduplication, original-view reservation cleanup, Home, exclusive claims, stroke-to-groom handoff, fixed interception endpoints, real ball impulses, bounded clocks and temperament probability differences. Six seeded ten-actor schedules additionally exercise finite motion, bounded traces/events, episode ownership and cancellation cleanup. The full regression suite protects existing art, gait contacts, physics, Studio saves and previews.
 
 The social lab offers controlled pat/sleeper/ball fixtures, real normal exploration, a third watcher, seeded moods, eligible-opportunity controls, event traces and performance export. Fixture posture holds, explicit prop placement on the reset surface and scripted ball rolls are identified explicitly. The fixture prop placement does not relax HA’s normal spawn/return-route checks. An eligible opportunity button does not force a recipient response or a physical hit. Compare foreground features off/on and inspect traces; short FPS readings are not hardware-wide budgets or real-phone validation.
 

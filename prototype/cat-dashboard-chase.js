@@ -60,7 +60,7 @@ function endFocusLeg(a,state){
 
 function focusTravel(a,state,choice,t,kind){
  for(const step of choice.steps)step.chaseFocus=true;
- state.leg={surface:choice.surface,offset:choice.x-choice.surface.left};
+ state.leg={surface:choice.surface,offset:choice.x-choice.surface.left,crossing:true};
  a.route=choice.steps;
  a.urgency='interested';
  a.deadline=t+1500;
@@ -69,6 +69,7 @@ function focusTravel(a,state,choice,t,kind){
 }
 
 window.pixelCatDashboardChaseV1={
+ pursuing(a){return !!legFor(a);},
  detach(a){
   const state=focusActors.get(a);
   if(!state)return;
@@ -105,7 +106,7 @@ window.pixelCatDashboardChaseV1={
     const step=a.route[0];
     if(!step.chaseFocus||!(step.kind==='walk'&&same(a.support,step.surface)?layer.corridor(step.surface,step.x):layer.clear(step.surface,step.x)))endFocusLeg(a,state);
    }else if(settled(a)){
-    if(a.support.id===state.leg.surface.id){report(view,'Crossings');layer.log('chase card transfer completed',{surface:a.support.id});}
+    if(state.leg.crossing&&a.support.id===state.leg.surface.id){report(view,'Crossings');layer.log('chase card transfer completed',{surface:a.support.id});}
     endFocusLeg(a,state);
    }
   }
@@ -127,7 +128,7 @@ window.pixelCatDashboardChaseV1={
   const cue=state.lastMotion;
   const observed=cue&&layer.memory.get(cue.m.id);
   const fresh=cue?.until>=t&&observed&&layer.clock-observed.at<=450&&layer.visible?.has(observed.id);
-  if(!view&&(!fresh||!cue.crossed))return 0;
+  if(!view&&!fresh)return 0;
   const mood=a.ensureMood(),r=mood.random();
   state.next=t+(view?1500+1200*mood.random():8000);
   if(!view)state.lastMotion=null;
@@ -136,7 +137,7 @@ window.pixelCatDashboardChaseV1={
    const direction=Math.sign(m.x-a.x)||a.facing;
    const gap=30*Math.max(a.scale,m.scale),distance=Math.abs(m.x-a.x);
    const away=(m.x-previous.x)*direction>0;
-   if((crossed||away)&&distance>=gap&&r<(view ? .75:.12+.2*(mood.values?.playfulness??.5))){
+   if((crossed||away)&&distance>=gap&&r<(view ? .75 : Math.min(.6,(.12+.2*(mood.values?.playfulness??.5))*(window.pixelCatBehaviourV1?.choiceWeight(a,'chase')??1)*(window.pixelCatPostRestV1?.choiceWeight(a,'chase')??1)))){
     const surface=a.surfaces.find(s=>s.el===m.surface&&Math.abs(s.top-m.surfaceTop)<2);
     if(broad(surface)){
      const x=snapped(surface,m.x-direction*gap,a.scale);
@@ -145,9 +146,11 @@ window.pixelCatDashboardChaseV1={
        const choice=plan(a,surface,x);
        if(choice){focusTravel(a,state,choice,t,'Following');return 0;}
        report(view,'No safe route');
-      }else if(view&&Math.abs(x-a.x)>=5*a.scale&&layer.corridor(surface,x)){
+      }else if(Math.abs(x-a.x)>=5*a.scale&&layer.corridor(surface,x)){
        a.urgency='interested';
-       a.moveTo(x,surface.top,0,'walk',surface,t);
+       state.leg={surface,offset:x-surface.left,crossing:false};
+       if(a.moveTo(x,surface.top,0,'walk',surface,t)===false){endFocusLeg(a,state);return 0;}
+       layer.log('following observed motion',{surface:surface.id,target:m.id});
        report(view,'Following');
        return 0;
       }

@@ -1,5 +1,5 @@
 import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';
-let now=0;const box={window:{},HTMLElement:class{},customElements:{get(){return true;}},performance:{now:()=>now}};
+let now=0;const box={window:{pixelCatDashboardChaseV1:{pursuing:a=>a.testPursuing===true}},HTMLElement:class{},customElements:{get(){return true;}},performance:{now:()=>now}};
 vm.runInNewContext(fs.readFileSync('pixel-cat-roaming-art.js','utf8')+fs.readFileSync('pixel-cat-roaming-extras.js','utf8')+fs.readFileSync('pixel-cat-affordances.js','utf8')+fs.readFileSync('pixel-cat-behaviours.js','utf8')+fs.readFileSync('pixel-cat-roaming.js','utf8')+'\nglobalThis.api={gallopTimeline,walkSample,walkAppearance,gallopRate,Home:PixelCatHome};',box);
 const art={...box.window.pixelCatRoamingArtV2,...box.window.pixelCatRoamingExtrasV1},api=box.api;
 assert.equal(api.gallopRate(art.gallop),25);assert.equal(api.gallopRate(art.gallop,{gallop_fps:20}),20);assert.equal(api.gallopRate(art.gallop,{gallop_fps:1}),15);assert.equal(api.gallopRate(art.gallop,{gallop_fps:99}),30);
@@ -20,16 +20,16 @@ for(const h of [make('relaxed'),make('interested'),make('prompted',{gallop:false
 const short=make();short.moveTo(250,400,0,'walk',target,0);assert.ok(!short.motion.gallopTimeline);assert.ok(short.motion.fastClip);
 // Ordinary chase chunks are 24–36 cells: one whole stride is now eligible.
 for(const scale of [1,2,3,4,5,6])for(const direction of [-1,1])for(const cells of [18,24,36]){
- const a=make('interested');a.scale=scale;a.size=24*scale;a.x=300*scale;a.y=400;a.facing=direction;a.social={episode:{kind:'chase'}};
+ const a=make('interested');a.scale=scale;a.size=24*scale;a.x=300*scale;a.y=400;a.facing=direction;a.testPursuing=true;
  a.moveTo(a.x+direction*cells*scale,400,0,'walk',target,0);assert.ok(a.motion.gallopTimeline,'A chase needs only one full stride');
  assert.equal(a.motion.gallopTimeline.at(-1).offset,cells);assert.equal(a.motion.duration,a.motion.gallopTimeline.at(-1).until);
  const end=api.walkSample(a.motion,a.motion.duration,scale,art.walk);assert.equal(end.x,a.motion.x,'Chase gallop finishes at its fixed endpoint');
 }
-{const a=make('interested');a.social={episode:{kind:'chase'}};a.moveTo(a.x+17*a.scale,400,0,'walk',target,0);assert.ok(!a.motion.gallopTimeline,'Less than one full stride retains trot');}
+{const a=make('interested');a.testPursuing=true;a.moveTo(a.x+17*a.scale,400,0,'walk',target,0);assert.ok(!a.motion.gallopTimeline,'Less than one full stride retains trot');}
 {const a=make();a.moveTo(a.x+36*a.scale,400,0,'walk',target,0);assert.ok(a.motion.gallopTimeline,'Prompted travel needs two complete strides');}
-{const a=make('interested');a.social={episode:{kind:'chase'}};a.support={...target,narrow:true};a.moveTo(a.x+36*a.scale,400,0,'walk',target,0);assert.ok(!a.motion.gallopTimeline,'Shorter eligibility must not bypass support safety');}
+{const a=make('interested');a.testPursuing=true;a.support={...target,narrow:true};a.moveTo(a.x+36*a.scale,400,0,'walk',target,0);assert.ok(!a.motion.gallopTimeline,'Shorter eligibility must not bypass support safety');}
 for(const facing of [-1,1])for(const scale of [1,2,3,4,5,6]){
- const a=make('interested');a.scale=scale;a.facing=facing;a.x=300*scale;a.social={episode:{kind:'chase'}};
+ const a=make('interested');a.scale=scale;a.facing=facing;a.x=300*scale;a.testPursuing=true;
  const rows=box.window.pixelCatRoamingArtV2.idleSequences.lookdown.frames[0];
  a.idle={pose:'lookdown',rows,facing,anchor:[14,17],placement:{x:a.x,top:350},contactX:a.x+(facing<0?9:14)*scale};
  a.moveTo(a.x+facing*18*scale,400,0,'walk',target,0);

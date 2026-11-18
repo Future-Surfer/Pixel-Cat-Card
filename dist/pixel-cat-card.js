@@ -1278,10 +1278,15 @@ const catDrag={
 grip(clip,facing){const [x,y]=clip.anchor,half=clip.anchorAtCellCenter?.5:0;return [facing<0?23-x+half:x+half,y+half];},
 target(a,x,top){
 const feet=top+23*a.scale;
-return (a.surfaces||[]).filter(s=>s.el?.isConnected!==false&&!s.narrow&&Number.isFinite(s.min)&&Number.isFinite(s.max)&&s.max>=s.min&&s.top>=feet-2*a.scale)
+const box=window.pixelCatBoxV1?.project(a,x,top);
+const targets=(a.surfaces||[]).filter(s=>s.el?.isConnected!==false&&!s.narrow&&Number.isFinite(s.min)&&Number.isFinite(s.max)&&s.max>=s.min&&s.top>=feet-2*a.scale)
 .map(s=>({surface:s,x:Math.max(s.min,Math.min(s.max,x))}))
 .filter(p=>Math.abs(p.x-x)<=8*a.scale&&a.social?.clear?.(p.surface,p.x)!==false)
-.sort((p,q)=>p.surface.top-q.surface.top||Math.abs(p.x-x)-Math.abs(q.x-x))[0]||null;
+.filter(p=>!box||p.surface.el!==box.owner&&!p.surface.el?.contains?.(box.node));
+if(box)targets.push(box);
+targets.sort((p,q)=>p.surface.top-q.surface.top||Math.abs(p.x-x)-Math.abs(q.x-x));
+const target=targets[0];
+return target&&box&&target.surface.top===box.surface.top?box:target||null;
 },
 install(a,art){
 if(!a.svg?.addEventListener||a.dragBinding)return;
@@ -1292,7 +1297,7 @@ if(!art.lifted)return;
 e.preventDefault();e.stopPropagation();
 const t=performance.now(),s=a.support;
 a.dragState={pointer:e.pointerId,phase:'held',returnId:s.id,returnOffset:a.x-s.left,paused:a.paused,clientX:e.clientX,clientY:e.clientY,faceX:e.clientX,last:t};
-a.userHeld=true;window.pixelCatPostRestV1?.interrupt(a);
+a.userHeld=true;window.pixelCatBoxV1?.cancel(a);window.pixelCatPostRestV1?.interrupt(a);
 window.pixelCatMouthV1?.startled?.(a,t);
 a.social?.finish('picked up');a.cancelPlay(t);
 a.arriving=null;a.arrived=true;a.motion=null;a.route=[];a.idle=null;a.goal=null;a.command=null;a.recallPending=false;a.finishing=false;a.inspectionPending=null;a.requestedPoint=null;a.toyHuntRequested=false;a.toyAssetRequest=null;
@@ -1323,11 +1328,11 @@ d.x=d.clientX-anchor[0]*s;d.top=d.clientY-anchor[1]*s;
 a.x=d.x;a.y=d.top+23*s;a.draw(clip.rows);a.svg.style.transform=`translate(${d.x}px,${d.top}px)`;
 a.svg.style.filter=`drop-shadow(${3*s}px ${4*s}px ${1.5*s}px rgba(0,0,0,.24))`;
 a.setAttribute('data-activity','held');a.setAttribute('data-pose','lifted');a.setAttribute('data-frame','lifted-1');a.setAttribute('data-sequence-id',clip.sequenceId);
-d.target=window.pixelCatBoxV1?.dropTarget(a,d.clientX,d.clientY)||this.target(a,d.x,d.top);this.preview(a,d.target);a.renderMoodDebug?.(performance.now());a.status('Picked up · release above a surface; Escape cancels');
+d.target=this.target(a,d.x,d.top);this.preview(a,d.target);a.renderMoodDebug?.(performance.now());a.status('Picked up · release above a surface; Escape cancels');
 },
 release(a,t,art){
 const d=a.dragState;if(!d?.target){this.restore(a);return false;}
-const target=d.target;d.box=target.box;d.phase='fall';d.targetId=target.surface.id;d.offset=target.x-target.surface.left;d.surfaceLeft=target.surface.left;d.surfaceTop=target.surface.top;d.fromX=d.x;d.fromTop=d.box?Math.min(d.top,target.surface.top-this.bottom(art.lifted.rows)*a.scale):d.top;d.elapsed=0;d.last=t;
+const target=d.target;d.phase='fall';d.targetId=target.surface.id;d.offset=target.x-target.surface.left;d.surfaceLeft=target.surface.left;d.surfaceTop=target.surface.top;d.fromX=d.x;d.fromTop=Math.min(d.top,target.surface.top-this.bottom(art.lifted.rows)*a.scale);d.elapsed=0;d.last=t;
 const bottom=this.bottom(art.across.at(-1));d.height=Math.max(0,target.surface.top-bottom*a.scale-d.top);d.duration=Math.max(100,Math.min(1800,1000*Math.sqrt(2*d.height/(900*a.scale))));
 a.svg.style.filter='';a.svg.style.cursor='grab';a.dragMarker?.remove();a.dragMarker=null;a.setAttribute('data-drag-state','fall');
 if(a.svg.hasPointerCapture?.(d.pointer))a.svg.releasePointerCapture(d.pointer);
@@ -1356,10 +1361,9 @@ if(!s){this.restore(a);return true;}
 d.fromX+=s.left-d.surfaceLeft;d.fromTop+=s.top-d.surfaceTop;d.surfaceLeft=s.left;d.surfaceTop=s.top;
 d.elapsed+=Math.min(50,Math.max(0,t-d.last));d.last=t;
 const u=Math.min(1,d.elapsed/d.duration),x=Math.max(s.min,Math.min(s.max,s.left+d.offset)),rows=u<.85?(art.freefallSequence?.frames?.[0]||art.across[2]):art.across.at(-1);
-const feet=d.fromTop+this.bottom(d.box?art.lifted.rows:rows)*a.scale;
+const feet=d.fromTop+this.bottom(rows)*a.scale;
 a.x=d.fromX+(x-d.fromX)*u;a.y=feet+(s.top-feet)*u*u;a.draw(rows);a.setAttribute('data-activity','drop');a.setAttribute('data-pose','drop');a.setAttribute('data-frame-origin',u<.85?(art.freefallSequence?.origins?.[0]||'mixed'):art.frameProvenance?.across?.at(-1)||'human');a.renderMoodDebug?.(t);a.status('Landing after pickup');
-if(u===1&&d.box){window.pixelCatBoxV1.finishDrop(a,s,x,t,this,d.box);return true;}
-if(u===1){a.publishLanding?.({kind:'jump',fromY:d.fromTop+23*a.scale,y:s.top,target:s,x},t);this.finish(a,s,x,t);}
+if(u===1){this.finish(a,s,x,t);a.publishLanding?.({kind:'jump',fromY:Math.min(s.top,d.fromTop+23*a.scale),y:s.top,target:s,x},t);}
 return true;
 },
 uninstall(a){
@@ -1453,12 +1457,12 @@ legacy(a,kind,gait,target,x,art,random){const gallop=this.gallop(a,kind,gait,tar
 canBound(a,clip,target,x){
 if(a.config.gallop===false||target?.narrow||a.support?.narrow)return false;let start=a.x;
 if(a.idle){const front=(rows,facing)=>{const y=rows.findLastIndex(r=>r.includes('R')),x=rows[y]?.lastIndexOf('R');return x>=0?(facing<0?23-x:x):null;};const facing=x>=a.x?1:-1,next=front(clip.frames[0],facing),old=a.idle.rows&&front(a.idle.rows,a.idle.facing??a.facing),bearing=old!=null&&a.idle.placement?a.idle.placement.x+old*a.scale:a.idle.contactX;if(next==null||!Number.isFinite(bearing))return false;start=Math.round((bearing-next*a.scale)/a.scale)*a.scale;}
-const cells=Math.abs(Math.round(x/a.scale)*a.scale-start)/a.scale;return clip.strideCells>0&&cells>=clip.strideCells*(a.social?.episode?.kind==='chase'?1:2);
+const cells=Math.abs(Math.round(x/a.scale)*a.scale-start)/a.scale;return clip.strideCells>0&&cells>=clip.strideCells*(window.pixelCatDashboardChaseV1?.pursuing(a)?1:2);
 },
 gallop(a,kind,gait,target,x,art,random=Math.random){
 if(kind!=='walk'||['sneak','trot'].includes(gait)||a.config.gallop===false||!art.gallop||target?.narrow||a.support?.narrow)return null;
 if(window.pixelCatBehaviourV1?.allowed(a,art.gallop)===false)return null;if(gait==='gallop')return art.gallop;
-const chase=a.social?.episode?.kind==='chase',purposeful=a.urgency==='prompted';
+const chase=window.pixelCatDashboardChaseV1?.pursuing(a),purposeful=a.urgency==='prompted';
 const policy=window.pixelCatBehaviourV1,bias=policy?.weight(a,art.gallop)??1;
 if(!chase&&!purposeful&&!(bias>1&&(a.mood?.values?.playfulness||0)>.45&&a.urgency!=='casual'))return null;
 if(!this.canBound(a,art.gallop,target,x))return null;
@@ -1749,7 +1753,7 @@ if(['look','lookdown','glance','stand'].includes(pose))return .6+1.4*v.alertness
 if(['sniff','chatter','meow'].includes(pose))return .5+1.5*v.playfulness;
 return 1;
 };
-const decisionWeights=v=>({explore:.6+1.1*v.playfulness+.6*v.alertness,settle:.25+2*v.sleepiness,company:.15+1.8*v.sleepiness,chase:.08+1.6*v.playfulness*(1-.7*v.sleepiness)});
+const decisionWeights=v=>({explore:.6+1.1*v.playfulness+.6*v.alertness,settle:.25+2*v.sleepiness,company:.15+1.8*v.sleepiness});
 const sampleDecision=(items,random,actor)=>{if(actor)for(const p of items)p.weight*=window.pixelCatBehaviourV1?.choiceWeight(actor,p.kind)??1;let r=random()*items.reduce((n,p)=>n+p.weight,0);return items.find(p=>(r-=p.weight)<0)||items.at(-1);};
 const sameSupport=(a,b)=>!!a?.el&&a.el===b?.el&&Math.abs(a.top-b.top)<2;
 const rowKey=rows=>{let h=2166136261;for(const row of rows)for(let i=0;i<row.length;i++)h=Math.imul(h^row.charCodeAt(i),16777619)>>>0;return h.toString(36);};
@@ -1789,33 +1793,18 @@ corridor(surface,x,exclude=[]){const a=this.actor,lo=Math.min(a.x,x),hi=Math.max
 companyOptions(){const a=this.actor,options=[];for(const m of this.memory.values()){if(!['loaf','sleep'].includes(m.pose))continue;const b=this.peers().find(b=>b.ownerKey===m.id);if(!b||this.scene.has(b)||this.scene.has(a))continue;const surface=a.surfaces.find(s=>s.el===m.surface&&Math.abs(s.top-m.surfaceTop)<2&&!s.narrow&&!s.home&&(!s.poses?.length||s.poses.includes('loaf')));if(!surface||!a.pathTo(surface)||!a.pathTo(a.home,surface))continue;
 const gap=6*Math.max(a.scale,m.scale);for(const x of [m.x-24*a.scale-gap,m.x+24*m.scale+gap]){const snapped=Math.round(x/a.scale)*a.scale;if(this.clear(surface,snapped)&&(!sameSupport(surface,a.support)||this.corridor(surface,snapped)))options.push({kind:'company',target:b,surface,x:snapped,observed:{...m}});}
 }return options;}
-chaseOptions(){const a=this.actor;if(a.config.chasing===false||a.support?.narrow||a.support?.home||a.support.max-a.support.min<100*a.scale)return [];const options=[];
-for(const m of this.memory.values()){const b=this.peers().find(b=>b.ownerKey===m.id);if(!b||!this.visible?.has(m.id)||!b.config.social_behaviour||b.config.chasing===false||!b.social.available(b)||!this.available(a)||this.scene.has(a)||this.scene.has(b)||b.social.clock<b.social.nextSocial||['loaf','sleep'].includes(m.pose)||!sameSupport(a.support,b.support))continue;
-if(!b.social.visible?.has(a.ownerKey))continue;const away=Math.sign(m.x-a.x);if(!away)continue;const s=b.support,x=Math.round(Math.max(s.min,Math.min(s.max,b.x+away*36*b.scale))/b.scale)*b.scale;
-if(away*(x-b.x)<12*b.scale||!b.social.corridor(s,x,[a]))continue;options.push({kind:'chase',target:b,surface:a.support,away,runnerX:x});
-}return options;
-}
 decide(t){const a=this.actor;if(!this.available(a)||this.episode)return false;const v=a.ensureMood().values,weights=decisionWeights(v),options=[{kind:'explore',weight:weights.explore},{kind:'settle',weight:weights.settle}];
-if(a.config.social_behaviour&&this.clock>=this.nextSocial){const company=a.config.quiet_company===false?[]:this.companyOptions(),chase=this.chaseOptions();if(company.length)options.push({...company[Math.floor(a.ensureMood().random()*company.length)],weight:weights.company*(.5+(this.traits?.sociability??.5))});if(chase.length)options.push({...chase[Math.floor(a.ensureMood().random()*chase.length)],weight:weights.chase});}
+if(a.config.social_behaviour&&this.clock>=this.nextSocial){const company=a.config.quiet_company===false?[]:this.companyOptions();if(company.length)options.push({...company[Math.floor(a.ensureMood().random()*company.length)],weight:weights.company*(.5+(this.traits?.sociability??.5))});}
 for(const option of options)option.weight*=window.pixelCatPostRestV1?.choiceWeight(a,option.kind)??1;
 const chosen=sampleDecision(options,()=>a.ensureMood().random(),a);this.log(chosen.kind,{weights:options.map(p=>({kind:p.kind,weight:p.weight})),target:chosen.target?.ownerKey});
 if(chosen.kind==='explore')return false;
 if(chosen.kind==='settle'){const ms=4000+6000*a.ensureMood().random();a.deadline=t+(window.pixelCatBehaviourV1?.restWindow(a,ms)??ms);if(a.idle)a.idle.poseUntil=t;return true;}
-if(chosen.kind==='company')return this.startCompany(chosen,t);
-return this.startChase(chosen,t);
+return this.startCompany(chosen,t);
 }
 startCompany(option,t){const a=this.actor;if(this.scene.has(a)||this.scene.has(option.target)||!this.clear(option.surface,option.x))return false;const path=a.pathTo(option.surface);if(!path)return false;
 this.episode={...option,started:this.clock,stage:'approach',expires:this.clock+22000};this.scene.set(a,this.episode);a.route=[...path,{settle:true,surface:option.surface,x:option.x}];a.destinationId=option.surface.id;a.destinationPoint='quiet-company';a.urgency='relaxed';a.deadline=0;this.log('company approach',{target:option.target.ownerKey});return true;
 }
-startChase(option,t,reply){const a=this.actor,b=option.target;if(!this.available(a)||!b.social.available(b)||this.scene.has(a)||this.scene.has(b))return false;
-const v=b.ensureMood().values,response=reply||sampleDecision([{kind:'ignore',weight:.8+2*v.sleepiness},{kind:'watch',weight:.4+v.alertness},{kind:'run',weight:(.25+2*v.playfulness*(1-.8*v.sleepiness))*(window.pixelCatPostRestV1?.choiceWeight(b,'chase')??1)}],()=>b.ensureMood().random(),b).kind;
-b.social.log('chase invitation '+response,{source:a.ownerKey});this.nextSocial=this.clock+25000;b.social.nextSocial=b.social.clock+25000;
-if(response!=='run'){if(response==='watch'){const known=b.social.memory.get(a.ownerKey);if(known)b.facing=known.x>b.x?1:-1;b.previewPose='glance';b.forcedIdleUntil=t+1600;b.deadline=b.forcedIdleUntil;if(b.idle)b.idle.poseUntil=t;}a.deadline=t+2000;return true;}
-if(!b.social.corridor(b.support,option.runnerX,[a]))return false;
-const episode={kind:'chase',chaser:a,runner:b,started:this.clock,expires:this.clock+8000,stage:'run',runs:0};this.scene.set(a,episode);this.scene.set(b,episode);this.episode=episode;b.social.episode=episode;
-b.urgency='interested';b.moveTo(option.runnerX,b.support.top,0,'walk',b.support,t);b.deadline=t+10000;a.deadline=t+10000;this.log('chase accepted',{target:b.ownerKey});return true;
-}
-finish(reason){const ep=this.episode;if(!ep)return;const participants=ep.kind==='chase'?[ep.chaser,ep.runner]:[this.actor];for(const a of participants){const layer=a.social;if(!layer||layer.episode!==ep)continue;layer.episode=null;layer.scene.delete(a);layer.nextSocial=layer.clock+25000;layer.log('end '+ep.kind,{reason});a.deadline=0;if(ep.kind==='company'&&ep.stage==='approach'){a.route=[];a.finishing=false;}}
+finish(reason){const ep=this.episode;if(!ep)return;const a=this.actor;this.episode=null;this.scene.delete(a);this.nextSocial=this.clock+25000;this.log('end '+ep.kind,{reason});a.deadline=0;if(ep.kind==='company'&&ep.stage==='approach'){a.route=[];a.finishing=false;}
 }
 advance(t){const a=this.actor,ep=this.episode;if(a.paused||a.suspended||a.stranded||a.goal||a.command||a.previewPose||a.play||a.toyHunt||a.playRequested||a.toyHuntRequested||!ep.target?.active&&ep.kind==='company'){this.finish('interrupted or actor removed');return;}
 if(ep.kind==='company'){
@@ -1826,12 +1815,7 @@ if(!this.clear(s,ep.x)){this.finish('resting slot occupied');return;}
 if(!a.motion&&!a.route?.length){if(!sameSupport(a.support,s)||Math.abs(a.x-ep.x)>4*a.scale){this.finish('route ended elsewhere');return;}ep.stage='rest';ep.restStarted=this.clock;ep.expires=this.clock+10000;a.deadline=t+10000;if(a.idle)a.idle.poseUntil=t;this.log('company resting',{target:ep.target.ownerKey});}
 }return;
 }
-if(a!==ep.chaser)return;const b=ep.runner;
-if(!b.active||!b.social.available(b,true)||!sameSupport(a.support,b.support)||this.clock>=ep.expires){this.finish('chase ended / unavailable');return;}
-if(!a.motion){const seen=this.memory.get(b.ownerKey);if(!seen||this.clock-seen.at>1500){this.finish('lost sight');return;}const direction=Math.sign(seen.x-a.x),gap=24*Math.max(a.scale,b.scale)+6*Math.max(a.scale,b.scale),target=seen.x-direction*gap,x=Math.round((a.x+direction*Math.min(24*a.scale,Math.max(0,direction*(target-a.x))))/a.scale)*a.scale;
-if(Math.abs(x-a.x)>=2*a.scale&&this.corridor(a.support,x,[b])){a.urgency='interested';a.moveTo(x,a.support.top,0,'walk',a.support,t);}else if(!b.motion){this.finish('caught up with safe spacing');return;}
-}
-if(!b.motion){if(ep.runs++===0&&b.ensureMood().random()<.4){const direction=Math.sign(b.x-a.x),x=Math.round(Math.max(b.support.min,Math.min(b.support.max,b.x+direction*16*b.scale))/b.scale)*b.scale;if(Math.abs(x-b.x)>=8*b.scale&&b.social.corridor(b.support,x,[a])){b.urgency='relaxed';b.moveTo(x,b.support.top,0,'walk',b.support,t);return;}}ep.expires=Math.min(ep.expires,this.clock+1800);}
+
 }
 poseWeight(pose){if(pose==='backRoll')return .3+1.2*this.actor.ensureMood().values.playfulness;if(pose==='alertLying')return window.pixelCatAlertV1.weight(this);return this.actor.config.mood_behaviour?moodPoseFactor(pose,this.actor.ensureMood().values):1;}
 idleDuration(pose,normal,base){const ms=this.baseIdleDuration(pose,normal,base);return window.pixelCatBehaviourV1?.restBout(this.actor,pose,this.art().idleSequences?.[pose],ms)??ms;}
@@ -1866,7 +1850,7 @@ enabled(){return !!this.actor.config.interaction_behaviour;}
 surfaceWeight(surface){if(!this.enabled()||surface.home||surface.narrow)return 1;const a=this.actor;for(const m of this.memory.values())if(this.clock-m.at<2500&&m.surface===surface.el&&Math.abs(m.surfaceTop-surface.top)<2&&m.pose!=='moving')return 1+3*a.ensureMood().values.playfulness+this.traits.sociability;return 1;}
 toyPoint(toy,surface,fallback,forced=false){if(!this.enabled()||forced)return fallback;const p=this.propMemory.get(toy.id);return p&&p.surface===surface?.el&&this.clock-p.observedAt<=300&&targetVisibility(this.eye(),{...p,y:p.y-p.height/2}).visible?p:null;}
 toyOpening(toy,catX,toyX,scale,fallback){if(!this.enabled()||this.actor.toyHunt?.forced)return fallback;const p=this.propMemory.get(toy.id);return !!p&&!p.moving&&p.direction===Math.sign(toyX-(catX+12*scale));}
-available(a,moving=false){if(super.available(a,moving))return true;return !!(moving&&a.motion?.kind==='jump'&&a.social?.episode?.interaction&&['land','catch'].includes(a.social.episode.stage)&&a.active&&!a.userHeld&&!a.paused&&!a.suspended&&!a.stranded&&!a.goal&&!a.command&&!a.previewPose&&!a.play&&!a.playRequested&&!a.toyHunt&&!a.toyHuntRequested&&!a.route?.length&&!a.recallPending);}
+available(a,moving=false){if(super.available(a,moving))return true;return !!(moving&&a.motion?.kind==='jump'&&a.social?.episode?.interaction&&a.social.episode.stage==='land'&&a.active&&!a.userHeld&&!a.paused&&!a.suspended&&!a.stranded&&!a.goal&&!a.command&&!a.previewPose&&!a.play&&!a.playRequested&&!a.toyHunt&&!a.toyHuntRequested&&!a.route?.length&&!a.recallPending);}
 unavailableReason(a){return !a.active?'inactive':a.paused?'paused':a.suspended?'overlay':a.stranded?'stranded':a.goal||a.command?'command':a.previewPose?'preview':a.play||a.playRequested?'play':a.toyHunt||a.toyHuntRequested?'toy':a.route?.length?'route':a.recallPending?'recall':a.motion?'motion':'available';}
 clear(surface,x,exclude=[]){if(!super.clear(surface,x,exclude))return false;const a=this.actor;for(const [b,e]of this.owners()){if(b===a||exclude.includes(b)||e.root!==a.root)continue;const ep=b.social?.episode;if(ep?.interaction&&ep.initiator===b&&sameSupport(surface,ep.surface)){const reserved=ep.offset===undefined?ep.x:ep.surface.left+ep.offset,pad=4*Math.max(a.scale,b.scale);if(x+24*a.scale+pad>reserved&&x-pad<reserved+24*b.scale)return false;}}return true;}
 corridor(surface,x,exclude=[]){if(!super.corridor(surface,x,exclude))return false;const a=this.actor;for(const [b,e]of this.owners()){if(b===a||exclude.includes(b)||e.root!==a.root)continue;const ep=b.social?.episode;if(ep?.interaction&&ep.initiator===b&&sameSupport(surface,ep.surface)){const reserved=ep.offset===undefined?ep.x:ep.surface.left+ep.offset,pad=4*Math.max(a.scale,b.scale);if(Math.max(a.x,x)+24*a.scale+pad>reserved&&Math.min(a.x,x)-pad<reserved+24*b.scale)return false;}}return true;}
@@ -1991,24 +1975,7 @@ if(Math.abs(x-a.x)<6*a.scale||!this.corridor(a.support,x)){this.finish('no safe 
 const seconds=a.motion.duration/1000;x=Math.round((predictRolling(m,seconds,p.scale)-a.toyPaw(direction)*a.scale)/a.scale)*a.scale;const motion=a.motion,refined={...motion,x},profile=this.corridor(a.support,x)&&a.planJump(refined);if(profile)Object.assign(motion,{x,jumpProfile:profile,duration:profile.duration});else{x=motion.x;this.log('prediction refinement unavailable');}ep.stage='land';ep.x=x;ep.offset=x-a.support.left;this.log('intercept committed',{target:p.id,x,observedAt:m.observedAt});
 }else if(ep.stage==='land'){const frame=this.frame,anchor=this.art().leapAnchors.across.at(-1).point,point={x:(frame?.placement.x??a.x)+(a.toyPaw(a.facing)+.5)*a.scale,y:(frame?.placement.top??a.support.top-24*a.scale)+(anchor[1]+.5)*a.scale},hit=a.propScene.strikeBall(p.id,a.ownerKey,point,a.facing,.5,true);this.log('prop intercept '+(hit?'contact':'miss'),{target:p.id,point});p.lastInteractor=a.ownerKey;this.finish(hit?'intercept contact':'intercept missed');a.deadline=t+1800;}
 }
-startChase(option,t,reply){const ok=super.startChase(option,t,reply),ep=this.episode;if(ok&&this.enabled()&&ep?.kind==='chase'){ep.interaction=true;ep.worldExpires=this.world.clock+10000;ep.runnerInterest=this.clock+1500+2500*option.target.ensureMood().random();ep.rolesSwapped=false;}return ok;}
-advanceChase(t){const a=this.actor,ep=this.episode;if(!ep||a!==ep.chaser)return super.advance(t);const b=ep.runner;if(this.world.clock>=ep.worldExpires){this.finish('shared chase horizon');return;}
-if(!this.available(a,true)||!b.social.available(b,true)||!b.config.interaction_behaviour||!sameSupport(a.support,b.support)){this.finish('chase interrupted');return;}
-if(ep.stage==='catch'){
-if(a.motion)return;const near=nearbyPlayLanding(a,b);this.log(near?'chase nearby landing':'chase catch miss',{target:b.ownerKey});if(near)this.socialCue(ep,b,{x:a.x+12*a.scale,y:a.support.top},t,'Nearby play landing');else this.finish('catch missed');return;
-}
-const m=this.memory.get(b.ownerKey),fresh=m&&this.clock-m.at<500,distance=m?Math.abs(m.x-a.x)/a.scale:Infinity;
-if(!a.motion&&!b.motion&&fresh&&distance>=34&&distance<=60&&this.world.ready(a,b)){
-this.world.cool(a,b);const v=b.ensureMood().values,offer=a.ensureMood().random()<(.2+.6*a.ensureMood().values.playfulness)*(1-.6*a.ensureMood().values.sleepiness),reply=sampleDecision([{kind:'disengage',weight:.6+v.sleepiness},{kind:'catch',weight:.3+v.playfulness},{kind:'reverse',weight:ep.rolesSwapped||!b.social.visible?.has(a.ownerKey)?0:.25+v.playfulness*b.social.traits.sociability}],()=>b.ensureMood().random(),b).kind;this.log('chase ending opportunity',{target:b.ownerKey,reply});
-if(reply==='reverse'){const away=Math.sign(a.x-b.x),x=Math.round(Math.max(a.support.min,Math.min(a.support.max,a.x+away*24*a.scale))/a.scale)*a.scale;if(Math.abs(x-a.x)>=12*a.scale&&this.corridor(a.support,x,[b])){a.urgency='interested';a.moveTo(x,a.support.top,0,'walk',a.support,t);ep.chaser=b;ep.runner=a;ep.rolesSwapped=true;ep.runs=0;ep.expires=b.social.clock+3500;ep.runnerInterest=b.social.clock+1800;b.social.log('chase roles swapped',{target:a.ownerKey});return;}}
-else if(reply==='catch'&&offer){const direction=Math.sign(m.x-a.x),x=Math.round((m.x-direction*(24*Math.max(a.scale,b.scale)+4*Math.max(a.scale,b.scale)))/a.scale)*a.scale;if(Math.abs(x-a.x)>=6*a.scale&&this.corridor(a.support,x,[b])&&a.moveTo(x,a.support.top,0,'jump',a.support,t)!==false){ep.stage='catch';return;}}
-this.finish('chase disengaged');return;
-}
-if(!b.motion&&this.clock>=ep.runnerInterest){ep.runs=2;if(b.social.propMemory.size){this.finish('runner distracted by observed prop');b.social.watchUntil=b.social.clock+1200;b.deadline=t+1200;if(b.idle)b.idle.poseUntil=t;return;}}
-return super.advance(t);
-}
 advance(t){const ep=this.episode;if(!ep?.interaction)return super.advance(t);const a=this.actor;
-if(ep.kind==='chase')return this.advanceChase(t);
 if(ep.initiator!==a){if(!this.available(a)||!ep.initiator.active)this.finish('recipient interrupted');return;}
 if(!this.enabled()||!this.available(a,true)||this.clock>=ep.expires){this.finish('interrupted / timeout');return;}
 if(ep.kind==='prop')return this.advanceProp(ep,t);
@@ -2031,7 +1998,7 @@ if(a.ensureMood().random()<(noticed?.65:.18)){this.finish(noticed?'apparently no
 if(!this.corridor(s,ep.x,[b])||a.moveTo(ep.x,s.top,0,'jump',s,t)===false){this.finish('unsafe pounce');return;}ep.stage='land';this.log('ambush pounce',{lastSeen:m.at});
 }else if(ep.stage==='land'){const close=nearbyPlayLanding(a,b);this.log(close?'nearby play landing':'ambush miss',{target:b.ownerKey});if(close)this.socialCue(ep,b,{x:a.x+12*a.scale,y:s.top},t,kitten(a)&&ep.observed.pose==='sleep'&&sleeping(b,t)?'Pounce beside sleeper':'Nearby play landing');else this.finish('pounce landed short');}
 }
-finish(reason){this.pendingImpact=null;const ep=this.episode;if(!ep?.interaction||ep.kind==='chase')return super.finish(reason);const participants=ep.participants||[this.actor];for(const a of participants){const registry=ep.registry||this.scene;if(registry.get(a)===ep)registry.delete(a);const layer=a.social;if(!layer)continue;if(layer.scene.get(a)===ep)layer.scene.delete(a);if(layer.episode!==ep)continue;layer.episode=null;layer.nextSocial=layer.clock+25000;layer.watchUntil=0;layer.log('end '+ep.kind,{reason});a.deadline=0;}
+finish(reason){this.pendingImpact=null;const ep=this.episode;if(!ep?.interaction)return super.finish(reason);const participants=ep.participants||[this.actor];for(const a of participants){const registry=ep.registry||this.scene;if(registry.get(a)===ep)registry.delete(a);const layer=a.social;if(!layer)continue;if(layer.scene.get(a)===ep)layer.scene.delete(a);if(layer.episode!==ep)continue;layer.episode=null;layer.nextSocial=layer.clock+25000;layer.watchUntil=0;layer.log('end '+ep.kind,{reason});a.deadline=0;}
 if(ep.kind==='prop'){const p=this.actor.propScene?.props.find(p=>p.id===ep.id);if(p?.claimedBy===this.actor.ownerKey){p.claimedBy=null;p.cooldownUntil=this.actor.propScene.time+5000;p.lastInteractor=this.actor.ownerKey;p.availableToOthersAt=this.actor.propScene.time+1000;}}
 }
 restPose(){const observed=window.pixelCatObserverV1?.pose(this);if(observed)return observed;const ep=this.episode;if(ep?.interaction&&ep.kind!=='chase'){if(ep.initiator!==this.actor)return this.actor.idle?.pose||'sit';return ep.kind==='cuddle'&&['settle','cuddled'].includes(ep.stage)?'sleep':ep.stage==='wiggle'?'wiggle':ep.stage==='stroke'?'bat':ep.stage==='check'?'look':ep.stage==='watch'?'lookdown':'sit';}if(this.enabled()&&this.watchUntil>this.clock)return 'glance';return super.restPose();}
@@ -2515,7 +2482,6 @@ if(m?.kind==='startle')return 'Startled · hopping away';
 if(a.mouthAction)return (a.mouthAction.phase==='approach'?'Approaching · ':'')+({food:'Eating at the bowl',pickup:'Nibbling to pick up a toy',nose:'Nosing a toy',drop:'Putting down a toy',bat:'Preparing to bat'}[a.mouthAction.kind]||'Investigating');
 const poses={backRoll:'Resting on back',alertLying:'Lying alert',sit:'Sitting',sithead:'Looking around',perch:'Perching',stand:'Standing',loaf:'Loafing',sleep:'Sleeping',clean:'Grooming',scratch:'Scratching an ear',look:'Looking up',lookdown:'Looking down',glance:'Glancing around',stretch:'Stretching',sniff:'Sniffing',yawn:'Yawning',meow:'Meowing',chatter:'Chattering',rub:'Rubbing a cheek',bat:'Patting / batting',eat:'Eating',nose:'Nosing'};
 if(a.previewPose)return poses[a.previewPose]||a.previewPose;
-if(ep?.kind==='chase'){const runner=a===ep.runner;return (runner?'Running from ':ep.stage==='catch'?'Pouncing toward ':'Chasing ')+peer(runner?ep.chaser:ep.runner);}
 if(ep?.kind==='company')return (ep.stage==='rest'?'Resting near ':'Going to rest near ')+peer(ep.target);
 if(ep?.kind==='bed')return (ep.stage==='rest'?'Sleeping in ':'Going to ')+(ep.owner===a?'own bed':peer(ep.owner)+'’s bed');
 if(ep?.kind==='bed-claim')return ep.initiator===a?(ep.stage==='stroke'?'Patting a bed guest':'Approaching own bed'):'Resting in a borrowed bed';
@@ -2749,7 +2715,7 @@ state(a){if(!a.exertion){let n=7;for(const c of String(a.ownerKey||'cat'))n=Math
 clock(a,ms){if(a.config.exertion_behaviour===false||a.paused||a.suspended||a.layoutPaused||a.userHeld||a.stranded||a.active===false)return;this.state(a).clock+=ms>1000?0:Math.max(0,Math.min(250,ms||0));},
 strength(a){if(a.config.exertion_behaviour===false)return 0;const q=this.state(a);if(q.clock!==q.at){q.level*=Math.exp(-(q.clock-q.at)/q.recovery);q.at=q.clock;}return Math.max(0,(q.level-q.threshold)/(1-q.threshold));},
 launch(a,m){m.voluntaryEffort=!a.command&&!a.goal&&!a.previewPose&&!a.userHeld&&a.urgency!=='prompted'&&m.kind!=='startle';},
-complete(a,m){if(!m.voluntaryEffort||a.config.exertion_behaviour===false)return;const play=a.play||a.toyHunt||a.social?.episode?.kind==='chase';if(m.kind!=='jump'&&!play)return;this.strength(a);const q=this.state(a),distance=Math.hypot(m.x-m.fromX,m.y-m.fromY)/a.scale;
+complete(a,m){if(!m.voluntaryEffort||a.config.exertion_behaviour===false)return;const play=a.play||a.toyHunt||window.pixelCatDashboardChaseV1?.pursuing(a);if(m.kind!=='jump'&&!play)return;this.strength(a);const q=this.state(a),distance=Math.hypot(m.x-m.fromX,m.y-m.fromY)/a.scale;
 q.level=Math.min(1,q.level+Math.min(.35,m.kind==='jump'?.05+distance/350+Math.abs(m.y-m.fromY)/a.scale/140:.02+distance/500));a.setAttribute?.('data-exertion',JSON.stringify({level:+q.level.toFixed(2),recoveryMs:q.recovery}));
 },
 weight(a,kind){return 1+this.strength(a)*(this.weights[kind]||0);}
@@ -3191,7 +3157,7 @@ this.raf = requestAnimationFrame(t => {this.href=location.pathname;this.tick(t);
 observePreviewProps(){
 const dock=this.shadowRoot.querySelector('.dock');
 const layout=()=>{
-window.pixelCatTreeV1?.mount(this,true);
+window.pixelCatTreeV1?.mount(this);
 const ball=dock.querySelector('[data-cat-tree-ball]');
 if(ball)ball.disabled=true;
 window.pixelCatHomePostsV1?.sync(this,dock.clientWidth);
@@ -3282,6 +3248,7 @@ return this.receiveDisturbance(cue,t,debug,'landing');
 }
 receiveDisturbance(cue,t=performance.now(),debug=false,type='prop'){return window.pixelCatReactionsV1?.receive(this,cue,t,debug,type)||false;}
 publishLanding(m,t){
+window.pixelCatBoxV1?.land(this,m);
 window.pixelCatTreeV1?.land(this);
 if(m.kind!=='jump'||m.y-m.fromY<16*this.scale)return;
 const id=this.ownerKey+'/landing/'+(this.landingSerial=(this.landingSerial||0)+1);
@@ -4155,13 +4122,13 @@ ropes:[
 pivot:{x:52,y:43},length:11
 };
 window.pixelCatTreeV1={
-mount(a,preview){
+mount(a){
 const dock=a.shadowRoot?.querySelector('.dock');
 if(!dock)return;
 const useTree=(a.config.post_type??(a.config.test_cat_tree===true?'tree':'post'))==='tree';
 const available=dock.clientWidth/(52+testTree.width),scale=a.worldScale||a.scale;
-const s=preview?Math.min(scale,available):scale;
-const fits=useTree&&window.pixelCatHomePostsV1.visible(a)&&s>=1&&s<=available;
+const s=Math.min(scale,available);
+const fits=useTree&&window.pixelCatHomePostsV1.visible(a)&&s>=1;
 if(!fits){if(a.catTree){a.catTree.node.remove();delete a.catTree;}if(dock.style?.getPropertyValue('--test-tree-height'))dock.style.removeProperty('--test-tree-height');return;}
 if(a.catTree?.node.parentNode===dock&&a.catTree.scale===s)return;
 a.catTree?.node.remove();
@@ -4587,27 +4554,44 @@ window.pixelCatBoxV1={
   this.render(a,g,a.boxBed,t);
  },
  restDuration(a){return 9000+7000*a.ensureMood().random();},
- dropTarget(a,x,y){
+ landing(a,surface,x,fromY){
+  if(!Number.isFinite(x)||!Number.isFinite(fromY))return null;
+  const centre=x+12*a.scale;
   let best=null;
-  for(const surface of a.surfaces||[]){
-   const owner=surface.bedOwner||(surface===a.home?a:null);
-   if(!owner||surface.bed||surface.foodOwner||surface.toyHomeOwner||owner!==a&&(!owner.active||owner.root!==a.root))continue;
-   const g=geometry(a,owner,surface);
-   if(!g||x<g.left-2*g.cell||x>g.right+2*g.cell||y<g.rim-22*g.cell||y>g.rim+3*g.cell)continue;
-   const distance=Math.hypot(x-g.centre,y-g.rim);
-   if((!best||distance<best.distance)&&this.canSettle(a,owner,g)){
-    best={surface,x:g.centre-12*g.s,box:owner,markerX:g.left+2*g.cell,markerY:g.rim,markerWidth:(asset.width-4)*g.cell,distance};
-   }
+  for(const floor of a.surfaces||[]){
+   const owner=floor.bedOwner||(floor===a.home?a:null);
+   if(!owner||floor.bed||floor.foodOwner||floor.toyHomeOwner||
+      owner!==a&&(!owner.active||owner.root!==a.root)||floor.top<fromY||surface&&Math.abs(floor.top-surface.top)>1)continue;
+   if(surface&&floor!==surface&&floor.el!==surface.el&&(!floor.rectNode||floor.rectNode!==surface.rectNode))continue;
+   const g=geometry(a,owner,floor);
+   if(!g||centre<g.left-2*g.cell||centre>g.right+2*g.cell||!this.canSettle(a,owner,g))continue;
+   if(!best||floor.top<best.surface.top)best={surface:floor,x,owner,node:g.node,markerX:g.left+2*g.cell,markerY:g.rim,markerWidth:(asset.width-4)*g.cell};
   }
   return best;
  },
- finishDrop(a,s,x,t,drag,owner){
-  const g=geometry(a,owner,s);
-  if(!this.canSettle(a,owner,g)){drag.restore(a);return;}
-  drag.finish(a,s,x,t);
-  this.settle(a,owner,g,t);
+ project(a,x,top){return this.landing(a,null,x,top);},
+ land(a,m){
+  if(m.kind!=='jump'&&m.kind!=='startle')return;
+  const target=this.landing(a,a.support,a.x,m.fromY);
+  if(target)a.boxLanding={id:a.support.id,offset:a.x-a.support.left,owner:target.owner,node:target.node};
+ },
+ receiveLanding(a,t){
+  const pending=a.boxLanding;
+  if(!pending)return;
+  a.boxLanding=null;
+  if(a.userHeld||a.motion||a.climb||!a.active||a.support?.id!==pending.id)return;
+  const target=this.landing(a,a.support,a.support.left+pending.offset,a.support.top);
+  if(!target||target.owner!==pending.owner||target.node!==pending.node)return;
+  a.social?.finish('landed in box');
+  window.pixelCatDashboardChaseV1?.detach(a);
+  a.cancelPlay?.(t);
+  if(!a.command&&!a.goal)a.route=[];
+  const g=geometry(a,target.owner,target.surface);
+  a.support=target.surface;a.y=target.surface.top;
+  this.settle(a,target.owner,g,t);
  },
  cancel(a){
+  a.boxLanding=null;
   if(!a.boxBed)return;
   const {owner}=a.boxBed;
   if(a.bedInside===owner)a.bedInside=null;
@@ -4635,6 +4619,7 @@ window.pixelCatBoxV1={
   return true;
  },
  tick(a,t,gap){
+  this.receiveLanding(a,t);
   const state=a.boxBed;
   if(!state)return false;
   const {owner}=state,g=geometry(a,owner);
@@ -4769,7 +4754,7 @@ function endFocusLeg(a,state){
 
 function focusTravel(a,state,choice,t,kind){
  for(const step of choice.steps)step.chaseFocus=true;
- state.leg={surface:choice.surface,offset:choice.x-choice.surface.left};
+ state.leg={surface:choice.surface,offset:choice.x-choice.surface.left,crossing:true};
  a.route=choice.steps;
  a.urgency='interested';
  a.deadline=t+1500;
@@ -4778,6 +4763,7 @@ function focusTravel(a,state,choice,t,kind){
 }
 
 window.pixelCatDashboardChaseV1={
+ pursuing(a){return !!legFor(a);},
  detach(a){
   const state=focusActors.get(a);
   if(!state)return;
@@ -4814,7 +4800,7 @@ window.pixelCatDashboardChaseV1={
     const step=a.route[0];
     if(!step.chaseFocus||!(step.kind==='walk'&&same(a.support,step.surface)?layer.corridor(step.surface,step.x):layer.clear(step.surface,step.x)))endFocusLeg(a,state);
    }else if(settled(a)){
-    if(a.support.id===state.leg.surface.id){report(view,'Crossings');layer.log('chase card transfer completed',{surface:a.support.id});}
+    if(state.leg.crossing&&a.support.id===state.leg.surface.id){report(view,'Crossings');layer.log('chase card transfer completed',{surface:a.support.id});}
     endFocusLeg(a,state);
    }
   }
@@ -4836,7 +4822,7 @@ window.pixelCatDashboardChaseV1={
   const cue=state.lastMotion;
   const observed=cue&&layer.memory.get(cue.m.id);
   const fresh=cue?.until>=t&&observed&&layer.clock-observed.at<=450&&layer.visible?.has(observed.id);
-  if(!view&&(!fresh||!cue.crossed))return 0;
+  if(!view&&!fresh)return 0;
   const mood=a.ensureMood(),r=mood.random();
   state.next=t+(view?1500+1200*mood.random():8000);
   if(!view)state.lastMotion=null;
@@ -4845,7 +4831,7 @@ window.pixelCatDashboardChaseV1={
    const direction=Math.sign(m.x-a.x)||a.facing;
    const gap=30*Math.max(a.scale,m.scale),distance=Math.abs(m.x-a.x);
    const away=(m.x-previous.x)*direction>0;
-   if((crossed||away)&&distance>=gap&&r<(view ? .75:.12+.2*(mood.values?.playfulness??.5))){
+   if((crossed||away)&&distance>=gap&&r<(view ? .75 : Math.min(.6,(.12+.2*(mood.values?.playfulness??.5))*(window.pixelCatBehaviourV1?.choiceWeight(a,'chase')??1)*(window.pixelCatPostRestV1?.choiceWeight(a,'chase')??1)))){
     const surface=a.surfaces.find(s=>s.el===m.surface&&Math.abs(s.top-m.surfaceTop)<2);
     if(broad(surface)){
      const x=snapped(surface,m.x-direction*gap,a.scale);
@@ -4854,9 +4840,11 @@ window.pixelCatDashboardChaseV1={
        const choice=plan(a,surface,x);
        if(choice){focusTravel(a,state,choice,t,'Following');return 0;}
        report(view,'No safe route');
-      }else if(view&&Math.abs(x-a.x)>=5*a.scale&&layer.corridor(surface,x)){
+      }else if(Math.abs(x-a.x)>=5*a.scale&&layer.corridor(surface,x)){
        a.urgency='interested';
-       a.moveTo(x,surface.top,0,'walk',surface,t);
+       state.leg={surface,offset:x-surface.left,crossing:false};
+       if(a.moveTo(x,surface.top,0,'walk',surface,t)===false){endFocusLeg(a,state);return 0;}
+       layer.log('following observed motion',{surface:surface.id,target:m.id});
        report(view,'Following');
        return 0;
       }
@@ -4901,7 +4889,7 @@ window.pixelCatDashboardChaseV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.1.0",sourceHash:"7e52507cbee03db37ba0d0cb187ed3211d561e66f4bd41f907a028238b8db62b"});
+window.pixelCatCardRelease=Object.freeze({version:"1.1.0",sourceHash:"5995cbfef62c9dfcf1764611891c1833e9c6bfe334aed00b4d53b3276e10386c"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.1.0");
 })();

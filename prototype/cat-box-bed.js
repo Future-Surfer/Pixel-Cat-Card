@@ -76,27 +76,44 @@ window.pixelCatBoxV1={
   this.render(a,g,a.boxBed,t);
  },
  restDuration(a){return 9000+7000*a.ensureMood().random();},
- dropTarget(a,x,y){
+ landing(a,surface,x,fromY){
+  if(!Number.isFinite(x)||!Number.isFinite(fromY))return null;
+  const centre=x+12*a.scale;
   let best=null;
-  for(const surface of a.surfaces||[]){
-   const owner=surface.bedOwner||(surface===a.home?a:null);
-   if(!owner||surface.bed||surface.foodOwner||surface.toyHomeOwner||owner!==a&&(!owner.active||owner.root!==a.root))continue;
-   const g=geometry(a,owner,surface);
-   if(!g||x<g.left-2*g.cell||x>g.right+2*g.cell||y<g.rim-22*g.cell||y>g.rim+3*g.cell)continue;
-   const distance=Math.hypot(x-g.centre,y-g.rim);
-   if((!best||distance<best.distance)&&this.canSettle(a,owner,g)){
-    best={surface,x:g.centre-12*g.s,box:owner,markerX:g.left+2*g.cell,markerY:g.rim,markerWidth:(asset.width-4)*g.cell,distance};
-   }
+  for(const floor of a.surfaces||[]){
+   const owner=floor.bedOwner||(floor===a.home?a:null);
+   if(!owner||floor.bed||floor.foodOwner||floor.toyHomeOwner||
+      owner!==a&&(!owner.active||owner.root!==a.root)||floor.top<fromY||surface&&Math.abs(floor.top-surface.top)>1)continue;
+   if(surface&&floor!==surface&&floor.el!==surface.el&&(!floor.rectNode||floor.rectNode!==surface.rectNode))continue;
+   const g=geometry(a,owner,floor);
+   if(!g||centre<g.left-2*g.cell||centre>g.right+2*g.cell||!this.canSettle(a,owner,g))continue;
+   if(!best||floor.top<best.surface.top)best={surface:floor,x,owner,node:g.node,markerX:g.left+2*g.cell,markerY:g.rim,markerWidth:(asset.width-4)*g.cell};
   }
   return best;
  },
- finishDrop(a,s,x,t,drag,owner){
-  const g=geometry(a,owner,s);
-  if(!this.canSettle(a,owner,g)){drag.restore(a);return;}
-  drag.finish(a,s,x,t);
-  this.settle(a,owner,g,t);
+ project(a,x,top){return this.landing(a,null,x,top);},
+ land(a,m){
+  if(m.kind!=='jump'&&m.kind!=='startle')return;
+  const target=this.landing(a,a.support,a.x,m.fromY);
+  if(target)a.boxLanding={id:a.support.id,offset:a.x-a.support.left,owner:target.owner,node:target.node};
+ },
+ receiveLanding(a,t){
+  const pending=a.boxLanding;
+  if(!pending)return;
+  a.boxLanding=null;
+  if(a.userHeld||a.motion||a.climb||!a.active||a.support?.id!==pending.id)return;
+  const target=this.landing(a,a.support,a.support.left+pending.offset,a.support.top);
+  if(!target||target.owner!==pending.owner||target.node!==pending.node)return;
+  a.social?.finish('landed in box');
+  window.pixelCatDashboardChaseV1?.detach(a);
+  a.cancelPlay?.(t);
+  if(!a.command&&!a.goal)a.route=[];
+  const g=geometry(a,target.owner,target.surface);
+  a.support=target.surface;a.y=target.surface.top;
+  this.settle(a,target.owner,g,t);
  },
  cancel(a){
+  a.boxLanding=null;
   if(!a.boxBed)return;
   const {owner}=a.boxBed;
   if(a.bedInside===owner)a.bedInside=null;
@@ -124,6 +141,7 @@ window.pixelCatBoxV1={
   return true;
  },
  tick(a,t,gap){
+  this.receiveLanding(a,t);
   const state=a.boxBed;
   if(!state)return false;
   const {owner}=state,g=geometry(a,owner);

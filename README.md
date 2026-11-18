@@ -14,7 +14,7 @@ Requires **Home Assistant 2026.11+**.
 
 In **Settings → Marketplace**, search for **Pixel Cat Card**. If it doesn’t appear in search, use the button above or **Add from link** to add `Future-Surfer/Pixel-Cat-Card`, then install it and reload your dashboard.
 
-Choose [v1.1.0-rc.1](https://github.com/Future-Surfer/Pixel-Cat-Card/releases/tag/v1.1.0-rc.1) or later for the package that removes the two legacy card types. [Enable prereleases, install manually, or migrate an existing setup](docs/guides/PIXEL_CAT_INSTALL.md).
+[v1.1.0](https://github.com/Future-Surfer/Pixel-Cat-Card/releases/tag/v1.1.0) removes the two legacy card types. [Install manually or migrate an existing setup](docs/guides/PIXEL_CAT_INSTALL.md).
 
 ## Add a cat
 
