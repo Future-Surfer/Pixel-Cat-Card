@@ -81,9 +81,9 @@ startle_followups: true
 
 Other optional switches: `toy_carrying`, `bowl_eating`, `post_rest_behaviour`, `post_meal_behaviour`, `draggable`, `horizontal_apex`. Set false to opt out. These controls do not imply care obligations or guaranteed interactions. Use [detailed contracts](../FEATURE_DETAILS.md) for eligibility/contact/interruption rules.
 
-## Chasing across cards
+## Chasing
 
-The editor’s **Chasing** switch allows short social chases and lets that cat choose to follow a crossing it sees. The observing cat needs social and interaction behaviour enabled. The cat being watched can carry on independently. A follow needs a clear landing and a way back. Use **Behaviour Lab → Chase across cards** to make chase reactions easier to see.
+The editor’s **Chasing** switch lets each cat choose to follow motion it sees on its own surface or across cards. The observing cat needs social and interaction behaviour enabled. The cat being watched can carry on independently. Older dashboard-chase flags can be removed from saved YAML. A follow needs a clear landing and a way back. Use **Behaviour Lab → Chase across cards** to make chase reactions easier to see.
 
 ## Hide the home card
 

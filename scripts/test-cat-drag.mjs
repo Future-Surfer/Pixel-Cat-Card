@@ -56,26 +56,47 @@ console.log('PASS: scruff pointer anchors at six scales/both facings, shadow, ex
 
 const direction=actor();direction.svg.handlers.pointerdown(event('pointerdown',200,100));direction.svg.handlers.pointermove(event('pointermove',180,100));assert.equal(direction.facing,-1);direction.svg.handlers.pointermove(event('pointermove',220,100));assert.equal(direction.facing,1);direction.svg.handlers.pointerup(event('pointerup',220,100));for(let t=1016;t<4000&&direction.userHeld;t+=16)drag.tick(direction,t,art);assert.equal(direction.facing,1,'Last horizontal drag direction survives landing');drag.uninstall(direction);
 
-{
- const a=actor(),floor=a.support,bed=new Node();
- a.config.bed_style='box';
- a.home=floor;
- a.ownerKey='drop-box';
+for(const scale of [1,2,4])for(const height of [20,200,2000]){
+ const a=actor(scale),floor=a.support,bed=new Node();
+ a.config.bed_style='box';a.home=floor;a.ownerKey='drop-box';a.worldScale=2;a.lifeStage=scale===1?'kitten':'adult';
  a.ensureMood=()=>({random:()=>0});
- a.shadowRoot={querySelector:()=>bed};
- a.svg.firstElementChild=new Node();
+ a.shadowRoot={querySelector:()=>bed};a.svg.firstElementChild=new Node();
  const boxBed=box.window.pixelCatBoxV1;
- assert.ok(!boxBed.dropTarget(a,66,342),'Far above the box keeps the ordinary drop target');
- assert.ok(!boxBed.dropTarget(a,66,397),'Below the rim tolerance keeps the ordinary drop target');
- assert.ok(!boxBed.dropTarget(a,95,354),'Adjacent floor beyond the side tolerance stays selectable');
- assert.ok(boxBed.dropTarget(a,91,354)?.box===a,'A few pixels outside the artwork can still select the opening');
+ a.publishLanding=m=>boxBed.land(a,m);
+ const centre=22*a.worldScale+12*a.worldScale;
+ const pointerX=centre-12*scale+drag.grip(art.lifted,1)[0]*scale;
  a.svg.handlers.pointerdown(event('pointerdown',150,120));
- a.svg.handlers.pointerup(event('pointerup',66,354));
- assert.equal(a.dragState.box,a,'Releasing at the opening selects the box');
- for(let t=1016;t<4000&&a.userHeld;t+=16)drag.tick(a,t,art);
+ a.svg.handlers.pointerup(event('pointerup',pointerX,floor.top-height));
+ assert.equal(a.dragState.targetId,floor.id,'The same floor receives drops from every height');
+ assert.equal(a.dragState.target.owner,a);
+ for(let t=1016;t<5000&&a.userHeld;t+=16)drag.tick(a,t,art);
  assert.equal(a.userHeld,false);
- assert.equal(a.bedInside,a);
- assert.equal(a.attrs['data-pose'],'box-peek');
- assert.equal(a.support,floor);
- drag.uninstall(a);
+ boxBed.tick(a,5000,0);
+ assert.equal(a.bedInside,a,'Landing resolves into the box independent of release height and cat size');
+ assert.equal(a.attrs['data-pose'],scale===1?'box-rest':'box-peek');
+ a.svg.handlers.pointerdown(event('pointerdown',centre,350));
+ assert.equal(a.boxBed,null);
+ assert.equal(a.boxClaim,null);
+ drag.restore(a);drag.uninstall(a);
+}
+{
+ const a=actor(),floor=a.support,bed=new Node(),boxBed=box.window.pixelCatBoxV1;
+ a.config.bed_style='box';a.home=floor;a.ownerKey='intervening';
+ a.ensureMood=()=>({random:()=>0});a.shadowRoot={querySelector:()=>bed};
+ const shelf={id:'shelf',el:{isConnected:true},left:0,right:1000,min:0,max:950,top:200};
+ a.surfaces.push(shelf);
+ const target=drag.target(a,44,20);
+ assert.equal(target.surface,shelf,'A higher shelf catches the fall before the box floor');
+}
+console.log('PASS: shared box landing for drops at multiple heights/scales and intervening support priority.');
+{
+ const a=actor(),floor=a.support,bed=new Node(),boxBed=box.window.pixelCatBoxV1;
+ a.config.bed_style='box';a.home=floor;a.ownerKey='box-card-roof';
+ a.ensureMood=()=>({random:()=>0});a.shadowRoot={querySelector:()=>bed};
+ const roof={id:'box-card:top',el:{isConnected:true,contains:n=>n===bed},left:0,right:1000,min:0,max:950,top:200};
+ a.surfaces.push(roof);
+ assert.equal(drag.target(a,44,-2000).surface,floor,'The box card shell does not catch a fall aimed into its own box');
+ const other={...roof,id:'unrelated:top',el:{isConnected:true,contains:()=>false},top:100};
+ a.surfaces.push(other);
+ assert.equal(drag.target(a,44,-2000).surface,other,'An unrelated higher card still intercepts');
 }

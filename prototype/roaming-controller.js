@@ -320,7 +320,7 @@ class PixelCatHome extends HTMLElement {
   observePreviewProps(){
     const dock=this.shadowRoot.querySelector('.dock');
     const layout=()=>{
-      window.pixelCatTreeV1?.mount(this,true);
+      window.pixelCatTreeV1?.mount(this);
       const ball=dock.querySelector('[data-cat-tree-ball]');
       if(ball)ball.disabled=true;
       window.pixelCatHomePostsV1?.sync(this,dock.clientWidth);
@@ -414,6 +414,7 @@ class PixelCatHome extends HTMLElement {
   }
   receiveDisturbance(cue,t=performance.now(),debug=false,type='prop'){return window.pixelCatReactionsV1?.receive(this,cue,t,debug,type)||false;}
   publishLanding(m,t){
+    window.pixelCatBoxV1?.land(this,m);
     window.pixelCatTreeV1?.land(this);
     if(m.kind!=='jump'||m.y-m.fromY<16*this.scale)return;
     const id=this.ownerKey+'/landing/'+(this.landingSerial=(this.landingSerial||0)+1);

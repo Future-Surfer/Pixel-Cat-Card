@@ -9,8 +9,9 @@ const shelf=(id,left,top)=>({id,el:{isConnected:true},left,min:left,max:left+160
 function fixture(){
  const origin=shelf('start',0,150),target=shelf('next',190,125),root={};
  const cat=(ownerKey,x)=>{
-  const a={ownerKey,x,facing:1,scale:2,root,active:true,config:{dashboard_chasing:true,social_behaviour:true,interaction_behaviour:true},
+  const a={ownerKey,x,facing:1,scale:2,root,active:true,config:{social_behaviour:true,interaction_behaviour:true},
    support:origin,home:origin,surfaces:[origin,target],route:[],pathTo:()=>[],ensureMood:()=>({random:()=>0,values:{playfulness:1,sleepiness:0}})};
+  a.moveTo=(x,y,z,kind,target)=>{a.motion={x,y,kind,target};};
   a.routeTo=(surface,x)=>[{surface,fromId:a.support.id,x,kind:'jump'}];
   a.social={actor:a,clock:0,memory:new Map(),visible:new Set(),clear:()=>true,corridor:()=>true,trace:[],log(kind){this.trace.push(kind);}};
   return a;
@@ -22,7 +23,6 @@ function fixture(){
  const {chaser,runner,target}=fixture(),layer=chaser.social,view={counts:{}};
  layer.episode=runner.social.episode=null;
  chaser.decisionLayer=()=>layer;
- chaser.config.dashboard_chasing=runner.config.dashboard_chasing=false;
  let roll=.9;
  chaser.ensureMood=()=>({random:()=>roll});
  const see=(surface,x,at)=>{
@@ -50,7 +50,7 @@ function fixture(){
  assert.equal(chase.reserved(chaser,target,()=>true),false);
 }
 
-for(const reason of ['clear','blind','sleep','disabled','blocked','no return','stale','same card']){
+for(const reason of ['clear','blind','sleep','disabled','blocked','no return','stale','same card','toward observer']){
  const {chaser,runner,target}=fixture(),layer=chaser.social,origin=chaser.support;
  runner.config.chasing=false;
  runner.config.social_behaviour=false;
@@ -63,7 +63,7 @@ for(const reason of ['clear','blind','sleep','disabled','blocked','no return','s
  };
  see(origin,140,0);
  chase.natural(chaser,0);
- see(reason==='same card'?origin:target,280,1000);
+ see(['same card','toward observer'].includes(reason)?origin:target,reason==='toward observer'?130:280,1000);
  if(reason==='blind')layer.visible.clear();
  if(reason==='sleep')chaser.idle={pose:'sleep'};
  if(reason==='disabled')chaser.config.chasing=false;
@@ -71,6 +71,7 @@ for(const reason of ['clear','blind','sleep','disabled','blocked','no return','s
  if(reason==='no return')chaser.pathTo=()=>null;
  if(reason==='stale')layer.clock+=500;
  chase.natural(chaser,1000);
+ if(reason==='same card'){assert.equal(chaser.motion?.kind,'walk');assert.equal(runner.motion,undefined);assert.equal(chase.pursuing(chaser),true);chaser.motion=null;chase.natural(chaser,1100);assert.equal(chase.pursuing(chaser),false);}
  if(reason==='clear'){
   assert.equal(chaser.route[0]?.surface,target);
   assert.ok(280-chaser.route[0].x>=60);

@@ -6,14 +6,14 @@ Give your cat a cardboard box, a taller tree, or a quieter corner of the dashboa
 
 ### A home of their own
 
-- **Cardboard box beds.** Adults can peek over the rim and kittens can tuck themselves inside. You can pick up a cat and drop them into an empty box.
-- Choose which furniture to include. Pick a plain scratching post or a one- or two-level cat tree, with a preview of the furniture in the editor.
+- **Cardboard box beds.** Adults can peek over the rim and kittens can tuck themselves inside. Cats can land in an empty box after a drop from any height or a jump down to its floor.
+- Choose which furniture to include. Pick a plain scratching post or a one- or two-level cat tree, with a preview of the furniture in the editor. Trees fit narrow home cards too.
 - Adjust the background transparency, border, corners, and scratching debris. The fur palette adds **Light grey**, and field dividers sit below the colour swatches.
 
 ### Play at their own pace
 
-- Choose a mood and adjust boldness, sociability, curiosity, and patience separately. Quiet company and short chases have their own switches.
-- **Independent cross-card chasing.** With **Chasing** enabled, a cat can choose to follow a playmate it sees reach another card when there’s a clear route and room to land. The other cat keeps making its own decisions.
+- Choose a mood and adjust boldness, sociability, curiosity, and patience separately. Quiet company and Chasing have their own switches.
+- **Independent chasing.** With **Chasing** enabled, a cat can choose to follow motion it sees on the same surface or across a checked card crossing. The other cat keeps making its own decisions.
 - Cats can grip exposed card edges, climb and leap to a reachable card, or rebound to the same side on a short wall jump. Descents have their own grip poses, and cats transition more smoothly from rest to walking.
 
 ### Controls and Behaviour Lab

@@ -2,11 +2,11 @@
   "schema": 1,
   "name": "Pixel Cat Card",
   "version": "1.1.0",
-  "sourceHash": "7e52507cbee03db37ba0d0cb187ed3211d561e66f4bd41f907a028238b8db62b",
+  "sourceHash": "5995cbfef62c9dfcf1764611891c1833e9c6bfe334aed00b4d53b3276e10386c",
   "artifact": {
     "file": "pixel-cat-card.js",
-    "bytes": 791188,
-    "sha256": "2887e44445c92ce96c217e8dec3d0ab3a6797fb910ed473f50dd2b93f369c55e"
+    "bytes": 785933,
+    "sha256": "e3a415794f022c6ddc03a6ba95ede3e1fb66623bc71b96386a2964e49086bc59"
   },
   "modules": [
     {
@@ -19,27 +19,27 @@
     },
     {
       "file": "pixel-cat-affordances.js",
-      "sha256": "09d0776cf329a194215f9076a4802fc41c475bdee1b15cfe738acf841e52ee7b"
+      "sha256": "2af435e501eb86218fd348246e1943d8e1924453b8cdaf613a89eb29a17570b1"
     },
     {
       "file": "pixel-cat-behaviours.js",
-      "sha256": "864d5a504fe6b6a337ad0937809cedd32f3daa3cc578007206c0e7aa63cf139e"
+      "sha256": "b3bd4963a022141d7d2df0cbe163ddba26a19e03f46644225ab4e36349a72e21"
     },
     {
       "file": "pixel-cat-roaming.js",
-      "sha256": "0e2314c8c4da334149f2950d5cdfb8af4a340fec30d0d44ed9fef88cc2701a4d"
+      "sha256": "b6cade262097d13d7507f01b519debed29a80a421e0130df923e4a236f616a38"
     },
     {
       "file": "pixel-cat-climbing.js",
-      "sha256": "49dfa6eb435465d644f06847a94185b2d0bd958ada2b096289b769f67c2c7842"
+      "sha256": "3f71d85a496b2603cf01917075ce02920137084ad385ec316203e5b92024a69a"
     },
     {
       "file": "pixel-cat-box.js",
-      "sha256": "06447cafc4ba070a6695ad003924cffb1100eb853f827c4c744077513bf30bb3"
+      "sha256": "096472daff46937394a0fa11c3b44149577c3485dff8982c74f9589693ff032c"
     },
     {
       "file": "pixel-cat-dashboard-chase.js",
-      "sha256": "efe0d4a4781614588ac2de96b5a1c3f3294e8b9ddaa42bde6447bce29f6a5ce4"
+      "sha256": "2b5cf7657ac9166a9bb71d68a506c332847319dde479ca51a18a8570d770a2d4"
     }
   ],
   "decodedArtworkSha256": "d55cc78620f069f632b2c36d0c63aa430921dcc41bfa8776c910e6b9bd088077",
