@@ -1,6 +1,6 @@
 # Pixel Cat Card release plan
 
-Updated 17 November 2026. [ROADMAP](../ROADMAP.md#release-and-maintenance) owns priority and SHIP IDs; this document owns release gates.
+Updated 20 November 2026. [ROADMAP](../ROADMAP.md#release-and-maintenance) owns priority and SHIP IDs; this document owns release gates.
 
 ## Settled decisions
 
@@ -12,14 +12,15 @@ Updated 17 November 2026. [ROADMAP](../ROADMAP.md#release-and-maintenance) owns 
 
 ## Remaining release sequence
 
-1. After protected-main checks pass, tag the tested `package.json` version and run **Prepare release**. Confirm the draft's bundle, manifest and checksum match the tagged build before publishing as an opt-in prerelease. Preserve prior release assets and tags.
-2. On an isolated Home Assistant 2026.11+ instance, connect GitHub, add the custom repository as **Dashboard**, enable **Pre-release** and install. Record the version, served file checksum and exactly one registered module. Reload and check the card picker, save a companion, watch it move, and verify Pause/Resume and view return.
-3. Test an upgrade and versioned cache with two installable versions. Check removal and reinstall, then restore the isolated instance's pre-upgrade backup and verify rollback. Capture installed bytes, registration and saved YAML at each step. Keep the live dashboard out of this test. [Marketplace version and backup guidance](https://www.home-assistant.io/integrations/marketplace/#installing-another-version).
-4. Address failures through tested PRs and fresh versions. Publish the next stable version as a regular GitHub release after acceptance and green validation. Recheck the stable release asset and clean-install path. Preserve old assets and tags for rollback.
+Stable v1.1.0 is published and its live Marketplace upgrade is verified. [Publication evidence](../history/RELEASE_1_1_0_2026-11-18.md) records the exact asset hash and completed checks. This does not close isolated installation or restore acceptance.
+
+1. Identify a disposable Home Assistant 2026.11+ instance with separate configuration/storage and no live device credentials or automations. Follow the [isolated acceptance checklist](../guides/ISOLATED_RELEASE_ACCEPTANCE.md). No suitable instance is recorded yet.
+2. Verify a clean Marketplace install of the published stable release, then an upgrade between two existing installable versions. Capture installed bytes, versioned registration and saved YAML at each checkpoint. Test removal/reinstall and an explicitly confirmed restore of the isolated instance's pre-upgrade backup. Keep the live dashboard out of this test.
+3. Address failures through tested PRs and fresh versions. For the next release, tag a tested, unused `package.json` version after protected-main checks pass and run **Prepare release**. Verify the draft's bundle, manifest and checksum against the tagged build before publishing an opt-in prerelease. Repeat relevant acceptance before stable publication; preserve existing release assets and tags.
 
 ## Catalog submission
 
-The default catalog lives in [hacs/default](https://github.com/hacs/default) on `master`. [Pixel Cat Card’s catalog PR](https://github.com/hacs/default/pull/13826) is open as a draft. When publication resumes, update that PR with the new stable release, its passing Marketplace validation run and the verified acceptance evidence. Address the existing review, mark the PR ready and re-request review.
+The default catalog lives in [hacs/default](https://github.com/hacs/default) on `master`. [Pixel Cat Card’s catalog PR](https://github.com/hacs/default/pull/13826) was marked ready and followed up on 18 November; formal reviewer assignment requires upstream permissions. [The dated record](../history/RELEASE_1_1_0_2026-11-18.md) owns that evidence. Check its fresh status before further action, and add isolated acceptance evidence when available.
 
 1. Recheck [catalog guidance](https://contributors.home-assistant.io/marketplace/guides/catalog/) and the [current PR template](https://github.com/hacs/default/blob/master/.github/PULL_REQUEST_TEMPLATE.md). Confirm whether a listing or submission already exists.
 2. Confirm the public repo is active with a description, topics, issues, MIT license, an illustrated README, and a working custom-repository install. Keep the link to the full release and the exact green [Marketplace validation](https://github.com/Future-Surfer/Pixel-Cat-Card/actions/workflows/marketplace.yml) run with zero ignored checks. Hassfest and integration branding are for integrations.

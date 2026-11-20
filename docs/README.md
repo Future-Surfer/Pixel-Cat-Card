@@ -8,6 +8,7 @@
 | Current checkpoint / limits | [CURRENT_STATE](CURRENT_STATE.md); verify live Git/HA/Studio state before mutation |
 | Priorities / dependencies | [ROADMAP](ROADMAP.md) only |
 | Pixel Cat Card release preparation | [Proposed identity, Marketplace packaging, Git cleanup, media and release gates](design/PIXEL_CAT_RELEASE.md) |
+| Clean installation, reinstall and native restore checks | [Isolated release acceptance checklist](guides/ISOLATED_RELEASE_ACCEPTANCE.md) |
 | Commands, source ownership, deployment | [Development guide](DEVELOPMENT.md) |
 | Test coverage, browser checks and seed replay | [Testing workflow and limits](DEVELOPMENT.md#test-coverage-and-failure-replay), [feature evidence map](../scripts/testing/coverage-map.json) |
 | Contributing, reporting vulnerabilities, release notes | [Contributing](CONTRIBUTING.md), [security policy](SECURITY.md), [release notes](RELEASE_NOTES.md) |
