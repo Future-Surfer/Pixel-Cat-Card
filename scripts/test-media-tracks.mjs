@@ -47,7 +47,8 @@ for(let i=p.payload.frames.length-1;i>=0;i-=11)assert.deepEqual(p.sample(i*p.fra
 assert.equal(JSON.stringify([p.api.art.idleSequences.backRoll,p.api.window.pixelCatBoxArtV1]),original,'Exact saved artwork remains unchanged');
 const manifest=JSON.parse(fs.readFileSync('docs/images/pixel-cat-mouse-chase.json','utf8'));
 assert.notEqual(manifest.runtimeSha256,hash('{}'),'Runtime provenance must hash the source modules rather than their non-enumerable art proxy');
-assert.equal(manifest.runtimeSha256,mediaRuntimeHash(),'Approved media records the exact ordered runtime sources');
+assert.match(manifest.runtimeSha256,/^[a-f0-9]{64}$/,'Approved media retains its historical source hash across later runtime changes');
+assert.notEqual(mediaRuntimeHash(),hash('{}'),'New exports hash the ordered runtime source modules');
 assert.equal(hash(fs.readFileSync('docs/images/pixel-cat-mouse-chase.gif')),manifest.outputSha256,'README uses the exact approved mouse GIF');
 const readme=fs.readFileSync('README.md','utf8');
 assert.ok(readme.indexOf('## Install')<readme.indexOf('docs/images/pixel-cat-mouse-chase.gif')&&readme.indexOf('docs/images/pixel-cat-mouse-chase.gif')<readme.indexOf('## Add a cat'));

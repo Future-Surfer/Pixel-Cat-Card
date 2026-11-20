@@ -1887,9 +1887,12 @@ const chosen=sampleDecision(options,r,a);if(chosen.kind==='continue'){a.route=ro
 if(chosen.kind==='acknowledge'){stats.acknowledgements++;this.lastAcknowledgement||=new Map();this.lastAcknowledgement.set(chosen.target.ownerKey,this.clock+12000);while(this.lastAcknowledgement.size>32)this.lastAcknowledgement.delete(this.lastAcknowledgement.keys().next().value);a.facing=chosen.target.x>a.x?1:-1;this.watchUntil=this.clock+900;a.deadline=t+1100;a.finishing=false;if(a.idle)a.idle.poseUntil=t;this.log('passing acknowledgement',{target:chosen.target.ownerKey});return;}
 if(this.startSocial(chosen,t))a.finishing=false;else a.route=route;
 }
-walkingEncounter(t){const a=this.actor,m=a.motion;if(this.clock<(this.nextWalkingEncounter||0)||m.kind!=='walk'||m.gallopTimeline||m.sneakTimeline||!m.cumulativeMs?.length)return;this.nextWalkingEncounter=this.clock+2500;
+walkingEncounter(t){const a=this.actor,m=a.motion;if(this.clock<(this.nextWalkingEncounter||0)||m.kind!=='walk'||m.gallopTimeline||m.sneakTimeline||!m.cumulativeMs?.length||!sameSupport(a.support,m.target))return;this.nextWalkingEncounter=this.clock+2500;
 const b=this.peers().find(b=>this.visible?.has(b.ownerKey)&&this.available(b)&&sameSupport(a.support,b.support)&&!this.scene.has(b)&&this.world.ready(a,b)&&Math.abs(b.x-a.x)<100*a.scale&&Math.sign(b.x-a.x)===a.facing);if(!b||a.ensureMood().random()>.2+.5*a.ensureMood().values.playfulness)return;
-const elapsed=t-m.start,index=m.cumulativeMs.findIndex(ms=>ms>elapsed);if(index<0||index+1>=m.cells)return;const cells=index+1;m.cells=cells;m.x=m.fromX+m.direction*cells*a.scale;m.cumulativeMs=m.cumulativeMs.slice(0,cells);m.headOffsets=m.headOffsets?.slice(0,cells+1);m.duration=m.cumulativeMs.at(-1);this.log('noticed companion during walk',{target:b.ownerKey});this.nextEncounter=this.clock;
+const elapsed=t-m.start,index=m.cumulativeMs.findIndex(ms=>ms>elapsed);if(index<0||index+1>=m.cells)return;
+const first=Math.ceil((m.direction>0?a.support.min-m.fromX:m.fromX-a.support.max)/a.scale),cells=Math.max(index+1,first),x=m.fromX+m.direction*cells*a.scale;
+if(cells>=m.cells||!Number.isFinite(x)||x<a.support.min||x>a.support.max)return;
+m.cells=cells;m.x=x;m.cumulativeMs=m.cumulativeMs.slice(0,cells);m.headOffsets=m.headOffsets?.slice(0,cells+1);m.duration=m.cumulativeMs.at(-1);this.log('noticed companion during walk',{target:b.ownerKey});this.nextEncounter=this.clock;
 }
 socialOptions(kind){const a=this.actor;this.socialRejections={};const reject=key=>{this.socialRejections[key]=(this.socialRejections[key]||0)+1;};if(!this.enabled()||!this.available(a)||a.support?.home||a.support?.narrow||this.scene.has(a)){reject('self / home / narrow');return [];}const options=[];
 for(const m of this.memory.values()){const b=this.peers().find(b=>b.ownerKey===m.id);if(!b?.config.interaction_behaviour||!m.frame||this.clock-m.at>700){reject('observation');continue;}if(!this.available(b)||this.scene.has(b)){reject('partner '+this.unavailableReason(b));continue;}if(!this.world.ready(a,b)){reject('pair cooldown');continue;}if(!sameSupport(a.support,b.support)||m.surface!==a.support.el){reject('different surface');continue;}
@@ -3136,7 +3139,7 @@ if(!this.root||editorPreviewFor(this)){this.active=false;this.observePreviewProp
 if(!window.pixelCatWorldV1&&['world_id','world_owner','world_settings'].some(k=>this.config[k]!==undefined)){this.active=false;this.worldReadyHandler??=()=>{this.worldReadyHandler=null;if(this.isConnected)this.connectedCallback();};window.addEventListener('pixel-cat-world-ready',this.worldReadyHandler,{once:true});return;}
 if(window.pixelCatWorldV1&&!window.pixelCatWorldV1.attach(this)){this.active=false;return;}this.active=true;
 window.pixelCatLayoutV1?.join(this);this.ownerKey=claimCatOwner(this,this.config.cat_id,this.root);this.setAttribute('data-cat-id',this.ownerKey);window.pixelCatPrimaryV1?.join(this);
-this.postRest=null;this.signature=null; this.support=null; this.motion=null; this.route=[]; this.paused=!!this.config.start_paused; this.shadowRoot.querySelector('[data-action="pause"]').textContent=this.paused?'Resume':'Pause';this.suspended=false; this.walkSteps=0;this.idle=null;this.play=null;this.nextPlayAt=performance.now()+60000+Math.random()*60000;
+this.postRest=null;this.signature=null; this.support=null; this.motion=null; this.route=[]; this.paused??=!!this.config.start_paused; this.shadowRoot.querySelector('[data-action="pause"]').textContent=this.paused?'Resume':'Pause';this.suspended=false; this.walkSteps=0;this.idle=null;this.play=null;this.nextPlayAt=performance.now()+60000+Math.random()*60000;
 this.layer = document.createElement('div');
 this.layer.dataset.pixelCatOverlay = this.ownerKey;
 this.layer.setAttribute('aria-hidden','true');
@@ -4889,7 +4892,7 @@ window.pixelCatDashboardChaseV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.1.0",sourceHash:"5995cbfef62c9dfcf1764611891c1833e9c6bfe334aed00b4d53b3276e10386c"});
+window.pixelCatCardRelease=Object.freeze({version:"1.1.0",sourceHash:"45808cf938d4883652f96c942b5f5b25b57497bd3bae8fcd4f0afe90d28e45b1"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.1.0");
 })();

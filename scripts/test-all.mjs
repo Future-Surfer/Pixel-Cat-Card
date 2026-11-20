@@ -1,13 +1,11 @@
 import fs from 'node:fs';
-import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+import {runOptions} from './testing/run-options.mjs';
+import {runSuites} from './testing/runner.mjs';
 const cwd=fileURLToPath(new URL('../',import.meta.url));
 const tests=fs.readdirSync(new URL('./',import.meta.url)).filter(name=>name!=='test-all.mjs'&&/^test-.+\.mjs$/.test(name)).sort();
-let failures=0;
-for(const name of tests){
- const result=spawnSync(process.execPath,['scripts/'+name],{cwd,stdio:'inherit'});
- if(result.error)throw result.error;
- if(result.status!==0)failures++;
-}
-console.log(`${tests.length-failures}/${tests.length} suites passed.`);
+const {suites,seeds}=runOptions(process.argv.slice(2),tests),directory=path.join(cwd,'.test-artifacts','node');
+const {failures,results}=runSuites({cwd,suites,seeds,directory});
+console.log(`${results.length-failures}/${results.length} suite runs passed (${suites.length} suites, ${seeds.length} seeds).`);
 process.exitCode=failures?1:0;
