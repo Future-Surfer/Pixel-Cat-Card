@@ -2632,7 +2632,6 @@ else window.pixelCatVerticalScratchV1.advance(layer,t);
 a.propScene?.tick(t,a);
 if(layer?.episode===ep)return true;
 ep.labView?.scratchCats.delete(a);a.labScratch=null;if(a.idle?.pose==='postScratch')a.idle.poseUntil=t;
-if(focus==='edgeScratch')a.labPose='stand';
 return false;
 }
 };
@@ -2699,7 +2698,7 @@ if(a.route?.length && a.labRoute===a.route)return 1;
 if(a.route?.length)a.route=[];
 if(a.play||a.toyHunt)a.cancelPlay(t);
 if(a.social?.episode)a.social.finish('behaviour focus');
-a.labPose=focus==='yawn'||focus==='edgeScratch'?'stand':null;
+a.labPose=focus==='yawn'?'stand':null;
 a.deadline=t+4000;
 if(scenarios[focus].enabled?.(a)!==false && a.bedInside && a.bedInside.config.bed_style!=='simple'){
 window.pixelCatBedEntryV1?.exit(a,'stand',t,art);
@@ -4962,7 +4961,7 @@ window.pixelCatDashboardChaseV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.1.0",sourceHash:"b25aa060687ba9629742050eeb9da74ae173e90ed62ce60aac745ee26c278bc0"});
+window.pixelCatCardRelease=Object.freeze({version:"1.1.0",sourceHash:"89667edff939024497481bec68db5c01b923a03494886c8af018c0bb56a18211"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.1.0");
 })();

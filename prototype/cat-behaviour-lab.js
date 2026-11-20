@@ -60,7 +60,7 @@
       if(a.route?.length)a.route=[];
       if(a.play||a.toyHunt)a.cancelPlay(t);
       if(a.social?.episode)a.social.finish('behaviour focus');
-      a.labPose=focus==='yawn'||focus==='edgeScratch'?'stand':null;
+      a.labPose=focus==='yawn'?'stand':null;
       a.deadline=t+4000;
       if(scenarios[focus].enabled?.(a)!==false && a.bedInside && a.bedInside.config.bed_style!=='simple'){
         window.pixelCatBedEntryV1?.exit(a,'stand',t,art);

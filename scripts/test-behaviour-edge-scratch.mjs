@@ -79,7 +79,7 @@ for(const patch of [{painted:false},{visible:false},{connected:false},{climb:'of
  const blocked=fixture();blocked.panel.radius=30;blocked.tick(1000);assert.equal(blocked.a.labScratch,undefined,'Do not scratch a rounded corner with no straight material at the claw events');
 }
 {
- const f=fixture();f.a.ensureMood=()=>({random:()=>.99,values:{sleepiness:.8}});f.tick(1000);assert.equal(f.a.labScratch,undefined,'A cat may decline');
+ const f=fixture();f.a.ensureMood=()=>({random:()=>.99,values:{sleepiness:.8}});f.tick(1000);assert.equal(f.a.labScratch,undefined,'A cat may decline');assert.equal(f.a.labPose,null,'Waiting keeps ordinary quiet pose variety');
  f.choose('edgeScratch');f.a.pathTo=()=>null;f.tick(5000);assert.equal(f.a.labScratch,undefined,'A safe return route is required');
 }
 {

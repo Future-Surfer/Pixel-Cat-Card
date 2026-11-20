@@ -51,7 +51,6 @@ window.pixelCatLabScratchV1={
   a.propScene?.tick(t,a);
   if(layer?.episode===ep)return true;
   ep.labView?.scratchCats.delete(a);a.labScratch=null;if(a.idle?.pose==='postScratch')a.idle.poseUntil=t;
-  if(focus==='edgeScratch')a.labPose='stand';
   return false;
  }
 };
