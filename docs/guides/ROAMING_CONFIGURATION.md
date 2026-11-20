@@ -85,6 +85,8 @@ Other optional switches: `toy_carrying`, `bowl_eating`, `post_rest_behaviour`, `
 
 The editor’s **Chasing** switch lets each cat choose to follow motion it sees on its own surface or across cards. The observing cat needs social and interaction behaviour enabled. The cat being watched can carry on independently. Older dashboard-chase flags can be removed from saved YAML. A follow needs a clear landing and a way back. Use **Behaviour Lab → Chase across cards** to make chase reactions easier to see.
 
+**Behaviour Lab → Scratch card edges** offers standing scratches on reachable exposed card edges. Cats need native surfaces, social behaviour and interaction behaviour enabled; climbing can stay off. Each cat can decline or wait for a safe stance and way home. Choose **Natural behaviour** to end the focus. Counters distinguish attempted approaches, completed scratches with paw contact, and interruptions. [Surface and lifecycle rules](../design/VERTICAL_SURFACE_TRANSFERS.md#behaviour-lab-edge-scratching).
+
 ## Hide the home card
 
 ```yaml

@@ -14,13 +14,13 @@ Updated 10 November 2026. **Sole forward plan.** [Current state](CURRENT_STATE.m
 
 ## Recommended next sequence
 
-Isolated installation/removal/reinstall/restore acceptance is deferred by owner decision on 20 November 2026; no second HA instance will be created for now and no revisit date is scheduled. Keep the checks explicitly untested. Feature development may continue, with **Scratch card edges** the next Behaviour Lab scenario candidate.
+Isolated installation/removal/reinstall/restore acceptance is deferred by owner decision on 20 November 2026; no second HA instance will be created for now and no revisit date is scheduled. Keep the checks explicitly untested. **Scratch card edges** is the current Behaviour Lab implementation; local validation precedes any HA deployment.
 
 **LAB-01 — Behaviour Lab.** The first version is on the HA dev Testing view. One dropdown applies a temporary focus to every eligible cat on the current dashboard view, including cats that join after selection. **Natural behaviour** is the default. **Climb and leap** resets on reload or when the last lab card is removed. Saved cat settings and everyday behaviour weights are independent of the lab.
 
 - Selecting a focus interrupts grounded activities and wakes resting cats. A cat in flight finishes its move. The lab checks again every 2–4 seconds per cat, spreading route checks across the view. Cats take viable routes and wait when blocked. Manual pause, the card climbing setting and safe landings and return routes still apply.
 - The card shows the current busy count and running totals for missing walls, missing safe routes, declines, attempts and completed landings. A safe route includes the approach, grip, landing and way home. The first HA Testing run recorded a completed climb and separate declines and route skips. Automated checks cover view isolation and resetting the focus.
-- Behaviour Lab is available under **Card purpose** alongside Companion and Performance. **Yawn** checks that eligible cats receive the focus without needing a wall route. **Climb and leap** uses the face of the cat’s current card or its own visible home and aims for a different card’s top. Counters distinguish a missing face on the current card, a missing destination, a missing way home, and a route that fails the climb checks. **Scratch card edges** is the next scenario candidate.
+- Behaviour Lab is available under **Card purpose** alongside Companion and Performance. **Yawn** checks that eligible cats receive the focus without needing a wall route. **Climb and leap** uses the face of the cat’s current card or its own visible home and aims for a different card’s top. Counters distinguish a missing face on the current card, a missing destination, a missing way home, and a route that fails the climb checks. **Scratch card edges** reuses reserved supported scratches with optional declines, contact-based completion and scoped interruption cleanup, independently of climbing settings. [Contract and validation scope](design/VERTICAL_SURFACE_TRANSFERS.md#behaviour-lab-edge-scratching).
 
 The desktop stability/calibration batch is delivered. Evidence, measured limits and device checklist (development reference retained privately).
 
@@ -138,6 +138,8 @@ Delivered refinements: [feature index](FEATURES.md); dated evidence (development
 Semantic POIs need deliberate exact-version integration into a grip/mouth/contact; marker colour or prose alone never executes rules. The known post tail-mask row-6 repair is runtime-only: expose it as a reviewed derivation on a later edit, preserve saved originals and do not complete a different hash.
 
 ## Artwork backlog
+
+As features develop, record useful new sequences and variants in the [visual variety intake](design/SEQUENCE_VARIETY_IDEAS.md). Edge-scratching rhythm, glance, tentative touch and finishing-paw accents are ideas awaiting draft/review, not runtime commitments.
 
 | ID / status | Scope |
 | --- | --- |

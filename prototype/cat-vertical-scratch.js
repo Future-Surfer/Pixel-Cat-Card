@@ -1,5 +1,5 @@
 const nativeScratchCards=new WeakMap();let nativeScratchSerial=0;
-// Explicit authored faces share one schema; automatic card-edge discovery is deferred.
+// Authored props and opt-in native card edges share one reserved interaction schema.
 window.pixelCatVerticalScratchV1={
  reconcile(a){
   window.pixelCatCardClimbV1?.reconcile(a);
@@ -57,7 +57,7 @@ window.pixelCatVerticalScratchV1={
  },
  start(layer,face,t){const a=layer.actor,path=a.pathTo(face.surface);if(!path||!layer.available(a)||layer.episode||face.prop.claimedBy||!layer.clear(face.surface,face.origin,face.prop.igloo?window.pixelCatHomeLifeV1.occupants(face.prop.homeOwner):[]))return false;
   face.prop.claimedBy=a.ownerKey;const ep={kind:'vertical-scratch',interaction:true,initiator:a,participants:[a],registry:layer.scene,faceId:face.id,prop:face.prop,surface:face.surface,offset:face.origin-face.surface.left,stage:'approach',expires:layer.clock+30000};
-  layer.episode=ep;layer.scene.set(a,ep);a.route=[...path,{settle:true,surface:face.surface,x:face.origin}];a.destinationId=face.surface.id;a.urgency='relaxed';a.deadline=t+30000;layer.log('scratch face approach',{face:face.id});return true;
+  layer.episode=ep;layer.scene.set(a,ep);a.route=[...path,{settle:true,surface:face.surface,x:face.origin}];ep.route=a.route;a.destinationId=face.surface.id;a.urgency='relaxed';a.deadline=t+30000;layer.log('scratch face approach',{face:face.id});return true;
  },
  advance(layer,t){const a=layer.actor,ep=layer.episode,p=ep.prop;
   const present=p?.native?a.config.native_vertical_surfaces&&(a.verticalFaces||[]).some(f=>f.prop===p)&&p.visualOwner.isConnected!==false:p?.homeOwner?window.pixelCatHomePostsV1?.entries(layer).some(e=>e.prop===p):a.propScene?.props.includes(p);
@@ -73,5 +73,5 @@ window.pixelCatVerticalScratchV1={
   if(ep.stage==='approach'){ep.stage='stroke';ep.expires=layer.clock+6200;a.facing=face.direction;a.idle=null;a.deadline=t+6200;this.stats(layer,'strokes');layer.log(p.native?'scratching card edge':'scratching post',{face:face.id});}
  },
  prepare(layer,idle){if(layer.episode?.kind==='vertical-scratch'&&idle.pose==='postScratch')idle.contactX=layer.episode.bearing;},
- release(layer){const ep=layer.episode,p=ep.prop;window.pixelCatEffectsV1?.resetPost(p);if(ep.stage==='stroke')this.stats(layer,layer.clock>=ep.expires&&ep.contacts?'completed':'interrupted');if(p?.claimedBy===layer.actor.ownerKey){p.claimedBy=null;p.cooldownUntil=(p.homeOwner||p.native?layer.world.clock:layer.actor.propScene?.time||0)+60000+60000*layer.actor.ensureMood().random();}layer.nextVertical=layer.clock+45000;}
+ release(layer){const ep=layer.episode,p=ep.prop,a=layer.actor;window.pixelCatEffectsV1?.resetPost(p);const completed=ep.stage==='stroke'&&layer.clock>=ep.expires&&ep.contacts;if(ep.stage==='stroke')this.stats(layer,completed?'completed':'interrupted');ep.labReport?.(completed?'Completed':'Interrupted');if(a.route===ep.route){a.route=[];a.finishing=false;}if(p?.claimedBy===a.ownerKey){p.claimedBy=null;p.cooldownUntil=(p.homeOwner||p.native?layer.world.clock:a.propScene?.time||0)+60000+60000*a.ensureMood().random();}layer.nextVertical=layer.clock+45000;}
 };

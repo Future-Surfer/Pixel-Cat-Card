@@ -10,7 +10,7 @@ const catBaseAction=a=>{
  if(ep?.kind==='company')return (ep.stage==='rest'?'Resting near ':'Going to rest near ')+peer(ep.target);
  if(ep?.kind==='bed')return (ep.stage==='rest'?'Sleeping in ':'Going to ')+(ep.owner===a?'own bed':peer(ep.owner)+'’s bed');
  if(ep?.kind==='bed-claim')return ep.initiator===a?(ep.stage==='stroke'?'Patting a bed guest':'Approaching own bed'):'Resting in a borrowed bed';
- if(ep?.kind==='vertical-scratch')return ep.stage==='stroke'?(ep.prop?.igloo?'Scratching the igloo':'Scratching the post'):'Approaching a scratch surface';
+ if(ep?.kind==='vertical-scratch')return ep.stage==='stroke'?(ep.prop?.native?'Scratching a card edge':ep.prop?.igloo?'Scratching the igloo':'Scratching the post'):'Approaching a scratch surface';
  if(ep?.kind==='shelf-ambush')return ep.stage==='land'?'Pouncing down':ep.stage==='wiggle'?'Wiggling before pouncing':'Stalking from above';
  if(ep?.initiator===a){if(ep.kind==='pat')return (ep.stage==='stroke'?'Patting ':'Approaching to pat ')+peer(ep.target);if(ep.kind==='ambush')return ({sneak:'Stalking ',check:'Watching ',land:'Pouncing toward '}[ep.stage]||'Approaching ')+peer(ep.target);if(ep.kind==='prop')return ep.stage==='land'?'Pouncing on the ball':'Tracking the ball';}
  const p=a.play,toy=p?.toyId&&a.propScene?.props.find(t=>t.id===p.toyId),target=toy?.asset?.id==='ball'?'the ball':toy?'the mouse toy':'an imaginary target';

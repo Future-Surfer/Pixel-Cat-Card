@@ -14,6 +14,7 @@
 | Contributing, reporting vulnerabilities, release notes | [Contributing](CONTRIBUTING.md), [security policy](SECURITY.md), [release notes](RELEASE_NOTES.md) |
 | Find implemented behaviour | [Feature index](FEATURES.md), then the linked [detailed contract](FEATURE_DETAILS.md) section |
 | Studio integration | [Studio AGENTS](../frame-studio/AGENTS.md), then relevant [Studio guide](../frame-studio/README.md)/exact saved snapshot |
+| New sequence and visual variety ideas | [Feature-driven sequence intake](design/SEQUENCE_VARIETY_IDEAS.md); proposals, not approved artwork |
 | Life stages / new owner briefs | [Size-only V1 and settling design](design/LIFE_STAGES_AND_SETTLING.md), [19 October idea intake](design/IDEA_INTAKE_2026-10-19.md); size-only runtime V1 delivered, behaviour/settling modifiers remain planned |
 | World authority / migration | [Configuration and rollback guide](guides/WORLD_AUTHORITY.md), [future scale/resident design](design/WORLD_AND_RESIDENTS.md) |
 | Labels, controls, reports | [Cat diagnostics](guides/CAT_DEBUG.md) |

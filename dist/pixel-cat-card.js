@@ -744,6 +744,7 @@ report(clip){const c=catCompiledTracks.get(clip);return c?{cachedCombinations:c.
 };
 
 window.pixelCatPolishV1={
+freeze(a,gap){gap=Math.max(0,gap);if(a.climb)a.climb.last+=gap;if(a.explorationResidence)a.explorationResidence.since+=gap;if(a.nextLandingReactionAt)a.nextLandingReactionAt+=gap;if(a.nextStartleAt)a.nextStartleAt+=gap;if(a.motion)a.motion.start+=gap;if(a.idle){a.idle.start+=gap;a.idle.poseUntil+=gap;}if(a.play&&Number.isFinite(a.play.waitUntil))a.play.waitUntil+=gap;if(a.toyHunt)a.toyHunt.started+=gap;if(a.nextReactiveMouseAt)a.nextReactiveMouseAt+=gap;if(a.nextToyAttemptAt)a.nextToyAttemptAt+=gap;if(a.nextToyAt)a.nextToyAt+=gap;if(a.nextPlayAt)a.nextPlayAt+=gap;if(a.forcedIdleUntil)a.forcedIdleUntil+=gap;if(a.deadline>0)a.deadline+=gap;if(a.labScratch)a.labScratch.labLast+=gap;},
 scratchCycleMs:75,
 colours:['#263b49','#bb783d','#7761a6','#447c77','#b76473','#527ca6','#797443','#99563c','#637985','#824c7e','#45856e','#b57840','#33241e','#d7a773','#e8d8bf','#222222','#eeeeee'],
 colour(random=Math.random){return this.colours[Math.min(this.colours.length-1,Math.floor(random()*this.colours.length))];},
@@ -1570,7 +1571,7 @@ return this.start(layer,faces[Math.floor(r()*faces.length)],t);
 },
 start(layer,face,t){const a=layer.actor,path=a.pathTo(face.surface);if(!path||!layer.available(a)||layer.episode||face.prop.claimedBy||!layer.clear(face.surface,face.origin,face.prop.igloo?window.pixelCatHomeLifeV1.occupants(face.prop.homeOwner):[]))return false;
 face.prop.claimedBy=a.ownerKey;const ep={kind:'vertical-scratch',interaction:true,initiator:a,participants:[a],registry:layer.scene,faceId:face.id,prop:face.prop,surface:face.surface,offset:face.origin-face.surface.left,stage:'approach',expires:layer.clock+30000};
-layer.episode=ep;layer.scene.set(a,ep);a.route=[...path,{settle:true,surface:face.surface,x:face.origin}];a.destinationId=face.surface.id;a.urgency='relaxed';a.deadline=t+30000;layer.log('scratch face approach',{face:face.id});return true;
+layer.episode=ep;layer.scene.set(a,ep);a.route=[...path,{settle:true,surface:face.surface,x:face.origin}];ep.route=a.route;a.destinationId=face.surface.id;a.urgency='relaxed';a.deadline=t+30000;layer.log('scratch face approach',{face:face.id});return true;
 },
 advance(layer,t){const a=layer.actor,ep=layer.episode,p=ep.prop;
 const present=p?.native?a.config.native_vertical_surfaces&&(a.verticalFaces||[]).some(f=>f.prop===p)&&p.visualOwner.isConnected!==false:p?.homeOwner?window.pixelCatHomePostsV1?.entries(layer).some(e=>e.prop===p):a.propScene?.props.includes(p);
@@ -1585,7 +1586,7 @@ if(a.support.el!==face.surface.el||Math.abs(a.support.top-face.surface.top)>2||M
 if(ep.stage==='approach'){ep.stage='stroke';ep.expires=layer.clock+6200;a.facing=face.direction;a.idle=null;a.deadline=t+6200;this.stats(layer,'strokes');layer.log(p.native?'scratching card edge':'scratching post',{face:face.id});}
 },
 prepare(layer,idle){if(layer.episode?.kind==='vertical-scratch'&&idle.pose==='postScratch')idle.contactX=layer.episode.bearing;},
-release(layer){const ep=layer.episode,p=ep.prop;window.pixelCatEffectsV1?.resetPost(p);if(ep.stage==='stroke')this.stats(layer,layer.clock>=ep.expires&&ep.contacts?'completed':'interrupted');if(p?.claimedBy===layer.actor.ownerKey){p.claimedBy=null;p.cooldownUntil=(p.homeOwner||p.native?layer.world.clock:layer.actor.propScene?.time||0)+60000+60000*layer.actor.ensureMood().random();}layer.nextVertical=layer.clock+45000;}
+release(layer){const ep=layer.episode,p=ep.prop,a=layer.actor;window.pixelCatEffectsV1?.resetPost(p);const completed=ep.stage==='stroke'&&layer.clock>=ep.expires&&ep.contacts;if(ep.stage==='stroke')this.stats(layer,completed?'completed':'interrupted');ep.labReport?.(completed?'Completed':'Interrupted');if(a.route===ep.route){a.route=[];a.finishing=false;}if(p?.claimedBy===a.ownerKey){p.claimedBy=null;p.cooldownUntil=(p.homeOwner||p.native?layer.world.clock:a.propScene?.time||0)+60000+60000*a.ensureMood().random();}layer.nextVertical=layer.clock+45000;}
 };
 
 window.pixelCatToyInvitationV1={
@@ -1673,32 +1674,6 @@ if(ep.stage==='wiggle'&&layer.clock<ep.wait)return;
 if(!layer.clear(s,ep.x,ep.prop?[]:[b])||a.moveTo(ep.x,s.top,0,'jump',s,t)===false){layer.finish('small-drop landing unsafe');return;}ep.stage='land';ep.jumpKind=a.motion.jumpKind;layer.log('small-drop pounce committed',{target:ep.prop?b.id:b.ownerKey});
 },
 release(layer){const ep=layer.episode;if(ep.prop&&!ep.target.carrier&&ep.target.claimedBy===layer.actor.ownerKey){ep.target.claimedBy=null;ep.target.cooldownUntil=(layer.actor.propScene?.time||0)+30000;}layer.nextShelf=layer.clock+30000;}
-};
-
-window.pixelCatLabApproachV1 = (climb,a,report,mode) => {
-const g=climb.reconcile(a),from=a.support,world=window.pixelCatSurfaceWorldV1;
-if(!g?.tops.length)return false;
-if(from.bed&&a.home){
-a.route=[a.home];a.labRoute=a.route;report('Repositioning');return true;
-}
-const owners=new Set(g.faces.map(f=>g.byOwner.get(f.panelId)));
-const nearest=s=>Math.hypot(Math.max(s.min-a.x,0,a.x-s.max),from.top-s.top);
-const starts=a.surfaces.filter(s=>!s.narrow&&!s.bed&&!s.tree&&owners.has(climb.sourceCard(a,s))).sort((x,y)=>nearest(x)-nearest(y)).slice(0,3);
-for(const start of starts){
-const owner=climb.sourceCard(a,start),steps=world.route(a,start,from);
-if(!steps||steps.length>2||!world.route(a,a.home,start))continue;
-const targets=g.tops.filter(s=>g.byOwner.get(s.panelId)!==owner).sort((x,y)=>Math.abs(x.top-start.top)-Math.abs(y.top-start.top)).slice(0,6);
-for(const top of targets){
-const target=a.surfaces.find(s=>s.id===top.sourceId);
-if(!target||target.el===owner||!world.route(a,a.home,target))continue;
-const x=Math.max(start.min,Math.min(start.max,(target.min+target.max)/2));
-if(start===from&&Math.abs(x-a.x)<4*a.scale||!climb.route(a,target,start,false,mode,x))continue;
-const approach=window.pixelCatPointRoutesV1?.plan(a,start,x);
-if(!approach?.length)continue;
-a.route=approach;a.labRoute=approach;report('Repositioning');return true;
-}
-}
-return false;
 };
 
 })();
@@ -2488,7 +2463,7 @@ if(a.previewPose)return poses[a.previewPose]||a.previewPose;
 if(ep?.kind==='company')return (ep.stage==='rest'?'Resting near ':'Going to rest near ')+peer(ep.target);
 if(ep?.kind==='bed')return (ep.stage==='rest'?'Sleeping in ':'Going to ')+(ep.owner===a?'own bed':peer(ep.owner)+'’s bed');
 if(ep?.kind==='bed-claim')return ep.initiator===a?(ep.stage==='stroke'?'Patting a bed guest':'Approaching own bed'):'Resting in a borrowed bed';
-if(ep?.kind==='vertical-scratch')return ep.stage==='stroke'?(ep.prop?.igloo?'Scratching the igloo':'Scratching the post'):'Approaching a scratch surface';
+if(ep?.kind==='vertical-scratch')return ep.stage==='stroke'?(ep.prop?.native?'Scratching a card edge':ep.prop?.igloo?'Scratching the igloo':'Scratching the post'):'Approaching a scratch surface';
 if(ep?.kind==='shelf-ambush')return ep.stage==='land'?'Pouncing down':ep.stage==='wiggle'?'Wiggling before pouncing':'Stalking from above';
 if(ep?.initiator===a){if(ep.kind==='pat')return (ep.stage==='stroke'?'Patting ':'Approaching to pat ')+peer(ep.target);if(ep.kind==='ambush')return ({sneak:'Stalking ',check:'Watching ',land:'Pouncing toward '}[ep.stage]||'Approaching ')+peer(ep.target);if(ep.kind==='prop')return ep.stage==='land'?'Pouncing on the ball':'Tracking the ball';}
 const p=a.play,toy=p?.toyId&&a.propScene?.props.find(t=>t.id===p.toyId),target=toy?.asset?.id==='ball'?'the ball':toy?'the mouse toy':'an imaginary target';
@@ -2579,6 +2554,89 @@ const decisions=this.shadowRoot?.querySelector('.decision-readout');if(decisions
 };
 
 })();
+window.pixelCatLabApproachV1 = (climb,a,report,mode) => {
+const g=climb.reconcile(a),from=a.support,world=window.pixelCatSurfaceWorldV1;
+if(!g?.tops.length)return false;
+if(from.bed&&a.home){
+a.route=[a.home];a.labRoute=a.route;report('Repositioning');return true;
+}
+const owners=new Set(g.faces.map(f=>g.byOwner.get(f.panelId)));
+const nearest=s=>Math.hypot(Math.max(s.min-a.x,0,a.x-s.max),from.top-s.top);
+const starts=a.surfaces.filter(s=>!s.narrow&&!s.bed&&!s.tree&&owners.has(climb.sourceCard(a,s))).sort((x,y)=>nearest(x)-nearest(y)).slice(0,3);
+for(const start of starts){
+const owner=climb.sourceCard(a,start),steps=world.route(a,start,from);
+if(!steps||steps.length>2||!world.route(a,a.home,start))continue;
+const targets=g.tops.filter(s=>g.byOwner.get(s.panelId)!==owner).sort((x,y)=>Math.abs(x.top-start.top)-Math.abs(y.top-start.top)).slice(0,6);
+for(const top of targets){
+const target=a.surfaces.find(s=>s.id===top.sourceId);
+if(!target||target.el===owner||!world.route(a,a.home,target))continue;
+const x=Math.max(start.min,Math.min(start.max,(target.min+target.max)/2));
+if(start===from&&Math.abs(x-a.x)<4*a.scale||!climb.route(a,target,start,false,mode,x))continue;
+const approach=window.pixelCatPointRoutesV1?.plan(a,start,x);
+if(!approach?.length)continue;
+a.route=approach;a.labRoute=approach;report('Repositioning');return true;
+}
+}
+return false;
+};
+
+const scratchContactBands=new WeakMap();
+window.pixelCatLabScratchV1={
+enabled(a){return !!(a.config.native_vertical_surfaces&&a.config.social_behaviour&&a.config.interaction_behaviour);},
+ready(a){return !a.carriedToy&&!!a.decisionLayer?.()?.available(a);},
+reset(view){
+for(const a of view.scratchCats||[]){if(a.labScratch?.labView!==view)continue;if(a.social?.episode===a.labScratch)a.social.finish('scratch focus ended');a.labScratch=null;a.labPose=null;a.deadline=0;if(a.idle?.pose==='postScratch')a.idle.poseUntil=0;}
+view.scratchCats?.clear();
+},
+contactBand(a){
+const clip=a.decisionLayer?.()?.art?.().idleSequences?.postScratch;if(!clip)return null;
+if(!scratchContactBands.has(clip)){
+const driver=clip.animationTracks?.tracks.find(t=>t.id===clip.animationTracks.driver),ys=[];
+for(const event of driver?.events||[]){const i=clip.frameIds.indexOf(event.frameId),anchor=clip.anchors[i];if(anchor&&Math.abs(event.x-anchor[0]-9)<=2&&Number.isFinite(event.y))ys.push(event.y-anchor[1]);}
+scratchContactBands.set(clip,ys.length?{top:Math.min(...ys)-1,bottom:Math.max(...ys)}:null);
+}
+return scratchContactBands.get(clip);
+},
+exposed(a,face,g){
+const p=g?.panels.find(p=>g.byOwner.get(p.id)===face.prop.visualOwner),r=p?.rect,c=p?.clip,w=a.worldRect;
+if(face.prop.visualOwner.isConnected===false||!p||!p.connected||!p.visible||(!p.painted&&p.climb!=='on')||p.climb==='off'||p.permissionReason||p.unsupported)return false;
+const band=this.contactBand(a);if(!band)return false;
+const radius=p.radius||0,x=face.x,top=face.surface.top+band.top*a.scale,bottom=face.surface.top+band.bottom*a.scale;
+if(![x,top,bottom,r.left,r.right,r.top,r.bottom].every(Number.isFinite)||top>=bottom||top<r.top+radius||bottom>r.bottom-radius)return false;
+for(const box of [c,w].filter(Boolean))if(x<box.left||x>box.right||top<box.top||bottom>box.bottom)return false;
+return !(p.blockers||[]).some(b=>b.left<x+a.scale&&b.right>x-a.scale&&b.top<bottom&&b.bottom>top);
+},
+offer(a,t,report){
+const scratch=window.pixelCatVerticalScratchV1,layer=a.decisionLayer(),g=window.pixelCatCardClimbV1?.reconcile(a,true);
+const native=(a.verticalFaces||[]).filter(f=>f.prop.visualOwner.isConnected!==false&&this.exposed(a,f,g));
+if(!native.length){report('No usable edge');return false;}
+const allowed=new Set(native.map(f=>f.id)),faces=scratch.faces(layer).filter(f=>f.prop.native&&allowed.has(f.id)).sort((f,h)=>Math.hypot(f.origin-a.x,f.surface.top-a.y)-Math.hypot(h.origin-a.x,h.surface.top-a.y)).slice(0,8);
+if(!faces.length){report('No safe stance or route');return false;}
+if(a.ensureMood().random()>=.8*(1-.65*(a.ensureMood().values.sleepiness??.5))){report('Declined');return false;}
+for(const face of faces)if(scratch.start(layer,face,t)){
+const ep=layer.episode;ep.labReport=report;ep.labLast=t;ep.labRoot=a.root;a.labScratch=ep;report('Attempted');return true;
+}
+report('No safe stance or route');return false;
+},
+tick(a,t,focus){
+const ep=a.labScratch,layer=a.social;if(!ep)return false;
+if(layer?.episode===ep){
+if(focus!=='edgeScratch'||a.root!==ep.labRoot||!this.enabled(a)||a.command||a.goal||a.previewPose||a.carriedToy){layer.finish('scratch focus ended');}
+else {
+const raw=Math.max(0,t-ep.labLast);ep.labLast=t;layer.clock+=raw>1000?0:Math.min(50,raw);layer.world.tick(t);
+const face=(a.verticalFaces||[]).find(f=>f.id===ep.faceId),g=window.pixelCatCardClimbV1?.reconcile(a,true);
+if(!face||!this.exposed(a,face,g))layer.finish('scratch edge unavailable');
+else window.pixelCatVerticalScratchV1.advance(layer,t);
+}
+}
+a.propScene?.tick(t,a);
+if(layer?.episode===ep)return true;
+ep.labView?.scratchCats.delete(a);a.labScratch=null;if(a.idle?.pose==='postScratch')a.idle.poseUntil=t;
+if(focus==='edgeScratch')a.labPose='stand';
+return false;
+}
+};
+
 (() => {
 const views = new WeakMap();
 const scenarios = {
@@ -2611,9 +2669,17 @@ scenarios.wallJump = {
 offer(a,t,report) { return scenarios.climb.offer(a,t,report,'card-wall-jump'); }
 };
 scenarios.chase={label:'Chase across cards',counters:['Running on','Following','Pounced','Turned to watch','Crossings','No safe route']};
+scenarios.edgeScratch={
+label:'Scratch card edges',
+counters:['No usable edge','No safe stance or route','Declined','Attempted','Completed','Interrupted'],
+enabled:a=>window.pixelCatLabScratchV1.enabled(a),
+ready:a=>window.pixelCatLabScratchV1.ready(a),
+offer:(a,t,report)=>window.pixelCatLabScratchV1.offer(a,t,report)
+};
 window.pixelCatBehaviourLabV1 = {
 tick(a,t,art) {
 const v=views.get(a.root), focus=v&&v.path===location.pathname?v.focus:'';
+if(window.pixelCatLabScratchV1?.tick(a,t,focus))return 1;
 if(focus==='chase')return window.pixelCatDashboardChaseV1?.focus(a,t,v)||0;
 if (!focus) {
 if(a.labFocus){if(a.route===a.labRoute)a.route=[];a.labRoute=null;a.labFocus='';a.labPose=null;a.deadline=t;}
@@ -2633,7 +2699,7 @@ if(a.route?.length && a.labRoute===a.route)return 1;
 if(a.route?.length)a.route=[];
 if(a.play||a.toyHunt)a.cancelPlay(t);
 if(a.social?.episode)a.social.finish('behaviour focus');
-a.labPose=focus==='yawn'?'stand':null;
+a.labPose=focus==='yawn'||focus==='edgeScratch'?'stand':null;
 a.deadline=t+4000;
 if(scenarios[focus].enabled?.(a)!==false && a.bedInside && a.bedInside.config.bed_style!=='simple'){
 window.pixelCatBedEntryV1?.exit(a,'stand',t,art);
@@ -2646,14 +2712,16 @@ return a.climb?2:1;
 offer(a, t) {
 const view = views.get(a.root), scenario = scenarios[view?.focus];
 if (!scenario || view.path !== location.pathname || !a.support || scenario.enabled?.(a) === false ||
-!window.pixelCatClimbV1.ready(a) || a.idle?.pose === 'sleep' && t < a.idle.poseUntil) return false;
+!(scenario.ready?scenario.ready(a):window.pixelCatClimbV1.ready(a)) || a.idle?.pose === 'sleep' && t < a.idle.poseUntil) return false;
 if (t < (view.next.get(a) || 0)) return false;
 if(t<(view.probeAt||0))return false;
 view.probeAt=t+100;
 view.next.set(a, t + 2000 + a.ensureMood().random() * 2000);
 const counts = view.counts;
 const report = label => { counts[label] = (counts[label] || 0) + 1; };
-return scenario.offer(a, t, report) === true;
+const accepted=scenario.offer(a,t,report)===true;
+if(accepted&&a.labScratch){a.labScratch.labView=view;(view.scratchCats||=new Set()).add(a);}
+return accepted;
 }
 };
 if (typeof HTMLElement === 'undefined' || customElements.get('pixel-cat-behaviour-lab')) return;
@@ -2672,13 +2740,14 @@ view = {path:location.pathname, focus:'', cards:0, next:new WeakMap(), counts:{}
 views.set(root, view);
 }
 view.cards++;
-this.cleanup = () => { if (!--view.cards && views.get(root) === view) {window.pixelCatDashboardChaseV1?.resetFocus(view);views.delete(root);} };
+this.cleanup = () => { if (!--view.cards && views.get(root) === view) {window.pixelCatDashboardChaseV1?.resetFocus(view);window.pixelCatLabScratchV1?.reset(view);views.delete(root);} };
 const shadow = this.shadowRoot || this.attachShadow({mode:'open'});
 shadow.innerHTML = '<ha-card header="Behaviour Lab"><div class="card-content"><label>Focus <select><option value="">Natural behaviour</option></select></label><p></p></div></ha-card>';
 const select = shadow.querySelector('select'), status = shadow.querySelector('p');
 for (const [id, scenario] of Object.entries(scenarios)) select.add(new Option(scenario.label,id));
 select.onchange = () => {
 window.pixelCatDashboardChaseV1?.resetFocus(view);
+window.pixelCatLabScratchV1?.reset(view);
 view.focus = select.value;
 view.counts = {};
 view.next = new WeakMap();
@@ -2688,7 +2757,8 @@ refresh();
 const refresh = () => {
 select.value = view.focus;
 const cats = (window.pixelCatPrimaryV1?.current() || []).filter(a => a.root === root);
-const busy = cats.filter(a => !window.pixelCatClimbV1?.ready(a) || a.idle?.pose === 'sleep').length;
+const ready=scenarios[view.focus]?.ready||(a=>window.pixelCatClimbV1?.ready(a));
+const busy = cats.filter(a => !ready(a) || a.idle?.pose === 'sleep').length;
 status.textContent = view.focus
 ? [`${cats.length} cats (${busy} busy)`, ...scenarios[view.focus].counters.map(k => `${k}: ${view.counts[k] || 0}`)].join(' · ')
 : 'Choose a focus for the cats on this view until you reload.';
@@ -3575,7 +3645,7 @@ for(let node=el;node;node=node.parentElement||node.getRootNode?.()?.host)if(node
 return true;
 });
 }
-freezeClocks(gap){gap=Math.max(0,gap);if(this.climb)this.climb.last+=gap;if(this.explorationResidence)this.explorationResidence.since+=gap;if(this.nextLandingReactionAt)this.nextLandingReactionAt+=gap;if(this.nextStartleAt)this.nextStartleAt+=gap;if(this.motion)this.motion.start+=gap;if(this.idle){this.idle.start+=gap;this.idle.poseUntil+=gap;}if(this.play&&Number.isFinite(this.play.waitUntil))this.play.waitUntil+=gap;if(this.toyHunt)this.toyHunt.started+=gap;if(this.nextReactiveMouseAt)this.nextReactiveMouseAt+=gap;if(this.nextToyAttemptAt)this.nextToyAttemptAt+=gap;if(this.nextToyAt)this.nextToyAt+=gap;if(this.nextPlayAt)this.nextPlayAt+=gap;if(this.forcedIdleUntil)this.forcedIdleUntil+=gap;if(this.deadline>0)this.deadline+=gap;}
+freezeClocks(gap){window.pixelCatPolishV1.freeze(this,gap);}
 renderDebug(){window.pixelCatSurfaceDebugV1?.render.call(this,{restingPoints,flightPoint,propSurfaceFor,propPosition,travelSpeed});}
 draw(rows) {
 const s=this.scale, signature=rows.join('')+this.facing;
@@ -4892,7 +4962,7 @@ window.pixelCatDashboardChaseV1={
 
 })();
 
-window.pixelCatCardRelease=Object.freeze({version:"1.1.0",sourceHash:"45808cf938d4883652f96c942b5f5b25b57497bd3bae8fcd4f0afe90d28e45b1"});
+window.pixelCatCardRelease=Object.freeze({version:"1.1.0",sourceHash:"b25aa060687ba9629742050eeb9da74ae173e90ed62ce60aac745ee26c278bc0"});
 const card=window.customCards?.find(c=>c.type==='pixel-cat-home');if(card){card.name='Pixel Cat Card';card.documentationURL='https://github.com/Future-Surfer/Pixel-Cat-Card#readme';}
 console.info('Pixel Cat Card',"1.1.0");
 })();

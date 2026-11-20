@@ -1,5 +1,6 @@
 // Playback policy and creation defaults; saved artwork stays immutable.
 window.pixelCatPolishV1={
+ freeze(a,gap){gap=Math.max(0,gap);if(a.climb)a.climb.last+=gap;if(a.explorationResidence)a.explorationResidence.since+=gap;if(a.nextLandingReactionAt)a.nextLandingReactionAt+=gap;if(a.nextStartleAt)a.nextStartleAt+=gap;if(a.motion)a.motion.start+=gap;if(a.idle){a.idle.start+=gap;a.idle.poseUntil+=gap;}if(a.play&&Number.isFinite(a.play.waitUntil))a.play.waitUntil+=gap;if(a.toyHunt)a.toyHunt.started+=gap;if(a.nextReactiveMouseAt)a.nextReactiveMouseAt+=gap;if(a.nextToyAttemptAt)a.nextToyAttemptAt+=gap;if(a.nextToyAt)a.nextToyAt+=gap;if(a.nextPlayAt)a.nextPlayAt+=gap;if(a.forcedIdleUntil)a.forcedIdleUntil+=gap;if(a.deadline>0)a.deadline+=gap;if(a.labScratch)a.labScratch.labLast+=gap;},
  scratchCycleMs:75,
  colours:['#263b49','#bb783d','#7761a6','#447c77','#b76473','#527ca6','#797443','#99563c','#637985','#824c7e','#45856e','#b57840','#33241e','#d7a773','#e8d8bf','#222222','#eeeeee'],
  colour(random=Math.random){return this.colours[Math.min(this.colours.length-1,Math.floor(random()*this.colours.length))];},
