@@ -16,6 +16,8 @@ In **Settings → Marketplace**, search for **Pixel Cat Card**. If it doesn’t 
 
 [v1.1.0](https://github.com/Future-Surfer/Pixel-Cat-Card/releases/tag/v1.1.0) removes the two legacy card types. [Install manually or migrate an existing setup](docs/guides/PIXEL_CAT_INSTALL.md).
 
+![A white cat with a black outline grooms, chases and catches a toy mouse, carries it home and bats it off the edge](docs/images/pixel-cat-mouse-chase.gif)
+
 ## Add a cat
 
 Choose **Add card → Pixel Cat Card → Cat companion**, pick its appearance and save.
@@ -31,6 +33,8 @@ bed_style: igloo
 ```
 
 Give each cat a different `cat_id`.
+
+![A slate-blue cat hops out of a cardboard box and scratches a compact cat tree, stirring a plum cat that rolls onto its back before returning to sleep](docs/images/pixel-cat-box-and-tree.gif)
 
 [Configuration](docs/guides/ROAMING_CONFIGURATION.md) · [Technical details](docs/TECHNICAL_DETAILS.md) · [Project docs](docs/README.md) · [Report a bug](https://github.com/Future-Surfer/Pixel-Cat-Card/issues)
 

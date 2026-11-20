@@ -7,6 +7,8 @@
     "build:roaming": "node scripts/build-roaming.mjs",
     "build:studio": "node frame-studio/scripts/build.mjs",
     "test": "node scripts/test-all.mjs",
+    "test:browser": "playwright test",
+    "test:soak": "node scripts/test-all.mjs --suite test-cat-interactions.mjs --seeds 1,19,43,107,991",
     "studio": "node frame-studio/scripts/preview.mjs",
     "gaze:lab": "node scripts/serve-gaze-lab.mjs",
     "studio:review": "node scripts/review-studio-changes.mjs",
@@ -15,6 +17,7 @@
     "build:card": "node scripts/build-card.mjs",
     "demo": "node scripts/serve-release-demo.mjs",
     "media:gif": "node scripts/render-readme-demo.mjs",
+    "media:scene": "node scripts/render-media-scene.mjs",
     "media:video": "node scripts/render-readme-demo.mjs --video"
   },
   "engines": {
@@ -26,5 +29,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Future-Surfer/Pixel-Cat-Card.git"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1"
   }
 }

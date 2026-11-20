@@ -4,12 +4,14 @@ Read [CURRENT_STATE](CURRENT_STATE.md) for the handoff; use [ROADMAP](ROADMAP.md
 
 ## Build and validate
 
-Node.js 22.20+, no npm dependencies.
+Node.js 22.20+. Runtime builds and Node assertions have no npm dependencies. The optional real-browser suite uses pinned Playwright development dependencies (`npm ci --ignore-scripts`); these do not ship in the Home Assistant bundle.
 
 | Command | Purpose |
 | --- | --- |
 | `npm run build` | Regenerate catalogue, frozen refinement overlays, runtime modules and embedded Studio bundle |
 | `npm test` | Discover/run `scripts/test-*.mjs`; nonzero exit on failure |
+| `npm run test:browser` | Packaged-bundle Chromium smoke checks at desktop/narrow widths; install the browser with `npx playwright install chromium` |
+| `npm run test:soak` | Five replayable interaction seeds; also runs nightly in CI |
 | `npm run verify:build` | Two full builds; reject non-reproducible generated outputs |
 | `npm run release:build` | Versioned normal-file loader, source digests and integrity manifest |
 | `node scripts/build-dev-card.mjs` | Build the separately namespaced HA dev bundle after building the runtime |
@@ -24,6 +26,23 @@ Node.js 22.20+, no npm dependencies.
 - [Release guide](guides/ROAMING_RELEASE.md) owns install/upgrade/rollback instructions. Keep the 128000-byte inline guard.
 
 For a dev install alongside Marketplace, serve the dev bundle from a versioned path under Home Assistant's `www` folder and register it as a module. Use `custom:pixel-cat-dev-home` and `custom:pixel-cat-dev-monitor` on development views. Keep a separate view using `custom:pixel-cat-home` to test the Marketplace version. For each dev update, point the existing dev resource to the new hash directory and reload the frontend. To roll back a dev update, point the dev resource back to its previous URL.
+
+## Test coverage and failure replay
+
+[Coverage map](../scripts/testing/coverage-map.json) owns feature-to-suite/browser evidence and explicit open checks. Its validation test rejects orphaned test families and stale browser references. This is an evidence inventory, not a percentage or a claim that all combinations are covered. Existing feature documentation can lag the current bundle; reconcile source/configuration, released behaviour and experimental labs before adding a coverage claim.
+
+| Layer | Current evidence | Remaining boundary |
+| --- | --- | --- |
+| Node contracts | Packaging/artwork, motion/contact, perception/behaviour, props, persistence, lifecycle and media; 192 walking-edge cases include half-size kitten scales | Broader composed feature journeys and statistical calibration |
+| Browser | Actual `dist/pixel-cat-card.js`; editor save/reload, adult/kitten paint, cached navigation/Pause, theme/reflow, reduced motion and pointer/Escape cancellation | Synthetic local host, Chromium only; not real HA or a physical phone |
+| Seeded simulation | Explicit VM randomness/virtual clocks in the interaction fixture; fixed PR seed and five nightly/release seeds | More scenario families must adopt the shared seed helper |
+| Manual release/device | Current release history records actual evidence | Isolated clean install/update/reinstall/restore, physical touch/inertia, PiDisplay FPS and wider accessibility remain open |
+
+`PIXEL_CAT_TEST_SEED` defaults to `20261120`. Replay one failure with `node scripts/test-all.mjs --suite test-cat-interactions.mjs --seeds 43`; selectors accept only known suites and bounded uint32 seeds. The runner writes `.test-artifacts/node/results.json`, failure stdout/stderr, seed and replay command, including subprocess timeouts. Crowd failures include actor/frame/time, origin/destination, bounds and bounded recent events. Node runtime contexts must inject `scripts/testing/random.mjs` explicitly; a suite count does not imply every older test is fully seeded.
+
+Browser setup starts and closes its own loopback-only, read-only synthetic fixture in the runner process. It has no Studio/store endpoints and uses isolated browser contexts. Playwright retains failure screenshots/traces and per-test synthetic actor/console diagnostics under `.test-artifacts/browser/`; no automatic retries hide an unstable result. For a workspace-only browser install, set `PLAYWRIGHT_BROWSERS_PATH` to an ignored local directory before installation and test execution. `PIXEL_CAT_BROWSER_PORT` overrides the default `8774`.
+
+CI retains the existing required `build-and-test` job, adds browser smoke and Windows replay jobs, and uploads scoped diagnostics with `always()` even after failure. The nightly soak runs the declared seeds independently. New jobs report on PRs; branch-protection requirements are unchanged. New features should declare released/experimental scope and cover success, voluntary non-participation, interruption, cleanup, affected scale/age/direction/geometry combinations and browser evidence where layout/input matters. Keep unverified device and release gates explicit.
 
 ## Source map
 

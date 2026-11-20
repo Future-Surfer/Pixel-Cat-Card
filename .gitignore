@@ -25,6 +25,8 @@ frame-studio/user-sequences/**/props-before-browser-recovery.json
 
 # Reproducible local release artifacts
 .release/
+node_modules/
+.test-artifacts/
 
 # Owner-private session inputs and personal notes; never release these folders.
 .codex-remote-attachments/

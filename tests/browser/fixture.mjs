@@ -1,0 +1,13 @@
+import '/dist/pixel-cat-card.js';
+const $=s=>document.querySelector(s),first=$('#first'),second=$('#second'),editor=$('#editor'),world=$('#world');
+const baseline={type:'custom:pixel-cat-home',cat_id:'browser-miso',name:'Miso',color:'#cd813c',life_stage:'adult',cell_size:3,show_controls:true,bed_style:'simple',arrival:'none',home_mouse:false,dashboard_props:false,mood_behaviour:false,social_behaviour:false,interaction_behaviour:false,playful_pounces:false,toy_hunting:false,bowl_eating:false,card_climbing:false,native_vertical_surfaces:false,debug_labels:false,fixture_option:'preserve-me'};
+let saved=JSON.parse(localStorage.getItem('pixel-cat-browser-config')||'null')||baseline,draft={...saved};
+first.setConfig(saved);second.setConfig({...baseline,cat_id:'browser-pip',name:'Pip',life_stage:'kitten',color:'#718b9b'});
+const report=()=>{$('#saved-config').textContent=JSON.stringify(saved,null,2);};report();
+$('#edit').onclick=()=>{draft={...saved};editor.setConfig(draft);$('#editor-panel').hidden=false;};
+editor.addEventListener('config-changed',event=>{draft={...event.detail.config};});
+$('#save').onclick=()=>{saved={...draft};localStorage.setItem('pixel-cat-browser-config',JSON.stringify(saved));first.setConfig(saved);$('#editor-panel').hidden=true;report();};
+$('#leave').onclick=()=>{world.remove();$('#other').hidden=false;$('#leave').hidden=true;$('#return').hidden=false;history.pushState({},'','/away');};
+$('#return').onclick=()=>{$('#mount').append(world);history.replaceState({},'','/');$('#other').hidden=true;$('#leave').hidden=false;$('#return').hidden=true;};
+$('#theme').onclick=()=>document.body.classList.toggle('dark');
+$('#bundle-status').textContent='Bundle '+window.pixelCatCardRelease.version+' loaded';

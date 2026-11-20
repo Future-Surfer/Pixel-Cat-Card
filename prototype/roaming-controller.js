@@ -298,7 +298,7 @@ class PixelCatHome extends HTMLElement {
     if(!window.pixelCatWorldV1&&['world_id','world_owner','world_settings'].some(k=>this.config[k]!==undefined)){this.active=false;this.worldReadyHandler??=()=>{this.worldReadyHandler=null;if(this.isConnected)this.connectedCallback();};window.addEventListener('pixel-cat-world-ready',this.worldReadyHandler,{once:true});return;}
     if(window.pixelCatWorldV1&&!window.pixelCatWorldV1.attach(this)){this.active=false;return;}this.active=true;
     window.pixelCatLayoutV1?.join(this);this.ownerKey=claimCatOwner(this,this.config.cat_id,this.root);this.setAttribute('data-cat-id',this.ownerKey);window.pixelCatPrimaryV1?.join(this);
-    this.postRest=null;this.signature=null; this.support=null; this.motion=null; this.route=[]; this.paused=!!this.config.start_paused; this.shadowRoot.querySelector('[data-action="pause"]').textContent=this.paused?'Resume':'Pause';this.suspended=false; this.walkSteps=0;this.idle=null;this.play=null;this.nextPlayAt=performance.now()+60000+Math.random()*60000;
+    this.postRest=null;this.signature=null; this.support=null; this.motion=null; this.route=[]; this.paused??=!!this.config.start_paused; this.shadowRoot.querySelector('[data-action="pause"]').textContent=this.paused?'Resume':'Pause';this.suspended=false; this.walkSteps=0;this.idle=null;this.play=null;this.nextPlayAt=performance.now()+60000+Math.random()*60000;
     this.layer = document.createElement('div');
     this.layer.dataset.pixelCatOverlay = this.ownerKey;
     this.layer.setAttribute('aria-hidden','true');

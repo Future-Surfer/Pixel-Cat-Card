@@ -9,13 +9,14 @@ const box={window:{...events},document:{...events,hidden:false,children:[],body:
 vm.runInNewContext(fs.readFileSync('pixel-cat-roaming.js','utf8')+'\nglobalThis.Home=PixelCatHome;globalThis.owners=()=>CAT_OWNERS.size;',box);
 const root={},button={textContent:''},actor=Object.assign(Object.create(box.Home.prototype),{config:{},style:{},isConnected:true,scale:2,shadowRoot:{querySelector:()=>button,querySelectorAll:()=>[]},setAttribute(){},paintHome(){},worldRoot:()=>root,status(){},tick(t){this.suspended=this.blocked(t);this.layer.style.visibility=this.suspended?'hidden':'visible';}});
 const paint=()=>{const work=[...frames];frames.clear();for(const [,fn]of work)fn(serial*16);};
-actor.connectedCallback();paint();assert.equal(actor.layer.style.visibility,'visible');
+actor.connectedCallback();paint();assert.equal(actor.layer.style.visibility,'visible');actor.paused=true;
 // HA can reconnect a cached view while location still names the dashboard being left.
 for(let i=0;i<5;i++)for(const destination of ['/dashboard-testing/cat-stress-test','/lovelace/0']){
  actor.disconnectedCallback();assert.equal(box.owners(),0);assert.equal(frames.size,0);
  actor.connectedCallback();assert.equal(frames.size,1);actor.connectedCallback();assert.equal(frames.size,1,'Duplicate connection cannot create another clock');
  box.location.pathname=destination;paint();
  assert.equal(actor.href,destination,'Bind navigation identity at the first paint after HA commits its URL');
+ assert.equal(actor.paused,true,'A cached view reconnect preserves manual Pause');
  assert.equal(actor.layer.style.visibility,'visible','Returning cached cats must not remain navigation-suspended');
  assert.equal(box.owners(),1);
  const here=box.location.pathname;box.location.pathname='/another-dashboard';assert.equal(actor.blocked(),true,'Keep hiding a still-mounted cat when navigating away');box.location.pathname=here;

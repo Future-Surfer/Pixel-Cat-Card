@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pixel Cat browser fixture</title>
+<style>
+:root{--ha-card-background:#fff;--primary-text-color:#243b3f;--primary-background-color:#edf3f2}*{box-sizing:border-box}body{background:var(--primary-background-color);color:var(--primary-text-color);font:15px system-ui;margin:20px}body.dark{--ha-card-background:#24343c;--primary-text-color:#e8f3ee;--primary-background-color:#132128}button{font:inherit;padding:8px;margin:4px}main{position:relative;min-height:500px}.stage{position:relative;height:450px;max-width:950px;background:var(--ha-card-background);border:1px solid #aab8c4}.home{position:absolute;top:20px;left:20px;width:380px;max-width:90%}#second-host{top:170px}article{position:absolute;top:360px;left:15px;right:15px;height:60px;background:#d9e6df;border:1px solid #6d8678}pre{white-space:pre-wrap;max-width:900px}section[hidden],main[hidden]{display:none}#editor-panel{max-width:650px}#bundle-status{display:block;margin:10px}
+</style>
+<h1>Packaged card browser checks</h1><p>Synthetic local dashboard; no Home Assistant connection or personal data.</p>
+<nav><button id="edit">Edit cat</button><button id="leave">Leave dashboard</button><button id="return" hidden>Return to dashboard</button><button id="theme">Toggle theme</button></nav>
+<output id="bundle-status">Loading bundle</output><div id="mount"><main id="world" data-cat-world><div class="stage"><section class="home" aria-label="First resident"><pixel-cat-home id="first"></pixel-cat-home></section><section class="home" id="second-host" aria-label="Second resident"><pixel-cat-home id="second"></pixel-cat-home></section><article data-cat-surface aria-label="Shared floor">Shared support</article></div></main></div>
+<section id="other" hidden><h2>Another dashboard</h2></section>
+<section id="editor-panel" hidden><h2>Card editor</h2><pixel-cat-home-editor id="editor"></pixel-cat-home-editor><button id="save">Save and close</button></section>
+<pre id="saved-config" aria-label="Saved configuration"></pre><script type="module" src="/fixture.mjs"></script></html>

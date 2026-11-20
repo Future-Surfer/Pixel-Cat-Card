@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Pixel Cat media scenes</title>
+<style>body{font:15px system-ui;background:#f7f5f0;color:#29313b;max-width:800px;margin:35px auto;padding:0 20px}canvas{width:100%;image-rendering:pixelated}button,select,input{font:inherit;margin:8px 8px 8px 0}input{width:100%}</style>
+<h1>Mouse chase · draft 3</h1><p>A wash, a mouse, a quick chase — and a happy walk home.</p>
+<label>Scene <select id="scene" aria-label="Scene"></select></label>
+<canvas width="480" height="270" aria-label="White cat with a black outline catches a toy mouse"></canvas>
+<input id="seek" type="range" min="0" step="20" aria-label="Scene time">
+<button id="pause">Pause</button><button id="step">One frame</button><button id="restart">Restart</button><select aria-label="Action" id="action"></select><output></output>
+<script type="module">
+import {sceneCommands,drawScene} from '/prototype/media-scene.mjs';
+const catalog=await(await fetch('/media-scenes.json')).json(),scene=document.querySelector('#scene');
+const selected=new URLSearchParams(location.search).get('scene')||'mouse';
+scene.replaceChildren(...catalog.map(s=>Object.assign(document.createElement('option'),{value:s.id,textContent:s.title})));
+if(!catalog.some(s=>s.id===selected))throw Error('Unknown scene');
+scene.value=selected;scene.onchange=()=>{location.search='?scene='+encodeURIComponent(scene.value);};
+const p=await(await fetch('/media-scene-'+selected+'.json')).json(),canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d');
+canvas.width=p.recipe.width;canvas.height=p.recipe.height;
+document.querySelector('h1').textContent=p.recipe.title||'Mouse chase · draft 3';
+if(p.recipe.description)document.querySelector('p').textContent=p.recipe.description;
+if(p.recipe.tracks)canvas.setAttribute('aria-label','Two cats: one jumps out of a cardboard box while another rests with paws up on a cat tree');
+const seek=document.querySelector('#seek'),action=document.querySelector('#action'),pause=document.querySelector('#pause');
+seek.max=p.duration-p.frameMs;action.replaceChildren(...p.queue.map(s=>Object.assign(document.createElement('option'),{value:s.start,textContent:s.label})));
+let elapsed=0,last=null,paused=false;
+const stop=()=>{paused=true;pause.textContent='Resume';};
+seek.oninput=()=>{stop();elapsed=Number(seek.value);};
+action.onchange=()=>{stop();elapsed=Number(action.value);};
+pause.onclick=()=>{paused=!paused;pause.textContent=paused?'Resume':'Pause';};
+document.querySelector('#step').onclick=()=>{stop();elapsed=(Math.floor(elapsed/p.frameMs)*p.frameMs+p.frameMs)%p.duration;};
+document.querySelector('#restart').onclick=()=>{elapsed=0;};
+function paint(t){if(last!==null&&!paused)elapsed=(elapsed+Math.min(100,t-last))%p.duration;last=t;const state=p.frames[Math.floor(elapsed/p.frameMs)];drawScene(ctx,sceneCommands(p,state));seek.value=elapsed;action.value=p.queue.find(s=>s.id===state.id).start;document.querySelector('output').textContent=(elapsed/1000).toFixed(2)+'s · '+state.label;requestAnimationFrame(paint);}requestAnimationFrame(paint);
+</script></html>

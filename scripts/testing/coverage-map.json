@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "meaning": "Ownership and evidence map, not a line-coverage percentage or proof that all combinations are tested.",
+  "browserChecks": {
+    "bundle": "packaged bundle paints independent adult and kitten actors",
+    "editor": "real editor saves, reloads and preserves unknown YAML settings",
+    "navigation": "manual Pause survives cached view leave and reconnect",
+    "reflow": "theme and viewport reflow retain usable actors and Pause",
+    "motionPreference": "reduced-motion preference suspends the actual roaming controller",
+    "handling": "pointer pickup and Escape cancellation preserve manual Pause"
+  },
+  "groups": [
+    {
+      "id": "package-and-harness",
+      "feature": "Release integrity, module loading, reproducible packaging and test infrastructure",
+      "suitePattern": "^test-(card-package|release|runtime-packing|module-order|audit-safety|testing-support|coverage-map|browser-fixture)\\.mjs$",
+      "browser": ["bundle"],
+      "openChecks": ["Isolated Home Assistant clean install, update, uninstall/reinstall and backup restore"]
+    },
+    {
+      "id": "motion-and-registration",
+      "feature": "Walking, sneaking, running, jumps, routes and pose handoffs",
+      "suitePattern": "^test-(roaming-(routing|physics|motion|play|multiple-cats|autonomy|idle|inspection|attention-and-head)|point-routes|motion-options|gallop-runtime|user-refined-runtime|rest-handoffs|stalking-continuity|lookdown-placement|walking-encounters|bed-entry-travel|bed-rest-alignment|refined-actions|refinement-batch|latest-saved-refinements|late-studio-assets)\\.mjs$",
+      "browser": ["bundle", "reflow"],
+      "openChecks": ["Broader authored pose-pair visual review", "More multi-feature browser journeys around edges"]
+    },
+    {
+      "id": "climbing-and-recovery",
+      "feature": "Grip/contact geometry, native-card transfers, climbing and support recovery",
+      "suitePattern": "^test-(climb-.*|card-climb|vertical-surfaces|kitten-climb-metrics)\\.mjs$",
+      "browser": [],
+      "openChecks": ["Browser journey: climbing interrupted by removed/resized support", "Physical Companion viewport and inertia checks"]
+    },
+    {
+      "id": "perception-and-social",
+      "feature": "Gaze, mood, optional interactions, chasing, life stages, rest and reactions",
+      "suitePattern": "^test-(cat-(decisions|interactions|dashboard-chase|shelf-ambush|mood|post-rest|behaviour-refinements|commands)|gaze-.*|quiet-behaviour|behaviour-.*|life-stages|settling|local-exploration|prop-disturbances|startle-.*|alert-lying)\\.mjs$",
+      "browser": ["bundle", "motionPreference"],
+      "openChecks": ["Broader seeded social/geometry combinations", "Adult/senior profile calibration", "Runtime frequencies are distributions, not guaranteed participation"]
+    },
+    {
+      "id": "props-beds-and-carrying",
+      "feature": "Toys, claims, mouth/paw contact, carrying, beds, box and tree furniture",
+      "suitePattern": "^test-(dashboard-props|ball-interactions|mouth-affordances|prop-(reference|pickup-metadata|colour-themes)|home-.*|hidden-home|cat-(box-bed|bed-visits|primary-home)|scratch-invitations|idle-mouse-bat|contact-effects|casual-scratch-reactions|igloo-mask|bat-variety)\\.mjs$",
+      "browser": ["bundle"],
+      "openChecks": ["Automate existing carrying lab journey through turns/reflow/drop", "Browser box-occupancy and interrupted-entry journey"]
+    },
+    {
+      "id": "ui-and-lifecycle",
+      "feature": "Editor, controls, dragging, diagnostics, pause and navigation/layout lifecycle",
+      "suitePattern": "^test-(cat-(setup|home-editor|drag|monitor|debug|diagnostics|scroll)|dashboard-return|world-authority|scroll-overlay|layout-settling|endurance-metrics|force-action-preview|editor-workbench)\\.mjs$",
+      "browser": ["editor", "navigation", "reflow", "motionPreference", "handling"],
+      "openChecks": ["Full keyboard and touch accessibility", "Physical phone/tablet and PiDisplay performance", "Scrolling/drag release across more real dashboard layouts"]
+    },
+    {
+      "id": "studio-and-authoring",
+      "feature": "Artwork, exact provenance, Studio persistence/editing and experimental tree construction",
+      "suitePattern": "^test-(studio-.*|tree-.*|workshop-navigation|frame-canvas|poi-markers|gaze-handles|animation-tracks|art-collections)\\.mjs$",
+      "browser": [],
+      "openChecks": ["Automated isolated multi-tab save/conflict/download/reimport browser journeys", "Human artwork review remains distinct from passing model tests", "Procedural tree construction is experimental, not released traversal coverage"]
+    },
+    {
+      "id": "media",
+      "feature": "Scripted README scenes, independent tracks, masking and exact approved exports",
+      "suitePattern": "^test-(media-.*|readme-routine)\\.mjs$",
+      "browser": [],
+      "openChecks": ["Human GIF presentation approval", "Media scripts do not prove autonomous interaction frequencies"]
+    }
+  ],
+  "newFeatureContract": ["Declare released or experimental scope", "Map success and optional decline paths", "Exercise interruption and cleanup", "Test affected scale/age/direction/geometry combinations", "Add browser evidence where DOM/layout/input matters", "Keep manual/device/release gaps explicit"]
+}
