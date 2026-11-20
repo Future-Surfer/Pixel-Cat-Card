@@ -14,7 +14,9 @@ Updated 20 November 2026. [ROADMAP](../ROADMAP.md#release-and-maintenance) owns 
 
 Stable v1.1.0 is published and its live Marketplace upgrade is verified. [Publication evidence](../history/RELEASE_1_1_0_2026-11-18.md) records the exact asset hash and completed checks. This does not close isolated installation or restore acceptance.
 
-1. Identify a disposable Home Assistant 2026.11+ instance with separate configuration/storage and no live device credentials or automations. Follow the [isolated acceptance checklist](../guides/ISOLATED_RELEASE_ACCEPTANCE.md). No suitable instance is recorded yet.
+**Deferred by owner decision, 20 November 2026:** do not create a second Home Assistant instance for now. Steps 1–2 below are retained for a future revisit, with no scheduled date; they do not block feature development. Record these checks as untested in release evidence until performed. Reassess the remaining acceptance gaps when preparing the next release.
+
+1. When this work is resumed, identify a disposable Home Assistant 2026.11+ instance with separate configuration/storage and no live device credentials or automations. Follow the [isolated acceptance checklist](../guides/ISOLATED_RELEASE_ACCEPTANCE.md). No suitable instance is recorded yet.
 2. Verify a clean Marketplace install of the published stable release, then an upgrade between two existing installable versions. Capture installed bytes, versioned registration and saved YAML at each checkpoint. Test removal/reinstall and an explicitly confirmed restore of the isolated instance's pre-upgrade backup. Keep the live dashboard out of this test.
 3. Address failures through tested PRs and fresh versions. For the next release, tag a tested, unused `package.json` version after protected-main checks pass and run **Prepare release**. Verify the draft's bundle, manifest and checksum against the tagged build before publishing an opt-in prerelease. Repeat relevant acceptance before stable publication; preserve existing release assets and tags.
 

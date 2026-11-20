@@ -2,6 +2,8 @@
 
 This is an execution checklist, not completed evidence. [Release gates](../design/PIXEL_CAT_RELEASE.md) own the publication sequence. The live v1.1.0 upgrade is already verified; clean installation, removal/reinstall and full backup restore remain open.
 
+**Deferred, 20 November 2026:** the owner does not want to create another Home Assistant instance for now. Retain this checklist for a future revisit; no date is scheduled and none of its checkpoints is marked passed. Feature development may continue.
+
 ## Environment and evidence
 
 - Use a disposable Home Assistant 2026.11+ instance with its own configuration, storage and browser profile. Record its actual version and installation type. Do not clone live credentials, device integrations or automations into it.
