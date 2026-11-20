@@ -15,6 +15,7 @@
     "build:card": "node scripts/build-card.mjs",
     "demo": "node scripts/serve-release-demo.mjs",
     "media:gif": "node scripts/render-readme-demo.mjs",
+    "media:scene": "node scripts/render-media-scene.mjs",
     "media:video": "node scripts/render-readme-demo.mjs --video"
   },
   "engines": {

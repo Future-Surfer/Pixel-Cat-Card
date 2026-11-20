@@ -80,4 +80,26 @@ function tickAction(a,until,frame=true){for(let t=0;t<=until;t+=50){if(a.route.l
  a.paused=true;shifted.top-=9.5;M.carried(scene,p,150,[a]);assert.equal(p.releaseFall.elapsed,elapsed,'Manual pause freezes drop progress');assert.equal(position()[1],before[1]-45,'Paused drops still follow scrolling, including in-place geometry updates');a.paused=false;
  shifted.el.isConnected=false;M.carried(scene,p,110,[a]);assert.equal(scene.props.includes(p),false,'Removing the landing support during a release fall cannot leave an orphan');
 }
-console.log('PASS: exact eating art; blind/raw mouth origins, six scales/both facings, ownership, pose/jump attachments, release/fall/removal, real nibble/nose/food contact, meal cooldown, unreachable and interrupted approaches, pounce hit versus miss.');
+// A single real attachment must survive all authored pose frames and flips.
+// Check against saved gaze metadata, independently of the cached mouthPoint.
+let transitionFrames=0;
+for(const scale of [1,2,3,4,5,6]){
+ const {a,p,s}=fixture(scale);p.claimedBy=a.ownerKey;a.mouthPoint={x:100,y:s.top-10};M.attach(a,p,0,art,true);
+ for(const facing of [1,-1,1])for(const [pose,clip] of Object.entries(art.idleSequences))for(let i=0;i<clip.frames.length;i++){
+  const rows=clip.frames[i],metadata=art.gazeIndex?.frames?.[clip.sequenceId]?.[clip.sourceFrames?.[i]??i],gaze=clip.gazes?.[i]||metadata?.gaze;
+  if(!gaze)continue;
+  a.facing=facing;a.idle={pose};a.attrs['data-frame']='idle-'+pose+'-'+(i+1);a.attrs['data-sequence-id']=clip.sequenceId;
+  const x=(30+i)*scale,top=s.top-24*scale;
+  a.svg.style.transform=`translate(${x}px,${top}px)`;
+  M.frame(a,rows,[null,String(x),String(top)],transitionFrames++,art);
+  const xy=p.node.style.transform.match(/translate\(([-\d.]+)px,([-\d.]+)px\)/).slice(1).map(Number);
+  const localX=Math.max(0,Math.min(23,gaze.x+.5)),localY=Math.max(0,Math.min(24,gaze.y+2.5));
+  assert.equal(xy[0],Math.round(x+(facing<0?24-localX:localX)*scale-p.asset.width*scale/2),pose+' keeps the saved horizontal mouth anchor');
+  assert.equal(xy[1],Math.round(top+localY*scale-p.asset.height*scale/2),pose+' keeps the saved vertical mouth anchor');
+  assert.equal(p.carrier,a.ownerKey);assert.equal(p.claimedBy,a.ownerKey);assert.equal(a.carriedToy,p.id);
+  assert.equal(p.carryFacing,facing,'Toy mirrors together with its carrier');
+  M.paintCarry(a,p);assert.equal(p.node.style.transform,`translate(${xy[0]}px,${xy[1]}px)`,'Repeated scene paint does not accumulate drift');
+ }
+}
+assert.ok(transitionFrames>1000);
+console.log(`PASS: exact art, attachment lifecycle/contact and ${transitionFrames} saved mouth anchors through pose changes and both direction reversals at six scales.`);

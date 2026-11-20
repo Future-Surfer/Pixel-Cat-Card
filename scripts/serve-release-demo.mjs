@@ -2,10 +2,13 @@ import http from 'node:http';import fs from 'node:fs';import path from 'node:pat
 import {buildReadmePlayback} from './readme-playback.mjs';
 import {readmeRuntime} from './readme-assets.mjs';
 import {contactRow} from '../prototype/contact-shadow.mjs';
+import {compileScene} from './media-scene.mjs';
+import {mediaRecipes} from './media-recipes/index.mjs';
 const root=path.resolve(import.meta.dirname,'..'),port=Number(process.env.PORT||8770);
 if(!Number.isInteger(port)||port<1024||port>65535)throw Error('Invalid preview port');
 const routes=new Map([['/','prototype/release-showcase.html'],['/prototype/release-showcase.html','prototype/release-showcase.html'],['/dist/pixel-cat-card.js','dist/pixel-cat-card.js']]);
 routes.set('/routine','prototype/readme-routine.html');routes.set('/prototype/readme-routine.mjs','prototype/readme-routine.mjs');
+routes.set('/media','prototype/media-scene.html');routes.set('/prototype/media-scene.mjs','prototype/media-scene.mjs');
 routes.set('/turnaround','prototype/turnaround-lab.html');
 routes.set('/shadow','prototype/shadow-lab.html');
 routes.set('/shadow-v2','prototype/contact-shadow-lab.html');
@@ -24,6 +27,9 @@ const shadow=JSON.stringify({
  props:[...art.dashboardProps,art.homeProps.bowl]
 });
 const data=new Map([['/readme-playback.json',playback],['/turnaround-art.json',turnaround],['/shadow-art.json',shadow]]);
+for(const [id,recipe]of Object.entries(mediaRecipes))data.set('/media-scene-'+id+'.json',JSON.stringify(compileScene(recipe).payload));
+data.set('/media-scene.json',data.get('/media-scene-mouse.json'));
+data.set('/media-scenes.json',JSON.stringify(Object.entries(mediaRecipes).map(([id,r])=>({id,title:r.title||r.id}))));
 const shadowScale=6;
 const left={id:'Left ledge',left:105,right:360,top:285};
 const right={id:'Right ledge',left:445,right:710,top:225};

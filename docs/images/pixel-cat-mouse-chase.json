@@ -1,0 +1,132 @@
+{
+  "schema": 1,
+  "recipe": "mouse-chase-draft-3",
+  "recipeSha256": "7a4af99df3e14f4ba22470ae93ef0f37d85449227a89ebb83ec97fff7af27102",
+  "assetsSha256": "fe0e39ea9a80c2602f337e82ec0b45c70ee9586d3e8ff6fec3282733a0c1f5a7",
+  "runtimeSha256": "e55b515eeadbb5bd87f362c2cd4fc874000636af315b2417a14b8cb2fdbc6fda",
+  "frameMs": 20,
+  "durationMs": 37220,
+  "outputSha256": "0a21af90a6f9ebf061e4d6c2db0e522dca38755f9057c98cd87eafadcb76b808",
+  "stages": [
+    {
+      "id": "watch",
+      "label": "Time for a wash",
+      "start": 0,
+      "ms": 1800
+    },
+    {
+      "id": "arrival",
+      "label": "A mouse ambles past",
+      "start": 1800,
+      "ms": 6600
+    },
+    {
+      "id": "notice",
+      "label": "Oh… what is that?",
+      "start": 8400,
+      "ms": 1000
+    },
+    {
+      "id": "rise",
+      "label": "Up on our feet",
+      "start": 9400,
+      "ms": 100
+    },
+    {
+      "id": "follow",
+      "label": "A quick little run",
+      "start": 9500,
+      "ms": 2020
+    },
+    {
+      "id": "lower",
+      "label": "Getting low",
+      "start": 11520,
+      "ms": 440
+    },
+    {
+      "id": "sneak",
+      "label": "Softly, softly…",
+      "start": 11960,
+      "ms": 4120
+    },
+    {
+      "id": "wiggle",
+      "label": "A little bum wiggle",
+      "start": 16080,
+      "ms": 1200
+    },
+    {
+      "id": "pounce",
+      "label": "Pounce!",
+      "start": 17280,
+      "ms": 860
+    },
+    {
+      "id": "catch",
+      "label": "Caught you",
+      "start": 18140,
+      "ms": 1000
+    },
+    {
+      "id": "lift",
+      "label": "A small prize",
+      "start": 19140,
+      "ms": 600
+    },
+    {
+      "id": "turn-home",
+      "label": "Let’s take it home",
+      "start": 19740,
+      "ms": 1080
+    },
+    {
+      "id": "carry",
+      "label": "A happy walk home",
+      "start": 20820,
+      "ms": 7020
+    },
+    {
+      "id": "put-down",
+      "label": "Set it down here",
+      "start": 27840,
+      "ms": 1000
+    },
+    {
+      "id": "sit",
+      "label": "Sit beside our prize",
+      "start": 28840,
+      "ms": 2200
+    },
+    {
+      "id": "bat",
+      "label": "One little bop",
+      "start": 31040,
+      "ms": 2600
+    },
+    {
+      "id": "pause",
+      "label": "Where did it go?",
+      "start": 33640,
+      "ms": 1200
+    },
+    {
+      "id": "turn-watch",
+      "label": "What next?",
+      "start": 34840,
+      "ms": 1080
+    },
+    {
+      "id": "settle",
+      "label": "Back to watching",
+      "start": 35920,
+      "ms": 100
+    },
+    {
+      "id": "reset",
+      "label": "Back to our wash",
+      "start": 36020,
+      "ms": 1200
+    }
+  ]
+}

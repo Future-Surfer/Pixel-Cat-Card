@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "recipe": "box-and-tree-draft-3",
+  "recipeSha256": "c271c70004a4c9f13f0b857a49460c52f0cdb5f1cdfacadc488eb7e0ae8adc0e",
+  "assetsSha256": "eef9104b3c652b47dfd7c1e300f70d79ad081fa04b3592bf00dc9a1068847c29",
+  "runtimeSha256": "e55b515eeadbb5bd87f362c2cd4fc874000636af315b2417a14b8cb2fdbc6fda",
+  "frameMs": 20,
+  "durationMs": 40000,
+  "outputSha256": "8a72082aa5e07caabc734cdf94759b90ffa50366dd8dfd10c55d1e5dcc28820a",
+  "stages": [
+    {
+      "id": "cue-0",
+      "start": 0,
+      "ms": 2400,
+      "label": "Box cat: Tucked in the box · Tree cat: Fast asleep on the perch"
+    },
+    {
+      "id": "cue-2400",
+      "start": 2400,
+      "ms": 640,
+      "label": "Box cat: Hop out"
+    },
+    {
+      "id": "cue-3040",
+      "start": 3040,
+      "ms": 5720,
+      "label": "Box cat: Over to the scratching post"
+    },
+    {
+      "id": "cue-8760",
+      "start": 8760,
+      "ms": 1100,
+      "label": "Box cat: A satisfying scratch"
+    },
+    {
+      "id": "cue-9860",
+      "start": 9860,
+      "ms": 1800,
+      "label": "Tree cat: What was that?"
+    },
+    {
+      "id": "cue-11660",
+      "start": 11660,
+      "ms": 800,
+      "label": "Tree cat: A sleepy pause"
+    },
+    {
+      "id": "cue-12460",
+      "start": 12460,
+      "ms": 2500,
+      "label": "Tree cat: A lazy roll onto our back"
+    },
+    {
+      "id": "cue-14960",
+      "start": 14960,
+      "ms": 1080,
+      "label": "Box cat: Back to the box"
+    },
+    {
+      "id": "cue-16040",
+      "start": 16040,
+      "ms": 5960,
+      "label": "Box cat: A quiet walk home"
+    },
+    {
+      "id": "cue-22000",
+      "start": 22000,
+      "ms": 800,
+      "label": "Box cat: Hop inside"
+    },
+    {
+      "id": "cue-22800",
+      "start": 22800,
+      "ms": 5660,
+      "label": "Box cat: Hidden and content"
+    },
+    {
+      "id": "cue-28460",
+      "start": 28460,
+      "ms": 800,
+      "label": "Tree cat: Curling up again"
+    },
+    {
+      "id": "cue-29260",
+      "start": 29260,
+      "ms": 9940,
+      "label": "Tree cat: Back to sleep"
+    },
+    {
+      "id": "cue-39200",
+      "start": 39200,
+      "ms": 200,
+      "label": "Box cat: Tucked in the box"
+    },
+    {
+      "id": "cue-39400",
+      "start": 39400,
+      "ms": 600,
+      "label": "Tree cat: Fast asleep on the perch"
+    }
+  ]
+}
