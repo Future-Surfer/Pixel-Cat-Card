@@ -30,9 +30,17 @@
     offer(a,t,report) { return scenarios.climb.offer(a,t,report,'card-wall-jump'); }
   };
   scenarios.chase={label:'Chase across cards',counters:['Running on','Following','Pounced','Turned to watch','Crossings','No safe route']};
+  scenarios.edgeScratch={
+    label:'Scratch card edges',
+    counters:['No usable edge','No safe stance or route','Declined','Attempted','Completed','Interrupted'],
+    enabled:a=>window.pixelCatLabScratchV1.enabled(a),
+    ready:a=>window.pixelCatLabScratchV1.ready(a),
+    offer:(a,t,report)=>window.pixelCatLabScratchV1.offer(a,t,report)
+  };
   window.pixelCatBehaviourLabV1 = {
     tick(a,t,art) {
       const v=views.get(a.root), focus=v&&v.path===location.pathname?v.focus:'';
+      if(window.pixelCatLabScratchV1?.tick(a,t,focus))return 1;
       if(focus==='chase')return window.pixelCatDashboardChaseV1?.focus(a,t,v)||0;
       if (!focus) {
         if(a.labFocus){if(a.route===a.labRoute)a.route=[];a.labRoute=null;a.labFocus='';a.labPose=null;a.deadline=t;}
@@ -65,14 +73,16 @@
     offer(a, t) {
       const view = views.get(a.root), scenario = scenarios[view?.focus];
       if (!scenario || view.path !== location.pathname || !a.support || scenario.enabled?.(a) === false ||
-          !window.pixelCatClimbV1.ready(a) || a.idle?.pose === 'sleep' && t < a.idle.poseUntil) return false;
+          !(scenario.ready?scenario.ready(a):window.pixelCatClimbV1.ready(a)) || a.idle?.pose === 'sleep' && t < a.idle.poseUntil) return false;
       if (t < (view.next.get(a) || 0)) return false;
       if(t<(view.probeAt||0))return false;
       view.probeAt=t+100;
       view.next.set(a, t + 2000 + a.ensureMood().random() * 2000);
       const counts = view.counts;
       const report = label => { counts[label] = (counts[label] || 0) + 1; };
-      return scenario.offer(a, t, report) === true;
+      const accepted=scenario.offer(a,t,report)===true;
+      if(accepted&&a.labScratch){a.labScratch.labView=view;(view.scratchCats||=new Set()).add(a);}
+      return accepted;
     }
   };
   if (typeof HTMLElement === 'undefined' || customElements.get('pixel-cat-behaviour-lab')) return;
@@ -91,13 +101,14 @@
         views.set(root, view);
       }
       view.cards++;
-      this.cleanup = () => { if (!--view.cards && views.get(root) === view) {window.pixelCatDashboardChaseV1?.resetFocus(view);views.delete(root);} };
+      this.cleanup = () => { if (!--view.cards && views.get(root) === view) {window.pixelCatDashboardChaseV1?.resetFocus(view);window.pixelCatLabScratchV1?.reset(view);views.delete(root);} };
       const shadow = this.shadowRoot || this.attachShadow({mode:'open'});
       shadow.innerHTML = '<ha-card header="Behaviour Lab"><div class="card-content"><label>Focus <select><option value="">Natural behaviour</option></select></label><p></p></div></ha-card>';
       const select = shadow.querySelector('select'), status = shadow.querySelector('p');
       for (const [id, scenario] of Object.entries(scenarios)) select.add(new Option(scenario.label,id));
       select.onchange = () => {
         window.pixelCatDashboardChaseV1?.resetFocus(view);
+        window.pixelCatLabScratchV1?.reset(view);
         view.focus = select.value;
         view.counts = {};
         view.next = new WeakMap();
@@ -107,7 +118,8 @@
       const refresh = () => {
         select.value = view.focus;
         const cats = (window.pixelCatPrimaryV1?.current() || []).filter(a => a.root === root);
-        const busy = cats.filter(a => !window.pixelCatClimbV1?.ready(a) || a.idle?.pose === 'sleep').length;
+        const ready=scenarios[view.focus]?.ready||(a=>window.pixelCatClimbV1?.ready(a));
+        const busy = cats.filter(a => !ready(a) || a.idle?.pose === 'sleep').length;
         status.textContent = view.focus
           ? [`${cats.length} cats (${busy} busy)`, ...scenarios[view.focus].counters.map(k => `${k}: ${view.counts[k] || 0}`)].join(' · ')
           : 'Choose a focus for the cats on this view until you reload.';

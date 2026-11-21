@@ -3,7 +3,7 @@ import {seededMath,testSeed} from './random.mjs';
 export function encounterFixture(scale=2){
  let time=1000;
  const box={Math:seededMath(testSeed()),window:{},HTMLElement:class{},customElements:{get:()=>true},performance:{now:()=>time},requestAnimationFrame(){}};
- vm.runInNewContext(['pixel-cat-roaming-art.js','pixel-cat-roaming-extras.js','pixel-cat-affordances.js','pixel-cat-behaviours.js','pixel-cat-roaming.js'].map(p=>fs.readFileSync(p,'utf8')).join('\n')+'\nglobalThis.api={Home:PixelCatHome,CatMood,owners:CAT_OWNERS,art:CAT_ART,walkSample,walkAppearance};',box);
+ vm.runInNewContext(['pixel-cat-roaming-art.js','pixel-cat-roaming-extras.js','pixel-cat-affordances.js','pixel-cat-behaviours.js','pixel-cat-roaming.js'].map(p=>fs.readFileSync(p,'utf8')).join('\n')+'\nglobalThis.api={Home:PixelCatHome,CatMood,owners:CAT_OWNERS,art:CAT_ART,walkSample,walkAppearance,frameContact,idleContact};',box);
  const {Home,CatMood,owners,art}=box.api,root={},surface={id:'floor:top',el:{isConnected:true},left:0,right:1200,top:400,min:0,max:1200-24*scale};
  function cat(id,x,pose='sit'){
   const rows=art.idleSequences[pose]?.frames[0]||art.stand,attrs={};

@@ -740,7 +740,7 @@ class PixelCatHome extends HTMLElement {
         return true;
       });
   }
-  freezeClocks(gap){gap=Math.max(0,gap);if(this.climb)this.climb.last+=gap;if(this.explorationResidence)this.explorationResidence.since+=gap;if(this.nextLandingReactionAt)this.nextLandingReactionAt+=gap;if(this.nextStartleAt)this.nextStartleAt+=gap;if(this.motion)this.motion.start+=gap;if(this.idle){this.idle.start+=gap;this.idle.poseUntil+=gap;}if(this.play&&Number.isFinite(this.play.waitUntil))this.play.waitUntil+=gap;if(this.toyHunt)this.toyHunt.started+=gap;if(this.nextReactiveMouseAt)this.nextReactiveMouseAt+=gap;if(this.nextToyAttemptAt)this.nextToyAttemptAt+=gap;if(this.nextToyAt)this.nextToyAt+=gap;if(this.nextPlayAt)this.nextPlayAt+=gap;if(this.forcedIdleUntil)this.forcedIdleUntil+=gap;if(this.deadline>0)this.deadline+=gap;}
+  freezeClocks(gap){window.pixelCatPolishV1.freeze(this,gap);}
   renderDebug(){window.pixelCatSurfaceDebugV1?.render.call(this,{restingPoints,flightPoint,propSurfaceFor,propPosition,travelSpeed});}
   draw(rows) {
     const s=this.scale, signature=rows.join('')+this.facing;

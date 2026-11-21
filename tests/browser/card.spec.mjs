@@ -12,6 +12,15 @@ test.afterEach(async({page},info)=>{
  expect(page.__errors).toEqual([]);
 });
 async function placed(page){await expect.poll(()=>page.locator('#first').evaluate(a=>!!a.signature&&!a.layoutPaused&&!a.suspended)).toBe(true);}
+async function scratchFocus(page){
+ await page.getByRole('button',{name:'Set up edge scratching',exact:true}).click();await placed(page);
+ await expect.poll(()=>page.locator('#first').evaluate(a=>!a.needsMeasure&&!a.layoutPaused&&a.verticalCardRects?.some(s=>s.el?.id==='scratch-wall'))).toBe(true);
+ // Establish a supported starting stance; this journey exercises the real scratch approach, not travel from home.
+ await page.locator('#first').evaluate(a=>{const floor=a.surfaces.find(s=>s.el?.getAttribute?.('aria-label')==='Shared floor'),wall=document.querySelector('#scratch-wall').getBoundingClientRect();a.social?.finish('fixture start');a.motion=null;a.route=[];a.support=floor;a.x=Math.max(floor.min,Math.min(floor.max,wall.left-24*a.scale));a.y=floor.top;a.idle=null;a.deadline=performance.now()+4000;});
+ await page.locator('#edge-lab').getByRole('combobox').selectOption('edgeScratch');
+ await expect.poll(()=>page.locator('#first').evaluate(a=>a.social?.episode?.kind==='vertical-scratch'&&a.social.episode.stage==='stroke'&&!!a.social.episode.contacts),{timeout:15000}).toBe(true);
+ expect(await page.locator('#first').evaluate(a=>a.social.episode.prop.visualOwner.id)).toBe('scratch-wall');
+}
 
 test('packaged bundle paints independent adult and kitten actors',async({page})=>{
  await placed(page);await expect(page.locator('pixel-cat-home')).toHaveCount(2);
@@ -55,4 +64,25 @@ test('pointer pickup and Escape cancellation preserve manual Pause',async({page}
  await expect.poll(()=>page.locator('#first').evaluate(a=>!!a.userHeld)).toBe(true);
  await page.keyboard.press('Escape');await page.mouse.up();
  await expect.poll(()=>page.locator('#first').evaluate(a=>!a.userHeld&&!a.dragState&&a.paused)).toBe(true);
+});
+
+test('edge scratch focus plants real paws and completes after Pause and Resume',async({page},info)=>{
+ await scratchFocus(page);
+ await page.screenshot({path:info.outputPath('edge-scratch.png'),fullPage:true});
+ expect(await page.locator('#first').evaluate(a=>[a.config.climbing,a.config.card_climbing])).toEqual([false,false]);
+ await page.locator('#first').getByRole('button',{name:'Pause',exact:true}).click();
+ const clock=await page.locator('#first').evaluate(a=>a.social.clock);await page.waitForTimeout(250);
+ expect(await page.locator('#first').evaluate(a=>a.social.clock)).toBe(clock);
+ await page.locator('#first').getByRole('button',{name:'Resume',exact:true}).click();
+ await expect(page.locator('#edge-lab')).toContainText('Completed: 1',{timeout:15000});
+ await page.locator('#edge-lab').getByRole('combobox').selectOption('');
+ await expect.poll(()=>page.locator('#first').evaluate(a=>!a.labScratch&&!a.social?.episode)).toBe(true);
+});
+
+test('removed scratch edge releases its claim and cancels the focused episode',async({page})=>{
+ await scratchFocus(page);
+ await page.locator('#first').evaluate(a=>{window.fixtureScratchProp=a.social.episode.prop;window.fixtureScratchProp.visualOwner.remove();a.invalidate();});
+ await expect.poll(()=>page.locator('#first').evaluate(a=>!a.labScratch&&!a.social?.episode&&!window.fixtureScratchProp.claimedBy),{timeout:15000}).toBe(true);
+ await expect(page.locator('#edge-lab')).toContainText('Interrupted: 1');
+ await expect(page.locator('#edge-lab')).toContainText('Completed: 0');
 });

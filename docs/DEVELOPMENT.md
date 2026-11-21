@@ -34,7 +34,7 @@ For a dev install alongside Marketplace, serve the dev bundle from a versioned p
 | Layer | Current evidence | Remaining boundary |
 | --- | --- | --- |
 | Node contracts | Packaging/artwork, motion/contact, perception/behaviour, props, persistence, lifecycle and media; 192 walking-edge cases include half-size kitten scales | Broader composed feature journeys and statistical calibration |
-| Browser | Actual `dist/pixel-cat-card.js`; editor save/reload, adult/kitten paint, cached navigation/Pause, theme/reflow, reduced motion and pointer/Escape cancellation | Synthetic local host, Chromium only; not real HA or a physical phone |
+| Browser | Actual `dist/pixel-cat-card.js`; editor save/reload, adult/kitten paint, cached navigation/Pause, theme/reflow, reduced motion, pointer/Escape cancellation and edge-scratch contact/completion/removal | Synthetic local host, Chromium only; not real HA or a physical phone |
 | Seeded simulation | Explicit VM randomness/virtual clocks in the interaction fixture; fixed PR seed and five nightly/release seeds | More scenario families must adopt the shared seed helper |
 | Manual release/device | Current release history records actual evidence | Isolated clean install/update/reinstall/restore, physical touch/inertia, PiDisplay FPS and wider accessibility remain open |
 
@@ -111,6 +111,8 @@ Studio and lab HTTP adapters accept only their configured loopback hostname/port
 5. Roll back only affected resources/paths using fresh state. Never write internal `.storage` or replace unrelated dashboard configuration.
 
 ## Documentation maintenance
+
+For each new feature, note concrete opportunities for animation variety in [sequence ideas](design/SEQUENCE_VARIETY_IDEAS.md), including variants of existing clips. Keep proposals separate from approved artwork and runtime commitments; check the existing catalogue before drafting.
 
 - `CURRENT_STATE`: compact current facts/limits. `ROADMAP`: open work. `FEATURE_DETAILS`: detailed implemented contracts.
 - README and FEATURES are entry summaries; update only affected summaries/contracts.

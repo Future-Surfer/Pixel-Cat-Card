@@ -10,4 +10,12 @@ $('#save').onclick=()=>{saved={...draft};localStorage.setItem('pixel-cat-browser
 $('#leave').onclick=()=>{world.remove();$('#other').hidden=false;$('#leave').hidden=true;$('#return').hidden=false;history.pushState({},'','/away');};
 $('#return').onclick=()=>{$('#mount').append(world);history.replaceState({},'','/');$('#other').hidden=true;$('#leave').hidden=false;$('#return').hidden=true;};
 $('#theme').onclick=()=>document.body.classList.toggle('dark');
+$('#edge-setup').onclick=()=>{
+ if($('#scratch-wall'))return;
+ const wall=document.createElement('div');wall.id='scratch-wall';wall.setAttribute('data-cat-surface','');wall.setAttribute('aria-label','Scratch wall');
+ wall.style.cssText='position:absolute;left:55%;top:205px;width:90px;height:155px;background:#a9b8cc;border:1px solid #677d97';
+ $('.stage').append(wall);
+ const lab=document.createElement('pixel-cat-behaviour-lab');lab.id='edge-lab';world.append(lab);
+ first.setConfig({...saved,social_behaviour:true,interaction_behaviour:true,native_vertical_surfaces:true,climbing:false,card_climbing:false,show_scratching_post:false,relaxed_speed:12});first.invalidate();
+};
 $('#bundle-status').textContent='Bundle '+window.pixelCatCardRelease.version+' loaded';

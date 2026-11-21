@@ -15,6 +15,14 @@ The live card and the [Climb workshop](http://127.0.0.1:8769/prototype/climb-lab
 
 ## Testing and rollback
 
+### Behaviour Lab edge scratching
+
+**Scratch card edges** temporarily offers the existing standing post-scratch interaction on native card edges. It respects native-surface, social and interaction settings, independently of the climbing switches. Each cat retries on its own staggered schedule and may decline; waiting retains ordinary quiet pose variety. It needs a clear supported stance, an approach and a way home; transparent, clipped, covered, detached, excluded or unsupported panels are rejected using the cached panel snapshot. Functional controls are not claw material. A card edge remains pass-through.
+
+The ordinary scratch episode owns its edge claim, approach and authored forepaw contacts. Focus playback advances only that episode's active clock; manual Pause and hidden/layout suspension freeze it. Changing focus, a command, lost permission or an unavailable edge releases the claim and removes only the scratch-owned approach route. An in-flight move retains its normal safe landing. **Attempted** counts a reserved approach; **Completed** requires a finished stroke bout with actual authored paw contact. A cancelled or contact-free attempt counts as **Interrupted**. No card wiggle or loose post debris is emitted for a native edge.
+
+This is a Behaviour Lab addition; ordinary autonomous scratch frequencies and artwork are unchanged. [Potential sequence variants](SEQUENCE_VARIETY_IDEAS.md) remain proposals. Focused runtime tests cover eight body scales, both facings, settings, optional declines, routes, reservations, pause clocks, exclusions and cleanup; packaged-browser checks cover contacts/completion and removal at desktop/narrow widths. These are local fixtures, not HA deployment or physical-device acceptance.
+
 Use the Climb workshop to tune pose contacts, cadence, post height and destination elevation. Use [Live climbing](http://127.0.0.1:8769/prototype/climb-runtime-lab.html) or the HA Testing dashboard for card runtime integration. Set `debug_vertical_surfaces: true` to inspect measured boundaries, exposed patches and clear landing tops.
 
 The previous centred-face planner and its comparison lab are retired. The retained geometry tests cover exposure and standing tops. Production route tests cover actual side poses, live support IDs, occupied and removed landings, and scrolling.

@@ -14,11 +14,13 @@ Updated 10 November 2026. **Sole forward plan.** [Current state](CURRENT_STATE.m
 
 ## Recommended next sequence
 
+Isolated installation/removal/reinstall/restore acceptance is deferred by owner decision on 20 November 2026; no second HA instance will be created for now and no revisit date is scheduled. Keep the checks explicitly untested. **Scratch card edges** is the current Behaviour Lab implementation; local validation precedes any HA deployment.
+
 **LAB-01 — Behaviour Lab.** The first version is on the HA dev Testing view. One dropdown applies a temporary focus to every eligible cat on the current dashboard view, including cats that join after selection. **Natural behaviour** is the default. **Climb and leap** resets on reload or when the last lab card is removed. Saved cat settings and everyday behaviour weights are independent of the lab.
 
 - Selecting a focus interrupts grounded activities and wakes resting cats. A cat in flight finishes its move. The lab checks again every 2–4 seconds per cat, spreading route checks across the view. Cats take viable routes and wait when blocked. Manual pause, the card climbing setting and safe landings and return routes still apply.
 - The card shows the current busy count and running totals for missing walls, missing safe routes, declines, attempts and completed landings. A safe route includes the approach, grip, landing and way home. The first HA Testing run recorded a completed climb and separate declines and route skips. Automated checks cover view isolation and resetting the focus.
-- Behaviour Lab is available under **Card purpose** alongside Companion and Performance. **Yawn** checks that eligible cats receive the focus without needing a wall route. **Climb and leap** uses the face of the cat’s current card or its own visible home and aims for a different card’s top. Counters distinguish a missing face on the current card, a missing destination, a missing way home, and a route that fails the climb checks. **Scratch card edges** is the next scenario candidate.
+- Behaviour Lab is available under **Card purpose** alongside Companion and Performance. **Yawn** checks that eligible cats receive the focus without needing a wall route. **Climb and leap** uses the face of the cat’s current card or its own visible home and aims for a different card’s top. Counters distinguish a missing face on the current card, a missing destination, a missing way home, and a route that fails the climb checks. **Scratch card edges** reuses reserved supported scratches with optional declines, contact-based completion and scoped interruption cleanup, independently of climbing settings. [Contract and validation scope](design/VERTICAL_SURFACE_TRANSFERS.md#behaviour-lab-edge-scratching).
 
 The desktop stability/calibration batch is delivered. Evidence, measured limits and device checklist (development reference retained privately).
 
@@ -137,6 +139,8 @@ Semantic POIs need deliberate exact-version integration into a grip/mouth/contac
 
 ## Artwork backlog
 
+As features develop, record useful new sequences and variants in the [visual variety intake](design/SEQUENCE_VARIETY_IDEAS.md). Edge-scratching rhythm, glance, tentative touch and finishing-paw accents are ideas awaiting draft/review, not runtime commitments.
+
 | ID / status | Scope |
 | --- | --- |
 | ART-10 · Delivered pilot | Exact lying alert/head/tail integration and subtle observed/contact responses delivered. Extend only after ordinary-session calibration; broader observation remains task 8. |
@@ -168,9 +172,9 @@ Semantic POIs need deliberate exact-version integration into a grip/mouth/contac
 
 ## Release and maintenance
 
-**Next delivery checkpoint:** verify isolated Marketplace installation, update, removal/reinstall and scoped rollback on the opt-in Pixel Cat Card prerelease before a stable release. The [release plan](design/PIXEL_CAT_RELEASE.md) owns the acceptance and catalog submission sequence. Broader runtime features stay behind this release work.
+**Deferred acceptance:** stable v1.1.0 is published and its live Marketplace upgrade is verified. Isolated clean install, removal/reinstall and native backup restore remain untested and deferred by owner decision; they do not block feature development. Retain the [execution checklist](guides/ISOLATED_RELEASE_ACCEPTANCE.md) for a future revisit. The [release plan](design/PIXEL_CAT_RELEASE.md) owns publication checks and reassessment of these gaps before the next release.
 
-- **SHIP-01, SHIP-02:** single-file packaging, manifest/checksums, deterministic builds, 120 test suites, public plugin validation and concise README/GIF are delivered. Remaining: candidate publication and isolated Marketplace acceptance.
+- **SHIP-01, SHIP-02:** single-file packaging, manifest/checksums, deterministic builds, 130 Node suites, 12 browser checks, public plugin validation, stable v1.1.0 publication and README GIFs are delivered. Isolated Marketplace installation/reinstall/restore acceptance is deferred and remains untested.
 - **SHIP-03:** independent clean public repository, protected main, CI/support/release workflows and reviewed presentation PR are delivered. Manual HA single-bundle migration has exact backups/readback, unchanged unrelated resources and browser checks. Preserve the private original history and scoped rollback evidence.
 - **SHIP-04:** **Pixel Cat Card** lives at `Future-Surfer/Pixel-Cat-Card`; the original `Stick-Pet-Card` stays private and unrenamed. Public `custom:pixel-cat-home` and existing options remain. Legacy sources are internal compatibility inputs; no separate legacy resources are needed beside the bundle.
 - **SHIP-05:** choose simple launcher vs standalone Studio; common lab menu, loopback defaults, separate stores and optional read-only MCP remain. Card Lab stays mock-only.

@@ -7,7 +7,9 @@
     "navigation": "manual Pause survives cached view leave and reconnect",
     "reflow": "theme and viewport reflow retain usable actors and Pause",
     "motionPreference": "reduced-motion preference suspends the actual roaming controller",
-    "handling": "pointer pickup and Escape cancellation preserve manual Pause"
+    "handling": "pointer pickup and Escape cancellation preserve manual Pause",
+    "edgeScratch": "edge scratch focus plants real paws and completes after Pause and Resume",
+    "edgeRemoval": "removed scratch edge releases its claim and cancels the focused episode"
   },
   "groups": [
     {
@@ -35,7 +37,7 @@
       "id": "perception-and-social",
       "feature": "Gaze, mood, optional interactions, chasing, life stages, rest and reactions",
       "suitePattern": "^test-(cat-(decisions|interactions|dashboard-chase|shelf-ambush|mood|post-rest|behaviour-refinements|commands)|gaze-.*|quiet-behaviour|behaviour-.*|life-stages|settling|local-exploration|prop-disturbances|startle-.*|alert-lying)\\.mjs$",
-      "browser": ["bundle", "motionPreference"],
+      "browser": ["bundle", "motionPreference", "edgeScratch", "edgeRemoval"],
       "openChecks": ["Broader seeded social/geometry combinations", "Adult/senior profile calibration", "Runtime frequencies are distributions, not guaranteed participation"]
     },
     {
