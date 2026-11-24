@@ -7,4 +7,4 @@
 - Before Studio work, read [frame-studio/AGENTS.md](frame-studio/AGENTS.md). Keep live stores, private attachments and dashboard backups outside Git.
 - Before Home Assistant writes, retrieve fresh state, keep exact targeted backups, use scoped changes, read back exactly and verify in the real browser. Preserve unrelated configuration.
 - Iterate with focused checks. Run full tests and reproducible builds on final runtime changes. Documentation-only work needs link/content checks.
-- Keep handoffs concise; use the documentation router rather than loading every guide or generated JavaScript file.
+- Follow [token and context efficiency](docs/DEVELOPMENT.md#token-and-context-efficiency). Search before reading, reuse verified findings and keep tool output bounded. Keep handoffs concise.

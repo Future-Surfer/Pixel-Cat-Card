@@ -2,6 +2,15 @@
 
 Read [CURRENT_STATE](CURRENT_STATE.md) for the handoff; use [ROADMAP](ROADMAP.md) for priorities.
 
+## Token and context efficiency
+
+Optimise for useful, verified progress per token. Preserve required checks, configuration, artwork integrity and behaviour contracts.
+
+- **Retrieve context selectively.** After the handoff, use the [documentation router](README.md) to find the relevant sections. Read the roadmap when priorities or dependencies matter. Search for paths, symbols or headings before opening large files. Start with source, targeted diffs and relevant test evidence. Open bundles, journals and archives when the task needs them. Reuse findings within the session and refresh state that may have changed before acting on it.
+- **Keep changes focused.** Proceed autonomously on clear requests. For complex work, briefly identify affected components, dependencies and validation. Reuse existing animation, behaviour, interaction and build code. If an approach keeps failing, inspect new evidence before retrying. Use parallel investigation only when independent work justifies the overhead.
+- **Match checks to the change.** Start with focused tests and use [suite and seed selectors](#test-coverage-and-failure-replay) where supported. Bound output and report the result, with detailed logs or artefacts available for diagnosis. Follow the [runtime validation gates](#build-and-validate) for the final relevant changes. Repeat checks when inputs changed or a failure warrants it. Preserve relevant regression and security coverage.
+- **Keep evidence where it belongs.** Follow the [Studio](#studio-and-data-preservation) and [Home Assistant](#home-assistant-changes) procedures in full. Keep updates brief and report meaningful milestones or blockers. Update the handoff when project state changes and record detailed evidence in its owning document. Summarise changes, checks and remaining limits, distinguishing observed results from assumptions.
+
 ## Build and validate
 
 Node.js 22.20+. Runtime builds and Node assertions have no npm dependencies. The optional real-browser suite uses pinned Playwright development dependencies (`npm ci --ignore-scripts`); these do not ship in the Home Assistant bundle.
