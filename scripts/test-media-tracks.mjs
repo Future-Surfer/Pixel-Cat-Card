@@ -51,7 +51,11 @@ assert.match(manifest.runtimeSha256,/^[a-f0-9]{64}$/,'Approved media retains its
 assert.notEqual(mediaRuntimeHash(),hash('{}'),'New exports hash the ordered runtime source modules');
 assert.equal(hash(fs.readFileSync('docs/images/pixel-cat-mouse-chase.gif')),manifest.outputSha256,'README uses the exact approved mouse GIF');
 const readme=fs.readFileSync('README.md','utf8');
-assert.ok(readme.indexOf('## Install')<readme.indexOf('docs/images/pixel-cat-mouse-chase.gif')&&readme.indexOf('docs/images/pixel-cat-mouse-chase.gif')<readme.indexOf('## Add a cat'));
+assert.ok(readme.indexOf('## Install')<readme.indexOf('docs/images/pixel-cat-routine-v3.gif')&&readme.indexOf('docs/images/pixel-cat-routine-v3.gif')<readme.indexOf('## Add a cat'));
+const readmeGifs=['entity-card','routine-v3','mouse-chase','box-and-tree'].map(id=>'docs/images/pixel-cat-'+id+'.gif');
+assert.deepEqual([...readme.matchAll(/\]\((docs\/images\/[^)]+\.gif)\)/g)].map(m=>m[1]),readmeGifs,'All four approved GIFs appear once in the requested order');
+const entityManifest=JSON.parse(fs.readFileSync('docs/images/pixel-cat-entity-card.json','utf8'));
+assert.equal(hash(fs.readFileSync(readmeGifs[0])),entityManifest.outputSha256,'The leading GIF is the exact approved cursor/shadow export');
 assert.throws(()=>compileScene({...recipe,durationMs:40001}),/loop exactly/);
 assert.throws(()=>compileScene({...recipe,tracks:[recipe.tracks[0],recipe.tracks[0]]}),/Duplicate actor/);
 console.log('PASS: independent two-cat tracks, exact box occlusion, released platform fit, deterministic seeking/loop and approved README GIF hash.');
