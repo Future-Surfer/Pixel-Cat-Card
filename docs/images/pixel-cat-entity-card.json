@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "recipe": "entity-card-draft-3",
+  "recipeSha256": "e62e163d9cc5b247a6b33ef9fd32f785ecbeab3af2c12a56d7750051cbd5af00",
+  "assetsSha256": "4698d5b46fca0c5b084da58af4c7e5742bec63ead9aa9746ec66afedb4e0b5f2",
+  "runtimeSha256": "cfc0e7425efbbf70d37abddaef7252f5d42f630beaa19e6c5722f5453ab54843",
+  "frameMs": 20,
+  "durationMs": 14000,
+  "outputSha256": "85c7ec6a290e1d17e3768f672dc3a2c9163cf6d1e11488483928730e25777cbb",
+  "stages": [
+    {
+      "id": "cue-0",
+      "start": 0,
+      "ms": 4000,
+      "label": "Curious cat: An irresistible card edge"
+    },
+    {
+      "id": "cue-4000",
+      "start": 4000,
+      "ms": 2200,
+      "label": "Curious cat: Caught in the act"
+    },
+    {
+      "id": "cue-6200",
+      "start": 6200,
+      "ms": 700,
+      "label": "Curious cat: Just a little further away"
+    },
+    {
+      "id": "cue-6900",
+      "start": 6900,
+      "ms": 500,
+      "label": "Curious cat: A brief second thought"
+    },
+    {
+      "id": "cue-7400",
+      "start": 7400,
+      "ms": 1080,
+      "label": "Curious cat: Back to that edge"
+    },
+    {
+      "id": "cue-8480",
+      "start": 8480,
+      "ms": 2240,
+      "label": "Curious cat: A few unhurried steps back"
+    },
+    {
+      "id": "cue-10720",
+      "start": 10720,
+      "ms": 2880,
+      "label": "Curious cat: Just one more scratch"
+    },
+    {
+      "id": "cue-13600",
+      "start": 13600,
+      "ms": 400,
+      "label": "Curious cat: An irresistible card edge"
+    }
+  ]
+}
